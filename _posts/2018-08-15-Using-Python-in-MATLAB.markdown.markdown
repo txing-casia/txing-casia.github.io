@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "在python中调用MATLAB的方法"
-subtitle:   "速度肯定是没有只用一个软件来得快了啊"
+title:      "Using Python in MATLAB"
+subtitle:   "Disadvantage: speed down"
 date:       2018-08-15
 author:     "Txing"
 header-img: "img/post-bg-py.jpg"
@@ -11,6 +11,8 @@ tags:
 ---
 
 
+
+# Using Python in MATLAB
 
 # 在python中调用MATLAB的方法
 
