@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "Using Python in MATLAB"
-subtitle:   "Disadvantage: speed down"
+title:      "在python中调用MATLAB的方法"
+subtitle:   "Python的代码资源非常丰富，方便对比算法与复现.MATLAB资源较少，但是其在模型仿真上的便利性依然是很明显的。如果两者相加，能不能得到双倍的快乐呢？"
 date:       2018-08-15
 author:     "Txing"
 header-img: "img/post-bg-py.jpg"
@@ -11,8 +11,6 @@ tags:
 ---
 
 
-
-# Using Python in MATLAB
 
 # 在python中调用MATLAB的方法
 
