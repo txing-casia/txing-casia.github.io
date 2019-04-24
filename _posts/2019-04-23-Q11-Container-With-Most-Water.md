@@ -16,7 +16,7 @@ tags:
 
 > Given *n* non-negative integers $a_1, a_2, ..., a_n$ , where each represents a point at coordinate ($i$, $a_i$).  $n$ vertical lines are drawn such that the two endpoints of line $i$ is at ($i$, $a_i$) and ($i$, $0$). Find two lines, which together with x-axis forms a container, such that the container contains the most water.
 >
-> ![question_11.jpg](D:\My Blog\txing-casia.github.io\img\question_11.jpg)
+> ![question_11.jpg](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/question_11.jpg)
 >
 > The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.
 
@@ -31,7 +31,7 @@ tags:
 
 In this case, we will simply consider the area for every possible pair of the lines and find out the maximum area out of those.
 
-```Python
+```python
 class Solution:
     def maxArea(self, height) -> int:
         maxarea=0
