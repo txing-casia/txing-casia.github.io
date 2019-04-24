@@ -59,7 +59,7 @@ tags:
 
 ### Approach 1: Two Pointers
 
-Since the array is already sorted, we can keep two pointers $i$ and $j$, where $i$ is the slow-runner while $j$ is the fast-runner. As long as $nums[i] = nums[j]$, we increment $j$ to skip the duplicate.
+Since the array is already sorted, we can keep two pointers $i$ and $j$, where $i$ is the slow-runner while $j$ is the fast-runner. As long as $$nums[i] = nums[j]$$, we increment $j$ to skip the duplicate.
 
 When we encounter $nums[j]\neq nums[i]$, the duplicate run has ended so we must copy its value to $nums[i + 1]$.  $i$ is then incremented and we repeat the same process again $j​$ reaches the end of array.
 
@@ -85,7 +85,7 @@ if __name__ == "__main__":
    
 ```
 
-- Time complextiy : O(n)*O*(*n*). Assume that n*n* is the length of array. Each of i*i* and j*j* traverses at most n*n*steps.
-- Space complexity : O(1)*O*(1).
+- Time complextiy : *O*(*n*). Assume that *n* is the length of array. Each of i*i* and *j* traverses at most n*n*steps.
+- Space complexity : *O*(1).
 
 代码中使用了nums.remove() 来删除重复元素，.pop() 也有类似效果，但在提交LeetCode时候超时未通过。
