@@ -8,6 +8,7 @@ header-img: "img/post-bg-py.jpg"
 tags:
     - Algorithm
     - Python
+    - Array
 ---
 
 # [Sort Array By Parity](https://leetcode.com/problems/sort-array-by-parity/)

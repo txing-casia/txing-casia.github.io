@@ -8,6 +8,7 @@ header-img: "img/post-bg-py.jpg"
 tags:
     - Algorithm
     - Python
+    - Array
 ---
 
 # [Toeplitz Matrix](https://leetcode.com/problems/toeplitz-matrix/)

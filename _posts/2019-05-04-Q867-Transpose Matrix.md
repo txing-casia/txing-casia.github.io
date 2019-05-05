@@ -2,12 +2,13 @@
 layout:     post
 title:      "Q867 Transpose Matrix"
 subtitle:   ""
-date:       2019-05-3
+date:       2019-05-04
 author:     "Txing"
 header-img: "img/post-bg-py.jpg"
 tags:
     - Algorithm
     - Python
+    - Array
 ---
 
 # [Transpose Matrix](https://leetcode.com/problems/transpose-matrix/)

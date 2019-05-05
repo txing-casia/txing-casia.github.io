@@ -8,6 +8,7 @@ header-img: "img/post-bg-py.jpg"
 tags:
     - Algorithm
     - Python
+    - Array
 ---
 
 # [Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)

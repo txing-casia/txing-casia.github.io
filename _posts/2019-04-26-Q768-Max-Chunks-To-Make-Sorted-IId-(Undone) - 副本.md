@@ -8,6 +8,7 @@ header-img: "img/post-bg-py.jpg"
 tags:
     - Algorithm
     - Python
+    - Array
 ---
 
 # [Max Chunks To Make Sorted II](https://leetcode.com/problems/max-chunks-to-make-sorted-ii/)
