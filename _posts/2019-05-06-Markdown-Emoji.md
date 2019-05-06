@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      ":monkey: Using Emoji in MD"
+title:      "Using Emoji in MD"
 subtitle:   "Lists of emoji faces"
 date:       2019-05-06
 author:     "Txing"
