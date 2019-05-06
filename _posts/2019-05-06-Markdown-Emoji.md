@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      ":frog:Markdown Emoji"
-subtitle:   "faster than 68.64% of Python3 online submissions for Jewels and Stones."
+title:      ":monkey: Using Emoji in MD"
+subtitle:   "Lists of emoji faces"
 date:       2019-05-06
 author:     "Txing"
 header-img: "img/post-bg-py.jpg"
