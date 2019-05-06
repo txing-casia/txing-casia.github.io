@@ -13,7 +13,8 @@ baseurl: "/txing-casia.github.io"         # for example, '/blog' if your blog ho
 gems:
     -jemoji
 
-
+plugins:
+    - jemoji
   
 # SNS settings
 RSS: false
@@ -44,18 +45,10 @@ gems: [jekyll-paginate]
 # although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
 # document: http://jekyllrb.com/docs/configuration/#kramdown
 
-#markdown: kramdown
-#kramdown:
-#  input: GFM                            # use Github Flavored Markdown !important
- github: [metadata]
- encoding: UTF-8
- kramdown:
-   input: GFM
-   hard_wrap: false
- future: true
- jailed: false
- theme: jekyll-theme-primer
- gfm_quirks: paragraph_end
+markdown: kramdown
+kramdown:
+  input: GFM                            # use Github Flavored Markdown !important
+
 
 
 # Disqus settings
