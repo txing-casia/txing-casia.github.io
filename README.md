@@ -30,7 +30,7 @@
   gem install kramdown
   ```
 
-成功之后就可以在MD中添加“\$\$”来编辑行内公式了（eg. `$$\LaTeX$$`  $\LaTeX$）
+成功之后就可以在MD中添加“\$\$”来编辑行内公式了（eg. `$$\LaTeX$$`  $$\LaTeX$$）
 
 
 
