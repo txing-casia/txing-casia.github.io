@@ -8,7 +8,7 @@ header-img: "img/post-bg-py.jpg"
 tags:
     - Algorithm
     - Python
-    - binary search tree
+    - Binary Search Tree
 ---
 
 # [Range Sum of BST](https://leetcode.com/problems/range-sum-of-bst/)
