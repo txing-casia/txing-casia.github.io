@@ -20,10 +20,11 @@ tags:
   - #AI爱新词#：阅读量86.5万，讨论201条（2019-5-21）
 
 <center class="half">
-    <img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/weibo_1.jpg" width="380">
-    <img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/weibo_2.jpg" width="380">   
+    <img src="//raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/weibo_1.jpg" width="380">
+    <img src="//raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/weibo_2.jpg" width="380">   
 	From Aug. 2018 to May. 2019
 </center>
+
 
 
 
