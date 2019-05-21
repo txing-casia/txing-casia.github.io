@@ -45,18 +45,35 @@ class ListNode:
         self.val = x
         self.next = None
 
+def stringToListNode(input):
+    # Now convert that list into linked list
+    dummyRoot = ListNode(0)
+    ptr = dummyRoot
+    for number in input:
+        ptr.next = ListNode(number)
+        ptr = ptr.next
+    ptr = dummyRoot.next
+    return ptr
+
+def listNodeToString(node):
+    if not node:
+        return "[]"
+    result = ""
+    while node:
+        result += str(node.val) + ", "
+        node = node.next
+    return "[" + result[:-2] + "]" # 最后一个逗号不输出
+
 class Solution(object):
     def middleNode(self, head):
         A = [head]
         while A[-1].next:
             A.append(A[-1].next)
         return A[len(A) // 2]
-        #return head.val[len(head.val) // 2]
-
 
 def main():
-    head=ListNode([1,2,3,4,5])
-    print(Solution().middleNode(head))
+    head=stringToListNode([1,2,3,4,5])# 将输入的元组转换为链表
+    print(listNodeToString(Solution().middleNode(head))) # 输出为[3,4,5]是因为list转换为string自动把后面的[4,5]带出来了，实际上只传了3的地址
 
 
 if __name__ == "__main__":
@@ -77,12 +94,6 @@ if __name__ == "__main__":
 When traversing the list with a pointer `slow`, make another pointer `fast` that traverses twice as fast. When `fast` reaches the end of the list, `slow` must be in the middle.
 
 ```python
-# Definition for singly-linked list.
-class ListNode:
-    def __init__(self, x):
-        self.val = x
-        self.next = None
-
 class Solution(object):
     def middleNode(self, head):
         slow = fast = head
@@ -94,6 +105,8 @@ class Solution(object):
 
 - Time Complexity: *O*(*N*), where *N* is the number of nodes in the given list.
 - Space Complexity: *O*(1), the space used by `slow` and `fast`. 
+
+
 
 - Runtime: 32 ms, faster than 96.73% of Python3 online submissions forMiddle of the Linked List.
 - Memory Usage: 13.2 MB, less than 23.44% of Python3 online submissions for Middle of the Linked List.
