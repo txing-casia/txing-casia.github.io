@@ -22,7 +22,7 @@ tags:
 - ![](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/weibo.jpg) 
 
   <center>
-      From Aug. 2018 to May. 2019
+      From Aug. 2018 to May. 2019（实现1000+新粉丝）
   </center>
 
   
