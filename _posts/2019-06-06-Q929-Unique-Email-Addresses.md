@@ -44,36 +44,25 @@ tags:
 > - All local and domain names are non-empty.
 > - Local names do not start with a `'+'` character.
 
-## Approach 1: Canonical Form
+## Approach 1: Split Words  (Original Method)
 
 **Intuition and Algorithm**
 
-For each email address, convert it to the *canonical* address that actually receives the mail. This involves a few steps:
-
-- Separate the email address into a `local` part and the `rest` of the address.
-- If the `local` part has a `'+'` character, remove it and everything beyond it from the `local` part.
-- Remove all the zeros from the `local` part.
-- The canonical address is `local + rest`.
-
-After, we can count the number of unique canonical addresses with a `Set` structure.
+Note that `split` is a useful method.
 
 ```python
 class Solution(object):
-    def numUniqueEmails(self, emails):
-        seen = set()
-        for email in emails:
-            local, domain = email.split('@')
-            if '+' in local:
-                local = local[:local.index('+')]
-            seen.add(local.replace('.','') + '@' + domain)
-        return len(seen)
-
+    def reverseWords(self, s):
+        out = []
+        singleWord=s.split(' ')
+        for iter in singleWord:
+            iter=iter[::-1]# 反向排序数组
+            out.append(iter)
+        return ' '.join(out) # 返回字符串，用空格填充out中元素的间隔
 
 def main():
-    Emails=["test.email+alex@leetcode.com",
-            "test.e.mail+bob.cathy@leetcode.com",
-            "testemail+david@lee.tcode.com"]
-    solution=Solution().numUniqueEmails(Emails)
+    s="Let's take LeetCode contest"
+    solution=Solution().reverseWords(s)
     print(solution)
 
 
@@ -81,9 +70,18 @@ if __name__ == "__main__":
     main()
 ```
 
+### simplification
+
+```python
+class Solution(object):
+    def reverseWords(self, s):
+        return " ".join([i[::-1] for i in s.split()])
+```
+
 **Complexity Analysis**
 
-- Time Complexity: *O*(*n*), where *n* is the total content of `emails`.
-- Space Complexity: *O*(*n*).
-- Runtime: 28 ms, faster than 99.72% of Python online submissions for Unique Email Addresses.
-- Memory Usage: 11.7 MB, less than 92.68% of Python online submissions for Unique Email Addresses.
+- Time Complexity: *O*(*n*), where *n* is the total words of `s`.
+- Space Complexity: *O*(*1*).
+- Runtime: 20 ms, faster than 94.03% of Python online submissions for Reverse Words in a String III.
+- Memory Usage: 13 MB, less than 43.54% of Python online submissions for Reverse Words in a String III.
+
