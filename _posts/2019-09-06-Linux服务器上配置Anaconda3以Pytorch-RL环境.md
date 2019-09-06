@@ -13,10 +13,10 @@ tags:
 
 # Linux服务器上配置Anaconda3以Pytorch-RL环境
 
-通过上传安装包的方式在服务器安装Anaconda3只需要在相应的目录下执行一句命令：
+通过上传安装包的方式在服务器安装Anaconda3只需要在**相应的目录下**执行一句命令：
 
-```python
-bash 
+```
+bash Anaconda3-2019.07-Linux-x86_64.sh
 ```
 
 安装途中会提示安装位置为默认路径：
@@ -31,12 +31,13 @@ bash
 
 ```
 conda create --name opensim-rl python=3.6
+source activate opensim-rl
 ```
 
 环境建好后可以通过以下指令进行版本检查：
 
 ```
-> python --version
+python --version
 > Python 3.6.9 :: Anaconda, Inc.
 ```
 

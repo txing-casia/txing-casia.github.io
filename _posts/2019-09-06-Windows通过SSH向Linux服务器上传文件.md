@@ -18,11 +18,16 @@ tags:
 
 - **Step 2**: Open cmd window, and **enter the path of your PuTTY files**. 
 
-  ![](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/2019-09-06-Pic1.png)
+  ```
+  d:
+  cd ./Program Files (x86)/Putty
+  ```
 
 - **Step 3**: Use 'pscp' order, and wait for transmission.
 
-  ![](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/2019-09-06-Pic2.png)
+  ```
+  pscp D:\download\Anaconda3-2019.07-Linux-x86_64.sh Txing@***.**.**.**.**:/home/Txing/anaconda3/
+  ```
 
   
 
