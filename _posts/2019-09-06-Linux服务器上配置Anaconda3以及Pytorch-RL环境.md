@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Linux服务器上配置Anaconda3以Pytorch-RL环境"
+title:      "Linux服务器上配置Anaconda3以及Pytorch-RL环境"
 subtitle:   ""
 date:       2019-09-06
 author:     "Txing"
