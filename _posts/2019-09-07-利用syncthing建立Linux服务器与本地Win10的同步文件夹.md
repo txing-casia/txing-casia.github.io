@@ -71,7 +71,7 @@ ___
   [QQAFC] 16:59:18 INFO: Detected 1 NAT service
   ```
 
-- 第四步：配置syncthing。由于syncthing默认是只允许本机访问，这里需要进行设置。大多数教程这里都会使用vim进行编辑，但是我的环境里没有vim，也有有sudo权限安装，因此参考这里的教程某教程里的方法，通过nano进行编辑
+- 第四步：配置syncthing。由于syncthing默认是只允许本机访问，这里需要进行设置。大多数教程这里都会使用vim进行编辑，但是我的环境里没有vim，也有有sudo权限安装，因此参考这里的[某教程](<https://www.youcl.com/info/10588>)里的方法，通过nano进行编辑
 
   ```
   nano ~/.config/syncthing/config.xml
