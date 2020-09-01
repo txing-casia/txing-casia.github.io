@@ -8,8 +8,8 @@ header-img: "img/post-bg-py.jpg"
 tags:
     - Algorithm
     - Python
-	- Medium
-	- Dynamic Planning
+    - Medium
+    - Dynamic Planning
 ---
 
 # [Predict the Winner](https://leetcode-cn.com/problems/predict-the-winner/)
