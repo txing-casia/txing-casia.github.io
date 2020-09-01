@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Q486 Predict the Winner-递归-动态规划"
+title:      "Q486 Predict the Winner-递归 动态规划"
 subtitle:   ""
 date:       2020-09-01
 author:     "Txing"
