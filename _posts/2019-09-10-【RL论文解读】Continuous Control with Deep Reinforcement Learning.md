@@ -6,7 +6,7 @@ date:       2019-09-10
 author:     "Txing"
 header-img: "img/post-bg-py.jpg"
 tags:
-    - Reinforcement learning
+    - Reinforcement Learning
     - RL论文解读
 ---
 
