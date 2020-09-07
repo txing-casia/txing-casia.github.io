@@ -9,8 +9,8 @@ tags:
     - Algorithm
     - Python
     - Medium
-	- BFS
-	- DFS
+    - BFS
+    - DFS
 ---
 
 # [Maximum Depth of Binary Tree](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/)
