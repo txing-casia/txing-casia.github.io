@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Q104 Maximum Depth of Binary Tree"
+title:      "Q104 Maximum Depth of Binary Tree-简单-深度/广度优先搜索"
 subtitle:   ""
 date:       2020-09-07
 author:     "Txing"
