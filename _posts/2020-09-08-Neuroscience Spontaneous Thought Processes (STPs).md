@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Neuroscience|Spontaneous Thought Processes (STPs)"
+title:      "Neuroscience | Spontaneous Thought Processes (STPs)"
 subtitle:   ""
 date:       2020-09-08
 author:     "Txing"
@@ -40,10 +40,13 @@ STPs-network 主要涉及的脑区为：
 ## Method
 
 - Regional homogeneity (ReHo) Analysis  
-  $$
-  W=\frac{\sum (R_i)^2-n(\overline{R})^2}{\frac{1}{12}k^2(n^3-n)}
-  $$
-  可以理解为求一个立体区域的平均活跃度，这里不再赘述。
+  
+
+$$
+W=\frac{\sum (R_i)^2-n(\overline{R})^2}{\frac{1}{12}k^2(n^3-n)}
+$$
+
+可以理解为求一个立体区域的平均活跃度，这里不再赘述。
 
 
 
