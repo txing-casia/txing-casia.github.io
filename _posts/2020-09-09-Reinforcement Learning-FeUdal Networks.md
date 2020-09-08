@@ -1,15 +1,15 @@
 ---
 layout:     post
-title:      "Neuroscience | Spontaneous Thought Processes (STPs)"
+title:      "Reinforcement Learning | FeUdal Networks"
 subtitle:   ""
-date:       2020-09-08
+date:       2020-09-09
 author:     "Txing"
 header-img: "img/post-bg-py.jpg"
 tags:
-    - Neuroscience
+    - Reinforcement Learning
 ---
 
-# Offline Memory Reprocessing: Involvement of the Brain's Default Network in Spontaneous Thought Processes
+# FeUdal Networks for Hi
 
 论文链接：https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2653727/
 
@@ -21,7 +21,9 @@ tags:
 
  利用功能核磁共振成像（functional magnetic resonance imaging, fMRI）获得全脑的活动状态。结合区域一致性方法（regional homogeneity, ReHo）评估各个脑区的活跃程度。根据静息状态和记忆再处理状态的活跃程度对比，得到自发思维网络涉及的相应脑区（STPs-network）。
 
-![](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200908-1.png)
+![image-20200908125209424](https://github.com/txing-casia/txing-casia.github.io/blob/master/img/20200908-1.png)
+
+
 
 STPs-network 主要涉及的脑区为：
 
