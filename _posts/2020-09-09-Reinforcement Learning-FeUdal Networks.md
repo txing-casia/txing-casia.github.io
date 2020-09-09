@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Reinforcement Learning | FeUdal Networks"
+title:      "Reinforcement Learning | FeUdal Networks (FuN)"
 subtitle:   ""
 date:       2020-09-09
 author:     "Txing"
@@ -11,7 +11,7 @@ tags:
 
 # FeUdal Networks for Hi
 
-论文链接：https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2653727/
+论文链接：
 
 ## 背景
 
