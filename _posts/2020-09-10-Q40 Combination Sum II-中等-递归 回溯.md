@@ -26,7 +26,6 @@ tags:
 > - All numbers (including target) will be positive integers.
 > - The solution set must not contain duplicate combinations.
 >
-> 
 
 > **Example 1:**
 >
@@ -79,6 +78,8 @@ $$\text{dfs}(\textit{pos}+1, \textit{rest} - i \times \textit{freq}[\textit{pos}
 我们还可以进行什么优化（剪枝）呢？一种比较常用的优化方法是，我们将 $$\textit{freq}$$ 根据数从小到大排序，这样我们在递归时会先选择小的数，再选择大的数。这样做的好处是，当我们递归到 $$\text{dfs}(\textit{pos}, \textit{rest})$$ 时，如果 $$\textit{freq}[\textit{pos}][0]$$ 已经大于 $$\textit{rest}$$，那么后面还没有递归到的数也都大于 $$\textit{rest}$$，这就说明不可能再选择若干个和为 $$\textit{rest}$$ 的数放入列表了。此时，我们就可以直接回溯。
 
 ```python
+import collections
+
 class Solution(object):
     def combinationSum2(self, candidates, target):
         def dfs(pos: int, rest: int):
