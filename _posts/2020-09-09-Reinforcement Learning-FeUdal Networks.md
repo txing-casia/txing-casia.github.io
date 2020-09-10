@@ -30,7 +30,7 @@ FuN是在feudal reinforcement learning基础上的延展性工作，利用Manger
 
 其中，Manger和Worker都是RNN，只不过处理问题的时间分辨率不一样。Worker的c步被看做Manger的一步。网络动力学关系如下：
 
-![](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200910-1.png)
+![](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200910-2.png)
 
 $$x_t$$是图像输入，$$z_t$$是提取的特征，$$s_t$$是输入给Manger RNN的状态。$$h^M$$是Manger网络的内部状态。通过$$f^{Mrnn}$$获得子目标$$\hat{g}_t$$、归一化子目标$$g_t$$。
 
