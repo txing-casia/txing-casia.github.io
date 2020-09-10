@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Q39 Combination Sum-回溯"
+title:      "Q39 Combination Sum-中等-递归 回溯"
 subtitle:   ""
 date:       2020-09-09
 author:     "Txing"

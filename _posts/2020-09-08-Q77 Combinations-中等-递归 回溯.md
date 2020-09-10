@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Q77 Combinations-递归 回溯"
+title:      "Q77 Combinations-中等-递归 回溯"
 subtitle:   ""
 date:       2020-09-08
 author:     "Txing"

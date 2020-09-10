@@ -2,63 +2,51 @@
 layout:     post
 title:      "Reinforcement Learning | FeUdal Networks (FuN)"
 subtitle:   ""
-date:       2020-09-09
+date:       2020-09-10
 author:     "Txing"
 header-img: "img/post-bg-py.jpg"
 tags:
     - Reinforcement Learning
+    - HRL
 ---
 
-# FeUdal Networks for Hi
+# FeUdal Networks for Hierarchical Reinforcement learning
 
-论文链接：
+论文链接：https://arxiv.org/abs/1703.01161
 
 ## 背景
 
-人脑的自发思维活动一直是个谜。比如白日梦（daydream）和心不在焉（mind-wandering）的状态。其特点是切断了外部输入，例如闭眼、冥想，大脑依靠过去的记忆回忆过去或者是期待未来，这种依靠内部记忆的联想机制也叫作离线记忆再处理（Offline Memory Reprocessing）。但是这些自发过程的神经机制一直不清楚，本文首次尝试寻找这一过程作用的脑区。
+利用分层强化学习将一个复杂任务拆分为不同维度的问题被认为是一种更自然、更类人的模式。例如人在吃饭的时候，人在宏观的维度作出决策要吃哪个菜，然后身体处于低维的层次，调动肌肉产生运动，完成夹菜和吃菜的动作。在这一过程中，高维的我们没有直接考虑调用哪条肌肉，而是做什么事。这一点正是目前的RL所缺乏的能力。
+
+
 
 ## 主要工作
 
- 利用功能核磁共振成像（functional magnetic resonance imaging, fMRI）获得全脑的活动状态。结合区域一致性方法（regional homogeneity, ReHo）评估各个脑区的活跃程度。根据静息状态和记忆再处理状态的活跃程度对比，得到自发思维网络涉及的相应脑区（STPs-network）。
+FuN是在feudal reinforcement learning基础上的延展性工作，利用Manger学习子状态空间，设定子目标，将任务进行拆分；然后Worker处理子任务，完成Manger设置的子目标。
 
-![image-20200908125209424](https://github.com/txing-casia/txing-casia.github.io/blob/master/img/20200908-1.png)
+其主体框架如下：
+
+![](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200910-1.png)
+
+其中，Manger和Worker都是RNN，只不过处理问题的时间分辨率不一样。Worker的c步被看做Manger的一步。网络动力学关系如下：
+
+![](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200910-1.png)
+
+$$x_t$$是图像输入，$$z_t$$是提取的特征，$$s_t$$是输入给Manger RNN的状态。$$h^M$$是Manger网络的内部状态。通过$$f^{Mrnn}$$获得子目标$$\hat{g}_t$$、归一化子目标$$g_t$$。
+
+通过一个线性映射$$\phi$$将$$c$$步的目标映射到嵌入向量$$w_t$$中。对于Work RNN，输入是状态$$z_t$$和网络内部状态$$h^W$$，$$U_t$$是输出矩阵。最后通过SoftMax选择最能满足子目标$$g_t$$的$$U_t$$。
 
 
 
-STPs-network 主要涉及的脑区为：
-
-- the posterior cingulate cortex
-- the precuneus
-- the medial prefrontal cortex
-- bilateral inferior parietal cortex 
-- bilateral dorsal lateral prefrontal cortex   
+（文章的主体思路就是以上内容，后续部分主要讨论网络更新，reward设定等细节，我打算看了代码之后在做分析）
 
 
-
-文章后面测试了一下自发思维的强度和STPs-network活性的相关性。比较了几个脑区间的连通性。
-
-## Method
-
-- Regional homogeneity (ReHo) Analysis  
-  
-
-$$
-W=\frac{\sum (R_i)^2-n(\overline{R})^2}{\frac{1}{12}k^2(n^3-n)}
-$$
-
-可以理解为求一个立体区域的平均活跃度，这里不再赘述。
 
 
 
 ## 总结
 
-这篇工作来自昆明动物所徐林老师，研究还是具有一定的启发性的，尤其是提到的大脑外部驱动和内部驱动的切换，挺有意思的。另外自发活动这一点确实还需要继续探索，在神经科学领域也是核心问题。
-
-
-
-Txing
-
-2020-09-08
+文章种在多个游戏中进行了实验对比，均取得了良好的实验效果。但遗憾的是，几乎所有的复现都说性能达不到文章中的水平。可能是实验中还有一些优化并未在文章中说明。
 
 
 
