@@ -23,7 +23,7 @@ tags:
 
 ![](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200908-1.png)
 
-STPs-network 主要涉及的脑区为：
+STPs-network 主要涉及的脑区为： 
 
 - the posterior cingulate cortex
 - the precuneus
