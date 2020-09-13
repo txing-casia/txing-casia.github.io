@@ -44,20 +44,22 @@ tags:
 ```python
 class Solution(object):
     def averageOfLevels_dfs(self, root):
-        def dfs(temp,S,k,n):
-            if len(temp)==k and n==0:
-                ans.append(temp[:])
+        def dfs(root:TreeNode, level):
+            if not root:
                 return
-            for i in range(len(S)):
-                temp.append(S[i])
-                # S[i + 1:]实现了剪枝和防止逆序选数，这是关键点
-                dfs(temp, S[i+1:], k, n-S[i])
-                temp.pop()
-        ans=[]
-        S=[i for i in range(1,10)]
-        # 暂存数组，可选项，需要k个数，需要和为n
-        dfs([], S, k, n)
-        return ans
+            if level < len(totals):
+                totals[level] += root.val
+                counts[level] += 1
+            else:
+                totals.append(root.val)
+                counts.append(1)
+            dfs(root.left, level + 1)
+            dfs(root.right, level + 1)
+
+        counts = list()
+        totals = list()
+        dfs(root, 0)
+        return [total / count for total, count in zip(totals, counts)]
 ```
 
 ### 复杂度分析
