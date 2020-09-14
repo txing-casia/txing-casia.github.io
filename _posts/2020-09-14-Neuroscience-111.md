@@ -34,17 +34,36 @@ and changeable environments，甚至有走捷径的能力。
 
 
 
+## 方法
 
+### 1 Path integration: supervised learning experiments
 
+#### 1.1 Ground truth place cell distribution  
 
+- 地图直径为$$L$$
 
+![](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200914-2.png)
 
+- 符号说明：
+  - Place cell激活$$\overrightarrow{c} \in [0,1]^N$$
+  - 位置$$\overrightarrow{x} \in R^2$$
+  - place cell centres  $$\overrightarrow{\mu}_i^{(c)} \in R^2$$
+  - place cell scale   $$\sigma^{(c)}$$
 
+#### 1.2 Ground truth head-direction cell distribution  
 
+![](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200914-3.png)
 
+- 参数说明：
+  - Head-direction cell激活$$\overrightarrow{h} \in [0,1]^M$$
+  - 给定面向角度$$\varphi$$
+  - 使用mixture of Von Mises distributions with concentration parameter $$k^{(h)}$$
 
+#### 1.3 Supervised learning inputs  
 
+- 每个时刻传入速度$$v_t\in \mathbb{R}$$以及the sine and cosine of its angular velocity $$\varphi_t$$  
 
+#### 1.4 Grid cell network architecture  
 
 
 
