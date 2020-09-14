@@ -46,17 +46,28 @@ HRL是处理复杂任务的有效方式，之前的方法大多需要针对具�
 - $$\mu^{hi}$$以从环境获取的obs为输入，获得high-level action (goal) $$g_t\in \mathbb{R}^d$$。$$g_t$$要么用$$\mu^{hi}$$以$$c$$步为间隔进行采样$$g_t\sim \mu^{hi}\  (when\ t\equiv 0)$$，要么使用一个固定目标的转换函数$$g_t=h(s_{t-1},g_{t-1},s_t)$$，获得的奖励为$$R(s_t,a_t)$$。
 
 - $$\mu^{lo}$$观测状态$$s_t$$和目标$$ g_t$$，并产生低维的行为$$a_t\sim \mu^{lo}(s_t, g_t)$$，获得奖励$$r_t=r(s_t,g_t,a_t,s_{t+1})$$
-- 储存经验$$(s_t,g_t,a_t,r_t,s_{t+1},h(s_t,g_t,s_{s+1}))$$
+- 低级策略储存经验$$(s_t,g_t,a_t,r_t,s_{t+1},h(s_t,g_t,s_{s+1}))$$
 
+- 高级策略储存经验$$(s_{t:t+c-1},g_{t:t+c-1},a_{t:t+c-1},R_{t:t+c-1},s_{t+c})$$
 
+### 参数化Rewards
 
+- goal transition model $$h$$ is defined as: $$h(s_t,g_t,s_{t+1}) = s_t + g_t - s_{t+1}$$ 
+- intrinsic reward: $$r(s_t,g_t,a_t,s_{t+1}) = -||s_t + g_t - s_{t+1}||_2$$，这里$$g_t$$相当于是一个状态增量，学习目标是使得$$s_t + g_t = s_{t+1}$$
+-  实验中$$g_t$$是期望的坐标$$(x,y,z)$$，obs也仅仅包含位置的观测
 
+- 高级策略state-action-reward transition $$(s_t,g_t,\sum R_{t:t+c-1},s_{t+c})$$
+- 对于旧的经验，给定$$\widetilde{g}_t$$最大化$$\mu^{lo}(a_{t:t+c-1}|s_{t:t+c-1},\widetilde{g}_{t:t+c-1})$$
+- 中间目标$$\widetilde{g}_{t+1:t+c-1}$$用固定目标转移函数$$h$$生成
+- log probability $$\log \mu^{lo}(a_{t:t+c-1}|s_{t:t+c-1},\widetilde{g}_{t:t+c-1})$$通过下式计算得到
 
-
+$$
+\log \mu^{lo}(a_{t:t+c-1}|s_{t:t+c-1},\widetilde{g}_{t:t+c-1})\propto -\frac{1}{2}\sum_{i=t}^{t+c-1}||a_i-\mu^{lo}(s_i,\widetilde{g}_i)||^2_2+\text{const}
+$$
 
 ## 总结
 
-文章种在多个游戏中进行了实验对比，均取得了良好的实验效果。但遗憾的是，几乎所有的复现都说性能达不到文章中的水平。可能是实验中还有一些优化并未在文章中说明。
+HIRO整体节奏还是很明快的，整体结构基于DDPG和TD3经验修正的地方稍微有些含糊。文中的目标$$g_t$$就相当于是一个状态增量，修正就是用10个高斯分布在$$[0,|s_{t+1}-s_t|]$$或者$$[-|s_{t+1}-s_t|,0]$$之间取值目标$$\widetilde{g}_t$$。至于为什么是10个高斯，怎么取值，这些正文中没有说明，附录里面应该有，细看的时候可以找一找。
 
 
 
