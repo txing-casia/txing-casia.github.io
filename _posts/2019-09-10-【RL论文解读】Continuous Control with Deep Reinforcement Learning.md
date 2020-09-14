@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Reinforcement Learning | Continuous Control with Deep Reinforcement Learning (DDPG)"
+title:      "Reinforcement Learning | Deep Deterministic Policy Gradient algorithm (DDPG)"
 subtitle:   "DDPG"
 date:       2019-09-10
 author:     "Txing"
