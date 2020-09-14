@@ -2,7 +2,7 @@
 layout:     post
 title:      "Neuroscience | Vector-based navigation using grid-like representations"
 subtitle:   ""
-date:       2020-09-08
+date:       2020-09-15
 author:     "Txing"
 header-img: "img/post-bg-py.jpg"
 tags:
@@ -65,9 +65,24 @@ and changeable environments，甚至有走捷径的能力。
 
 #### 1.4 Grid cell network architecture  
 
+- consists of three layers: **a recurrent layer**(LSTM, 128 hidden units ,with no peephole connections), **a linear layer**, and **an output layer** (Fig 1a).
+- Input to the recurrent LSTM layer:  $$[v_t,\sin(\varphi_t),\cos(\varphi_t)]$$
+- LSTM的初始**细胞状态**和**隐层状态**为 $$\overrightarrow{l}_0$$ and $$\overrightarrow{m}_0$$
 
+$$
+\overrightarrow{l}_0=W^{cp}\overrightarrow{c}_0+W^{(cd)}\overrightarrow{h}_0\\
+\overrightarrow{m}_0=W^{hp}\overrightarrow{c}_0+W^{(hd)}\overrightarrow{h}_0
+$$
 
+$$(W^{cp},W^{cd},W^{hp},W^{hd})$$是两个线性转换器的参数
 
+- 通过线性编码网络的均值，以及LSTM的输出$$\overrightarrow{m}_t$$，计算预测的place cells$$\overrightarrow{y}_t$$和head direction cells $$\overrightarrow{z}_t$$ 
+- 线性编码网络包含三组权重和偏置。
+  - 第一组：从LSTM的隐层状态$$\overrightarrow{m}_t$$映射到线性激活层$$\overrightarrow{g}_t\in \mathbb{R}^{512}$$的权重和偏置
+  - 第二组：从线性激活层$$\overrightarrow{g}_t$$映射到预测的头部朝向$$\overrightarrow{z}_t$$的权重和偏置通过softmax functions  
+  - 第三组：从线性激活层$$\overrightarrow{g}_t$$映射到预测的位置细胞输出$$\overrightarrow{y}_t$$的权重和偏置通过softmax functions  
 
+- dropout：线性激活层$$\overrightarrow{g}_t$$每个单元的沉默概率是0.5
+- 注意线性编码网络中间没有非线性层
 
-
+#### 1.5 Supervised learning loss  
