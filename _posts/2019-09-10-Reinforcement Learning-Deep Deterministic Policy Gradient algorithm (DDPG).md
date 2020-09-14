@@ -68,13 +68,13 @@ tags:
   >
   > ---- ---- Sample a random minibatch of $$N$$ transitions $$(s_t,a_t,r_t,s_{t+1})$$ from $$R$$
   >
-  > ---- ---- Set $$y_i = r_i + \gamma Q'(s_{i+1},\mu'(s_{i+1}\midθ^{\mu'})|\theta ^{Q'})$$
+  > ---- ---- Set $$y_i = r_i + \gamma Q'(s_{i+1},\mu'(s_{i+1}\midθ^{\mu'})\mid \theta ^{Q'})$$
   >
   > ---- ---- Update critic by minimizing the loss: $$L = \frac{1}{N} \sum_i(y_i - Q(s_i,a_i \mid \theta^Q))^2$$
   >
   > ---- ---- Update the actor policy using the sampled policy gradient: 
   >
-  > ---- ---- ---- $$\triangledown _{\theta^{\mu}}J \approx \frac{1}{N}\sum\triangledown_a Q(s,a\mid\theta^Q)\mid _{s=s_i,a=\mu(s_i)}\triangledown_{\theta^{\mu}}\mu(s\mid\theta^{\mu})|_{s_i}$$
+  > ---- ---- ---- $$\triangledown _{\theta^{\mu}}J \approx \frac{1}{N}\sum\triangledown_a Q(s,a\mid \theta^Q) \mid _{s=s_i,a=\mu(s_i)}\triangledown_{\theta^{\mu}}\mu(s \mid \theta^{\mu})\mid_{s_i}$$
   >
   > ---- ---- Update the target networks: 
   >
