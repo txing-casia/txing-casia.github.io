@@ -3,7 +3,7 @@ layout:     post
 title:      "Neuroscience | Vector-based navigation using grid-like representations"
 subtitle:   ""
 date:       2020-09-15
-author:     "Txing"
+author:     "Txing" 
 header-img: "img/post-bg-py.jpg"
 tags:
     - Neuroscience
