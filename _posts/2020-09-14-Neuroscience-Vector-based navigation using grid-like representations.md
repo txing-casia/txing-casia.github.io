@@ -17,8 +17,11 @@ tags:
 
 RL在许多方面取得了好的成绩，但在哺乳动物的空间行为（mammalian spatial behaviour）的熟练度上，人工agent的性能仍然不足。 动物的空间感知由网格细胞（grid cell）支持，它提供了一种度量编码空间（a metric for coding space）的能力。本文模仿grid cell在DRL的基础上开发一种类哺乳动物的导航能力（mammal-like navigational abilities）。
 
-被赋予了grid-like representations的agent在导航任务上性能超过了人类专家in challenging, unfamiliar,
-and changeable environments，甚至有走捷径的能力。
+被赋予了grid-like representations的agent在导航任务上性能超过了人类专家in challenging, unfamiliar, and changeable environments，甚至有走捷径的能力。
+
+### 概念
+
+- 路径整合（path integration）是指巡航者对与自身运动有关的信息进行整合来完成巡航任务的过程。例如agent在地图上绕了一圈到达目标位置，那么第二次出发的时候，能够整合之前的路径信息，得出更直接到达目标位置的路径。（He, Q., & Mcnamara, T. P. (2018). Spatial Updating Strategy Affects the Reference Frame in Path Integration. *Psychonomic Bulletin & Review*, 25(3), 1073-1079.）
 
 ## 主要工作
 
@@ -30,7 +33,8 @@ and changeable environments，甚至有走捷径的能力。
 
 ![](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200914-1.png)
 
-- vector-based navigation: 内嗅网格细胞产生目标驱动向量度量欧式空间，使得动物能够沿着一条直接路径到达目标
+- vector-based navigation: 内嗅网格细胞产生目标驱动向量度量欧式空间，使得动物能够沿着一条直接路径到达目标。文中利用监督学习来实现这一能力。
+- grid network输入是视觉信号，通过一个视觉网络实现。线性层输出是位置信息，相当于agent当前的位置。同时，线性层的信号（goal grid code）作为输入传入一个Policy LSTM网络，这个网络也是用于控制agent的行为。
 
 
 
@@ -86,3 +90,28 @@ $$(W^{cp},W^{cd},W^{hp},W^{hd})$$是两个线性转换器的参数
 - 注意线性编码网络中间没有非线性层
 
 #### 1.5 Supervised learning loss  
+
+- 使用交叉熵损失函数
+
+$$
+L(\overrightarrow{y},\overrightarrow{z},\overrightarrow{c},\overrightarrow{h})=-\sum_{i=1}^{N} c_i \log(y_i)-\sum_{j=1}^{M} h_j \log(z_j)
+$$
+
+监督学习部分的结构:
+
+![](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200915-1.png)
+
+Grid cell agent整体结构：
+
+![](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200915-2.png)
+
+## 总结
+
+grid cells的相关生物学研究获得过[2014年诺贝尔生理学奖](https://link.zhihu.com/?target=https%3A//www.nobelprize.org/nobel_prizes/medicine/laureates/2014/)for their discoveries of cells that constitute a positioning system in the brain。Deepmind甚至请了这个诺贝尔奖获得者来为本文写[序言](https://link.zhihu.com/?target=https%3A//f1000.com/prime/733198068%3Fkey%3DnvlnlWetE8dlZTy)。
+
+这项工作如果用在导航上是比较有意义的，利用grid cells的空间信息处理机制，agent可以自动寻路，还可以做路径整合，得到更优化的路径。
+
+当用在机器人运动轨迹的优化上时，由于机器人本体（基坐标）位置并没有发生变动，所以并不能像导航任务中那样自由自在地探索，可以仔细考虑一下其中的差别，制定一个新的实验范式。
+
+
+
