@@ -12,7 +12,11 @@ tags:
 
 # Hierarchical motor control in mammals and machines 
 
-论文链接：https://www.nature.com/articles/s41467-019-13239-6
+论文链接：
+
+[]: https://www.nature.com/articles/s41467-019-13239-6
+
+https://www.nature.com/articles/s41467-019-13239-6
 
 ## 背景
 
@@ -53,7 +57,7 @@ tags:
 
 ### 2. Motor control of synthetic systems  
 
-- 这部分内容主要涉及DRL，没什么值得说的。
+- 这部分内容主要涉及DRL，没提到什么新鲜的内容。
 - planning methods: 
   - Mordatch, I., Todorov, E. & Popović, Z. Discovery of complex behaviors through contact-invariant optimization. ACM T, Graphics (TOG) 31, 43 (2012).
   - Mordatch, I., Wang, J. M., Todorov, E. & Koltun, V. Animating human lower limbs using contact-invariant optimization. ACM T. Graphic. 32, 203 (2013)  
