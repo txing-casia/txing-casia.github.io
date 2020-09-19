@@ -2,7 +2,7 @@
 layout:     post
 title:      "Reinforcement Learning | Hierarchical motor control in mammals and machinesd (Nature)"
 subtitle:   ""
-date:       2020-09-18
+date:       2020-09-19
 author:     "Txing"
 header-img: "img/post-bg-py.jpg"
 tags:
@@ -131,30 +131,42 @@ tags:
 
 - 具备一些分层结构特征
 
-#### 4.4 Shared challenges for biological and synthetic motor control  
+### 5. Shared challenges for biological and synthetic motor control  
 
+- despite significant progress in artificial intelligence research over the past years, there remain meaningful challenges
+  in dealing with rich sensation, a broader range of tasks, rapid adaptation or improvisation, as well as object interaction and tool use.
+  - 处理多传感融合
+  - 处理更普遍的任务
+  - 快速适应、即兴创作
+  - 物体交互
+  - 使用工具
 
+#### 5.1 Towards full-scale body control  
 
+- 对生物力学、肌肉系统、肌肉骨骼系统的研究
+- 针对这类系统有两个控制思路：
+  - 训练该系统解决不同的任务
+  - 对观测到的行为生成数据驱动的模型
 
+#### 5.2 The structure of inter-region communication  
 
+- 脑区之间的编码方案(coding schemes)仍然未知，我们同样不确定分层控制系统中的信息流的形式。
+- 三个问题：
+  - 一个问题是分层的学习系统层级间的通信不一定需要有明确的可解释性，除非可解释的结构能带来明确的好处
+  - 一个系统的输出如何调制另一个系统，对目标的调制应该是线性的还是非线性的？
+  - 关于分辨率问题，表示具体行为的抽象目标之间的通讯和对下级系统丰富的指令怎么保持平衡
 
+- 生物的角度来看，层次化的系统间一定要有一种语言或者编码，这种上下层级之间的通讯方案是AI和神经科学应该共同讨论的问题。
 
+#### 5.3 Ethological （行为学的） motor learning and imitation  
 
-
-
-
-
-
-
-
-
-
-
+- self-directed rehearsal: songbird在雏鸟阶段学习唱歌
+- 主动采样策略：Gottlieb J. & Oudeyer, P. Y. **Towards a neuroscience of active sampling and curiosity**. Nat. Rev. Neurosci. 19, 758–770 (2018)  
 
 
 ## 总结
 
-
+这篇综述很好地概括并梳理了在AI和生物神经科学中的零散的工作，总结出了很多子领域和本质问题，这是一篇很好的综述，可以帮助对领域的快速了解。
 
 
 
