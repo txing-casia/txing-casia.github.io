@@ -12,11 +12,7 @@ tags:
 
 # Hierarchical motor control in mammals and machines 
 
-论文链接：
-
-[]: https://www.nature.com/articles/s41467-019-13239-6
-
-https://www.nature.com/articles/s41467-019-13239-6
+论文链接：https://www.nature.com/articles/s41467-019-13239-6
 
 ## 背景
 
