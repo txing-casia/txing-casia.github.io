@@ -2,7 +2,7 @@
 layout:     post
 title:      "Neuroscience | Principles of Temporal Processing Across the Cortical Hierarchy"
 subtitle:   ""
-date:       2020-09-20
+date:       2020-09-21
 author:     "Txing" 
 header-img: "img/post-bg-py.jpg"
 tags:
@@ -48,7 +48,7 @@ tags:
 
 #### 1.2 Normalization in space and time  
 
-- 神经系统需要非线性操作来增加刺激的选择性响应和一直过度激活（A feedforward architecture accounts for rapid categorization. Proc Natl Acad Sci 104 (15):6424–642）
+- 神经系统需要非线性操作来增加刺激的选择性响应和抑制过度激活（A feedforward architecture accounts for rapid categorization. Proc Natl Acad Sci 104 (15):6424–642）
 - 空间Normalization是根据其他具有相似选择性的神经元收到的输入重新调整其响应的过程
 
 $$
