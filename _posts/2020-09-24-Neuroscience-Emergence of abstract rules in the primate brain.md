@@ -51,8 +51,6 @@ tags:
 
 #### 3 Abstract rules in primates   
 
-
-
 #### 4 Evidence from neuronal recordings  
 
 ##### 4.1 Matching and non-matching rules  
