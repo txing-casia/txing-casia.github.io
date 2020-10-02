@@ -62,6 +62,24 @@ tags:
 
 ### Reward propagation
 
+- 使用TD-$$\lambda$$算法更新预测奖励V
+
+### Snippet generation during replay
+
+$$
+U_{ffwd}=W_{ffwd}*X_{in}(t_n)\\
+U_{rec}=W_{rec}*X_{res}(t_{n-1})\\
+S(N;k)=K\frac{1}{\sqrt{N}}\\
+U_{res}(t_n)=U_{ffwd}+U_{rec}\\
+\tau \frac{\partial P_{res}}{\partial t}=-P_{res}(t_{n-1})+U_{res}(t_n)\\
+P_{res}(t_n)=h*U_{res}(t_n)+(1-h)*P_{res}(t_{n-1})\\
+X_{res}(t_n)=\sigma_{res}(P_{res}(t_n);\Theta_{res}),\Theta_{res}=0,\sigma_{res}=\tanh
+$$
+
+
+
+
+
 
 
 
