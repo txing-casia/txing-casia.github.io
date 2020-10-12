@@ -25,10 +25,9 @@ tags:
 
 - 
 
-
 ## 方法
 
-![](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200912-1.png)
+![](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200912-1.p)
 
 
 
