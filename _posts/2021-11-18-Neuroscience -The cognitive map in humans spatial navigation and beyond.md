@@ -29,8 +29,7 @@ tags:
 
   iii) 将海马和内在空间代码与额叶机制结合使用，以计划航行期间的路线。
 
-- The idea of a cognitive map was originally proposed by Tolman, in an effort to explain navigational behaviors in rodents that could not be logically reduced to associations between specific stimuli and
-  rewarded behavioral responses.
+- The idea of a cognitive map was originally proposed by Tolman, in an effort to explain navigational behaviors in rodents that could not be logically reduced to associations between specific stimuli and rewarded behavioral responses.
 - 快速切换a roundabout route到直接路径  
 - Grieves, R.M. & Jeffery, K.J. The representation of space in the brain.*Behav. Processes* 135, 113–131 (2017).这篇文章支持多种细胞共同构建了认知地图：
   - (i) grid cells in medial entorhinal cortex, which fire in a regular hexagonal lattice of locations tiling the floor of the environment; 
