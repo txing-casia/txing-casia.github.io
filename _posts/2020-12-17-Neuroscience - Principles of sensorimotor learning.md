@@ -180,9 +180,9 @@ Mitrovic, D., Klanke, S., Osu, R., Kawato, M. & Vijayakumar, S. A computational 
 
 - 有一些通过设置力场来扰乱手臂运动促进结构学习得工作
 
-Conclusions and future directions
 
-### 4. 总结
+
+### 4. Conclusions and future directions
 
 - From laboratory learning to real-world learning.虽然简单的任务方便建立模型，但是和实际中的任务有巨大的差别
 
