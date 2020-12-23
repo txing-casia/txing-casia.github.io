@@ -39,4 +39,5 @@ tags:
     - 其它领域的模型和机制可以在CI系统中表示，并得到重用（reuse）。
     - 是否可以开发形式化理论来解决基于人类的进化问题。这方面研究可以发现CI系统的局限性，提供效率上的理论保证
 
-![](D:\My Blog\txing-casia.github.io\img\20201223-1.png)
+![](https://github.com/txing-casia/txing-casia.github.io/blob/master/img/20201223-1.png)
+
