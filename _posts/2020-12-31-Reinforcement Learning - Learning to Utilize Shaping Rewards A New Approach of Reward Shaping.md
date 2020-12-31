@@ -106,10 +106,7 @@ $$
   $$
   \nabla_{\phi}\theta'=\nabla_{\phi}\theta + \alpha \sum_{i=1}^{N} \nabla_{\theta}\log \pi_{\theta}(s_i,a_i)^{\top}  \tilde Q(s_i,a_i) + \alpha \sum_{i=1}^{N} \log \pi_{\theta}(s_i,a_i)^{\top}  \nabla_{\theta}\tilde Q(s_i,a_i)\\
   =\nabla_{\phi}\theta + \alpha \sum_{i=1}^{N} \big(\nabla_{\theta}\log \pi_{\theta}(s_i,a_i)^{\top}\nabla_{\phi}\theta \big)  \tilde Q(s_i,a_i) + \alpha \sum_{i=1}^{N} \log \pi_{\theta}(s_i,a_i)^{\top}  \nabla_{\theta}\tilde Q(s_i,a_i)\\
-  =\big( I_n + \alpha \sum_{i=1}^{N} \tilde Q(s_i,a_i)\nabla_{\theta}\log \pi_{\theta}(s_i,a_i)^{\top}    \big) \nabla_{\phi}\theta
-  
-  
-  + \alpha \sum_{i=1}^{N} \log \pi_{\theta}(s_i,a_i)^{\top}  \nabla_{\theta}\tilde Q(s_i,a_i)\\
+  =\big( I_n + \alpha \sum_{i=1}^{N} \tilde Q(s_i,a_i)\nabla_{\theta}\log \pi_{\theta}(s_i,a_i)^{\top}    \big) \nabla_{\phi}\theta+ \alpha \sum_{i=1}^{N} \log \pi_{\theta}(s_i,a_i)^{\top}  \nabla_{\theta}\tilde Q(s_i,a_i)\\
   $$
   
 
