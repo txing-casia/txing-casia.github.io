@@ -48,6 +48,17 @@ class Solution:
                 return nums[i]
         return -1
     
+    # 另一种方法
+    def findRepeatNumber(self, nums) -> int: 
+        temp_set = set()
+        repeat = -1
+        for i in range(len(nums)):
+            temp_set.add(nums[i])
+            if len(temp_set) < i + 1:
+                repeat = nums[i]
+                break
+        return repeat
+    
 def main():
     s = [3,1,2,3]
     solution=Solution().findRepeatNumber(s)
