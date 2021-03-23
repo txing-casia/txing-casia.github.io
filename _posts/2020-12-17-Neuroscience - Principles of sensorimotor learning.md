@@ -66,7 +66,7 @@ tags:
   - **reactive control**, which involves the use of sensory inputs to update ongoing motor commands; 
   - **biomechanical control**, which involves modulating the compliance of the limb.
 
-- 人在拿东西的石油有预测东西的重量（预测控制），这一点对 smooth and dexterous manipulation是必要的
+- 人在拿东西的时候有预测东西的重量（预测控制），这一点对 smooth and dexterous manipulation是必要的
 - 预测控制和反应控制的亲密关系：for example, the tactile afferents. If a mismatch between predicted and actual sensory information is detected, the system can launch appropriate, task-protective corrective actions and can also update the knowledge of object weight to improve future actions. Thus, through the prediction of sensory consequences, there is an intimate relationship between predictive and reactive control mechanisms$$^{28}$$.
 
 - 快速反应反馈回路，快速驱动运动响应，但是很难被修改（有点类似于我的底层控制的意思）。Fast reactive feedback loops, such as the monosynaptic stretch reflex, can rapidly drive motor responses but cannot be easily modified even by extended experience. 
@@ -146,7 +146,7 @@ Mitrovic, D., Klanke, S., Osu, R., Kawato, M. & Vijayakumar, S. A computational 
 
 - 空间信度分配设计两只手或者其他一些特殊情况，似乎与神经科学和行为科学更加相关，这里暂时不详细参考
 
-- 误差的时间新都分配中，有个考虑了多时间尺度的学习模型。解释reaching movement适应不同的扰动。一个快速和一个慢速的系统并行地学习
+- 误差的时间信度分配中，有个考虑了多时间尺度的学习模型。解释reaching movement适应不同的扰动。一个快速和一个慢速的系统并行地学习
 
   Smith, M. A., Ghazizadeh, A. & Shadmehr, R. Interacting adaptive processes with different timescales underlie short-term motor learning. PLoS Biol. 4, e179 (2006). 
 
