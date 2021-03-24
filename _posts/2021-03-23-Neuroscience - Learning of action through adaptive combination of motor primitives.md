@@ -32,7 +32,7 @@ tags:
 
   Ghez, C., Krakauer, J. W., Sainburg, R. L. & Ghilardi, M. F. in The New Cognitive Neurosciences (ed. Gazzaniga, M. S.) 501–514 (MIT Press, Cambridge, Massachusetts, 2000).
 
-- **本文主要介绍了如何通过灵活地组合运动基元构建内部模型，形成感觉-运动地图（sensorimotor map），将期望的轨迹变为力矩，并形成泛化能力。**
+- **本文主要介绍了如何通过灵活地组合运动基元构建内部模型，形成感觉-运动地图（sensorimotor map），构建从轨迹到运动指令的具有泛化能力的转换。**
 
 - 学习粘滞力场（viscous forces）$$f=B\dot{x}$$
 
