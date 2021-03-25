@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Neuroscience|Learning of action through adaptive combination of motor primitives (Nature)"
+title:      "Neuroscience | Learning of action through adaptive combination of motor primitives (Nature)"
 subtitle:   "运动基元"
 date:       2021-03-23
 author:     "Txing"
