@@ -62,6 +62,8 @@ reaching任务的适应性取决于大脑中的计算，这种计算将手臂的
 
 - 图3B是两个基元，线性力场的情况下的基元权重学习过程，曲线越与中间斜率为-1的虚线对齐，表示学习越快越高效。（1/2kd,-1/2kd）是最佳权重。k越大、d越大、b越小，越能出尽快速学习。
 
+- 图3B中的简单线性基元示意：
+
   - $$
     f(x)=\frac{x}{d}\\
     g_1=kx+b\\
@@ -83,6 +85,23 @@ reaching任务的适应性取决于大脑中的计算，这种计算将手臂的
 - 尽管在训练空间上学得很少，但我们在测试空间中发现了明显更大的后效应，即过度概括。我们的模拟表明，这种过度概括不能归因于**肢体惯性**和/或**刚度**随肢体位置的变化而变化。More importantly, despite this small learning in the training space, we found significantly bigger aftereffects in the test space, i.e., hypergeneralization. Our simulations suggest that this hypergeneralization could not be due to varying limb inertia and/or stiffness as a function of limb position.
 
 - **增益场定义**：细胞编码中两个独立变量的乘法相互作用称为增益场编码。Multiplicative interaction of two independent variables in cell encoding is called gain-field coding.
+
+- 位置-速度运动基元：
+
+$$
+\tau=\sum Wg_z\\
+g_z(q,\dot{q})=g_p(q)*g_v(\dot{q})\\
+g_{p,i}(q)=k_i^T\cdot q+b\\
+g_{v,i}(\dot{q})=\exp\bigg(\frac{\parallel\dot{q}-c_i\parallel^2}{2\sigma^2}\bigg)\\
+k_i=|k| \cdot 
+\begin{bmatrix}
+\cos(\theta_i)\\
+\sin(\theta_i)\\
+\end{bmatrix}
+\\
+b=1.3\\
+k=1
+$$
 
 
 
