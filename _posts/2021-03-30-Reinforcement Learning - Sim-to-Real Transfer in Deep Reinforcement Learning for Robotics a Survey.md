@@ -33,6 +33,7 @@ tags:
 - 仿真的设置与真实设置之间有着固有的不匹配。Simulation-based training provides data at low-cost, but involves **inherent mismatches** with real-world settings
 
 - 一些基于深度学习的相关算法：
+
   - adversarial attacks on computer vision algorithms [7].
   - introduce perturbances in the environment [8]
   - domain randomization [9]
@@ -40,10 +41,14 @@ tags:
   - meta learning [11]
   - continual learning [12]
   -  更好的仿真引擎 physics engines: Airsim [13], CARLA [14], RotorS [15], [16], and others [17]
+
 - 安全的强化学习这也是一个方向 safe reinforcement learning [4]
+
 - 几个方向的关系如下图所示：
 
-![](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/202103301.png)
+  ![](https://gitee.com/txing-z/txing-casia.github.io/blob/master/img/20210330-1.png)
+
+![](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210330-1.png)
 
 
 
