@@ -71,7 +71,13 @@ $$
 
 想看看吸引子网络的，但它是Hopfield Neural Networks，激活函数是$$sgn()$$，和运动基元、增益场还是不一样的。
 
+基于忆阻器的神经形态系统可以加速吸引子网络的计算效率，而这种计算方式在初级运动皮层和前额叶皮层的感觉-运动映射中都有使用。这为将忆阻器与类脑运动决策算法的结合提供了合理性和理论基础，两者的结合有望大幅提高类脑决策算法的计算效率，在行为层面使机器人表现出强大的动态环境适应能力和运动迁移能力。
 
+相关文章：Motor Memory Is Encoded as a Gain-Field Combination of Intrinsic and Extrinsic Action Representations
+
+论文链接：https://www.jneurosci.org/content/32/43/14951.long
+
+blog：https://txing-z.gitee.io/txing-casia.github.io/2021/03/26/Neuroscience-Motor-Memory-Is-Encoded-as-a-Gain-Field-Combination-of-Intrinsic-and-Extrinsic-Action-Representations/
 
 
 
