@@ -46,13 +46,40 @@ tags:
 
 - 几个方向的关系如下图所示：
 
-  ![](https://gitee.com/txing-z/txing-casia.github.io/blob/master/img/20210330-1.png)
+![](https://gitee.com/txing-z/txing-casia.github.io/blob/master/img/20210330-1.png)
 
 ![](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210330-1.png)
 
+### A. Deep Reinforcement Learning
 
+- 略
 
+### B. Sim-to-Real Transfer
 
+- Transferring DRL policies form simulation environments to reality is a necessary step towards more complex robotic systems that have DL-defined controllers.
+
+### C. Transfer Learning and Domain Adaptation
+
+- **迁移学习**：Transfer learning aims at improving the performance of target learners on **target domains** by transferring the knowledge contained in different but related **source domains** [18]. In this way, transfer learning can reduce the dependence of target domain data when constructing target learners.
+- **域适应**：它指定了当我们有足够的源域标记数据和与目标任务相同的单个任务，但没有或很少目标域数据时的情况。It specifies the situation when we have sufficient source domain labeled data and the same single task as the target task, but without or very few target domain data. In sim-to-real robotics, researchers tend to employ a simulator to train the RL model and then deploy it in the realistic environment, where we should take advantage of the domain adaptation techniques in order to transfer the simulation based model well
+
+### D. Knowledge Distillation
+
+- 一般用于大型网络，例如使用视觉图像输入的深层网络
+- 使用网络教另一个网络，这样使得两个网络性能差不多，但是学得更快。In these set-ups, the two networks are typically called teacher and student.
+
+### E. Meta Reinforcement Learning
+
+- 通常采用LSTM。MetaRL usually implements an LSTM policy and incorporates the last reward $$r_{t−1}$$ and last action $$a_{t−1}$$ into the current policy observation
+
+### F. Robust RL and Imitation Learning
+
+- Robust RL [23] was proposed quite early as a new RL paradigm that explicitly takes into account input disturbances as well as modeling errors
+- It considers a bad, or even adversarial model and tries to maximize the reward as a optimization problem [24], [25].
+
+- **Imitation learning** proposes to employ expert demonstration or trajectories instead of manually constructing a fixed reward function to train RL agents.
+  - **behaviour cloning** where an agent learns a mapping from observations to actions given demonstrations [26], [27]
+  - **inverse reinforcement learning** where an agent attempts to estimate a reward function that describes the given demonstrations [28].
 
 ## 主要工作
 
