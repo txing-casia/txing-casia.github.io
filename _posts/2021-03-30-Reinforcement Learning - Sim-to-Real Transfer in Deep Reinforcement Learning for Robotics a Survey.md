@@ -46,7 +46,7 @@ tags:
 
 - 几个方向的关系如下图所示：
 
-![](https://gitee.com/txing-z/txing-casia.github.io/blob/master/img/20210330-1.png)
+https://gitee.com/txing-z/txing-casia.github.io/blob/master/img/20210330-1.png
 
 ![](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210330-1.png)
 
@@ -81,15 +81,15 @@ tags:
   - **behaviour cloning** where an agent learns a mapping from observations to actions given demonstrations [26], [27]
   - **inverse reinforcement learning** where an agent attempts to estimate a reward function that describes the given demonstrations [28].
 
-## 主要工作
-
-- 
-- 
+- 机器人导航任务的方法：
+  - curriculum learning [37]
+  - incremental environment complexity [39]
+  - continual learning and policy distillation for multiple tasks [12]
 
 
 ## 总结
 
-
+即时限定在机器人领域，迁移学习也不是一个很具体的范畴。
 
 
 
