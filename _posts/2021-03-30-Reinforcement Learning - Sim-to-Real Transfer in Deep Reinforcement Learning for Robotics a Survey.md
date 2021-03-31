@@ -46,8 +46,6 @@ tags:
 
 - 几个方向的关系如下图所示：
 
-https://gitee.com/txing-z/txing-casia.github.io/blob/master/img/20210330-1.png
-
 ![](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210330-1.png)
 
 ### A. Deep Reinforcement Learning
