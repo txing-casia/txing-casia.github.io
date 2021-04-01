@@ -16,20 +16,11 @@ tags:
 
 ## 背景
 
- 
+- PPC中有高斯调制的神经元，使其成为适应视觉运动旋转的可能部位。Visually selective neurons with narrow Gaussian tuning curves have been identified in posterior parietal cortex, making it a possible site of adaptation to visuomotor rotation. 
 
 ## 主要工作
 
-- 
-- 
+没细看，感觉可以引用。
 
-
-
-## 总结
-
-这篇文章主要介绍PPC在眼睛坐标系和手臂坐标系之间转换的作用，以及PPC对感觉运动映射的作用，可以参考
-
-但是图片实在是太难看了
-
-
+有些公式需要再仔细研究一下
 
