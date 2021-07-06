@@ -2,7 +2,7 @@
 layout:     post
 title:      "ACM数据格式处理python方法总结"
 subtitle:   "OJ在线编程常见输入输出练习场"
-date:       2021-06-28
+date:       2021-07-05
 author:     "Txing"
 header-img: "img/post-bg-py.jpg"
 tags:
