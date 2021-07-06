@@ -43,21 +43,16 @@ tags:
   - Various works on hierarchical reinforcement learning exist [33], [34]
   -  including work considering deep architectures [35], [36]
   - Work in **[36]** is focuses on finding the best hierarchical structure of the tasks with clustering methods, and is mainly concerned with how to decompose tasks
-- 
+- Most recent work on deep hierarchical reinforcement learning can be found in [37] and [38].
+- 针对图像输入的DDPG，更改了conv网络的激活函数，思想来自the mlpconv layer。可以减少网络参数数量
+- 基本能力的定义：Basic tasks are fundamentally nontask specific and rather are tied to the physical capabilities of the robot, such as rotating a wheel or bending a joint to a specific direction.
+- 符合任务定义：Conversely, compound tasks are defined to be tasks that can only be achieved by combining different patterns.
+
+
 
 
 ## 总结
 
-
-
-
-
-
-
-
-
-
-
-
+这篇文章讲述并不是很清晰，也缺少理论证明，感觉最大的贡献就是使用了多个actor网络学习基础技能，但这个也是比较典型的分层强化学习思路，和option类似。
 
 
