@@ -7,7 +7,7 @@ author:     "Txing"
 header-img: "img/post-bg-py.jpg"
 tags:
     - Reinforcement Learning
-	- HRL
+    - HRL
 ---
 
 # Hierarchical Deep Reinforcement Learning for Continuous Action Control
