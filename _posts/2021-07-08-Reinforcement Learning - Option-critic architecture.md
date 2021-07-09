@@ -72,6 +72,8 @@ $$
 \frac{\partial Q_{\Omega}(s,\omega)}{\partial \theta}=\Bigg(\sum_a \frac{\partial \pi_{\omega,\theta}(a|s)}{\partial \theta}Q_{U}(s,\omega,a)\Bigg)\\
 +\sum_a\pi_{\omega,\theta}(a|s)\sum_{s'} \gamma P(s'|s,a)\frac{\partial U(\omega,s')}{\partial \theta}
 $$
+
+
 **Theorem 1** (**Intra-Option Policy Gradient Theorem**). Given a set of Markov options with stochastic intra-option policies differentiable in their parameters $\theta$, the gradient of the expected discounted return with respect to $\theta$ and initial condition $(s_0,\omega_0)$ is:
 $$
 \sum_{s,\omega} \mu_{\Omega}(s,\omega|s_0,\omega_0)\sum_a \frac{\partial \pi_{\omega,\theta}(a|s)}{\partial \theta} Q_U(s,\omega,a)
@@ -80,7 +82,6 @@ $$
 $$
 \mu_{\Omega}(s,\omega|s_0,\omega_0)=\sum_{t=0}^{\infin}\gamma^t P(s_t=s,\omega_t=\omega|s_0,\omega_0)
 $$
-
 
 下面计算终点函数的梯度，假设时间是随机化的并且可微的关于参数 $\vartheta$
 $$
@@ -95,6 +96,8 @@ $$
 $$
 其中，优势函数 $$A_{\Omega}(s',\omega)=Q_{\Omega}(s',\omega)-V_{\Omega}(s')$$.
 
+
+
 **Theorem 2** (**Termination Gradient Theorem**). Given a set of Markov options with stochastic termination functions differentiable in their parameters $$\vartheta$$, the gradient of the expected discounted return objective with respect to $$\vartheta$$ and the initial condition $$(s_1, \omega_0)$$ is:
 $$
 -\sum_{s',\omega}\mu_{\Omega}(s',\omega|s_1,\omega_0)\frac{\partial \beta_{\omega,\vartheta}(s')}{\partial \vartheta}A_{\Omega}(s',\omega)
@@ -106,11 +109,11 @@ $$
 
 - 算法结构：
 
-![](https://gitee.com/txing-z/txing-casia.github.io/blob/master/img/20210709-1.png)
+![算法结构](https://gitee.com/txing-z/txing-casia.github.io/blob/master/img/20210709-1.png)
 
 - 算法伪代码：
 
-![](https://gitee.com/txing-z/txing-casia.github.io/blob/master/img/20210709-2.png)
+![算法伪代码](https://gitee.com/txing-z/txing-casia.github.io/blob/master/img/20210709-2.png)
 
 - 算法的问题：假设了所有的options适用于所有的地方。Perhaps the biggest remaining limitation of our work is the assumption that all options apply everywhere. 
 
