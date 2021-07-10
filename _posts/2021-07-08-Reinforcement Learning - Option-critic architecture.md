@@ -89,7 +89,7 @@ $$
 其中 $$\mu_{\Omega}$$ 是状态-选项对的折扣权重
 
 $$
-\mu_{\Omega}(s,\omega|s_0,\omega_0)=\sum_{t=0}^{\infin}\gamma^t P(s_t=s,\omega_t=\omega|s_0,\omega_0)
+\mu_{\Omega}(s,\omega|s_0,\omega_0)=\sum_{t=0}^{\infty}\gamma^t P(s_t=s,\omega_t=\omega|s_0,\omega_0)
 $$
 
 下面计算终点函数的梯度，假设时间是随机化的并且可微的关于参数 $$\vartheta$$
@@ -120,7 +120,7 @@ $$
 其中 $$\mu_{\Omega}(s',\omega|s_1,\omega_0)$$ 是状态-选项对 $$(s_1,\omega_0)$$ 的折扣权重
 
 $$
-\mu_{\Omega}(s,\omega|s_1,\omega_0)=\sum_{t=0}^{\infin} \gamma^t P(s_{t+1}=s,\omega_t=\omega|s_1,\omega_0)
+\mu_{\Omega}(s,\omega|s_1,\omega_0)=\sum_{t=0}^{\infty} \gamma^t P(s_{t+1}=s,\omega_t=\omega|s_1,\omega_0)
 $$
 
 - 算法结构：
