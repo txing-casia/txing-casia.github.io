@@ -47,13 +47,13 @@ tags:
 - 定义option-value function can be written as:
 
 $$
-Q_{\Omega}(s,\omega)=\sum_a \pi_{\omega,\theta}(a|s)Q_{U}(s,\omega,a)
+Q_{\Omega}(s,\omega)=\sum_a \pi_{\omega,\theta}(a \mid s)Q_{U}(s,\omega,a)
 $$
 
 其中 $$Q_{U}(s,\omega,a)$$ 是在state-option对下执行行为的评估值。
 
 $$
-Q_{U}(s,\omega,a)=r(s,a)+\gamma\sum_{s'}P(s'|s,a)U(\omega,s')
+Q_{U}(s,\omega,a)=r(s,a)+\gamma\sum_{s'}P(s' \mid s,a)U(\omega,s')
 $$
 
 注意 $$(s,\omega)$$ 组导致了一个扩张的状态空间 an augmented state space, cf. (Levy and Shimkin 2011)
@@ -67,8 +67,8 @@ $$
 如果option $$\omega_t$$ 在时刻 t 被初始化并被执行，此时状态为 $$s_t$$ ，然后在1步之后，状态转移到 $$(s_{t+1},\omega_{t+1})$$ 的概率是：
 
 $$
-P(s_{t+1},\omega_{t+1}|s_t,\omega_t)=\sum_a \pi_{\omega_t,\theta}(a|s_t)P(s_{t+1}|s_t,a)\\
-\big((1-\beta_{\omega_t,\vartheta}(s_{t+1}))1_{\omega_t=\omega_{t+1}}+\beta_{\omega_t,\vartheta}(s_{t+1})\pi_{\Omega}(\omega_{t+1}|s_{t+1})\big)
+P(s_{t+1},\omega_{t+1} \mid s_t,\omega_t)=\sum_a \pi_{\omega_t,\theta}(a|s_t)P(s_{t+1} \mid s_t,a)\\
+\big((1-\beta_{\omega_t,\vartheta}(s_{t+1}))1_{\omega_t=\omega_{t+1}}+\beta_{\omega_t,\vartheta}(s_{t+1})\pi_{\Omega}(\omega_{t+1} \mid s_{t+1})\big)
 $$
 
 显然，给出计算过程是均匀的。在温和的条件下，由于选项到处可用，它实际上是遍历的，并且在 state-option 对上存在唯一的平稳分布。
@@ -76,26 +76,26 @@ $$
 接下来计算期望累积回报关于intra-option策略的参数 $$\theta$$ 的梯度，假设它是随机的可微分的，我们得到
 
 $$
-\frac{\partial Q_{\Omega}(s,\omega)}{\partial \theta}=\Bigg(\sum_a \frac{\partial \pi_{\omega,\theta}(a|s)}{\partial \theta}Q_{U}(s,\omega,a)\Bigg)\\
-+\sum_a\pi_{\omega,\theta}(a|s)\sum_{s'} \gamma P(s'|s,a)\frac{\partial U(\omega,s')}{\partial \theta}
+\frac{\partial Q_{\Omega}(s,\omega)}{\partial \theta}=\Bigg(\sum_a \frac{\partial \pi_{\omega,\theta}(a \mid s)}{\partial \theta}Q_{U}(s,\omega,a)\Bigg)\\
++\sum_a\pi_{\omega,\theta}(a \mid s)\sum_{s'} \gamma P(s'|s,a)\frac{\partial U(\omega,s')}{\partial \theta}
 $$
 
 **Theorem 1** (**Intra-Option Policy Gradient Theorem**). Given a set of Markov options with stochastic intra-option policies differentiable in their parameters $$\theta$$, the gradient of the expected discounted return with respect to $$\theta$$ and initial condition $$(s_0,\omega_0)$$ is:
 
 $$
-\sum_{s,\omega} \mu_{\Omega}(s,\omega|s_0,\omega_0)\sum_a \frac{\partial \pi_{\omega,\theta}(a|s)}{\partial \theta} Q_U(s,\omega,a)
+\sum_{s,\omega} \mu_{\Omega}(s,\omega \mid s_0,\omega_0)\sum_a \frac{\partial \pi_{\omega,\theta}(a \mid s)}{\partial \theta} Q_U(s,\omega,a)
 $$
 
 其中 $$\mu_{\Omega}$$ 是状态-选项对的折扣权重
 
 $$
-\mu_{\Omega}(s,\omega|s_0,\omega_0)=\sum_{t=0}^{\infty}\gamma^t P(s_t=s,\omega_t=\omega|s_0,\omega_0)
+\mu_{\Omega}(s,\omega \mid s_0,\omega_0)=\sum_{t=0}^{\infty}\gamma^t P(s_t=s,\omega_t=\omega \mid s_0,\omega_0)
 $$
 
 下面计算终点函数的梯度，假设时间是随机化的并且可微的关于参数 $$\vartheta$$
 
 $$
-\frac{\partial Q_{\Omega}(s,\omega)}{\partial \vartheta} = \sum_a \pi_{\omega,\theta}(a|s)\sum_{s'}\gamma P(s'|s,a) \frac{\partial U(\omega,s')}{\partial \vartheta}
+\frac{\partial Q_{\Omega}(s,\omega)}{\partial \vartheta} = \sum_a \pi_{\omega,\theta}(a \mid s)\sum_{s'}\gamma P(s' \mid s,a) \frac{\partial U(\omega,s')}{\partial \vartheta}
 $$
 
 关于 $$U$$ 的梯度，可以结合又是函数 $$A_{\Omega}$$ 来计算：
@@ -103,7 +103,7 @@ $$
 $$
 \begin{align}
 \frac{\partial U(\omega,s')}{\partial \vartheta} =& -\frac{\partial \beta_{\omega,\vartheta}(s')}{\partial \vartheta} A_{\Omega}(s',\omega) \\
-&+ \gamma\sum_{\omega'} \sum_{s''} P(s'',\omega'|s',\omega)\frac{\partial U(\omega',s'')}{\partial \vartheta}
+&+ \gamma\sum_{\omega'} \sum_{s''} P(s'',\omega' \mid s',\omega)\frac{\partial U(\omega',s'')}{\partial \vartheta}
 \end{align}
 $$
 
@@ -114,13 +114,13 @@ $$
 **Theorem 2** (**Termination Gradient Theorem**). Given a set of Markov options with stochastic termination functions differentiable in their parameters $$\vartheta$$, the gradient of the expected discounted return objective with respect to $$\vartheta$$ and the initial condition $$(s_1, \omega_0)$$ is:
 
 $$
--\sum_{s',\omega}\mu_{\Omega}(s',\omega|s_1,\omega_0)\frac{\partial \beta_{\omega,\vartheta}(s')}{\partial \vartheta}A_{\Omega}(s',\omega)
+-\sum_{s',\omega}\mu_{\Omega}(s',\omega \mid s_1,\omega_0)\frac{\partial \beta_{\omega,\vartheta}(s')}{\partial \vartheta}A_{\Omega}(s',\omega)
 $$
 
-其中 $$\mu_{\Omega}(s',\omega|s_1,\omega_0)$$ 是状态-选项对 $$(s_1,\omega_0)$$ 的折扣权重
+其中 $$\mu_{\Omega}(s',\omega \mid s_1,\omega_0)$$ 是状态-选项对 $$(s_1,\omega_0)$$ 的折扣权重
 
 $$
-\mu_{\Omega}(s,\omega|s_1,\omega_0)=\sum_{t=0}^{\infty} \gamma^t P(s_{t+1}=s,\omega_t=\omega|s_1,\omega_0)
+\mu_{\Omega}(s,\omega \mid s_1,\omega_0)=\sum_{t=0}^{\infty} \gamma^t P(s_{t+1}=s,\omega_t=\omega|s_1,\omega_0)
 $$
 
 - 算法结构：
