@@ -36,11 +36,11 @@ tags:
 ### Option Framework
 
 - option框架假设对于option $$\omega\in \Omega$$ 由三元组 $$(I_{\omega},\pi_{\omega},\beta_{\omega})$$ 组成。
-  - $I_{\omega} \subseteq S$ 是初始的状态集合
-  - $\pi_{\omega}$ 是intra-option策略
-  - $\beta_{\omega}:S\rightarrow[0,1]$ 是终止函数
+  - $$I_{\omega} \subseteq S$$ 是初始的状态集合
+  - $$\pi_{\omega}$$ 是intra-option策略
+  - $$\beta_{\omega}: S \rightarrow [0,1]$$ 是终止函数
 
-- 当使用option框架时， MDP就变成了Semi-MDP，它有相应的最优值函数$V_{\Omega}(s)$和option-value函数$Q_{\Omega}(s,\omega)$。所谓的Semi-MDP就是指从状态s到下一个状态s‘要经过$\tau$步的MDP，大致就是状态之间存在时间上的不连续。
+- 当使用option框架时， MDP就变成了Semi-MDP，它有相应的最优值函数$$V_{\Omega}(s)$$ 和option-value函数 $$Q_{\Omega}(s,\omega)$$ 。所谓的Semi-MDP就是指从状态s到下一个状态s‘要经过 $$\tau$$ 步的MDP，大致就是状态之间存在时间上的不连续。
 - 通过一些针对MDP的算法实现多个option并行地学习，这就是 **intra-option learning** 的主要思路
 - 接下来就是要实现两个关键任务：learning **option policies** and **termination functions**
 - 算法流程：一个外部的策略 $$\pi_{\Omega}$$ 选择option来执行控制， intra-option policy $$\pi_{\omega}$$ 开始执行，直到终点（用终点函数来判断停止执行）
@@ -58,7 +58,7 @@ $$
 
 注意 $$(s,\omega)$$ 组导致了一个扩张的状态空间 an augmented state space, cf. (Levy and Shimkin 2011)
 
-$$U:\Omega \times S\rightarrow \mathbb{R}$$ 是 the option-value function upon arrival，The value of executing $$\omega$$ upon entering a state $$s'$$ is given by:
+$$U: \Omega \times S\rightarrow \mathbb{R}$$ 是 the option-value function upon arrival，The value of executing $$\omega$$ upon entering a state $$s'$$ is given by:
 
 $$
 U(\omega,s')=(1-\beta_{\omega,\vartheta}(s'))Q_{\Omega}(s',\omega)+\beta_{\omega,\vartheta}(s')V_{\Omega}(s')
@@ -92,7 +92,7 @@ $$
 \mu_{\Omega}(s,\omega|s_0,\omega_0)=\sum_{t=0}^{\infin}\gamma^t P(s_t=s,\omega_t=\omega|s_0,\omega_0)
 $$
 
-下面计算终点函数的梯度，假设时间是随机化的并且可微的关于参数 $\vartheta$
+下面计算终点函数的梯度，假设时间是随机化的并且可微的关于参数 $$\vartheta$$
 
 $$
 \frac{\partial Q_{\Omega}(s,\omega)}{\partial \vartheta} = \sum_a \pi_{\omega,\theta}(a|s)\sum_{s'}\gamma P(s'|s,a) \frac{\partial U(\omega,s')}{\partial \vartheta}
@@ -107,7 +107,7 @@ $$
 \end{align}
 $$
 
-其中，优势函数 $$A_{\Omega}(s',\omega)=Q_{\Omega}(s',\omega)-V_{\Omega}(s')$$.
+其中，优势函数 $$A_{\Omega}(s',\omega) = Q_{\Omega}(s',\omega)-V_{\Omega}(s')$$ .
 
 
 
