@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Reinforcement Learning | DRN A Deep Reinforcement Learning Framework for News Recommendation"
+title:      "Reinforcement Learning | DRN: A Deep Reinforcement Learning Framework for News Recommendation"
 subtitle:   "Microsoft 提出的新闻推荐算法"
 date:       2021-07-12
 author:     "Txing"
@@ -105,6 +105,8 @@ $$
 ![Exploration by Dueling Bandit Gradient Descent](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-2.png)
 
 $$\hat{L}$$ 首先使用概率交错方法从 $$L$$ 和 $$\tilde{L}$$ 。大致就是首先随机从 $$L$$ 和 $$\tilde{L}$$ 选择推荐项，之后按照概率值更新网络 $$\tilde{Q}$$
+
+
 $$
 \Delta W=\alpha \cdot rand(-1,1)\cdot W\\
 W'=W+\eta \tilde{W}
@@ -113,3 +115,6 @@ $$
 ## 总结
 
 感觉整体框架还是很好理解的，针对任务的改进比较多，对强化学习框架的改动比较小。
+
+两个网络的构造也类似于DQN中的target network，输入的高维特征类比于输入的图像信息。
+
