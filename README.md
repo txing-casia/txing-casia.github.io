@@ -1,5 +1,21 @@
 # Welcome to Txing's blog 
 
+### 2021.7.12 解决首页头像加载失败问题
+
+在_config.yml文件中添加头像路径时，之前标注的是相对路径
+
+```
+/img/avatar-txing.png
+```
+
+将其改为绝对路径即可：
+
+```
+https://txing-casia.github.io/img/avatar-txing.png
+```
+
+
+
 ### 2019.5.6 解决LaTeX行内公式在GitHub Page不显示问题
 
 一些处理办法是利用在线LaTeX编辑器，将公式转化为图片插入到MD中。但这种做法并没有真正解决问题，同时还影响了清晰度。
