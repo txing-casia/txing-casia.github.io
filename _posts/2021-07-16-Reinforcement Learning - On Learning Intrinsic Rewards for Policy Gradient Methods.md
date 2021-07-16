@@ -27,9 +27,23 @@ Andrew Y Ng, Daishi Harada, and Stuart J Russell. Policy invariance under reward
 
 - 另一方面，由于实际任务中的各种限制（e.g., inadequate memory, representational capacity, computation, training data, etc.），智能体很难学习到最优策略。因此，在解决奖励设计问题时，希望设计能改变最优策略的奖励函数变换方式。
 
- 
+- 构造奖励函数的好处：
+  - 比原始的奖励函数更少的稀疏性，加快学习过程 [Rajeswaran et al., 2017]；
+  - 帮助探索状态边界的区域，例如count-based reward 鼓励探索很少探索到的区域 [Bellemare et al., 2016, Ostrovski et al., 2017, Tang et al., 2017]；
 
+- 相关的方法：
+  - preference elicitation
+  - inverse RL
+  - intrinsically motivated RL
+  - optimal rewards
+  - potentialbased shaping rewards
+  - more general reward shaping
+  - mechanism design
+- 主要贡献：
+  - 基于策略梯度的方法推导intrinsic rewards学习方法，并与 task-specifying (hereafter extrinsic) reward 相结合，最大化外部奖励。
+  - 内部和外部奖励之和的参数通过策略梯度方法更新训练
 
+- 使用本质奖励的主要原因是对RL agent的训练都是有限的（表征能力，可得到的数据，计算能力限制等等），通过集合内部奖励可以环节这些限制。The main intuition is that in practice all RL agents are bounded (computationally, representationally, in terms of data availability, etc.) and the optimal intrinsic reward can help mitigate these bounds.
 
 
 
