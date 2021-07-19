@@ -122,17 +122,11 @@ The importance sampling:
 $$
 \nabla_{\theta'} J^{ex}=G^{ex}(s_t,a_t)\frac{\nabla_{\theta'}\pi_{\theta'}(a_t\mid s_t)}{\pi_{\theta}(a_t\mid s_t)}
 $$
-
-
-
-
-
-
-
-
-
+重要性采样就是假设数据属于p(x)分布，但是实际采样是以q(x)分布采样的，需要乘以一个权重，把数据转换到p(x)分布，也就是重要性权重。
 
 
 
 ## 总结
+
+整个工作还是很漂亮的，尤其的这两层的梯度推导（需要结合途中公式和文本中的公式来看）。后面考虑再看几篇本质reward的文章，看看还有什么构造方式。
 
