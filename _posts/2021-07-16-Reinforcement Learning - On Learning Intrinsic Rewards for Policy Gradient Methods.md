@@ -46,6 +46,41 @@ Andrew Y Ng, Daishi Harada, and Stuart J Russell. Policy invariance under reward
 - 使用本质奖励的主要原因是对RL agent的训练都是有限的（表征能力，可得到的数据，计算能力限制等等），通过集合内部奖励可以环节这些限制。The main intuition is that in practice all RL agents are bounded (computationally, representationally, in terms of data availability, etc.) and the optimal intrinsic reward can help mitigate these bounds.
 
 
+#### Background and Related Work
+
+- **Optimal rewards and reward design**
+
+  Sorg et al. [2010]提出了PGRD算法，这是一种可扩展的算法，仅适用于基于前瞻搜索(例如，UCT)的规划agent(因此agent本身不是基于学习的agent；只学习与固定规划者一起使用的奖励)。Sorg et al. [2010] introduced PGRD (Policy Gradient for Reward Design), a scalable algorithm that only works with lookahead-search (e.g., UCT) based planning agents (and hence the agent itself is not a learning-based agent; only the reward to use with the fixed planner is learned).
+
+- **Reward shaping and Auxiliary rewards**
+
+  - Reward shaping [Ng et al., 1999]提供了一个一般性的答案，说明什么样的奖励函数修改空间不会改变最优策略，特别是基于势能的奖励函数。Reward shaping [Ng et al., 1999] provides a general answer to what space of reward function modifications do not change the optimal policy, specifically potential-based rewards.
+
+  - The **UNREAL** agent **[Jaderberg et al., 2016]** used pseudo-reward computed from unsupervised auxiliary tasks to refine its internal representations.
+
+    Max Jaderberg, Volodymyr Mnih, Wojciech Marian Czarnecki, Tom Schaul, Joel Z Leibo, David Silver, and Koray Kavukcuoglu. Reinforcement learning with unsupervised auxiliary tasks. arXiv preprint arXiv:1611.05397, 2016.
+
+  - In **Bellemare et al. [2016]**, **Ostrovski et al. [2017]**, and **Tang et al. [2017]**, a pseudo-count based reward bonus was given to the agent to encourage exploration
+
+  - **Pathak et al. [2017]** used self-supervised prediction errors as intrinsic rewards to help the agent explore.
+
+  - 本文的主要出发点是学习本质奖励，使其能够映射高维的观测和行为到奖励中。The main departure point in this paper is that we learn the parameters of an intrinsic reward function that maps high-dimensional observations and actions to rewards.
+
+- **Hierarchical RL**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
