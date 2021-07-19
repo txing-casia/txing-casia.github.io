@@ -50,15 +50,15 @@ Andrew Y Ng, Daishi Harada, and Stuart J Russell. Policy invariance under reward
 
 - **Optimal rewards and reward design**
 
-  Sorg et al. [2010]提出了PGRD算法，这是一种可扩展的算法，仅适用于基于前瞻搜索(例如，UCT)的规划agent(因此agent本身不是基于学习的agent；只学习与固定规划者一起使用的奖励)。Sorg et al. [2010] introduced PGRD (Policy Gradient for Reward Design), a scalable algorithm that only works with lookahead-search (e.g., UCT) based planning agents (and hence the agent itself is not a learning-based agent; only the reward to use with the fixed planner is learned).
+  Sorg et al. [2010]提出了PGRD算法，这是一种可扩展的算法，仅适用于基于前瞻搜索(例如，UCT)的规划agent(因此agent本身不是基于学习的agent；只学习与固定规划者一起使用的奖励)。Sorg et al. [2010] introduced PGRD (Policy Gradient for Reward Design), a scalable algorithm that only works with lookahead-search (e.g., UCT) based planning agents (and hence the agent itself is not a learning-based agent; only the reward to use with the fixed planner is learned).  
 
 - **Reward shaping and Auxiliary rewards**
 
-  - Reward shaping [Ng et al., 1999]提供了一个一般性的答案，说明什么样的奖励函数修改空间不会改变最优策略，特别是基于势能的奖励函数。Reward shaping [Ng et al., 1999] provides a general answer to what space of reward function modifications do not change the optimal policy, specifically potential-based rewards.
+  - Reward shaping [Ng et al., 1999]提供了一个一般性的答案，说明什么样的奖励函数修改空间不会改变最优策略，特别是基于势能的奖励函数。Reward shaping [Ng et al., 1999] provides a general answer to what space of reward function modifications do not change the optimal policy, specifically potential-based rewards.  
 
-  - The **UNREAL** agent **[Jaderberg et al., 2016]** used pseudo-reward computed from unsupervised auxiliary tasks to refine its internal representations.
+  - The **UNREAL** agent **[Jaderberg et al., 2016]** used pseudo-reward computed from unsupervised auxiliary tasks to refine its internal representations.  
 
-    Max Jaderberg, Volodymyr Mnih, Wojciech Marian Czarnecki, Tom Schaul, Joel Z Leibo, David Silver, and Koray Kavukcuoglu. Reinforcement learning with unsupervised auxiliary tasks. arXiv preprint arXiv:1611.05397, 2016.
+    Max Jaderberg, Volodymyr Mnih, Wojciech Marian Czarnecki, Tom Schaul, Joel Z Leibo, David Silver, and Koray Kavukcuoglu. Reinforcement learning with unsupervised auxiliary tasks. arXiv preprint arXiv:1611.05397, 2016.  
 
   - In **Bellemare et al. [2016]**, **Ostrovski et al. [2017]**, and **Tang et al. [2017]**, a pseudo-count based reward bonus was given to the agent to encourage exploration
 
@@ -80,14 +80,14 @@ Andrew Y Ng, Daishi Harada, and Stuart J Russell. Policy invariance under reward
 
 #### Policy Gradient based RL
 
-- The value of a policy $$J(\theta)=E[\sum^{\infty}_{t=0} \gamma^tr_t]$$
+- The value of a policy $$J(\theta)=E[\sum^{\infty}_{t=0} \gamma^tr_t]$$  
 
-- the gradient of the value $$J(\theta)$$ is 
+- the gradient of the value $$J(\theta)$$ is   
   $$
   \nabla_{\theta} J(\theta)=E_{\theta}[G(s_t,a_t) \nabla_{\theta} \log \pi_{\theta}(a_t|s_t)]\\
   G(s_t,a_t)=\sum^{\infty}_{i=t} \gamma^{i-t}r_i
   $$
-  G是到终点为止的return
+    G是到终点为止的return  
 
 #### LIRPG: Learning Intrinsic Rewards for Policy Gradient
 
@@ -97,17 +97,18 @@ Andrew Y Ng, Daishi Harada, and Stuart J Russell. Policy invariance under reward
 
 - **Updating Policy Parameters (θ)**
 
-  使用内部和外部奖励之和来更新 $$\theta$$
+  使用内部和外部奖励之和来更新 $$\theta$$  
   $$
   \begin{align}
   \theta'&=\theta+\alpha\nabla_{\theta} J^{ex+in}(\theta)\\
   &\approx \theta +\alpha G^{ex+in}(s_t,a_t) \nabla_{\theta} \log \pi_{\theta}(a_t|s_t)
   \end{align}
   $$
+    
 
 - **Updating Intrinsic Reward Parameters (η)**
 
-Given an episode and the updated policy parameters $$\theta'$$ , we update intrinsic reward parameters.
+Given an episode and the updated policy parameters $$\theta'$$ , we update intrinsic reward parameters.  
 $$
 \begin{align}
 \nabla_{\eta} J^{ex}&=\nabla_{\theta'}J^{ex}\nabla_{\eta}\theta'\\
@@ -116,17 +117,17 @@ $$
 &= \nabla_{\eta}(\alpha G^{ex+in}(s_t,a_t) \nabla_{\theta}\log \pi_{\theta}(a_t|s_t)))\\
 &= \nabla_{\eta}(\alpha \lambda G^{in}(s_t,a_t) \nabla_{\theta}\log \pi_{\theta}(a_t|s_t)))\\
 &= \alpha \lambda \sum^{\infty}_{i=t} \gamma^{i-t}\nabla_{\eta} r^{in}_{\eta}(s_i,a_i)\nabla_{\theta} \log \pi_{\theta}(a_t\mid s_t)
-\end{align}
+\end{align}  
 $$
-The importance sampling:
+  The importance sampling:  
 $$
-\nabla_{\theta'} J^{ex}=G^{ex}(s_t,a_t)\frac{\nabla_{\theta'}\pi_{\theta'}(a_t\mid s_t)}{\pi_{\theta}(a_t\mid s_t)}\\
+\nabla_{\theta'} J^{ex}=G^{ex}(s_t,a_t)\frac{\nabla_{\theta'}\pi_{\theta'}(a_t\mid s_t)}{\pi_{\theta}(a_t\mid s_t)}\\  
 $$
-重要性采样就是假设数据属于p(x)分布，但是实际采样是以q(x)分布采样的，需要乘以一个权重，把数据转换到p(x)分布，也就是重要性权重。
+  重要性采样就是假设数据属于p(x)分布，但是实际采样是以q(x)分布采样的，需要乘以一个权重，把数据转换到p(x)分布，也就是重要性权重。  
 
 
 
 ## 总结
 
-整个工作还是很漂亮的，尤其的这两层的梯度推导（需要结合途中公式和文本中的公式来看）。后面考虑再看几篇本质reward的文章，看看还有什么构造方式
+  整个工作还是很漂亮的，尤其的这两层的梯度推导（需要结合途中公式和文本中的公式来看）。后面考虑再看几篇本质reward的文章，看看还有什么构造方式。  
 
