@@ -61,6 +61,18 @@ for line in sys.stdin:
 
 
 
+```python
+num = input()
+# print(' '.join(sorted(input().split())))
+a = input().split()
+# 去除字符串数组中多余的括号
+a[0]=a[0].replace('[','')
+a[-1]=a[-1].replace(']','')
+print(int(a[1]))
+```
+
+
+
 - **已知数据行数，已知每行长度**：外加循环或者判断条件
 
 ```python
