@@ -64,6 +64,8 @@ for line in sys.stdin:
 ```python
 num = input()
 # print(' '.join(sorted(input().split())))
+# 连续的数字不被拆开
+# a= list(input().split()) # 可以不加list()
 a = input().split()
 # 去除字符串数组中多余的括号
 a[0]=a[0].replace('[','')
