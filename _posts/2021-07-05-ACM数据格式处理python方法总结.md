@@ -59,6 +59,20 @@ for line in sys.stdin:
     i+=1
 ```
 
+读入一个二维矩阵：
+
+```python
+# 读取字符举证
+a = []
+for line in sys.stdin: 
+    a.append(line.split())
+
+# 读取数字矩阵
+a = []
+for line in sys.stdin: 
+    a.append(list(map(int,line.split())))
+```
+
 
 
 ```python
