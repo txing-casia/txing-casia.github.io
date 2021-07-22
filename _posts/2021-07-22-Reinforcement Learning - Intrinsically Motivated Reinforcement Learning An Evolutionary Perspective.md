@@ -37,9 +37,39 @@ tags:
 
     [11]. S. Elfwing, E. Uchibe, K. Doya and H. I. Christensen, "Co-evolution of shaping rewards and meta-parameters in reinforcement learning", *Adapt. Behav.*, vol. 16, pp. 400-412, 2008.
 
+- 使用RL的模型结构示意图
+
+![Agent–environment interactions in reinforcement learning](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210722-1.png)
+
+- 这篇文章[3]使用属于内部奖励（intrinsic reward），并将其与强化学习框架结合。所谓内部奖励，就是内部动机生成的奖励函数；外部奖励就是常规的强化学习框架的奖励函数。
+
+  [3]. A. G. Barto, S. Singh and N. Chentanez, "Intrinsically motivated learning of hierarchical collections of skills", *Proc. Int. Conf. Develop. Learn.*, 2004.
+
+- 目前的方法基本都是构建特殊的内部奖励函数，并且将其与一般的强化学习算法结合。例如基于好奇心的内部驱动方法[32]。
+
+  [32]. J. Schmidhuber, *Adaptive Confidence and Adaptive Curiosity*, 1991.
+
+- 这种内部动机的RL框架更加符合生物实际。并且奖励和奖励信号是不同的概念，RL模型中使用的更类似于奖励信号。
+
+  - 奖励（Reward）指的是获得的好处；
+
+  - 奖励信号（Reward signal）指的是大脑中奖励神经元发放的信号；
+
+    Schultz [38], [39] writes that “Rewards are objects or events that make us come back for more,” whereas reward signals are produced by reward neurons in the brain.
+
+- RL中的环境应该分为an external environment 和 an internal environment.
+
+- 但是并不能从行为上区分是否使用了内部奖励[25]。但是内部动机是通过外部奖励形成的。
+
+  [25]. P.-Y. Oudeyer and F. Kaplan, "What is intrinsic motivation? A typology of computational approaches", *Frontiers Neurorobot.*, 2007.
+
+- 使用内部动机意义在于作为一种次要的奖励信号，配合主要的外部奖励信号完成行为
 
 
-![Learning Intrinsic Rewards for Policy Gradient](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210722-1.png)
+
+
+
+
 
 
 
