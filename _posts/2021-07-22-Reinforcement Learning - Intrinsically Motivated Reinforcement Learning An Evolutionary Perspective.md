@@ -69,6 +69,30 @@ tags:
 
   Among the most influential theories of motivation in psychology is the drive theory of Hull [13] [14] [15]. According to Hull's theory, all behavior is motivated either by an organism's survival and reproductive needs giving rise to primary drives (such as hunger, thirst, sex, and the avoidance of pain), or by derivative drives that have acquired their motivational significance through learning. Primary drives are the result of physiological deficits—“tissue needs”— and they energize behavior whose result is to reduce the deficit. A key additional feature of Hull's theory is that a need reduction, and hence a drive reduction, acts as a primary reinforcer for learning: behavior that reduces a primary drive is reinforced. Additionally, through the process of secondary reinforcement in which a neutral stimulus is paired with a primary reinforcer, the formerly neutral stimulus becomes a secondary reinforcer, i.e., acquires the reinforcing power of the primary reinforcer. In this way, stimuli that predict primary reward, i.e., predict a reduction in a primary drive, become rewarding themselves. According to this influential theory (in its several variants), all behavior is energized and directed by its relevance to primal drives, either directly or as the result of learning through secondary reinforcement.
 
+- 一些驱动力对行为影响的例子，在某些条件下，饥饿的老鼠宁愿探索不熟悉的空间，也不愿进食；他们忍受穿越电网的痛苦，去探索新的空间。
+
+- 但是饥饿、口渴、繁衍这些驱动都伴随着满足的状态，他们是否能作为次要驱动还是有待研究。下面介绍基于进化的观点。
+
+- 使用一个适应度函数和一些环境兴趣的分布（an explicit fitness function and some distribution of environments of interest），这个适应度可以是累积的外部奖励和等形式。
+- 符号说明：
+  - agent $$\mathcal{A}$$
+  - a space of reward function $$R_\mathcal{A}$$
+  - a specific reward function $$r_\mathcal{A} \in R_\mathcal{A}$$
+  - a sampled environment $$E \sim P(\varepsilon)$$
+  - history of agent $$\mathcal{A}$$  adapting to environment $$E$$ over its lifetime using the reward function $$r_\mathcal{A}$$, i.e., $$h \sim \langle \mathcal{A}(r_\mathcal{A}),E\rangle$$ 
+  - fitness function $$\mathcal{F}$$ produces a scalar evaluation $$\mathcal{F}(h)$$ for each history $$h$$
+  - optimal reward function $$r^*_{\mathcal{A}} \in R_{\mathcal{A}}$$  
+
+$$
+r^*_{\mathcal{A}}=\arg \max_{r_\mathcal{A} \in R_\mathcal{A}} \mathbb{E}_{E\sim P(\varepsilon)} \mathbb{E}_{h \sim \langle \mathcal{A}(r_\mathcal{A}),E\rangle}[\mathcal{F}(h)]
+$$
+
+
+
+
+
+
+
 
 
 
