@@ -63,9 +63,11 @@ tags:
 
   [25]. P.-Y. Oudeyer and F. Kaplan, "What is intrinsic motivation? A typology of computational approaches", *Frontiers Neurorobot.*, 2007.
 
-- 使用内部动机意义在于作为一种次要的奖励信号，配合主要的外部奖励信号完成行为
+- Primary and Secondary Reward：使用内部动机意义在于作为一种次要的奖励信号，配合主要的外部奖励信号完成行为
 
+- 生物动机心理学依据：
 
+  Among the most influential theories of motivation in psychology is the drive theory of Hull [13] [14] [15]. According to Hull's theory, all behavior is motivated either by an organism's survival and reproductive needs giving rise to primary drives (such as hunger, thirst, sex, and the avoidance of pain), or by derivative drives that have acquired their motivational significance through learning. Primary drives are the result of physiological deficits—“tissue needs”— and they energize behavior whose result is to reduce the deficit. A key additional feature of Hull's theory is that a need reduction, and hence a drive reduction, acts as a primary reinforcer for learning: behavior that reduces a primary drive is reinforced. Additionally, through the process of secondary reinforcement in which a neutral stimulus is paired with a primary reinforcer, the formerly neutral stimulus becomes a secondary reinforcer, i.e., acquires the reinforcing power of the primary reinforcer. In this way, stimuli that predict primary reward, i.e., predict a reduction in a primary drive, become rewarding themselves. According to this influential theory (in its several variants), all behavior is energized and directed by its relevance to primal drives, either directly or as the result of learning through secondary reinforcement.
 
 
 
