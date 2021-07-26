@@ -87,11 +87,19 @@ $$
 r^*_{\mathcal{A}}=\arg \max_{r_\mathcal{A} \in R_\mathcal{A}} \mathbb{E}_{E\sim P(\varepsilon)} \mathbb{E}_{h \sim \langle \mathcal{A}(r_\mathcal{A}),E\rangle}[\mathcal{F}(h)]
 $$
 
+- 使用的算法 the lookup-table -greedy Q-learning [52].
 
+  [52]. C. J. C. H. Watkins, “Learning from Delayed Rewards,” Ph.D. dissertation, Cambridge Univ., Cambridge, U.K., 1989
 
+$$
+Q_{t+1}(s_t,a_t)=(1-\alpha)Q_t(s_t,a_t)+\alpha[r_t + \gamma \max_b (Q_t(s_{t+1},b))]
+$$
 
+之后通过实验验证了$$r*$$的奖励函数趋近最优奖励函数
 
-
+- 在格子迷宫环境中假设了两只钟情况：
+  - 1. constant condition: 食物总是智能体10000步生命周期中，在封闭的盒子中出现；
+    2. step condition: 智能体的生命周期是20000步，食物总是出现在10000步之后出现
 
 
 
