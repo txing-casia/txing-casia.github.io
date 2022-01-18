@@ -2,7 +2,7 @@
 layout:     post
 title:      "CoppeliaSim入门指南"
 subtitle:   ""
-date:       2022-01-17
+date:       2022-01-16
 author:     "Pcon"
 header-img: "img/post-bg-py.jpg"
 tags:
@@ -16,7 +16,7 @@ tags:
 
 CoppeliaSim 以前叫做 V-rep，是一款广泛使用的机器人仿真软件环境。在本指南中，尝试在 python 中实现对 CoppeliaSim 的调用。
 
-[CoppeliaSim下载地址]: https://www.coppeliarobotics.com/
+> CoppeliaSim下载地址：https://www.coppeliarobotics.com/
 
 下载完成后按照默认引导完成安装。
 
@@ -25,11 +25,16 @@ CoppeliaSim 以前叫做 V-rep，是一款广泛使用的机器人仿真软件�
 然后新建 python 工程环境，在工程文件夹内需要添加三个 CoppeliaSim 相关的文件，分别为：
 
 - sim.py（原vrep.py）
-  - 位置：C:\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\remoteApiBindings\python\python
+  
+  > 位置：C:\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\remoteApiBindings\python\python
+  
 - simConst.py（原vrepConst.py）
-  - 位置：C:\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\remoteApiBindings\python\python
+  
+  > 位置：C:\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\remoteApiBindings\python\python
+  
 - remoteApi.dll 
-  - 位置：C:\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\remoteApiBindings\lib\lib\Windows
+  
+  > 位置：C:\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\remoteApiBindings\lib\lib\Windows
 
 在 CoppeliaSim 窗口中，双击 main 文件，添加如下所示第三行代码。帮助实现与 python 的远程连接
 
@@ -41,6 +46,8 @@ require('defaultMainScript')
 simRemoteApi.start(19999)
 ```
 
+### 3 程序代码
+
 在 python 窗口中，添加如下代码：
 
 ```python
@@ -48,7 +55,7 @@ simRemoteApi.start(19999)
 # in a child script of a CoppeliaSim scene, add following command
 # to be executed just once, at simulation start:
 #
-# simRemoteApi.start(19999)
+# simRemoteApi.start(19997)
 #
 # then start simulation, and run this program.
 #
@@ -107,6 +114,8 @@ print ('Program ended')
 ```
 
 代码来自于样例程序simpleTest.py (C:\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\remoteApiBindings\python\python)
+
+### 4 功能实现
 
 功能大致是：获取 CoppeliaSim 窗口中鼠标的 x 坐标，并返回到 python 窗口输出。
 
