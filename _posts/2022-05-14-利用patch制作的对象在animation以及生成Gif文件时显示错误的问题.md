@@ -2,7 +2,7 @@
 layout:     post
 title:      "利用patch制作的对象在animation以及生成Gif文件时显示错误的问题"
 subtitle:   ""
-date:       2022-05-15
+date:       2022-05-14
 author:     "Txing"
 header-img: "img/post-bg-py.jpg"
 tags:
