@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Exploring Imitation Learning for Autonomous Driving with Feedback Synthesizer and Differentiable Rasterization (2021, Apollo 6.0)"
+title:      "Autonomous Driving | Exploring Imitation Learning for Autonomous Driving with Feedback Synthesizer and Differentiable Rasterization (2021, Apollo 6.0)"
 subtitle:   ""
 date:       2022-07-14
 author:     "Txing"
