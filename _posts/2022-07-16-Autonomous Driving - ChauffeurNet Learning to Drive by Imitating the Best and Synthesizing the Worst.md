@@ -49,8 +49,6 @@ data. Pan et al. (2017) also describes achieving transfer of an agent trained in
 
 ![Driving model inputs (a-g) and output (h)](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220716-1.png)
 
-![Training the driving model](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220716-2.png)
-
 - 用$$I$$表示上述枚举的各种输入，ChauffeurNet模型循环地预测未来的自车姿态，并用绿色点表示。
   $$
   P_{t+\delta t} = \text{ChauffeurNet}(I,P_t)
@@ -58,19 +56,114 @@ data. Pan et al. (2017) also describes achieving transfer of an agent trained in
 
 #### 3.2 Model Design  
 
-- 
+![Training the driving model](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220716-2.png)
 
+- **a convolutional feature network (FeatureNet)：**
+
+  - 输入：input data
+  - 输出：处理后的上下文特征表征（a digested contextual feature representation）
+- **a recurrent agent network (AgentRNN)：**
+
+  - 输入：处理后的特征（consumed features）
+  - 输出：迭代地预测连续的路径点（iteratively predicts successive points）以及其它信息
+
+  - AgentRNN还将车辆的边界框预测为每个未来时间步的空间热图。（The AgentRNN also predicts the bounding box of the vehicle as a spatial heatmap at each future timestep）  
+  - point $$P_k$$ 
+  - the agent bounding box heatmap $$B_k$$  
+  - memory  $$M_k$$
+  - FeatureNet  输出的特征$$F$$
+  - $$P_k,B_k = \text{AgentRNN}(k,F,M_{k-1},B_{k-1})$$
+
+- **Road Mask Network：**
+
+  - 输入：feature representation  
+
+  - 输出：预测可行驶的区域（predicts the drivable areas of the field of view (on-road vs. off-road)）
+
+- **recurrent perception network (PerceptionRNN)：**
+
+  - 输入：feature representation  
+
+  - 输出：迭代预测空间热图（iteratively predicts a spatial heatmap (of every other agent in the scene))  
   
 
-  
-  $$
-  P_k,B_k = \text{AgentRNN}(k,F,M_{k-1},B_{k-1})
-  $$
-  
+#### 3.3 System Architecture  
 
+![Software architecture for the end-to-end driving pipeline](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220718-1.png)
 
+### 4. Imitating the Expert
 
+- AgentRNN在每次迭代中预测三个输出：
+  - 概率分布$$P_k(x,y)$$
+  - 预测边界的热图$$B_k(x,y)$$
+  - 回归边界朝向输出$$\theta_k$$ (a regressed box heading output $$\theta_k$$)  
 
+- 定义上述三个变量响应的损失函数：(上标$$gt$$表示相应的ground-truth值；$$H(a,b)$$表示交叉熵函数；$$P^{gt}_k$$是二值图像，并且只有ground-truth目标坐标取值为1)
 
+  - $$L_p=H(P_k,P^{gt}_k)$$
+  - $$L_B=\frac{1}{WH}\sum_x \sum_y H(B_k(x,y),B_k^{gt}(x,y))$$
+  - $$L_{\theta}=\mid\mid \theta_k - \theta_k^{gt} \mid\mid_1$$
 
+- 精细的位置预测用$$\delta P_k^{gt}$$表示，并用$$L_1$$损失计算误差：
+
+  $$L_{p-subpixel} = \mid\mid \delta P_k-\delta P_k^{gt} \mid\mid_1$$
+
+  $$L_{speed}=\mid\mid s_k-s_k^{gt} \mid\mid_1$$
+
+  其中，$$\delta P^{gt}_k = P^{gt}_k-\lfloor P^{gt}_k \rfloor$$是ground-truth位置坐标的小数部分（the fractional part）
+
+### 5. Beyond Pure Imitation
+
+- 合成扰动（Synthesizing Perturbations），路径的起始点和终点不变，晃动中间某个点的位置，幅度是$$[-0.5,0.5]$$米，扰动的车头朝向角度为$$[-\pi/3,\pi/3]$$弧度。最后结合扰动点和端点，拟合出一条平滑的轨迹，让车能在干扰之后回到原来的轨迹。
+- 通过与最大曲率阈值比较，去除生成的一些不切实际的轨迹
+- 允许生成的轨迹与其它车辆发生碰撞的情况，这些cases可以帮助训练避免这些情况。
+
+- Beyond the Imitation Loss：
+
+  - **Collision Loss**
+
+    直接测量预测的智能体边框$$B_k$$和ground-truth场景中其它目标边框的重叠区域（directly measures the overlap of the predicted agent box Bk with the ground-truth boxes of all the scene objects at each timestep）
+    $$
+    L_{collosion}=\frac{1}{WH}\sum_x \sum_y B_{k}(x,y)\cdot Obj^{gt}_k (x,y)
+    $$
+    其中，$$B_k$$是输出的预测的智能体边框似然度地图，$$Obj^{gt}_k$$是一个二值掩码图，其中其它的动态目标用1表示
+
+  - **On road loss**
+
+    避免agent冲出道路边界
+    $$
+    L_{onroad}=\frac{1}{WH}\sum_x \sum_y B_k(x,y)\cdot (1-Road^{gt}(x,y))
+    $$
+
+  - **Geometry loss**
+
+    不与目标几何位置重叠的区域作为一个惩罚项损失
+    $$
+    L_{geom}=\frac{1}{WH}\sum_x \sum_yB_k(x,y)\cdot(1-Geom^{gt}(x,y))
+    $$
+
+  - **Auxiliary losses**
+
+    使用a recurrent perception network PerceptionRNN预测他车轨迹
+    $$
+    L_{objects}=\frac{1}{WH}\sum_x \sum_y H(Obj_k (x,y),obj^{gt}_k(x,y))
+    $$
+
+- 本文使用的损失函数用两组损失组成：模仿损失（imitation losses）和环境损失（environment losses）：
+
+  - 模仿损失：$$L_{imit}=\{L_p,L_B,L_{\theta},L_{p-subpixel},L_{speed}\}$$
+  - 环境损失：$$L_{env}=\{L_{collision},L_{onroad},L_{geom},L_{objects},L_{road}\}$$ 
+  - 总损失：$$L=\omega_{imit}\sum_{l\in L_{imit}}l +\omega_{env}\sum_{l \in L_{env}} l$$
+
+  模仿损失导致模型模仿专家的演示，而环境损失阻止不期望的行为，例如碰撞。(The imitation losses cause the model to imitate the expert’s demonstrations, while the environment losses discourage undesirable behavior such as collisions.)
+
+  ![Visualization of predictions and loss functions on an example input](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220718-2.png)
+
+- 参数情况：
+
+| $$T_{scene}$$ | $$T_{pose}$$ | $$\delta t$$ |  $$N$$  | $$\Delta$$ |
+| :-----------: | :----------: | :----------: | :-----: | :--------: |
+|     1.0 s     |    8.0 s     |    0.2 s     |   10    |   25 deg   |
+|     $$W$$     |    $$H$$     |   $$u_0$$    | $$v_0$$ |  $$\phi$$  |
+|    400 px     |    400 px    |    200 px    | 320 px  |  0.2 m/px  |
 
