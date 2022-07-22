@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Autonomous Driving | MotionCNN: A Strong Baseline for Motion Prediction in Autonomous Driving"
+title:      "Autonomous Driving | MotionCNN: A Strong Baseline for Motion Prediction in Autonomous Driving (2022)"
 subtitle:   ""
 date:       2022-07-22
 author:     "Txing"
@@ -10,7 +10,7 @@ tags:
     - Autonomous Driving
 ---
 
-## MotionCNN: A Strong Baseline for Motion Prediction in Autonomous Driving  
+## MotionCNN: A Strong Baseline for Motion Prediction in Autonomous Driving
 
 ### 1 Introduction
 
