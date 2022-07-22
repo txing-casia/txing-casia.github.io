@@ -81,6 +81,30 @@ tags:
 
 #### 3.2 Metrics
 
+- 预测的轨迹点下采样至2Hz。从预测的80个点产生16个2维坐标的子集被用于计算测试和验证度量
+- 最小化Average Displacement Error：$$minADE=\min_k \frac{1}{T} \mid\mid X^{gt} -X \mid\mid_2$$
+- 最小化Final Displacement Error (FDE): $$minFDE=\min_k \mid\mid x_T^{gt}- x_T \mid\mid_2$$
+- Miss Rate(MR) and mean average precision (mAP)  in [7]
+  - [7]. Scott Ettinger, Shuyang Cheng, Benjamin Caine, Chenxi Liu, Hang Zhao, Sabeek Pradhan, Yuning Chai, Ben Sapp, Charles Qi, Yin Zhou, et al. Large scale interactive motion forecasting for autonomous driving: The waymo open motion dataset. arXiv preprint arXiv:2104.10133, 2021. 1, 2, 3, 4  
+
+#### 3.3 Implementation details  
+
+Results from the final leaderboard of the Waymo open dataset motion prediction challenge [1] are presented in Tab. 1. Despite the simplicity of the proposed approach we secured the 3rd place according to the mAP metric. Moreover, our model is superior to the other competing methods according to Min ADE, Min FDE, and Overlap Rate metrics. Note that in contrast to methods [12, 9], our simple model achieves such impressive results without any use of advanced deep learning techniques or complex architectures.
+
+To test a more lightweight architecture, we also trained our model using ResNet18 [10] as the backbone and evaluated it on the validation set (see Tab. 1). This architecture is 3x times faster to train than the one with Xception71 backbone, but it does not reach the same high performance showing that a sufficiently deep model is necessary for attaining good results. In Fig. 4 we show plots with train and validation loss values during training. 
+
+In Tab. 2 we also provide more detailed evaluation results for different object types separately.  
+
+![Quantitative evaluation on test and validation sets of Waymo Open Motion Dataset](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/20220722-1.png)
+
+ ![Detailed evaluation of our MotionCNN-Xception71 model on test and validation sets of Waymo Open Motion Dataset](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/20220722-2.png) 
+
+### 总结
+
+作者也承认整个模型在结构和设计上比较简单，但是结果上是取得了waymo比赛的第三名。这是否意味着他们做了更多的工程化调整才取得如此的成绩？
+
+如果follow这项工作，其他人是否也能实现这样的性能是一个问题。
+
 
 
 ​	
