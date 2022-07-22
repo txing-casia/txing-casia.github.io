@@ -1,12 +1,12 @@
 ---
 layout:     post
-title:      "Autonomous Driving | A ConvNet for the 2020s (Facebook, 2022)"
+title:      "Network Structure | A ConvNet for the 2020s (Facebook, 2022)"
 subtitle:   ""
 date:       2022-07-22
 author:     "Txing"
 header-img: "img/post-bg-py.jpg"
 tags:
-    - Imitation Learning
+    - Network Structure
     - Autonomous Driving
 ---
 
