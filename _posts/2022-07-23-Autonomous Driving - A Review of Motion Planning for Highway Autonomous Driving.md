@@ -66,7 +66,80 @@ tags:
 
 ![A hierarchical scheme of Autonomous Ground Vehicle systems.](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/20220731-1.png)
 
-- 
+- 行为规划包括：(i) route planning, (ii) prediction, (iii) decision making, (iv) generation, and (v) deformation.  
+
+![Motion planning functions. Motion planning acts as a global, local, and reactive motion strategy.](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/20220731-2.png)
+
+其中，decision making, generation, and deformation是核心。参考[32][33]两篇文章，总结的方法如下：
+
+- **A high-level predictive planning** built around three objectives: risk evaluation, criteria minimization, and constraint ubmission (see II-D). Those are used for decision making (iii), i.e. to select the best solution out of the candidates’ generation (iv). One either generates a set of motions and then makes a decision on the behavior motion, or, defines the behavior to adopt and then fits a set of motions. This high-level stage benefits from a longer predicted motion but is time-consuming.  
+
+- **A low-level reactive planning** deforming the generated motion from the high-level planning according to a reactive approach, i.e. the deformation function (v). This acts on a shorter range of actions and thus has faster computation.  
+
+
+[32]. L. Claussmann, A. Carvalho, and G. Schildbach, “A path planner for autonomous driving on highways using a human mimicry approach with binary decision diagrams,” in IEEE European Control Conference (ECC), 2015.
+[33]. X. Li, Z. Sun, Q. Zhu, and D. Liu, “A unified approach to local trajectory planning and control for autonomous driving along a reference path,” in IEEE Int. Conf. on Mechatronics and Automation (ICMA), 2014.  
+
+- 空间和时间约束：
+
+![Motion planning functions. Motion planning acts as a global, local, and reactive motion strategy.](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/20220731-3.png)
+
+#### C. Specificities of Highway Driving  
+
+- 特点：
+  - 单向车流
+  - 高速a dynamic speed over 60km/h
+  - 道路形状简单：直线道路（straight lines），回旋曲线道路（clothoids），小曲率的环形道路（circles with small curvature）
+- 障碍车的行为预测分为以下几个：
+  - one-direction
+  - two-lane changes – right or left
+  - and to accelerate, maintain speed, or brake  
+
+- 高速路的一些通常境况：
+
+  - **Lane keeping**  
+
+    纵向安全的情况下保持期望的速度行驶
+
+  - **Car following**  
+
+    跟随自己前方的车辆，保持安全距离
+
+  - **Lane changing**  
+
+    受到方向和障碍物的约束，规划需要保证目标车道由充足的空间和合适的行驶速度
+
+  - **Lateral-most lane changing**  
+
+    一些情况下的交规要求只能在最左/右的车道行驶，因此agent会一直寻求变道的机会，直到到达目标车道
+
+  - **Passing**  
+
+    在侧向有障碍物的时候遵守lane keeping或者car following决策的情况，需要保证侧向的安全距离  
+
+  - **Overtaking**  
+
+    超车上复杂的机动动作，包括变道、pass、变道三个过程
+
+  - **Merging**  
+
+    两个车道合并为一个车道
+
+  - **Highway toll**  
+
+    高速收费站，先并入虚拟的车道线，进入收费站，之后再加速驶出，并入实际的车道线
+
+  - 高速场景特点总结：The main differences between highway, except for platooning, and city driving consist in a further look-ahead time, with a stronger focus towards the ahead direction of the road, whereas city driving involves a closer range but in all directions. The highway vehicle dynamics is also simpler with lower turn-angle, no reverse, and less braking/acceleration, but higher and more constant speed. Thus, even if there are less hazards, the risk due to high speed is stronger. Moreover, the higher distances imply poorer sensors capacities. Finally, less traffic insures more stable scenario. The algorithms which consider all these specificities in real-time will be favored for a practical application on highways.  
+
+  - [34]. L. Claussmann, M. Revilloud, S. Glaser, and D. Gruyer, “A study on ai-based approaches for high-level decision making in highway autonomous driving,” in IEEE. Int. Conf. on Systems, Man, and Cybernetics (SMC), 2017.  
+
+#### D. Constraints on Highway Driving  
+
+- **硬约束**（hard constraints）：环境约束、交规、安全约束、避免碰撞。
+
+- **软约束**（soft constraints）：时间/距离/能耗最小化，舒适性最大化等乘坐优化约束。
+
+
 
 
 
