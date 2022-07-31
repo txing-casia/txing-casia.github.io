@@ -60,11 +60,13 @@ tags:
   - **planning**, meaning the selection of one sequence among the generated motions  
   - **prediction horizon** denotes the space or/and time horizon limit for the simulation of motion  
 
+#### B. Motion Planning Scheme  
 
+- 分层的自动驾驶算法框架
 
+![A hierarchical scheme of Autonomous Ground Vehicle systems.](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/20220731-1.png)
 
-
-
+- 
 
 
 
