@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Autonomous Driving | A Review of Motion Planning for Highway Autonomous Driving  "
+title:      "Autonomous Driving | A Review of Motion Planning for Highway Autonomous Driving"
 subtitle:   ""
 date:       2022-07-23
 author:     "Txing"
