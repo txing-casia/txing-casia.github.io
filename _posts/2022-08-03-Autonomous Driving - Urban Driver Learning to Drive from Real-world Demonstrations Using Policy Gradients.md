@@ -68,16 +68,20 @@ tags:
   - [5] simulated a bird’s-eye view of dense traffic on a highway. 
   - Finally, two recent works [39, 40] developed data-driven simulators and showed their usefulness for training and validating ML planners.   
 
-  ### Differentiable Traffic Simulator from Real-world Driving Data
+### Differentiable Traffic Simulator from Real-world Driving Data
 
 - 真实世界的经验轨迹：$$\overline{\tau}=\{\overline{s}_1,\overline{s}_2,...,\overline{s}_T\}$$
-- 
+- 仿真的目标是迭代地生成观测状态序列$$\tau=\{s_1,s_2,...,s_T\}$$，然后计算车辆轨迹$$p_t$$，包括$$(x;y;\theta)$$
+- $$s_{t+1}=S(s_t,a_t)$$，$$p_{t+1}=f(p_t,a_t)$$
 
+### Imitation Learning Using a Differentiable Simulator  
 
+- $$L(s_t,a_t)=\mid\mid \overline{p}_t - p_t\mid\mid_1$$
+- $$J(\pi)=\mathbb{E}_{\overline{\tau}\sim\pi_E}\mathbb{E}_{\tau\sim\pi} \sum_{t}\gamma^t L(s_t,a_t)$$，$$\pi_E$$是专家策略，$$\pi$$是模型的策略，希望两个策略接近
 
+![Imitation learning from expert demonstrations](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220803-2.png)
 
-
-
+> P.S.：由于轨迹的开始阶段均来自专家策略，会引入bias，在策略更新的时候，在运动开始的第K步之后才计算梯度，以此避免bias
 
 
 
