@@ -13,7 +13,7 @@ tags:
 ## Model-based offline planning
 - 由于成本、安全性等因素，很多情况下不能够直接与系统交互来学习控制策略，因此，只能从记录的log数据中学习控制策略（offline reinforcement learning）。本文介绍了一种从log数据中学到超越成圣log数据的原策略的新策略的方法，命名为 model-based ofline planning (MBOP)。
 
-### 1 Introduction
+### Introduction
 
 - Offline reinforcement learning包括：
   - model-free方法：
@@ -34,15 +34,30 @@ tags:
   - a learnt **behavior-cloning policy**, 
   - a learnt **fixed-horizon value-function**.  
 - MBOP的核心优势是**数据高效**和**自适应**。只需仅100秒就可以训练出一个和奖励函数、目标状态、基于状态的约束相适应的策略。
-- 
+- MBOP能够对非平稳目标和约束执行zero-shot自适应，但是没有处理非平稳动力学特性的机制。
 
+### Model-based offline planning
 
+- 描述问题为Markov Decision Process (MDP)，$$(S,A,p,r,\gamma)$$
+  - $$s$$是系统状态
+  - $$a$$是行为
+  - $$p(s_{t+1}\mid s_t,a_t)$$是状态转移概率
+  - $$r(s_t,a_t,s_{t+1})$$是奖励
+  - $$\gamma=1$$是时间折扣系数
+- MBOP包括三个函数近似器：
+  - $$f_m$$：环境动力学的单步模型，$$(\hat{r}_t,\hat{s}_{t+1})=f_m(s_t,a_t)$$，本文使用$$f_m(s_t,a_t)_s$$表示状态预测，使用$$f_m(s_t,a_t)_r$$表示奖励预测。
+  - $$f_b$$：表示一个行为克隆网络，$$a_t=f_b(s_t,a_{t-1})$$，被规划算法用来引导轨迹采样的先验。
+  - $$f_R$$：是一个阉割的值函数，提供在状态s中采取行为a后，在固定界限$$R_H$$上的收益。$$\hat{R}_H = f_R(s_t,a_{t-1})$$
 
+- MBOP-POLICY
+  - 使用MPC输出每个新状态下的行为（$$a_t=\pi(s_t)$$）。MPC在每一时间步执行一个固定长度的规划，返回长度为H的轨迹T。选择该轨迹的第一个行为$$a_t$$并返回。
 
+![High-Level MBOP-Policy](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/20220802-1.png)
 
+- MBOP-TRAJOPT
+  - 在PDDM的基础上增加一个策略先验$$f_b$$和价值预测$$f_R$$
 
-
-
+![MBOP-Trajopt](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/20220802-2.png)
 
 
 
