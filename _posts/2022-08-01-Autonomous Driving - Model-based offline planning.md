@@ -59,13 +59,53 @@ tags:
 
 ![MBOP-Trajopt](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-2.png)
 
+> P.S.：第11行在$$f_b$$给出的行为上加权了采样轨迹的行为，其含义可能是希望在网络没有收敛时，记录下来的行为也不要偏差太大，都保持在采样轨迹附近，参数$$\beta$$可被视为学习率。同时也便于第17行给出多条轨迹的平均输出（re-weighting）
 
+### Experimental results
 
+- 首先，在非常少的数据中心训练，其次，再迁移到基于相同系统动力学的两种novel tasks中：
+  - **goal-conditioned tasks** (that ignore the original reward function)  
+  - **constrained tasks** (that require optimising for the original reward under some state constraint)  
 
+- 使用的数据集RL Unplugged (RLU) 和 D4RL 
 
+  - **RL Unplugged (RLU)**：Caglar Gulcehre, Ziyu Wang, Alexander Novikov, Tom Le Paine, Sergio Gomez Colmenarejo, Kon- ´rad Zolna, Rishabh Agarwal, Josh Merel, Daniel Mankowitz, Cosmin Paduraru, et al. Rl unplugged: Benchmarks for offline reinforcement learning. arXiv preprint arXiv:2006.13888, 2020.  
+    - cartpole-swingup
+    - walker
+    - quadruped  
 
+  - **D4RL**：Justin Fu, Aviral Kumar, Ofir Nachum, George Tucker, and Sergey Levine. D4rl: Datasets for deep data-driven reinforcement learning. arXiv preprint arXiv:2004.07219, 2020.  
+    - halfcheetah
+    - hopper
+    - walker2d
+    - Adroit  
 
+- 对于 RLU 中的 Quadruped 和 Walker 任务，由于数据集中性能高方差，在训练 $$f_b$$ 和 $$f_R$$ 的过程中，通过设定阈值，舍弃了性能不好的数据。 使用未过滤的数据来训练 $$f_s$$
 
+- 对于所有的数据集，90%用于训练，10%用于测试验证
+
+- 性能：For the RLU datasets (Fig. 1), we observe that MBOP is able to find a near-optimal policy on most dataset sizes in Cartpole and Quadruped with as little as **5000 steps**, which corresponds to **5 episodes**, or approximately 50 seconds on Cartpole and 100 seconds on Quadruped. On the Walker datasets MBOP requires 23 episodes (approx. 10 minutes) before it finds a reasonable policy, and with sufficient data converges to a score of 900 which is near optimal. On most tasks, MBOP is able to generate a policy significantly better than the behavior data as well as the the BC prior.  
+
+- MBOP模型容易适应新的目标函数，例如添加新的子目标函数$$R'_n$$时，
+  $$
+  R'_n = \sum_t f_{obj}(s_t)
+  $$
+  其中，$$f_{obj}$$是用户自定义的目标函数。只需要将轨迹更新规则改为：
+  $$
+  T_t=\frac{\sum_{n=1}^N e^{kR_n+k_{obj}R'_n}A_{n,t}}{\sum_{n=1}^N e^{kR_n+k_{obj}R'_n}}
+  $$
+
+- 为了验证上述模型的适应能力，进行了两个实验：
+
+  - **goal-conditioned control**（忽略原始奖励，$$k=0$$，学习新奖励）
+  - **constrained control**（增加了state-based constraint，然后探索合适的 $$k$$ 和 $$k_{obj}$$ ）
+
+![ZERO-SHOT TASK ADAPTATION](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-3.png)
 
 ### 总结
 
+MBOP为策略生成提供了一种易于实施、数据高效、稳定且灵活的算法。
+
+由于使用了在线规划，使其能够应对变化的目标、成本和环境限制。
+
+但是算法没有在更复杂的场景和约束条件下测试，因此适用范围和效果还缺少验证。
