@@ -64,9 +64,14 @@ tags:
     - [8] J. Gao, C. Sun, H. Zhao, Y. Shen, D. Anguelov, C. Li, and C. Schmid. Vectornet: Encoding hd maps and agent dynamics from vectorized representation. In Int. Conf. on Computer Vision and Pattern Recognition (CVPR), 2020.
     - [9] M. Liang, B. Yang, R. Hu, Y. Chen, R. Liao, S. Feng, and R. Urtasun. Learning lane graph representations for motion forecasting. 2020.  
 - **Data-driven simulation**：
-  - 
+  - [23] created a photo-realistic simulator for training an end-to-end RL policy. 
+  - [5] simulated a bird’s-eye view of dense traffic on a highway. 
+  - Finally, two recent works [39, 40] developed data-driven simulators and showed their usefulness for training and validating ML planners.   
 
-  
+  ### Differentiable Traffic Simulator from Real-world Driving Data
+
+- 真实世界的经验轨迹：$$\overline{\tau}=\{\overline{s}_1,\overline{s}_2,...,\overline{s}_T\}$$
+- 
 
 
 
