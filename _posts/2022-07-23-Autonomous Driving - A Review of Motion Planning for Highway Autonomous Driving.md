@@ -64,11 +64,11 @@ tags:
 
 - 分层的自动驾驶算法框架
 
-![A hierarchical scheme of Autonomous Ground Vehicle systems.](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/20220731-1.png)
+![A hierarchical scheme of Autonomous Ground Vehicle systems.](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220731-1.png)
 
 - 行为规划包括：(i) route planning, (ii) prediction, (iii) decision making, (iv) generation, and (v) deformation.  
 
-![Motion planning functions. Motion planning acts as a global, local, and reactive motion strategy.](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/20220731-2.png)
+![Motion planning functions. Motion planning acts as a global, local, and reactive motion strategy.](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220731-2.png)
 
 其中，decision making, generation, and deformation是核心。参考[32][33]两篇文章，总结的方法如下：
 
@@ -82,7 +82,7 @@ tags:
 
 - 空间和时间约束：
 
-![Motion planning functions. Motion planning acts as a global, local, and reactive motion strategy.](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/20220731-3.png)
+![Motion planning functions. Motion planning acts as a global, local, and reactive motion strategy.](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220731-3.png)
 
 #### C. Specificities of Highway Driving  
 
@@ -210,7 +210,7 @@ tags:
 
   需要复制并模拟司机的推断和学习能力。本文将这些方法分为两类：**cognitive/rational** and **rules/learning**，– based on [125]’s distinction between thinking and acting humanly or rationally
 
-  ![A map of AI-based algorithms.](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/20220801-1.png)
+  ![A map of AI-based algorithms.](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220801-1.png)
 
 
 

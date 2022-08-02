@@ -95,9 +95,9 @@ To test a more lightweight architecture, we also trained our model using ResNet1
 
 In Tab. 2 we also provide more detailed evaluation results for different object types separately.  
 
-![Quantitative evaluation on test and validation sets of Waymo Open Motion Dataset](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/20220722-1.png)
+![Quantitative evaluation on test and validation sets of Waymo Open Motion Dataset](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220722-1.png)
 
- ![Detailed evaluation of our MotionCNN-Xception71 model on test and validation sets of Waymo Open Motion Dataset](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/20220722-2.png) 
+ ![Detailed evaluation of our MotionCNN-Xception71 model on test and validation sets of Waymo Open Motion Dataset](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220722-2.png) 
 
 ### 总结
 

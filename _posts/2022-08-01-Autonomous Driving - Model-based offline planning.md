@@ -52,12 +52,18 @@ tags:
 - MBOP-POLICY
   - 使用MPC输出每个新状态下的行为（$$a_t=\pi(s_t)$$）。MPC在每一时间步执行一个固定长度的规划，返回长度为H的轨迹T。选择该轨迹的第一个行为$$a_t$$并返回。
 
-![High-Level MBOP-Policy](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/20220802-1.png)
+![High-Level MBOP-Policy](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-1.png)
 
 - MBOP-TRAJOPT
   - 在PDDM的基础上增加一个策略先验$$f_b$$和价值预测$$f_R$$
 
-![MBOP-Trajopt](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/20220802-2.png)
+![MBOP-Trajopt](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-2.png)
+
+
+
+
+
+
 
 
 

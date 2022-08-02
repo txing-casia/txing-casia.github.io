@@ -22,7 +22,7 @@ tags:
 
 - 环境结构：
 
-![DriverGym](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/20220801-2.png)
+![DriverGym](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220801-2.png)
 
 > DriverGym: an open-source gym environment that enables training RL driving policies on real-world data. The RL policy can access rich semantic maps to control the ego (**red**). Other agents (**blue**) can either be simulated from the data logs or controlled using a dedicated policy pre-trained on real-world data. We provide an extensible evaluation system (**purple**) with easily configurable metrics to evaluate the idiosyncrasies of the trained policies.  
 
@@ -30,7 +30,7 @@ tags:
 
 - 自动驾驶开源RL仿真环境的对比
 
-![自动驾驶开源RL仿真环境的对比](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/20220801-3.png)
+![自动驾驶开源RL仿真环境的对比](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220801-3.png)
 
 - 对仿真平台的几个需求：
   - (1) 易于训练RL策略；be used to easily train RL policies using real-world logs, 
@@ -82,7 +82,7 @@ tags:
 - 例子场景：绿线是策略预测的轨迹
 
   ![Visualization of an episode rollout (ego in red, agents in blue) in DriverGym. The policy
-  prediction (green line) is scaled by factor of 10 and shown at 2 second intervals for better viewing](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/20220801-4.png)
+  prediction (green line) is scaled by factor of 10 and shown at 2 second intervals for better viewing](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220801-4.png)
 
 - action space：行为为 $$(x; y; yaw)$$ (yaw是朝向)，用于更新ego-agent行为；环境输出 $$(acceleration; steer)$$ 用于计算下一时刻的observation
 - reactive agent：允许周围车辆使用两种方式控制：
