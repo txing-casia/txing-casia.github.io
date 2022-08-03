@@ -83,7 +83,39 @@ tags:
 
 > P.S.：由于轨迹的开始阶段均来自专家策略，会引入bias，在策略更新的时候，在运动开始的第K步之后才计算梯度，以此避免bias
 
+- 策略梯度的计算（用下标表示偏微分，$$\theta$$是策略参数）：
+  $$
+  J_s^t = L_s+L_a\pi_s+\gamma J^{t+1}_{\theta}(S_s+S_a\pi_{s})\\
+  J_{\theta}^t = L_a\pi_{\theta}+\gamma(J_s^{t+1}S_a\pi_{\theta}+J_{\theta}^{t+1})
+  $$
+  > Ref: N. Heess, G. Wayne, D. Silver, T. Lillicrap, T. Erez, and Y. Tassa. Learning continuous control policies by stochastic value gradients. In Advances in Neural Information Processing Systems, \2015.  
+### Experiments  
+
+- Lyft Motion Prediction Dataset [6]：数据采集自加利福尼亚州帕洛阿尔托的复杂城市路线。数据集捕捉各种真实世界的情况，例如在多车道交通中驾驶、转弯、在十字路口与车辆互动等。
+  - J. Houston, G. Zuidhof, L. Bergamini, Y. Ye, A. Jain, S. Omari, V. Iglovikov, and P. Ondruska. One thousand and one hours: Self-driving motion prediction dataset. Conference on Robot Learning (CoRL), 2020.  
+- 模型在100小时子集上训练，并在25小时子集上测试。
+
+- three state-of-the-art baselines：
+  - Naive Behavioral Cloning (BC)  
+  - Behavioral Cloning + Perturbations (BC-perturb)  
+    - M. Bansal, A. Krizhevsky, and A. Ogale. Chauffeurnet: Learning to drive by imitating the best and synthesizing the worst. 12 2018.  
+  - Multi-step Prediction (MS Prediction)  
+    - A. Venkatraman, M. Hebert, and J. Bagnell. Improving multi-step prediction of learned time series models. In AAAI, 2015.  
+
+![性能对比](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220803-3.png)
+
+> 指标值越小越好，本文模型取得最好的表现以及最低的l1K指标（综合其它指标，每1000英里干预次数）
+
+- 评价指标：
+  - **L2**: L2 distance to the underlying expert position in the driving log in meters.
+  - **Off-road events**: we report a failure if the planner deviates more than 2m laterally from the reference trajectory – this captures events such as running off-road and into opposing traffic.
+  - **Collisions**: collisions of the SDV with any other agent, broken down into front, side and rear collisions w.r.t. the SDV.
+  - **Comfort**: we monitor the absolute value of acceleration, and raise a failure should this exceed 3 m/s2.
+  - **I1K**: we accumulate safety-critical failures (collisions and off-road events) into one key metric for ease of comparison, namely Interventions per 1000 Miles (I1K)  
+
+![仿真结果](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220803-4.png)
 
 
 ### 总结
 
+策略梯度的推导部分可以继续看看，本文有仿真和实车实验，但方法对比上，对其它算法进行了修改，因此并不完整。
