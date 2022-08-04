@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Autonomous Driving | UMBRELLA Uncertainty-Aware Model-Based Offline Reinforcement Learning Leveraging Planning"
+title:      "Autonomous Driving | UMBRELLA: Uncertainty-Aware Model-Based Offline Reinforcement Learning Leveraging Planning"
 subtitle:   ""
 date:       2022-08-03
 author:     "Txing"
@@ -74,6 +74,8 @@ tags:
 
   - 其中潜在变量$$z_t$$建模了不同的未来预测，并确保了输出对于输入是非确定性的。在训练过程中，该潜在变量从后验分布$$q_{\phi}(z\mid s_t,s_{t+1})$$中采样，$$\phi$$是参数。由于实际采样只能从先验分布中采，因此使用Kullback-Leibler (KL) divergence度量后验分布和先验分布$$p(z)$$并最小化距离。
 
+    - 潜变量用于区分细分情况，精细化建模
+
   - 定义Evidence Lower BOund (ELBO)目标训练VAEs。
 
     - Evidence Lower BOund： https://zhuanlan.zhihu.com/p/400322786
@@ -121,13 +123,13 @@ $$
 ### 4 Experimental Evaluation  
 
 - 环境：
-  - NGSIM：多智能体自动驾驶环境  
-  - CARLA：城市多智能体自动驾驶场景
+  - **NGSIM**：多智能体自动驾驶环境  
+  - **CARLA**：城市多智能体自动驾驶场景
 - 基线方法：
-  - 1-step IL：模仿专家行为的BC policy
-  - MBOP：当前最好的基于模型的离线RL方法
+  - **1-step IL**：模仿专家行为的BC policy
+  - **MBOP**：当前最好的基于模型的离线RL方法
     - Arthur Argenson and Gabriel Dulac-Arnold. Model-based offline planning. In International Conference on Learning Representations, 2021.  
-  - MPUR：最好的基于模型策略学习方法
+  - **MPUR**：最好的基于模型策略学习方法
     - Mikael Henaff, Alfredo Canziani, and Yann LeCun. Model-predictive policy learning with uncertainty regularization for driving in dense traffic. In International Conference on Learning Representations, 2019.  
 - 指标：
   - Success rate (SR)：The rate of collision-free episodes，并要求在时间内到达目标位置
