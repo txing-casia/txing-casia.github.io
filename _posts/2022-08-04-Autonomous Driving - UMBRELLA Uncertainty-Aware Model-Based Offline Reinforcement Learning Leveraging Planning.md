@@ -2,7 +2,7 @@
 layout:     post
 title:      "Autonomous Driving | UMBRELLA: Uncertainty-Aware Model-Based Offline Reinforcement Learning Leveraging Planning"
 subtitle:   ""
-date:       2022-08-03
+date:       2022-08-04
 author:     "Txing"
 header-img: "img/post-bg-py.jpg"
 tags:
