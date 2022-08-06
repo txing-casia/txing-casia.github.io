@@ -54,7 +54,7 @@ tags:
 
 - 问题形式化，用MDP的$$(S; A; p; r; \gamma)$$ 表示，在offline设定中，智能体不与环境直接交互，而是从数据集中学习策略$$\pi_d$$。如果观测值$$O$$并不是完全可得，那么问题就变化为（partially observable MDP，POMDP），使用 $$M_{PO}=(S;A;O;p;r;\gamma)$$，处理该问题的常用方法是使用nth-order history 方法，可以近似得到状态估计，然后将其转变为MDP，用标准的RL方法处理。
 
-- UMBRELLA使用连续的潜在变量（continuous latent variable）$$z_t\in Z$$ ，并枚举自车所有的可能行为（行为采样通过学到的BC policy）。预测N条长度界限为H的轨迹。还使用了一个return-weighted trajectory optimizer，处理POMDP问题，用持续观测状态从$$o_{t-_c:t}$$直到时间步t估计缺失的观测状态。
+- UMBRELLA使用连续的潜在变量（continuous latent variable）$$z_t\in Z$$ ，并枚举自车所有的可能行为（行为采样通过学到的BC policy）。预测N条长度界限为H的轨迹。还使用了一个return-weighted trajectory optimizer，处理POMDP问题，用持续观测状态从$$o_{t-_c:t}$$直到时间步t估计缺失的观测状态。（相关解释参考VAE算法）
 
   - $$z_t=\mu_{\phi}+\sigma_{\phi}*\epsilon$$
   - $$(\mu_{\phi},\sigma_{\phi})=q_{\phi}(s_t,s_{t+1})$$
