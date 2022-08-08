@@ -210,7 +210,7 @@ tags:
 
   需要复制并模拟司机的推断和学习能力。本文将这些方法分为两类：**cognitive/rational** and **rules/learning**，– based on [125]’s distinction between thinking and acting humanly or rationally
 
-  
+  ![A map of AI-based algorithms.](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220801-1.png)
   
   - AI Logic-Based Approach  
   
