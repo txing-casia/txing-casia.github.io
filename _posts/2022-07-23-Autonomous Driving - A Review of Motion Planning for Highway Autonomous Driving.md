@@ -210,7 +210,39 @@ tags:
 
   需要复制并模拟司机的推断和学习能力。本文将这些方法分为两类：**cognitive/rational** and **rules/learning**，– based on [125]’s distinction between thinking and acting humanly or rationally
 
-  ![A map of AI-based algorithms.](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220801-1.png)
+  
+  
+  - AI Logic-Based Approach  
+  
+    依赖专家知识库和规则的专家推理系统。主要缺点在于处理循环推理和枚举所有规则
+  
+    - 决策树：不确定性和近似值增加了计算困难，行为必须被解释为安全合法的。
+  
+    - 有限状态机（Finite State  Machine (FSM)）：  只能在已知的知识范围内运行，不能在未知的环境中做生成。
+  
+      ![Illustration of an FSM for highway](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220808-1.png)
+  
+    - Bayesian networks：依赖马尔科夫模型的状态转移因果链。The authors in [50] develop a Markov
+      Decision Process (MDP) on the **choice of tentacle trajectories**, and the one in [130] for a **lane-staying or -changing decision.**  
+  
+      - [50]. H. Mouhagir, R. Talj, V. Cherfaoui, F. Aioun, and F. Guillemard, “Integrating safety distances with trajectory planning by modifying the occupancy grid for autonomous vehicle navigation,” in IEEE Int. Conf. on Intelligent Transportation Systems (ITSC), 2016.  
+      - [130]. S. Zhou, Y. Wang, M. Zheng, and M. Tomizuka, “A hierarchical planning and control framework for structured highway driving,” IFACPapersOnLine, vol. 50, no. 1, pp. 9101–9107, 2017.  
+  
+      POMDP：
+  
+      - [131] S. Ulbrich and M. Maurer, “Towards tactical lane change behavior planning for automated vehicles,” in IEEE Int. Conf. on Intelligent Transportation Systems (ITSC), 2015.
+      - [132] E. Galceran, A. G. Cunningham, R. M. Eustice, and E. Olson, “Multipolicy decision-making for autonomous driving via changepoint-based behavior prediction: Theory and experiment,” Autonomous Robots, vol. 41, no. 6, pp. 1367–1382, 2017.
+      - [133] N. Li, D. W. Oyler, M. Zhang, Y. Yildiz, I. Kolmanovsky, and A. R. Girard, “Game theoretic modeling of driver and vehicle interactions for verification and validation of autonomous vehicle control systems,” IEEE Trans. on Control Systems Technology, vol. 26, no. 5, pp. 1782– 1797, 2018.  
+  
+  
+
+
+
+
+
+
+
+
 
 
 
