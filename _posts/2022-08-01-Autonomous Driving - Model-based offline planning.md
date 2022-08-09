@@ -59,7 +59,7 @@ tags:
 
 ![MBOP-Trajopt](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-2.png)
 
-> P.S.：第11行在$$f_b$$给出的行为上加权了采样轨迹的行为，其含义可能是希望在网络没有收敛时，记录下来的行为也不要偏差太大，都保持在采样轨迹附近，参数$$\beta$$可被视为学习率。同时也便于第17行给出多条轨迹的平均输出（re-weighting）
+> P.S.：第11行在$$f_b$$给出的行为上加权了采样轨迹的行为，其含义可能是希望在网络没有收敛时，记录下来的行为也不要偏差太大，都保持在采样轨迹附近，参数$$\beta$$可被视为学习率。第17行给出多条轨迹中奖励最大的作为输出（re-weighting）
 
 ### Experimental results
 
