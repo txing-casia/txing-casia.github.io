@@ -212,7 +212,7 @@ tags:
 
   ![A map of AI-based algorithms.](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220801-1.png)
   
-  - AI Logic-Based Approach  
+  - 人工智能基于逻辑的方法（AI Logic-Based Approach）  
   
     依赖专家知识库和规则的专家推理系统。主要缺点在于处理循环推理和枚举所有规则
   
@@ -233,6 +233,14 @@ tags:
       - [131] S. Ulbrich and M. Maurer, “Towards tactical lane change behavior planning for automated vehicles,” in IEEE Int. Conf. on Intelligent Transportation Systems (ITSC), 2015.
       - [132] E. Galceran, A. G. Cunningham, R. M. Eustice, and E. Olson, “Multipolicy decision-making for autonomous driving via changepoint-based behavior prediction: Theory and experiment,” Autonomous Robots, vol. 41, no. 6, pp. 1367–1382, 2017.
       - [133] N. Li, D. W. Oyler, M. Zhang, Y. Yildiz, I. Kolmanovsky, and A. R. Girard, “Game theoretic modeling of driver and vehicle interactions for verification and validation of autonomous vehicle control systems,” IEEE Trans. on Control Systems Technology, vol. 26, no. 5, pp. 1782– 1797, 2018.  
+  
+    - 人工智能启发式算法（AI Heuristic Algorithms）  
+    
+      优势在于相对快速高效，但是具有启发式算法的通病，即陷入局部最优，无法保证得到全局最优。
+    
+      基于Support Vector Machines (SVM)的个性化变道决策：
+    
+      - C. Vallon, Z. Ercan, A. Carvalho, and F. Borrelli, “A machine learning approach for personalized autonomous lane change initiation and control,” in IEEE Intelligent Vehicles Symposium (IV), 2017.  
   
   
 
