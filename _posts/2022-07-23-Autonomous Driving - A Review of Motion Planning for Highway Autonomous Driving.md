@@ -238,27 +238,52 @@ tags:
     
       优势在于相对快速高效，但是具有启发式算法的通病，即陷入局部最优，无法保证得到全局最优。
     
-      基于Support Vector Machines (SVM)的个性化变道决策：
+      - 基于Support Vector Machines (SVM)的个性化变道决策：
+        - C. Vallon, Z. Ercan, A. Carvalho, and F. Borrelli, “A machine learning approach for personalized autonomous lane change initiation and control,” in IEEE Intelligent Vehicles Symposium (IV), 2017.  
+      - 演化算法（Evolutionary methods）。在高速场景，最优解并不是必须的，演化算法的高计算效率，获得近似次优解，足以满足要求。
     
-      - C. Vallon, Z. Ercan, A. Carvalho, and F. Borrelli, “A machine learning approach for personalized autonomous lane change initiation and control,” in IEEE Intelligent Vehicles Symposium (IV), 2017.  
+  - 人工智能近似推理（AI Approximate Reasoning） 
   
+    该方法与logic approach的区别在于其知识是非boolean形式表示的。 方法的优势在于其灵活，可拓展到非确定性数据中。缺点在于缺少可追踪性和系统性的设计方法
   
-
-
-
-
-
-
-
-
-
-
+    - Artificial Neural Networks (ANN)  
+  
+      主要可分为三类方法：supervised, unsupervised, and reinforcement learning。他们的缺点在于缺少因果解释
+  
+      使用卷积网络变道
+  
+      - E. Rehder, J. Quehl, and C. Stiller, “Driving like a human: Imitation learning for path planning using convolutional neural networks,” in IEEE Int. Conf. on Intelligent Robots and Systems (IROS) Workshops, 2017.
+  
+      multi-goal overtaking maneuvers[144]
+  
+      - D. C. K. Ngai and N. H. C. Yung, “A multiple-goal reinforcement learning method for complex vehicle overtaking maneuvers,” IEEE Trans. on Intelligent Transportation Systems, vol. 12, no. 2, pp. 509–522, 2011.  
+  
+      automated lane change maneuvers[145]
+  
+      - P. Wang, C.-Y. Chan, and A. de La Fortelle, “A reinforcement learning based approach for automated lane change maneuvers,” IEEE Intelligent Vehicles Symposium (IV), 2018.  
+  
+  - 人工智能类人的方法（AI Human-Like Methods）  
+  
+    类人的驾驶模型的完整描述，参考这篇文章
+  
+    - D. D. Salvucci, “Modeling driver behavior in a cognitive architecture,” Human factors, vol. 48, no. 2, pp. 362–380, 2006 
+  
+    可以分解为风险、任务和博弈三类：
+  
+    - **Risk estimators**：执行可接受风险和目标安全之间的权衡。
+    - **Taxonomic models**：场景和状况细分分类。  
+    - **Game theory**：把所有车辆看做agent参与博弈，缺点是假设所有人准守规则，一些文章进行了改进：
+      - N. Li, D. W. Oyler, M. Zhang, Y. Yildiz, I. Kolmanovsky, and A. R. Girard, “Game theoretic modeling of driver and vehicle interactions for verification and validation of autonomous vehicle control systems,”
+        IEEE Trans. on Control Systems Technology, vol. 26, no. 5, pp. 1782–1797, 2018.  
+  
+    人工智能类似人类的方法非常适合在高速公路场景中进行决策，由于这种环境的基本规则，司机的行为更容易预测。也易于理解并与驾驶员分享。但目前还没有统一的处理框架。
+  
 
 
 
 ### 总结
 
-
+这篇文章介绍的范围太大，涵盖的研究方向和方法过多，受篇幅限制，讲的东西又很浅显，价值不大。
 
 
 
