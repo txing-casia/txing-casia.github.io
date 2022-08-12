@@ -12,7 +12,7 @@ tags:
 
 ## An Optimistic Perspective on Offline Reinforcement Learning (Google)
 
-作者用online DQN在60款 Atari 2600游戏上获取数据样本，然后用这些样本训练offline强化学习算法，一些offline的算法性能可以超过online的算法。本文提出的Random Ensemble Mixture (REM)算法在离线回放数据上的表现超过了强的基准算法。因此作者认为在离线样本足够多，多样化充分的情况下，使用鲁棒的RL算法可以获得高质量的策略。
+作者用online DQN在60款 Atari 2600游戏上获取数据样本，然后用这些样本(fixed dataset)训练offline强化学习算法，一些offline的算法性能可以超过online的算法。本文提出的Random Ensemble Mixture (REM)算法在离线回放数据上的表现超过了强的基准算法。因此作者认为在离线样本足够多，多样化充分的情况下，使用鲁棒的RL算法可以获得高质量的策略。
 
 代码： github.com/google-research/batch_rl
 
@@ -36,13 +36,18 @@ tags:
 ![Offline RL on Atari 2600.](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220812-1.png)
 
 - 对比的方法包括：
-
   - **offline QR-DQN**：Dabney, W., Rowland, M., Bellemare, M. G., and Munos, R. Distributional reinforcement learning with quantile regression. AAAI, 2018.
   - **DQN**：（Nature）
   - **Random Ensemble Mixture**（REM，随机集成混合）：为本文提出方法
-  -  **online C51**： Bellemare, M. G., Dabney, W., and Munos, R. A distributional perspective on reinforcement learning. ICML, 2017.
+  -  **online C51**： 分布式DQN算法。Bellemare, M. G., Dabney, W., and Munos, R. A distributional perspective on reinforcement learning. ICML, 2017.
+  -  **distributional QR-DQN (SOTA)**：Dabney, W., Rowland, M., Bellemare, M. G., and Munos, R. Distributional reinforcement learning with quantile regression. AAAI, 2018  
 
--  Huber loss：
+### Off-policy Reinforcement Learning 
+
+- DQN算法介绍
+
+  - Huber loss：介于MSE和MAE之间的，对数据异常值更不敏感的loss
+
   $$
   l_{\lambda}(u)=
   \begin{align}
@@ -52,7 +57,19 @@ tags:
   \end{cases}
   \end{align}
   $$
-  
+
+
+- baseline方法：分布式RL（Distributional RL）
+  - C51
+  - QR-DQN
+
+### Offline Reinforcement Learning  
+
+offline的模式分离了模型对经验的利用、生成能力（exploit） vs 探索效率（explore）
+
+
+
+
 
 
 
