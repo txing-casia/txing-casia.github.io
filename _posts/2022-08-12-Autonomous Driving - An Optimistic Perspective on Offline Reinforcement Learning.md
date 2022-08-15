@@ -16,7 +16,7 @@ tags:
 
 代码： github.com/google-research/batch_rl
 
-### Introduction
+### 1 Introduction
 
 离线强化学习的设定是不与真实环境的主动交互，而是通过对收集的离线回放数据中学习策略，在评估模型中生成新的交互数据。相应的情景在以下场景均会面临：
 
@@ -42,7 +42,7 @@ tags:
   -  **online C51**： 分布式DQN算法。Bellemare, M. G., Dabney, W., and Munos, R. A distributional perspective on reinforcement learning. ICML, 2017.
   -  **distributional QR-DQN (SOTA)**：Dabney, W., Rowland, M., Bellemare, M. G., and Munos, R. Distributional reinforcement learning with quantile regression. AAAI, 2018  
 
-### Off-policy Reinforcement Learning 
+### 2 Off-policy Reinforcement Learning 
 
 - DQN算法介绍
 
@@ -63,9 +63,42 @@ tags:
   - C51
   - QR-DQN
 
-### Offline Reinforcement Learning  
+### 3 Offline Reinforcement Learning  
 
-offline的模式分离了模型对经验的利用、生成能力（exploit） vs 探索效率（explore）
+- offline的模式分离了模型对经验的利用、生成能力（exploit） vs 探索效率（explore）
+
+- offline RL面临的挑战是**distribution mismatch**：错误匹配当前使用的策略和固定的离线数据集。例如，当采取了数据集中不存在的行为时，并不知道响应的奖励是多少。  
+- 本文尝试在不解决distribution mismatch的基础上，训练高性能的agent
+
+### 4 Developing Robust Offline RL Algorithms  
+
+- 采用集成（Ensemble）可以提高模型的泛化能力，本文使用了Ensemble DQN和REM两个采取该思想的方法。
+
+#### 4.1 Ensemble-DQN  
+
+- 该方法是对DQN算法的简单扩展，使用集成多个参数化的Q函数来近视Q值。
+
+  - Faußer, S. and Schwenker, F. Neural network ensembles in reinforcement learning. Neural Processing Letters, 2015  
+  - Osband, I., Blundell, C., Pritzel, A., and Van Roy, B. Deep exploration via bootstrapped DQN. NeurIPS, 2016.  
+  - Anschel, O., Baram, N., and Shimkin, N. Averaged-dqn: Variance reduction and stabilization for deep reinforcement learning. ICML, 2017.  
+
+- 每个参数化Q函数的优化目标是近似真实的Q值，参考下面这篇文章：
+
+  - **Bootstrapped-DQN**：Osband, I., Blundell, C., Pritzel, A., and Van Roy, B. Deep exploration via bootstrapped DQN. NeurIPS, 2016. 
+
+- ![损失函数](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220812-2.png)
+
+  其中，$$l_{\lambda}$$是Huber损失。算法使用所有Q函数的均值作为输出。
+
+#### 4.2 Random Ensemble Mixture (REM)
+
+- 引入了dropout：
+  - Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., and Salakhutdinov, R. Dropout: a simple way to prevent neural networks from overfitting. JMLR, 2014  
+
+- 构造一个包含多个Q函数近似器的凸组合（convex combination）
+
+![模型结构](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220812-3.png)
+
 
 
 
