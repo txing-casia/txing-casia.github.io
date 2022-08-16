@@ -276,7 +276,7 @@ tags:
       - N. Li, D. W. Oyler, M. Zhang, Y. Yildiz, I. Kolmanovsky, and A. R. Girard, “Game theoretic modeling of driver and vehicle interactions for verification and validation of autonomous vehicle control systems,”
         IEEE Trans. on Control Systems Technology, vol. 26, no. 5, pp. 1782–1797, 2018.  
   
-    人工智能类似人类的方法非常适合在高速公路场景中进行决策，由于这种环境的基本规则，司机的行为更容易预测。也易于理解并与驾驶员分享。但目前还没有统一的处理框架。
+    人工智能类似人类的方法非常适合在高速公路场景中进行决策，由于这种环境的基本规则，司机的行为更容易预测。也易于理解并与驾驶员分享。但目前还没有统一的处理框架。 
   
 
 
