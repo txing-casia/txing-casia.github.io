@@ -60,33 +60,6 @@ tags:
 
 - **Reward.** The reward is a weighted sum of the reward components shaped according to ego vehicle states, interactions involving surrounding vehicles, and key traffic events. More details can be found in our implementation code.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-![模型结构](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220812-3.png)
-
-
-
-
-
-
-
-
-
-
-
 ### 总结
 
+华为推出的针对多智能体的自动驾驶仿真环境，设计相对灵活，支持场景和他车的编辑，以及Waymo的真实数据，后续可以继续看看
