@@ -190,7 +190,7 @@ tags:
 
   elastic band algorithm [102]  
 
-- **分类4：参数化和版参数化曲线**（Parametric and Semi-parametric Curves）
+- **分类4：参数化和半参数化曲线**（Parametric and Semi-parametric Curves）
 
   考虑（1）高速路本省就是由简单的曲线构成的；（2）预先定义的曲线几何很容易实施和测试；曲线路径和速度可以解耦考虑。这里介绍两类算法：
 
