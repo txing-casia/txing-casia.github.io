@@ -95,15 +95,17 @@ tags:
 - 引入了dropout：
   - Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., and Salakhutdinov, R. Dropout: a simple way to prevent neural networks from overfitting. JMLR, 2014  
 
-- 构造一个包含多个Q函数近似器的凸组合（convex combination）
+- 不同于Ensemble-DQN，REM构造一个包含多个Q函数近似器的凸组合（convex combination），将多个Q 函数近似器作为1个近似器使用。使用(K − 1)-simplex计算混合的概率。
 
 ![模型结构](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220812-3.png)
 
+- 对于每个mini-batch，随机产生一个分类分布（categorical distribution）$$\alpha$$，它定义了一个逼近最优Q-函数的K个估计器的凸组合
 
+- ![REM的loss形式](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220817-3.png)
 
+  其中，$$P_{\Delta}$$表示标准的(K-1)-simplex的概率分布，$$\Delta^{K-1}=\{\alpha\in R^K: \alpha_1+\alpha_2+...+\alpha_K=1,\alpha_k\geq0,k=1,...,K \}$$ 
 
-
-
+- 对于Q值的求解，使用$$Q(s,a)=\frac{1}{K}\sum_k Q_{\theta}^k (s,a)$$
 
 
 
