@@ -105,7 +105,21 @@ tags:
 
   其中，$$P_{\Delta}$$表示标准的(K-1)-simplex的概率分布，$$\Delta^{K-1}=\{\alpha\in R^K: \alpha_1+\alpha_2+...+\alpha_K=1,\alpha_k\geq0,k=1,...,K \}$$ 
 
+- 对于$$P_{\Delta}$$：先从Uniform (0,1)分布中采样K个独立同分布的值，然后归一化它们获得有效的分类分布（$$a'_k \sim U(0,1),a_k=a'_k/\sum_k a'_i$$）
+
 - 对于Q值的求解，使用$$Q(s,a)=\frac{1}{K}\sum_k Q_{\theta}^k (s,a)$$
+
+### 5 Offline RL on Atari 2600 Games
+
+
+
+
+
+
+
+
+
+
 
 
 
