@@ -116,12 +116,16 @@ tags:
 ![Offline RL on Atari 2600.](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220812-1.png)
 
 - ![Offline QR-DQN vs. DQN (Nature)](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220818-1.png)
+- ![Offline Agents on DQN Replay Dataset](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220818-2.png)
 
+- ![Asymptotic performance of offline agents](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220818-3.png)
 
+- 文中提到offline连续强化学习方法，实验了offline DDPG，offline TD3，offline BCQ等算法
 
+  - Fujimoto, S., Meger, D., and Precup, D. Off-policy deep reinforcement learning without exploration. ICML, 2019b.
 
-
-
+    ![Asymptotic performance of offline agents](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220818-4.png)
 
 ### 总结
 
+总的来说，文章本身目的更倾向于提供一种乐观的横向对比，证明offline RL在一些情况下可以获取SOTA的性能，甚至超过online RL。提供的几个offline Q-learning变体和offline连续情况的RL算法可以再看看。
