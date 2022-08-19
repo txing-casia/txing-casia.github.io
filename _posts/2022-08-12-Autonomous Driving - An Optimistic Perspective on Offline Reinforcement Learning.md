@@ -33,8 +33,6 @@ tags:
 
 面对离线强化学习问题时，off-policy算法普遍表现不好，设计大的replay buffer反而会损害off-policy算法的性能（由于算法的off-policyness）
 
-![Offline RL on Atari 2600.](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220812-1.png)
-
 - 对比的方法包括：
   - **offline QR-DQN**：Dabney, W., Rowland, M., Bellemare, M. G., and Munos, R. Distributional reinforcement learning with quantile regression. AAAI, 2018.
   - **DQN**：（Nature）
@@ -111,13 +109,13 @@ tags:
 
 ### 5 Offline RL on Atari 2600 Games
 
+- 将Nature DQN在60个Atari游戏上的行为数据用来构建DQN replay数据集，每个游戏2亿帧（200 million frames）
+- 每个游戏训练5个智能体，因此60个游戏一共有60个数据集
+- ofline RL算法性能对比：
 
+![Offline RL on Atari 2600.](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220812-1.png)
 
-
-
-
-
-
+- ![Offline QR-DQN vs. DQN (Nature)](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220818-1.png)
 
 
 
