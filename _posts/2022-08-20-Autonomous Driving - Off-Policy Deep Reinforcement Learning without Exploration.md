@@ -62,6 +62,27 @@ tags:
 
 ![Figure 1](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220820-1.png)
 
+Even in the concurrent experiment, where both agents are trained with the same dataset, there is a large gap in performance in every single trial.
+
+- 结论：
+  - Batch 1中，即使有了充足的探索，agent依然难以具有稳定的value estimation
+  - Batch 2中，即使使用相同的数据训练，agent之间的差异巨大。说明policy初始化的不同足以引入外推误差。
+  - Batch 3中，尽管有了专家数据，agent仍快速学习非专家策略，最终导致效果很差。
+
+- 外推误差提供了一个噪声源，可导致持续高估偏差。extrapolation error provides a source of noise that can induce a persistent overestimation bias (Thrun & Schwartz, 1993; Van Hasselt et al., 2016; Fujimoto et al.,2018).
+- 在完全off-policy情况下，外推误差无法通过与环境交互获得新数据来消除
+
+### 4 Batch-Constrained Reinforcement Learning
+
+
+
+
+
+
+
+
+
+
 
 
 ### 总结
