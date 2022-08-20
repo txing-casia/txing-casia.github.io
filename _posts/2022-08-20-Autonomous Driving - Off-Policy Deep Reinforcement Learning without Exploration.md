@@ -30,8 +30,25 @@ tags:
   $$
   \Tau^{\pi}Q(s,a)=\mathbb{E}_{s'}[r+\gamma Q(s',\pi(s'))]
   $$
-  
 
+### 3 Extrapolation Error (外推误差)
+
+- Extrapolation error is an error in off-policy value learning which is introduced by the mismatch between the dataset and true state-action visitation of the current policy，或者$$(s,a)$$在数据集中不存在
+
+- 外推误差的成因：
+
+  - **数据缺省**（Absent Data）：state-action pair (s, a) is unavailable，因此在估计状态-行为价值Q的时候会引入误差。
+
+  - **模型偏置**（Model Bias）：when performing off-policy Q-learning with a batch B，状态转移动力学的有偏估计为：
+
+    $$\Tau^{\pi}Q(s,a) \approx \mathbb{E}_{s'\sim B}[r+\gamma Q(s',\pi(s'))]$$ 其中，状态转移依据buffer B，而不是真实的MDP。
+
+  - **训练误匹配**（Training Mismatch）：当数据的分布和当前策略的分布不匹配，对action的估计会有误差
+
+- As a result, learning a value estimate with off-policy data can result in large amounts of extrapolation
+  error if the policy selects actions which are not similar to the data found in the batch.
+
+#### 3.1 Extrapolation Error in Deep Reinforcement Learning
 
 
 
