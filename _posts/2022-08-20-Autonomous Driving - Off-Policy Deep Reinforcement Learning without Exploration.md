@@ -49,21 +49,18 @@ tags:
   error if the policy selects actions which are not similar to the data found in the batch.
 
 #### 3.1 Extrapolation Error in Deep Reinforcement Learning
+- 本节使用SOTA Actor-Critic off-policy RL 算法DDPG，在与策略无关的数据集上学习，观察到性能迅速恶化。
+- These results suggest that off-policy deep reinforcement learning algorithms are ineffective when
+  learning truly off-policy.
+- 训练环境：OpenAI gym’s Hopper-v1 environment
+- train an off-policy DDPG agent with no interaction with the environment.
+- 三个batch：
+  - **Batch 1 (Final buffer)**：1 million time steps，行为加上（0,0.5）的高斯噪声，store all experienced transitions。
+  - **Batch 2 (Concurrent)**：训练behavioral DDPG agents，1 million time steps，行为加上（0,0.1）的高斯噪声，每一次转移经验都放入buffer，即该情况下每个behavioral和off-policy智能体使用同一的数据集训练。
+  - **Batch 3 (Imitation)**：使用一个完全训练的DDPG，收集1 million time steps数据作为专家数据。
+- 实验中的off-policy DDPG完全使用离线数据训练，behavioral DDPG与环境交互正常训练。
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-![Levels of multi-agent learning in autonomous driving](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220817-.png)
+![Figure 1](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220820-1.png)
 
 
 
