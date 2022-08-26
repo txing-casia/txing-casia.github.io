@@ -88,15 +88,31 @@ tags:
 
 #### 3.2 Interpretable Scene Representations 
 
-- 动态目标的位置、速度信息，使用 **dynamic occupancy field **表示（the dynamic objects position and velocity into the future, captured in our dynamic occupancy field）
+- 道路先验信息和一些可解释的知识，使用 `online map` 表示
+- 动态目标的位置、速度信息，使用 `dynamic occupancy field` 表示（the dynamic objects position and velocity into the future, captured in our dynamic occupancy field）
 
+![Interpretable Scene representations](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220826-3.png)
 
+- 具体而言，两种表征信息包括：
 
+**Online map representation:**
 
+- Drivable area：以道路边缘为界的可行驶区域；
+- Reachable lanes：可用车道是SDV在不违反任何交通规则的情况下可以到达的运动路径的子集。规划轨迹时，我们希望SDV靠近这些可到达的车道，并按照它们的方向行驶。因此，对于地平面中的每个像素，我们预测到最近的可到达车道中心线的无符号距离，在10米处截断，以及最近的可到达车道中心线分段的角度。
+- Intersection：被交通信号等或者交通标志控制的路段，需要根据信号灯或者标志按交通规定行驶；
 
+**Dynamic occupancy field:**
 
+现有的行为预测算法包括不安全的离散决策unsafe discrete decisions such as confidence thresholding and non-maximum suppression (NMS)
 
+![The motion field warps the occupancy over time](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220826-4.png)
 
+- Initial Occupancy：一个BEV网格单元
+- Temporal Motion Field：a 2D BEV velocity vector (in
+  m/s).
+- `Note`：车辆、行人和自行车被视为单独的类别，每个类别都有自己的占用流。
+
+**Probabilistic Model:**
 
 
 
