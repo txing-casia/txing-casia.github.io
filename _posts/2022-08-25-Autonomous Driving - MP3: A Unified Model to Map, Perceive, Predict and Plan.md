@@ -79,11 +79,16 @@ tags:
 
 ### 3 Interpretable Mapless Driving
 
-![MP3 predicts probabilistic scene representations that are leveraged in motion planning as interpretable cost functions](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220826-1.png)
+![MP3 predicts probabilistic scene representations that are leveraged in motion planning as interpretable cost functions](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220826-2.png)
 
+#### 3.1 Extracting Geometric and Semantic Features
 
+- The result is a 3D tensor of size $$(\frac{H}{a},\frac{W}{a},\frac{Z}{a}\cdot T_p )$$,which is the input to our backbone network.
+- This network combines ideas from [9, 53] to extract geometric, semantic and motion information about the scene.
 
+#### 3.2 Interpretable Scene Representations 
 
+- 动态目标的位置、速度信息，使用 **dynamic occupancy field **表示（the dynamic objects position and velocity into the future, captured in our dynamic occupancy field）
 
 
 
