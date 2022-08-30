@@ -114,6 +114,26 @@ tags:
 
 **Probabilistic Model:**
 
+online Map 分为以下几个通道：
+
+- 可到达区域$$M^A_i$$
+- 路口$$M^I_i$$
+
+- 到最近车道线的距离。the direction of the closest lane centerline in the reachable lanes $$M^{\theta}_i$$ as a Von Mises distribution since it has support between $$[\pi,\pi]$$.
+- 可到达车道中线的截断距离变换为拉普拉斯算子。We model the truncated distance transform to the reachable lanes centerline $$M^D_i$$​ as a Laplacian, which we empirically found to yield more accurate results than a Gaussian
+
+建模动态物体的occupancy $$O^c$$,为伯努利随机分布$$O^c_{t,i}$$，$$c\in \{行人，车辆，自行车\}$$（考虑这些物体未来行为的多模态（直走或左转）和不确定性），用$$K_{t,i}$$建模基于K个BEV运动向量$$V^c_{t,i,k}$$的行为分类分布
+
+the probability of future occupancy under our probabilistic model, we first define the probability of occupancy flowing from location $$i_1$$ to location $$i_2$$ between two consecutive time steps t and t + 1 as follows:
+
+![the probability of occupancy flowing](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220829-1.png)
+
+#### 3.3 Motion Planning
+
+设计了一个基于采样的轨迹规划器，其根据运动学灵活的生成多种轨迹，然后使用一个learned scoring function选择轨迹。
+
+![规划器的轨迹选择方式](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220830-1.png)
+
 
 
 
