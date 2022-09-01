@@ -134,13 +134,62 @@ the probability of future occupancy under our probabilistic model, we first defi
 
 ![规划器的轨迹选择方式](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220830-1.png)
 
+##### 3.3.1 Trajectory Sampling
 
+Search-based optimal motion planning for automated driving. In IROS, 2018
 
+- 根据$$(v_x,a_x,k_x)$$在专家轨迹数据集中检索专家轨迹，$$x$$表示当前自车状态，检索出的轨迹有不同的初始速度和朝向。因此使用加速度和转向角来描述轨迹$$(a,\dot k)_t,t=0,...,T$$，输入到a bicycle model [38]生成具有连续速度和转向角的轨迹。
+  - [38]. The kinematic bicycle model: A consistent model for planning feasible trajectories for autonomous vehicles? In 2017 IEEE Intelligent Vehicles Symposium (IV), pages 812–818. IEEE, 2017.
+- 文献[37]提供了一个忽略自车初始状态的简化的轨迹生成模型。
+  - [37]. Lift, splat, shoot: Encoding images from arbitrary camera rigs by implicitly unprojecting to 3d. In Proceedings of the European Conference on Computer Vision, 2020.
 
+##### 3.3.2 Route Prediction
 
+- 由于无地图驾驶没有车道线follow，本文假设遵循command来行驶，指令$$c = (a, d)$$, where $$a \in \{keep lane, turn left, turn right\}$$ is a discrete high-level action, and $$d$$ an approximate longitudinal distance to the action（行为的纵向距离）（d经过”rasterize”处理），输入给CoordConv[29]
+  - An intriguing failing of convolutional neural networks and the coordconv solution. In Advances in Neural Information Processing Systems, pages 9605–9616, 2018.
 
+##### 3.3.2 Trajectory Scoring
 
+- Routing and Driving on Roads: 该评分函数鼓励车辆行驶在概率图R中概率高的区域
 
+$$
+f_r(\tau,R)=-m(\tau)\min_{i \in m(\tau)} R_i
+$$
+
+其中$$m(\tau)$$是BEV图中和自车轨迹$$\tau$$重合的格子单元（grid-cells that overlap with SDV polygon in trajectory $$\tau$$)
+
+离开车道损失：
+$$
+f_a(x,M)=\max_{i \in m(x)}[1-P(M_i^A)]
+$$
+
+- Safety
+
+- Comfort
+
+  惩罚jerk和加速度
+
+#### 3.4. Learning
+
+两阶段的训练。我们分两个阶段优化我们的驾驶模型。我们首先训练**online map**、**dynamic occupancy field**和**routing**。一旦这些被收敛，在第二阶段，我们保持这些部分冻结，并为得分函数的线性组合训练规划器权重。我们发现这种两阶段的培训比端到端的培训更稳定。（We optimize our driving model in two stages. We first train the online map, dynamic occupancy field, and routing. Once these are converged, in a second stage, we keep these parts frozen and train the planner weights for the linear combination of scoring functions. We found this 2-stage training empirically more stable than training end-to-end.）
+
+### 4. Experimental Evaluation
+
+![性能指标](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-1.png)
+
+- Imitation Learning (IL), where the future positions of the SDV are predicted directly from the scene context features, and is trained using L2 loss. 
+- Conditional Imitation Learning (CIL) [11], which is similar to IL but the trajectory is conditioned on the driving command. 
+  - End-to-end driving via conditional imitation learning. In ICRA, 2018.
+- Neural Motion Planner (NMP) [55], where a planning cost-volume as well as detection and prediction are predicted in a multi-task fashion from the scene context features, and Trajectory Classification (TC) [37], where a cost-volume is predicted similar to NMP, but the trajectory cost is used to create a probability
+  distribution over the trajectories and is trained by optimizing for the likelihood of the expert trajectory.
+  - Lift, splat, shoot: Encoding images from arbitrary camera rigs by implicitly unprojecting to 3d. In Proceedings of the European Conference on
+    Computer Vision, 2020.
+  - End-to-end interpretable neural motion planner. In CVPR, 2019.
+-  Finally, we extend NMP to consider the high-level command by learning a separate costing network for each discrete action (CNMP).
+
+![Backbone Network](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-2.png)
+
+![Backbone Network](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-3.png)
 
 
 
