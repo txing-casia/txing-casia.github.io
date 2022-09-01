@@ -189,15 +189,16 @@ $$
 
 ![Backbone Network](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-2.png)
 
-![Backbone Network](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-3.png)
+![Mapping Network](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-3.png)
 
+![Perception and Prediction Network](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-4.png)
 
+![Routing Network](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-5.png)
 
+![Sets of trajectories retrieved from the expert demonstrations.](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-6.png)
 
-
-
-
-
+后面还有大量实验情景的展示图。
 
 ### 总结
 
+比较有想法的一个工作，做得比较细致，但是介绍相对粗略，可以仔细研究。
