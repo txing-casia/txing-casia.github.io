@@ -68,7 +68,7 @@ Step 4：升级 conda 里的 libstdcxx-ng (根据[博客](https://zhuanlan.zhihu
 再次查看版本号
 
 ```
-(base) pcon@pcon-ThinkPad-L14-Gen-2:~/anaconda3$ strings /home/zjj/anaconda3//lib/libstdc++.so.6 | grep GLIBCXX
+(base) pcon@pcon-ThinkPad-L14-Gen-2:~/anaconda3$ strings /home/pcon/anaconda3//lib/libstdc++.so.6 | grep GLIBCXX
 ```
 
 执行Python代码，成功运行！
