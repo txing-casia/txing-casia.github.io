@@ -6,7 +6,7 @@ date:       2022-09-20
 author:     "Pcon"
 header-img: "img/post-bg-py.jpg"
 tags:
-    - Python
+    - Autonomous Driving
 ---
 
 ## BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers
