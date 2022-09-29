@@ -66,14 +66,12 @@ tags:
 
   ![Optimized path trajectory from starting pose $$[x = -6m, y = 2.5m, \theta = 0.0]$$ with Hybrid A* path generator and DL-IAPS smoothing](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220929-5.jpg)
 
-  
+- parking 系列实验：
+
+![Various simulation test cases with multiple numbers of boundaries and obstacles](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220929-6.jpg)
 
 
-
--  
-
-- 
 
 ### 总结
 
-比较有想法的一个工作，做得比较细致，但是介绍相对粗略，可以仔细研究。
+整体而言就是在混合A*的基础上，加上了轨迹平滑、碰撞检测、速度规划三个后续模块，在parking任务上取得了一定效果，并集成与Apollo平台中
