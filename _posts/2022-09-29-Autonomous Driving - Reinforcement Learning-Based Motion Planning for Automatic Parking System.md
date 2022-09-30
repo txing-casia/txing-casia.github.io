@@ -49,21 +49,14 @@ tags:
 
 #### 3) 基于强化学习的方法
 
+- 前两种方案依赖原始或抽象的人类经验，因此要求高质量的泊车数据。
+- 可以突破人类数据的限制
+
+- 一般认为泊车场景agent比高速场景agent更难训练，因为前者方向盘角度会发生短时间的巨大变化
 
 
-
-
-
-
-
-
-
-
-
-
-
-![非线性路径平滑优化问题](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220929-.jpg)
 
 
 ### 总结
 
+本文质量一般，只看了intro部分，文献较老，没继续看了。
