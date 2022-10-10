@@ -3,7 +3,7 @@ layout:     post
 title:      "Python报错libGL error: MESA-LOADER: failed to open iris"
 subtitle:   ""
 date:       2022-09-05
-author:     "Pcon"
+author:     "PCon"
 header-img: "img/post-bg-py.jpg"
 tags:
     - Python
