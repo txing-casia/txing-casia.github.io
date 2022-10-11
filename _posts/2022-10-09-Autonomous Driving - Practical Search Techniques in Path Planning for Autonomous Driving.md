@@ -34,9 +34,19 @@ tags:
 
 - 本文的方法的第一阶段使用3D运动学状态空间的$$A*$$算法的变体，但修改了状态更新规则，该规则在$$A*$$的离散搜索节点中使用连续状态。
 - 由于合并了同一网格中的连续坐标状态，因此不保证损失最小解（minimal-cost solution），但路径一定是可行的（drivable）。
-- 搜索空间$$(x, y,\theta)$$，每个状态节点之间是动力学连续的
-- ![搜索规则对比](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-1.png)
-- 
+- 搜索空间$$(x, y,\theta)$$​​，每个状态节点之间是动力学连续的。但是搜索过程中转向角是离散化的，考虑离散化和精度之间的关系，使用 Reed-Shepp model  进行轨迹扩展 （We used a 160x160 grid with 1m resolution in x-y and 5 deg
+  angular resolution.）
+  - Reeds, J. A., and Shepp, L. A. 1990. Optimal paths for a car that goes both forwards and backwards. Pacific Journal of Mathematics 145(2):367–393
+- ![搜索规则对比](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-1.jpg)
+- 算法规划向前和向后的运动，并对向后驾驶以及转换运动方向进行惩罚
+- 两个启发式步骤：
+  - “non-holonomic-without-obstacles” ，忽略障碍物，但考虑到汽车的非完整性，计算目标点邻域内到该点的最短路径
+  - 考虑障碍物和动力学，计算到目标的最短距离，其优势在于可以发现2D地图所有的U形障碍和死胡同，引导更代价昂贵的3D搜索远离这些区域。
+- 对求解的 Reed-and-Shepp path 进行碰撞检测，确定无碰撞后才会加入到路径树中。
+- ![不同启发函数的对比](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-2.jpg)
+- 出于计算的原因，不希望将Reed-Shepp展开应用于每个节点(尤其是远离目标的节点，在那里大多数这样的路径可能会穿过障碍物)。在我们的实现中，我们使用了一个简单的选择规则，其中Reed-Shepp扩展应用于每N个节点中的一个，其中N作为目标成本启发式算法的函数而减少(随着我们越来越接近目标，导致更频繁的分析扩展)。
+- 带有Reed-Shepp扩展的搜索树如图4所示。由节点的短增量扩展生成的搜索树显示在黄绿色范围内，Reed-Shepp扩展显示为通向目标的单紫色线。我们发现，搜索树的这种分析扩展在准确性和计划时间方面都带来了显著的好处。
+- ![Analytic Reed-and-Shepp expansion](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-3.jpg)
 
 
 
