@@ -92,42 +92,31 @@ $$d_O>0$$ 表示场的最大效用边界；
 
 ![目标函数](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-5.jpg)
 
+损失函数的第一项可以高效地引导机器人移动，无论狭窄和开阔的地方都能远离障碍物；
 
+第二项惩罚与障碍物的碰撞；
 
+第三项限制每个顶点处的瞬时曲率，并加强车辆的非完整约束；
 
+第四项是路径平滑措施；
 
+- 梯度求解：
 
+![目标函数梯度-1](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-6.jpg)
 
+![目标函数梯度-2](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-7.jpg)
 
+![目标函数梯度-3](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-8.jpg)
 
+- 经过共轭梯度法的优化，轨迹显著更平滑了，但顶点之间仍有较大间距（论文中0.5-1m）。因此需要对轨迹进行再次插值。但许多参数化的插值算法对噪声敏感，加剧输出中的噪声（例如，随着输入顶点彼此靠近，三次样条曲线会导致输出中包含任意大的振荡）。
+- 本文对共轭梯度法轨迹进行了非参数化的插值，之后再用共轭梯度法进行平滑
+- We used the following parameters for our planner: the obstacle map was of size 160m×160m with 0.15cm resolution; A* used a grid of size 160m×160m×360◦ with 0.5m x-y resolution and 5◦ resolution for the heading θ. Typical running times for a full replanning cycle involving the hybrid A* search, CG smoothing, and interpolation were on the order of 50–300ms.
 
+![轨迹平滑](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-9.jpg)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![轨迹案例](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-10.jpg)
 
 
 ### 总结
 
+本文面向AVP问题，发表于2008年，整体思路很清晰：hybird A*求粗略轨迹->共轭梯度轨迹平滑->非参数插值->共轭梯度轨迹平滑。方法受年代限制，没有使用NN优化，这或许是一个可以产生明显提升的地方
