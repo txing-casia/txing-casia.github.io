@@ -72,17 +72,25 @@ $$d_O>0$$ 表示场的最大效用边界；
   3. 势场仅在障碍物内部取到最大值；
   4. 势场仅在GVD边界上取到最小值；
 
-- Voronoi场比传统势场的关键优势在于，场值与导航的可用间隙成比例。即使狭窄的开口仍然可以通航，而标准势场并不总是如此。
+- Voronoi场比传统势场的关键优势在于，场值与导航的可用间隙成比例。即使狭窄的开口仍然可以通航，而标准势场并不总是如此，传统势场可能封闭这些道路。
 
 ![Voronoi field](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-4.jpg)
 
+### 4 Local Optimization and Smoothing
 
+- hybrid-state A* 产生的轨迹仍然是次优的，需要进一步优化，去除不自然的突然转弯（unnatural swerves）。
+- 优化过程分为两步：
+  1. 对轨迹的每个顶点使用非线性优化平滑
+  2. 对轨迹进行非参数的插值（non-parametric interpolation），使用共轭梯度提升轨迹分辨率。
 
+- 变量定义：
+  - $$\text{x}_i=(x_i,y_i),i\in [1,N]$$ 表示顶点序列；
+  - $$\text{o}_i$$ 表示离顶点最近的障碍物坐标；
+  - $$\Delta \text{x}_i=x_i-x_{i-1}$$ 表示顶点的位移矢量；
+  - $$\Delta \phi_i= \mid \tan^{-1}\frac{\Delta y_{i+1}}{\Delta x_{i+1}}-\tan^{-1} \frac{\Delta y_{i}}{\Delta x_{i}} \mid$$  表示顶点处的切角变化；
+- 目标函数定义为：
 
-
-
-
-
+![目标函数](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-5.jpg)
 
 
 
