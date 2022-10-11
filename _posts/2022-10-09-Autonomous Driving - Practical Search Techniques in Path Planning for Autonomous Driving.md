@@ -45,8 +45,44 @@ tags:
 - 对求解的 Reed-and-Shepp path 进行碰撞检测，确定无碰撞后才会加入到路径树中。
 - ![不同启发函数的对比](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-2.jpg)
 - 出于计算的原因，不希望将Reed-Shepp展开应用于每个节点(尤其是远离目标的节点，在那里大多数这样的路径可能会穿过障碍物)。在我们的实现中，我们使用了一个简单的选择规则，其中Reed-Shepp扩展应用于每N个节点中的一个，其中N作为目标成本启发式算法的函数而减少(随着我们越来越接近目标，导致更频繁的分析扩展)。
-- 带有Reed-Shepp扩展的搜索树如图4所示。由节点的短增量扩展生成的搜索树显示在黄绿色范围内，Reed-Shepp扩展显示为通向目标的单紫色线。我们发现，搜索树的这种分析扩展在准确性和计划时间方面都带来了显著的好处。
+- 带有Reed-Shepp扩展的搜索树如下图所示。由节点的短增量扩展生成的搜索树显示在黄绿色范围内，Reed-Shepp扩展显示为通向目标的单紫色线。我们发现，搜索树的这种分析扩展在准确性和计划时间方面都带来了显著的好处。
 - ![Analytic Reed-and-Shepp expansion](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-3.jpg)
+
+### 3 Path-Cost Function Using the Voronoi Field
+
+- 使用流动势场法（following potential field）权衡路径长度和与障碍物的距离，将其命名为Voronoi Field
+
+$$
+\rho_V(x,y)=\bigg(\frac{\alpha}{\alpha+d_O(x,y)}\bigg) \bigg(\frac{d_V(x,y)}{d_O(x,y)+d_V(x,y)}\bigg) \frac{(d_O-d_O^{max})^2}{(d_O^{max})^2}
+$$
+
+$$d_O$$ 表示到最近障碍物的距离；
+
+$$d_V$$ 表示到最近 Generalized Voronoi Diagram (GVD) 边缘（edge）的距离；
+
+$$\alpha > 0$$ 表示衰减率；
+
+$$d_O>0$$ 表示场的最大效用边界；
+
+表达式满足 $$d_O \leq d_O^{max}$$ ，否则$$\rho_V(x,y)=0$$；
+
+- 势场有以下几个原则：
+  1. $$d_O \geq d_O^{max}$$ 时其值为0；
+  2. $$\rho_V(x,y)\in[0,1]$$，并且在$$(x,y)$$处连续，因为不存在同时满足$$d_O=d_V=0$$ 的情况；
+  3. 势场仅在障碍物内部取到最大值；
+  4. 势场仅在GVD边界上取到最小值；
+
+- Voronoi场比传统势场的关键优势在于，场值与导航的可用间隙成比例。即使狭窄的开口仍然可以通航，而标准势场并不总是如此。
+
+![Voronoi field](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-4.jpg)
+
+
+
+
+
+
+
+
 
 
 
