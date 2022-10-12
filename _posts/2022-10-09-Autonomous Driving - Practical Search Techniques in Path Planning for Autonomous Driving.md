@@ -21,8 +21,7 @@ tags:
 
 ### 1 Introduction
 
-- 结合
-- rapidly exploring random trees (RRTs) 的连续路径规划算法，但他们依赖高效的启发式引导：
+- 结合 rapidly exploring random trees (RRTs) 的连续路径规划算法，但他们依赖高效的启发式引导：
   - Kavraki, L.; Svestka, P.; Latombe, J.-C.; and Overmars, M. 1996. Probabilistic roadmaps for path planning in high-dimensional configuration spaces. IEEE Transactions on Robotics and Automation 12(4).
   - LaValle, S. 1998. Rapidly-exploring random trees: A new tool for path planning.
   - Plaku, E.; Kavraki, L.; and Vardi, M. 2007. Discrete search leading continuous exploration for kinodynamic motion planning. In Robotics: Science and Systems.
