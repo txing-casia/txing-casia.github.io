@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers"
+title:      "Autonomous Driving | BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers"
 subtitle:   ""
 date:       2022-09-20
 author:     "Pcon"

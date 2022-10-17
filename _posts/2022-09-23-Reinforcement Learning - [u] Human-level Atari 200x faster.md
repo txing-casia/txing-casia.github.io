@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Human-level Atari 200x faster"
+title:      "Reinforcement Learning | Human-level Atari 200x faster"
 subtitle:   ""
 date:       2022-09-23
 author:     "Pcon"
