@@ -36,7 +36,7 @@ tags:
 - 本文没有速度规划，使用固定的 5 mph 速度
 - 节点从open list中pop out，根据运动学连接三个节点：最大左转，直行，最大右转，hybrid A*生成的轨迹一定是可达的，但不保证全局最优。
 
-### 3 Heuristics
+#### Heuristics
 
 - 使用了两个启发式函数：
   - `non-holonomic-without-obstacles heuristic`, 忽略障碍物，但考虑到汽车的非完整性。
@@ -67,25 +67,22 @@ tags:
 #### Guaranteeing Smoother Safety
 
 - 共轭梯度轨迹平滑中虽然加了碰撞惩罚，但是并不能保证无碰撞，优化目标也没考虑车身形状，因此不能精确优化轨迹。如果在共轭梯度轨迹平滑模块内实施精确的碰撞检测，那么计算量又会过大；
+- 共轭梯度法平滑的轨迹如果不安全，则锚定住A* solution中的相关点。迭代优化其余点，直到collision-free
 
+![锚定路径点保证平滑安全性](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221017-1.jpg)
 
+#### Navigation Potential Using the Voronoi Field
 
+- 使用了Voronoi Field得到导航信息，这部分和之前论文一样，不重复介绍。
 
+### 4 Graph-guided Path Planning in Semi-structured Environments
+#### Trajectory Smoothing in Semi-structured Environments
 
-
-
-
-
-
-
-
-
-
-
-
+本文增加了这部分内容，在GC优化项中增加了一项。感觉意义不是太大，这里不再介绍。
 
 
 
 
 ### 总结
 
+本文和之前的会议论文差不多，感觉意义新加部分意义不是很大。
