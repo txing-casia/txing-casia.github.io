@@ -11,7 +11,7 @@ tags:
 
 ## Mastering the game of Go without human knowledge
 
-- 
+AlphaGo和AlphaGo Master之后的又一力作，不同于AlphaGo学习人类棋谱，利用人类先验知识，AlphaGo Zero完全自学，并在学习三天后超越了AlphaGo，40天超越了AlphaGo Master。
 
 ### 1 Introduction
 
