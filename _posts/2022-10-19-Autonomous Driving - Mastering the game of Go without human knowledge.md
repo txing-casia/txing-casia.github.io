@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Reinforcement Driving | Mastering the game of Go without human knowledge"
-subtitle:   ""
+subtitle:   "AlphaGo Zero"
 date:       2022-10-19
 author:     "Txing"
 header-img: "img/post-bg-py.jpg"
