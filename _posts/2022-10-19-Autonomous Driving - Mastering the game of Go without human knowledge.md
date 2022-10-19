@@ -23,7 +23,7 @@ AlphaGo和AlphaGo Master之后的又一力作，不同于AlphaGo学习人类棋�
   - 输出：下一步的落子概率 $$p$$ ，当前局面获胜概率 $$v$$
   - 训练目标是去拟合自我对弈里面产生的真实胜率 $$z$$ 和下面提到的 MCTS 产生的落子概率 $$π$$，即 $$(p,v)\rightarrow(π,z)$$。
 
-- MCTS（蒙特卡洛树搜索）使用 $$f_{\theta}$$ 进行自博弈，搜索结果 $$\pi$$ 一般优于网络估计的结果 $$p$$
+- MCTS（蒙特卡洛树搜索）使用 $$f_{\theta}$$ 进行自博弈，搜索策略 $$\pi$$ 一般优于网络估计的 $$p$$
 
   ![Self-play reinforcement learning in AlphaGo Zero](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221019-1.jpg)
 
@@ -71,8 +71,6 @@ AlphaGo和AlphaGo Master之后的又一力作，不同于AlphaGo学习人类棋�
 
 
 ### 总结
-
-这篇文章介绍的范围太大，涵盖的研究方向和方法过多，受篇幅限制，讲的东西又很浅显，价值不大。
 
 
 
