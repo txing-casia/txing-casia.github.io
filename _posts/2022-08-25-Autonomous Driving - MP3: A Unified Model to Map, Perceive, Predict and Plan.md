@@ -1,8 +1,8 @@
 ---
 layout:     post
 title:      "Autonomous Driving | MP3: A Unified Model to Map, Perceive, Predict and Plan (Uber ATG, 2021)"
-subtitle:   ""
-date:       2022-08-24
+subtitle:   "MuZero"
+date:       2022-08-25
 author:     "Txing"
 header-img: "img/post-bg-py.jpg"
 tags:

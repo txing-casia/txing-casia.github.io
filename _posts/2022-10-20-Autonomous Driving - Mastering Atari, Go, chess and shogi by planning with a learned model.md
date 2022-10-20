@@ -17,7 +17,7 @@ MuZero是AlphaGo Zero之上的第二次改进。第一次改进为AlphaZero，�
 
 ### 1 Introduction
 
-- model-based RL 需要
+- model-based RL 需要   
   - 状态转移模型：根据是s,a预测下一时刻的状态
   - 奖励模型：预测期望的奖励
 
