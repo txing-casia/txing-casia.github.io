@@ -44,15 +44,7 @@ tags:
 
 ### 2 Related Work
 
-#### 2.1 Online Mapping: 
 
-- 特点：
-  - satellite imagery (卫星图像)
-  - gather dense information (采集车多次经过同一地方)
-  - human-in-the-loop
-- predicting map elements online: 
-  - 3d-lanenet: End-to-end 3d multiple lane detection. In Proceedings of the IEEE International Conference on Computer Vision, pages 2921–2930, 2019.
-  - Gen-lanenet: A generalized and scalable approach for 3d lane detection. arXiv, pages arXiv–2003, 2020.
 
 #### 2.2 Perception and Prediction
 
