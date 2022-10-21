@@ -57,6 +57,23 @@ tags:
 
 
 
+
+
+- **预测时间占用图** predict temporal occupancy maps 
+  - Discrete residual flow for probabilistic pedestrian behavior prediction. arXiv preprint arXiv:1910.08041, 2019.
+  - The garden of forking paths: Towards multi-future trajectory prediction. In Proceedings of the IEEE/CVF
+    Conference on Computer Vision and Pattern Recognition, pages 10508–10518, 2020.
+  - Scene compliant trajectory forecast with agent-centric spatio-temporal grids. IEEE RA-L, 5(2):2816–2823, 2020.
+- 这些方法由于涉及了非最大抑制（non-maximum suppression）和可信度阈值（confidence thresholding），可能出现不安全的情况
+- occupancy grids:
+  - Motionnet: Joint perception and motion prediction for autonomous driving based on bird’s eye view maps. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, pages 11385–11395, 2020.
+  - Learning occupancy grid maps with forward sensor models. Autonomous robots, 15(2):111–127, 2003.
+  - **Perceive, predict, and plan: Safe motion planning through interpretable semantic representations.** In Proceedings of the European Conference on Computer Vision (ECCV), 2020.
+
+#### 2.3 Motion Planning
+
+- 从感知直接输出控制信号 （Driving policy transfer via modularity and abstraction. arXiv preprint arXiv:1804.09364, 2018.）会面临稳定性和鲁棒性的问题（stability and robustness issues）（Exploring the limitations of behavior cloning for autonomous driving. In Proceedings of the IEEE International Conference on Computer Vision, pages 9329–9338, 2019.）
+
 ### 3 Interpretable Mapless Driving
 
 ![MP3 predicts probabilistic scene representations that are leveraged in motion planning as interpretable cost functions](https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220826-2.png)
