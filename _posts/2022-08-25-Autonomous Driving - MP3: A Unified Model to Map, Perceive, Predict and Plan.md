@@ -42,7 +42,31 @@ tags:
   - Gen-lanenet: A generalized and scalable approach for 3d lane detection. arXiv, pages arXiv–2003, 2020.
   - Hierarchical recurrent attention networks for structured online maps. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, pages 3417–3426, 2018.
 
+### 2 Related Work
 
+#### 2.1 Online Mapping: 
+
+- 特点：
+  - satellite imagery (卫星图像)
+  - gather dense information (采集车多次经过同一地方)
+  - human-in-the-loop
+- predicting map elements online: 
+  - 3d-lanenet: End-to-end 3d multiple lane detection. In Proceedings of the IEEE International Conference on Computer Vision, pages 2921–2930, 2019.
+  - Gen-lanenet: A generalized and scalable approach for 3d lane detection. arXiv, pages arXiv–2003, 2020.
+
+#### 2.2 Perception and Prediction
+
+- **生成轨迹集合** generate a fixed set of trajectories [6, 8–10, 26, 28, 30, 36, 56]
+- **画出样本特征分布** draw samples to characterize the distribution  
+  - Implicit latent variable model for scene-consistent motion forecasting. arXiv preprint arXiv:2007.12036, 2020.
+  - R2p2: A reparameterized pushforward policy for diverse, precise generative path forecasting. In ECCV, 2018.
+  - Multiple futures prediction. In Advances in Neural Information Processing Systems, pages 15398–15408, 2019.
+
+- **预测时间占用图** predict temporal occupancy maps 
+  - Discrete residual flow for probabilistic pedestrian behavior prediction. arXiv preprint arXiv:1910.08041, 2019.
+  - The garden of forking paths: Towards multi-future trajectory prediction. In Proceedings of the IEEE/CVF
+    Conference on Computer Vision and Pattern Recognition, pages 10508–10518, 2020.
+  - Scene compliant trajectory forecast with agent-centric spatio-temporal grids. IEEE RA-L, 5(2):2816–2823, 2020.
 
 
 
