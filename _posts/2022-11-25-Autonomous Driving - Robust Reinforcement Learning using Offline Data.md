@@ -28,7 +28,11 @@ tags:
 
 #### Offline RL
 
+- 只使用离线数据集
 
+- 许多近期工作设计 Fitted Q-Iteration (FQI) algorithm 的变体
+
+#### Robust RL
 
 
 
