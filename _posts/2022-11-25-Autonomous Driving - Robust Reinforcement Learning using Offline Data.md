@@ -34,6 +34,24 @@ tags:
 
 #### Robust RL
 
+- 2005年提出
+
+- 这些工作与本文的区别在于：
+
+  （1）考虑大的状态空间，而不是表格空间
+
+  （2）真实的离线RL设定，状态-行为对通过武断的分布采样，而不是使用生成模型获得
+
+  （3）使用函数近似学习优化鲁棒的策略，而不是使用评估模型求解表格规划问题；
+
+- To the best of our knowledge, this is the first work that addresses the offline robust RL problem with arbitrary large state space using function approximation, with provable guarantees on the performance of the learned policy.
+
+
+
+
+
+
+
 
 
 
