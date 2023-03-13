@@ -34,6 +34,13 @@ $$
 
 #### 1.1 Balanced Cross Entropy
 
+常用的处理类别不平衡的方法是使用权重$$\alpha \in [0,1]$$，它可以看做是样本类别频率的倒数。$$\alpha$$-balanced CE loss：
+$$
+CE(p_t)=-\alpha_t\log(p_t)
+$$
+
+#### 1.2 Focal Loss Definition
+
 下调容易分类的样本权重，让模型关注困难的情况，在交叉熵损失函数基础上使用调制因子$$(1-p_t)^{\gamma}$$，其中$$\gamma\geq 0$$是可调参数，定义focal loss为：
 $$
 FL(p_t)=-(1-p_t)^{\gamma}\log(p_t)
