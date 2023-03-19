@@ -13,11 +13,11 @@
 
     <title>
         
-          TESTpost2 - undefined
+          Reinforcement Driving | Mastering Atari, Go, chess and shogi by planning with a learned model - undefined
         
     </title>
 
-    <link rel="canonical" href="https://txing-casia.github.io/2023/03/19/TESTpost2/">
+    <link rel="canonical" href="https://txing-casia.github.io/2022/10/20/2022-10-20-Autonomous Driving - Mastering Atari Go chess and shogi by planning with a learned model/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -137,7 +137,7 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/undefined')
+        background-image: url('img/post-bg-py.jpg')
     }
 </style>
 <header class="intro-header" >
@@ -147,12 +147,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
+                          <a class="tag" href="/tags/#Reinforcement Learning" title="Reinforcement Learning">Reinforcement Learning</a>
+                        
                     </div>
-                    <h1>TESTpost2</h1>
-                    <h2 class="subheading"></h2>
+                    <h1>Reinforcement Driving | Mastering Atari, Go, chess and shogi by planning with a learned model</h1>
+                    <h2 class="subheading">MuZero</h2>
                     <span class="meta">
-                        Posted by PCon on
-                        2023-03-19
+                        Posted by Txing on
+                        2022-10-20
                     </span>
                 </div>
             </div>
@@ -171,7 +173,43 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                
+                <h2 id="Mastering-Atari-Go-chess-and-shogi-by-planning-with-a-learned-model"><a href="#Mastering-Atari-Go-chess-and-shogi-by-planning-with-a-learned-model" class="headerlink" title="Mastering Atari, Go, chess and shogi by planning with a learned model"></a>Mastering Atari, Go, chess and shogi by planning with a learned model</h2><p>MuZero是AlphaGo Zero之上的第二次改进。第一次改进为AlphaZero，一个模型实现围棋、国际象棋、将棋的超人水平。此次在AlphaZero基础上，更是从棋类拓展到了更具有普遍意义的Atari游戏。</p>
+<p>训练模型的规划能力通常是较为困难的，本文提出MuZero，一个结合学习模型的树搜索方法</p>
+<h3 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h3><ul>
+<li>model-based RL 需要   <ul>
+<li>状态转移模型：根据是s,a预测下一时刻的状态</li>
+<li>奖励模型：预测期望的奖励</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-MuZero-algorithm"><a href="#2-MuZero-algorithm" class="headerlink" title="2 MuZero algorithm"></a>2 MuZero algorithm</h3><ul>
+<li><p>构建一个模型 $$\mu_{\theta}$$ 预测三个未来的量：</p>
+<ul>
+<li>Policy $$p^k_t \approx \pi(a_{t+k+1}\mid o_1,…,o_t,a_{t+1},…,a_{t+k})$$</li>
+<li>Value function $$v_t^k\approx \mathbb{E}[u_{t+k+1}+\gamma u_{t+k+2}+…\mid o_1,…,o_t,a_{t+1},…,a_{t+k}]$$</li>
+<li>immediate reward $$r_t^k\approx u_{t+k}$$</li>
+</ul>
+<p>$$u$$表示真实的观测到的奖励，$$\pi$$表示用于选择真实行为的策略</p>
+</li>
+<li><p>具体地，模型包括三个部分：</p>
+<ul>
+<li>dynamics function: $$r^k,s^k&#x3D;g_{\theta}(s^{k-1},a^k)$$，在每个假设步骤k执行，$$r^k$$是即时奖励；$$s^k$$是内部状态表征（internal state），其没有环境信息的语义含义，只是用于准确预测未来变量policies, values and rewards</li>
+<li>prediction function: $$p^k,v^k&#x3D;f_{\theta}(s^k)$$</li>
+<li>representation function: $$s^0&#x3D;h_{\theta}(o_1,…,o_t)$$，根据过去的观测信息生成根节点的内部状态表征</li>
+</ul>
+</li>
+<li><p>利用上述模型，可以利用过去的观测信息$$o_1,…,o_t$$，生成假设的未来轨迹$$a^1,…,a^k$$</p>
+</li>
+<li><p>损失函数：（每一项都是L2损失函数）</p>
+</li>
+</ul>
+<p>$$<br>l_t(\theta)&#x3D;\sum_{k&#x3D;0}^K l^P(\pi_{t+k},p_t^k)+\sum_{k&#x3D;0}^K l^V(z_{t+k},v_t^k)+\sum_{k&#x3D;1}^K l^r(u_{t+k},r_t^k)+c\mid \mid\theta\mid\mid^2<br>$$</p>
+<p>policy损失, value损失 and 即时reward损失</p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221020-1.jpg" alt="Planning, acting and training with a learned model"></p>
+<p>- </p>
+<p>- </p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>​	</p>
+
 
                 <hr>
 
@@ -180,12 +218,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2023/03/19/hello-world/" data-toggle="tooltip" data-placement="top" title="Hello World">&larr; Previous Post</a>
+                            <a href="/2023/03/19/TESTpost2/" data-toggle="tooltip" data-placement="top" title="TESTpost2">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2022/10/20/2022-10-20-Autonomous Driving - Mastering Atari Go chess and shogi by planning with a learned model/" data-toggle="tooltip" data-placement="top" title="Reinforcement Driving | Mastering Atari, Go, chess and shogi by planning with a learned model">Next Post &rarr;</a>
+                            <a href="/2022/10/19/2022-10-19-Autonomous Driving - Mastering the game of Go without human knowledge/" data-toggle="tooltip" data-placement="top" title="Reinforcement Driving | Mastering the game of Go without human knowledge">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
