@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          
+        
+    </title>
+
+    <link rel="canonical" href="https://txing-casia.github.io/page/10/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Hexo-Txing</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<header class="intro-header" style="background-image: url('/')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>Hexo-Txing</h1>
+                    <!--<hr class="small">-->
+                    <span class="subheading">txing</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        
+
+<!-- USE SIDEBAR -->
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+            
+                <!-- Main Content -->
+
+
+<div class="post-preview">
+
+    <a href="/2021/04/07/2021-04-07-Q144-二叉树的前序遍历-中等-树/">
+        <h2 class="post-title">
+            Q144-二叉树的前序遍历-中等-树
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            144. 二叉树的前序遍历Question
+给你二叉树的根节点 root ，返回它节点值的 前序 遍历。
+
+
+Example 1:
+输入：root &#x3D; [1,null,2,3]输出：[1,2,3]
+
+
+Example 2:
+输入：root &#x3D; []输出：[]
+
+
+提示：
+
+树中节点数目在范围 [0, 100] 内
+-100 &lt;&#x3D; Node.val &lt;......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Txing on
+        2021-04-07
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2021/04/06/2021-04-06-Q25-K 个一组翻转链表-困难-链表/">
+        <h2 class="post-title">
+            Q25-K 个一组翻转链表-困难-链表
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            25. K 个一组翻转链表Question
+给你一个链表，每 k 个节点一组进行翻转，请你返回翻转后的链表。
+k 是一个正整数，它的值小于或等于链表的长度。
+如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序。
+进阶：
+你可以设计一个只使用常数额外空间的算法来解决此问题吗？你不能只是单纯的改变节点内部的值，而是需要实际进行节点交换。
+
+
+Example 1:
+输入：head ......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Txing on
+        2021-04-06
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2021/04/02/2021-04-02-Q148-排序链表-中等-链表/">
+        <h2 class="post-title">
+            Q148-排序链表-中等-链表
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            148. 排序链表Question
+给你链表的头结点 head ，请将其按 升序 排列并返回 排序后的链表 。
+
+
+Example 1:
+输入：head &#x3D; [4,2,1,3]输出：[1,2,3,4]
+
+
+Example 2:
+输入：head &#x3D; [-1,5,3,4,0]输出：[-1,0,3,4,5]
+
+
+Example 3:
+输入：head &#x3D; []输出：[]......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Txing on
+        2021-04-02
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2021/04/01/2021-04-01-Q92-反转链表 II-中等-链表/">
+        <h2 class="post-title">
+            Q92-反转链表 II-中等-链表
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            92. 反转链表 IIQuestion
+给你单链表的头指针 head 和两个整数 left 和 right ，其中 left &lt;&#x3D; right 。请你反转从位置 left 到位置 right 的链表节点，返回 反转后的链表 。
+
+
+Example 1:
+输入：head &#x3D; [1,2,3,4,5], left &#x3D; 2, right &#x3D; 4输出：[1......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Txing on
+        2021-04-01
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2021/03/31/2021-03-31-Neuroscience - Adaptation to Visuomotor Rotation Through Interaction Between Posterior/">
+        <h2 class="post-title">
+            Neuroscience | Adaptation to Visuomotor Rotation Through Interaction Between Posterior Parietal and Motor Cortical Areas
+        </h2>
+        <h3 class="post-subtitle">
+            感觉运动地图的生物基础
+        </h3>
+        <div class="post-content-preview">
+            Adaptation to Visuomotor Rotation Through Interaction Between Posterior Parietal and Motor Cortical Areas论文链接：https://journals.physiology.org/doi/full/10.1152/jn.90834.2008
+背景
+PPC中有高斯调制的神经元，使其成为适应视......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Txing on
+        2021-03-31
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2021/03/31/2021-03-31-Neuroscience - The posterior parietal cortex Sensorimotor interface for the planning and online control of visually guided movements/">
+        <h2 class="post-title">
+            Neuroscience | The posterior parietal cortex Sensorimotor interface for the planning and online control of visually guided movements
+        </h2>
+        <h3 class="post-subtitle">
+            感觉运动地图的生物基础
+        </h3>
+        <div class="post-content-preview">
+            The posterior parietal cortex: Sensorimotor interface for the planning and online control of visually guided movements论文链接：https://www.sciencedirect.com/science/article/pii/S0028393205003337?via%3D......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Txing on
+        2021-03-31
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2021/03/31/2021-03-31-Q82-删除排序链表中的重复元素 II-中等-链表/">
+        <h2 class="post-title">
+            Q82-删除排序链表中的重复元素 II-中等-链表
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            82. 删除排序链表中的重复元素 IIQuestion
+存在一个按升序排列的链表，给你这个链表的头节点 head ，请你删除链表中所有存在数字重复情况的节点，只保留原始链表中 没有重复出现 的数字。
+返回同样按升序排列的结果链表。
+
+
+Example 1:
+输入：head &#x3D; [1,2,3,3,4,4,5]输出：[1,2,5]
+
+
+Example 2:
+输入：head &#x3D;......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Txing on
+        2021-03-31
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2021/03/30/2021-03-30-Q1721-交换链表中的节点-中等-链表/">
+        <h2 class="post-title">
+            Q1721-交换链表中的节点-中等-链表
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1721. 交换链表中的节点Question
+给你链表的头节点 head 和一个整数 k 。
+交换 链表正数第 k 个节点和倒数第 k 个节点的值后，返回链表的头节点（链表 从 1 开始索引）。
+
+
+Example 1:
+输入：head &#x3D; [1,2,3,4,5], k &#x3D; 2输出：[1,4,3,2,5]
+
+
+Example 2:
+输入：head &#x3D; [7,9,......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Txing on
+        2021-03-30
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2021/03/30/2021-03-30-Reinforcement Learning - Sim-to-Real Transfer in Deep Reinforcement Learning for Robotics a Survey/">
+        <h2 class="post-title">
+            Reinforcement Learning | Sim-to-Real Transfer in Deep Reinforcement Learning for Robotics a Survey
+        </h2>
+        <h3 class="post-subtitle">
+            机器人领域sim-to-real方向的迁移学习综述
+        </h3>
+        <div class="post-content-preview">
+            Sim-to-Real Transfer in Deep Reinforcement Learning for Robotics: a Survey论文链接：https://ieeexplore.ieee.org/document/9308468
+背景
+真实的机器人数据难以获得，或者成本代价高，因此需要用仿真环境模拟，降低成本，保证安全性。Owing to the limitations o......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Txing on
+        2021-03-30
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2021/03/29/2021-03-29-JZOffer 35-复杂链表的复制-中等-链表/">
+        <h2 class="post-title">
+            JZOffer 35 复杂链表的复制-中等-链表
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            剑指 Offer 35. 复杂链表的复制Question
+请实现 copyRandomList 函数，复制一个复杂链表。在复杂链表中，每个节点除了有一个 next 指针指向下一个节点，还有一个 random 指针指向链表中的任意节点或者 null。
+
+
+Example 1:
+输入：head &#x3D; [[7,null],[13,0],[11,4],[10,2],[1,0]]输出：[[7,......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Txing on
+        2021-03-29
+    </p>
+
+</div>
+<hr>
+
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+        <li class="previous">
+            <a href="/page/9/">&larr; Newer Posts</a>
+        </li>
+    
+    
+        <li class="next">
+            <a href="/page/11/">Older Posts &rarr;</a>
+        </li>
+    
+</ul>
+
+
+
+                <!-- 如果开启评论功能 -->
+                
+
+            </div>
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+                <!-- Featured Tags -->
+                
+
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
+                    <div class="short-about">
+
+                        
+
+                        
+
+                        <!-- SNS Link -->
+                        <ul class="list-inline">
+                            
+                            
+                            
+
+                            
+
+                            
+
+                            
+                            
+                            
+                            
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- Friends Blog -->
+                
+            </div>
+        
+    </div>
+</div>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Hexo-Txing 2023 
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://txing-casia.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

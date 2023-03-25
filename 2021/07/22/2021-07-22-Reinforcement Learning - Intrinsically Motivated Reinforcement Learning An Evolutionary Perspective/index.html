@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Reinforcement Learning | Intrinsically Motivated Reinforcement Learning: An Evolutionary Perspective - undefined
+        
+    </title>
+
+    <link rel="canonical" href="https://txing-casia.github.io/2021/07/22/2021-07-22-Reinforcement Learning - Intrinsically Motivated Reinforcement Learning An Evolutionary Perspective/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Hexo-Txing</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('img/post-bg-py.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Reinforcement Learning" title="Reinforcement Learning">Reinforcement Learning</a>
+                        
+                          <a class="tag" href="/tags/#HRL" title="HRL">HRL</a>
+                        
+                          <a class="tag" href="/tags/#Reward Shaping" title="Reward Shaping">Reward Shaping</a>
+                        
+                    </div>
+                    <h1>Reinforcement Learning | Intrinsically Motivated Reinforcement Learning: An Evolutionary Perspective</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Txing on
+                        2021-07-22
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="Intrinsically-Motivated-Reinforcement-Learning-An-Evolutionary-Perspective"><a href="#Intrinsically-Motivated-Reinforcement-Learning-An-Evolutionary-Perspective" class="headerlink" title="Intrinsically Motivated Reinforcement Learning: An Evolutionary Perspective"></a>Intrinsically Motivated Reinforcement Learning: An Evolutionary Perspective</h1><p>论文链接：<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=5471106">https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=5471106</a></p>
+<h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><ul>
+<li><p>intrinsically motivated 这个词最开始是在1950年的文章中提出的，文章认为需要有一种内在的操纵驱动力来解释为什么猴子会在没有任何外在奖励的情况下精力充沛地持续工作数小时来解决复杂的机械难题。内在动机行为对智力增长至关重要</p>
+</li>
+<li><p>本文解决了如何在人工系统中实现类似于内在动机的过程的问题，特别关注可能会或可能不会区分内在动机和外在动机的因素，其中外在动机是指由行为的特定奖励结果产生的动机，而不是行为本身。</p>
+</li>
+<li><p>相关工作：</p>
+<ul>
+<li><p>定义有趣度：Lenat’s AM system [18], for example, focused on heuristic definitions of “interestingness,” </p>
+</li>
+<li><p>建立好奇心框架：Schmidhuber [32] [33] [34] [35] [36] [37] introduced methods for implementing forms of curiosity using the framework of computational reinforcement learning (RL)1 [47].</p>
+</li>
+<li><p>奖励函数设计：Other researchers have reported interesting results of computational experiments involving evolutionary search for RL reward functions [1], [8], [19], [31], [43], but they did not directly address the motivational issues on which we focus.</p>
+</li>
+<li><p>寻找本质奖励：Uchibe and Doya [51] do address intrinsic reward in an evolutionary context, but their aim and approach differ significantly from ours.</p>
+<p>[51]. E. Uchibe and K. Doya, “Finding intrinsic rewards by embodied evolution and constrained reinforcement learning”, <em>Neural Netw.</em>, vol. 21, no. 10, pp. 1447-1455, 2008.</p>
+</li>
+<li><p>与我们最接近的研究是 Elfwing 等人的研究。[11]其中使用遗传算法来搜索塑造奖励[23]和其他提高 RL 学习系统性能的学习算法参数。</p>
+<p>[11]. S. Elfwing, E. Uchibe, K. Doya and H. I. Christensen, “Co-evolution of shaping rewards and meta-parameters in reinforcement learning”, <em>Adapt. Behav.</em>, vol. 16, pp. 400-412, 2008.</p>
+</li>
+</ul>
+</li>
+<li><p>使用RL的模型结构示意图</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210722-1.png" alt="Agent–environment interactions in reinforcement learning"></p>
+<ul>
+<li><p>这篇文章[3]使用属于内部奖励（intrinsic reward），并将其与强化学习框架结合。所谓内部奖励，就是内部动机生成的奖励函数；外部奖励就是常规的强化学习框架的奖励函数。</p>
+<p>[3]. A. G. Barto, S. Singh and N. Chentanez, “Intrinsically motivated learning of hierarchical collections of skills”, <em>Proc. Int. Conf. Develop. Learn.</em>, 2004.</p>
+</li>
+<li><p>目前的方法基本都是构建特殊的内部奖励函数，并且将其与一般的强化学习算法结合。例如基于好奇心的内部驱动方法[32]。</p>
+<p>[32]. J. Schmidhuber, <em>Adaptive Confidence and Adaptive Curiosity</em>, 1991.</p>
+</li>
+<li><p>这种内部动机的RL框架更加符合生物实际。并且奖励和奖励信号是不同的概念，RL模型中使用的更类似于奖励信号。</p>
+<ul>
+<li><p>奖励（Reward）指的是获得的好处；</p>
+</li>
+<li><p>奖励信号（Reward signal）指的是大脑中奖励神经元发放的信号；</p>
+<p>Schultz [38], [39] writes that “Rewards are objects or events that make us come back for more,” whereas reward signals are produced by reward neurons in the brain.</p>
+</li>
+</ul>
+</li>
+<li><p>RL中的环境应该分为an external environment 和 an internal environment.</p>
+</li>
+<li><p>但是并不能从行为上区分是否使用了内部奖励[25]。但是内部动机是通过外部奖励形成的。</p>
+<p>[25]. P.-Y. Oudeyer and F. Kaplan, “What is intrinsic motivation? A typology of computational approaches”, <em>Frontiers Neurorobot.</em>, 2007.</p>
+</li>
+<li><p>Primary and Secondary Reward：使用内部动机意义在于作为一种次要的奖励信号，配合主要的外部奖励信号完成行为</p>
+</li>
+<li><p>生物动机心理学依据：</p>
+<p>Among the most influential theories of motivation in psychology is the drive theory of Hull [13] [14] [15]. According to Hull’s theory, all behavior is motivated either by an organism’s survival and reproductive needs giving rise to primary drives (such as hunger, thirst, sex, and the avoidance of pain), or by derivative drives that have acquired their motivational significance through learning. Primary drives are the result of physiological deficits—“tissue needs”— and they energize behavior whose result is to reduce the deficit. A key additional feature of Hull’s theory is that a need reduction, and hence a drive reduction, acts as a primary reinforcer for learning: behavior that reduces a primary drive is reinforced. Additionally, through the process of secondary reinforcement in which a neutral stimulus is paired with a primary reinforcer, the formerly neutral stimulus becomes a secondary reinforcer, i.e., acquires the reinforcing power of the primary reinforcer. In this way, stimuli that predict primary reward, i.e., predict a reduction in a primary drive, become rewarding themselves. According to this influential theory (in its several variants), all behavior is energized and directed by its relevance to primal drives, either directly or as the result of learning through secondary reinforcement.</p>
+</li>
+<li><p>一些驱动力对行为影响的例子，在某些条件下，饥饿的老鼠宁愿探索不熟悉的空间，也不愿进食；他们忍受穿越电网的痛苦，去探索新的空间。</p>
+</li>
+<li><p>但是饥饿、口渴、繁衍这些驱动都伴随着满足的状态，他们是否能作为次要驱动还是有待研究。下面介绍基于进化的观点。</p>
+</li>
+<li><p>使用一个适应度函数和一些环境兴趣的分布（an explicit fitness function and some distribution of environments of interest），这个适应度可以是累积的外部奖励和等形式。</p>
+</li>
+<li><p><strong>实验1：</strong></p>
+</li>
+<li><p>一个6x6的格子空间中分割了4个3x3的子空间，格子之间的墙壁不是全部封闭的，其中2个子格子空间中分别有一个打开的盒子和一个封闭的盒子（盒子位置在智能体生命周期内是不再变化的），一个打开的盒子在每个时间步以 0.1 的概率关闭，密闭的盒子里总是装着食物。智能体在这样的格子迷宫中要找到打开的盒子，并在封闭的盒子中寻找食物。智能体的行动分为上下左右4个方向。</p>
+</li>
+<li><p>当代理食用食物时，它会在一个时间步长内感到饱足。代理在所有其他时间步都饥饿。智能体每吃一次食物，它的适应度就会增加 1</p>
+</li>
+<li><p>在格子迷宫环境中假设了两只钟情况：</p>
+<ol>
+<li>constant condition: 食物总是智能体10000步生命周期中，在封闭的盒子中出现；</li>
+<li>step condition: 智能体的生命周期是20000步，食物总是出现在10000步之后出现在封闭盒子中；</li>
+</ol>
+</li>
+<li><p>符号说明：</p>
+<ul>
+<li>agent $$\mathcal{A}$$</li>
+<li>a space of reward function $$R_\mathcal{A}$$</li>
+<li>a specific reward function $$r_\mathcal{A} \in R_\mathcal{A}$$</li>
+<li>a sampled environment $$E \sim P(\varepsilon)$$</li>
+<li>history of agent $$\mathcal{A}$$  adapting to environment $$E$$ over its lifetime using the reward function $$r_\mathcal{A}$$, i.e., $$h \sim \langle \mathcal{A}(r_\mathcal{A}),E\rangle$$ </li>
+<li>fitness function $$\mathcal{F}$$ produces a scalar evaluation $$\mathcal{F}(h)$$ for each history $$h$$</li>
+<li>optimal reward function $$r^*_{\mathcal{A}} \in R_{\mathcal{A}}$$</li>
+</ul>
+</li>
+</ul>
+<p>$$<br>r^*_{\mathcal{A}}&#x3D;\arg \max_{r_\mathcal{A} \in R_\mathcal{A}} \mathbb{E}<em>{E\sim P(\varepsilon)} \mathbb{E}</em>{h \sim \langle \mathcal{A}(r_\mathcal{A}),E\rangle}[\mathcal{F}(h)]<br>$$</p>
+<ul>
+<li><p>使用的算法 the lookup-table -greedy Q-learning [52].</p>
+<p>[52]. C. J. C. H. Watkins, “Learning from Delayed Rewards,” Ph.D. dissertation, Cambridge Univ., Cambridge, U.K., 1989</p>
+</li>
+</ul>
+<p>$$<br>Q_{t+1}(s_t,a_t)&#x3D;(1-\alpha)Q_t(s_t,a_t)+\alpha[r_t + \gamma \max_b (Q_t(s_{t+1},b))]<br>$$</p>
+<p>之后通过实验验证了$$r*$$的奖励函数趋近最优奖励函数</p>
+<ul>
+<li><p><strong>实验2</strong></p>
+<ul>
+<li>一个三走廊的觅食环境，虫子每次随机出现正在其中一个走廊的尽头。由于每次虫子的位置是随机且未知的，智能体过去的经验不能直接直到新的觅食，所以这个环境是非马尔科夫的。</li>
+<li>实验要求智能体在固定的10000步之内尽可能多地吃到虫子。</li>
+</ul>
+<p>$$<br>Q_d(s,a)&#x3D;r_{\mathcal{A}}(s,a)+\gamma\sum_{s’\in \mathcal{S}} \hat{T}(s’|s,a)\max_{a’} Q_{d-1}(s’,a’)\<br>\hat{T}(s’|s,a)&#x3D;\frac{n_{s,a,s’}}{n_{s,a}}<br>$$</p>
+<p>其中 $$n_{s,a,s’}$$ 表示在 $$s$$ 状态下，选择 $$a$$ 后转移到 $$s’$$ 的次数。 $$n_{s,a}$$ 表示在 $$s$$ 状态下，选择 $$a$$ 的次数。</p>
+</li>
+<li><p>奖励函数：$$r_{\mathcal{A}}(s,a)&#x3D;\beta_F\varPhi_F(s) + \beta_c\varPhi_c(s,a,h)$$ ，其中 $$\beta_F$$ 和 $$\beta_c$$ 是权重系数。特征 $$\varPhi_F(s)$$ 在智能体饱的时候是 1 ，其他时候是  0 。特征 $$\varPhi_c(s,a,h) &#x3D; 1-\frac{1}{c(s,a,h)}$$ ，其中 $$c(s,a,h)$$  是智能体在历史 $$h$$ 中执行行为的时间步数。</p>
+</li>
+<li><p>当参数 $$\beta_c$$ 为正时，智能体会因为最近没有从当前状态采取的行动而获得奖励。这种奖励不是外部环境的固定函数. feature $$\varPhi_F(s)$$ is a hunger-status feature, and thus when $$\beta_F&#x3D;1$$ and $$\beta_c&#x3D;0$$, the reward function is the fitness-based reward function</p>
+</li>
+</ul>
+<p>最终基于适应度的奖励函数表现次于最优奖励函数2个数量级。因此利用内在奖励 $$\varPhi_c(s,a,h)$$ 对提升探索能力很有意义。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>视角很独特，实验很新奇。</p>
+<p>但是文章发表在自主心理发展IEEE TRANSACTIONS ON AUTONOMOUS MENTAL DEVELOPMENT，因此作为一篇概念文章比较好。</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2021/07/22/2021-07-22-Q994-腐烂的橘子-中等-深度and宽度优先搜索/" data-toggle="tooltip" data-placement="top" title="Q994-腐烂的橘子-中等-深度/宽度优先搜索">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2021/07/21/2021-07-21-Q134-加油站-中等-贪心/" data-toggle="tooltip" data-placement="top" title="Q134-加油站-中等-贪心">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Hexo-Txing 2023 
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://txing-casia.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

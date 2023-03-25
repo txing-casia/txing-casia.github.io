@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Reinforcement Learning | On Learning Intrinsic Rewards for Policy Gradient Methods - undefined
+        
+    </title>
+
+    <link rel="canonical" href="https://txing-casia.github.io/2021/07/16/2021-07-16-Reinforcement Learning - On Learning Intrinsic Rewards for Policy Gradient Methods/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Hexo-Txing</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('img/post-bg-py.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Reinforcement Learning" title="Reinforcement Learning">Reinforcement Learning</a>
+                        
+                          <a class="tag" href="/tags/#HRL" title="HRL">HRL</a>
+                        
+                    </div>
+                    <h1>Reinforcement Learning | On Learning Intrinsic Rewards for Policy Gradient Methods</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Txing on
+                        2021-07-16
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="On-Learning-Intrinsic-Rewards-for-Policy-Gradient-Methods"><a href="#On-Learning-Intrinsic-Rewards-for-Policy-Gradient-Methods" class="headerlink" title="On Learning Intrinsic Rewards for Policy Gradient Methods"></a>On Learning Intrinsic Rewards for Policy Gradient Methods</h1><p>论文链接：<a target="_blank" rel="noopener" href="https://dl.acm.org/doi/pdf/10.5555/3327345.3327375">https://dl.acm.org/doi/pdf/10.5555/3327345.3327375</a></p>
+<h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><ul>
+<li>本文提出基于 <strong>optimal reward framework</strong> [Singh et al., 2010] 的本质奖励学习方法，并和 PPO 算法（Mujoco）结合</li>
+</ul>
+<p>Satinder Singh, Richard L Lewis, Andrew G Barto, and Jonathan Sorg. Intrinsically motivated reinforcement learning: An evolutionary perspective. IEEE Transactions on Autonomous Mental Development, 2(2):70–82, 2010.</p>
+<ul>
+<li>在一些游戏场景中缺少清晰的奖励函数选择方式。有时候存在多个目标，最小化能量消耗，最大化吞吐量，最小化延时等（minimizing energy consumption and maximizing throughput and minimizing latency）</li>
+<li>早期的工作证明了最优策略的奖励函数并不唯一，例如使用一个势能函数（potential-based reward [Ng et al., 1999]）的奖励函数不会改变最优策略。</li>
+</ul>
+<p>Andrew Y Ng, Daishi Harada, and Stuart J Russell. Policy invariance under reward transformations: Theory and application to reward shaping. In Proceedings of the Sixteenth International Conference on Machine Learning, pages 278–287. Morgan Kaufmann Publishers Inc., 1999.</p>
+<ul>
+<li><p>另一方面，由于实际任务中的各种限制（e.g., inadequate memory, representational capacity, computation, training data, etc.），智能体很难学习到最优策略。因此，在解决奖励设计问题时，希望设计能改变最优策略的奖励函数变换方式。</p>
+</li>
+<li><p>构造奖励函数的好处：</p>
+<ul>
+<li>比原始的奖励函数更少的稀疏性，加快学习过程 [Rajeswaran et al., 2017]；</li>
+<li>帮助探索状态边界的区域，例如count-based reward 鼓励探索很少探索到的区域 [Bellemare et al., 2016, Ostrovski et al., 2017, Tang et al., 2017]；</li>
+</ul>
+</li>
+<li><p>相关的方法：</p>
+<ul>
+<li>preference elicitation</li>
+<li>inverse RL</li>
+<li>intrinsically motivated RL</li>
+<li>optimal rewards</li>
+<li>potentialbased shaping rewards</li>
+<li>more general reward shaping</li>
+<li>mechanism design</li>
+</ul>
+</li>
+<li><p>主要贡献：</p>
+<ul>
+<li>基于策略梯度的方法推导intrinsic rewards学习方法，并与 task-specifying (hereafter extrinsic) reward 相结合，最大化外部奖励。</li>
+<li>内部和外部奖励之和的参数通过策略梯度方法更新训练</li>
+</ul>
+</li>
+<li><p>使用本质奖励的主要原因是对RL agent的训练都是有限的（表征能力，可得到的数据，计算能力限制等等），通过集合内部奖励可以环节这些限制。The main intuition is that in practice all RL agents are bounded (computationally, representationally, in terms of data availability, etc.) and the optimal intrinsic reward can help mitigate these bounds.</p>
+</li>
+</ul>
+<h3 id="Background-and-Related-Work"><a href="#Background-and-Related-Work" class="headerlink" title="Background and Related Work"></a>Background and Related Work</h3><ul>
+<li><p><strong>Optimal rewards and reward design</strong></p>
+<p>Sorg et al. [2010]提出了PGRD算法，这是一种可扩展的算法，仅适用于基于前瞻搜索(例如，UCT)的规划agent(因此agent本身不是基于学习的agent；只学习与固定规划者一起使用的奖励)。Sorg et al. [2010] introduced PGRD (Policy Gradient for Reward Design), a scalable algorithm that only works with lookahead-search (e.g., UCT) based planning agents (and hence the agent itself is not a learning-based agent; only the reward to use with the fixed planner is learned).  </p>
+</li>
+<li><p><strong>Reward shaping and Auxiliary rewards</strong></p>
+<ul>
+<li><p>Reward shaping [Ng et al., 1999]提供了一个一般性的答案，说明什么样的奖励函数修改空间不会改变最优策略，特别是基于势能的奖励函数。Reward shaping [Ng et al., 1999] provides a general answer to what space of reward function modifications do not change the optimal policy, specifically potential-based rewards.  </p>
+</li>
+<li><p>The <strong>UNREAL</strong> agent <strong>[Jaderberg et al., 2016]</strong> used pseudo-reward computed from unsupervised auxiliary tasks to refine its internal representations.  </p>
+<p>Max Jaderberg, Volodymyr Mnih, Wojciech Marian Czarnecki, Tom Schaul, Joel Z Leibo, David Silver, and Koray Kavukcuoglu. Reinforcement learning with unsupervised auxiliary tasks. arXiv preprint arXiv:1611.05397, 2016.  </p>
+</li>
+<li><p>In <strong>Bellemare et al. [2016]</strong>, <strong>Ostrovski et al. [2017]</strong>, and <strong>Tang et al. [2017]</strong>, a pseudo-count based reward bonus was given to the agent to encourage exploration</p>
+</li>
+<li><p><strong>Pathak et al. [2017]</strong> used self-supervised prediction errors as intrinsic rewards to help the agent explore.</p>
+</li>
+<li><p>本文的主要出发点是学习本质奖励，使其能够映射高维的观测和行为到奖励中。The main departure point in this paper is that we learn the parameters of an intrinsic reward function that maps high-dimensional observations and actions to rewards.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Hierarchical RL</strong></p>
+<ul>
+<li>另一类的的本质奖励在分层强化学习中使用，比如FeUdal Network通过manager和worker在不同时间尺度尽心学习，manager学习抽象的目标指挥worker最大化外部奖励</li>
+<li>Finally, another difference is that hierarchical RL typically treats the lower-level learner as a black box while we train the intrinsic reward using gradients through the policy module in our architecture.</li>
+</ul>
+</li>
+<li><p><strong>Meta Learning for RL</strong></p>
+<ul>
+<li>这篇工作也可以被当做meta-RL方向的工作</li>
+<li>与之前工作的区别：在单个任务中元学习到内部奖励，而不是快速适应新的任务。However, a key distinction from the prior work on meta learning for RL [Finn et al., 2017, Duan et al., 2017, Wang et al., 2016, Duan et al., 2016b] is that our method aims to meta-learn intrinsic rewards within a single task, whereas much of the prior work is designed to quickly adapt to new tasks in a few-shot learning scenario.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Gradient-Based-Learning-of-Intrinsic-Rewards-A-Derivation"><a href="#Gradient-Based-Learning-of-Intrinsic-Rewards-A-Derivation" class="headerlink" title="Gradient-Based Learning of Intrinsic Rewards: A Derivation"></a>Gradient-Based Learning of Intrinsic Rewards: A Derivation</h3><h4 id="Policy-Gradient-based-RL"><a href="#Policy-Gradient-based-RL" class="headerlink" title="Policy Gradient based RL"></a>Policy Gradient based RL</h4><ul>
+<li><p>The value of a policy $$J(\theta)&#x3D;E[\sum^{\infty}_{t&#x3D;0} \gamma^tr_t]$$  </p>
+</li>
+<li><p>the gradient of the value $$J(\theta)$$ is<br>$$<br>\nabla_{\theta} J(\theta)&#x3D;E_{\theta}[G(s_t,a_t) \nabla_{\theta} \log \pi_{\theta}(a_t|s_t)]\<br>G(s_t,a_t)&#x3D;\sum^{\infty}_{i&#x3D;t} \gamma^{i-t}r_i<br>$$<br>  G是到终点为止的return</p>
+</li>
+</ul>
+<h4 id="LIRPG-Learning-Intrinsic-Rewards-for-Policy-Gradient"><a href="#LIRPG-Learning-Intrinsic-Rewards-for-Policy-Gradient" class="headerlink" title="LIRPG: Learning Intrinsic Rewards for Policy Gradient"></a>LIRPG: Learning Intrinsic Rewards for Policy Gradient</h4><p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210719-1.png" alt="Learning Intrinsic Rewards for Policy Gradient"></p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210719-2.png" alt="Algorithm 1 LIRPG: Learning Intrinsic Reward for Policy Gradient"></p>
+<ul>
+<li><p><strong>Updating Policy Parameters (θ)</strong></p>
+<p>使用内部和外部奖励之和来更新 $$\theta$$<br>$$<br>\begin{align}<br>\theta’&amp;&#x3D;\theta+\alpha\nabla_{\theta} J^{ex+in}(\theta)\<br>&amp;\approx \theta +\alpha G^{ex+in}(s_t,a_t) \nabla_{\theta} \log \pi_{\theta}(a_t|s_t)<br>\end{align}<br>$$</p>
+</li>
+<li><p><strong>Updating Intrinsic Reward Parameters (η)</strong></p>
+</li>
+</ul>
+<p>Given an episode and the updated policy parameters $$\theta’$$ , we update intrinsic reward parameters.<br>$$<br>\begin{align}<br>\nabla_{\eta} J^{ex}&amp;&#x3D;\nabla_{\theta’}J^{ex}\nabla_{\eta}\theta’\<br>\nabla_{\theta’}J^{ex} &amp;\approx G^{ex}(s_t,a_t) \nabla_{\theta’}\log \pi_{\theta’}(a_t \mid s_t)\<br>\nabla_{\eta} \theta’ &amp; &#x3D;\nabla_{\eta}(\theta+\alpha G^{ex+in}(s_t,a_t)\nabla_{\theta}\log \pi_{\theta}(a_t|s_t))\<br>&amp;&#x3D; \nabla_{\eta}(\alpha G^{ex+in}(s_t,a_t) \nabla_{\theta}\log \pi_{\theta}(a_t|s_t)))\<br>&amp;&#x3D; \nabla_{\eta}(\alpha \lambda G^{in}(s_t,a_t) \nabla_{\theta}\log \pi_{\theta}(a_t|s_t)))\<br>&amp;&#x3D; \alpha \lambda \sum^{\infty}<em>{i&#x3D;t} \gamma^{i-t}\nabla</em>{\eta} r^{in}<em>{\eta}(s_i,a_i)\nabla</em>{\theta} \log \pi_{\theta}(a_t\mid s_t)<br>\end{align}<br>$$<br>  The importance sampling:<br>$$<br>\nabla_{\theta’} J^{ex}&#x3D;G^{ex}(s_t,a_t)\frac{\nabla_{\theta’}\pi_{\theta’}(a_t\mid s_t)}{\pi_{\theta}(a_t\mid s_t)}\<br>$$<br>  重要性采样就是假设数据属于p(x)分布，但是实际采样是以q(x)分布采样的，需要乘以一个权重，把数据转换到p(x)分布，也就是重要性权重。  </p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>  整个工作还是很漂亮的，尤其的这两层的梯度推导（需要结合途中公式和文本中的公式来看）。后面考虑再看几篇本质reward的文章，看看还有什么构造方式。  </p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2021/07/18/2021-07-18-Q688-马在棋盘上的概率-中等-动态规划/" data-toggle="tooltip" data-placement="top" title="Q688-马在棋盘上的概率-中等-动态规划">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2021/07/14/2021-07-14-Reinforcement Learning - Hierarchical Deep Reinforcement Learning Integrating Temporal Abstraction and Intrinsic Motivation/" data-toggle="tooltip" data-placement="top" title="Reinforcement Learning | Hierarchical Deep Reinforcement Learning: Integrating Temporal Abstraction and Intrinsic Motivation">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Hexo-Txing 2023 
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://txing-casia.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

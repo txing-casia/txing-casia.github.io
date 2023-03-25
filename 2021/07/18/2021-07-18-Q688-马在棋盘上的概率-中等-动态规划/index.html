@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Q688-马在棋盘上的概率-中等-动态规划 - undefined
+        
+    </title>
+
+    <link rel="canonical" href="https://txing-casia.github.io/2021/07/18/2021-07-18-Q688-马在棋盘上的概率-中等-动态规划/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Hexo-Txing</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('img/post-bg-py.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Medium" title="Medium">Medium</a>
+                        
+                          <a class="tag" href="/tags/#Dynamic Planning" title="Dynamic Planning">Dynamic Planning</a>
+                        
+                    </div>
+                    <h1>Q688-马在棋盘上的概率-中等-动态规划</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Txing on
+                        2021-07-18
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h4 id="688-“马”在棋盘上的概率"><a href="#688-“马”在棋盘上的概率" class="headerlink" title="688. “马”在棋盘上的概率"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/knight-probability-in-chessboard/">688. “马”在棋盘上的概率</a></h4><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
+<p>已知一个 NxN 的国际象棋棋盘，棋盘的行号和列号都是从 0 开始。即最左上角的格子记为 (0, 0)，最右下角的记为 (N-1, N-1)。 </p>
+<p>现有一个 “马”（也译作 “骑士”）位于 (r, c) ，并打算进行 K 次移动。 </p>
+<p>如下图所示，国际象棋的 “马” 每一步先沿水平或垂直方向移动 2 个格子，然后向与之相垂直的方向再移动 1 个格子，共有 8 个可选的位置。</p>
+<p>现在 “马” 每一步都从可选的位置（包括棋盘外部的）中独立随机地选择一个进行移动，直到移动了 K 次或跳到了棋盘外面。</p>
+<p>求移动结束后，“马” 仍留在棋盘上的概率。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>输入: 3, 2, 0, 0<br>输出: 0.0625<br>解释: 输入的数据依次为 N, K, r, c<br>第 1 步时，有且只有 2 种走法令 “马” 可以留在棋盘上（跳到（1,2）或（2,1））。对于以上的两种情况，各自在第2步均有且只有2种走法令 “马” 仍然留在棋盘上。<br>所以 “马” 在结束后仍在棋盘上的概率为 0.0625。</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ul>
+<li><code>N</code> 的取值范围为 [1, 25]</li>
+<li><code>K</code> 的取值范围为 [0, 100]</li>
+<li>开始时，“马” 总是位于棋盘上</li>
+</ul>
+</blockquote>
+<h3 id="Approach-1-动态规划"><a href="#Approach-1-动态规划" class="headerlink" title="Approach 1: 动态规划"></a>Approach 1: 动态规划</h3><ul>
+<li>令 <code>f[r][c][steps]</code> 代表马在位置 <code>(r, c)</code> 移动了 <code>steps</code> 次以后还留在棋盘上的概率，根据马的移动方式，我们有以下递归：</li>
+</ul>
+<p>$$<br>f[r][c][steps]&#x3D;\sum_{dr,dc} f[r+dr][c+dc][steps-1]\cdot \frac{1}{8}<br>$$</p>
+<ul>
+<li>根据题目我们可以知道 (dr, dc) 的可能数据对是 (2, 1), (2, -1), (-2, 1), (-2, -1), (1, 2), (1, -2), (-1, 2), (-1, -2)。</li>
+<li>我们将使用二维的 dp 和 dp2 来存储我们的数据，而不是使用三维数组 f。<ul>
+<li><code>dp2</code> 代表 <code>f[][][steps]</code>；</li>
+<li><code>dp</code> 代表 <code>f[][][steps-1]</code>；</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">knightProbability</span>(<span class="params">self, N, K, r, c</span>):</span><br><span class="line">        dp = [[<span class="number">0</span>] * N <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(N)]</span><br><span class="line">        dp[r][c] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(K): <span class="comment"># 走k步还在棋盘内的概率</span></span><br><span class="line">            dp2 = [[<span class="number">0</span>] * N <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(N)]</span><br><span class="line">            <span class="keyword">for</span> r, row <span class="keyword">in</span> <span class="built_in">enumerate</span>(dp):</span><br><span class="line">                <span class="keyword">for</span> c, val <span class="keyword">in</span> <span class="built_in">enumerate</span>(row):</span><br><span class="line">                    <span class="keyword">for</span> dr, dc <span class="keyword">in</span> ((<span class="number">2</span>,<span class="number">1</span>),(<span class="number">2</span>,-<span class="number">1</span>),(-<span class="number">2</span>,<span class="number">1</span>),(-<span class="number">2</span>,-<span class="number">1</span>),</span><br><span class="line">                                   (<span class="number">1</span>,<span class="number">2</span>),(<span class="number">1</span>,-<span class="number">2</span>),(-<span class="number">1</span>,<span class="number">2</span>),(-<span class="number">1</span>,-<span class="number">2</span>)):</span><br><span class="line">                        <span class="comment"># 走了一步之后还在棋盘内</span></span><br><span class="line">                        <span class="keyword">if</span> <span class="number">0</span> &lt;= r + dr &lt; N <span class="keyword">and</span> <span class="number">0</span> &lt;= c + dc &lt; N:</span><br><span class="line">                            dp2[r+dr][c+dc] += val / <span class="number">8.0</span></span><br><span class="line">            dp = dp2</span><br><span class="line">        <span class="comment"># map()函数把sum依次作用在dp的每一项上，在map()外再使用sum()完成二维数组的求和</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(<span class="built_in">map</span>(<span class="built_in">sum</span>, dp))</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    N, K, r, c = <span class="number">3</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    solution=Solution().solve(N, K, r, c)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：$$O(N^2 K)$$。其中 N, K 为题目中的定义。我们对 $$N^2$$ 元素的每一层 dp 进行 O(1) 工作，并且考虑了 K 层。</li>
+<li>空间复杂度：$$O(N^2)$$，dp 和 dp2 的大小。</li>
+</ul>
+<h3 id="Approach-2-矩阵求幂"><a href="#Approach-2-矩阵求幂" class="headerlink" title="Approach 2: 矩阵求幂"></a>Approach 2: 矩阵求幂</h3><p>方法 1 中表示的状态重复表达了过渡到其他的线性组合的状态。 任何情况下，我们都可以将整个转换表示为这些线性组合的矩阵。然后，这个矩阵的第 n 次方代表了 n 移动的转换，因此我们可以将问题简化为矩阵求幂问题。</p>
+<p><strong>算法：</strong></p>
+<ul>
+<li>首先，我们可以利用棋盘上的对称性。马可能有 n^2 的状态（假设它在板上）。由于横轴、纵轴和对角线的对称性，我们可以假设骑士在棋盘的左上象限，并且列数等于或大于行数。对于任何一个位置，通过满足条件通过轴反射得到位置将是该位置的标准索引。</li>
+<li>这将使状态数从 $$N^2$$ 减少到大约 $$\frac{N^2}{8}$$ ，这使得在这个 $$O(\frac{N^2}{8}) \times O(\frac{N^2}{8})$$ 矩阵上下求幂大约快 $$8^3$$ 倍。</li>
+<li>现在，如果我们知道每一个状态在一次移动后都会变成某种状态的线性组合，那么让我们写一个过渡矩阵 $$\mathcal{T}$$，其中 $$\mathcal{T}$$ 的第 i 行代表了第 i 个状态的线性组合。然后，$$\mathcal{T}^n$$ 表示 n 次移动的转换，我们需要第 i 行的总和，其中 i 是起始位置的索引。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">knightProbability2</span>(<span class="params">self, N, K, sr, sc</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">canonical</span>(<span class="params">r, c</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="number">2</span> * r &gt; N: r = N - <span class="number">1</span> - r</span><br><span class="line">            <span class="keyword">if</span> <span class="number">2</span> * c &gt; N: c = N - <span class="number">1</span> - c</span><br><span class="line">            <span class="keyword">if</span> r &gt; c: r, c = c, r</span><br><span class="line">            <span class="keyword">return</span> r*N + c</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">matrix_mult</span>(<span class="params">A, B</span>):</span><br><span class="line">            ZB = <span class="built_in">zip</span>(*B)</span><br><span class="line">            <span class="keyword">return</span> [[<span class="built_in">sum</span>(a * b <span class="keyword">for</span> a, b <span class="keyword">in</span> <span class="built_in">zip</span>(row, col))</span><br><span class="line">                    <span class="keyword">for</span> col <span class="keyword">in</span> ZB] <span class="keyword">for</span> row <span class="keyword">in</span> A]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">matrix_expo</span>(<span class="params">A, K</span>):</span><br><span class="line">            <span class="keyword">if</span> K == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span> [[+(i==j) <span class="keyword">for</span> j <span class="keyword">in</span> xrange(<span class="built_in">len</span>(A))]</span><br><span class="line">                        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="built_in">len</span>(A))]</span><br><span class="line">            <span class="keyword">if</span> K == <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> A</span><br><span class="line">            <span class="keyword">elif</span> K % <span class="number">2</span>:</span><br><span class="line">                <span class="keyword">return</span> matrix_mult(matrix_expo(A, K-<span class="number">1</span>), A)</span><br><span class="line">            B = matrix_expo(A, K/<span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> matrix_mult(B, B)</span><br><span class="line"></span><br><span class="line">        index = [<span class="number">0</span>] * (N*N)</span><br><span class="line">        t = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> r <span class="keyword">in</span> xrange(N):</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> xrange(N):</span><br><span class="line">                <span class="keyword">if</span> r*N + c == canonical(r, c):</span><br><span class="line">                    index[r*N + c] = t</span><br><span class="line">                    t += <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    index[r*N + c] = index[canonical(r, c)]</span><br><span class="line"></span><br><span class="line">        T = []</span><br><span class="line">        <span class="keyword">for</span> r <span class="keyword">in</span> xrange(N):</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> xrange(N):</span><br><span class="line">                <span class="keyword">if</span> r*N + c == canonical(r, c):</span><br><span class="line">                    row = [<span class="number">0</span>] * t</span><br><span class="line">                    <span class="keyword">for</span> dr, dc <span class="keyword">in</span> ((<span class="number">2</span>,<span class="number">1</span>),(<span class="number">2</span>,-<span class="number">1</span>),(-<span class="number">2</span>,<span class="number">1</span>),(-<span class="number">2</span>,-<span class="number">1</span>),</span><br><span class="line">                                    (<span class="number">1</span>,<span class="number">2</span>),(<span class="number">1</span>,-<span class="number">2</span>),(-<span class="number">1</span>,<span class="number">2</span>),(-<span class="number">1</span>,-<span class="number">2</span>)):</span><br><span class="line">                        <span class="keyword">if</span> <span class="number">0</span> &lt;= r+dr &lt; N <span class="keyword">and</span> <span class="number">0</span> &lt;= c+dc &lt; N:</span><br><span class="line">                            row[index[(r+dr)*N + c+dc]] += <span class="number">0.125</span></span><br><span class="line">                    T.append(row)</span><br><span class="line"></span><br><span class="line">        Tk = matrix_expo(T, K)</span><br><span class="line">        i = index[sr * N + sc]</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(Tk[i])</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：$$O(N^6 \log(K))$$。其中 N, K 为题目中的定义。大约有 $$\frac{N^2}{8}$$ 规范状态，这使得我们的矩阵乘法 $$O(N^6)$$。为了找到这个矩阵的第 K 次幂，我们做了 $$O(\log(K))$$ matrix乘法。</p>
+</li>
+<li><p>空间复杂度：$$O(N^4)$$，矩阵有大约 $$\frac{N^4}{64}$$ 个元素。</p>
+</li>
+</ul>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2021/07/18/2021-07-18-Q200. 岛屿数量-中等-深度and广度优先搜索/" data-toggle="tooltip" data-placement="top" title="Q200-岛屿数量-中等-深度and广度优先搜索">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2021/07/16/2021-07-16-Reinforcement Learning - On Learning Intrinsic Rewards for Policy Gradient Methods/" data-toggle="tooltip" data-placement="top" title="Reinforcement Learning | On Learning Intrinsic Rewards for Policy Gradient Methods">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Hexo-Txing 2023 
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://txing-casia.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

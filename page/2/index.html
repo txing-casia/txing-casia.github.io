@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          
+        
+    </title>
+
+    <link rel="canonical" href="https://txing-casia.github.io/page/2/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Hexo-Txing</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<header class="intro-header" style="background-image: url('/')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>Hexo-Txing</h1>
+                    <!--<hr class="small">-->
+                    <span class="subheading">txing</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        
+
+<!-- USE SIDEBAR -->
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+            
+                <!-- Main Content -->
+
+
+<div class="post-preview">
+
+    <a href="/2022/09/30/2022-09-30-Autonomous Driving - Parallel Angular and Perpendicular Parking for Self-Driving Cars using Deep Reinforcement Learning/">
+        <h2 class="post-title">
+            Autonomous Driving | Parallel, Angular and Perpendicular Parking for Self-Driving Cars using Deep Reinforcement Learning
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Parallel, Angular and Perpendicular Parking for Self-Driving Cars using Deep Reinforcement Learningparking是所有驾驶行为的最终步骤，主要分为三类：垂直、平行、斜向泊车。
+本文使用DDPG控制汽车完成三种场景的泊车。
+1 Introduction
+强化学习控制泊车：
+“Reinforcem......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Txing on
+        2022-09-30
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2022/09/30/2022-09-30-Autonomous Driving - From smart parking towards autonomous valet parking A survey challenges and future Works/">
+        <h2 class="post-title">
+            Autonomous Driving | From smart parking towards autonomous valet parking: A survey, challenges and future Works
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            From smart parking towards autonomous valet parking: A survey, challenges and future Works停车的基本任务要求：
+
+找车位 finding the proper parking slot,
+提升使用者的体验 increasing users’ experience,
+动态的路径规划 dynamic pat......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Txing on
+        2022-09-30
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2022/09/29/2022-09-29-Autonomous Driving - Reinforcement Learning-Based Motion Planning for Automatic Parking System/">
+        <h2 class="post-title">
+            Autonomous Driving | Reinforcement Learning-Based Motion Planning for Automatic Parking System
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Reinforcement Learning-Based Motion Planning for Automatic Parking System1 Introduction
+典型的自动泊车系统包括以下组件：
+停车位检测 parking slot detection, 
+运动规划 motion planning (or path planning and tracking),
+自我车辆的姿态......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Txing on
+        2022-09-29
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2022/09/28/2022-09-28-Autonomous Driving - DL-IAPS and PJSO A Path Speed Decoupled Trajectory Optimization and its Application in Autonomous Driving/">
+        <h2 class="post-title">
+            Autonomous Driving | DL-IAPS and PJSO: A Path/Speed Decoupled Trajectory Optimization and its Application in Autonomous Driving (Baidu, 2020)
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            DL-IAPS and PJSO: A Path&#x2F;Speed Decoupled Trajectory Optimization and its Application in Autonomous Driving本文是以下三者的结合：
+
+collision-free trajectory planning problem
+Dual-Loop Iterative Anchoring ......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Txing on
+        2022-09-28
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2022/09/23/2022-09-23-Reinforcement Learning - [u] Human-level Atari 200x faster/">
+        <h2 class="post-title">
+            Reinforcement Learning | Human-level Atari 200x faster
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Human-level Atari 200x faster (Deepmind, 2022)Deepmind的Agent57是第一个在57款Atari游戏上全面超过人类水平的强化学习智能体。但是Agent57的数据利用效率很低，要求80亿帧数据。本文通过设置不同的策略集合实现了200倍的训练效率提高。
+4个关键点：
+
+使用在线网络的近似信赖域的方法，实现稳定的Bootstrapping；
+
+......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Pcon on
+        2022-09-23
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2022/09/20/2022-09-20-Autonomous Driving - BEVFormer Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers/">
+        <h2 class="post-title">
+            Autonomous Driving | BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers多相机3D检测的工作。提出了spatial cross-attention整合空间信息；提出了temporal self-attention整合历史BEV信息。
+代码开源：http......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Pcon on
+        2022-09-20
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2022/09/05/2022-09-05 - Python报错libGL error MESA-LOADER failed to open iris/">
+        <h2 class="post-title">
+            Python报错libGL error: MESA-LOADER: failed to open iris
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Python报错libGL error: MESA-LOADER: failed to open iris1 问题背景执行gym-like环境代码时，渲染动画输出时报错无法找到系统显卡驱动（笔记本，核显，Ubuntu），报错信息：
+123456libGL error: MESA-LOADER: failed to open iris: /usr/lib/dri/iris_dri.so: ca......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by PCon on
+        2022-09-05
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2022/08/25/2022-08-25-Autonomous Driving - MP3 A Unified Model to Map Perceive Predict and Plan/">
+        <h2 class="post-title">
+            Autonomous Driving | MP3 A Unified Model to Map Perceive Predict and Plan (Uber ATG 2021)
+        </h2>
+        <h3 class="post-subtitle">
+            MP3
+        </h3>
+        <div class="post-content-preview">
+            MP3: A Unified Model to Map, Perceive, Predict and Plan (Uber ATG, 2021)
+HD map具有的语义和几何信息使其成为自动驾驶系统的关键部件。但HD map的成本很高，难扩展，尤其是厘米级精度（centimeter-level accuracy）的情况下。因此能摆脱HD Map（地图加载失败、地图老旧等）的算法值得研究。本文......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Txing on
+        2022-08-25
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2022/08/24/2022-08-24-Autonomous Driving - On the Choice of Data for Efficient Training and Validation of End-to-End Driving Models/">
+        <h2 class="post-title">
+            Autonomous Driving | On the Choice of Data for Efficient Training and Validation of End-to-End Driving Models
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            On the Choice of Data for Efficient Training and Validation of End-to-End Driving Models本文关注数据集的设计，包括针对自动驾驶端到端模型训练集和验证集。
+主要工作：
+
+调研训练数据量如何影响最终驾驶表现，以及通过当前使用的生成训练数据的机制导致了哪些表现限制；
+相关性分析表明，验证设计使得在验证期间测量的......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Txing on
+        2022-08-24
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2022/08/23/2022-08-23-Autonomous Driving - 关于加减速变道的思考/">
+        <h2 class="post-title">
+            Autonomous Driving | 关于加减速变道的思考
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            关于加减速变道的思考1. 为什么要加减速变道车端的基于规则的变道算法已经实现了常规情况下的变道过程，但目前基于规则的算法都是匀速变道，对于需要加减速的较复杂的变道场景并不能自适应。因此需要一种既能应对常规简单变道情况，又能灵活适应车流密集、需要的较大幅度变速的变道算法模型。
+2. 加减速变道并不是变道场景中的特例在行车过程中，根据实际路况灵活地加减速度是一项融合于几乎所有驾驶场景中的基本驾驶......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Txing on
+        2022-08-23
+    </p>
+
+</div>
+<hr>
+
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+        <li class="previous">
+            <a href="/">&larr; Newer Posts</a>
+        </li>
+    
+    
+        <li class="next">
+            <a href="/page/3/">Older Posts &rarr;</a>
+        </li>
+    
+</ul>
+
+
+
+                <!-- 如果开启评论功能 -->
+                
+
+            </div>
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+                <!-- Featured Tags -->
+                
+
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
+                    <div class="short-about">
+
+                        
+
+                        
+
+                        <!-- SNS Link -->
+                        <ul class="list-inline">
+                            
+                            
+                            
+
+                            
+
+                            
+
+                            
+                            
+                            
+                            
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- Friends Blog -->
+                
+            </div>
+        
+    </div>
+</div>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Hexo-Txing 2023 
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://txing-casia.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

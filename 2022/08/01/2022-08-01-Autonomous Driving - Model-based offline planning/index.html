@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Autonomous Driving | Model-based offline planning - undefined
+        
+    </title>
+
+    <link rel="canonical" href="https://txing-casia.github.io/2022/08/01/2022-08-01-Autonomous Driving - Model-based offline planning/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Hexo-Txing</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('img/post-bg-py.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Imitation Learning" title="Imitation Learning">Imitation Learning</a>
+                        
+                          <a class="tag" href="/tags/#Autonomous Driving" title="Autonomous Driving">Autonomous Driving</a>
+                        
+                    </div>
+                    <h1>Autonomous Driving | Model-based offline planning</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Txing on
+                        2022-08-01
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="Model-based-offline-planning"><a href="#Model-based-offline-planning" class="headerlink" title="Model-based offline planning"></a>Model-based offline planning</h2><ul>
+<li>由于成本、安全性等因素，很多情况下不能够直接与系统交互来学习控制策略，因此，只能从记录的log数据中学习控制策略（offline reinforcement learning）。本文介绍了一种从log数据中学到超越成圣log数据的原策略的新策略的方法，命名为 model-based ofline planning (MBOP)。</li>
+</ul>
+<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><ul>
+<li><p>Offline reinforcement learning包括：</p>
+<ul>
+<li>model-free方法：<ul>
+<li>Yifan Wu, George Tucker, and Ofir Nachum. Behavior regularized offline reinforcement learning. CoRR, abs&#x2F;1911.11361, 2019. URL <a target="_blank" rel="noopener" href="http://arxiv.org/abs/1911.11361">http://arxiv.org/abs/1911.11361</a>.  </li>
+<li>Xue Bin Peng, Aviral Kumar, Grace Zhang, and Sergey Levine. Advantage-weighted regression: Simple and scalable off-policy reinforcement learning. arXiv preprint arXiv:1910.00177, 2019.  </li>
+<li>Scott Fujimoto, David Meger, and Doina Precup. Off-policy deep reinforcement learning without exploration. In International Conference on Machine Learning, pp. 2052–2062, 2019.  </li>
+<li>Ziyu Wang, Alexander Novikov, Konrad Zolna, Josh S Merel, Jost Tobias Springenberg, Scott E Reed, Bobak Shahriari, Noah Siegel, Caglar Gulcehre, Nicolas Heess, et al. Critic regularized regression. Advances in Neural Information Processing Systems, 33, 2020.</li>
+</ul>
+</li>
+<li>model-based方法：MOPO, MoREL学习一个模型，然后用于训练一个无模型策略，这种模式和Dyna模式类似。<ul>
+<li><strong>MOPO</strong>: Tianhe Yu, Garrett Thomas, Lantao Yu, Stefano Ermon, James Zou, Sergey Levine, Chelsea Finn, and Tengyu Ma. Mopo: Model-based offline policy optimization. arXiv preprint arXiv:2005.13239, 2020.  </li>
+<li><strong>MoREL</strong>: Rahul Kidambi, Aravind Rajeswaran, Praneeth Netrapalli, and Thorsten Joachims. Morel: Modelbased offline reinforcement learning. arXiv preprint arXiv:2005.05951, 2020.  </li>
+<li><strong>Dyna</strong>: Richard S Sutton and Andrew G Barto. Reinforcement learning: An introduction. MIT press, 2018.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>本文的算法属于model-based，利用model-predictive control (MPC) ，扩展MPPI轨迹规划器，并使用实时规划，产生目标或满足奖励条件的策略。</p>
+<ul>
+<li>Grady Williams, Nolan Wagener, Brian Goldfain, Paul Drews, James M Rehg, Byron Boots, and Evangelos A Theodorou. Information theoretic mpc for model-based reinforcement learning. In 2017 IEEE International Conference on Robotics and Automation (ICRA), pp. 1714–1721. IEEE, 2017b.</li>
+</ul>
+</li>
+<li><p>本文模型MBOP包含三个要素：</p>
+<ul>
+<li>a learnt <strong>world model</strong>, </li>
+<li>a learnt <strong>behavior-cloning policy</strong>, </li>
+<li>a learnt <strong>fixed-horizon value-function</strong>.</li>
+</ul>
+</li>
+<li><p>MBOP的核心优势是<strong>数据高效</strong>和<strong>自适应</strong>。只需仅100秒就可以训练出一个和奖励函数、目标状态、基于状态的约束相适应的策略。</p>
+</li>
+<li><p>MBOP能够对非平稳目标和约束执行zero-shot自适应，但是没有处理非平稳动力学特性的机制。</p>
+</li>
+</ul>
+<h3 id="Model-based-offline-planning-1"><a href="#Model-based-offline-planning-1" class="headerlink" title="Model-based offline planning"></a>Model-based offline planning</h3><ul>
+<li><p>描述问题为Markov Decision Process (MDP)，$$(S,A,p,r,\gamma)$$</p>
+<ul>
+<li>$$s$$是系统状态</li>
+<li>$$a$$是行为</li>
+<li>$$p(s_{t+1}\mid s_t,a_t)$$是状态转移概率</li>
+<li>$$r(s_t,a_t,s_{t+1})$$是奖励</li>
+<li>$$\gamma&#x3D;1$$是时间折扣系数</li>
+</ul>
+</li>
+<li><p>MBOP包括三个函数近似器：</p>
+<ul>
+<li>$$f_m$$：环境动力学的单步模型，$$(\hat{r}<em>t,\hat{s}</em>{t+1})&#x3D;f_m(s_t,a_t)$$，本文使用$$f_m(s_t,a_t)_s$$表示状态预测，使用$$f_m(s_t,a_t)_r$$表示奖励预测。</li>
+<li>$$f_b$$：表示一个行为克隆网络，$$a_t&#x3D;f_b(s_t,a_{t-1})$$，被规划算法用来引导轨迹采样的先验。</li>
+<li>$$f_R$$：是一个阉割的值函数，提供在状态s中采取行为a后，在固定界限$$R_H$$上的收益。$$\hat{R}<em>H &#x3D; f_R(s_t,a</em>{t-1})$$</li>
+</ul>
+</li>
+<li><p>MBOP-POLICY</p>
+<ul>
+<li>使用MPC输出每个新状态下的行为（$$a_t&#x3D;\pi(s_t)$$）。MPC在每一时间步执行一个固定长度的规划，返回长度为H的轨迹T。选择该轨迹的第一个行为$$a_t$$并返回。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-1.png" alt="High-Level MBOP-Policy"></p>
+<ul>
+<li>MBOP-TRAJOPT<ul>
+<li>在PDDM的基础上增加一个策略先验$$f_b$$和价值预测$$f_R$$</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-2.png" alt="MBOP-Trajopt"></p>
+<blockquote>
+<p>P.S.：第11行在$$f_b$$给出的行为上加权了采样轨迹的行为，其含义可能是希望在网络没有收敛时，记录下来的行为也不要偏差太大，都保持在采样轨迹附近，参数$$\beta$$可被视为学习率。第17行给出多条轨迹中奖励最大的作为输出（re-weighting）</p>
+</blockquote>
+<h3 id="Experimental-results"><a href="#Experimental-results" class="headerlink" title="Experimental results"></a>Experimental results</h3><ul>
+<li><p>首先，在非常少的数据中心训练，其次，再迁移到基于相同系统动力学的两种novel tasks中：</p>
+<ul>
+<li><strong>goal-conditioned tasks</strong> (that ignore the original reward function)  </li>
+<li><strong>constrained tasks</strong> (that require optimising for the original reward under some state constraint)</li>
+</ul>
+</li>
+<li><p>使用的数据集RL Unplugged (RLU) 和 D4RL </p>
+<ul>
+<li><p>**RL Unplugged (RLU)**：Caglar Gulcehre, Ziyu Wang, Alexander Novikov, Tom Le Paine, Sergio Gomez Colmenarejo, Kon- ´rad Zolna, Rishabh Agarwal, Josh Merel, Daniel Mankowitz, Cosmin Paduraru, et al. Rl unplugged: Benchmarks for offline reinforcement learning. arXiv preprint arXiv:2006.13888, 2020.  </p>
+<ul>
+<li>cartpole-swingup</li>
+<li>walker</li>
+<li>quadruped</li>
+</ul>
+</li>
+<li><p><strong>D4RL</strong>：Justin Fu, Aviral Kumar, Ofir Nachum, George Tucker, and Sergey Levine. D4rl: Datasets for deep data-driven reinforcement learning. arXiv preprint arXiv:2004.07219, 2020.  </p>
+<ul>
+<li>halfcheetah</li>
+<li>hopper</li>
+<li>walker2d</li>
+<li>Adroit</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>对于 RLU 中的 Quadruped 和 Walker 任务，由于数据集中性能高方差，在训练 $$f_b$$ 和 $$f_R$$ 的过程中，通过设定阈值，舍弃了性能不好的数据。 使用未过滤的数据来训练 $$f_s$$</p>
+</li>
+<li><p>对于所有的数据集，90%用于训练，10%用于测试验证</p>
+</li>
+<li><p>性能：For the RLU datasets (Fig. 1), we observe that MBOP is able to find a near-optimal policy on most dataset sizes in Cartpole and Quadruped with as little as <strong>5000 steps</strong>, which corresponds to <strong>5 episodes</strong>, or approximately 50 seconds on Cartpole and 100 seconds on Quadruped. On the Walker datasets MBOP requires 23 episodes (approx. 10 minutes) before it finds a reasonable policy, and with sufficient data converges to a score of 900 which is near optimal. On most tasks, MBOP is able to generate a policy significantly better than the behavior data as well as the the BC prior.  </p>
+</li>
+<li><p>MBOP模型容易适应新的目标函数，例如添加新的子目标函数$$R’<em>n$$时，<br>$$<br>R’<em>n &#x3D; \sum_t f</em>{obj}(s_t)<br>$$<br>其中，$$f</em>{obj}$$是用户自定义的目标函数。只需要将轨迹更新规则改为：<br>$$<br>T_t&#x3D;\frac{\sum_{n&#x3D;1}^N e^{kR_n+k_{obj}R’<em>n}A</em>{n,t}}{\sum_{n&#x3D;1}^N e^{kR_n+k_{obj}R’_n}}<br>$$</p>
+</li>
+<li><p>为了验证上述模型的适应能力，进行了两个实验：</p>
+<ul>
+<li><strong>goal-conditioned control</strong>（忽略原始奖励，$$k&#x3D;0$$，学习新奖励）</li>
+<li><strong>constrained control</strong>（增加了state-based constraint，然后探索合适的 $$k$$ 和 $$k_{obj}$$ ）</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-3.png" alt="ZERO-SHOT TASK ADAPTATION"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>MBOP为策略生成提供了一种易于实施、数据高效、稳定且灵活的算法。</p>
+<p>由于使用了在线规划，使其能够应对变化的目标、成本和环境限制。</p>
+<p>但是算法没有在更复杂的场景和约束条件下测试，因此适用范围和效果还缺少验证。</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2022/08/01/2022-08-01-Autonomous Driving - DriverGym Democratising Reinforcement Learning for Autonomous Driving/" data-toggle="tooltip" data-placement="top" title="Autonomous Driving | DriverGym Democratising Reinforcement Learning for Autonomous Driving">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2022/07/23/2022-07-23-使用VSCode调试带参数的Python脚本/" data-toggle="tooltip" data-placement="top" title="使用VSCode调试带参数的Python脚本">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Hexo-Txing 2023 
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://txing-casia.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

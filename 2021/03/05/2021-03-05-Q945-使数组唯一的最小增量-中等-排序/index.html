@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Q945 使数组唯一的最小增量-中等-排序 - undefined
+        
+    </title>
+
+    <link rel="canonical" href="https://txing-casia.github.io/2021/03/05/2021-03-05-Q945-使数组唯一的最小增量-中等-排序/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Hexo-Txing</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('img/post-bg-py.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Medium" title="Medium">Medium</a>
+                        
+                    </div>
+                    <h1>Q945 使数组唯一的最小增量-中等-排序</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Txing on
+                        2021-03-05
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h4 id="945-使数组唯一的最小增量"><a href="#945-使数组唯一的最小增量" class="headerlink" title="945. 使数组唯一的最小增量"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-increment-to-make-array-unique/">945. 使数组唯一的最小增量</a></h4><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
+<p>给定整数数组 A，每次 move 操作将会选择任意 A[i]，并将其递增 1。</p>
+<p>返回使 A 中的每个值都是唯一的最少操作次数。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>输入：[1,2,2]<br>输出：1<br>解释：经过一次 move 操作，数组将变为 [1, 2, 3]。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>输入：[3,2,1,2,1,7]<br>输出：6<br>解释：经过 6 次 move 操作，数组将变为 [3, 4, 1, 2, 5, 7]。<br>可以看出 5 次或 5 次以下的 move 操作是不能让数组的每个值唯一的。</p>
+</blockquote>
+<blockquote>
+<p><strong>提示：</strong></p>
+<ul>
+<li>0 &lt;&#x3D; A.length &lt;&#x3D; 40000</li>
+<li>0 &lt;&#x3D; A[i] &lt; 40000</li>
+</ul>
+</blockquote>
+<h3 id="Approach-1-直接方法（运行超时）"><a href="#Approach-1-直接方法（运行超时）" class="headerlink" title="Approach 1: 直接方法（运行超时）"></a>Approach 1: 直接方法（运行超时）</h3><p>很明显，把混乱的数组排序后可以方便快速处理。这里是每一步检查元素是否满足$$A[i] &gt;&#x3D; A[i+1]$$，如果是则$$A[i+1]+&#x3D;1$$。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minIncrementForUnique</span>(<span class="params">self, A</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        A.sort()</span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span>( i &lt; <span class="built_in">len</span>(A)-<span class="number">1</span> ):</span><br><span class="line">            <span class="keyword">if</span> A[i] &gt;= A[i+<span class="number">1</span>]:</span><br><span class="line">                A[i+<span class="number">1</span>] = A[i+<span class="number">1</span>] + <span class="number">1</span></span><br><span class="line">                res += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    A = [<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">7</span>]</span><br><span class="line">    solution=Solution().minIncrementForUnique(A)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<p>算法时间复杂度过大，导致输入数据较大的情况下，运行超时。因此必须对算法进行优化。</p>
+<p>由于 $$A[i]$$ 的范围为 $$[0, 40000)$$，我们可以用数组统计出每个数出现的次数，然后对于每个重复出现的数，我们暴力地将它递增，直到它增加到一个没有重复出现的数为止。但这样的方法的时间复杂度较大，可以达到 $$O(N^2)$$，例如数组 A 中所有元素都是 1 的情况。</p>
+<p>因此，我们不能对重复出现的数暴力的进行递增，而是用以下的做法：当我们找到一个没有出现过的数的时候，将之前某个重复出现的数增加成这个没有出现过的数。注意，这里 「之前某个重复出现的数」 是可以任意选择的，它并不会影响最终的答案，因为将 P 增加到 X 并且将 Q 增加到 Y，与将 P 增加到 Y 并且将 Q 增加到 X 都需要进行 (X + Y) - (P + Q) 次操作。</p>
+<p>例如当数组 A 为 [1, 1, 1, 1, 3, 5] 时，我们发现有 3 个重复的 1，且没有出现过 2，4 和 6，因此一共需要进行 (2 + 4 + 6) - (1 + 1 + 1) &#x3D; 9 次操作。</p>
+<h3 id="Approach-2-计数"><a href="#Approach-2-计数" class="headerlink" title="Approach 2: 计数"></a>Approach 2: 计数</h3><p><strong>算法</strong></p>
+<p>首先统计出每个数出现的次数，然后从小到大遍历每个数 x：</p>
+<ul>
+<li><p>如果 x 出现了两次以上，就将额外出现的数记录下来（例如保存到一个列表中）；</p>
+</li>
+<li><p>如果 x 没有出现过，那么在记录下来的数中选取一个 v，将它增加到 x，需要进行的操作次数为 x - v。</p>
+</li>
+</ul>
+<p>我们还可以对该算法进行优化，使得我们不需要将额外出现的数记录下来。还是以 [1, 1, 1, 1, 3, 5] 为例，当我们发现有 3 个重复的 1 时，我们先将操作次数减去 1 + 1 + 1。接下来，当我们发现 2，4 和 6 都没有出现过时，我们依次将操作次数增加 2，4 和 6。这种优化方法在方法二中也被使用。</p>
+<p><strong>注意事项</strong></p>
+<p>虽然 A[i] 的范围为 [0, 40000)，但我们有可能会将数据递增到 40000 的两倍 80000。这是因为在最坏情况下，数组 A 中有 40000 个 40000，这样要使得数组值唯一，需要将其递增为 [40000, 40001, …, 79999]，因此用来统计的数组需要开到 80000。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">minIncrementForUnique1</span>(<span class="params">self, A</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    count = [<span class="number">0</span>] * <span class="number">80000</span></span><br><span class="line">    <span class="comment"># 建立一个 Hash 表，记录每个元素出现的次数</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> A:</span><br><span class="line">        count[x] += <span class="number">1</span></span><br><span class="line">    <span class="comment"># taken记录从冗余数中取走了几个</span></span><br><span class="line">    ans = taken = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">80000</span>):</span><br><span class="line">        <span class="keyword">if</span> count[x] &gt;= <span class="number">2</span>:</span><br><span class="line">            taken += count[x] - <span class="number">1</span></span><br><span class="line">            ans -= x * (count[x] - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">elif</span> taken &gt; <span class="number">0</span> <span class="keyword">and</span> count[x] == <span class="number">0</span>:</span><br><span class="line">            taken -= <span class="number">1</span></span><br><span class="line">            ans += x</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(L)，其中 L 的数量级是数组 A 的长度加上其数据范围内的最大值，因为在最坏情况下，数组 A 中的所有数都是数据范围内的最大值。</p>
+</li>
+<li><p>空间复杂度：O(L)，需要长度 L 的数组统计每个数出现的次数。</p>
+</li>
+</ul>
+<h3 id="Approach-3-排序"><a href="#Approach-3-排序" class="headerlink" title="Approach 3: 排序"></a>Approach 3: 排序</h3><p><strong>思路</strong></p>
+<p>我们可以将数组先进行排序，再使用方法一中提及的优化方法。</p>
+<p><strong>算法</strong></p>
+<p>将数组排完序后，我们对数组进行线性扫描，会有两种情况：</p>
+<ul>
+<li><p>如果 A[i-1] &#x3D;&#x3D; A[i]，我们将操作次数减去 A[i]，并将重复的数的个数增加 1；</p>
+</li>
+<li><p>如果 A[i-1] &lt; A[i]，则区间 $$\big[A[i-1] + 1, A[i] - 1\big] $$里的数都是没有出现过的，所以我们可以将之前重复的数变为这个区间范围内的数。设当前重复的数的个数为 taken，则我们最多可以改变 give &#x3D; min(taken, A[i] - A[i - 1] - 1) 个数，即区间 $$\big[A[i - 1] + 1, A[i] - 1\big]$$的长度与 taken 二者的较小值。它们的操作数对答案的贡献为：</p>
+</li>
+</ul>
+<p>$$<br>\begin{align}<br>&amp;A[i-1]*give+\sum^{give}_{k&#x3D;1}k\<br>&#x3D;&amp; A[i-1]*give+\frac{(give+1)*give}{2}<br>\end{align}<br>$$</p>
+<p>在扫描完数组后，如果仍然有重复的数，即 taken 不为 0，我们可以将这些数变为区间 $$\big[A[n - 1] + 1, \infty \big)$$中的数，其中 A[n - 1] 是数组 A 中的最后一个数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">minIncrementForUnique2</span>(<span class="params">self, A</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    A.sort()</span><br><span class="line">    A.append(<span class="number">100000</span>)</span><br><span class="line">    ans = taken = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(A)):</span><br><span class="line">        <span class="keyword">if</span> A[i - <span class="number">1</span>] == A[i]:</span><br><span class="line">            taken += <span class="number">1</span></span><br><span class="line">            ans -= A[i]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            give = <span class="built_in">min</span>(taken, A[i] - A[i - <span class="number">1</span>] - <span class="number">1</span>)</span><br><span class="line">            ans += give * (give + <span class="number">1</span>) // <span class="number">2</span> + give * A[i - <span class="number">1</span>]</span><br><span class="line">            taken -= give</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：$$O(N\log N)$$，其中 N 是数组 A 的长度，即排序的时间复杂度。</p>
+</li>
+<li><p>空间复杂度：$$O(\log N)$$，排序需要额外 $$O(\log N)$$ 的栈空间。</p>
+</li>
+</ul>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2021/03/08/2021-03-08-Q1025-除数博弈-简单-动态规划/" data-toggle="tooltip" data-placement="top" title="Q1025 除数博弈-简单-动态规划">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2021/03/04/2021-03-04-Q978-最长湍流子数组-中等-动态规划/" data-toggle="tooltip" data-placement="top" title="Q978 最长湍流子数组-中等-动态规划">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Hexo-Txing 2023 
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://txing-casia.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

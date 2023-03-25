@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Q60 Permutation Sequence-中等 - undefined
+        
+    </title>
+
+    <link rel="canonical" href="https://txing-casia.github.io/2020/09/05/2020-09-05-Q60 Permutation Sequence-中等/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Hexo-Txing</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('img/post-bg-py.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Medium" title="Medium">Medium</a>
+                        
+                    </div>
+                    <h1>Q60 Permutation Sequence-中等</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Txing on
+                        2020-09-05
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="Permutation-Sequence"><a href="#Permutation-Sequence" class="headerlink" title="Permutation Sequence"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/permutation-sequence/">Permutation Sequence</a></h1><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
+<p>The set [1,2,3,…,n] contains a total of n! unique permutations.</p>
+<p>By listing and labeling all of the permutations in order, we get the following sequence for n &#x3D; 3:</p>
+<p>“123”<br>“132”<br>“213”<br>“231”<br>“312”<br>“321”<br>Given n and k, return the kth permutation sequence.</p>
+<p><strong>Note:</strong></p>
+<p>Given n will be between 1 and 9 inclusive.<br>Given k will be between 1 and n! inclusive.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>Input: n &#x3D; 3, k &#x3D; 3<br>Output: “213”</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>Input: n &#x3D; 4, k &#x3D; 9<br>Output: “2314”</p>
+</blockquote>
+<h3 id="Approach-1-缩小问题规模"><a href="#Approach-1-缩小问题规模" class="headerlink" title="Approach 1: 缩小问题规模"></a>Approach 1: 缩小问题规模</h3><p>要想解决本题，首先需要了解一个简单的结论：</p>
+<blockquote>
+<p>对于 n 个不同的元素（例如数 1, 2, $$\cdots$$, n），它们可以组成的排列总数目为 n!。</p>
+</blockquote>
+<p>对于给定的 n 和 k，我们不妨从左往右确定第 k 个排列中的每一个位置上的元素到底是什么。</p>
+<p>我们首先确定排列中的首个元素 $$a_1$$ 。根据上述的结论，我们可以知道：</p>
+<ul>
+<li><p>以 1 为 $$a_1$$ 的排列一共有 $$(n-1)!$$ 个；</p>
+</li>
+<li><p>以 2 为 $$a_1$$的排列一共有 $$(n-1)!$$ 个；</p>
+</li>
+<li><p>以 n 为 $$a_1$$ 的排列一共有 $$(n-1)!$$ 个。</p>
+</li>
+</ul>
+<p>由于我们需要求出从小到大的第 k 个排列，因此：</p>
+<ul>
+<li>如果 $$k \leq (n-1)!$$，我们就可以确定排列的首个元素为 1；</li>
+<li>如果 $$(n-1)! &lt; k \leq 2 \cdot (n-1)!$$，我们就可以确定排列的首个元素为 2；</li>
+<li>如果 $$(n-1) \cdot (n-1)! &lt; k \leq n \cdot (n-1)!$$，我们就可以确定排列的首个元素为 n。<br>因此，第 k 个排列的首个元素就是：</li>
+</ul>
+<p>$$<br>a_1&#x3D;\frac{k−1}{(n−1)!}+1<br>$$</p>
+<p>当我们确定了 $$a_1$$ 后，如何使用相似的思路，确定下一个元素 $$a_2$$  呢？实际上，我们考虑以 $$a_1$$  为首个元素的所有排列：</p>
+<ul>
+<li>以 $$[1,n] \backslash a_1$$最小的元素为 $$a_2$$ 的排列一共有 $$(n-2)!$$个；</li>
+<li>以 $$[1,n] \backslash a_1$$ 次小的元素为 $$a_2$$的排列一共有 $$(n-2)!$$个；</li>
+<li>以 $$[1,n] \backslash a_1$$最大的元素为 $$a_2$$的排列一共有 $$(n-2)!$$ 个；</li>
+</ul>
+<p>其中 $$[1,n] \backslash a_1$$表示包含 $$1, 2, \cdots n$$中除去 $$a_1$$以外元素的集合。这些排列从编号 $$(a_1-1) \cdot (n-1)!$$开始，到 $$a_1 \cdot (n-1)!$$结束，总计 $$(n-1)!$$个，因此第 k 个排列实际上就对应着这其中的第<br>$$<br>k’ &#x3D; (k-1) \bmod (n-1)! + 1<br>$$<br>个排列。这样一来，我们就把原问题转化成了一个完全相同但规模减少 1 的子问题：</p>
+<p>求 $$[1, n] \backslash a_1$$这 n-1 个元素组成的排列中，第 $$k’$$ 小的排列。</p>
+<h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><p>设第 k 个排列为 $$a_1, a_2, \cdots, a_n$$，我们从左往右地确定每一个元素 $$a_i$$。我们用数组 $$\textit{valid}$$记录每一个元素是否被使用过。</p>
+<p>我们从小到大枚举 i：</p>
+<ul>
+<li><p>我们已经使用过了 i-1 个元素，剩余 n-i+1 个元素未使用过，每一个元素作为 a_i 都对应着 (n-i)!个排列，总计 (n-i+1)! 个排列；</p>
+</li>
+<li><p>因此在第 k 个排列中，$$a_i$$  即为剩余未使用过的元素中第 $$\lfloor \frac{k-1}{(n-i)!}\rfloor + 1$$小的元素；</p>
+</li>
+<li><p>在确定了 $$a_i$$后，这 $$n-i+1$$ 个元素的第 k 个排列，就等于 $$a_i$$之后跟着剩余 n-i 个元素的第 $$(k-1) \bmod (n-i)! + 1$$个排列。</p>
+</li>
+</ul>
+<p>在实际的代码中，我们可以首先将 k 的值减少 1，这样可以减少运算，降低代码出错的概率。对应上述的后两步，即为：</p>
+<ul>
+<li><p>因此在第 k 个排列中，$$a_i$$即为剩余未使用过的元素中第 $$\lfloor \frac{k}{(n-i)!} \rfloor + 1$$小的元素；</p>
+</li>
+<li><p>在确定了 $$a_i$$ 后，这 n-i+1 个元素的第 k 个排列，就等于 $$a_i$$  之后跟着剩余 n-i个元素的第 $$k \bmod (n-i)!$$个排列。</p>
+</li>
+</ul>
+<p>实际上，这相当于我们将所有的排列从 0 开始进行编号。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getPermutation</span>(<span class="params">self, n: <span class="built_in">int</span>, k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        factorial = [<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            factorial.append(factorial[-<span class="number">1</span>] * i)</span><br><span class="line">        </span><br><span class="line">        k -= <span class="number">1</span></span><br><span class="line">        ans = <span class="built_in">list</span>()</span><br><span class="line">        valid = [<span class="number">1</span>] * (n + <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n + <span class="number">1</span>):</span><br><span class="line">            order = k // factorial[n - i] + <span class="number">1</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n + <span class="number">1</span>):</span><br><span class="line">                order -= valid[j]</span><br><span class="line">                <span class="keyword">if</span> order == <span class="number">0</span>:</span><br><span class="line">                    ans.append(<span class="built_in">str</span>(j))</span><br><span class="line">                    valid[j] = <span class="number">0</span></span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">            k %= factorial[n - i]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;&quot;</span>.join(ans)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><ul>
+<li><p>时间复杂度：$$O(n^2)$$。</p>
+</li>
+<li><p>空间复杂度：$$O(n)$$。</p>
+</li>
+</ul>
+<h3 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h3><p>对于给定的排列 $$a_1, a_2, \cdots, a_n$$ ，你能求出 k 吗？</p>
+<p>解答：<br>$$<br>k &#x3D; \left( \sum_{i&#x3D;1}^n \textit{order}(a_i) \cdot (n-i)! \right) + 1<br>$$<br>其中 $$\textit{order}(a_i)$$表示 $$a_{i+1}, \cdots, a_n$$中小于 $$a_i$$的元素个数。</p>
+<h3 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h3><p>我在分析这个问题的时候只考虑到了第一项怎么确定，然后就用递归来求解问题，中间忽略了n和k的取值特例。分析不够完备，代码看着比较乱，可读性不强。今后分析的时候还是要把问题分析完整了再编代码，比如推出这道题的通项公式后再写代码。</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/09/07/2020-09-07-Q104 Maximum Depth of Binary-简单-深度and广度优先搜索 Tree/" data-toggle="tooltip" data-placement="top" title="Q104 Maximum Depth of Binary Tree-简单-深度/广度优先搜索">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/09/04/2020-09-04-Q257 Binary Tree Paths-简单-深度and广度优先搜索/" data-toggle="tooltip" data-placement="top" title="Q257 Binary Tree Paths-简单-深度/广度优先搜索">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Hexo-Txing 2023 
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://txing-casia.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

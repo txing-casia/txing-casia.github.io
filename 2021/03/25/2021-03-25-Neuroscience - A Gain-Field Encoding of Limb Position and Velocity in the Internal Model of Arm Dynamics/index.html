@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Neuroscience | A Gain-Field Encoding of Limb Position and Velocity in the Internal Model of Arm Dynamics - undefined
+        
+    </title>
+
+    <link rel="canonical" href="https://txing-casia.github.io/2021/03/25/2021-03-25-Neuroscience - A Gain-Field Encoding of Limb Position and Velocity in the Internal Model of Arm Dynamics/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Hexo-Txing</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('img/post-bg-py.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Neuroscience" title="Neuroscience">Neuroscience</a>
+                        
+                          <a class="tag" href="/tags/#Motor Primitives" title="Motor Primitives">Motor Primitives</a>
+                        
+                    </div>
+                    <h1>Neuroscience | A Gain-Field Encoding of Limb Position and Velocity in the Internal Model of Arm Dynamics</h1>
+                    <h2 class="subheading">运动基元</h2>
+                    <span class="meta">
+                        Posted by Txing on
+                        2021-03-25
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="A-Gain-Field-Encoding-of-Limb-Position-and-Velocity-in-the-Internal-Model-of-Arm-Dynamics"><a href="#A-Gain-Field-Encoding-of-Limb-Position-and-Velocity-in-the-Internal-Model-of-Arm-Dynamics" class="headerlink" title="A Gain-Field Encoding of Limb Position and Velocity in the Internal Model of Arm Dynamics"></a>A Gain-Field Encoding of Limb Position and Velocity in the Internal Model of Arm Dynamics</h1><p>论文链接：<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025">https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025</a></p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>reaching任务的适应性取决于大脑中的计算，这种计算将手臂的位置和速度的感觉线索转换为运动指令。</p>
+<p>本文提出一种位置-速度增益场来进行这种转换。</p>
+<p>增益场中的运动基元由线性的位置编码基元和高斯形的速度编码基元乘法调制。</p>
+<p>文章得出两个结论：</p>
+<ol>
+<li><p>在被训练的空间之外，增益场依然能帮助泛化</p>
+</li>
+<li><p>非单调的力模式（nonmonotonic force patterns）比单调的力模式（monotonic force patterns）更难学习</p>
+</li>
+</ol>
+<h2 id="主要工作"><a href="#主要工作" class="headerlink" title="主要工作"></a>主要工作</h2><ul>
+<li><p>行为（<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Shadmehr2">Shadmehr和Mussa-Ivaldi，1994</a>；<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Conditt1">Conditt和Mussa-Ivaldi，1999</a>）和神经生理学（<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Li1">Li等，2001</a>；<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Gribble1">Gribble和Scott，2002）</a>）证据表明，大脑通过高度适应性强的内部模型控制肢体运动，</p>
+</li>
+<li><p>神经生理学实验表明运动皮层可能是学习肢体动力学内部模型的神经系统的重要组成部分之一（<a target="_blank" rel="noopener" href="https://www.cell.com/neuron/fulltext/S0896-6273(01)00301-4">Li et al. 2001</a>）。现在有关于各种运动参数如何变化的重要信息，例如肢体速度（<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Moran1">Moran和Schwartz，1999年</a>），手臂方向（<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Scott1">Scott和Kalaska，1997年</a>；<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Scott2">Scott等，1997年</a>）以及手部姿势（<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Caminiti1">Caminiti等，1990年</a>；<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Sergio1">Sergio和Kalaska</a>，<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Scott2">1997年</a>）<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Sergio1">1997</a>）由运动皮层中的神经元编码。</p>
+</li>
+<li><p>具有反映在神经生理学实验中发现的某些细胞特性的元素的计算模型已尝试解释适应过程中泛化的模式如何与神经表征相关。这些计算模型假设内部模型由“元素”或碱基组成，每个仅编码感觉空间的一部分，并且人口代码在计算感觉运动转换时会结合这些元素（<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Georgopoulos2">Georgopoulos等人1986</a>；<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Levi1">Levi和Camhi 2000</a>；<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Pouget2">Pouget等人2000</a>；<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Thoroughman1">Thoroughman和Shadmehr 2000</a>；<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Donchin1">Donchin和Shadmehr 2002</a>；<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Steinberg1">Steinberg等人2002。</a>）。该图将期望的感觉状态转换为即将到来的力的预测。在这些假设下，错误概括的模式应揭示基本元素的形状。</p>
+</li>
+<li><p>我们进行了一组实验，检查了神经元如何同时编码肢体位置和速度。我们表明，运动误差一般用一种模式暗示，该模式表明肢体位置空间的线性或单调编码，并且该编码是通过运动方向的编码进行乘法调制的。我们从泛化模式中得出的肢体位置和速度的增益场编码与运动皮层中这些参数的神经编码非常相似（<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Georgopoulos1">Georgopoulos等，1984</a>）</p>
+</li>
+<li><p>实验部分：</p>
+<ul>
+<li><p>每个运动的关节转动角度相同，运动时间相同，因此保证探索相同的关节速度-位置空间</p>
+</li>
+<li><p>力场为 <strong>viscous curl-field</strong>（粘性卷曲力场）</p>
+</li>
+<li><p><strong>catch trial</strong> 是不加力场的运动；<strong>field trial</strong> 是加力场的运动</p>
+</li>
+<li><p>左边的轨迹，力场向左推手；</p>
+</li>
+<li><p>右边的轨迹，力场向右推手</p>
+</li>
+<li><p>中间的轨迹，力场输出为0</p>
+</li>
+</ul>
+</li>
+<li><p>运动相隔越远，力越能联系它们</p>
+</li>
+<li><p>以上结果表明，当不同的力与相同方向但在不同空间位置的两个运动相关联时，泛化会随着它们之间距离的增加而降低。另一方面，较早的结果发现，当在单个位置学习到不同方向的运动时，学习会推广到很远的其他手臂位置（<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Ghez1">Ghez等，2000</a>；<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Shadmehr1">Shadmehr和Moussavi，2000</a>；<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Malfait1">Malfait等，2002</a>）。</p>
+<p>The above results demonstrate that when different forces are to be associated with two movements that are in the same direction but at different spatial locations, generalization decreases with increased distance between them. On the other hand, earlier results had found that when movements to various directions are learned at a single location, learning generalizes to other arm locations very far away (<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Ghez1">Ghez et al. 2000</a>; <a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Shadmehr1">Shadmehr and Moussavi 2000</a>; <a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Malfait1">Malfait et al. 2002</a>).</p>
+</li>
+<li><p>我们同时考虑了位置空间的高斯编码和线性编码。我们首先假设肢体位置空间为高斯编码，并评估基础元素的最佳宽度以适合数据。我们惊讶地发现，每个元素的半峰处最佳全宽约为80厘米（高斯函数的标准偏差，σ&#x3D; 34厘米）。通过高斯基础元素对位置空间进行非常广泛的调整，在工作空间宽度的三倍的工作空间上形成了一个基本上线性的位置相关的接收场。由于此模型在我们的整个训练空间以及以后的范围内都产生了基本上单调的位置编码，因此我们决定详细研究具有简单线性位置编码的模型。的确，<strong>运动皮层</strong>的研究（<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Georgopoulos1">Georgopoulos等人，1984年</a>；<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Sergio1">Sergio和Kalaska（1997</a>），<strong>体感皮质</strong>（<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Prudahomme1">Prud’homme和Kalaska 1994</a> ; <a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Tillery1">Tillery等人1996</a>）和<strong>脊髓小脑束</strong>（<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Bosco1">Bosco等人1996</a>）发现，这些区域的细胞在全局范围内通常是<strong>线性地编码肢体静态位置</strong>。</p>
+</li>
+<li><p><strong>加性编码不能适应作为位置和速度的非线性函数的场</strong>，例如<em>f</em>（<em>x</em>，<em>ẋ</em>）&#x3D;（<em>x &#x2F; d</em>）· <em>Bẋ</em>。这是描述我们在上一节中考虑的任务的力场。理论研究表明，要适应这样的非线性场，必须以乘法而不是加法形成组合空间的基函数（<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Pouget1">Pouget和Sejnowski 1997</a>）。我们选择使用位置和速度的乘法组合。</p>
+</li>
+<li><p><strong>假设位置和速度通过增益场机制联合编码。</strong>We hypothesized that position and velocity encoding are combined via a gain-field mechanism </p>
+</li>
+<li><p>图3B是两个基元，线性力场的情况下的基元权重学习过程，曲线越与中间斜率为-1的虚线对齐，表示学习越快越高效。（1&#x2F;2kd,-1&#x2F;2kd）是最佳权重。k越大、d越大、b越小，越能出尽快速学习。</p>
+</li>
+<li><p>图3B中的简单线性基元示意：</p>
+<ul>
+<li>$$<br>f(x)&#x3D;\frac{x}{d}\<br>g_1&#x3D;kx+b\<br>g_2&#x3D;-kx+b<br>$$</li>
+</ul>
+</li>
+<li><p>Importantly, when the trained position <em>d</em> is close to the zero of the coordinate axis, the slope is also close to zero, making the generalization function flat (i.e., global generalization).</p>
+</li>
+<li><p>适应力场并不只是单纯地增加刚度。This was not simply a result of <strong>increased stiffness</strong> because, when the force field was removed unexpectedly, the trajectories and endpoint errors were on the opposite side of those in the early force field, indicating <strong>a proper internal model</strong>. <a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio-0000025-g004">Figure 4</a>C shows a position-dependent field in this category, and <a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio-0000025-g004">Figure 4</a>D–<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio-0000025-g004">4</a>F shows movements made by the simulation as it adapts to this field. This pattern of adaptation is similar to reported values in human data (<a target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Flash1">Flash and Gurevich 1997</a>).</p>
+</li>
+<li><p>图4AB，在L区域训练，然后再R区域测试，在新力场中学习速度变快</p>
+</li>
+<li><p>两个模型的预测：</p>
+<p>(1) a change to the pattern of forces can substantially increase the difficulty of a task; 力场中变化的力模式会大大增加任务难度</p>
+<p>(2) there should be hypergeneralization; i.e., forces expected in an untrained part of the workspace may be larger than the ones experienced at a trained location.超泛化性，在工作空间的未训练部分预期的力可能比在训练位置经历的力大</p>
+</li>
+<li><p>尽管在训练空间上学得很少，但我们在测试空间中发现了明显更大的后效应，即过度概括。我们的模拟表明，这种过度概括不能归因于<strong>肢体惯性</strong>和&#x2F;或<strong>刚度</strong>随肢体位置的变化而变化。More importantly, despite this small learning in the training space, we found significantly bigger aftereffects in the test space, i.e., hypergeneralization. Our simulations suggest that this hypergeneralization could not be due to varying limb inertia and&#x2F;or stiffness as a function of limb position.</p>
+</li>
+<li><p><strong>增益场定义</strong>：细胞编码中两个独立变量的乘法相互作用称为增益场编码。Multiplicative interaction of two independent variables in cell encoding is called gain-field coding.</p>
+</li>
+<li><p>位置-速度运动基元：</p>
+</li>
+</ul>
+<p>$$<br>\tau&#x3D;\sum Wg_z\<br>g_z(q,\dot{q})&#x3D;g_p(q)*g_v(\dot{q})\<br>g_{p,i}(q)&#x3D;k_i^T\cdot q+b\<br>g_{v,i}(\dot{q})&#x3D;\exp\bigg(\frac{\parallel\dot{q}-c_i\parallel^2}{2\sigma^2}\bigg)\<br>k_i&#x3D;|k| \cdot<br>\begin{bmatrix}<br>\cos(\theta_i)\<br>\sin(\theta_i)\<br>\end{bmatrix}<br>\<br>b&#x3D;1.3\<br>k&#x3D;1<br>$$</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>很有趣的文章，值得进一步考虑。但是提出的模型比较简单，可以进一步讨论。</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2021/03/26/2021-03-26-Q24-两两交换链表中的节点-中等-链表/" data-toggle="tooltip" data-placement="top" title="Q24-两两交换链表中的节点-中等-链表">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2021/03/25/2021-03-25-Q1669-合并两个链表-中等-链表/" data-toggle="tooltip" data-placement="top" title="Q1669-合并两个链表-中等-链表">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Hexo-Txing 2023 
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://txing-casia.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
