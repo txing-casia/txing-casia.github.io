@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="泛用人形决战型机器人博士">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          伽蓝之堂 | Txing Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://txing-casia.github.io/page/29/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Txing</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<header class="intro-header" style="background-image: url('/')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>Txing</h1>
+                    <!--<hr class="small">-->
+                    <span class="subheading">欢迎来到 | 伽蓝之堂</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        
+
+<!-- USE SIDEBAR -->
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+            
+                <!-- Main Content -->
+
+
+<div class="post-preview">
+
+    <a href="/2019/04/29/2019-04-29-Q985-Sum-of-Even-Numbers-After-Queries/">
+        <h2 class="post-title">
+            Q985 Sum of Even Numbers After Queries
+        </h2>
+        <h3 class="post-subtitle">
+            Runtime: 180 ms, faster than 49.38% of Python3 online submissions forSum of Even Numbers After Queries. Memory Usage: 17.5 MB, less than 5.56% of Python3 online submissions for Sum of Even Numbers After Queries.
+        </h3>
+        <div class="post-content-preview">
+            Sum of Even Numbers After QueriesQuestion
+We have an array A of integers, and an array queries of queries.
+For the i-th query val = queries[i][0], index = queries[i][1], we add val to A[index].  Th......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Txing on
+        2019-04-29
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/04/26/2019-04-26-Q768-Max-Chunks-To-Make-Sorted-IId-(Undone) - 副本/">
+        <h2 class="post-title">
+            Q768 Max Chunks To Make Sorted II-(Hard)
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Max Chunks To Make Sorted IIQuestion
+This question is the same as “Max Chunks to Make Sorted” except the integers of the given array are not necessarily distinct, the input array could be up to len......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Txing on
+        2019-04-26
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/04/25/2019-04-25-Q905-Sort-Array-By-Parity/">
+        <h2 class="post-title">
+            Q905 Sort Array By Parity
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Sort Array By ParityQuestion
+Given an array A of non-negative integers, return an array consisting of all the even elements of A, followed by all the odd elements of A.
+You may return any answer ar......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Txing on
+        2019-04-25
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/04/24/2019-04-24-Q26-Remove-Duplicates-from-Sorted-Array/">
+        <h2 class="post-title">
+            Q26 Remove Duplicates from Sorted Array
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Remove Duplicates from Sorted ArrayQuestion
+Given a sorted array nums, remove the duplicates in-place such that each element appear only once and return the new length.
+Do not allocate extra space ......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Txing on
+        2019-04-24
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/04/23/2019-04-23-Q11-Container-With-Most-Water/">
+        <h2 class="post-title">
+            Q11 Container With Most Water
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Container With Most WaterQuestion
+Given n non-negative integers $a_1, a_2, …, a_n$ , where each represents a point at coordinate ($i$, $a_i$).  $n$ vertical lines are drawn such that the two endpoi......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Txing on
+        2019-04-23
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/04/21/2019-04-21-Q1-Two-Sum/">
+        <h2 class="post-title">
+            Q1 Two Sum
+        </h2>
+        <h3 class="post-subtitle">
+            Runtime: 40 ms, faster than 65.08% of Python online submissions for Two Sum. Memory Usage: 13.4 MB, less than 5.02% of Python online submissions for Two Sum.
+        </h3>
+        <div class="post-content-preview">
+            Two sumQuestion
+Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Txing on
+        2019-04-21
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/08/15/2018-08-15-在python中调用MATLAB的方法/">
+        <h2 class="post-title">
+            在python中调用MATLAB的方法
+        </h2>
+        <h3 class="post-subtitle">
+            这种调用其实很鸡肋，尽可能不要跨软件调用，
+        </h3>
+        <div class="post-content-preview">
+            在python中调用MATLAB的方法网上有些是让你安装mlab库来实现调用的，这个方法已经淘汰不用了，这里介绍比较新的方法。
+Step 1: install MATLAB Engine API for Python官网给出的方案：
+install MATLAB Engine API for Python
+在MATLAB中输入：
+1matlabroot
+
+得到返回的位置
+打开anaconda......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Txing on
+        2018-08-15
+    </p>
+
+</div>
+<hr>
+
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+        <li class="previous">
+            <a href="/page/28/">&larr; Newer Posts</a>
+        </li>
+    
+    
+</ul>
+
+
+
+                <!-- 如果开启评论功能 -->
+                
+
+            </div>
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                            
+                        
+                            
+                            <a href="/tags/#Python" title="Python" rel="139">Python</a>
+                            
+                        
+                            
+                            <a href="/tags/#Algorithm" title="Algorithm" rel="131">Algorithm</a>
+                            
+                        
+                            
+                            <a href="/tags/#Array" title="Array" rel="9">Array</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#Hash Table" title="Hash Table" rel="8">Hash Table</a>
+                            
+                        
+                            
+                            <a href="/tags/#Stack" title="Stack" rel="2">Stack</a>
+                            
+                        
+                            
+                            <a href="/tags/#Binary Search Tree" title="Binary Search Tree" rel="3">Binary Search Tree</a>
+                            
+                        
+                            
+                            <a href="/tags/#Pytorch" title="Pytorch" rel="5">Pytorch</a>
+                            
+                        
+                            
+                            <a href="/tags/#Easy" title="Easy" rel="54">Easy</a>
+                            
+                        
+                            
+                            <a href="/tags/#Linked List" title="Linked List" rel="18">Linked List</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#Medium" title="Medium" rel="51">Medium</a>
+                            
+                        
+                            
+                            <a href="/tags/#String" title="String" rel="10">String</a>
+                            
+                        
+                            
+                            <a href="/tags/#Binary search" title="Binary search" rel="5">Binary search</a>
+                            
+                        
+                            
+                            <a href="/tags/#Windows" title="Windows" rel="3">Windows</a>
+                            
+                        
+                            
+                            <a href="/tags/#Linux" title="Linux" rel="4">Linux</a>
+                            
+                        
+                            
+                            <a href="/tags/#Reinforcement Learning" title="Reinforcement Learning" rel="27">Reinforcement Learning</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#LaTeX" title="LaTeX" rel="3">LaTeX</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#Dynamic Planning" title="Dynamic Planning" rel="20">Dynamic Planning</a>
+                            
+                        
+                            
+                            <a href="/tags/#Hard" title="Hard" rel="3">Hard</a>
+                            
+                        
+                            
+                            <a href="/tags/#Enumeration" title="Enumeration" rel="2">Enumeration</a>
+                            
+                        
+                            
+                            <a href="/tags/#DFS" title="DFS" rel="9">DFS</a>
+                            
+                        
+                            
+                            <a href="/tags/#BFS" title="BFS" rel="8">BFS</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#Neuroscience" title="Neuroscience" rel="21">Neuroscience</a>
+                            
+                        
+                            
+                            <a href="/tags/#Backtracking Algorithm" title="Backtracking Algorithm" rel="2">Backtracking Algorithm</a>
+                            
+                        
+                            
+                            <a href="/tags/#Backtracking" title="Backtracking" rel="4">Backtracking</a>
+                            
+                        
+                            
+                            <a href="/tags/#Recursion" title="Recursion" rel="4">Recursion</a>
+                            
+                        
+                            
+                            <a href="/tags/#HRL" title="HRL" rel="12">HRL</a>
+                            
+                        
+                            
+                            <a href="/tags/#V-rep" title="V-rep" rel="4">V-rep</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#Reward Shaping" title="Reward Shaping" rel="2">Reward Shaping</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#Motor Primitives" title="Motor Primitives" rel="8">Motor Primitives</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#Greedy" title="Greedy" rel="5">Greedy</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#Tree" title="Tree" rel="9">Tree</a>
+                            
+                        
+                            
+                            <a href="/tags/#Code Tips" title="Code Tips" rel="2">Code Tips</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#CoppeliaSim" title="CoppeliaSim" rel="3">CoppeliaSim</a>
+                            
+                        
+                            
+                            <a href="/tags/#VScode" title="VScode" rel="2">VScode</a>
+                            
+                        
+                            
+                            <a href="/tags/#Imitation Learning" title="Imitation Learning" rel="14">Imitation Learning</a>
+                            
+                        
+                            
+                            <a href="/tags/#Autonomous Driving" title="Autonomous Driving" rel="24">Autonomous Driving</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#Planning" title="Planning" rel="2">Planning</a>
+                            
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
+                    <div class="short-about">
+
+                        
+                            <img src="//img/avatar-txing2.jpg" />
+                        
+
+                        
+                            <p>Know Yourself</p>
+                        
+
+                        <!-- SNS Link -->
+                        <ul class="list-inline">
+                            
+                            
+                            
+
+                            
+
+                            
+
+                            
+                            
+                            
+                            
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://blog.uomi.moe" target="_blank">驱逐舰患者</a></li>
+                    
+                        <li><a href="https://m.mepai.me/photographyer/u_5a68085ba15aa.html?tdsourcetag=s_pctim_aiomsg" target="_blank">隐之-INF</a></li>
+                    
+                </ul>
+                
+            </div>
+        
+    </div>
+</div>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Txing 2023 
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://txing-casia.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
