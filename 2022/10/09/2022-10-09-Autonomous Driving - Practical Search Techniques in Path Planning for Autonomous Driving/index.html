@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="泛用人形决战型机器人博士">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Autonomous Driving | Practical Search Techniques in Path Planning for Autonomous Driving - 伽蓝之堂 | Txing Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://txing-casia.github.io/2022/10/09/2022-10-09-Autonomous Driving - Practical Search Techniques in Path Planning for Autonomous Driving/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Txing</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('img/post-bg-py.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Autonomous Driving" title="Autonomous Driving">Autonomous Driving</a>
+                        
+                          <a class="tag" href="/tags/#Planning" title="Planning">Planning</a>
+                        
+                    </div>
+                    <h1>Autonomous Driving | Practical Search Techniques in Path Planning for Autonomous Driving</h1>
+                    <h2 class="subheading">Hybrid A* method</h2>
+                    <span class="meta">
+                        Posted by Txing on
+                        2022-10-09
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="Practical-Search-Techniques-in-Path-Planning-for-Autonomous-Driving"><a href="#Practical-Search-Techniques-in-Path-Planning-for-Autonomous-Driving" class="headerlink" title="Practical Search Techniques in Path Planning for Autonomous Driving"></a>Practical Search Techniques in Path Planning for Autonomous Driving</h2><p>本文是stanford大学在 2007 DARPA Urban Challenge 中产出的一项工作，提出了著名的混合A*算法。</p>
+<p>混合A*算法包含两个主要步骤：</p>
+<ul>
+<li><ol>
+<li>求解基于改进的A*算法的粗略轨迹，节点之间在动力学上是连续的；</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>使用数值非线性优化提升轨迹质量；</li>
+</ol>
+</li>
+</ul>
+<h3 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h3><ul>
+<li>结合 rapidly exploring random trees (RRTs) 的连续路径规划算法，但他们依赖高效的启发式引导：<ul>
+<li>Kavraki, L.; Svestka, P.; Latombe, J.-C.; and Overmars, M. 1996. Probabilistic roadmaps for path planning in high-dimensional configuration spaces. IEEE Transactions on Robotics and Automation 12(4).</li>
+<li>LaValle, S. 1998. Rapidly-exploring random trees: A new tool for path planning.</li>
+<li>Plaku, E.; Kavraki, L.; and Vardi, M. 2007. Discrete search leading continuous exploration for kinodynamic motion planning. In Robotics: Science and Systems.</li>
+</ul>
+</li>
+<li>步骤：<ul>
+<li>step 1：使用启发式搜索在连续的坐标空间中规划满足动力学的轨迹。但该方法缺少理论上的最优保证；</li>
+<li>step 2：使用共轭梯度(conjugate gradient, CG)下降来局部改善解的质量，产生至少是局部最优的路径，但通常也达到全局最优。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-Hybrid-State-A-Search"><a href="#2-Hybrid-State-A-Search" class="headerlink" title="2 Hybrid-State A* Search"></a>2 Hybrid-State A* Search</h3><ul>
+<li>本文的方法的第一阶段使用3D运动学状态空间的$$A*$$算法的变体，但修改了状态更新规则，该规则在$$A*$$的离散搜索节点中使用连续状态。</li>
+<li>由于合并了同一网格中的连续坐标状态，因此不保证损失最小解（minimal-cost solution），但路径一定是可行的（drivable）。</li>
+<li>搜索空间$$(x, y,\theta)$$​​，每个状态节点之间是动力学连续的。但是搜索过程中转向角是离散化的，考虑离散化和精度之间的关系，使用 Reed-Shepp model  进行轨迹扩展 （We used a 160x160 grid with 1m resolution in x-y and 5 deg<br>angular resolution.）<ul>
+<li>Reeds, J. A., and Shepp, L. A. 1990. Optimal paths for a car that goes both forwards and backwards. Pacific Journal of Mathematics 145(2):367–393</li>
+</ul>
+</li>
+<li><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-1.jpg" alt="搜索规则对比"></li>
+<li>算法规划向前和向后的运动，并对向后驾驶以及转换运动方向进行惩罚</li>
+<li>两个启发式步骤：<ul>
+<li>“non-holonomic-without-obstacles” ，忽略障碍物，但考虑到汽车的非完整性，计算目标点邻域内到该点的最短路径</li>
+<li>考虑障碍物和动力学，计算到目标的最短距离，其优势在于可以发现2D地图所有的U形障碍和死胡同，引导更代价昂贵的3D搜索远离这些区域。</li>
+</ul>
+</li>
+<li>对求解的 Reed-and-Shepp path 进行碰撞检测，确定无碰撞后才会加入到路径树中。</li>
+<li><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-2.jpg" alt="不同启发函数的对比"></li>
+<li>出于计算的原因，不希望将Reed-Shepp展开应用于每个节点(尤其是远离目标的节点，在那里大多数这样的路径可能会穿过障碍物)。在我们的实现中，我们使用了一个简单的选择规则，其中Reed-Shepp扩展应用于每N个节点中的一个，其中N作为目标成本启发式算法的函数而减少(随着我们越来越接近目标，导致更频繁的分析扩展)。</li>
+<li>带有Reed-Shepp扩展的搜索树如下图所示。由节点的短增量扩展生成的搜索树显示在黄绿色范围内，Reed-Shepp扩展显示为通向目标的单紫色线。我们发现，搜索树的这种分析扩展在准确性和计划时间方面都带来了显著的好处。</li>
+<li><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-3.jpg" alt="Analytic Reed-and-Shepp expansion"></li>
+</ul>
+<h3 id="3-Path-Cost-Function-Using-the-Voronoi-Field"><a href="#3-Path-Cost-Function-Using-the-Voronoi-Field" class="headerlink" title="3 Path-Cost Function Using the Voronoi Field"></a>3 Path-Cost Function Using the Voronoi Field</h3><ul>
+<li>使用流动势场法（following potential field）权衡路径长度和与障碍物的距离，将其命名为Voronoi Field</li>
+</ul>
+<p>$$<br>\rho_V(x,y)&#x3D;\bigg(\frac{\alpha}{\alpha+d_O(x,y)}\bigg) \bigg(\frac{d_V(x,y)}{d_O(x,y)+d_V(x,y)}\bigg) \frac{(d_O-d_O^{max})^2}{(d_O^{max})^2}<br>$$</p>
+<p>$$d_O$$ 表示到最近障碍物的距离；</p>
+<p>$$d_V$$ 表示到最近 Generalized Voronoi Diagram (GVD) 边缘（edge）的距离；</p>
+<p>$$\alpha &gt; 0$$ 表示衰减率；</p>
+<p>$$d_O&gt;0$$ 表示场的最大效用边界；</p>
+<p>表达式满足 $$d_O \leq d_O^{max}$$ ，否则$$\rho_V(x,y)&#x3D;0$$；</p>
+<ul>
+<li><p>势场有以下几个原则：</p>
+<ol>
+<li>$$d_O \geq d_O^{max}$$ 时其值为0；</li>
+<li>$$\rho_V(x,y)\in[0,1]$$，并且在$$(x,y)$$处连续，因为不存在同时满足$$d_O&#x3D;d_V&#x3D;0$$ 的情况；</li>
+<li>势场仅在障碍物内部取到最大值；</li>
+<li>势场仅在GVD边界上取到最小值；</li>
+</ol>
+</li>
+<li><p>Voronoi场比传统势场的关键优势在于，场值与导航的可用间隙成比例。即使狭窄的开口仍然可以通航，而标准势场并不总是如此，传统势场可能封闭这些道路。</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-4.jpg" alt="Voronoi field"></p>
+<h3 id="4-Local-Optimization-and-Smoothing"><a href="#4-Local-Optimization-and-Smoothing" class="headerlink" title="4 Local Optimization and Smoothing"></a>4 Local Optimization and Smoothing</h3><ul>
+<li><p>hybrid-state A* 产生的轨迹仍然是次优的，需要进一步优化，去除不自然的突然转弯（unnatural swerves）。</p>
+</li>
+<li><p>优化过程分为两步：</p>
+<ol>
+<li>对轨迹的每个顶点使用非线性优化平滑</li>
+<li>对轨迹进行非参数的插值（non-parametric interpolation），使用共轭梯度提升轨迹分辨率。</li>
+</ol>
+</li>
+<li><p>变量定义：</p>
+<ul>
+<li>$$\text{x}_i&#x3D;(x_i,y_i),i\in [1,N]$$ 表示顶点序列；</li>
+<li>$$\text{o}_i$$ 表示离顶点最近的障碍物坐标；</li>
+<li>$$\Delta \text{x}<em>i&#x3D;x_i-x</em>{i-1}$$ 表示顶点的位移矢量；</li>
+<li>$$\Delta \phi_i&#x3D; \mid \tan^{-1}\frac{\Delta y_{i+1}}{\Delta x_{i+1}}-\tan^{-1} \frac{\Delta y_{i}}{\Delta x_{i}} \mid$$  表示顶点处的切角变化；</li>
+</ul>
+</li>
+<li><p>目标函数定义为：</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-5.jpg" alt="目标函数"></p>
+<p>损失函数的第一项可以高效地引导机器人移动，无论狭窄和开阔的地方都能远离障碍物；</p>
+<p>第二项惩罚与障碍物的碰撞；</p>
+<p>第三项限制每个顶点处的瞬时曲率，并加强车辆的非完整约束；</p>
+<p>第四项是路径平滑措施；</p>
+<ul>
+<li>梯度求解：</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-6.jpg" alt="目标函数梯度-1"></p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-7.jpg" alt="目标函数梯度-2"></p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-8.jpg" alt="目标函数梯度-3"></p>
+<ul>
+<li>经过共轭梯度法的优化，轨迹显著更平滑了，但顶点之间仍有较大间距（论文中0.5-1m）。因此需要对轨迹进行再次插值。但许多参数化的插值算法对噪声敏感，加剧输出中的噪声（例如，随着输入顶点彼此靠近，三次样条曲线会导致输出中包含任意大的振荡）。</li>
+<li>本文对共轭梯度法轨迹进行了非参数化的插值，之后再用共轭梯度法进行平滑</li>
+<li>We used the following parameters for our planner: the obstacle map was of size 160m×160m with 0.15cm resolution; A* used a grid of size 160m×160m×360◦ with 0.5m x-y resolution and 5◦ resolution for the heading θ. Typical running times for a full replanning cycle involving the hybrid A* search, CG smoothing, and interpolation were on the order of 50–300ms.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-9.jpg" alt="轨迹平滑"></p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-10.jpg" alt="轨迹案例"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>本文面向AVP问题，发表于2008年，整体思路很清晰：hybird A*求粗略轨迹-&gt;共轭梯度轨迹平滑-&gt;非参数插值-&gt;共轭梯度轨迹平滑。方法受年代限制，没有使用NN优化，这或许是一个可以产生明显提升的地方</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2022/10/14/2022-10-14-Autonomous Driving - Path Planning for Autonomous Vehicles in Unknown Semi-structured Environments/" data-toggle="tooltip" data-placement="top" title="Autonomous Driving | Path Planning for Autonomous Vehicles in Unknown Semi-structured Environments">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2022/09/30/2022-09-30-Autonomous Driving - From smart parking towards autonomous valet parking A survey challenges and future Works/" data-toggle="tooltip" data-placement="top" title="Autonomous Driving | From smart parking towards autonomous valet parking: A survey, challenges and future Works">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Autonomous Driving" title="Autonomous Driving">Autonomous Driving</a>
+                        
+                          <a class="tag" href="/tags/#Planning" title="Planning">Planning</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://blog.uomi.moe" target="_blank">驱逐舰患者</a></li>
+                    
+                        <li><a href="https://m.mepai.me/photographyer/u_5a68085ba15aa.html?tdsourcetag=s_pctim_aiomsg" target="_blank">隐之-INF</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Txing 2023 
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://txing-casia.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

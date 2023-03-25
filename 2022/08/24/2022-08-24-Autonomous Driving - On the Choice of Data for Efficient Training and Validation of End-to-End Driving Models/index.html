@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="泛用人形决战型机器人博士">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Autonomous Driving | On the Choice of Data for Efficient Training and Validation of End-to-End Driving Models - 伽蓝之堂 | Txing Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://txing-casia.github.io/2022/08/24/2022-08-24-Autonomous Driving - On the Choice of Data for Efficient Training and Validation of End-to-End Driving Models/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Txing</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('img/post-bg-py.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Autonomous Driving" title="Autonomous Driving">Autonomous Driving</a>
+                        
+                          <a class="tag" href="/tags/#Imitation Learning" title="Imitation Learning">Imitation Learning</a>
+                        
+                    </div>
+                    <h1>Autonomous Driving | On the Choice of Data for Efficient Training and Validation of End-to-End Driving Models</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Txing on
+                        2022-08-24
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="On-the-Choice-of-Data-for-Efficient-Training-and-Validation-of-End-to-End-Driving-Models"><a href="#On-the-Choice-of-Data-for-Efficient-Training-and-Validation-of-End-to-End-Driving-Models" class="headerlink" title="On the Choice of Data for Efficient Training and Validation of End-to-End Driving Models"></a>On the Choice of Data for Efficient Training and Validation of End-to-End Driving Models</h2><p>本文关注数据集的设计，包括针对自动驾驶端到端模型训练集和验证集。</p>
+<p>主要工作：</p>
+<ul>
+<li>调研训练数据量如何影响最终驾驶表现，以及通过当前使用的生成训练数据的机制导致了哪些表现限制；</li>
+<li>相关性分析表明，验证设计使得在验证期间测量的驾驶性能能够很好地推广到未知的测试环境；</li>
+<li>调查了随机种子和不确定性的影响，给出了哪些报告的改进可以被认为是显著的；</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-1.png" alt="本文关注数据而非模型"></p>
+<h3 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h3><ul>
+<li><p>Towards End-to-End Deep Driving: 高维场景信息输入，训练自动驾驶算法。</p>
+</li>
+<li><p>Training of Deep Driving Models：端到端的自动驾驶模型的初衷是移除人工的中间表征。</p>
+<ul>
+<li>Felipe Codevilla, Matthias Müller, Antonio López, Vladlen Koltun, and Alexey Dosovitskiy. <strong>End-to-end Driving via Conditional Imitation Learning</strong>. In Proc. of ICRA, pages 4693–4700, Brisbane, Australia, May 2018.</li>
+<li>Kashyap Chitta, Aditya Prakash, and Andreas Geiger. NEAT: <strong>Neural Attention Fields for End-to-End Autonomous Driving</strong>. In Proc. of ICCV, pages 15793–15803, Virtual, Oct. 2021.</li>
+<li>Keishi Ishihara, Anssi Kanervisto, Jun Miura, and Ville Hautamaki. <strong>Multi-task Learning with Attention for End-to-end Autonomous Driving</strong>. In Proc. of CVPR - Workshops, pages 2902–2911, Virtual, June 2021</li>
+</ul>
+</li>
+<li><p>Evaluation of Deep Driving Models：可以开环和offline专家对比，也可以闭环仿真评估，但是评估是非确定性的，不会执行两次相同的评估。</p>
+<ul>
+<li>Jeffrey Hawke, Richard Shen, Corina Gurau, Siddharth Sharma, Daniele Reda, Nikolay Nikolov, Przemysław<br>Mazur, Sean Micklethwaite, Nicolas Griffiths, Amar Shah, and Alex Kendall. <strong>Urban Driving with Conditional Imitation Learning</strong>. In Proc. of ICRA, pages 251–257, Virtual, May 2020.</li>
+</ul>
+</li>
+<li><p>Contributions:</p>
+<ul>
+<li>调研了end2end模型的训练集大小对性能的影响</li>
+<li>分析了end2end模型的局限性</li>
+<li>为驾驶模型的验证集设计提供了建议</li>
+<li>调研了random seed和非确定性end2end模型</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-Related-Work"><a href="#2-Related-Work" class="headerlink" title="2 Related Work"></a>2 Related Work</h3><h4 id="Training-of-End-to-End-Deep-Driving-Models"><a href="#Training-of-End-to-End-Deep-Driving-Models" class="headerlink" title="Training of End-to-End Deep Driving Models"></a>Training of End-to-End Deep Driving Models</h4><ul>
+<li><p>Reinforcement Learning</p>
+<ul>
+<li>Alex Kendall, Jeffrey Hawke, David Janz, Przemyslaw Mazur, Daniele Reda, John-Mark Allen, Vinh-Dieu Lam,<br>Alex Bewley, and Amar Shah. <strong>Learning to Drive in a Day</strong>. In Proc. of ICRA, pages 8248–8254, Montréal, Canada, May 2019.</li>
+<li>Marin Toromanoff, Emilie Wirbel, and Fabien Moutarde. <strong>End-to-End Model-Free Reinforcement Learningfor Urban Driving using Implicit Affordances</strong>. In Proc. of CVPR, pages 7153–7162, Virtual, June 2020.</li>
+<li>Dian Chen, Vladlen Koltun, and Philipp Krähenbühl. <strong>Learning to Drive from a World on Rails</strong>. In Proc. of ICCV, pages 15590–15599, Virtual, Oct. 2021</li>
+</ul>
+</li>
+<li><p>two-stage training: 先训练一个专家，然后将知识传递给自动驾驶智能体</p>
+<ul>
+<li>Dian Chen, Brady Zhou, Vladlen Koltun, and Philipp Krähenbühl. <strong>Learning by Cheating</strong>. In Proc. of CoRL, pages 66–75, Virtual, Nov. 2020.</li>
+<li>Jiaming Zhang, Kailun Yang, Angela Constantinescu, Kunyu Peng, Karin Müller, and Rainer Stiefelhagen. <strong>Trans4Trans: Efficient Transformer for Transparent Object Segmentation To Help Visually Impaired People Navigate in the Real World</strong>. In Proc. of ICCV - Workshops, pages 1760–1770, Virtual, Oct. 2021</li>
+</ul>
+</li>
+<li><p>inverse reinforcement learning  </p>
+<ul>
+<li>Sascha Rosbach, Vinit James, Simon Großjohann, Silviu Homoceanu, and Stefan Roth. <strong>Driving with Style: Inverse Reinforcement Learning in General-PurposePlanning for Automated Driving</strong>. In Proc. of IROS, pages 2658–2665, Macau, China, Nov. 2019.</li>
+<li>Sahand Sharifzadeh, Ioannis Chiotellis, Rudolph Triebel, and Daniel Cremers. <strong>Learning to Drive using Inverse Reinforcement Learning and Deep Q-Networks</strong>. In Proc. of NIPS Workshops, pages 1–7, Barcelona, Spain, Dec. 2016.</li>
+</ul>
+</li>
+<li><p>LSTM</p>
+<ul>
+<li>Huazhe Xu, Yang Gao, Fisher Yu, and Trevor Darrell. <strong>End-to-end Learning of Driving Models from Large-scale Video Datasets</strong>. In Proc. of CVPR, pages 2174–2182, Honolulu, HI, USA, July 2017.</li>
+</ul>
+</li>
+<li><p>self-attention</p>
+<ul>
+<li>Keishi Ishihara, Anssi Kanervisto, Jun Miura, and Ville Hautamaki. <strong>Multi-task Learning with Attention for End-to-end Autonomous Driving</strong>. In Proc. of CVPR - Workshops, pages 2902–2911, Virtual, June 2021.</li>
+</ul>
+</li>
+<li><p>multi-task networks</p>
+<ul>
+<li>Dan Wang, Junjie Wen, Yuyong Wang, Xiangdong Huang, and Feng Pei. <strong>End-to-End Self-Driving Using Deep Neural Networks with Multi-auxiliary Tasks</strong>. Automotive Innovation, 2(2):127–136, May 2019.</li>
+<li>Zhengyuan Yang, Yixuan Zhang, Jerry Yu, Junjie Cai, and Jiebo Luo. <strong>End-to-end Multi-Modal Multi-Task Vehicle Controlfor Self-Driving Cars with Visual Perceptions</strong>. In Proc. of ICPR, pages 2289–2294, Beijing, China, Aug. 2018.</li>
+</ul>
+</li>
+<li><p>The fusion of different input modalities</p>
+<ul>
+<li>Aditya Prakash, Kashyap Chitta, and Andreas Geiger. <strong>Multi-Modal Fusion Transformer for End-to-End Autonomous Driving</strong>. In Proc. of CVPR, pages 7077–7087, Virtual, June 2021.</li>
+</ul>
+</li>
+<li><p>affordances</p>
+<ul>
+<li>Axel Sauer, Nikolay Savinov, and Andreas Geiger. <strong>Conditional Affordance Learning for Driving in Urban Environments</strong>. In Proc. of CoRL, pages 237–252, Zürich, Switzerland, Oct. 2018.</li>
+</ul>
+</li>
+<li><p>waypoints 替代速度</p>
+</li>
+<li><p>Kashyap Chitta, Aditya Prakash, and Andreas Geiger. NEAT: <strong>Neural Attention Fields for End-to-End Autonomous Driving</strong>. In Proc. of ICCV, pages 15793–15803, Virtual, Oct. 2021.</p>
+</li>
+<li><p>probabilistic output</p>
+<ul>
+<li>Alexander Amini, Guy Rosman, Sertac Karaman, and Daniela Rus. <strong>Variational End-to-End Navigation and Localization</strong>. In Proc. of ICRA, pages 8958–8964, Montréal, QC, Canada, May 2019.</li>
+</ul>
+</li>
+<li><p>sim-2-real</p>
+<ul>
+<li>Blażej Osiński, Adam Jakubowski, Pawel Ziecina, Piotr Miloś, Christopher Galias, Silviu Homoceanu, and Henryk Michalewski. <strong>Simulation-Based Reinforcement Learningfor Real-World Autonomous Driving</strong>. In Proc. of ICRA, pages 6411–6418, Virtual, May 2020</li>
+<li>GAN-based<ul>
+<li>Matthias Müller, Alexey Dosovitskiy, Bernard Ghanem, and Vladlen Koltun. <strong>Driving Policy Transfer via Modularity and Abstraction</strong>. In Proc. of CoRL, pages 1–15, Zürich, Switzerland, Oct. 2018.</li>
+<li>Luona Yang, Xiaodan Liang, Tairui Wang, and Eric Xing. <strong>Real-to-Virtual Domain Unification for End-to-</strong><br><strong>EndAutonomous Driving</strong>. In Proc. of ECCV, pages 530–545, Munich, Germany, Sept. 2018.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>attention</p>
+<ul>
+<li>Bob Wei, Mengye Ren, Wenyuan Zeng, Ming Liang, Bin Yang, and Raquel Urtasun. <strong>Perceive, Attend, and Drive: Learning Spatial Attention for Safe Self-Driving</strong>. In Proc. of ICRA, pages 4875–4881, Virtual, May 2021.</li>
+<li>Luca Cultrera, Lorenzo Seidenari, Federico Becattini, Pietro Pala, and Alberto Del Bimbo. <strong>Explaining Autonomous Driving by Learning End-to-End Visual Attention</strong>. In Proc. of CVPR - Workshops, pages 340–341, Virtual, June 2020.</li>
+</ul>
+</li>
+<li><p>intermediate semantic representation</p>
+<ul>
+<li>Abbas Sadat, Sergio Casas, Mengye Ren, Xinyu Wu, Pranaab Dhawan, and Raquel Urtasun. <strong>Perceive, Predict, and Plan: Safe Motion Planning Through Interpretable Semantic Representations</strong>. In Proc. of ECCV, pages 414–430, Virtual, Aug. 2020.</li>
+</ul>
+</li>
+<li><p>on-line data selection techniques (视觉输入情况)</p>
+<ul>
+<li>Aditya Prakash, Aseem Behl, Eshed Ohn-Bar, Kashyap Chitta, and Andreas Geiger. <strong>Exploring Data Aggregation in Policy Learning for Vision-based Urban Autonomous Driving</strong>. In Proc. of CVPR, pages 11763–11773, Virtual, June 2020.</li>
+<li>Soumi Das, Harikrishna Patibandla, Suparna Bhattacharya, Kshounis Bera, Niloy Ganguly, and Sourangshu Bhat tacharya. <strong>TMCOSS: Thresholded Multi-Criteria Online Subset Selection forData-Efficient Autonomous Driving</strong>. In Proc. of ICCV, pages 6341–6350, Virtual, Oct. 2021. 2</li>
+</ul>
+</li>
+</ul>
+<h4 id="Evaluation-of-End-to-End-Deep-Driving-Models"><a href="#Evaluation-of-End-to-End-Deep-Driving-Models" class="headerlink" title="Evaluation of End-to-End Deep Driving Models"></a>Evaluation of End-to-End Deep Driving Models</h4><ul>
+<li>CARLA benchmarks CoRL2017 [20]<ul>
+<li>Alexey Dosovitskiy, German Ros, Felipe Codevilla, Antonio Lopez, and Vladlen Koltun. CARLA: An Open Urban Driving Simulator. In Proc. of CoRL, pages 1–16, Mountain View, CA, USA, Nov. 2017.</li>
+</ul>
+</li>
+<li>NoCrash [17]<ul>
+<li>Felipe Codevilla, Eder Santana, Antonio M. López, and Adrien Gaidon. Exploring the Limitations of Behavior<br>Cloning for Autonomous Driving. In Proc. of ICCV, pages 9329–9338, Seoul, Korea, Oct. 2019.</li>
+</ul>
+</li>
+<li>Leaderboard [1]<ul>
+<li>CARLA Autonomous Driving Leaderboard. <a target="_blank" rel="noopener" href="https://leaderboard.carla.org/">https://leaderboard.carla.org</a>, 2020. 3, 5, 6</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-End-to-End-Deep-Driving"><a href="#3-End-to-End-Deep-Driving" class="headerlink" title="3 End-to-End Deep Driving"></a>3 End-to-End Deep Driving</h3><ul>
+<li><p>文章设置了一个城市驾驶环境的点到点导航任务，预先定义一个稀疏点的路线为粗略的行驶路线，车辆需要避免违法和碰撞，从初始点驾驶到终止点（CARLA Leaderboard标准配置）。</p>
+</li>
+<li><p>输入：一个RGB前置相机图像、一个LiDAR点云</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-2.png" alt="End-to-end driving method"></p>
+<ul>
+<li><p>使用Conditional Imitation Learning</p>
+</li>
+<li><p>不同训练集设置情况：</p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-3.png" alt="Training set design"></p>
+</li>
+<li><p>验证集和测试集路线类型</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-4.png" alt="Validation and test route types"></p>
+<ul>
+<li>不同验证集和测试集设置情况</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-5.png" alt="Validation and test design"></p>
+<ul>
+<li><p>不同数据集上的驾驶得分$$DS\in[0,1]$$，包括两部分分数：</p>
+<ul>
+<li><p>完成路线  route completion percentage $$RC\in [0, 1]$$;</p>
+</li>
+<li><p>避免事故  infraction score $$IS \in [0, 1]$$;</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-6.png" alt="Driving scores"></p>
+<ul>
+<li>不同训练集和验证集的性能对比</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-7.png" alt="Pearson correlation between the validation set performance and the test set performance (given by the driving score)"></p>
+<ul>
+<li>不同验证集下的测试集得分对比</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-8.png" alt="Test driving scores given in (%) obtained on R^test, having used different validation sets"></p>
+<ul>
+<li>不同训练集下的性能对比</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-9.png" alt="Performance on different training sets"></p>
+<ul>
+<li><p>结论（不完整）：</p>
+<ul>
+<li><p>随机性对仿真实验的影响大。随机种子、carla等。</p>
+</li>
+<li><p>训练集和验证集的选择对结果影响大。</p>
+</li>
+<li><p>数据量从100k-220k变化时，对大约160，000幅图像的训练似乎已经在性能和复杂性之间提供了良好的平衡，同时使用更大但计算上更昂贵的数据量可以获得最佳结果。（Training on approximately 160, 000 images already seems to provide a good trade-off between performance and complexity, while best results are obtained using larger but computationally more expensive amounts of data.）。</p>
+</li>
+<li><p>数据越少路线完成率越高，但事故率也高；数据越多，事故率显著降低，但路线完成率也降低；</p>
+</li>
+<li><p>专家数据是必要的。不完美的专家数据对结果影响大</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>总的来说比较玄学，对于视觉输入的模型而言，数据量偏小（100k-220k），给出的经验参数不具有普遍意义。</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2022/08/25/2022-08-25-Autonomous Driving - MP3 A Unified Model to Map Perceive Predict and Plan/" data-toggle="tooltip" data-placement="top" title="Autonomous Driving | MP3 A Unified Model to Map Perceive Predict and Plan (Uber ATG 2021)">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2022/08/23/2022-08-23-Autonomous Driving - 关于加减速变道的思考/" data-toggle="tooltip" data-placement="top" title="Autonomous Driving | 关于加减速变道的思考">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Autonomous Driving" title="Autonomous Driving">Autonomous Driving</a>
+                        
+                          <a class="tag" href="/tags/#Imitation Learning" title="Imitation Learning">Imitation Learning</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://blog.uomi.moe" target="_blank">驱逐舰患者</a></li>
+                    
+                        <li><a href="https://m.mepai.me/photographyer/u_5a68085ba15aa.html?tdsourcetag=s_pctim_aiomsg" target="_blank">隐之-INF</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Txing 2023 
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://txing-casia.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

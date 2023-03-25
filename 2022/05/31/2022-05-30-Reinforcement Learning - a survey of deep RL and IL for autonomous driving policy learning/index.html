@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="泛用人形决战型机器人博士">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Reinforcement Learning | A survey of deep RL and IL for autonomous driving policy learning - 伽蓝之堂 | Txing Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://txing-casia.github.io/2022/05/31/2022-05-30-Reinforcement Learning - a survey of deep RL and IL for autonomous driving policy learning/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Txing</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('img/post-bg-py.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Reinforcement Learning" title="Reinforcement Learning">Reinforcement Learning</a>
+                        
+                          <a class="tag" href="/tags/#HRL" title="HRL">HRL</a>
+                        
+                    </div>
+                    <h1>Reinforcement Learning | A survey of deep RL and IL for autonomous driving policy learning</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Txing on
+                        2022-05-31
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="A-survey-of-deep-RL-and-IL-for-autonomous-driving-policy-learning"><a href="#A-survey-of-deep-RL-and-IL-for-autonomous-driving-policy-learning" class="headerlink" title="A survey of deep RL and IL for autonomous driving policy learning"></a>A survey of deep RL and IL for autonomous driving policy learning</h1><p>论文链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2101.01993v1">https://arxiv.org/abs/2101.01993v1</a></p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
+<li><p>首先介绍5类结合了IL和RL的自动驾驶模型。First, a taxonomy of the literature studies is constructed from the system perspective, among which five modes of integration of DRL&#x2F;DIL models into an AD architecture are identified. </p>
+</li>
+<li><p>其次介绍自动驾驶中具体的RL和IL任务和公式。Second, the formulations of DRL&#x2F;DIL models for conducting specified AD tasks are comprehensively reviewed, where various designs on the model state and action spaces and the reinforcement learning rewards are covered. </p>
+</li>
+<li><p>最后介绍RL和IL如何解决自动驾驶模型与参与者和环境交互的安全问题。Finally, an in-depth review is conducted on how the critical issues of AD applications regarding driving safety, interaction with other traffic participants and uncertainty of the environment are addressed by the DRL&#x2F;DIL models. </p>
+</li>
+<li><p><strong>task-driven</strong> and <strong>problem-driven</strong> perspectives</p>
+</li>
+<li><p>代表性文章：</p>
+<ul>
+<li>[1] C. Urmson and W. Whittaker, “Self-driving cars and the urban challenge,” IEEE Intelligent Systems, vol. 23, no. 2, pp. 66–68, 2008.</li>
+<li>[2] S. Thrun, “Toward robotic cars,” Communications of the ACM, vol. 53, no. 4, pp. 99–106, 2010.</li>
+<li>[3] A. Eskandarian, Handbook of intelligent vehicles. Springer, 2012, vol. 2.</li>
+<li>[4] S. M. Grigorescu, B. Trasnea, T. T. Cocias, and G. Macesanu, “A survey of deep learning techniques for autonomous driving,” J. Field Robotics, vol. 37, no. 3, pp. 362–386, 2020.</li>
+</ul>
+</li>
+<li><p>驾驶策略基于多个等级的抽象（multiple levels of abstraction），例如行为规划、运动规划和控制（behavior planning, motion planning and control）</p>
+</li>
+<li><p>典型的自动驾驶模型结构图：</p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220602-1.png"></p>
+</li>
+<li><p>相关综述的调研：</p>
+<ul>
+<li>[13, 15] survey the motion planning and control methods of automated vehicles before the era of DL.</li>
+<li>[29–33] review general DRL&#x2F;DIL methods without considering any particular applications. </li>
+<li>[4] addresses the deep learning techniques for AD with a focus on perception<br>and control, while [34] addresses control only. </li>
+<li>[35] provides a taxonomy of AD tasks to which DRL models have been applied and highlights the key challenges.</li>
+</ul>
+</li>
+<li><p>pomdp相关参考文献：</p>
+<ul>
+<li>G. Shani, J. Pineau, and R. Kaplow, “A survey of point-based pomdp solvers,” Autonomous Agents and Multi-Agent Systems, vol. 27, no. 1, pp. 1–51, 2013. </li>
+<li>W. S. Lovejoy, “A survey of algorithmic methods for partially observed markov decision processes,” Annals of Operations Research, vol. 28, no. 1, pp. 47–65, 1991.</li>
+</ul>
+</li>
+<li><p>强化学习（reinforcement learning）和模仿学习（imitation learning）算法分类示意图：</p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220620-1.png"></p>
+</li>
+<li><p>learning from demonstrations (LfD)</p>
+</li>
+<li><p><strong>模仿学习</strong>的形式：</p>
+<ul>
+<li>A demonstration dataset $$D&#x3D;{\xi_i }_{i&#x3D;0,…,N}$$,表示一系列的轨迹</li>
+<li>$$\xi_i&#x3D;{(s^i_t,a^i_t)}_{t&#x3D;1,…,T}$$是state-action pairs（状态行为对）的序列</li>
+<li>专家策略$$\pi_E$$</li>
+<li>待优化的模仿策略$$\pi^*$$</li>
+<li>$$\pi^*&#x3D;\arg\min_{\pi} \mathbb{D}(\pi_E,\pi)$$</li>
+<li>$$\mathbb{D}$$是策略间的相似性度量函数</li>
+</ul>
+</li>
+<li><p>模仿学习的三个分类：</p>
+<ul>
+<li><p><strong>Behavior Clone (BC) :</strong></p>
+<ul>
+<li><p>$$\min_{\theta} \mathbb{E}\mid\mid\pi_{\theta}-\pi_E\mid\mid_2$$</p>
+</li>
+<li><p>$$J(\theta)&#x3D;\mathbb{E}<em>{(s,a)\sim D}[(\pi</em>{\theta}(s)-a)^2]$$</p>
+</li>
+<li><p>BC在训练集中表现良好，但在泛化性上表现差，covariate shift [66, 67]</p>
+</li>
+<li><p>代表方法：</p>
+<ul>
+<li><p><strong>DAgger</strong>——S. Ross, G. J. Gordon, and D. Bagnell, “A reduction of imitation learning and structured prediction to no-regret online learning,” in International Conference on Artificial Intelligence and Statistics, ser. JMLR Proceedings, vol. 15, 2011, pp. 627–635.</p>
+</li>
+<li><p><strong>SafeDAgger</strong>——J. Zhang and K. Cho, “Query-efficient imitation learning for end-to-end autonomous driving,” arXiv preprint arXiv:1605.06450, 2016.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Inverse Reinforcement Learning (IRL)：</strong></p>
+<ul>
+<li><p>$$\max_{\theta} \mathbb{E}<em>{\pi_E}[G_t|r</em>{\theta}]-\mathbb{E}<em>{\pi}[G_t|r</em>{\theta}]$$</p>
+</li>
+<li><p>$$J(\theta)&#x3D;\mathbb{E}<em>{\xi_i \sim D}[\log P(\xi_i|r</em>{\theta})]$$</p>
+</li>
+<li><p>代表方法：</p>
+<ul>
+<li><p>**guided cost learning (GCL)**——C. Finn, S. Levine, and P. Abbeel, “Guided cost learning: Deep inverse optimal control via policy optimization,” in International Conference on Machine Learning, 2016, pp. 49–58.</p>
+<p>（it handles unknown dynamics in high-dimensional complex systems and learns complex neural network cost functions through an efficient sample-based approximation.）</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Generative Adversarial Imitation Learning (GAIL):</strong></p>
+</li>
+<li><p>Generative adversarial imitation learning (GAIL) [81] directly learns a policy from expert demonstrations while requiring neither the <strong>reward design</strong> in RL nor the <strong>expensive RL process</strong> in the inner loop of IRL.</p>
+</li>
+<li><p>$$\min_{\pi_{\theta}}\max_{D_{\omega}} \mathbb{E}<em>{\pi</em>{\theta}}[\log D_{\omega}(s,a)]+\mathbb{E}<em>{\pi_E}[\log(1-D</em>{\omega}(s,a))]-\lambda H(\pi_{\theta})$$，其中$$H(\pi)$$是一个正则熵项，生成器和判别器通过下式更新：</p>
+</li>
+<li><p>$$\nabla_{\theta}J(\theta)&#x3D;\mathbb{E}<em>{\pi}[\nabla</em>{\theta} \log \pi_{\theta}(a\mid s)Q(s,a)]-\lambda\nabla_{\theta}H(\pi_{\theta})$$</p>
+</li>
+<li><p>$$\nabla_{\omega}J(\omega)&#x3D;\mathbb{E}<em>{\pi}[\nabla</em>{\omega} \log D_{\omega}(s,a)]+\mathbb{E}<em>{\pi_E}[\nabla</em>{\omega} \log(1-D_{\omega}(s,a))]$$</p>
+</li>
+<li><p>Fu et al.[84] proposed adversarial inverse reinforcement learning (AIRL) based on an adversarial reward learning formulation, which can recover reward functions that are robust to dynamics changes. </p>
+<ul>
+<li>J. Fu, K. Luo, and S. Levine, “Learning robust rewards with adversarial inverse reinforcement learning,” CoRR, vol. abs&#x2F;1710.11248, 2017.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h2 id="AD（Autonomous-driving）系统的几个模块："><a href="#AD（Autonomous-driving）系统的几个模块：" class="headerlink" title="AD（Autonomous driving）系统的几个模块："></a>AD（Autonomous driving）系统的几个模块：</h2></li>
+</ul>
+<h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><p>- </p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2>
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2022/07/14/2022-07-14-Autonomous Driving - Exploring Imitation Learning for Autonomous Driving with Feedback Synthesizer and Differentiable Rasterization (2021 Apollo 6.0)/" data-toggle="tooltip" data-placement="top" title="Autonomous Driving | Exploring Imitation Learning for Autonomous Driving with Feedback Synthesizer and Differentiable Rasterization (2021, Apollo 6.0)">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2022/05/14/2022-05-14-利用patch制作的对象在animation以及生成Gif文件时显示错误的问题/" data-toggle="tooltip" data-placement="top" title="利用patch制作的对象在animation以及生成Gif文件时显示错误的问题">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Reinforcement Learning" title="Reinforcement Learning">Reinforcement Learning</a>
+                        
+                          <a class="tag" href="/tags/#HRL" title="HRL">HRL</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://blog.uomi.moe" target="_blank">驱逐舰患者</a></li>
+                    
+                        <li><a href="https://m.mepai.me/photographyer/u_5a68085ba15aa.html?tdsourcetag=s_pctim_aiomsg" target="_blank">隐之-INF</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Txing 2023 
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://txing-casia.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

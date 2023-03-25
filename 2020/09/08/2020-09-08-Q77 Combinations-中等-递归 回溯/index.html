@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="泛用人形决战型机器人博士">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Q77 Combinations-中等-递归 回溯 - 伽蓝之堂 | Txing Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://txing-casia.github.io/2020/09/08/2020-09-08-Q77 Combinations-中等-递归 回溯/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Txing</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('img/post-bg-py.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                        
+                          <a class="tag" href="/tags/#Medium" title="Medium">Medium</a>
+                        
+                          <a class="tag" href="/tags/#Backtracking Algorithm" title="Backtracking Algorithm">Backtracking Algorithm</a>
+                        
+                    </div>
+                    <h1>Q77 Combinations-中等-递归 回溯</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Txing on
+                        2020-09-08
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="Combinations"><a href="#Combinations" class="headerlink" title="Combinations"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/combinations/">Combinations</a></h1><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
+<p>Given two integers n and k, return all possible combinations of k numbers out of 1 … n.</p>
+<p>You may return the answer in any order.</p>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>1 &lt;= n &lt;= 20</code></li>
+<li><code>1 &lt;= k &lt;= n</code></li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>Input: n &#x3D; 4, k &#x3D; 2<br>Output:<br>[<br>     [2,4],<br>     [3,4],<br>    [2,3],<br>     [1,2],<br>     [1,3],<br>  [1,4],<br>]</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>Input: n &#x3D; 1, k &#x3D; 1<br>Output: [[1]]</p>
+</blockquote>
+<h3 id="Approach-1-递归调用"><a href="#Approach-1-递归调用" class="headerlink" title="Approach 1: 递归调用"></a>Approach 1: 递归调用</h3><p>把选k个数的任务拆解为选2个数的任务，直到选完了k个数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">combine</span>(<span class="params">self, n, k</span>):</span><br><span class="line">        <span class="keyword">if</span> k&gt;n <span class="keyword">or</span> k==<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        <span class="keyword">if</span> k==<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> [[i] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,n+<span class="number">1</span>)]</span><br><span class="line">        <span class="keyword">if</span> k==n:</span><br><span class="line">            <span class="keyword">return</span> [[i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,n+<span class="number">1</span>)]]</span><br><span class="line">        </span><br><span class="line">        answer=self.combine(n-<span class="number">1</span>,k)</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> self.combine(n-<span class="number">1</span>,k-<span class="number">1</span>):</span><br><span class="line">            item.append(n)</span><br><span class="line">            answer.append(item)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> answer</span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    n = <span class="number">4</span></span><br><span class="line">    k = <span class="number">2</span></span><br><span class="line">    solution=Solution().combine(n,k)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Approach-2-回溯算法"><a href="#Approach-2-回溯算法" class="headerlink" title="Approach 2: 回溯算法"></a>Approach 2: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/combinations/solution/hui-su-suan-fa-jian-zhi-python-dai-ma-java-dai-ma-/">回溯算法</a></h3><h4 id="重点概括："><a href="#重点概括：" class="headerlink" title="重点概括："></a>重点概括：</h4><ul>
+<li><p>如果解决一个问题有多个步骤，每一个步骤有多种方法，题目又要我们找出所有的方法，可以使用回溯算法；</p>
+</li>
+<li><p>回溯算法是在一棵树上的 深度优先遍历（因为要找所有的解，所以需要遍历）；</p>
+</li>
+<li><p>组合问题，相对于排列问题而言，不计较一个组合内元素的顺序性（即 [1, 2, 3] 与 [1, 3, 2] 认为是同一个组合），因此很多时候需要按某种顺序展开搜索，这样才能做到不重不漏。</p>
+</li>
+</ul>
+<p>既然是树形问题上的 深度优先遍历，因此首先画出树形结构。例如输入：n &#x3D; 4, k &#x3D; 2，我们可以发现如下递归结构：</p>
+<ul>
+<li>如果组合里有 1 ，那么需要在 [2, 3, 4] 里再找 11 个数；</li>
+<li>如果组合里有 2 ，那么需要在 [3, 4] 里再找 11数。注意：这里不能再考虑 11，因为包含 11 的组合，在第 1 种情况中已经包含。<br>依次类推（后面部分省略），以上描述体现的 递归 结构是：在以 nn 结尾的候选数组里，选出若干个元素。画出递归结构如下图：</li>
+</ul>
+<h4 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h4><p>叶子结点的信息体现在从根结点到叶子结点的路径上，因此需要一个表示路径的变量 path，它是一个列表，特别地，path 是一个栈；<br>每一个结点递归地在做同样的事情，区别在于搜索起点，因此需要一个变量 start ，表示在区间 [begin, n] 里选出若干个数的组合；<br>可能有一些分支没有必要执行，我们放在优化中介绍。<br>友情提示：对于这一类问题，画图帮助分析是非常重要的解题方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayDeque;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Deque;</span><br><span class="line"><span class="keyword">import</span> java.util.<span class="type">List</span>;</span><br><span class="line"></span><br><span class="line">public <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"></span><br><span class="line">    public <span class="type">List</span>&lt;<span class="type">List</span>&lt;Integer&gt;&gt; combine(<span class="built_in">int</span> n, <span class="built_in">int</span> k) &#123;</span><br><span class="line">        <span class="type">List</span>&lt;<span class="type">List</span>&lt;Integer&gt;&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (k &lt;= <span class="number">0</span> || n &lt; k) &#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        // 从 <span class="number">1</span> 开始是题目的设定</span><br><span class="line">        Deque&lt;Integer&gt; path = new ArrayDeque&lt;&gt;();</span><br><span class="line">        dfs(n, k, <span class="number">1</span>, path, res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void dfs(<span class="built_in">int</span> n, <span class="built_in">int</span> k, <span class="built_in">int</span> begin, Deque&lt;Integer&gt; path, <span class="type">List</span>&lt;<span class="type">List</span>&lt;Integer&gt;&gt; res) &#123;</span><br><span class="line">        // 递归终止条件是：path 的长度等于 k</span><br><span class="line">        <span class="keyword">if</span> (path.size() == k) &#123;</span><br><span class="line">            res.add(new ArrayList&lt;&gt;(path));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 遍历可能的搜索起点</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = begin; i &lt;= n; i++) &#123;</span><br><span class="line">            // 向路径变量里添加一个数</span><br><span class="line">            path.addLast(i);</span><br><span class="line">            // 下一轮搜索，设置的搜索起点要加 <span class="number">1</span>，因为组合数理不允许出现重复的元素</span><br><span class="line">            dfs(n, k, i + <span class="number">1</span>, path, res);</span><br><span class="line">            // 重点理解这里：深度优先遍历有回头的过程，因此递归之前做了什么，递归之后需要做相同操作的逆向操作</span><br><span class="line">            path.removeLast();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h4><p>事实上，如果 n &#x3D; 7, k &#x3D; 4，从 55 开始搜索就已经没有意义了，这是因为：即使把 55 选上，后面的数只有 66 和 77，一共就 33 个候选数，凑不出 44 个数的组合。因此，搜索起点有上界，这个上界是多少，可以举几个例子分析。</p>
+<p>分析搜索起点的上界，其实是在深度优先遍历的过程中剪枝，剪枝可以避免不必要的遍历，剪枝剪得好，可以大幅度节约算法的执行时间。</p>
+<p>下面的图片绿色部分是剪掉的枝叶，当 n 很大的时候，能少遍历很多结点，节约了时间。</p>
+<p>（温馨提示：右键，在弹出的下拉列表框中选择「在新标签页中打开图片」，可以查看大图。）</p>
+<p>容易知道：搜索起点和当前还需要选几个数有关，而当前还需要选几个数与已经选了几个数有关，即 path 的长度相关。我们举几个例子分析：</p>
+<p>例如：n &#x3D; 6 ，k &#x3D; 4。</p>
+<p>path.size() &#x3D;&#x3D; 1 的时候，接下来要选择 33 个数，搜索起点最大是 44，最后一个被选的组合是 [4, 5, 6]；<br>path.size() &#x3D;&#x3D; 2 的时候，接下来要选择 22 个数，搜索起点最大是 55，最后一个被选的组合是 [5, 6]；<br>path.size() &#x3D;&#x3D; 3 的时候，接下来要选择 11 个数，搜索起点最大是 66，最后一个被选的组合是 [6]；</p>
+<p>再如：n &#x3D; 15 ，k &#x3D; 4。<br>path.size() &#x3D;&#x3D; 1 的时候，接下来要选择 33 个数，搜索起点最大是 1313，最后一个被选的是 [13, 14, 15]；<br>path.size() &#x3D;&#x3D; 2 的时候，接下来要选择 22 个数，搜索起点最大是 1414，最后一个被选的是 [14, 15]；<br>path.size() &#x3D;&#x3D; 3 的时候，接下来要选择 11 个数，搜索起点最大是 1515，最后一个被选的是 [15]；</p>
+<p>搜索起点的上界 + 接下来要选择的元素个数 - 1 &#x3D; n</p>
+<p>其中，接下来要选择的元素个数 &#x3D; k - path.size()，整理得到：</p>
+<p>搜索起点的上界 &#x3D; n - (k - path.size()) + 1<br>所以，我们的剪枝过程就是：把 i &lt;&#x3D; n 改成 i &lt;&#x3D; n - (k - pre.size()) + 1 ：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayDeque;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Deque;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="title function_">combine</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (k &lt;= <span class="number">0</span> || n &lt; k) &#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        Deque&lt;Integer&gt; path = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();</span><br><span class="line">        dfs(n, k, <span class="number">1</span>, path, res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> k, <span class="type">int</span> index, Deque&lt;Integer&gt; path, List&lt;List&lt;Integer&gt;&gt; res)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (path.size() == k) &#123;</span><br><span class="line">            res.add(<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(path));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 只有这里 i &lt;= n - (k - path.size()) + 1 与参考代码 1 不同</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> index; i &lt;= n - (k - path.size()) + <span class="number">1</span>; i++) &#123;</span><br><span class="line">            path.addLast(i);</span><br><span class="line">            dfs(n, k, i + <span class="number">1</span>, path, res);</span><br><span class="line">            path.removeLast();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="说明：-1"><a href="#说明：-1" class="headerlink" title="说明："></a>说明：</h4><p>一些边界条件比较绕的，用具体的例子分析就不容易出错，主要考察的是细心，没有太多技巧；<br>为参考代码 3 添加 path 的打印输出语句，可以看到输出语句会更少。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">递归之前 =&gt; [<span class="number">1</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">1</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">1</span>, <span class="number">3</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">1</span>, <span class="number">3</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">1</span>, <span class="number">3</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">1</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">1</span>, <span class="number">4</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">1</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">1</span>, <span class="number">4</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">1</span>]</span><br><span class="line">递归之后 =&gt; []</span><br><span class="line">递归之前 =&gt; [<span class="number">2</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">2</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">2</span>, <span class="number">4</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">2</span>, <span class="number">4</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">2</span>]</span><br><span class="line">递归之后 =&gt; []</span><br><span class="line">递归之前 =&gt; [<span class="number">3</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">3</span>]</span><br><span class="line">递归之后 =&gt; []</span><br><span class="line">[[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>], [<span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>], [<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>], [<span class="number">1</span>, <span class="number">4</span>, <span class="number">5</span>], [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>], [<span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>], [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/09/08/2020-09-08-Neuroscience-A New Paradigm for Exploring Neural Substrates of Action Execution/" data-toggle="tooltip" data-placement="top" title="Neuroscience | A New Paradigm for Exploring Neural Substrates of Action Execution">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/09/08/2020-09-08-Neuroscience-Spontaneous Thought Processes (STPs)/" data-toggle="tooltip" data-placement="top" title="Neuroscience | Spontaneous Thought Processes (STPs)">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                        
+                          <a class="tag" href="/tags/#Medium" title="Medium">Medium</a>
+                        
+                          <a class="tag" href="/tags/#Backtracking Algorithm" title="Backtracking Algorithm">Backtracking Algorithm</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://blog.uomi.moe" target="_blank">驱逐舰患者</a></li>
+                    
+                        <li><a href="https://m.mepai.me/photographyer/u_5a68085ba15aa.html?tdsourcetag=s_pctim_aiomsg" target="_blank">隐之-INF</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Txing 2023 
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://txing-casia.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

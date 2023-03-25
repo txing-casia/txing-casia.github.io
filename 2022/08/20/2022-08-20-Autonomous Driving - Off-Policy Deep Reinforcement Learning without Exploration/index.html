@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="泛用人形决战型机器人博士">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Autonomous Driving | Off-Policy Deep Reinforcement Learning without Exploration - 伽蓝之堂 | Txing Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://txing-casia.github.io/2022/08/20/2022-08-20-Autonomous Driving - Off-Policy Deep Reinforcement Learning without Exploration/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Txing</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('img/post-bg-py.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Autonomous Driving" title="Autonomous Driving">Autonomous Driving</a>
+                        
+                          <a class="tag" href="/tags/#Imitation Learning" title="Imitation Learning">Imitation Learning</a>
+                        
+                    </div>
+                    <h1>Autonomous Driving | Off-Policy Deep Reinforcement Learning without Exploration</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Txing on
+                        2022-08-20
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="Off-Policy-Deep-Reinforcement-Learning-without-Exploration-2019"><a href="#Off-Policy-Deep-Reinforcement-Learning-without-Exploration-2019" class="headerlink" title="Off-Policy Deep Reinforcement Learning without Exploration (2019)"></a>Off-Policy Deep Reinforcement Learning without Exploration (2019)</h2><p>类似DQN和DDPG的off-policy RL算法在被禁止探索，并在没有数据策略分布修正的的情况下，难以取得好的效果。本文通过限制off-policy agent的行为空间，使其行为类似与on-policy算法，最后提出了一个较为通用的，针对连续控制的deep reinforcement learning algorithm。</p>
+<h3 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h3><ul>
+<li><p><strong>batch reinforcement learning</strong>：在一些数据收集面临costly, risky, or time-consuming的情境时，智能体只能从固定的数据集中学习策略，并且其对数据质量的要求较低。</p>
+</li>
+<li><p>当数据集中的分布与当前算法策略的分布不同时，标准的off-policy RL算法将会失败。</p>
+</li>
+<li><p>extrapolation error：未见过的状态-动作对被错误地估计为具有不现实的价值的现象。</p>
+</li>
+<li><p>引入了batch-constrained reinforcement learning来克服extrapolation error，最大化奖励的同时，最小化批量数据中状态-行为对和策略访问的状态行为对的误匹配。</p>
+</li>
+<li><p>本文提出算法：<strong>Batch-Constrained deep Q-learning</strong> (BCQ)，利用一个与Q-network结合的条件状态生成模型，只生成过去见过的行为。在较弱的假设下，证明了这种批约束范式对于有限确定MDP的不完全数据集的无偏估计是必要的。</p>
+</li>
+<li><p>代码开源：<a target="_blank" rel="noopener" href="https://github.com/sfujim/BCQ">https://github.com/sfujim/BCQ</a></p>
+</li>
+</ul>
+<h3 id="2-Background"><a href="#2-Background" class="headerlink" title="2 Background"></a>2 Background</h3><ul>
+<li>贝尔曼算子（Bellman operator）$$\Tau^{\pi}$$：<br>$$<br>\Tau^{\pi}Q(s,a)&#x3D;\mathbb{E}_{s’}[r+\gamma Q(s’,\pi(s’))]<br>$$</li>
+</ul>
+<h3 id="3-Extrapolation-Error-外推误差"><a href="#3-Extrapolation-Error-外推误差" class="headerlink" title="3 Extrapolation Error (外推误差)"></a>3 Extrapolation Error (外推误差)</h3><ul>
+<li><p>Extrapolation error is an error in off-policy value learning which is introduced by the mismatch between the dataset and true state-action visitation of the current policy，或者$$(s,a)$$在数据集中不存在</p>
+</li>
+<li><p>外推误差的成因：</p>
+<ul>
+<li><p><strong>数据缺省</strong>（Absent Data）：state-action pair (s, a) is unavailable，因此在估计状态-行为价值Q的时候会引入误差。</p>
+</li>
+<li><p><strong>模型偏置</strong>（Model Bias）：when performing off-policy Q-learning with a batch B，状态转移动力学的有偏估计为：</p>
+<p>$$\Tau^{\pi}Q(s,a) \approx \mathbb{E}_{s’\sim B}[r+\gamma Q(s’,\pi(s’))]$$ 其中，状态转移依据buffer B，而不是真实的MDP。</p>
+</li>
+<li><p><strong>训练误匹配</strong>（Training Mismatch）：当数据的分布和当前策略的分布不匹配，对action的估计会有误差</p>
+</li>
+</ul>
+</li>
+<li><p>As a result, learning a value estimate with off-policy data can result in large amounts of extrapolation<br>error if the policy selects actions which are not similar to the data found in the batch.</p>
+</li>
+</ul>
+<h4 id="3-1-Extrapolation-Error-in-Deep-Reinforcement-Learning"><a href="#3-1-Extrapolation-Error-in-Deep-Reinforcement-Learning" class="headerlink" title="3.1 Extrapolation Error in Deep Reinforcement Learning"></a>3.1 Extrapolation Error in Deep Reinforcement Learning</h4><ul>
+<li>本节使用SOTA Actor-Critic off-policy RL 算法DDPG，在与策略无关的数据集上学习，观察到性能迅速恶化。</li>
+<li>These results suggest that off-policy deep reinforcement learning algorithms are ineffective when<br>learning truly off-policy.</li>
+<li>训练环境：OpenAI gym’s Hopper-v1 environment</li>
+<li>train an off-policy DDPG agent with no interaction with the environment.</li>
+<li>三个batch：<ul>
+<li>**Batch 1 (Final buffer)**：1 million time steps，行为加上（0,0.5）的高斯噪声，store all experienced transitions。</li>
+<li>**Batch 2 (Concurrent)**：训练behavioral DDPG agents，1 million time steps，行为加上（0,0.1）的高斯噪声，每一次转移经验都放入buffer，即该情况下每个behavioral和off-policy智能体使用同一的数据集训练。</li>
+<li>**Batch 3 (Imitation)**：使用一个完全训练的DDPG，收集1 million time steps数据作为专家数据。</li>
+</ul>
+</li>
+<li>实验中的off-policy DDPG完全使用离线数据训练，behavioral DDPG与环境交互正常训练。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220820-1.png" alt="Figure 1"></p>
+<p>Even in the concurrent experiment, where both agents are trained with the same dataset, there is a large gap in performance in every single trial.</p>
+<ul>
+<li><p>结论：</p>
+<ul>
+<li>Batch 1中，即使有了充足的探索，agent依然难以具有稳定的value estimation</li>
+<li>Batch 2中，即使使用相同的数据训练，agent之间的差异巨大。说明policy初始化的不同足以引入外推误差。</li>
+<li>Batch 3中，尽管有了专家数据，agent仍快速学习非专家策略，最终导致效果很差。</li>
+</ul>
+</li>
+<li><p>外推误差提供了一个噪声源，可导致持续高估偏差。extrapolation error provides a source of noise that can induce a persistent overestimation bias (Thrun &amp; Schwartz, 1993; Van Hasselt et al., 2016; Fujimoto et al.,2018).</p>
+</li>
+<li><p>在完全off-policy情况下，外推误差无法通过与环境交互获得新数据来消除</p>
+</li>
+</ul>
+<h3 id="4-Batch-Constrained-Reinforcement-Learning"><a href="#4-Batch-Constrained-Reinforcement-Learning" class="headerlink" title="4 Batch-Constrained Reinforcement Learning"></a>4 Batch-Constrained Reinforcement Learning</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2022/08/23/2022-08-23-Autonomous Driving - 关于加减速变道的思考/" data-toggle="tooltip" data-placement="top" title="Autonomous Driving | 关于加减速变道的思考">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2022/08/18/2022-08-18-Autonomous Driving - [U] Goal-driven Self-Attentive Recurrent Networks for Trajectory Prediction/" data-toggle="tooltip" data-placement="top" title="Autonomous Driving | Goal-driven Self-Attentive Recurrent Networks for Trajectory Prediction">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Autonomous Driving" title="Autonomous Driving">Autonomous Driving</a>
+                        
+                          <a class="tag" href="/tags/#Imitation Learning" title="Imitation Learning">Imitation Learning</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://blog.uomi.moe" target="_blank">驱逐舰患者</a></li>
+                    
+                        <li><a href="https://m.mepai.me/photographyer/u_5a68085ba15aa.html?tdsourcetag=s_pctim_aiomsg" target="_blank">隐之-INF</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Txing 2023 
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://txing-casia.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

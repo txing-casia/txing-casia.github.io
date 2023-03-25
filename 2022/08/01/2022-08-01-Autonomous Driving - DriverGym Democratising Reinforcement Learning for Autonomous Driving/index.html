@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="泛用人形决战型机器人博士">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Autonomous Driving | DriverGym Democratising Reinforcement Learning for Autonomous Driving - 伽蓝之堂 | Txing Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://txing-casia.github.io/2022/08/01/2022-08-01-Autonomous Driving - DriverGym Democratising Reinforcement Learning for Autonomous Driving/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Txing</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('img/post-bg-py.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Autonomous Driving" title="Autonomous Driving">Autonomous Driving</a>
+                        
+                          <a class="tag" href="/tags/#Imitation Learning" title="Imitation Learning">Imitation Learning</a>
+                        
+                    </div>
+                    <h1>Autonomous Driving | DriverGym Democratising Reinforcement Learning for Autonomous Driving</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Txing on
+                        2022-08-01
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="DriverGym-Democratising-Reinforcement-Learning-for-Autonomous-Driving"><a href="#DriverGym-Democratising-Reinforcement-Learning-for-Autonomous-Driving" class="headerlink" title="DriverGym: Democratising Reinforcement Learning for Autonomous Driving"></a>DriverGym: Democratising Reinforcement Learning for Autonomous Driving</h2><ul>
+<li><p>现状：目前缺少open-source platform来用real-world data训练和高效地验证RL算法。</p>
+</li>
+<li><p>DriverGym 平台的特点：</p>
+<ul>
+<li>开源（opensource）</li>
+<li>与Gym兼容（OpenAI Gym-compatible environment specifically tailored）</li>
+<li>超过1000小时专家记录数据（more than 1000 hours of expert logged data）  </li>
+<li>灵活的闭环评估协议（flexible closed-loop evaluation protocol）</li>
+<li>提供行为克隆baselines（provide behavior cloning baselines using supervised learning and RL）  </li>
+<li>代码：<a target="_blank" rel="noopener" href="https://lyft.github.io/l5kit/">https://lyft.github.io/l5kit/</a>  （已失效）</li>
+</ul>
+</li>
+<li><p>环境结构：</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220801-2.png" alt="DriverGym"></p>
+<blockquote>
+<p>DriverGym: an open-source gym environment that enables training RL driving policies on real-world data. The RL policy can access rich semantic maps to control the ego (<strong>red</strong>). Other agents (<strong>blue</strong>) can either be simulated from the data logs or controlled using a dedicated policy pre-trained on real-world data. We provide an extensible evaluation system (<strong>purple</strong>) with easily configurable metrics to evaluate the idiosyncrasies of the trained policies.  </p>
+</blockquote>
+<h3 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h3><ul>
+<li>自动驾驶开源RL仿真环境的对比</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220801-3.png" alt="自动驾驶开源RL仿真环境的对比"></p>
+<ul>
+<li><p>对仿真平台的几个需求：</p>
+<ul>
+<li>(1) 易于训练RL策略；be used to easily train RL policies using real-world logs, </li>
+<li>(2) 可仿真实际的和反应式的周围智能体行为反应；simulate surrounding agent behavior that is both realistic and reactive to the ego policy, </li>
+<li>(3) 可高效评估模型；effectively evaluate the trained models,</li>
+<li>(4) 设计灵活可调；be flexible in its design, </li>
+<li>(5) 包容整个相关研究社区；inclusive to the entire research community,</li>
+</ul>
+</li>
+<li><p>使用了最大的公开数据集：Level 5 Prediction Dataset</p>
+<ul>
+<li>J. Houston, G. Zuidhof, L. Bergamini, Y. Ye, A. Jain, S. Omari, V. Iglovikov, and P. Ondruska. One thousand and one hours: Self-driving motion prediction dataset. <a target="_blank" rel="noopener" href="https://level-5.global/level5/data/">https://level-5.global/level5/data/</a>, 2020.</li>
+</ul>
+</li>
+<li><p>支持反应式的行为仿真</p>
+<ul>
+<li>Luca Bergamini, Y. Ye, Oliver Scheel, Long Chen, Chih Hu, Luca Del Pero, Blazej Osinski, Hugo Grimmett, and Peter Ondruska. Simnet: Learning reactive self-driving simulations from real-world observations. ArXiv, abs&#x2F;2105.12332, 2021.</li>
+</ul>
+</li>
+<li><p>闭环评估系统中提供了自动驾驶相关的评估指标，指标支持扩展和合并，应用于策略的训练</p>
+</li>
+<li><p>主要贡献：</p>
+<ul>
+<li>An open-source and OpenAI gym-compatible environment for autonomous driving task;</li>
+<li>Support for more than 1000 hours of real-world expert data;</li>
+<li>Support for logged agents replay or data-driven realistic agent trajectory simulations;</li>
+<li>Configurable and extensible evaluation protocol;</li>
+<li>Provide pre-trained models and the corresponding reproducible training code.</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-Related-Work"><a href="#2-Related-Work" class="headerlink" title="2 Related Work"></a>2 Related Work</h3><ul>
+<li><strong>赛车仿真环境（Racing simulators）：</strong><ul>
+<li><strong>TORCS</strong>：提供了受限的驾驶场景<ul>
+<li>E. Espié, Christophe Guionneau, Bernhard Wymann, Christos Dimitrakakis, Rémi Coulom, and Andrew Sumner. Torcs, the open racing car simulator. 2005.</li>
+</ul>
+</li>
+<li><strong>Highway-Env</strong>：环境与Gym兼容，但缺少交通灯、评估协议和专家数据<ul>
+<li>Edouard Leurent. An environment for autonomous driving decision-making. <a target="_blank" rel="noopener" href="https://github.com/eleurent/highway-env">https://github.com/eleurent/highway-env</a>, 2018.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>交通仿真环境（Traffic simulators）</strong>：<ul>
+<li><strong>CARLA</strong>：支持多变的交通情况训练和测试，但周围车辆使用手写规则（hand-coded rules），真实性有限。<ul>
+<li>A. Dosovitskiy, G. Ros, Felipe Codevilla, Antonio M. López, and V. Koltun. Carla: An open urban driving simulator. ArXiv, abs&#x2F;1711.03938, 2017.</li>
+</ul>
+</li>
+<li><strong>SUMO</strong>：支持多变的交通情况训练和测试，但周围车辆使用手写规则（hand-coded rules），真实性有限。<ul>
+<li>Pablo Alvarez Lopez, Michael Behrisch, Laura Bieker-Walz, Jakob Erdmann, Yun-Pang Flötteröd, Robert Hilbrich, Leonhard Lücken, Johannes Rummel, Peter Wagner, and Evamarie Wießner. Microscopic traffic simulation using sumo. In The 21st IEEE International Conference on Intelligent Transportation Systems. IEEE, 2018. URL <a target="_blank" rel="noopener" href="https://elib.dlr.de/124092/">https://elib.dlr.de/124092/</a>.</li>
+</ul>
+</li>
+<li><strong>SMARTS</strong> ：有<code>Social Agent Zoo</code>支持数据驱动周围车辆行为。 <ul>
+<li>Ming Zhou, Jun Luo, Julian Villela, Yaodong Yang, David Rusu, Jiayu Miao, Weinan Zhang, Montgomery Alban, Iman Fadakar, Zheng Chen, Aurora Chongxi Huang, Ying Wen, Kimia Hassanzadeh, Daniel Graves, Dong Chen, Zhengbang Zhu, Nhat M. Nguyen, Mohamed Elsayed, Kun Shao, Sanjeevan Ahilan, Baokuan Zhang, Jiannan Wu, Zhengang Fu, Kasra Rezaee, Peyman Yadmellat, Mohsen Rohani, Nicolas Perez Nieves, Yihan Ni, Seyedershad Banijamali, Alexander Cowen Rivers, Zheng Tian, Daniel Palenicek, Haitham Ammar, Hongbo Zhang, Wulong Liu, Jianye Hao, and Jintao Wang. Smarts: Scalable multi-agent reinforcement learning training school for autonomous driving. ArXiv, abs&#x2F;2010.09776, 2020.</li>
+</ul>
+</li>
+<li><strong>CRTS</strong>：提供了logs数据接口，使用64小时的真实驾驶数据（real-world logs）训练周围车辆的行为。集成在Carla中。<ul>
+<li>Blazej Osinski, Piotr Milos, Adam Jakubowski, Pawel Ziecina, Michal Martyniak, Christopher Galias, Antonia Breuer, Silviu Homoceanu, and Henryk Michalewski. Carla real traffic scenarios - novel training ground and benchmark for autonomous driving. ArXiv, abs&#x2F;2012.11329, 2020.</li>
+</ul>
+</li>
+<li><strong>DriverGym</strong>：支持反应式的agent使用数据驱动模型学习真实世界的数据，并提供了1000小时真实的驾驶记录可用于仿真agent</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-DriverGym"><a href="#3-DriverGym" class="headerlink" title="3 DriverGym"></a>3 DriverGym</h3><ul>
+<li><p>模型兼容两个流行的框架训练策略：</p>
+<ul>
+<li><strong>SB3</strong>：<a target="_blank" rel="noopener" href="https://github.com/DLR-RM/stable-baselines3">Stable Baselines3 (SB3)</a>是 PyTorch 中强化学习算法的一组可靠实现。它是<a target="_blank" rel="noopener" href="https://github.com/hill-a/stable-baselines">Stable Baselines</a>的下一个主要版本。<ul>
+<li>Antonin Raffin, Ashley Hill, Maximilian Ernestus, Adam Gleave, Anssi Kanervisto, and Noah Dormann. Stable baselines3. <a target="_blank" rel="noopener" href="https://github.com/DLR-RM/stable-baselines3">https://github.com/DLR-RM/stable-baselines3</a>, 2019.</li>
+</ul>
+</li>
+<li><strong>RLlib</strong>：RLlib是一个开源强化学习库,提供了高度可扩展能力和不同应用的统一的<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=API&spm=1001.2101.3001.7020">API</a>。RLlib原生支持Tensorflow，Tensorflow Eager，以及PyTorch，但其内部与这些框架无关。<ul>
+<li>Eric Liang, Richard Liaw, Robert Nishihara, Philipp Moritz, Roy Fox, Ken Goldberg, Joseph E. Gonzalez, Michael I. Jordan, and Ion Stoica. Rllib: Abstractions for distributed reinforcement learning. In ICML, 2018.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>例子场景：绿线是策略预测的轨迹</p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220801-4.png" alt="Visualization of an episode rollout (ego in red, agents in blue) in DriverGym. The policy
+prediction (green line) is scaled by factor of 10 and shown at 2 second intervals for better viewing"></p>
+</li>
+<li><p>action space：行为为 $$(x; y; yaw)$$ (yaw是朝向)，用于更新ego-agent行为；环境输出 $$(acceleration; steer)$$ 用于计算下一时刻的observation</p>
+</li>
+<li><p>reactive agent：允许周围车辆使用两种方式控制：</p>
+<ul>
+<li>log replay：回放真实世界中收集的数据；</li>
+<li>reactive simulation：可使用真实世界数据训练neural-network-based agent models，用于控制车辆行为</li>
+</ul>
+</li>
+<li><p>reward：支持不同的自动驾驶评价指标，在每一帧进行评价计算，指标可以整合为奖励函数。</p>
+</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>整体来看，支持Gym环境大大方便了仿真和调试，一些细节问题由于没有实际使用该环境还不清楚，比如车辆密度、速度、周围车辆的观测质量、轨迹质量等。</p>
+<p>本文作者正对更多细粒度场景设计评估方案，例如或绿灯路口重新启动等。</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2022/08/01/2022-08-01-Autonomous Driving - Model-based offline planning/" data-toggle="tooltip" data-placement="top" title="Autonomous Driving | Model-based offline planning">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2022/07/23/2022-07-23-Autonomous Driving - A Review of Motion Planning for Highway Autonomous Driving/" data-toggle="tooltip" data-placement="top" title="Autonomous Driving | A Review of Motion Planning for Highway Autonomous Driving">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Autonomous Driving" title="Autonomous Driving">Autonomous Driving</a>
+                        
+                          <a class="tag" href="/tags/#Imitation Learning" title="Imitation Learning">Imitation Learning</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://blog.uomi.moe" target="_blank">驱逐舰患者</a></li>
+                    
+                        <li><a href="https://m.mepai.me/photographyer/u_5a68085ba15aa.html?tdsourcetag=s_pctim_aiomsg" target="_blank">隐之-INF</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Txing 2023 
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://txing-casia.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

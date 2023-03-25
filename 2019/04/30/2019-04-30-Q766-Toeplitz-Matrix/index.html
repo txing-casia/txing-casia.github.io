@@ -13,11 +13,11 @@
 
     <title>
         
-          在python中调用MATLAB的方法 - 伽蓝之堂 | Txing Blog
+          Q766 Toeplitz Matrix - 伽蓝之堂 | Txing Blog
         
     </title>
 
-    <link rel="canonical" href="https://txing-casia.github.io/pretty">
+    <link rel="canonical" href="https://txing-casia.github.io/2019/04/30/2019-04-30-Q766-Toeplitz-Matrix/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -147,16 +147,18 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#MATLAB" title="MATLAB">MATLAB</a>
-                        
                           <a class="tag" href="/tags/#Python" title="Python">Python</a>
                         
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                        
+                          <a class="tag" href="/tags/#Array" title="Array">Array</a>
+                        
                     </div>
-                    <h1>在python中调用MATLAB的方法</h1>
-                    <h2 class="subheading">这种调用其实很鸡肋，尽可能不要跨软件调用，</h2>
+                    <h1>Q766 Toeplitz Matrix</h1>
+                    <h2 class="subheading">方法2提供了非常简洁的实现方式，faster than 98.04%的python代码</h2>
                     <span class="meta">
                         Posted by Txing on
-                        2018-08-15
+                        2019-04-30
                     </span>
                 </div>
             </div>
@@ -175,35 +177,41 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="在python中调用MATLAB的方法"><a href="#在python中调用MATLAB的方法" class="headerlink" title="在python中调用MATLAB的方法"></a>在python中调用MATLAB的方法</h1><p>网上有些是让你安装mlab库来实现调用的，这个方法已经淘汰不用了，这里介绍比较新的方法。</p>
-<h2 id="Step-1-install-MATLAB-Engine-API-for-Python"><a href="#Step-1-install-MATLAB-Engine-API-for-Python" class="headerlink" title="Step 1: install MATLAB Engine API for Python"></a>Step 1: install MATLAB Engine API for Python</h2><p>官网给出的方案：</p>
-<p><a target="_blank" rel="noopener" href="http://ww2.mathworks.cn/help/matlab/matlab_external/install-the-matlab-engine-for-python.html?ue">install MATLAB Engine API for Python</a></p>
-<p>在MATLAB中输入：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">matlabroot</span><br></pre></td></tr></table></figure>
+                <h1 id="Toeplitz-Matrix"><a href="#Toeplitz-Matrix" class="headerlink" title="Toeplitz Matrix"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/toeplitz-matrix/">Toeplitz Matrix</a></h1><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
+<p>A matrix is <em>Toeplitz</em> if every diagonal from top-left to bottom-right has the same element.</p>
+<p>Now given an <code>M x N</code> matrix, return <code>True</code> if and only if the matrix is <em>Toeplitz</em>.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1</strong>: </p>
+<p>Input:<br>matrix &#x3D; [<br>  [1,2,3,4],<br>  [5,1,2,3],<br>  [9,5,1,2]<br>]<br>Output: True<br>Explanation:<br>In the above grid, the diagonals are:<br>“[9]”, “[5, 5]”, “[1, 1, 1]”, “[2, 2, 2]”, “[3, 3]”, “[4]”.<br>In each diagonal all elements are the same, so the answer is True.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2</strong>: </p>
+<p>Input:<br>matrix &#x3D; [<br>  [1,2],<br>  [2,2]<br>]<br>Output: False<br>Explanation:<br>The diagonal “[1, 2]” has different elements.</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ul>
+<li><code>matrix</code> will be a 2D array of integers.</li>
+<li><code>matrix</code> will have a number of rows and columns in range <code>[1, 20]</code>.</li>
+<li><code>matrix[i][j]</code> will be integers in range <code>[0, 99]</code>.</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="Approach-1-Group-by-Category"><a href="#Approach-1-Group-by-Category" class="headerlink" title="Approach 1: Group by Category"></a>Approach 1: Group by Category</h3><p><strong>Intuition and Algorithm</strong></p>
+<p>We ask what feature makes two coordinates <code>(r1, c1)</code> and <code>(r2, c2)</code> belong to the same diagonal?</p>
+<p>It turns out two coordinates are on the same diagonal if and only if <code>r1 - c1 == r2 - c2</code>.</p>
+<p>This leads to the following idea: remember the value of that diagonal as <code>groups[r-c]</code>. If we see a mismatch, the matrix is not Toeplitz; otherwise it is.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isToeplitzMatrix</span>(<span class="params">self, matrix</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        groups = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> r, row <span class="keyword">in</span> <span class="built_in">enumerate</span>(matrix):</span><br><span class="line">            <span class="keyword">for</span> c, val <span class="keyword">in</span> <span class="built_in">enumerate</span>(row):</span><br><span class="line">                <span class="keyword">if</span> (r - c) <span class="keyword">not</span> <span class="keyword">in</span> groups: <span class="comment"># 行与列的差不在groups</span></span><br><span class="line">                    groups[r - c] = val</span><br><span class="line">                <span class="keyword">elif</span> groups[r - c] != val:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
 
-<p>得到返回的位置</p>
-<p>打开anaconda，输入下面语句进行安装</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd matlabroot\extern\engines\python</span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="Approach-2-Compare-With-Top-Left-Neighbor"><a href="#Approach-2-Compare-With-Top-Left-Neighbor" class="headerlink" title="Approach 2: Compare With Top-Left Neighbor"></a>Approach 2: Compare With Top-Left Neighbor</h3><p><strong>Intuition and Algorithm</strong></p>
+<p>For each diagonal with elements in order $a_1, a_2, a_3, \dots, a_k$, we can check $a_1 &#x3D; a_2, a_2 &#x3D; a_3, \dots, a_{k-1} &#x3D; a_k$. The matrix is <em>Toeplitz</em> if and only if all of these conditions are true for all (top-left to bottom-right) diagonals.</p>
+<p>Every element belongs to some diagonal, and it’s previous element (if it exists) is it’s top-left neighbor. Thus, for the square <code>(r, c)</code>, we only need to check <code>r == 0 OR c == 0 OR matrix[r-1][c-1] == matrix[r][c]</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isToeplitzMatrix</span>(<span class="params">self, matrix</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">all</span>(r == <span class="number">0</span> <span class="keyword">or</span> c == <span class="number">0</span> <span class="keyword">or</span> matrix[r-<span class="number">1</span>][c-<span class="number">1</span>] == val</span><br><span class="line">                   <span class="keyword">for</span> r, row <span class="keyword">in</span> <span class="built_in">enumerate</span>(matrix)</span><br><span class="line">                   <span class="keyword">for</span> c, val <span class="keyword">in</span> <span class="built_in">enumerate</span>(row))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># all(),相当于or的含义，括号中有元素就返回True，无元素返回False</span></span><br></pre></td></tr></table></figure>
 
-<p>注意要将matlabroot替换为之前返回的位置</p>
-<h2 id="Step-2-Call-User-Script-and-Function-from-Python"><a href="#Step-2-Call-User-Script-and-Function-from-Python" class="headerlink" title="Step 2: Call User Script and Function from Python"></a>Step 2: Call User Script and Function from Python</h2><p>官网给出的方案：</p>
-<p><a target="_blank" rel="noopener" href="http://cn.mathworks.com/help/matlab/matlab_external/call-user-script-and-function-from-python.html">Call User Script and Function from Python</a></p>
-<p>###.m脚本的调用</p>
-<p>.m文件与.py文件需要放在同一目录下。在test.m文件中输入：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">b=<span class="number">2</span>;</span><br><span class="line">h=<span class="number">3</span>;</span><br><span class="line">a=b*h</span><br></pre></td></tr></table></figure>
-
-<p>在H.py文件中输入：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matlab.engine</span><br><span class="line">eng = matlab.engine.start_matlab()</span><br><span class="line">eng.test(nargout=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-
-<p>其中指定 <code>nargout=0</code>。尽管脚本会打印输出，但它不会向 Python 返回任何输出参数。</p>
-<h3 id="自定义函数的调用"><a href="#自定义函数的调用" class="headerlink" title="自定义函数的调用"></a>自定义函数的调用</h3><p>在time.m中输入：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span> = <span class="title">time</span><span class="params">(b,h)</span></span></span><br><span class="line">	a = b*h;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<p>在H.py中输入：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matlab.engine</span><br><span class="line">eng = matlab.engine.start_matlab()</span><br><span class="line">ret = eng.time(<span class="number">1.0</span>,<span class="number">5.0</span>)</span><br><span class="line"><span class="built_in">print</span>(ret)</span><br></pre></td></tr></table></figure>
-
-<p>可以实现函数的调用。由于函数仅返回一个输出参数，因此无需指定 <code>nargout</code>。</p>
-<p>‎2018‎年‎8‎月‎15‎日</p>
+<p>Runtime: 44 ms, faster than 98.04% of Python3 online submissions forToeplitz Matrix.</p>
+<p>Memory Usage: 13.1 MB, less than 6.86% of Python3 online submissions for Toeplitz Matrix.</p>
 
 
                 <hr>
@@ -213,9 +221,13 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/pretty" data-toggle="tooltip" data-placement="top" title="Q1 Two Sum">&larr; Previous Post</a>
+                            <a href="/2019/05/04/2019-05-04-Q867-Transpose Matrix/" data-toggle="tooltip" data-placement="top" title="Q867 Transpose Matrix">&larr; Previous Post</a>
                         </li>
                     
+                    
+                        <li class="next">
+                            <a href="/2019/04/29/2019-04-29-Q985-Sum-of-Even-Numbers-After-Queries/" data-toggle="tooltip" data-placement="top" title="Q985 Sum of Even Numbers After Queries">Next Post &rarr;</a>
+                        </li>
                     
                 </ul>
 
@@ -241,9 +253,11 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#MATLAB" title="MATLAB">MATLAB</a>
-                        
                           <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                        
+                          <a class="tag" href="/tags/#Array" title="Array">Array</a>
                         
                     </div>
                 </section>

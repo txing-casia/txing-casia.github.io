@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="泛用人形决战型机器人博士">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Autonomous Driving | MotionCNN: A Strong Baseline for Motion Prediction in Autonomous Driving (2022) - 伽蓝之堂 | Txing Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://txing-casia.github.io/2022/07/22/2022-07-22-Autonomous Driving - MotionCNN A Strong Baseline for Motion Prediction in Autonomous Driving/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Txing</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('img/post-bg-py.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Autonomous Driving" title="Autonomous Driving">Autonomous Driving</a>
+                        
+                          <a class="tag" href="/tags/#Imitation Learning" title="Imitation Learning">Imitation Learning</a>
+                        
+                    </div>
+                    <h1>Autonomous Driving | MotionCNN: A Strong Baseline for Motion Prediction in Autonomous Driving (2022)</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Txing on
+                        2022-07-22
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="MotionCNN-A-Strong-Baseline-for-Motion-Prediction-in-Autonomous-Driving"><a href="#MotionCNN-A-Strong-Baseline-for-Motion-Prediction-in-Autonomous-Driving" class="headerlink" title="MotionCNN: A Strong Baseline for Motion Prediction in Autonomous Driving"></a>MotionCNN: A Strong Baseline for Motion Prediction in Autonomous Driving</h2><h3 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h3><ul>
+<li>Motion prediction 目前仍然是一个困难的任务，本文提出了一个可以进行多模式的行为预测（multimodal motion prediction）的较强的baseline (based purely on Convolutional Neural Networks<br>(CNNs)  </li>
+<li>算法在 2021 Waymo Open Dataset Motion Prediction Challenge 取得第三名。相关代码见<a target="_blank" rel="noopener" href="https://github.com/kbrodt/waymo-motion-prediction-2021">Github</a></li>
+<li>运动预测任务最重要的一些方法：<ul>
+<li>birds-eye-view rasterized scene representations [15, 6, 4, 11, 18, 14]</li>
+<li>methods incarnated using graph neural networks [2, 8, 25]</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-Method"><a href="#2-Method" class="headerlink" title="2 Method"></a>2 Method</h3><h4 id="2-1-Rasterization"><a href="#2-1-Rasterization" class="headerlink" title="2.1 Rasterization"></a>2.1 Rasterization</h4><ul>
+<li>栅格化历史轨迹获得标准化的数据输入</li>
+<li>agent 始终位于图像中心</li>
+<li>agent 速度方向与x轴对齐</li>
+</ul>
+<h4 id="2-2-Model"><a href="#2-2-Model" class="headerlink" title="2.2 Model"></a>2.2 Model</h4><ul>
+<li>在ImageNet上预训练</li>
+<li>真实的行为难以预测，因此输出K个不同的行为假设</li>
+<li>输入：多通道栅格化图像</li>
+<li>输出：预测的K条轨迹，并带有可信度$$c_1,c_2,…,c_k$$，可信度用softmax归一化，满足$$\sum_k c_k&#x3D;1$$</li>
+</ul>
+<h4 id="2-3-Loss-function"><a href="#2-3-Loss-function" class="headerlink" title="2.3 Loss function"></a>2.3 Loss function</h4><ul>
+<li><p>使用k个高斯分布，网络输出高斯分布的均值，将每个高斯的协方差固定为单位矩阵$$I$$</p>
+</li>
+<li><p>损失函数使用混合高斯分布的负的log似然度negative log-likelihood (NLL)，混合高斯由真实轨迹坐标定义  </p>
+</li>
+<li><p>给定ground truth轨迹：$$X^{gt}&#x3D;[(x_1,y_1),…,(x_T,y_T)]$$</p>
+</li>
+<li><p>给定K个预测的假设轨迹：$$X_k&#x3D;[(x_{k,1},y_{k,1}),…,(x_{k,T},y_{k,T})],k&#x3D;1,…,K$$</p>
+</li>
+<li><p>计算预测高斯混合下真实轨迹的负对数概率，其均值等于预测轨迹，单位矩阵I为协方差:compute negative log probability of the ground truth trajectory under the predicted mixture of Gaussians with the means equal to the predicted trajectories and the identity matrix I as covariance:<br>$$<br>L&#x3D;-\log P(X^{gt})&#x3D;-\log\sum_k c_k \mathcal{N}(X^{gt};\mu&#x3D;X_k,\Sigma&#x3D;I)<br>$$</p>
+</li>
+<li><p>损失函数可以进一步分解为1维高斯的乘积：<br>$$<br>L&#x3D;-\log \sum_k c_k\prod \mathcal{N}(x_t^{gt};x_{k,t},1)\mathcal{N}(y_t^{gt};y_{k,t},1)\<br>&#x3D;-\log \sum_k \exp \bigg(\log(c_k)-\frac{1}{2}\sum_{t&#x3D;1}^T (x_t^{gt}-x_{k,t})^2+(y_t^{gt}-y_{k,t})^2 \bigg)<br>$$</p>
+</li>
+<li><p>建议的损失函数没有明确地惩罚产生非常接近的轨迹的模型。然而，根据经验，我们没有观察到模式崩溃，因为将所有的概率质量组合到一个模式中会导致更高的风险策略和更高的预测失误损失值。因此，优化建议的损失产生足够的多模态。</p>
+</li>
+</ul>
+<h4 id="2-4-Inference"><a href="#2-4-Inference" class="headerlink" title="2.4 Inference"></a>2.4 Inference</h4><ul>
+<li>为未来轨迹提供了6个假设</li>
+</ul>
+<h3 id="3-Experiments"><a href="#3-Experiments" class="headerlink" title="3 Experiments"></a>3 Experiments</h3><h4 id="3-1-Dataset"><a href="#3-1-Dataset" class="headerlink" title="3.1 Dataset"></a>3.1 Dataset</h4><ul>
+<li>Waymo Open Motion Dataset [22, 7]  <ul>
+<li>[22]. Pei Sun, Henrik Kretzschmar, Xerxes Dotiwalla, Aurelien Chouard, Vijaysai Patnaik, Paul Tsui, James Guo, Yin Zhou, Yuning Chai, Benjamin Caine, Vijay Vasudevan, Wei Han, Jiquan Ngiam, Hang Zhao, Aleksei Timofeev, Scott Ettinger, Maxim Krivokon, Amy Gao, Aditya Joshi, Sheng Zhao, Shuyang Cheng, Yu Zhang, Jonathon Shlens, Zhifeng Chen, and Dragomir Anguelov. Scalability in perception for autonomous driving: Waymo open dataset, 2020. 3, 4  </li>
+<li>[7]. Scott Ettinger, Shuyang Cheng, Benjamin Caine, Chenxi Liu, Hang Zhao, Sabeek Pradhan, Yuning Chai, Ben Sapp, Charles Qi, Yin Zhou, et al. Large scale interactive motion forecasting for autonomous driving: The waymo open motion dataset. arXiv preprint arXiv:2104.10133, 2021. 1, 2, 3, 4</li>
+</ul>
+</li>
+<li>Waymo数据包括：<ul>
+<li>object trajectories  </li>
+<li>3D maps for 103354 segments </li>
+<li>Each segment is a 20 seconds recording of an object trajectory at 10Hz  </li>
+<li>map data for the area covered by the segment</li>
+<li>A single sample comprises 1 second of history and 8 seconds of future data obtained by breaking the segments into 9-second windows with 5 second overlap  </li>
+<li>每个这样的样本包含多达8个标记为“有效”的代理，模型需要预测它们在未来8秒内的位置。Every such sample contains up to 8 agents marked as ”valid” for which the model needs to predict their positions for 8 seconds into the future.</li>
+</ul>
+</li>
+<li>Rasterisation details  <ul>
+<li>栅格尺寸：224 × 224 × (3 + 2T )，$$T&#x3D;11$$​是快照（snapshot）数，3是RGB图像的3个通道，包括road lines, crosswalks, traffic lights等；每个历史快照通过两个额外通道表示：（1）The mask representing the location of the target agent. （2）the mask representing all other agents nearby  </li>
+<li>智能体位于坐标$$[61,112]$$，其速度与图像的X轴对齐</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-2-Metrics"><a href="#3-2-Metrics" class="headerlink" title="3.2 Metrics"></a>3.2 Metrics</h4><ul>
+<li>预测的轨迹点下采样至2Hz。从预测的80个点产生16个2维坐标的子集被用于计算测试和验证度量</li>
+<li>最小化Average Displacement Error：$$minADE&#x3D;\min_k \frac{1}{T} \mid\mid X^{gt} -X \mid\mid_2$$</li>
+<li>最小化Final Displacement Error (FDE): $$minFDE&#x3D;\min_k \mid\mid x_T^{gt}- x_T \mid\mid_2$$</li>
+<li>Miss Rate(MR) and mean average precision (mAP)  in [7]<ul>
+<li>[7]. Scott Ettinger, Shuyang Cheng, Benjamin Caine, Chenxi Liu, Hang Zhao, Sabeek Pradhan, Yuning Chai, Ben Sapp, Charles Qi, Yin Zhou, et al. Large scale interactive motion forecasting for autonomous driving: The waymo open motion dataset. arXiv preprint arXiv:2104.10133, 2021. 1, 2, 3, 4</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-3-Implementation-details"><a href="#3-3-Implementation-details" class="headerlink" title="3.3 Implementation details"></a>3.3 Implementation details</h4><p>Results from the final leaderboard of the Waymo open dataset motion prediction challenge [1] are presented in Tab. 1. Despite the simplicity of the proposed approach we secured the 3rd place according to the mAP metric. Moreover, our model is superior to the other competing methods according to Min ADE, Min FDE, and Overlap Rate metrics. Note that in contrast to methods [12, 9], our simple model achieves such impressive results without any use of advanced deep learning techniques or complex architectures.</p>
+<p>To test a more lightweight architecture, we also trained our model using ResNet18 [10] as the backbone and evaluated it on the validation set (see Tab. 1). This architecture is 3x times faster to train than the one with Xception71 backbone, but it does not reach the same high performance showing that a sufficiently deep model is necessary for attaining good results. In Fig. 4 we show plots with train and validation loss values during training. </p>
+<p>In Tab. 2 we also provide more detailed evaluation results for different object types separately.  </p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220722-1.png" alt="Quantitative evaluation on test and validation sets of Waymo Open Motion Dataset"></p>
+<p> <img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220722-2.png" alt="Detailed evaluation of our MotionCNN-Xception71 model on test and validation sets of Waymo Open Motion Dataset"> </p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>作者也承认整个模型在结构和设计上比较简单，但是结果上是取得了waymo比赛的第三名。这是否意味着他们做了更多的工程化调整才取得如此的成绩？</p>
+<p>如果follow这项工作，其他人是否也能实现这样的性能是一个问题。</p>
+<p>​	</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2022/07/22/2022-07-22-Network Structure - A ConvNet for the 2020s/" data-toggle="tooltip" data-placement="top" title="Network Structure | A ConvNet for the 2020s (Facebook, 2022)">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2022/07/16/2022-07-16-Autonomous Driving - ChauffeurNet Learning to Drive by Imitating the Best and Synthesizing the Worst/" data-toggle="tooltip" data-placement="top" title="Autonomous Driving | ChauffeurNet: Learning to Drive by Imitating the Best and Synthesizing the Worst (Waymo, 2018)">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Autonomous Driving" title="Autonomous Driving">Autonomous Driving</a>
+                        
+                          <a class="tag" href="/tags/#Imitation Learning" title="Imitation Learning">Imitation Learning</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://blog.uomi.moe" target="_blank">驱逐舰患者</a></li>
+                    
+                        <li><a href="https://m.mepai.me/photographyer/u_5a68085ba15aa.html?tdsourcetag=s_pctim_aiomsg" target="_blank">隐之-INF</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Txing 2023 
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://txing-casia.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://txing-casia.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
