@@ -13,11 +13,11 @@
 
     <title>
         
-          Q1528 重新排列字符串-简单-编码排序 - 伽蓝之堂 | Txing Blog
+          在python中调用MATLAB的方法 - 伽蓝之堂 | Txing Blog
         
     </title>
 
-    <link rel="canonical" href="https://txing-casia.github.io/2021/03/03/2021-03-03-Q1528-重新排列字符串-简单-编码排序/">
+    <link rel="canonical" href="https://txing-casia.github.io/pretty">
 
     <!-- Bootstrap Core CSS -->
     
@@ -147,18 +147,16 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                          <a class="tag" href="/tags/#MATLAB" title="MATLAB">MATLAB</a>
                         
                           <a class="tag" href="/tags/#Python" title="Python">Python</a>
                         
-                          <a class="tag" href="/tags/#Easy" title="Easy">Easy</a>
-                        
                     </div>
-                    <h1>Q1528 重新排列字符串-简单-编码排序</h1>
-                    <h2 class="subheading"></h2>
+                    <h1>在python中调用MATLAB的方法</h1>
+                    <h2 class="subheading">这种调用其实很鸡肋，尽可能不要跨软件调用，</h2>
                     <span class="meta">
                         Posted by Txing on
-                        2021-03-03
+                        2018-08-15
                     </span>
                 </div>
             </div>
@@ -177,38 +175,35 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h4 id="1528-重新排列字符串"><a href="#1528-重新排列字符串" class="headerlink" title="1528. 重新排列字符串"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shuffle-string/">1528. 重新排列字符串</a></h4><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
-<p>给你一个字符串 s 和一个 <strong>长度相同</strong> 的整数数组 indices 。请你重新排列字符串 s ，其中第 i 个字符需要移动到 indices[i] 指示的位置。返回重新排列后的字符串</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入：s &#x3D; “codeleet”, indices &#x3D; [4,5,6,7,0,2,1,3]<br>输出：”leetcode”<br>解释：如图所示，”codeleet” 重新排列后变为 “leetcode” 。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>输入：s &#x3D; “aiohn”, indices &#x3D; [3,1,4,2,0]<br>输出：”nihao”</p>
-</blockquote>
-<blockquote>
-<p><strong>提示：</strong></p>
-<ul>
-<li>s.length &#x3D;&#x3D; indices.length &#x3D;&#x3D; n</li>
-<li>1 &lt;&#x3D; n &lt;&#x3D; 100</li>
-<li>s 仅包含小写英文字母。</li>
-<li>0 &lt;&#x3D; indices[i] &lt; n</li>
-<li>indices 的所有的值都是唯一的（也就是说，indices 是整数 0 到 n - 1 形成的一组排列）。</li>
-</ul>
-</blockquote>
-<h3 id="Approach-1-编码排序"><a href="#Approach-1-编码排序" class="headerlink" title="Approach 1: 编码排序"></a>Approach 1: 编码排序</h3><p>本题目的容易出现歧义，需要仔细对案例进行分析才能正确理解题目意思。</p>
-<p>本题目是先通过一种编码，把输入字符串中的每个字母对应上给定的序号。最后按照序号从小到大对字符串重排序。</p>
-<p>理解题目后，就比较简单了，这里尝试一下使用enumerate()，返回s中每个字符的下标和对应字符</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">restoreString</span>(<span class="params">self, s: <span class="built_in">str</span>, indices </span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        result = [<span class="string">&quot;&quot;</span>] * <span class="built_in">len</span>(s)</span><br><span class="line">        <span class="keyword">for</span> i, ch <span class="keyword">in</span> <span class="built_in">enumerate</span>(s):</span><br><span class="line">            result[indices[i]] = ch</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;&quot;</span>.join(result)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">restoreString1</span>(<span class="params">self, s: <span class="built_in">str</span>, indices </span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        res=[<span class="string">&#x27;&#x27;</span>]*<span class="built_in">len</span>(s)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(indices)):</span><br><span class="line">            res[indices[i]]=s[i]</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;&quot;</span>.join(res)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    s = <span class="string">&quot;codeleet&quot;</span></span><br><span class="line">    indices = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>]</span><br><span class="line">    solution=Solution().restoreString(s,indices)</span><br><span class="line">    solution=Solution().restoreString1(s,indices)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+                <h1 id="在python中调用MATLAB的方法"><a href="#在python中调用MATLAB的方法" class="headerlink" title="在python中调用MATLAB的方法"></a>在python中调用MATLAB的方法</h1><p>网上有些是让你安装mlab库来实现调用的，这个方法已经淘汰不用了，这里介绍比较新的方法。</p>
+<h2 id="Step-1-install-MATLAB-Engine-API-for-Python"><a href="#Step-1-install-MATLAB-Engine-API-for-Python" class="headerlink" title="Step 1: install MATLAB Engine API for Python"></a>Step 1: install MATLAB Engine API for Python</h2><p>官网给出的方案：</p>
+<p><a target="_blank" rel="noopener" href="http://ww2.mathworks.cn/help/matlab/matlab_external/install-the-matlab-engine-for-python.html?ue">install MATLAB Engine API for Python</a></p>
+<p>在MATLAB中输入：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">matlabroot</span><br></pre></td></tr></table></figure>
 
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(n)，n是字符串长度，需要遍历一遍字符串</li>
-<li>空间复杂度：O(n)，n是字符串长度，只用申请一个长度为n的res数组。</li>
-</ul>
-<p>其实也可以尝试不用申请res数组，直接修改原字符串，把空间复杂度降到O(1)。不过Python中要先用 s &#x3D; list(s) 函数进行转化才能修改字符串。</p>
+<p>得到返回的位置</p>
+<p>打开anaconda，输入下面语句进行安装</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd matlabroot\extern\engines\python</span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
+
+<p>注意要将matlabroot替换为之前返回的位置</p>
+<h2 id="Step-2-Call-User-Script-and-Function-from-Python"><a href="#Step-2-Call-User-Script-and-Function-from-Python" class="headerlink" title="Step 2: Call User Script and Function from Python"></a>Step 2: Call User Script and Function from Python</h2><p>官网给出的方案：</p>
+<p><a target="_blank" rel="noopener" href="http://cn.mathworks.com/help/matlab/matlab_external/call-user-script-and-function-from-python.html">Call User Script and Function from Python</a></p>
+<p>###.m脚本的调用</p>
+<p>.m文件与.py文件需要放在同一目录下。在test.m文件中输入：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">b=<span class="number">2</span>;</span><br><span class="line">h=<span class="number">3</span>;</span><br><span class="line">a=b*h</span><br></pre></td></tr></table></figure>
+
+<p>在H.py文件中输入：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matlab.engine</span><br><span class="line">eng = matlab.engine.start_matlab()</span><br><span class="line">eng.test(nargout=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<p>其中指定 <code>nargout=0</code>。尽管脚本会打印输出，但它不会向 Python 返回任何输出参数。</p>
+<h3 id="自定义函数的调用"><a href="#自定义函数的调用" class="headerlink" title="自定义函数的调用"></a>自定义函数的调用</h3><p>在time.m中输入：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span> = <span class="title">time</span><span class="params">(b,h)</span></span></span><br><span class="line">	a = b*h;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>在H.py中输入：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matlab.engine</span><br><span class="line">eng = matlab.engine.start_matlab()</span><br><span class="line">ret = eng.time(<span class="number">1.0</span>,<span class="number">5.0</span>)</span><br><span class="line"><span class="built_in">print</span>(ret)</span><br></pre></td></tr></table></figure>
+
+<p>可以实现函数的调用。由于函数仅返回一个输出参数，因此无需指定 <code>nargout</code>。</p>
+<p>‎2018‎年‎8‎月‎15‎日</p>
 
 
                 <hr>
@@ -218,13 +213,9 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2021/03/04/2021-03-04-Q978-最长湍流子数组-中等-动态规划/" data-toggle="tooltip" data-placement="top" title="Q978 最长湍流子数组-中等-动态规划">&larr; Previous Post</a>
+                            <a href="/pretty" data-toggle="tooltip" data-placement="top" title="Q1 Two Sum">&larr; Previous Post</a>
                         </li>
                     
-                    
-                        <li class="next">
-                            <a href="/2021/03/03/2021-03-03-Q1769-移动所有球到每个盒子所需的最小操作数-中等-动态规划/" data-toggle="tooltip" data-placement="top" title="Q1769 移动所有球到每个盒子所需的最小操作数-中等-动态规划">Next Post &rarr;</a>
-                        </li>
                     
                 </ul>
 
@@ -250,11 +241,9 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                          <a class="tag" href="/tags/#MATLAB" title="MATLAB">MATLAB</a>
                         
                           <a class="tag" href="/tags/#Python" title="Python">Python</a>
-                        
-                          <a class="tag" href="/tags/#Easy" title="Easy">Easy</a>
                         
                     </div>
                 </section>
