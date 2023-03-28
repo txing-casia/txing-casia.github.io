@@ -56,7 +56,119 @@
 
     <!-- ga & ba script hoook -->
     <script></script>
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -173,57 +285,29 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="focal-loss-for-dense-object-detection">Focal Loss for Dense
-Object Detection</h2>
-<ul>
+                <h2 id="Focal-Loss-for-Dense-Object-Detection"><a href="#Focal-Loss-for-Dense-Object-Detection" class="headerlink" title="Focal Loss for Dense Object Detection"></a>Focal Loss for Dense Object Detection</h2><ul>
 <li>提出一种处理不平衡类别的损失函数，对分类准确的样本小权重，给不确定的样本大权重。在保持检测速度的情况下（一阶段检测器），精确度达到二阶段检测器水平</li>
-<li>代码：https://github.com/facebookresearch/Detectron</li>
+<li>代码：<a target="_blank" rel="noopener" href="https://github.com/facebookresearch/Detectron">https://github.com/facebookresearch/Detectron</a></li>
 </ul>
-<h3 id="focal-loss">1 Focal Loss</h3>
-<p>focal loss针对one-stage object
-detection场景中的类别不平衡问题设计（e.g.,
-1:1000）。首先，从交叉熵损失开始： <span class="math display">\[
+<h3 id="1-Focal-Loss"><a href="#1-Focal-Loss" class="headerlink" title="1 Focal Loss"></a>1 Focal Loss</h3><p>focal loss针对one-stage object detection场景中的类别不平衡问题设计（e.g., 1:1000）。首先，从交叉熵损失开始：</p>
+<script type="math/tex; mode=display">
 CE(p,y)=\begin{cases}
--\log(p) ,&amp;if \ y = 1\\
--\log(1-p) ,&amp;otherwise
-\end{cases}
-\]</span> 其中，<span class="math display">\[y \in \{\pm
-1\}\]</span>表示真值类别，<span
-class="math display">\[p\in[0,1]\]</span>表示模型输出的属于类别<span
-class="math display">\[y=1\]</span>的类别概率。定义： <span
-class="math display">\[
+-\log(p) ,&if \ y = 1\\
+-\log(1-p) ,&otherwise
+\end{cases}</script><p>其中，<script type="math/tex">y \in \{\pm 1\}</script>表示真值类别，<script type="math/tex">p\in[0,1]</script>表示模型输出的属于类别<script type="math/tex">y=1</script>的类别概率。定义：</p>
+<script type="math/tex; mode=display">
 p_t=\begin{cases}
-p ,&amp;if \ y = 1\\
-1-p ,&amp;otherwise
-\end{cases}
-\]</span> 重写<span
-class="math display">\[CE(p,y)=CE(p_t)=-\log(p_t)\]</span></p>
-<h4 id="balanced-cross-entropy">1.1 Balanced Cross Entropy</h4>
-<p>常用的处理类别不平衡的方法是使用权重<span
-class="math display">\[\alpha \in
-[0,1]\]</span>，它可以看做是样本类别频率的倒数。<span
-class="math display">\[\alpha\]</span>-balanced CE loss： <span
-class="math display">\[
-CE(p_t)=-\alpha_t\log(p_t)
-\]</span></p>
-<h4 id="focal-loss-definition">1.2 Focal Loss Definition</h4>
-<p>下调容易分类的样本权重，让模型关注困难的情况，在交叉熵损失函数基础上使用调制因子<span
-class="math display">\[(1-p_t)^{\gamma}\]</span>，其中<span
-class="math display">\[\gamma\geq 0\]</span>是可调参数，定义focal
-loss为： <span class="math display">\[
-FL(p_t)=-(1-p_t)^{\gamma}\log(p_t)
-\]</span></p>
-<ul>
-<li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221020-11.jpg"
-alt="Planning, acting and training with a learned model" />
-<figcaption aria-hidden="true">Planning, acting and training with a
-learned model</figcaption>
-</figure></li>
+p ,&if \ y = 1\\
+1-p ,&otherwise
+\end{cases}</script><p>重写<script type="math/tex">CE(p,y)=CE(p_t)=-\log(p_t)</script></p>
+<h4 id="1-1-Balanced-Cross-Entropy"><a href="#1-1-Balanced-Cross-Entropy" class="headerlink" title="1.1 Balanced Cross Entropy"></a>1.1 Balanced Cross Entropy</h4><p>常用的处理类别不平衡的方法是使用权重<script type="math/tex">\alpha \in [0,1]</script>，它可以看做是样本类别频率的倒数。<script type="math/tex">\alpha</script>-balanced CE loss：</p>
+<script type="math/tex; mode=display">
+CE(p_t)=-\alpha_t\log(p_t)</script><h4 id="1-2-Focal-Loss-Definition"><a href="#1-2-Focal-Loss-Definition" class="headerlink" title="1.2 Focal Loss Definition"></a>1.2 Focal Loss Definition</h4><p>下调容易分类的样本权重，让模型关注困难的情况，在交叉熵损失函数基础上使用调制因子<script type="math/tex">(1-p_t)^{\gamma}</script>，其中<script type="math/tex">\gamma\geq 0</script>是可调参数，定义focal loss为：</p>
+<script type="math/tex; mode=display">
+FL(p_t)=-(1-p_t)^{\gamma}\log(p_t)</script><ul>
+<li><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221020-11.jpg" alt="Planning, acting and training with a learned model"></li>
 </ul>
-<h3 id="总结">总结</h3>
-<p>​</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>​</p>
 
 
                 <hr>
