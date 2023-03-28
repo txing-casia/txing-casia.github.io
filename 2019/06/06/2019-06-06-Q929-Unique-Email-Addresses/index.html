@@ -13,7 +13,7 @@
 
     <title>
         
-          Q929 Unique Email Addresses - 伽蓝之堂 | Txing Blog
+          Q929 Unique Email Addresses - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -187,12 +187,8 @@
 <p>If you add a plus (<code>&#39;+&#39;</code>) in the <strong>local name</strong>, everything after the first plus sign will be <strong>ignored</strong>. This allows certain emails to be filtered, for example <code>m.y+name@email.com</code> will be forwarded to <code>my@email.com</code>.  (Again, this rule does not apply for domain names.)</p>
 <p>It is possible to use both of these rules at the same time.</p>
 <p>Given a list of <code>emails</code>, we send one email to each address in the list.  How many different addresses actually receive mails? </p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
-<p>Input: [“<a href="mailto:&#x74;&#101;&#x73;&#116;&#46;&#101;&#x6d;&#97;&#x69;&#108;&#43;&#x61;&#108;&#101;&#x78;&#64;&#x6c;&#x65;&#101;&#116;&#x63;&#111;&#100;&#x65;&#46;&#x63;&#x6f;&#x6d;">&#x74;&#101;&#x73;&#116;&#46;&#101;&#x6d;&#97;&#x69;&#108;&#43;&#x61;&#108;&#101;&#x78;&#64;&#x6c;&#x65;&#101;&#116;&#x63;&#111;&#100;&#x65;&#46;&#x63;&#x6f;&#x6d;</a>“,”<a href="mailto:&#x74;&#101;&#x73;&#x74;&#46;&#x65;&#x2e;&#x6d;&#97;&#x69;&#108;&#x2b;&#98;&#111;&#x62;&#x2e;&#x63;&#97;&#x74;&#x68;&#121;&#64;&#108;&#101;&#101;&#116;&#x63;&#x6f;&#100;&#101;&#46;&#x63;&#x6f;&#109;">&#x74;&#101;&#x73;&#x74;&#46;&#x65;&#x2e;&#x6d;&#97;&#x69;&#108;&#x2b;&#98;&#111;&#x62;&#x2e;&#x63;&#97;&#x74;&#x68;&#121;&#64;&#108;&#101;&#101;&#116;&#x63;&#x6f;&#100;&#101;&#46;&#x63;&#x6f;&#109;</a>“,”<a href="mailto:&#x74;&#101;&#x73;&#116;&#x65;&#x6d;&#97;&#105;&#x6c;&#43;&#100;&#x61;&#118;&#105;&#100;&#x40;&#108;&#101;&#x65;&#x2e;&#116;&#x63;&#x6f;&#x64;&#x65;&#x2e;&#99;&#x6f;&#x6d;">&#x74;&#101;&#x73;&#116;&#x65;&#x6d;&#97;&#105;&#x6c;&#43;&#100;&#x61;&#118;&#105;&#100;&#x40;&#108;&#101;&#x65;&#x2e;&#116;&#x63;&#x6f;&#x64;&#x65;&#x2e;&#99;&#x6f;&#x6d;</a>“]<br>Output: 2<br>Explanation: “<a href="mailto:&#x74;&#101;&#115;&#x74;&#x65;&#x6d;&#x61;&#x69;&#x6c;&#x40;&#108;&#101;&#101;&#116;&#99;&#x6f;&#x64;&#101;&#46;&#x63;&#111;&#x6d;">&#x74;&#101;&#115;&#x74;&#x65;&#x6d;&#x61;&#x69;&#x6c;&#x40;&#108;&#101;&#101;&#116;&#99;&#x6f;&#x64;&#101;&#46;&#x63;&#111;&#x6d;</a>“ and “<a href="mailto:&#116;&#101;&#x73;&#x74;&#101;&#109;&#x61;&#x69;&#x6c;&#64;&#x6c;&#x65;&#101;&#x2e;&#116;&#x63;&#111;&#x64;&#x65;&#x2e;&#99;&#x6f;&#x6d;">&#116;&#101;&#x73;&#x74;&#101;&#109;&#x61;&#x69;&#x6c;&#64;&#x6c;&#x65;&#101;&#x2e;&#116;&#x63;&#111;&#x64;&#x65;&#x2e;&#99;&#x6f;&#x6d;</a>“ actually receive mails</p>
-</blockquote>
-<blockquote>
+<p>Input: [“test.email+alex@leetcode.com”,”test.e.mail+bob.cathy@leetcode.com”,”testemail+david@lee.tcode.com”]<br>Output: 2<br>Explanation: “testemail@leetcode.com” and “testemail@lee.tcode.com” actually receive mails</p>
 <p><strong>Note:</strong></p>
 <ul>
 <li><code>1 &lt;= emails[i].length &lt;= 100</code></li>
@@ -205,9 +201,7 @@
 <h2 id="Approach-1-Split-Words-Original-Method"><a href="#Approach-1-Split-Words-Original-Method" class="headerlink" title="Approach 1: Split Words  (Original Method)"></a>Approach 1: Split Words  (Original Method)</h2><p><strong>Intuition and Algorithm</strong></p>
 <p>Note that <code>split</code> is a useful method.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseWords</span>(<span class="params">self, s</span>):</span><br><span class="line">        out = []</span><br><span class="line">        singleWord=s.split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">iter</span> <span class="keyword">in</span> singleWord:</span><br><span class="line">            <span class="built_in">iter</span>=<span class="built_in">iter</span>[::-<span class="number">1</span>]<span class="comment"># 反向排序数组</span></span><br><span class="line">            out.append(<span class="built_in">iter</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27; &#x27;</span>.join(out) <span class="comment"># 返回字符串，用空格填充out中元素的间隔</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    s=<span class="string">&quot;Let&#x27;s take LeetCode contest&quot;</span></span><br><span class="line">    solution=Solution().reverseWords(s)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
 <h3 id="simplification"><a href="#simplification" class="headerlink" title="simplification"></a>simplification</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseWords</span>(<span class="params">self, s</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot; &quot;</span>.join([i[::-<span class="number">1</span>] <span class="keyword">for</span> i <span class="keyword">in</span> s.split()])</span><br></pre></td></tr></table></figure>
-
 <p><strong>Complexity Analysis</strong></p>
 <ul>
 <li>Time Complexity: <em>O</em>(<em>n</em>), where <em>n</em> is the total words of <code>s</code>.</li>
@@ -316,7 +310,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

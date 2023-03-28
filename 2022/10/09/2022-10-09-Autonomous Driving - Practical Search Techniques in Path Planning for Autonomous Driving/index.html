@@ -13,7 +13,7 @@
 
     <title>
         
-          Autonomous Driving | Practical Search Techniques in Path Planning for Autonomous Driving - 伽蓝之堂 | Txing Blog
+          Autonomous Driving | Practical Search Techniques in Path Planning for Autonomous Driving - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -182,7 +182,7 @@
 <li>求解基于改进的A*算法的粗略轨迹，节点之间在动力学上是连续的；</li>
 </ol>
 </li>
-<li><ol start="2">
+<li><ol>
 <li>使用数值非线性优化提升轨迹质量；</li>
 </ol>
 </li>
@@ -201,9 +201,9 @@
 </li>
 </ul>
 <h3 id="2-Hybrid-State-A-Search"><a href="#2-Hybrid-State-A-Search" class="headerlink" title="2 Hybrid-State A* Search"></a>2 Hybrid-State A* Search</h3><ul>
-<li>本文的方法的第一阶段使用3D运动学状态空间的$$A*$$算法的变体，但修改了状态更新规则，该规则在$$A*$$的离散搜索节点中使用连续状态。</li>
+<li>本文的方法的第一阶段使用3D运动学状态空间的<script type="math/tex">A*</script>算法的变体，但修改了状态更新规则，该规则在<script type="math/tex">A*</script>的离散搜索节点中使用连续状态。</li>
 <li>由于合并了同一网格中的连续坐标状态，因此不保证损失最小解（minimal-cost solution），但路径一定是可行的（drivable）。</li>
-<li>搜索空间$$(x, y,\theta)$$​​，每个状态节点之间是动力学连续的。但是搜索过程中转向角是离散化的，考虑离散化和精度之间的关系，使用 Reed-Shepp model  进行轨迹扩展 （We used a 160x160 grid with 1m resolution in x-y and 5 deg<br>angular resolution.）<ul>
+<li>搜索空间<script type="math/tex">(x, y,\theta)</script>​​，每个状态节点之间是动力学连续的。但是搜索过程中转向角是离散化的，考虑离散化和精度之间的关系，使用 Reed-Shepp model  进行轨迹扩展 （We used a 160x160 grid with 1m resolution in x-y and 5 deg<br>angular resolution.）<ul>
 <li>Reeds, J. A., and Shepp, L. A. 1990. Optimal paths for a car that goes both forwards and backwards. Pacific Journal of Mathematics 145(2):367–393</li>
 </ul>
 </li>
@@ -223,17 +223,17 @@
 <h3 id="3-Path-Cost-Function-Using-the-Voronoi-Field"><a href="#3-Path-Cost-Function-Using-the-Voronoi-Field" class="headerlink" title="3 Path-Cost Function Using the Voronoi Field"></a>3 Path-Cost Function Using the Voronoi Field</h3><ul>
 <li>使用流动势场法（following potential field）权衡路径长度和与障碍物的距离，将其命名为Voronoi Field</li>
 </ul>
-<p>$$<br>\rho_V(x,y)&#x3D;\bigg(\frac{\alpha}{\alpha+d_O(x,y)}\bigg) \bigg(\frac{d_V(x,y)}{d_O(x,y)+d_V(x,y)}\bigg) \frac{(d_O-d_O^{max})^2}{(d_O^{max})^2}<br>$$</p>
-<p>$$d_O$$ 表示到最近障碍物的距离；</p>
-<p>$$d_V$$ 表示到最近 Generalized Voronoi Diagram (GVD) 边缘（edge）的距离；</p>
-<p>$$\alpha &gt; 0$$ 表示衰减率；</p>
-<p>$$d_O&gt;0$$ 表示场的最大效用边界；</p>
-<p>表达式满足 $$d_O \leq d_O^{max}$$ ，否则$$\rho_V(x,y)&#x3D;0$$；</p>
+<script type="math/tex; mode=display">
+\rho_V(x,y)=\bigg(\frac{\alpha}{\alpha+d_O(x,y)}\bigg) \bigg(\frac{d_V(x,y)}{d_O(x,y)+d_V(x,y)}\bigg) \frac{(d_O-d_O^{max})^2}{(d_O^{max})^2}</script><p><script type="math/tex">d_O</script> 表示到最近障碍物的距离；</p>
+<p><script type="math/tex">d_V</script> 表示到最近 Generalized Voronoi Diagram (GVD) 边缘（edge）的距离；</p>
+<p><script type="math/tex">\alpha > 0</script> 表示衰减率；</p>
+<p><script type="math/tex">d_O>0</script> 表示场的最大效用边界；</p>
+<p>表达式满足 <script type="math/tex">d_O \leq d_O^{max}</script> ，否则<script type="math/tex">\rho_V(x,y)=0</script>；</p>
 <ul>
 <li><p>势场有以下几个原则：</p>
 <ol>
-<li>$$d_O \geq d_O^{max}$$ 时其值为0；</li>
-<li>$$\rho_V(x,y)\in[0,1]$$，并且在$$(x,y)$$处连续，因为不存在同时满足$$d_O&#x3D;d_V&#x3D;0$$ 的情况；</li>
+<li><script type="math/tex">d_O \geq d_O^{max}</script> 时其值为0；</li>
+<li><script type="math/tex">\rho_V(x,y)\in[0,1]</script>，并且在<script type="math/tex">(x,y)</script>处连续，因为不存在同时满足<script type="math/tex">d_O=d_V=0</script> 的情况；</li>
 <li>势场仅在障碍物内部取到最大值；</li>
 <li>势场仅在GVD边界上取到最小值；</li>
 </ol>
@@ -243,8 +243,7 @@
 </ul>
 <p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-4.jpg" alt="Voronoi field"></p>
 <h3 id="4-Local-Optimization-and-Smoothing"><a href="#4-Local-Optimization-and-Smoothing" class="headerlink" title="4 Local Optimization and Smoothing"></a>4 Local Optimization and Smoothing</h3><ul>
-<li><p>hybrid-state A* 产生的轨迹仍然是次优的，需要进一步优化，去除不自然的突然转弯（unnatural swerves）。</p>
-</li>
+<li>hybrid-state A* 产生的轨迹仍然是次优的，需要进一步优化，去除不自然的突然转弯（unnatural swerves）。</li>
 <li><p>优化过程分为两步：</p>
 <ol>
 <li>对轨迹的每个顶点使用非线性优化平滑</li>
@@ -253,14 +252,13 @@
 </li>
 <li><p>变量定义：</p>
 <ul>
-<li>$$\text{x}_i&#x3D;(x_i,y_i),i\in [1,N]$$ 表示顶点序列；</li>
-<li>$$\text{o}_i$$ 表示离顶点最近的障碍物坐标；</li>
-<li>$$\Delta \text{x}<em>i&#x3D;x_i-x</em>{i-1}$$ 表示顶点的位移矢量；</li>
-<li>$$\Delta \phi_i&#x3D; \mid \tan^{-1}\frac{\Delta y_{i+1}}{\Delta x_{i+1}}-\tan^{-1} \frac{\Delta y_{i}}{\Delta x_{i}} \mid$$  表示顶点处的切角变化；</li>
+<li><script type="math/tex">\text{x}_i=(x_i,y_i),i\in [1,N]</script> 表示顶点序列；</li>
+<li><script type="math/tex">\text{o}_i</script> 表示离顶点最近的障碍物坐标；</li>
+<li><script type="math/tex">\Delta \text{x}_i=x_i-x_{i-1}</script> 表示顶点的位移矢量；</li>
+<li><script type="math/tex">\Delta \phi_i= \mid \tan^{-1}\frac{\Delta y_{i+1}}{\Delta x_{i+1}}-\tan^{-1} \frac{\Delta y_{i}}{\Delta x_{i}} \mid</script>  表示顶点处的切角变化；</li>
 </ul>
 </li>
-<li><p>目标函数定义为：</p>
-</li>
+<li>目标函数定义为：</li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-5.jpg" alt="目标函数"></p>
 <p>损失函数的第一项可以高效地引导机器人移动，无论狭窄和开阔的地方都能远离障碍物；</p>
@@ -276,7 +274,7 @@
 <ul>
 <li>经过共轭梯度法的优化，轨迹显著更平滑了，但顶点之间仍有较大间距（论文中0.5-1m）。因此需要对轨迹进行再次插值。但许多参数化的插值算法对噪声敏感，加剧输出中的噪声（例如，随着输入顶点彼此靠近，三次样条曲线会导致输出中包含任意大的振荡）。</li>
 <li>本文对共轭梯度法轨迹进行了非参数化的插值，之后再用共轭梯度法进行平滑</li>
-<li>We used the following parameters for our planner: the obstacle map was of size 160m×160m with 0.15cm resolution; A* used a grid of size 160m×160m×360◦ with 0.5m x-y resolution and 5◦ resolution for the heading θ. Typical running times for a full replanning cycle involving the hybrid A* search, CG smoothing, and interpolation were on the order of 50–300ms.</li>
+<li>We used the following parameters for our planner: the obstacle map was of size 160m×160m with 0.15cm resolution; A<em> used a grid of size 160m×160m×360◦ with 0.5m x-y resolution and 5◦ resolution for the heading θ. Typical running times for a full replanning cycle involving the hybrid A</em> search, CG smoothing, and interpolation were on the order of 50–300ms.</li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-9.jpg" alt="轨迹平滑"></p>
 <p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-10.jpg" alt="轨迹案例"></p>
@@ -378,7 +376,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

@@ -13,7 +13,7 @@
 
     <title>
         
-          Q167 Two Sum II - Input array is sorted - 伽蓝之堂 | Txing Blog
+          Q167 Two Sum II - Input array is sorted - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -182,12 +182,8 @@
                 <h1 id="Two-Sum-II-Input-array-is-sorted"><a href="#Two-Sum-II-Input-array-is-sorted" class="headerlink" title="Two Sum II - Input array is sorted"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/">Two Sum II - Input array is sorted</a></h1><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>Given an array of integers that is already <strong>sorted in ascending order</strong>, find two numbers such that they add up to a specific target number.</p>
 <p>The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2.</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
-<p>Input: numbers &#x3D; [2,7,11,15], target &#x3D; 9<br>Output: [1,2]<br>Explanation: The sum of 2 and 7 is 9. Therefore index1 &#x3D; 1, index2 &#x3D; 2.</p>
-</blockquote>
-<blockquote>
+<p>Input: numbers = [2,7,11,15], target = 9<br>Output: [1,2]<br>Explanation: The sum of 2 and 7 is 9. Therefore index1 = 1, index2 = 2.</p>
 <p><strong>Note:</strong></p>
 <ul>
 <li>Your returned answers (both index1 and index2) are not zero-based.</li>
@@ -196,7 +192,6 @@
 </blockquote>
 <h2 id="Approach-1-Dictionary"><a href="#Approach-1-Dictionary" class="headerlink" title="Approach 1: Dictionary"></a>Approach 1: Dictionary</h2><p><strong>Intuition and Algorithm</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">twoSum</span>(<span class="params">self, numbers, target</span>):</span><br><span class="line">        dic = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i, num <span class="keyword">in</span> <span class="built_in">enumerate</span>(numbers): <span class="comment"># 获得编号i(从0开始)和值num</span></span><br><span class="line">            <span class="keyword">if</span> target - num <span class="keyword">in</span> dic:</span><br><span class="line">                <span class="keyword">return</span> [dic[target - num] + <span class="number">1</span>, i + <span class="number">1</span>]</span><br><span class="line">            dic[num] = i</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    numbers = [<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>]</span><br><span class="line">    target = <span class="number">9</span></span><br><span class="line">    solution=Solution().twoSum(numbers,target)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
 <p><strong>Complexity Analysis</strong></p>
 <ul>
 <li>Time Complexity: <em>O</em>(<em>N</em>), where <em>N</em> is the length of <code>numbers</code>.</li>
@@ -305,7 +300,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

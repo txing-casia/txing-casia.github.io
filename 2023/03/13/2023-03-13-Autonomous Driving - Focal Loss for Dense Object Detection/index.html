@@ -13,7 +13,7 @@
 
     <title>
         
-          Autonomous Driving | Focal Loss for Dense Object Detection - 伽蓝之堂 | Txing Blog
+          Autonomous Driving | Focal Loss for Dense Object Detection - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -177,13 +177,25 @@
 <li>提出一种处理不平衡类别的损失函数，对分类准确的样本小权重，给不确定的样本大权重。在保持检测速度的情况下（一阶段检测器），精确度达到二阶段检测器水平</li>
 <li>代码：<a target="_blank" rel="noopener" href="https://github.com/facebookresearch/Detectron">https://github.com/facebookresearch/Detectron</a></li>
 </ul>
-<h3 id="1-Focal-Loss"><a href="#1-Focal-Loss" class="headerlink" title="1 Focal Loss"></a>1 Focal Loss</h3><p>focal loss针对one-stage object detection场景中的类别不平衡问题设计（e.g., 1:1000）。首先，从交叉熵损失开始：<br>$$<br>CE(p,y)&#x3D;\begin{cases}<br>-\log(p) ,&amp;if \ y &#x3D; 1\<br>-\log(1-p) ,&amp;otherwise<br>\end{cases}<br>$$<br>其中，$$y \in {\pm 1}$$表示真值类别，$$p\in[0,1]$$表示模型输出的属于类别$$y&#x3D;1$$的类别概率。定义：<br>$$<br>p_t&#x3D;\begin{cases}<br>p ,&amp;if \ y &#x3D; 1\<br>1-p ,&amp;otherwise<br>\end{cases}<br>$$<br>重写$$CE(p,y)&#x3D;CE(p_t)&#x3D;-\log(p_t)$$</p>
-<h4 id="1-1-Balanced-Cross-Entropy"><a href="#1-1-Balanced-Cross-Entropy" class="headerlink" title="1.1 Balanced Cross Entropy"></a>1.1 Balanced Cross Entropy</h4><p>常用的处理类别不平衡的方法是使用权重$$\alpha \in [0,1]$$，它可以看做是样本类别频率的倒数。$$\alpha$$-balanced CE loss：<br>$$<br>CE(p_t)&#x3D;-\alpha_t\log(p_t)<br>$$</p>
-<h4 id="1-2-Focal-Loss-Definition"><a href="#1-2-Focal-Loss-Definition" class="headerlink" title="1.2 Focal Loss Definition"></a>1.2 Focal Loss Definition</h4><p>下调容易分类的样本权重，让模型关注困难的情况，在交叉熵损失函数基础上使用调制因子$$(1-p_t)^{\gamma}$$，其中$$\gamma\geq 0$$是可调参数，定义focal loss为：<br>$$<br>FL(p_t)&#x3D;-(1-p_t)^{\gamma}\log(p_t)<br>$$</p>
-<ul>
+<h3 id="1-Focal-Loss"><a href="#1-Focal-Loss" class="headerlink" title="1 Focal Loss"></a>1 Focal Loss</h3><p>focal loss针对one-stage object detection场景中的类别不平衡问题设计（e.g., 1:1000）。首先，从交叉熵损失开始：</p>
+<script type="math/tex; mode=display">
+CE(p,y)=\begin{cases}
+-\log(p) ,&if \ y = 1\\ 
+-\log(1-p) ,&otherwise
+\end{cases}</script><p>其中，<script type="math/tex">y \in \{\pm 1\}</script>表示真值类别，<script type="math/tex">p\in[0,1]</script>表示模型输出的属于类别<script type="math/tex">y=1</script>的类别概率。定义：</p>
+<script type="math/tex; mode=display">
+p_t=\begin{cases}
+p ,&if \ y = 1\\ 
+1-p ,&otherwise
+\end{cases}</script><p>重写<script type="math/tex">CE(p,y)=CE(p_t)=-\log(p_t)</script></p>
+<h4 id="1-1-Balanced-Cross-Entropy"><a href="#1-1-Balanced-Cross-Entropy" class="headerlink" title="1.1 Balanced Cross Entropy"></a>1.1 Balanced Cross Entropy</h4><p>常用的处理类别不平衡的方法是使用权重<script type="math/tex">\alpha \in [0,1]</script>，它可以看做是样本类别频率的倒数。<script type="math/tex">\alpha</script>-balanced CE loss：</p>
+<script type="math/tex; mode=display">
+CE(p_t)=-\alpha_t\log(p_t)</script><h4 id="1-2-Focal-Loss-Definition"><a href="#1-2-Focal-Loss-Definition" class="headerlink" title="1.2 Focal Loss Definition"></a>1.2 Focal Loss Definition</h4><p>下调容易分类的样本权重，让模型关注困难的情况，在交叉熵损失函数基础上使用调制因子<script type="math/tex">(1-p_t)^{\gamma}</script>，其中<script type="math/tex">\gamma\geq 0</script>是可调参数，定义focal loss为：</p>
+<script type="math/tex; mode=display">
+FL(p_t)=-(1-p_t)^{\gamma}\log(p_t)</script><ul>
 <li><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221020-11.jpg" alt="Planning, acting and training with a learned model"></li>
 </ul>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>​	</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>​    </p>
 
 
                 <hr>
@@ -279,7 +291,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

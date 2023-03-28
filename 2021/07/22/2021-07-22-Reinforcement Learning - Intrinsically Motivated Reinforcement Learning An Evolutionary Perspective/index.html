@@ -13,7 +13,7 @@
 
     <title>
         
-          Reinforcement Learning | Intrinsically Motivated Reinforcement Learning: An Evolutionary Perspective - 伽蓝之堂 | Txing Blog
+          Reinforcement Learning | Intrinsically Motivated Reinforcement Learning: An Evolutionary Perspective - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -177,7 +177,7 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="Intrinsically-Motivated-Reinforcement-Learning-An-Evolutionary-Perspective"><a href="#Intrinsically-Motivated-Reinforcement-Learning-An-Evolutionary-Perspective" class="headerlink" title="Intrinsically Motivated Reinforcement Learning: An Evolutionary Perspective"></a>Intrinsically Motivated Reinforcement Learning: An Evolutionary Perspective</h1><p>论文链接：<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=5471106">https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=5471106</a></p>
+                <h1 id="Intrinsically-Motivated-Reinforcement-Learning-An-Evolutionary-Perspective"><a href="#Intrinsically-Motivated-Reinforcement-Learning-An-Evolutionary-Perspective" class="headerlink" title="Intrinsically Motivated Reinforcement Learning: An Evolutionary Perspective"></a>Intrinsically Motivated Reinforcement Learning: An Evolutionary Perspective</h1><p>论文链接：<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=5471106">https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=5471106</a></p>
 <h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><ul>
 <li><p>intrinsically motivated 这个词最开始是在1950年的文章中提出的，文章认为需要有一种内在的操纵驱动力来解释为什么猴子会在没有任何外在奖励的情况下精力充沛地持续工作数小时来解决复杂的机械难题。内在动机行为对智力增长至关重要</p>
 </li>
@@ -235,10 +235,10 @@
 </li>
 <li><p>使用一个适应度函数和一些环境兴趣的分布（an explicit fitness function and some distribution of environments of interest），这个适应度可以是累积的外部奖励和等形式。</p>
 </li>
-<li><p><strong>实验1：</strong></p>
-</li>
-<li><p>一个6x6的格子空间中分割了4个3x3的子空间，格子之间的墙壁不是全部封闭的，其中2个子格子空间中分别有一个打开的盒子和一个封闭的盒子（盒子位置在智能体生命周期内是不再变化的），一个打开的盒子在每个时间步以 0.1 的概率关闭，密闭的盒子里总是装着食物。智能体在这样的格子迷宫中要找到打开的盒子，并在封闭的盒子中寻找食物。智能体的行动分为上下左右4个方向。</p>
-</li>
+</ul>
+<ul>
+<li><strong>实验1：</strong></li>
+<li>一个6x6的格子空间中分割了4个3x3的子空间，格子之间的墙壁不是全部封闭的，其中2个子格子空间中分别有一个打开的盒子和一个封闭的盒子（盒子位置在智能体生命周期内是不再变化的），一个打开的盒子在每个时间步以 0.1 的概率关闭，密闭的盒子里总是装着食物。智能体在这样的格子迷宫中要找到打开的盒子，并在封闭的盒子中寻找食物。智能体的行动分为上下左右4个方向。</li>
 <li><p>当代理食用食物时，它会在一个时间步长内感到饱足。代理在所有其他时间步都饥饿。智能体每吃一次食物，它的适应度就会增加 1</p>
 </li>
 <li><p>在格子迷宫环境中假设了两只钟情况：</p>
@@ -249,39 +249,39 @@
 </li>
 <li><p>符号说明：</p>
 <ul>
-<li>agent $$\mathcal{A}$$</li>
-<li>a space of reward function $$R_\mathcal{A}$$</li>
-<li>a specific reward function $$r_\mathcal{A} \in R_\mathcal{A}$$</li>
-<li>a sampled environment $$E \sim P(\varepsilon)$$</li>
-<li>history of agent $$\mathcal{A}$$  adapting to environment $$E$$ over its lifetime using the reward function $$r_\mathcal{A}$$, i.e., $$h \sim \langle \mathcal{A}(r_\mathcal{A}),E\rangle$$ </li>
-<li>fitness function $$\mathcal{F}$$ produces a scalar evaluation $$\mathcal{F}(h)$$ for each history $$h$$</li>
-<li>optimal reward function $$r^*_{\mathcal{A}} \in R_{\mathcal{A}}$$</li>
+<li>agent <script type="math/tex">\mathcal{A}</script></li>
+<li>a space of reward function <script type="math/tex">R_\mathcal{A}</script></li>
+<li>a specific reward function <script type="math/tex">r_\mathcal{A} \in R_\mathcal{A}</script></li>
+<li>a sampled environment <script type="math/tex">E \sim P(\varepsilon)</script></li>
+<li>history of agent <script type="math/tex">\mathcal{A}</script>  adapting to environment <script type="math/tex">E</script> over its lifetime using the reward function <script type="math/tex">r_\mathcal{A}</script>, i.e., <script type="math/tex">h \sim \langle \mathcal{A}(r_\mathcal{A}),E\rangle</script> </li>
+<li>fitness function <script type="math/tex">\mathcal{F}</script> produces a scalar evaluation <script type="math/tex">\mathcal{F}(h)</script> for each history <script type="math/tex">h</script></li>
+<li>optimal reward function <script type="math/tex">r^*_{\mathcal{A}} \in R_{\mathcal{A}}</script>  </li>
 </ul>
 </li>
 </ul>
-<p>$$<br>r^*_{\mathcal{A}}&#x3D;\arg \max_{r_\mathcal{A} \in R_\mathcal{A}} \mathbb{E}<em>{E\sim P(\varepsilon)} \mathbb{E}</em>{h \sim \langle \mathcal{A}(r_\mathcal{A}),E\rangle}[\mathcal{F}(h)]<br>$$</p>
-<ul>
+<script type="math/tex; mode=display">
+r^*_{\mathcal{A}}=\arg \max_{r_\mathcal{A} \in R_\mathcal{A}} \mathbb{E}_{E\sim P(\varepsilon)} \mathbb{E}_{h \sim \langle \mathcal{A}(r_\mathcal{A}),E\rangle}[\mathcal{F}(h)]</script><ul>
 <li><p>使用的算法 the lookup-table -greedy Q-learning [52].</p>
 <p>[52]. C. J. C. H. Watkins, “Learning from Delayed Rewards,” Ph.D. dissertation, Cambridge Univ., Cambridge, U.K., 1989</p>
 </li>
 </ul>
-<p>$$<br>Q_{t+1}(s_t,a_t)&#x3D;(1-\alpha)Q_t(s_t,a_t)+\alpha[r_t + \gamma \max_b (Q_t(s_{t+1},b))]<br>$$</p>
-<p>之后通过实验验证了$$r*$$的奖励函数趋近最优奖励函数</p>
+<script type="math/tex; mode=display">
+Q_{t+1}(s_t,a_t)=(1-\alpha)Q_t(s_t,a_t)+\alpha[r_t + \gamma \max_b (Q_t(s_{t+1},b))]</script><p>之后通过实验验证了<script type="math/tex">r*</script>的奖励函数趋近最优奖励函数</p>
 <ul>
 <li><p><strong>实验2</strong></p>
 <ul>
 <li>一个三走廊的觅食环境，虫子每次随机出现正在其中一个走廊的尽头。由于每次虫子的位置是随机且未知的，智能体过去的经验不能直接直到新的觅食，所以这个环境是非马尔科夫的。</li>
 <li>实验要求智能体在固定的10000步之内尽可能多地吃到虫子。</li>
 </ul>
-<p>$$<br>Q_d(s,a)&#x3D;r_{\mathcal{A}}(s,a)+\gamma\sum_{s’\in \mathcal{S}} \hat{T}(s’|s,a)\max_{a’} Q_{d-1}(s’,a’)\<br>\hat{T}(s’|s,a)&#x3D;\frac{n_{s,a,s’}}{n_{s,a}}<br>$$</p>
-<p>其中 $$n_{s,a,s’}$$ 表示在 $$s$$ 状态下，选择 $$a$$ 后转移到 $$s’$$ 的次数。 $$n_{s,a}$$ 表示在 $$s$$ 状态下，选择 $$a$$ 的次数。</p>
+<script type="math/tex; mode=display">
+Q_d(s,a)=r_{\mathcal{A}}(s,a)+\gamma\sum_{s'\in \mathcal{S}} \hat{T}(s'|s,a)\max_{a'} Q_{d-1}(s',a')\\
+\hat{T}(s'|s,a)=\frac{n_{s,a,s'}}{n_{s,a}}</script><p>其中 <script type="math/tex">n_{s,a,s'}</script> 表示在 <script type="math/tex">s</script> 状态下，选择 <script type="math/tex">a</script> 后转移到 <script type="math/tex">s'</script> 的次数。 <script type="math/tex">n_{s,a}</script> 表示在 <script type="math/tex">s</script> 状态下，选择 <script type="math/tex">a</script> 的次数。</p>
 </li>
-<li><p>奖励函数：$$r_{\mathcal{A}}(s,a)&#x3D;\beta_F\varPhi_F(s) + \beta_c\varPhi_c(s,a,h)$$ ，其中 $$\beta_F$$ 和 $$\beta_c$$ 是权重系数。特征 $$\varPhi_F(s)$$ 在智能体饱的时候是 1 ，其他时候是  0 。特征 $$\varPhi_c(s,a,h) &#x3D; 1-\frac{1}{c(s,a,h)}$$ ，其中 $$c(s,a,h)$$  是智能体在历史 $$h$$ 中执行行为的时间步数。</p>
+<li><p>奖励函数：<script type="math/tex">r_{\mathcal{A}}(s,a)=\beta_F\varPhi_F(s) + \beta_c\varPhi_c(s,a,h)</script> ，其中 <script type="math/tex">\beta_F</script> 和 <script type="math/tex">\beta_c</script> 是权重系数。特征 <script type="math/tex">\varPhi_F(s)</script> 在智能体饱的时候是 1 ，其他时候是  0 。特征 <script type="math/tex">\varPhi_c(s,a,h) = 1-\frac{1}{c(s,a,h)}</script> ，其中 <script type="math/tex">c(s,a,h)</script>  是智能体在历史 <script type="math/tex">h</script> 中执行行为的时间步数。</p>
 </li>
-<li><p>当参数 $$\beta_c$$ 为正时，智能体会因为最近没有从当前状态采取的行动而获得奖励。这种奖励不是外部环境的固定函数. feature $$\varPhi_F(s)$$ is a hunger-status feature, and thus when $$\beta_F&#x3D;1$$ and $$\beta_c&#x3D;0$$, the reward function is the fitness-based reward function</p>
-</li>
+<li>当参数 <script type="math/tex">\beta_c</script> 为正时，智能体会因为最近没有从当前状态采取的行动而获得奖励。这种奖励不是外部环境的固定函数. feature <script type="math/tex">\varPhi_F(s)</script> is a hunger-status feature, and thus when <script type="math/tex">\beta_F=1</script> and <script type="math/tex">\beta_c=0</script>, the reward function is the fitness-based reward function</li>
 </ul>
-<p>最终基于适应度的奖励函数表现次于最优奖励函数2个数量级。因此利用内在奖励 $$\varPhi_c(s,a,h)$$ 对提升探索能力很有意义。</p>
+<p>最终基于适应度的奖励函数表现次于最优奖励函数2个数量级。因此利用内在奖励 <script type="math/tex">\varPhi_c(s,a,h)</script> 对提升探索能力很有意义。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>视角很独特，实验很新奇。</p>
 <p>但是文章发表在自主心理发展IEEE TRANSACTIONS ON AUTONOMOUS MENTAL DEVELOPMENT，因此作为一篇概念文章比较好。</p>
 
@@ -298,7 +298,7 @@
                     
                     
                         <li class="next">
-                            <a href="/2021/07/21/2021-07-21-Q134-加油站-中等-贪心/" data-toggle="tooltip" data-placement="top" title="Q134-加油站-中等-贪心">Next Post &rarr;</a>
+                            <a href="/2021/07/21/2021-07-21-Q419-甲板上的战舰-中等-深度and宽度优先搜索/" data-toggle="tooltip" data-placement="top" title="Q419-甲板上的战舰-中等-深度/宽度优先搜索">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -383,7 +383,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

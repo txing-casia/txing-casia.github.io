@@ -13,7 +13,7 @@
 
     <title>
         
-          Q53-最大子序和-简单-动态规划 - 伽蓝之堂 | Txing Blog
+          Q53-最大子序和-简单-动态规划 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -182,31 +182,26 @@
                 <h4 id="53-最大子序和"><a href="#53-最大子序和" class="headerlink" title="53. 最大子序和"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-subarray/">53. 最大子序和</a></h4><p>本题和Q16是一样的</p>
 <h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
-<p>输入：nums &#x3D; [-2,1,-3,4,-1,2,1,-5,4]<br>输出：6<br>解释：连续子数组 [4,-1,2,1] 的和最大，为 6 。</p>
-</blockquote>
-<blockquote>
+<p>输入：nums = [-2,1,-3,4,-1,2,1,-5,4]<br>输出：6<br>解释：连续子数组 [4,-1,2,1] 的和最大，为 6 。</p>
 <p><strong>Example 2：</strong></p>
-<p>输入：nums &#x3D; [1]<br>输出：1</p>
-</blockquote>
-<blockquote>
+<p>输入：nums = [1]<br>输出：1</p>
 <p><strong>Note:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 3 * 104</code></li>
 <li><code>-105 &lt;= nums[i] &lt;= 105</code></li>
 </ul>
 </blockquote>
-<p><strong>进阶：</strong>如果你已经实现复杂度为 $$O(n)$$ 的解法，尝试使用更为精妙的 <strong>分治法</strong> 求解。</p>
+<p><strong>进阶：</strong>如果你已经实现复杂度为 <script type="math/tex">O(n)</script> 的解法，尝试使用更为精妙的 <strong>分治法</strong> 求解。</p>
 <h3 id="Approach-1-动态规划"><a href="#Approach-1-动态规划" class="headerlink" title="Approach 1:  动态规划"></a>Approach 1:  动态规划</h3><p>老规矩，动态规划问题第一步思考两个问题</p>
 <ul>
-<li>$$dp[i]$$表示什么；</li>
-<li>$$dp[i]$$状态方程怎么更新；</li>
+<li><script type="math/tex">dp[i]</script>表示什么；</li>
+<li><script type="math/tex">dp[i]</script>状态方程怎么更新；</li>
 </ul>
-<p>这里假设$$dp[i]$$表示以 i 个元素结尾的子数组的最大和；$$dp[i]$$更新方式为：<br>$$<br>dp[i]&#x3D;\max(dp[i-1]+A[i],A[i])\<br>$$<br>$$dp[i-1]+A[i]$$表示继续沿用上一次的子数组并更新为第 i 处的子数组最大和。$$A[i]$$表示另起一个新组数组作为第 i 处的子数组最大和。</p>
+<p>这里假设<script type="math/tex">dp[i]</script>表示以 i 个元素结尾的子数组的最大和；<script type="math/tex">dp[i]</script>更新方式为：</p>
+<script type="math/tex; mode=display">
+dp[i]=\max(dp[i-1]+A[i],A[i])\\</script><p><script type="math/tex">dp[i-1]+A[i]</script>表示继续沿用上一次的子数组并更新为第 i 处的子数组最大和。<script type="math/tex">A[i]</script>表示另起一个新组数组作为第 i 处的子数组最大和。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">maxSubArray</span>(<span class="params">self, nums</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    n = <span class="built_in">len</span>(nums)</span><br><span class="line">    dp = [<span class="number">0</span>]*n</span><br><span class="line">    dp[<span class="number">0</span>] = nums[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,n):</span><br><span class="line">        dp[i] = <span class="built_in">max</span>(dp[i-<span class="number">1</span>] + nums[i], nums[i])</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">max</span>(dp)</span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度 O(N)： 线性遍历数组 nums </li>
@@ -214,15 +209,13 @@
 </ul>
 <h3 id="Approach-2-滚动数组"><a href="#Approach-2-滚动数组" class="headerlink" title="Approach 2:  滚动数组"></a>Approach 2:  滚动数组</h3><p>建立一个长度为n的dp数组的确比较浪费空间，我们可以牺牲时间复杂度来换取空间复杂度。建立变量dp和sumA，sumA存储前 i 个元素组成的子数组最大值，每一步都和新的dp比较大小并更新。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">maxSubArray1</span>(<span class="params">self, nums</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    sumA = dp = nums[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(nums)):</span><br><span class="line">        dp = <span class="built_in">max</span>(dp + nums[i], nums[i])</span><br><span class="line">        sumA = <span class="built_in">max</span>(sumA, dp)</span><br><span class="line">    <span class="keyword">return</span> sumA</span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度 O(N)： 线性遍历数组 nums </li>
 <li>空间复杂度 O(1)： 需要建立常数个变量</li>
 </ul>
-<p>方法1中需要建立一个长度为n的dp数组，使得空间复杂度为$$O(n)$$，实际上可以使用一个滚动数组的概念把空间复杂度降低到$$O(1)$$。即把dp[0 : i-1]中最大的值赋值给一个变量，每次迭代都更新它，最后用这个变量输出结果。</p>
+<p>方法1中需要建立一个长度为n的dp数组，使得空间复杂度为<script type="math/tex">O(n)</script>，实际上可以使用一个滚动数组的概念把空间复杂度降低到<script type="math/tex">O(1)</script>。即把dp[0 : i-1]中最大的值赋值给一个变量，每次迭代都更新它，最后用这个变量输出结果。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">maxSubArray1</span>(<span class="params">self, nums</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    dp = <span class="number">0</span></span><br><span class="line">    maxA = nums[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">        dp = <span class="built_in">max</span>( nums[i], dp + nums[i])</span><br><span class="line">        maxA = <span class="built_in">max</span>( dp, maxA )</span><br><span class="line">    <span class="keyword">return</span> maxA</span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度 O(N)： 线性遍历数组 nums </li>
@@ -329,7 +322,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

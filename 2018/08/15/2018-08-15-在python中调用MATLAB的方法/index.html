@@ -13,7 +13,7 @@
 
     <title>
         
-          在python中调用MATLAB的方法 - 伽蓝之堂 | Txing Blog
+          在python中调用MATLAB的方法 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -180,28 +180,21 @@
 <p><a target="_blank" rel="noopener" href="http://ww2.mathworks.cn/help/matlab/matlab_external/install-the-matlab-engine-for-python.html?ue">install MATLAB Engine API for Python</a></p>
 <p>在MATLAB中输入：</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">matlabroot</span><br></pre></td></tr></table></figure>
-
 <p>得到返回的位置</p>
 <p>打开anaconda，输入下面语句进行安装</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd matlabroot\extern\engines\python</span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
-
 <p>注意要将matlabroot替换为之前返回的位置</p>
 <h2 id="Step-2-Call-User-Script-and-Function-from-Python"><a href="#Step-2-Call-User-Script-and-Function-from-Python" class="headerlink" title="Step 2: Call User Script and Function from Python"></a>Step 2: Call User Script and Function from Python</h2><p>官网给出的方案：</p>
 <p><a target="_blank" rel="noopener" href="http://cn.mathworks.com/help/matlab/matlab_external/call-user-script-and-function-from-python.html">Call User Script and Function from Python</a></p>
-<p>###.m脚本的调用</p>
-<p>.m文件与.py文件需要放在同一目录下。在test.m文件中输入：</p>
+<h3 id="m脚本的调用"><a href="#m脚本的调用" class="headerlink" title=".m脚本的调用"></a>.m脚本的调用</h3><p>.m文件与.py文件需要放在同一目录下。在test.m文件中输入：</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">b=<span class="number">2</span>;</span><br><span class="line">h=<span class="number">3</span>;</span><br><span class="line">a=b*h</span><br></pre></td></tr></table></figure>
-
 <p>在H.py文件中输入：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matlab.engine</span><br><span class="line">eng = matlab.engine.start_matlab()</span><br><span class="line">eng.test(nargout=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-
 <p>其中指定 <code>nargout=0</code>。尽管脚本会打印输出，但它不会向 Python 返回任何输出参数。</p>
 <h3 id="自定义函数的调用"><a href="#自定义函数的调用" class="headerlink" title="自定义函数的调用"></a>自定义函数的调用</h3><p>在time.m中输入：</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span> = <span class="title">time</span><span class="params">(b,h)</span></span></span><br><span class="line">	a = b*h;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
 <p>在H.py中输入：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matlab.engine</span><br><span class="line">eng = matlab.engine.start_matlab()</span><br><span class="line">ret = eng.time(<span class="number">1.0</span>,<span class="number">5.0</span>)</span><br><span class="line"><span class="built_in">print</span>(ret)</span><br></pre></td></tr></table></figure>
-
 <p>可以实现函数的调用。由于函数仅返回一个输出参数，因此无需指定 <code>nargout</code>。</p>
 <p>‎2018‎年‎8‎月‎15‎日</p>
 
@@ -297,7 +290,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

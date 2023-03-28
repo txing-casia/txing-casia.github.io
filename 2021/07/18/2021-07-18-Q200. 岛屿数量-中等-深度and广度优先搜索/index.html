@@ -13,7 +13,7 @@
 
     <title>
         
-          Q200-岛屿数量-中等-深度and广度优先搜索 - 伽蓝之堂 | Txing Blog
+          Q200-岛屿数量-中等-深度and广度优先搜索 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -183,18 +183,12 @@
 
                 <h4 id="200-岛屿数量"><a href="#200-岛屿数量" class="headerlink" title="200. 岛屿数量"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-islands/">200. 岛屿数量</a></h4><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>给你一个由 ‘1’（陆地）和 ‘0’（水）组成的的二维网格，请你计算网格中岛屿的数量。</p>
-<p>岛屿总是被水包围，并且每座岛屿只能由水平方向和&#x2F;或竖直方向上相邻的陆地连接形成。</p>
+<p>岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。</p>
 <p>此外，你可以假设该网格的四条边均被水包围。</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
-<p>输入：grid &#x3D; [<br>  [“1”,”1”,”1”,”1”,”0”],<br>  [“1”,”1”,”0”,”1”,”0”],<br>  [“1”,”1”,”0”,”0”,”0”],<br>  [“0”,”0”,”0”,”0”,”0”]<br>]<br>输出：1</p>
-</blockquote>
-<blockquote>
+<p>输入：grid = [<br>  [“1”,”1”,”1”,”1”,”0”],<br>  [“1”,”1”,”0”,”1”,”0”],<br>  [“1”,”1”,”0”,”0”,”0”],<br>  [“0”,”0”,”0”,”0”,”0”]<br>]<br>输出：1</p>
 <p><strong>Example 2:</strong></p>
-<p>输入：grid &#x3D; [<br>    [“1”,”1”,”0”,”0”,”0”],<br>    [“1”,”1”,”0”,”0”,”0”],<br>    [“0”,”0”,”1”,”0”,”0”],<br>    [“0”,”0”,”0”,”1”,”1”]<br>]<br>输出：3</p>
-</blockquote>
-<blockquote>
+<p>输入：grid = [<br>    [“1”,”1”,”0”,”0”,”0”],<br>    [“1”,”1”,”0”,”0”,”0”],<br>    [“0”,”0”,”1”,”0”,”0”],<br>    [“0”,”0”,”0”,”1”,”1”]<br>]<br>输出：3</p>
 <p><strong>Note:</strong></p>
 <ul>
 <li><code>m == grid.length</code></li>
@@ -207,9 +201,6 @@
 <p>为了求出岛屿的数量，我们可以扫描整个二维网格。如果一个位置为 11，则以其为起始节点开始进行深度优先搜索。在深度优先搜索的过程中，每个搜索到的 11 都会被重新标记为 00。</p>
 <p>最终岛屿的数量就是我们进行深度优先搜索的次数。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">self, grid, r, c</span>):</span><br><span class="line">        grid[r][c] = <span class="number">0</span></span><br><span class="line">        nr, nc = <span class="built_in">len</span>(grid), <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">for</span> x, y <span class="keyword">in</span> [(r - <span class="number">1</span>, c), (r + <span class="number">1</span>, c), (r, c - <span class="number">1</span>), (r, c + <span class="number">1</span>)]:</span><br><span class="line">            <span class="keyword">if</span> <span class="number">0</span> &lt;= x &lt; nr <span class="keyword">and</span> <span class="number">0</span> &lt;= y &lt; nc <span class="keyword">and</span> grid[x][y] == <span class="string">&quot;1&quot;</span>:</span><br><span class="line">                self.dfs(grid, x, y)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numIslands</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">str</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        nr = <span class="built_in">len</span>(grid)</span><br><span class="line">        <span class="keyword">if</span> nr == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        nc = <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">        num_islands = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> r <span class="keyword">in</span> <span class="built_in">range</span>(nr):</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">range</span>(nc):</span><br><span class="line">                <span class="keyword">if</span> grid[r][c] == <span class="string">&quot;1&quot;</span>:</span><br><span class="line">                    num_islands += <span class="number">1</span></span><br><span class="line">                    self.dfs(grid, r, c)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> num_islands</span><br></pre></td></tr></table></figure>
-
-
-
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li><p>时间复杂度：O(MN)，其中 M 和 N 分别为行数和列数。</p>
@@ -221,13 +212,10 @@
 <p>为了求出岛屿的数量，我们可以扫描整个二维网格。如果一个位置为 1，则将其加入队列，开始进行广度优先搜索。在广度优先搜索的过程中，每个搜索到的 1 都会被重新标记为 0。直到队列为空，搜索结束。</p>
 <p>最终岛屿的数量就是我们进行广度优先搜索的次数。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numIslands</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">str</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        nr = <span class="built_in">len</span>(grid)</span><br><span class="line">        <span class="keyword">if</span> nr == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        nc = <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">        num_islands = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> r <span class="keyword">in</span> <span class="built_in">range</span>(nr):</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">range</span>(nc):</span><br><span class="line">                <span class="keyword">if</span> grid[r][c] == <span class="string">&quot;1&quot;</span>:</span><br><span class="line">                    num_islands += <span class="number">1</span></span><br><span class="line">                    grid[r][c] = <span class="string">&quot;0&quot;</span></span><br><span class="line">                    neighbors = collections.deque([(r, c)])</span><br><span class="line">                    <span class="keyword">while</span> neighbors:</span><br><span class="line">                        row, col = neighbors.popleft()</span><br><span class="line">                        <span class="keyword">for</span> x, y <span class="keyword">in</span> [(row - <span class="number">1</span>, col), (row + <span class="number">1</span>, col), (row, col - <span class="number">1</span>), (row, col + <span class="number">1</span>)]:</span><br><span class="line">                            <span class="keyword">if</span> <span class="number">0</span> &lt;= x &lt; nr <span class="keyword">and</span> <span class="number">0</span> &lt;= y &lt; nc <span class="keyword">and</span> grid[x][y] == <span class="string">&quot;1&quot;</span>:</span><br><span class="line">                                neighbors.append((x, y))</span><br><span class="line">                                grid[x][y] = <span class="string">&quot;0&quot;</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> num_islands</span><br></pre></td></tr></table></figure>
-
-
-
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li>时间复杂度：$$O(MN)$$，其中 M 和 N 分别为行数和列数。</li>
-<li>空间复杂度：$$O(\min(M, N))$$，在最坏情况下，整个网格均为陆地，队列的大小可以达到$$ \min(M, N)$$。</li>
+<li>时间复杂度：<script type="math/tex">O(MN)</script>，其中 M 和 N 分别为行数和列数。</li>
+<li>空间复杂度：<script type="math/tex">O(\min(M, N))</script>，在最坏情况下，整个网格均为陆地，队列的大小可以达到<script type="math/tex">\min(M, N)</script>。</li>
 </ul>
 
 
@@ -238,12 +226,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2021/07/21/2021-07-21-Q419-甲板上的战舰-中等-深度and宽度优先搜索/" data-toggle="tooltip" data-placement="top" title="Q419-甲板上的战舰-中等-深度/宽度优先搜索">&larr; Previous Post</a>
+                            <a href="/2021/07/18/2021-07-18-Q688-马在棋盘上的概率-中等-动态规划/" data-toggle="tooltip" data-placement="top" title="Q688-马在棋盘上的概率-中等-动态规划">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2021/07/18/2021-07-18-Q688-马在棋盘上的概率-中等-动态规划/" data-toggle="tooltip" data-placement="top" title="Q688-马在棋盘上的概率-中等-动态规划">Next Post &rarr;</a>
+                            <a href="/2021/07/16/2021-07-16-Reinforcement Learning - On Learning Intrinsic Rewards for Policy Gradient Methods/" data-toggle="tooltip" data-placement="top" title="Reinforcement Learning | On Learning Intrinsic Rewards for Policy Gradient Methods">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -332,7 +320,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

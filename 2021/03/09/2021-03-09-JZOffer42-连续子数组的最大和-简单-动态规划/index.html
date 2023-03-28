@@ -13,7 +13,7 @@
 
     <title>
         
-          JZOffer42-连续子数组的最大和-简单-动态规划 - 伽蓝之堂 | Txing Blog
+          JZOffer42-连续子数组的最大和-简单-动态规划 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -182,12 +182,8 @@
                 <h4 id="剑指Offer-42-连续子数组的最大和"><a href="#剑指Offer-42-连续子数组的最大和" class="headerlink" title="剑指Offer 42. 连续子数组的最大和"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/">剑指Offer 42. 连续子数组的最大和</a></h4><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>输入一个整型数组，数组中的一个或连续多个整数组成一个子数组。求所有子数组的和的最大值。</p>
 <p>要求时间复杂度为O(n)。</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
-<p>输入: nums &#x3D; [-2,1,-3,4,-1,2,1,-5,4]<br>输出: 6<br>解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。</p>
-</blockquote>
-<blockquote>
+<p>输入: nums = [-2,1,-3,4,-1,2,1,-5,4]<br>输出: 6<br>解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。</p>
 <p><strong>提示：</strong></p>
 <ul>
 <li><code>1 &lt;= arr.length &lt;= 10^5</code></li>
@@ -195,52 +191,52 @@
 </ul>
 </blockquote>
 <h3 id="Approach-1-动态规划"><a href="#Approach-1-动态规划" class="headerlink" title="Approach 1:  动态规划"></a>Approach 1:  动态规划</h3><p>解题思路：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">解法</th>
-<th align="center">时间复杂度</th>
-<th align="center">空间复杂度</th>
+<th style="text-align:center">解法</th>
+<th style="text-align:center">时间复杂度</th>
+<th style="text-align:center">空间复杂度</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">暴力搜索</td>
-<td align="center">$$O(N^2)$$</td>
-<td align="center">$$O(1)$$</td>
+<tbody>
+<tr>
+<td style="text-align:center">暴力搜索</td>
+<td style="text-align:center"><script type="math/tex">O(N^2)</script></td>
+<td style="text-align:center"><script type="math/tex">O(1)</script></td>
 </tr>
 <tr>
-<td align="center">分治法</td>
-<td align="center">$$O(N\log N)$$</td>
-<td align="center">$$O(\log N)$$</td>
+<td style="text-align:center">分治法</td>
+<td style="text-align:center"><script type="math/tex">O(N\log N)</script></td>
+<td style="text-align:center"><script type="math/tex">O(\log N)</script></td>
 </tr>
 <tr>
-<td align="center">动态规划</td>
-<td align="center">$$O(N)$$</td>
-<td align="center">$$O(1)$$</td>
+<td style="text-align:center">动态规划</td>
+<td style="text-align:center"><script type="math/tex">O(N)</script></td>
+<td style="text-align:center"><script type="math/tex">O(1)</script></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>动态规划是本题的最优解法，以下按照标准流程解题。</p>
 <p><strong>动态规划解析：</strong></p>
 <ul>
-<li><p>状态定义： 设动态规划列表 dp ，dp[i] 代表以元素 nums[i] 为结尾的连续子数组最大和。</p>
-</li>
-<li><p>为何定义最大和 dp[i] 中必须包含元素 nums[i] ：保证 dp[i] 递推到 dp[i+1] 的正确性；如果不包含 nums[i] ，递推时则不满足题目的 <strong>连续子数组</strong> 要求。</p>
-</li>
-<li><p>转移方程： 若 $$dp[i-1] \leq 0$$ ，说明 $$dp[i - 1]$$ 对 dp[i] 产生负贡献</p>
+<li>状态定义： 设动态规划列表 dp ，dp[i] 代表以元素 nums[i] 为结尾的连续子数组最大和。</li>
+<li>为何定义最大和 dp[i] 中必须包含元素 nums[i] ：保证 dp[i] 递推到 dp[i+1] 的正确性；如果不包含 nums[i] ，递推时则不满足题目的 <strong>连续子数组</strong> 要求。</li>
+<li><p>转移方程： 若 <script type="math/tex">dp[i-1] \leq 0</script> ，说明 <script type="math/tex">dp[i - 1]</script> 对 dp[i] 产生负贡献</p>
 <ul>
-<li><p>当 $$dp[i - 1] &gt; 0$$ 时：执行 $$dp[i] &#x3D; dp[i-1] + nums[i]$$ ；</p>
+<li><p>当 <script type="math/tex">dp[i - 1] > 0</script> 时：执行 <script type="math/tex">dp[i] = dp[i-1] + nums[i]</script> ；</p>
 </li>
-<li><p>当 $$dp[i - 1] \leq 0$$ 时：执行 $$dp[i] &#x3D; nums[i]$$ ；</p>
+<li><p>当 <script type="math/tex">dp[i - 1] \leq 0</script> 时：执行 <script type="math/tex">dp[i] = nums[i]</script> ；</p>
 </li>
 </ul>
 </li>
-<li><p>初始状态： $$dp[0] &#x3D; nums[0]$$，即以 $$nums[0]$$ 结尾的连续子数组最大和为 $$nums[0]$$ 。</p>
+<li><p>初始状态： <script type="math/tex">dp[0] = nums[0]</script>，即以 <script type="math/tex">nums[0]</script> 结尾的连续子数组最大和为 <script type="math/tex">nums[0]</script> 。</p>
 </li>
-<li><p>返回值： 返回 dp 列表中的最大值，代表全局最大值。</p>
-</li>
+<li>返回值： 返回 dp 列表中的最大值，代表全局最大值。</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxSubArray</span>(<span class="params">self, nums</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(nums)):</span><br><span class="line">            nums[i] += <span class="built_in">max</span>(nums[i - <span class="number">1</span>], <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(nums)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums = [-<span class="number">2</span>,<span class="number">1</span>,-<span class="number">3</span>,<span class="number">4</span>,-<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,-<span class="number">5</span>,<span class="number">4</span>]</span><br><span class="line">    solution=Solution().maxSubArray(nums)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
 <p>空间复杂度降低：<br>由于 dp[i] 只与 dp[i-1] 和 nums[i] 有关系，因此可以将原数组 nums 用作 dp 列表，即直接在 nums 上修改即可。<br>由于省去 dp 列表使用的额外空间，因此空间复杂度从 O(N) 降至 O(1) 。</p>
 <p><strong>复杂度分析</strong></p>
 <ul>
@@ -348,7 +344,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

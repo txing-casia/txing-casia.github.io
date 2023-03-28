@@ -13,7 +13,7 @@
 
     <title>
         
-          Q92-反转链表 II-中等-链表 - 伽蓝之堂 | Txing Blog
+          Q92-反转链表 II-中等-链表 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -180,26 +180,18 @@
                 post-container">
 
                 <h4 id="92-反转链表-II"><a href="#92-反转链表-II" class="headerlink" title="92. 反转链表 II"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-linked-list-ii/">92. 反转链表 II</a></h4><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
-<p>给你单链表的头指针 head 和两个整数 left 和 right ，其中 left &lt;&#x3D; right 。请你反转从位置 left 到位置 right 的链表节点，返回 反转后的链表 。</p>
-</blockquote>
-<blockquote>
+<p>给你单链表的头指针 head 和两个整数 left 和 right ，其中 left &lt;= right 。请你反转从位置 left 到位置 right 的链表节点，返回 反转后的链表 。</p>
 <p><strong>Example 1:</strong></p>
-<p>输入：head &#x3D; [1,2,3,4,5], left &#x3D; 2, right &#x3D; 4<br>输出：[1,4,3,2,5]</p>
-</blockquote>
-<blockquote>
+<p>输入：head = [1,2,3,4,5], left = 2, right = 4<br>输出：[1,4,3,2,5]</p>
 <p><strong>Example 2:</strong></p>
-<p>输入：head &#x3D; [5], left &#x3D; 1, right &#x3D; 1<br>输出：[5]</p>
-</blockquote>
-<blockquote>
+<p>输入：head = [5], left = 1, right = 1<br>输出：[5]</p>
 <p><strong>提示：</strong></p>
 <ul>
 <li>链表中节点数目为 n</li>
-<li>1 &lt;&#x3D; n &lt;&#x3D; 500</li>
-<li>-500 &lt;&#x3D; Node.val &lt;&#x3D; 500</li>
-<li>1 &lt;&#x3D; left &lt;&#x3D; right &lt;&#x3D; n</li>
+<li>1 &lt;= n &lt;= 500</li>
+<li>-500 &lt;= Node.val &lt;= 500</li>
+<li>1 &lt;= left &lt;= right &lt;= n</li>
 </ul>
-</blockquote>
-<blockquote>
 <p><strong>进阶：</strong> 你可以使用一趟扫描完成反转吗？</p>
 </blockquote>
 <h3 id="Approach-1-穿针引线"><a href="#Approach-1-穿针引线" class="headerlink" title="Approach 1:  穿针引线"></a>Approach 1:  穿针引线</h3><p>一定要先想清楚思路，并且必要的时候在草稿纸上画图，理清「穿针引线」的先后步骤，然后再编码。</p>
@@ -210,7 +202,6 @@
 </ul>
 <p>说明：编码细节我们不在题解中介绍了，请见下方代码。思路想明白以后，编码不是一件很难的事情。这里要提醒大家的是，链接什么时候切断，什么时候补上去，先后顺序一定要想清楚，如果想不清楚，可以在纸上模拟，让思路清晰。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseBetween</span>(<span class="params">self, head: ListNode, left: <span class="built_in">int</span>, right: <span class="built_in">int</span></span>) -&gt; ListNode:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">reverse_linked_list</span>(<span class="params">head: ListNode</span>):</span><br><span class="line">            <span class="comment"># 也可以使用递归反转一个链表</span></span><br><span class="line">            pre = <span class="literal">None</span></span><br><span class="line">            cur = head</span><br><span class="line">            <span class="keyword">while</span> cur:</span><br><span class="line">                <span class="built_in">next</span> = cur.<span class="built_in">next</span></span><br><span class="line">                cur.<span class="built_in">next</span> = pre</span><br><span class="line">                pre = cur</span><br><span class="line">                cur = <span class="built_in">next</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 因为头节点有可能发生变化，使用虚拟头节点可以避免复杂的分类讨论</span></span><br><span class="line">        dummy_node = ListNode(-<span class="number">1</span>)</span><br><span class="line">        dummy_node.<span class="built_in">next</span> = head</span><br><span class="line">        pre = dummy_node</span><br><span class="line">        <span class="comment"># 第 1 步：从虚拟头节点走 left - 1 步，来到 left 节点的前一个节点</span></span><br><span class="line">        <span class="comment"># 建议写在 for 循环里，语义清晰</span></span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(left - <span class="number">1</span>):</span><br><span class="line">            pre = pre.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 第 2 步：从 pre 再走 right - left + 1 步，来到 right 节点</span></span><br><span class="line">        right_node = pre</span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(right - left + <span class="number">1</span>):</span><br><span class="line">            right_node = right_node.<span class="built_in">next</span></span><br><span class="line">        <span class="comment"># 第 3 步：切断出一个子链表（截取链表）</span></span><br><span class="line">        left_node = pre.<span class="built_in">next</span></span><br><span class="line">        curr = right_node.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 注意：切断链接</span></span><br><span class="line">        pre.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line">        right_node.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 第 4 步：同第 206 题，反转链表的子区间</span></span><br><span class="line">        reverse_linked_list(left_node)</span><br><span class="line">        <span class="comment"># 第 5 步：接回到原来的链表中</span></span><br><span class="line">        pre.<span class="built_in">next</span> = right_node</span><br><span class="line">        left_node.<span class="built_in">next</span> = curr</span><br><span class="line">        <span class="keyword">return</span> dummy_node.<span class="built_in">next</span></span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：O(N)，其中 N是链表总节点数。最坏情况下，需要遍历整个链表。</li>
@@ -220,7 +211,6 @@
 <p>方法一的缺点是：如果 left 和 right 的区域很大，恰好是链表的头节点和尾节点时，找到 left 和 right 需要遍历一次，反转它们之间的链表还需要遍历一次，虽然总的时间复杂度为 O(N)，但遍历了链表 2 次，可不可以只遍历一次呢？答案是可以的。我们依然画图进行说明。</p>
 <p>整体思想是：在需要反转的区间里，每遍历到一个节点，让这个新节点来到反转部分的起始位置。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseBetween</span>(<span class="params">self, head: ListNode, left: <span class="built_in">int</span>, right: <span class="built_in">int</span></span>) -&gt; ListNode:</span><br><span class="line">        <span class="comment"># 设置 dummyNode 是这一类问题的一般做法</span></span><br><span class="line">        dummy_node = ListNode(-<span class="number">1</span>)</span><br><span class="line">        dummy_node.<span class="built_in">next</span> = head</span><br><span class="line">        pre = dummy_node</span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(left - <span class="number">1</span>):</span><br><span class="line">            pre = pre.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line">        cur = pre.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(right - left):</span><br><span class="line">            <span class="built_in">next</span> = cur.<span class="built_in">next</span></span><br><span class="line">            cur.<span class="built_in">next</span> = <span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">            <span class="built_in">next</span>.<span class="built_in">next</span> = pre.<span class="built_in">next</span></span><br><span class="line">            pre.<span class="built_in">next</span> = <span class="built_in">next</span></span><br><span class="line">        <span class="keyword">return</span> dummy_node.<span class="built_in">next</span></span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：O(N)，其中 N 是链表总节点数。最多只遍历了链表一次，就完成了反转。</li>
@@ -327,7 +317,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

@@ -13,7 +13,7 @@
 
     <title>
         
-          Reinforcement Learning | Learning to Utilize Shaping Rewards: A New Approach of Reward Shaping - 伽蓝之堂 | Txing Blog
+          Reinforcement Learning | Learning to Utilize Shaping Rewards: A New Approach of Reward Shaping - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -192,32 +192,48 @@
 <h3 id="3-Parameterized-Reward-Shaping"><a href="#3-Parameterized-Reward-Shaping" class="headerlink" title="3 Parameterized Reward Shaping"></a>3 Parameterized Reward Shaping</h3><h4 id="3-1-Bi-level-Optimization"><a href="#3-1-Bi-level-Optimization" class="headerlink" title="3.1 Bi-level Optimization"></a>3.1 Bi-level Optimization</h4><ul>
 <li>定义参数化奖励塑造函数：</li>
 </ul>
-<p>$$<br>\tilde{r}(s,a)&#x3D;r(s,a)+z_{\phi}(s,a)f(s,a)<br>$$</p>
-<p>$$z_{\phi}(s,a)$$是权重向量，形式是使用参数化函数。$$f$$是shaping 奖励函数。</p>
-<p>$$<br>\text{Step 1: }\<br>\max_{\phi} \mathbb{E}<em>{s\sim \rho^{\pi},a\sim\pi</em>{\theta}} [r(s,a)]\<br>\text{Step 2: }\<br>\theta&#x3D;\arg \max_{\theta’} \mathbb{E}<em>{s\sim \rho^{\pi},a\sim\pi</em>{\theta’}}[r(s,a)+z_{\phi}(s,a)f(s,a)]<br>$$<br>通过真实的环境奖励$$r(s,a)$$更新$$z_{\phi}(s,a)$$，在根据shaping reward function更新policy。</p>
-<h4 id="3-2-Gradient-Computation"><a href="#3-2-Gradient-Computation" class="headerlink" title="3.2 Gradient Computation"></a>3.2 Gradient Computation</h4><ul>
-<li><p>固定$$z_{\phi}$$，计算累计修正奖励$$\tilde J$$关于参数$$\theta$$的梯度：<br>$$<br>\nabla_{\phi}\tilde J(\pi_{\theta})&#x3D; \mathbb{E}<em>{s\sim \rho^{\pi},a\sim\pi</em>{\theta}} \big[\nabla_{\theta}\log \pi_{\theta}(s,a)\tilde Q(s,a)\big]<br>$$</p>
-</li>
-<li><p>定理1：目标函数$$J(z_{\phi})$$关于参数$$\phi$$的梯度为：<br>$$<br>\nabla_{\phi} J(z_{\phi})&#x3D; \mathbb{E}<em>{s\sim \rho^{\pi},a\sim\pi</em>{\theta}} \big[\nabla_{\theta}\log \pi_{\theta}(s,a) Q(s,a)\big]<br>$$<br>这个定理首先假设了$$\pi_{\theta}$$关于$$\phi$$的梯度存在，但是即使有了定理1也不能直接计算出这个梯度，因为$$\pi_{\theta}$$关于$$\phi$$的梯度不能直接计算，下面会讨论如何计算$$\nabla_{\phi}\pi_{\theta}(s,a)$$</p>
-</li>
-</ul>
-<h3 id="4-Gradient-Approximation"><a href="#4-Gradient-Approximation" class="headerlink" title="4 Gradient Approximation"></a>4 Gradient Approximation</h3><h4 id="4-1-Explicit-Maping"><a href="#4-1-Explicit-Maping" class="headerlink" title="4.1 Explicit Maping"></a>4.1 Explicit Maping</h4><ul>
-<li>假设行为输出在$$[0,1]$$，构建一个扩展的状态空间（extended state space）$$\mathcal{S}<em>z&#x3D;{(s,z</em>{\phi}(s))|{\forall}s\in \mathcal{S} }$$，根据链式法则，得到$$\nabla_{\phi}\pi_{\theta}(s,a,z_{\phi}(s))&#x3D;\nabla_{z}\pi_{\theta}(s,a,z_{\phi}(s))\nabla_{\phi}z_{\phi}(s)$$，相应的，上级目标函数$$J(z_{\phi})$$关于$$\phi$$的梯度为：<br>$$<br>\nabla_{\phi}J(z_{\phi})&#x3D;\mathbb{E}<em>{s\sim \rho^{\pi},a \sim \pi</em>{\theta}}[\nabla_z \log \pi_{\theta}(s,a,z)|<em>{z&#x3D;z</em>{\phi}(s)}\nabla_{\phi}z_{\phi}(s)Q^{\pi}(s,a)]<br>$$</li>
+<script type="math/tex; mode=display">
+\tilde{r}(s,a)=r(s,a)+z_{\phi}(s,a)f(s,a)</script><script type="math/tex; mode=display">z_{\phi}(s,a)$$是权重向量，形式是使用参数化函数。$$f$$是shaping 奖励函数。</script><p>\text{Step 1: }\<br>\max<em>{\phi} \mathbb{E}</em>{s\sim \rho^{\pi},a\sim\pi<em>{\theta}} [r(s,a)]\<br>\text{Step 2: }\<br>\theta=\arg \max</em>{\theta’} \mathbb{E}<em>{s\sim \rho^{\pi},a\sim\pi</em>{\theta’}}[r(s,a)+z_{\phi}(s,a)f(s,a)]</p>
+<script type="math/tex; mode=display">
+通过真实的环境奖励$$r(s,a)$$更新$$z_{\phi}(s,a)$$，在根据shaping reward function更新policy。
+
+#### 3.2 Gradient Computation
+
+- 固定$$z_{\phi}$$，计算累计修正奖励$$\tilde J$$关于参数$$\theta$$的梯度：</script><p>  \nabla<em>{\phi}\tilde J(\pi</em>{\theta})= \mathbb{E}<em>{s\sim \rho^{\pi},a\sim\pi</em>{\theta}} \big[\nabla<em>{\theta}\log \pi</em>{\theta}(s,a)\tilde Q(s,a)\big]</p>
+<script type="math/tex; mode=display">
+
+- 定理1：目标函数$$J(z_{\phi})$$关于参数$$\phi$$的梯度为：</script><p>  \nabla<em>{\phi} J(z</em>{\phi})= \mathbb{E}<em>{s\sim \rho^{\pi},a\sim\pi</em>{\theta}} \big[\nabla<em>{\theta}\log \pi</em>{\theta}(s,a) Q(s,a)\big]</p>
+<script type="math/tex; mode=display">
+  这个定理首先假设了$$\pi_{\theta}$$关于$$\phi$$的梯度存在，但是即使有了定理1也不能直接计算出这个梯度，因为$$\pi_{\theta}$$关于$$\phi$$的梯度不能直接计算，下面会讨论如何计算$$\nabla_{\phi}\pi_{\theta}(s,a)</script><h3 id="4-Gradient-Approximation"><a href="#4-Gradient-Approximation" class="headerlink" title="4 Gradient Approximation"></a>4 Gradient Approximation</h3><h4 id="4-1-Explicit-Maping"><a href="#4-1-Explicit-Maping" class="headerlink" title="4.1 Explicit Maping"></a>4.1 Explicit Maping</h4><ul>
+<li>假设行为输出在<script type="math/tex">[0,1]</script>，构建一个扩展的状态空间（extended state space）<script type="math/tex">\mathcal{S}_z=\{(s,z_{\phi}(s))|{\forall}s\in \mathcal{S} \}</script>，根据链式法则，得到<script type="math/tex">\nabla_{\phi}\pi_{\theta}(s,a,z_{\phi}(s))=\nabla_{z}\pi_{\theta}(s,a,z_{\phi}(s))\nabla_{\phi}z_{\phi}(s)</script>，相应的，上级目标函数<script type="math/tex">J(z_{\phi})</script>关于<script type="math/tex">\phi</script>的梯度为：<script type="math/tex; mode=display">
+\nabla_{\phi}J(z_{\phi})=\mathbb{E}_{s\sim \rho^{\pi},a \sim \pi_{\theta}}[\nabla_z \log \pi_{\theta}(s,a,z)|_{z=z_{\phi}(s)}\nabla_{\phi}z_{\phi}(s)Q^{\pi}(s,a)]</script></li>
 </ul>
 <h4 id="4-2-Meta-Gradient-Learning"><a href="#4-2-Meta-Gradient-Learning" class="headerlink" title="4.2 Meta-Gradient Learning"></a>4.2 Meta-Gradient Learning</h4><ul>
-<li><p>考虑到参数$$\theta$$和$$\phi$$之间的关系，可以通过计算元梯度（meta-gradient）$$\nabla_{\phi}\theta$$的方式计算：<br>$$<br>\nabla_{\phi}\pi_{\theta}(s,a)&#x3D;\nabla_{\theta}\pi_{\theta}(s,a)\nabla_{\phi}\theta<br>$$</p>
+<li><p>考虑到参数<script type="math/tex">\theta</script>和<script type="math/tex">\phi</script>之间的关系，可以通过计算元梯度（meta-gradient）<script type="math/tex">\nabla_{\phi}\theta</script>的方式计算：</p>
+<script type="math/tex; mode=display">
+\nabla_{\phi}\pi_{\theta}(s,a)=\nabla_{\theta}\pi_{\theta}(s,a)\nabla_{\phi}\theta</script></li>
+<li><p>对<script type="math/tex">\theta</script>的更新：</p>
+<script type="math/tex; mode=display">
+\theta'=\theta+\alpha\sum_{i=1}^N \nabla_{\theta}\log \pi_{\theta}(s_i,a_i)\tilde Q(s_i,a_i)</script><p>其中<script type="math/tex">N</script>是batch样本数，<script type="math/tex">\alpha</script>是学习率</p>
 </li>
-<li><p>对$$\theta$$的更新：<br>$$<br>\theta’&#x3D;\theta+\alpha\sum_{i&#x3D;1}^N \nabla_{\theta}\log \pi_{\theta}(s_i,a_i)\tilde Q(s_i,a_i)<br>$$<br>其中$$N$$是batch样本数，$$\alpha$$是学习率</p>
-</li>
-<li><p>meta-gradient$$\nabla_{\phi}\theta’$$：<br>$$<br>\nabla_{\phi}\theta’&#x3D;\nabla_{\phi}(\theta+\alpha\sum_{i&#x3D;1}^{N}\nabla_{\theta}\log \pi_{\theta}(s_i,a_i)\tilde Q(s_i,a_i)\<br>&#x3D;\alpha \sum_{i&#x3D;1}^{N} \nabla_{\theta}\log \pi_{\theta}(s_i,a_i)^{\top} \nabla_{\phi}\tilde Q(s_i,a_i)\<br>$$<br>这里$$\theta$$是一个常数。</p>
-<p>在计算过程中，例如采用蒙特卡洛返回，对每一个在buffer中的样本$$i$$，定义$$\tau_i&#x3D;(s^0_i,a^0_i,\tilde r^0_i,s^1_i,a^1_i,\tilde r^1_i,…)$$表示采样的轨迹由于$$\tilde r_i^t&#x3D;r^t_i+z_{\phi}(s^t_i,a^t_i)f(s^t_i,a^t_i)$$，其中$$r^t_i$$是采样的真实奖励。<br>$$<br>\nabla_{\phi}\theta’&#x3D;\alpha \sum_{i&#x3D;1}^{N} \nabla_{\theta}\log \pi_{\theta}(s_i,a_i)^{\top} \nabla_{\phi}\tilde Q(s_i,a_i)\<br>\approx \alpha\sum_{i&#x3D;1}^N  \nabla_{\theta}\log \pi_{\theta}(s_i,a_i)^{\top} \nabla_{\phi} \sum_{t&#x3D;0}^{|\tau_i|-1} \gamma^t (r^t_i +z_{\phi}(s^t_i,a^t_i)f(s^t_i,a^t_i))\<br>&#x3D;\alpha\sum_{i&#x3D;1}^N  \nabla_{\theta}\log \pi_{\theta}(s_i,a_i)^{\top} \sum_{t&#x3D;0}^{|\tau_i|-1}\gamma^t f(s^t_i,a^t_i)\nabla_{\phi}z_{\phi}(s^t_i,a^t_i)<br>$$</p>
-</li>
+<li><p>meta-gradient<script type="math/tex">\nabla_{\phi}\theta'</script>：</p>
+<script type="math/tex; mode=display">
+\nabla_{\phi}\theta'=\nabla_{\phi}(\theta+\alpha\sum_{i=1}^{N}\nabla_{\theta}\log \pi_{\theta}(s_i,a_i)\tilde Q(s_i,a_i)\\
+=\alpha \sum_{i=1}^{N} \nabla_{\theta}\log \pi_{\theta}(s_i,a_i)^{\top} \nabla_{\phi}\tilde Q(s_i,a_i)\\</script><p>这里<script type="math/tex">\theta</script>是一个常数。</p>
+<p>在计算过程中，例如采用蒙特卡洛返回，对每一个在buffer中的样本<script type="math/tex">i</script>，定义<script type="math/tex">\tau_i=(s^0_i,a^0_i,\tilde r^0_i,s^1_i,a^1_i,\tilde r^1_i,...)</script>表示采样的轨迹由于<script type="math/tex">\tilde r_i^t=r^t_i+z_{\phi}(s^t_i,a^t_i)f(s^t_i,a^t_i)</script>，其中<script type="math/tex">r^t_i</script>是采样的真实奖励。</p>
+<script type="math/tex; mode=display">
+\nabla_{\phi}\theta'=\alpha \sum_{i=1}^{N} \nabla_{\theta}\log \pi_{\theta}(s_i,a_i)^{\top} \nabla_{\phi}\tilde Q(s_i,a_i)\\
+\approx \alpha\sum_{i=1}^N  \nabla_{\theta}\log \pi_{\theta}(s_i,a_i)^{\top} \nabla_{\phi} \sum_{t=0}^{|\tau_i|-1} \gamma^t (r^t_i +z_{\phi}(s^t_i,a^t_i)f(s^t_i,a^t_i))\\
+=\alpha\sum_{i=1}^N  \nabla_{\theta}\log \pi_{\theta}(s_i,a_i)^{\top} \sum_{t=0}^{|\tau_i|-1}\gamma^t f(s^t_i,a^t_i)\nabla_{\phi}z_{\phi}(s^t_i,a^t_i)</script></li>
 </ul>
 <h4 id="4-3-Incremental-Meta-Gradient-Learning"><a href="#4-3-Incremental-Meta-Gradient-Learning" class="headerlink" title="4.3 Incremental Meta-Gradient Learning"></a>4.3 Incremental Meta-Gradient Learning</h4><ul>
-<li><p>考虑之前假设的策略参数$$\theta$$关于$$\phi$$是恒定的，实际上，可以看做不是恒定的。</p>
+<li><p>考虑之前假设的策略参数<script type="math/tex">\theta</script>关于<script type="math/tex">\phi</script>是恒定的，实际上，可以看做不是恒定的。</p>
 </li>
-<li><p>Incremental Meta-Gradient Learning (IMGL)<br>$$<br>\nabla_{\phi}\theta’&#x3D;\nabla_{\phi}\theta + \alpha \sum_{i&#x3D;1}^{N} \nabla_{\theta}\log \pi_{\theta}(s_i,a_i)^{\top}  \tilde Q(s_i,a_i) + \alpha \sum_{i&#x3D;1}^{N} \log \pi_{\theta}(s_i,a_i)^{\top}  \nabla_{\theta}\tilde Q(s_i,a_i)\<br>&#x3D;\nabla_{\phi}\theta + \alpha \sum_{i&#x3D;1}^{N} \big(\nabla_{\theta}\log \pi_{\theta}(s_i,a_i)^{\top}\nabla_{\phi}\theta \big)  \tilde Q(s_i,a_i) + \alpha \sum_{i&#x3D;1}^{N} \log \pi_{\theta}(s_i,a_i)^{\top}  \nabla_{\theta}\tilde Q(s_i,a_i)\<br>&#x3D;\big( I_n + \alpha \sum_{i&#x3D;1}^{N} \tilde Q(s_i,a_i)\nabla_{\theta}\log \pi_{\theta}(s_i,a_i)^{\top}    \big) \nabla_{\phi}\theta+ \alpha \sum_{i&#x3D;1}^{N} \log \pi_{\theta}(s_i,a_i)^{\top}  \nabla_{\theta}\tilde Q(s_i,a_i)\<br>$$</p>
-</li>
+<li><p>Incremental Meta-Gradient Learning (IMGL)</p>
+<script type="math/tex; mode=display">
+\nabla_{\phi}\theta'=\nabla_{\phi}\theta + \alpha \sum_{i=1}^{N} \nabla_{\theta}\log \pi_{\theta}(s_i,a_i)^{\top}  \tilde Q(s_i,a_i) + \alpha \sum_{i=1}^{N} \log \pi_{\theta}(s_i,a_i)^{\top}  \nabla_{\theta}\tilde Q(s_i,a_i)\\
+=\nabla_{\phi}\theta + \alpha \sum_{i=1}^{N} \big(\nabla_{\theta}\log \pi_{\theta}(s_i,a_i)^{\top}\nabla_{\phi}\theta \big)  \tilde Q(s_i,a_i) + \alpha \sum_{i=1}^{N} \log \pi_{\theta}(s_i,a_i)^{\top}  \nabla_{\theta}\tilde Q(s_i,a_i)\\
+=\big( I_n + \alpha \sum_{i=1}^{N} \tilde Q(s_i,a_i)\nabla_{\theta}\log \pi_{\theta}(s_i,a_i)^{\top}    \big) \nabla_{\phi}\theta+ \alpha \sum_{i=1}^{N} \log \pi_{\theta}(s_i,a_i)^{\top}  \nabla_{\theta}\tilde Q(s_i,a_i)\\</script></li>
 </ul>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>挺有意思的一个工作，提供了三种梯度更新方式，分别对应精确映射，蒙特卡洛更新和TD更新。三个方式有着不同的梯度近似精度。</p>
 
@@ -317,7 +333,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

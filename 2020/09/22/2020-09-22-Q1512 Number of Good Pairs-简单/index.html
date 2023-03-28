@@ -13,7 +13,7 @@
 
     <title>
         
-          Q1470 Shuffle the Array-简单 - 伽蓝之堂 | Txing Blog
+          Q1470 Shuffle the Array-简单 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -179,43 +179,35 @@
 
                 <h1 id="Number-of-Good-Pairs"><a href="#Number-of-Good-Pairs" class="headerlink" title="Number of Good Pairs"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-good-pairs/">Number of Good Pairs</a></h1><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>Given an array of integers nums.</p>
-<p>A pair (i,j) is called good if nums[i] &#x3D;&#x3D; nums[j] and i &lt; j.</p>
+<p>A pair (i,j) is called good if nums[i] == nums[j] and i &lt; j.</p>
 <p>Return the number of good pairs.</p>
 <p><strong>Constraints:</strong></p>
 <ul>
 <li><code>1 &lt;= nums.length &lt;= 100</code></li>
 <li><code>1 &lt;= nums[i] &lt;= 100</code></li>
 </ul>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
-<p>Input: nums &#x3D; [1,2,3,1,1,3]<br>Output: 4<br>Explanation: There are 4 good pairs (0,3), (0,4), (3,4), (2,5) 0-indexed.</p>
-</blockquote>
-<blockquote>
+<p>Input: nums = [1,2,3,1,1,3]<br>Output: 4<br>Explanation: There are 4 good pairs (0,3), (0,4), (3,4), (2,5) 0-indexed.</p>
 <p><strong>Example 2:</strong></p>
-<p>Input: nums &#x3D; [1,1,1,1]<br>Output: 6<br>Explanation: Each pair in the array are good.</p>
-</blockquote>
-<blockquote>
+<p>Input: nums = [1,1,1,1]<br>Output: 6<br>Explanation: Each pair in the array are good.</p>
 <p><strong>Example 3:</strong></p>
-<p>Input: nums &#x3D; [1,2,3]<br>Output: 0</p>
+<p>Input: nums = [1,2,3]<br>Output: 0</p>
 </blockquote>
 <h3 id="Approach-1-循环嵌套"><a href="#Approach-1-循环嵌套" class="headerlink" title="Approach 1: 循环嵌套"></a>Approach 1: 循环嵌套</h3><p>过于简单，直接上代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numIdenticalPairs</span>(<span class="params">self, nums</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        n=<span class="built_in">len</span>(nums)</span><br><span class="line">        ans=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>,n):</span><br><span class="line">                <span class="keyword">if</span> nums[i]==nums[j]:</span><br><span class="line">                    ans+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums =[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>]</span><br><span class="line">    solution=Solution().numIdenticalPairs(nums)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li><p>时间复杂度：$$O(\frac{N(N+1)}{2})$$</p>
+<li><p>时间复杂度：<script type="math/tex">O(\frac{N(N+1)}{2})</script></p>
 </li>
 <li><p>空间复杂度：O(1)</p>
 </li>
 </ul>
-<h2 id="Approach-2-组合计数"><a href="#Approach-2-组合计数" class="headerlink" title="Approach 2: 组合计数"></a>Approach 2: 组合计数</h2><p>用哈希表统计每个数在序列中出现的次数，假设数字 k 在序列中出现的次数为 v，那么满足题目中所说的 $${\rm nums}[i] &#x3D; {\rm nums}[j] &#x3D; k(i &lt; j)$$ 的 $$(i, j)$$ 的数量就是 $$\frac{v(v - 1)}{2} $$，即 k 这个数值对答案的贡献是 $$\frac{v(v - 1)}{2}$$。我们只需要把所有数值的贡献相加，即可得到答案。</p>
+<h2 id="Approach-2-组合计数"><a href="#Approach-2-组合计数" class="headerlink" title="Approach 2: 组合计数"></a>Approach 2: 组合计数</h2><p>用哈希表统计每个数在序列中出现的次数，假设数字 k 在序列中出现的次数为 v，那么满足题目中所说的 <script type="math/tex">{\rm nums}[i] = {\rm nums}[j] = k(i < j)</script> 的 <script type="math/tex">(i, j)</script> 的数量就是 <script type="math/tex">\frac{v(v - 1)}{2}</script>，即 k 这个数值对答案的贡献是 <script type="math/tex">\frac{v(v - 1)}{2}</script>。我们只需要把所有数值的贡献相加，即可得到答案。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numIdenticalPairs</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        m = collections.Counter(nums)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(v * (v - <span class="number">1</span>) // <span class="number">2</span> <span class="keyword">for</span> k, v <span class="keyword">in</span> m.items())</span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li>时间复杂度：O*(*n)。</li>
-<li>空间复杂度：O*(*n)，即哈希表使用到的辅助空间的空间代价。</li>
+<li>时间复杂度：O<em>(</em>n)。</li>
+<li>空间复杂度：O<em>(</em>n)，即哈希表使用到的辅助空间的空间代价。</li>
 </ul>
 
 
@@ -316,7 +308,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

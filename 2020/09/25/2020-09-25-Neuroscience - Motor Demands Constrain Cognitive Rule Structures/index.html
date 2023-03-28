@@ -13,7 +13,7 @@
 
     <title>
         
-          Neuroscience | Motor Demands Constrain Cognitive Rule Structures - 伽蓝之堂 | Txing Blog
+          Neuroscience | Motor Demands Constrain Cognitive Rule Structures - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -177,9 +177,10 @@
 <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>运动需求影响了实施抽象规则选择的结构。</p>
 <p>低层、高层认知之间的影响。</p>
 <h2 id="主要工作"><a href="#主要工作" class="headerlink" title="主要工作"></a>主要工作</h2><p>利用贝叶斯推断做规则结构的聚类。对每个输入维度单独用一个专家判别器判断sample是否属于本规则，输出为0或者1。</p>
-<p>最后用加权的形式综合各个专家的观点$$\pi(a)&#x3D;w_C(t)\pi_C(a)+(1-w_C(t))\pi_S(a)$$（两个专家情况）</p>
-<p>然后对权重进行更新<br>$$<br>w_C(t+1)&#x3D;\frac{w_C(t)p(r_t|S_t,a_t,Color)}{w_C(t)p(r_t|S_t,a_t,Color)+(1-w_C(t))p(r_t|S_t,a_t,Shape)}<br>$$</p>
-<p>后文还引入了bias，具体公式见原文。</p>
+<p>最后用加权的形式综合各个专家的观点<script type="math/tex">\pi(a)=w_C(t)\pi_C(a)+(1-w_C(t))\pi_S(a)</script>（两个专家情况）</p>
+<p>然后对权重进行更新</p>
+<script type="math/tex; mode=display">
+w_C(t+1)=\frac{w_C(t)p(r_t|S_t,a_t,Color)}{w_C(t)p(r_t|S_t,a_t,Color)+(1-w_C(t))p(r_t|S_t,a_t,Shape)}</script><p>后文还引入了bias，具体公式见原文。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文有点单薄，也只是考虑了2个输入维度的情况，有点简单了。</p>
 
 
@@ -276,7 +277,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

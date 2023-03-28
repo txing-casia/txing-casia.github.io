@@ -13,7 +13,7 @@
 
     <title>
         
-          伽蓝之堂 | Txing Blog
+          伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -137,7 +137,7 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/image/MonAndClo.jpg')
+        background-image: url('/img/MonAndClo.jpg')
     }
 </style>
 <header class="intro-header" >
@@ -174,37 +174,31 @@
                 <h2 id="使用Gperf查看模块函数级别CPU资源占用"><a href="#使用Gperf查看模块函数级别CPU资源占用" class="headerlink" title="使用Gperf查看模块函数级别CPU资源占用"></a>使用Gperf查看模块函数级别CPU资源占用</h2><p><strong>步骤1：Cmake修改</strong></p>
 <p>CMakeLists.txt文件，添加有<code>#_</code>标记的行</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">set(PKGS common map error_relation) </span><br><span class="line">set(PKG_LIBRARIES)</span><br><span class="line">foreach(pkg $&#123;PKGS&#125;)</span><br><span class="line">   find_package($&#123;pkg&#125;)</span><br><span class="line">   include_directories($&#123;$&#123;pkg&#125;_INCLUDE_DIRS&#125;)</span><br><span class="line">   include_directories(/build_env/x86/thirdparty/gperf/include) #_ </span><br><span class="line">   link_directories($&#123;$&#123;pkg&#125;_LIBRARY_DIRS&#125;)</span><br><span class="line">   link_directories(/build_env/x86/thirdparty/gperf/lib) #_</span><br><span class="line">   message(STATUS &quot;$&#123;pkg&#125;_INCLUDE_DIRS $&#123;$&#123;pkg&#125;_INCLUDE_DIRS&#125;&quot;)</span><br><span class="line">   message(STATUS &quot;$&#123;pkg&#125;_LIBRARY_DIRS $&#123;$&#123;pkg&#125;_LIBRARY_DIRS&#125;&quot;)</span><br><span class="line">   list(APPEND PKG_LIBRARIES $&#123;$&#123;pkg&#125;_LIBRARIES&#125;)</span><br><span class="line">endforeach()</span><br><span class="line"></span><br><span class="line">#_</span><br><span class="line">include_directories(/build_env/x86/thirdparty/gperf/include) #_ </span><br><span class="line">link_directories(/build_env/x86/thirdparty/gperf/lib) #_</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">if (USE_IPOPT)</span><br><span class="line">    add_definitions(-DUSE_IPOPT)</span><br><span class="line">    set(LIBS</span><br><span class="line">        $&#123;HIOS_ALL_LIBRARIES&#125;</span><br><span class="line">        $&#123;PKG_LIBRARIES&#125;</span><br><span class="line">        $&#123;catkin_LIBRARIES&#125;</span><br><span class="line">        $&#123;OSQP_LIBRARIES&#125;</span><br><span class="line">        $&#123;IPOPT_LIBRARIES&#125;</span><br><span class="line">        $&#123;ADOLC_LIBRARIES&#125;</span><br><span class="line">        $&#123;HSL_LIBRARIES&#125;</span><br><span class="line">        profiler #_</span><br><span class="line">    )</span><br><span class="line">else()</span><br><span class="line">    set(LIBS</span><br><span class="line">        $&#123;HIOS_ALL_LIBRARIES&#125;</span><br><span class="line">        $&#123;PKG_LIBRARIES&#125;</span><br><span class="line">        $&#123;catkin_LIBRARIES&#125;</span><br><span class="line">        $&#123;OSQP_LIBRARIES&#125;</span><br><span class="line">        # $&#123;IPOPT_LIBRARIES&#125;</span><br><span class="line">        $&#123;ADOLC_LIBRARIES&#125;</span><br><span class="line">        $&#123;HSL_LIBRARIES&#125;</span><br><span class="line">        profiler #_ </span><br><span class="line">        )</span><br><span class="line">endif()</span><br></pre></td></tr></table></figure>
-
-<p>include_directories(&#x2F;build_env&#x2F;x86&#x2F;thirdparty&#x2F;gperf&#x2F;include)<br>   link_directories(&#x2F;build_env&#x2F;x86&#x2F;thirdparty&#x2F;gperf&#x2F;lib)<br>   set(LIBS<br>      xxx<br>      profiler<br>      xxx)<br>LIBS 里面加入profiler。<br>建议如果是发版分支，在提交代码时，把BUILD_GPERF 设置为”OFF”</p>
+<p>include_directories(/build_env/x86/thirdparty/gperf/include)<br>   link_directories(/build_env/x86/thirdparty/gperf/lib)<br>   set(LIBS<br>      xxx<br>      profiler<br>      xxx)<br>LIBS 里面加入profiler。<br>建议如果是发版分支，在提交代码时，把BUILD_GPERF 设置为”OFF”</p>
 <p><strong>步骤2：执行器代码更改</strong></p>
 <p>planning_exec.h添加头文件</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;gperftools/profiler.h&gt; // #_</span><br></pre></td></tr></table></figure>
-
 <p><strong>步骤3：process函数修改</strong></p>
 <p>planning_exec.cpp添加如下行</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">int PlanningExec::process(const ::haomo::pos::IData* const input, ::haomo::pos::IData* const output) &#123;</span><br><span class="line">    MLOG(PLANNING, INFO) &lt;&lt; &quot;-------------In PlanningExec process------------&quot;;</span><br><span class="line">    </span><br><span class="line">    // #_</span><br><span class="line">    // GPERF_SECTION(&quot;planning.prof&quot;, 1200)</span><br><span class="line">    static int ii = 0;</span><br><span class="line">    if(ii == 0)</span><br><span class="line">    &#123;</span><br><span class="line">        ProfilerStart(&quot;planning.prof&quot;); </span><br><span class="line">        ProfilerRegisterThread();</span><br><span class="line">        ProfilerEnable();</span><br><span class="line">    &#125;</span><br><span class="line">    ii++;</span><br><span class="line">    if(ii &lt; 1200)</span><br><span class="line">    &#123;</span><br><span class="line">        ProfilerFlush();</span><br><span class="line">    &#125;</span><br><span class="line">    if(ii == 1200)</span><br><span class="line">    &#123;</span><br><span class="line">        ProfilerStop();</span><br><span class="line">    &#125;</span><br><span class="line">    // #_</span><br></pre></td></tr></table></figure>
-
 <p>1200 表示函数调用1200次后，终止profile，可根据实际情况修改</p>
 <p><strong>步骤4：程序执行</strong></p>
 <p>和之前在docker里跑包一样，正常运行即可。</p>
 <p><strong>步骤5：生成text prof文件</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pprof ./output/x86/planning/lib/libplanning.so planning.prof  --text &gt; test.txt</span><br></pre></td></tr></table></figure>
-
 <p>这里根据自己模块名称，生成prof名称替换即可。</p>
 <p>txt文档从左到右的含义是：</p>
 <p>每一行表示一个函数的信息。</p>
 <p>flat：函数在 CPU 上运行的时间</p>
 <p>flat%：函数在CPU上运行时间的百分比</p>
-<p>sum%：是从上到当前行所有函数累加使用 CPU 的比例，如第二行sum&#x3D;48.52&#x3D;28.79+19.73</p>
+<p>sum%：是从上到当前行所有函数累加使用 CPU 的比例，如第二行sum=48.52=28.79+19.73</p>
 <p>cum：这个函数以及子函数运行所占用的时间，应该大于等于flat</p>
 <p>cum%：这个函数以及子函数运行所占用的比例，应该大于等于flat%</p>
 <p>最后一列：函数的名字</p>
 <p>步骤6：生成SVG文件</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pprof ./output/x86/planning/lib/libplanning.so planning.prof  --svg &gt; test.svg</span><br></pre></td></tr></table></figure>
-
-<p>最下面一行数字代表该函数共占用多少CPU片段，一个CPU片段大概是10ms。我一共跑了1200次，所以可以得出该函数的平均CPU时间是2386*10&#x2F;1200 &#x3D; 19ms</p>
+<p>最下面一行数字代表该函数共占用多少CPU片段，一个CPU片段大概是10ms。我一共跑了1200次，所以可以得出该函数的平均CPU时间是2386*10/1200 = 19ms</p>
 <p>参考资料：</p>
 <p><a target="_blank" rel="noopener" href="https://gperftools.github.io/gperftools/cpuprofile.html">https://gperftools.github.io/gperftools/cpuprofile.html</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/caosiyang/archive/2013/01/25/2876244.html">https://www.cnblogs.com/caosiyang/archive/2013/01/25/2876244.html</a></p>
@@ -297,7 +291,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

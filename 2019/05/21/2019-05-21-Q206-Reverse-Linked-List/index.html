@@ -13,7 +13,7 @@
 
     <title>
         
-          Q206 Reverse Linked List - 伽蓝之堂 | Txing Blog
+          Q206 Reverse Linked List - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -181,21 +181,20 @@
 
                 <h1 id="Reverse-Linked-List"><a href="#Reverse-Linked-List" class="headerlink" title="Reverse Linked List"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-linked-list/">Reverse Linked List</a></h1><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>Reverse a singly linked list.</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong><br>Input: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL<br>Output: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL</p>
 </blockquote>
 <h3 id="Approach-1-Iterative"><a href="#Approach-1-Iterative" class="headerlink" title="Approach 1: Iterative"></a>Approach 1: Iterative</h3><p><strong>Intuition and Algorithm</strong></p>
 <p>Assume that we have linked list <code>1 → 2 → 3 → Ø</code>, we would like to change it to <code>Ø ← 1 ← 2 ← 3</code>.</p>
 <p>While you are traversing the list, change the current node’s next pointer to point to its previous element. Since a node does not have reference to its previous node, you must store its previous element beforehand. You also need another pointer to store the next node before changing the reference. Do not forget to return the new head reference at the end!</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseList</span>(<span class="params">self, head</span>):</span><br><span class="line">        prev_node = <span class="literal">None</span></span><br><span class="line">        curr_node = head</span><br><span class="line">        <span class="keyword">while</span> curr_node:</span><br><span class="line">            next_node = curr_node.<span class="built_in">next</span>  <span class="comment"># Remember next node</span></span><br><span class="line">            curr_node.<span class="built_in">next</span> = prev_node  <span class="comment"># REVERSE! None, first time round.</span></span><br><span class="line">            prev_node = curr_node  <span class="comment"># Used in the next iteration.</span></span><br><span class="line">            curr_node = next_node  <span class="comment"># Move to next node.</span></span><br><span class="line">        head = prev_node</span><br><span class="line">        <span class="keyword">return</span> head</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    head=stringToListNode([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])<span class="comment"># 将输入的元组转换为链表</span></span><br><span class="line">    <span class="built_in">print</span>(listNodeToString(Solution().reverseList(head)))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
 <p><strong>Complexity Analysis</strong></p>
 <ul>
 <li><p>Time complexity : <em>O</em>(<em>n</em>). Assume that <em>n</em> is the list’s length, the time complexity is <em>O</em>(<em>n</em>).</p>
 </li>
 <li><p>Space complexity : <em>O</em>(1).</p>
 </li>
+</ul>
+<ul>
 <li><p>Runtime: 28 ms, faster than 99.98% of Python3 online submissions forReverse Linked List.</p>
 </li>
 <li><p>Memory Usage: 14.5 MB, less than 50.22% of Python3 online submissions for Reverse Linked List.</p>
@@ -203,24 +202,22 @@
 </ul>
 <hr>
 <h3 id="Approach-2-Recursive"><a href="#Approach-2-Recursive" class="headerlink" title="Approach 2: Recursive"></a>Approach 2: Recursive</h3><p><strong>Intuition and Algorithm</strong></p>
-<p>The recursive version is slightly trickier and the key is to work backwards. Assume that the rest of the list had already been reversed, now how do I reverse the front part? Let’s assume the list is: $$n_1 \to … \to n_{k-1} \to n_k \to n_{k+1} \to … \to n_m \to \phi​$$</p>
-<p>Assume from node $$n_{k+1}$$ to $$n_m$$ had been reversed and you are at node $$n_k$$.</p>
-<p>$$n_1 \to … \to n_{k-1} \to n_k \to n_{k+1} \leftarrow … \leftarrow n_m$$</p>
-<p>We want $$n_{k+1}$$’s next node to point to $$n_k$$.</p>
-<p>So, $$n_k$$.next.next &#x3D; $$n_k​$$;</p>
-<p>Be very careful that $$n_1$$’s next must point to $$\phi​$$. If you forget about this, your linked list has a cycle in it. This bug could be caught if you test your code with a linked list of size 2.</p>
+<p>The recursive version is slightly trickier and the key is to work backwards. Assume that the rest of the list had already been reversed, now how do I reverse the front part? Let’s assume the list is: <script type="math/tex">n_1 \to … \to n_{k-1} \to n_k \to n_{k+1} \to … \to n_m \to \phi​</script></p>
+<p>Assume from node <script type="math/tex">n_{k+1}</script> to <script type="math/tex">n_m</script> had been reversed and you are at node <script type="math/tex">n_k</script>.</p>
+<script type="math/tex; mode=display">n_1 \to … \to n_{k-1} \to n_k \to n_{k+1} \leftarrow … \leftarrow n_m</script><p>We want <script type="math/tex">n_{k+1}</script>’s next node to point to <script type="math/tex">n_k</script>.</p>
+<p>So, <script type="math/tex">n_k</script>.next.next = <script type="math/tex">n_k​</script>;</p>
+<p>Be very careful that <script type="math/tex">n_1</script>‘s next must point to <script type="math/tex">\phi​</script>. If you forget about this, your linked list has a cycle in it. This bug could be caught if you test your code with a linked list of size 2.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseList</span>(<span class="params">self, head</span>):</span><br><span class="line">        <span class="keyword">if</span> head==<span class="literal">None</span> <span class="keyword">or</span> head.<span class="built_in">next</span>==<span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> head</span><br><span class="line">        p=head.<span class="built_in">next</span> <span class="comment"># 设定p是下一个node</span></span><br><span class="line">        p=Solution().reverseList(p)</span><br><span class="line">        head.<span class="built_in">next</span>.<span class="built_in">next</span>=head</span><br><span class="line">        head.<span class="built_in">next</span>=<span class="literal">None</span></span><br><span class="line">        <span class="keyword">return</span> p</span><br></pre></td></tr></table></figure>
-
 <p><strong>Complexity analysis</strong></p>
 <ul>
 <li><p>Time complexity :  <em>O</em>(<em>n</em>). Assume that <em>n</em> is the list’s length, the time complexity is <em>O</em>(<em>n</em>).</p>
 </li>
 <li><p>Space complexity : <em>O</em>(<em>n</em>). The extra space comes from implicit stack space due to recursion. The recursion could go up to <em>n</em> levels deep.</p>
 </li>
-<li><p>Runtime: 44 ms, faster than 69.21% of Python3 online submissions forReverse Linked List.</p>
-</li>
-<li><p>Memory Usage: 19.1 MB, less than 11.36% of Python3 online submissions for Reverse Linked List.</p>
-</li>
+</ul>
+<ul>
+<li>Runtime: 44 ms, faster than 69.21% of Python3 online submissions forReverse Linked List.</li>
+<li>Memory Usage: 19.1 MB, less than 11.36% of Python3 online submissions for Reverse Linked List.</li>
 </ul>
 
 
@@ -231,12 +228,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2019/05/21/2019-05-21-Achievements-in-Weibo-Management/" data-toggle="tooltip" data-placement="top" title="Achievements in Weibo Management">&larr; Previous Post</a>
+                            <a href="/2019/05/22/2019-05-22-Q817-Linked-List-Components/" data-toggle="tooltip" data-placement="top" title="Q817 Linked List Components">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2019/05/20/2019-05-20-Q876-Middle-of-the-Linked-List/" data-toggle="tooltip" data-placement="top" title="Q876 Middle of the Linked List">Next Post &rarr;</a>
+                            <a href="/2019/05/21/2019-05-21-Achievements-in-Weibo-Management/" data-toggle="tooltip" data-placement="top" title="Achievements in Weibo Management">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -323,7 +320,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

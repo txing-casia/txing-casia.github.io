@@ -13,7 +13,7 @@
 
     <title>
         
-          Q11 Container With Most Water - 伽蓝之堂 | Txing Blog
+          Q11 Container With Most Water - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -181,26 +181,22 @@
 <p>Given <em>n</em> non-negative integers $a_1, a_2, …, a_n$ , where each represents a point at coordinate ($i$, $a_i$).  $n$ vertical lines are drawn such that the two endpoints of line $i$ is at ($i$, $a_i$) and ($i$, $0$). Find two lines, which together with x-axis forms a container, such that the container contains the most water.</p>
 <p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/question_11.jpg" alt="question_11.jpg"></p>
 <p>The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.</p>
-</blockquote>
-<blockquote>
 <p>Example: </p>
 <p>Input: [1,8,6,2,5,4,8,3,7]<br>Output: 49</p>
 </blockquote>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="Approach-1-Brute-Force"><a href="#Approach-1-Brute-Force" class="headerlink" title="Approach 1: Brute Force"></a>Approach 1: Brute Force</h3><p>In this case, we will simply consider the area for every possible pair of the lines and find out the maximum area out of those.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxArea</span>(<span class="params">self, height</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        maxarea=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(height)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>,<span class="built_in">len</span>(height)):</span><br><span class="line">                maxarea=<span class="built_in">max</span>(maxarea,<span class="built_in">min</span>(height[i],height[j])*(j-i))</span><br><span class="line">        <span class="keyword">return</span> maxarea</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    height = [<span class="number">1</span>,<span class="number">8</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">8</span>,<span class="number">3</span>,<span class="number">7</span>]</span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.maxArea(height)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br><span class="line">   </span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>Time complexity : $O(n^2)$. Calculating area for all $\frac{n(n-1)}{2}$ height pairs.</li>
-<li>Space complexity : $ O(1)$ Constant extra space is used.</li>
+<li>Space complexity : $ O(1)$ Constant extra space is used. </li>
 </ul>
 <hr>
 <h3 id="Approach-2-Two-Pointer-Approach"><a href="#Approach-2-Two-Pointer-Approach" class="headerlink" title="Approach 2: Two Pointer Approach"></a>Approach 2: Two Pointer Approach</h3><p>The intuition behind this approach is that the area formed between the lines will always be limited by the height of the shorter line. Further, the farther the lines, the more will be the area obtained.</p>
 <p>We take two pointers, one at the beginning and one at the end of the array constituting the length of the lines. Futher, we maintain a variable \text{maxarea}maxarea to store the maximum area obtained till now. At every step, we find out the area formed between them, update \text{maxarea}maxarea and move the pointer pointing to the shorter line towards the other end by one step.</p>
 <p>How this approach works?</p>
 <p>Initially we consider the area constituting the exterior most lines. Now, to maximize the area, we need to consider the area between the lines of larger lengths. If we try to move the pointer at the longer line inwards, we won’t gain any increase in area, since it is limited by the shorter line. But moving the shorter line’s pointer could turn out to be beneficial, as per the same argument, despite the reduction in the width. This is done since a relatively longer line obtained by moving the shorter line’s pointer might overcome the reduction in area caused by the width reduction.</p>
-<p>For further clarification click <a target="_blank" rel="noopener" href="https://leetcode.com/problems/container-with-most-water/discuss/6099/yet-another-way-to-see-what-happens-in-the-on-algorithm">here</a> and for the proof click <a target="_blank" rel="noopener" href="https://leetcode.com/problems/container-with-most-water/discuss/6089/Anyone-who-has-a-O(N)-algorithm/7268">here</a>.</p>
+<p>For further clarification click <a target="_blank" rel="noopener" href="https://leetcode.com/problems/container-with-most-water/discuss/6099/yet-another-way-to-see-what-happens-in-the-on-algorithm">here</a> and for the proof click <a target="_blank" rel="noopener" href="https://leetcode.com/problems/container-with-most-water/discuss/6089/Anyone-who-has-a-O(N">here</a>-algorithm/7268).</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxArea</span>(<span class="params">self, height</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        maxarea=<span class="number">0</span></span><br><span class="line">        x=<span class="built_in">len</span>(height)-<span class="number">1</span> <span class="comment"># 最远端的指针</span></span><br><span class="line">        y=<span class="number">0</span> <span class="comment"># 最近端的指针</span></span><br><span class="line">        <span class="keyword">while</span>(y&lt;x):</span><br><span class="line">            maxarea = <span class="built_in">max</span>(maxarea, <span class="built_in">min</span>(height[x], height[y]) * (x - y))</span><br><span class="line">            <span class="keyword">if</span> (height[y] &lt; height[x]):</span><br><span class="line">                y=y+<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                x=x-<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> maxarea</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    height = [<span class="number">1</span>,<span class="number">8</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">8</span>,<span class="number">3</span>,<span class="number">7</span>]</span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.maxArea(height)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br></pre></td></tr></table></figure>
-
 <p><strong>Complexity Analysis</strong></p>
 <ul>
 <li>Time complexity : $O(n)$. Single pass.</li>
@@ -305,7 +301,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

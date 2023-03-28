@@ -13,7 +13,7 @@
 
     <title>
         
-          Reinforcement Learning | Option-critic Architecture - 伽蓝之堂 | Txing Blog
+          Reinforcement Learning | Option-critic Architecture - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -175,14 +175,11 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="Option-critic-Architecture"><a href="#Option-critic-Architecture" class="headerlink" title="Option-critic Architecture"></a>Option-critic Architecture</h1><p>论文链接：<a target="_blank" rel="noopener" href="http://www.aaai.org/ocs/index.php/AAAI/AAAI17/paper/download/14858/14328">www.aaai.org/ocs/index.php/AAAI/AAAI17/paper/download/14858/14328</a></p>
+                <h1 id="Option-critic-Architecture"><a href="#Option-critic-Architecture" class="headerlink" title="Option-critic Architecture"></a>Option-critic Architecture</h1><p>论文链接：www.aaai.org/ocs/index.php/AAAI/AAAI17/paper/download/14858/14328</p>
 <h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><ul>
-<li><p>分层强化学习自动学习时间抽象是很重要的</p>
-</li>
-<li><p>设计了基于策略梯度理论的option-critic方法来学习内部策略和option的终点约束。We derive policy gradient theorems for options and propose a new option-critic architecture capable of learning both the internal policies and the termination conditions of options</p>
-</li>
-<li><p>在离散和连续的任务中都取得了好的表现。 discrete and continuous environments</p>
-</li>
+<li>分层强化学习自动学习时间抽象是很重要的</li>
+<li>设计了基于策略梯度理论的option-critic方法来学习内部策略和option的终点约束。We derive policy gradient theorems for options and propose a new option-critic architecture capable of learning both the internal policies and the termination conditions of options</li>
+<li>在离散和连续的任务中都取得了好的表现。 discrete and continuous environments</li>
 <li><p>时间抽象允许表示关于发生在不同时间尺度上的行动过程的知识。Temporal abstraction allows representing knowledge about courses of action that take place at different time scales.</p>
 </li>
 <li><p>Discovering temporal abstractions autonomously 成为了一个持续了15年的研究主题</p>
@@ -201,49 +198,53 @@
 </li>
 </ul>
 <h3 id="Option-Framework"><a href="#Option-Framework" class="headerlink" title="Option Framework"></a>Option Framework</h3><ul>
-<li><p>option框架假设对于option $$\omega\in \Omega$$ 由三元组 $$(I_{\omega},\pi_{\omega},\beta_{\omega})$$ 组成。</p>
+<li><p>option框架假设对于option <script type="math/tex">\omega\in \Omega</script> 由三元组 <script type="math/tex">(I_{\omega},\pi_{\omega},\beta_{\omega})</script> 组成。</p>
 <ul>
-<li>$$I_{\omega} \subseteq S$$ 是初始的状态集合</li>
-<li>$$\pi_{\omega}$$ 是intra-option策略</li>
-<li>$$\beta_{\omega}: S \rightarrow [0,1]$$ 是终止函数</li>
+<li><script type="math/tex">I_{\omega} \subseteq S</script> 是初始的状态集合</li>
+<li><script type="math/tex">\pi_{\omega}</script> 是intra-option策略</li>
+<li><script type="math/tex">\beta_{\omega}: S \rightarrow [0,1]</script> 是终止函数</li>
 </ul>
 </li>
-<li><p>当使用option框架时， MDP就变成了Semi-MDP，它有相应的最优值函数$$V_{\Omega}(s)$$ 和option-value函数 $$Q_{\Omega}(s,\omega)$$ 。所谓的Semi-MDP就是指从状态s到下一个状态s‘要经过 $$\tau$$ 步的MDP，大致就是状态之间存在时间上的不连续。</p>
+<li><p>当使用option框架时， MDP就变成了Semi-MDP，它有相应的最优值函数<script type="math/tex">V_{\Omega}(s)</script> 和option-value函数 <script type="math/tex">Q_{\Omega}(s,\omega)</script> 。所谓的Semi-MDP就是指从状态s到下一个状态s‘要经过 <script type="math/tex">\tau</script> 步的MDP，大致就是状态之间存在时间上的不连续。</p>
 </li>
-<li><p>通过一些针对MDP的算法实现多个option并行地学习，这就是 <strong>intra-option learning</strong> 的主要思路</p>
-</li>
-<li><p>接下来就是要实现两个关键任务：learning <strong>option policies</strong> and <strong>termination functions</strong></p>
-</li>
-<li><p>算法流程：一个外部的策略 $$\pi_{\Omega}$$ 选择option来执行控制， intra-option policy $$\pi_{\omega}$$ 开始执行，直到终点（用终点函数来判断停止执行）</p>
-</li>
-<li><p>定义option-value function can be written as:</p>
-</li>
+<li>通过一些针对MDP的算法实现多个option并行地学习，这就是 <strong>intra-option learning</strong> 的主要思路</li>
+<li>接下来就是要实现两个关键任务：learning <strong>option policies</strong> and <strong>termination functions</strong></li>
+<li>算法流程：一个外部的策略 <script type="math/tex">\pi_{\Omega}</script> 选择option来执行控制， intra-option policy <script type="math/tex">\pi_{\omega}</script> 开始执行，直到终点（用终点函数来判断停止执行）</li>
+<li>定义option-value function can be written as:</li>
 </ul>
-<p>$$<br>Q_{\Omega}(s,\omega)&#x3D;\sum_a \pi_{\omega,\theta}(a \mid s)Q_{U}(s,\omega,a)<br>$$</p>
-<p>其中 $$Q_{U}(s,\omega,a)$$ 是在state-option对下执行行为的评估值。</p>
-<p>$$<br>Q_{U}(s,\omega,a)&#x3D;r(s,a)+\gamma\sum_{s’}P(s’ \mid s,a)U(\omega,s’)<br>$$</p>
-<p>注意 $$(s,\omega)$$ 组导致了一个扩张的状态空间 an augmented state space, cf. (Levy and Shimkin 2011)</p>
-<p>$$U: \Omega \times S\rightarrow \mathbb{R}$$ 是 the option-value function upon arrival，The value of executing $$\omega$$ upon entering a state $$s’$$ is given by:</p>
-<p>$$<br>U(\omega,s’)&#x3D;(1-\beta_{\omega,\vartheta}(s’))Q_{\Omega}(s’,\omega)+\beta_{\omega,\vartheta}(s’)V_{\Omega}(s’)<br>$$</p>
-<p>如果option $$\omega_t$$ 在时刻 t 被初始化并被执行，此时状态为 $$s_t$$ ，然后在1步之后，状态转移到 $$(s_{t+1},\omega_{t+1})$$ 的概率是：</p>
-<p>$$<br>P(s_{t+1},\omega_{t+1} \mid s_t,\omega_t)&#x3D;\sum_a \pi_{\omega_t,\theta}(a|s_t)P(s_{t+1} \mid s_t,a)\<br>\big((1-\beta_{\omega_t,\vartheta}(s_{t+1}))1_{\omega_t&#x3D;\omega_{t+1}}+\beta_{\omega_t,\vartheta}(s_{t+1})\pi_{\Omega}(\omega_{t+1} \mid s_{t+1})\big)<br>$$</p>
-<p>显然，给出计算过程是均匀的。在温和的条件下，由于选项到处可用，它实际上是遍历的，并且在 state-option 对上存在唯一的平稳分布。</p>
-<p>接下来计算期望累积回报关于intra-option策略的参数 $$\theta$$ 的梯度，假设它是随机的可微分的，我们得到</p>
-<p>$$<br>\frac{\partial Q_{\Omega}(s,\omega)}{\partial \theta}&#x3D;\Bigg(\sum_a \frac{\partial \pi_{\omega,\theta}(a \mid s)}{\partial \theta}Q_{U}(s,\omega,a)\Bigg)\<br>+\sum_a\pi_{\omega,\theta}(a \mid s)\sum_{s’} \gamma P(s’|s,a)\frac{\partial U(\omega,s’)}{\partial \theta}<br>$$</p>
-<p><strong>Theorem 1</strong> (<strong>Intra-Option Policy Gradient Theorem</strong>). Given a set of Markov options with stochastic intra-option policies differentiable in their parameters $$\theta$$, the gradient of the expected discounted return with respect to $$\theta$$ and initial condition $$(s_0,\omega_0)$$ is:</p>
-<p>$$<br>\sum_{s,\omega} \mu_{\Omega}(s,\omega \mid s_0,\omega_0)\sum_a \frac{\partial \pi_{\omega,\theta}(a \mid s)}{\partial \theta} Q_U(s,\omega,a)<br>$$</p>
-<p>其中 $$\mu_{\Omega}$$ 是状态-选项对的折扣权重</p>
-<p>$$<br>\mu_{\Omega}(s,\omega \mid s_0,\omega_0)&#x3D;\sum_{t&#x3D;0}^{\infty}\gamma^t P(s_t&#x3D;s,\omega_t&#x3D;\omega \mid s_0,\omega_0)<br>$$</p>
-<p>下面计算终点函数的梯度，假设时间是随机化的并且可微的关于参数 $$\vartheta$$</p>
-<p>$$<br>\frac{\partial Q_{\Omega}(s,\omega)}{\partial \vartheta} &#x3D; \sum_a \pi_{\omega,\theta}(a \mid s)\sum_{s’}\gamma P(s’ \mid s,a) \frac{\partial U(\omega,s’)}{\partial \vartheta}<br>$$</p>
-<p>关于 $$U$$ 的梯度，可以结合又是函数 $$A_{\Omega}$$ 来计算：</p>
-<p>$$<br>\begin{align}<br>\frac{\partial U(\omega,s’)}{\partial \vartheta} &#x3D;&amp; -\frac{\partial \beta_{\omega,\vartheta}(s’)}{\partial \vartheta} A_{\Omega}(s’,\omega) \<br>&amp;+ \gamma\sum_{\omega’} \sum_{s’’} P(s’’,\omega’ \mid s’,\omega)\frac{\partial U(\omega’,s’’)}{\partial \vartheta}<br>\end{align}<br>$$</p>
-<p>其中，优势函数 $$A_{\Omega}(s’,\omega) &#x3D; Q_{\Omega}(s’,\omega)-V_{\Omega}(s’)$$ .</p>
-<p><strong>Theorem 2</strong> (<strong>Termination Gradient Theorem</strong>). Given a set of Markov options with stochastic termination functions differentiable in their parameters $$\vartheta$$, the gradient of the expected discounted return objective with respect to $$\vartheta$$ and the initial condition $$(s_1, \omega_0)$$ is:</p>
-<p>$$<br>-\sum_{s’,\omega}\mu_{\Omega}(s’,\omega \mid s_1,\omega_0)\frac{\partial \beta_{\omega,\vartheta}(s’)}{\partial \vartheta}A_{\Omega}(s’,\omega)<br>$$</p>
-<p>其中 $$\mu_{\Omega}(s’,\omega \mid s_1,\omega_0)$$ 是状态-选项对 $$(s_1,\omega_0)$$ 的折扣权重</p>
-<p>$$<br>\mu_{\Omega}(s,\omega \mid s_1,\omega_0)&#x3D;\sum_{t&#x3D;0}^{\infty} \gamma^t P(s_{t+1}&#x3D;s,\omega_t&#x3D;\omega|s_1,\omega_0)<br>$$</p>
-<ul>
+<script type="math/tex; mode=display">
+Q_{\Omega}(s,\omega)=\sum_a \pi_{\omega,\theta}(a \mid s)Q_{U}(s,\omega,a)</script><p>其中 <script type="math/tex">Q_{U}(s,\omega,a)</script> 是在state-option对下执行行为的评估值。</p>
+<script type="math/tex; mode=display">
+Q_{U}(s,\omega,a)=r(s,a)+\gamma\sum_{s'}P(s' \mid s,a)U(\omega,s')</script><p>注意 <script type="math/tex">(s,\omega)</script> 组导致了一个扩张的状态空间 an augmented state space, cf. (Levy and Shimkin 2011)</p>
+<script type="math/tex; mode=display">U: \Omega \times S\rightarrow \mathbb{R}$$ 是 the option-value function upon arrival，The value of executing $$\omega$$ upon entering a state $$s'$$ is given by:</script><p>U(\omega,s’)=(1-\beta<em>{\omega,\vartheta}(s’))Q</em>{\Omega}(s’,\omega)+\beta<em>{\omega,\vartheta}(s’)V</em>{\Omega}(s’)</p>
+<script type="math/tex; mode=display">
+
+如果option $$\omega_t$$ 在时刻 t 被初始化并被执行，此时状态为 $$s_t$$ ，然后在1步之后，状态转移到 $$(s_{t+1},\omega_{t+1})$$ 的概率是：</script><p>P(s<em>{t+1},\omega</em>{t+1} \mid s<em>t,\omega_t)=\sum_a \pi</em>{\omega<em>t,\theta}(a|s_t)P(s</em>{t+1} \mid s<em>t,a)\<br>\big((1-\beta</em>{\omega<em>t,\vartheta}(s</em>{t+1}))1<em>{\omega_t=\omega</em>{t+1}}+\beta<em>{\omega_t,\vartheta}(s</em>{t+1})\pi<em>{\Omega}(\omega</em>{t+1} \mid s_{t+1})\big)</p>
+<script type="math/tex; mode=display">
+
+显然，给出计算过程是均匀的。在温和的条件下，由于选项到处可用，它实际上是遍历的，并且在 state-option 对上存在唯一的平稳分布。
+
+接下来计算期望累积回报关于intra-option策略的参数 $$\theta$$ 的梯度，假设它是随机的可微分的，我们得到</script><p>\frac{\partial Q<em>{\Omega}(s,\omega)}{\partial \theta}=\Bigg(\sum_a \frac{\partial \pi</em>{\omega,\theta}(a \mid s)}{\partial \theta}Q<em>{U}(s,\omega,a)\Bigg)\<br>+\sum_a\pi</em>{\omega,\theta}(a \mid s)\sum_{s’} \gamma P(s’|s,a)\frac{\partial U(\omega,s’)}{\partial \theta}</p>
+<script type="math/tex; mode=display">
+
+**Theorem 1** (**Intra-Option Policy Gradient Theorem**). Given a set of Markov options with stochastic intra-option policies differentiable in their parameters $$\theta$$, the gradient of the expected discounted return with respect to $$\theta$$ and initial condition $$(s_0,\omega_0)$$ is:</script><p>\sum<em>{s,\omega} \mu</em>{\Omega}(s,\omega \mid s<em>0,\omega_0)\sum_a \frac{\partial \pi</em>{\omega,\theta}(a \mid s)}{\partial \theta} Q_U(s,\omega,a)</p>
+<script type="math/tex; mode=display">
+
+其中 $$\mu_{\Omega}$$ 是状态-选项对的折扣权重</script><p>\mu<em>{\Omega}(s,\omega \mid s_0,\omega_0)=\sum</em>{t=0}^{\infty}\gamma^t P(s_t=s,\omega_t=\omega \mid s_0,\omega_0)</p>
+<script type="math/tex; mode=display">
+
+下面计算终点函数的梯度，假设时间是随机化的并且可微的关于参数 $$\vartheta</script><script type="math/tex; mode=display">
+\frac{\partial Q_{\Omega}(s,\omega)}{\partial \vartheta} = \sum_a \pi_{\omega,\theta}(a \mid s)\sum_{s'}\gamma P(s' \mid s,a) \frac{\partial U(\omega,s')}{\partial \vartheta}</script><p>关于 <script type="math/tex">U</script> 的梯度，可以结合又是函数 <script type="math/tex">A_{\Omega}</script> 来计算：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\frac{\partial U(\omega,s')}{\partial \vartheta} =& -\frac{\partial \beta_{\omega,\vartheta}(s')}{\partial \vartheta} A_{\Omega}(s',\omega) \\
+&+ \gamma\sum_{\omega'} \sum_{s''} P(s'',\omega' \mid s',\omega)\frac{\partial U(\omega',s'')}{\partial \vartheta}
+\end{align}</script><p>其中，优势函数 <script type="math/tex">A_{\Omega}(s',\omega) = Q_{\Omega}(s',\omega)-V_{\Omega}(s')</script> .</p>
+<p><strong>Theorem 2</strong> (<strong>Termination Gradient Theorem</strong>). Given a set of Markov options with stochastic termination functions differentiable in their parameters <script type="math/tex">\vartheta</script>, the gradient of the expected discounted return objective with respect to <script type="math/tex">\vartheta</script> and the initial condition <script type="math/tex">(s_1, \omega_0)</script> is:</p>
+<script type="math/tex; mode=display">
+-\sum_{s',\omega}\mu_{\Omega}(s',\omega \mid s_1,\omega_0)\frac{\partial \beta_{\omega,\vartheta}(s')}{\partial \vartheta}A_{\Omega}(s',\omega)</script><p>其中 <script type="math/tex">\mu_{\Omega}(s',\omega \mid s_1,\omega_0)</script> 是状态-选项对 <script type="math/tex">(s_1,\omega_0)</script> 的折扣权重</p>
+<script type="math/tex; mode=display">
+\mu_{\Omega}(s,\omega \mid s_1,\omega_0)=\sum_{t=0}^{\infty} \gamma^t P(s_{t+1}=s,\omega_t=\omega|s_1,\omega_0)</script><ul>
 <li>算法结构：</li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210709-1.png" alt="算法结构"></p>
@@ -252,7 +253,7 @@
 </ul>
 <p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210709-2.png" alt="算法伪代码"></p>
 <ul>
-<li>算法的问题：假设了所有的options适用于所有的地方。Perhaps the biggest remaining limitation of our work is the assumption that all options apply everywhere.</li>
+<li>算法的问题：假设了所有的options适用于所有的地方。Perhaps the biggest remaining limitation of our work is the assumption that all options apply everywhere. </li>
 </ul>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>option-critic算法框架是典型的HRL实现方式之一，上下两层都使用策略梯度优化的证明过程看着还是很不错的。具体公式和推导可以参考原文以及附件。相关代码可以在paper with code找出来看看，估计会比FuN的结构的HRL更容易复现吧。</p>
 
@@ -352,7 +353,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

@@ -13,7 +13,7 @@
 
     <title>
         
-          Q47 Permutations II-中等-回溯 - 伽蓝之堂 | Txing Blog
+          Q47 Permutations II-中等-回溯 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -181,29 +181,24 @@
 
                 <h1 id="Permutations-II"><a href="#Permutations-II" class="headerlink" title="Permutations II"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/permutations-ii/">Permutations II</a></h1><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>Given a collection of numbers that might contain duplicates, return all possible unique permutations.</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
 <p>Input: [1,1,2]<br>Output:<br>[<br>  [1,1,2],<br>  [1,2,1],<br>  [2,1,1]<br>]</p>
 </blockquote>
 <h3 id="Approach-1-循环"><a href="#Approach-1-循环" class="headerlink" title="Approach 1: 循环"></a>Approach 1: 循环</h3><p>本来打算使用Hash table统计一下有哪些元素，以及对应的个数，但后来想了想其实没有必要统计。在写代码的时候找到了一个快速实现字典初始化的方法。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Hash=<span class="built_in">dict</span>()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">    Hash[nums[i]]=<span class="number">0</span></span><br></pre></td></tr></table></figure>
-
 <p>可以用下面这句等效替代，节省一个For循环：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hash.setdefault(nums[i], <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-
 <p>下面正片开始</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">permuteUnique</span>(<span class="params">self, nums</span>):</span><br><span class="line">        <span class="comment"># 错误输入检测</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">nums, temp_list</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(temp_list) == n:</span><br><span class="line">                ans.append(temp_list) <span class="comment"># temp_list存满了就放入ans</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">                <span class="keyword">if</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> nums[i] == nums[i-<span class="number">1</span>]: <span class="comment"># 第一个元素不进行此判断</span></span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                dfs(nums[:i]+nums[i+<span class="number">1</span>:], temp_list+[nums[i]])</span><br><span class="line"></span><br><span class="line">        ans = []</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        nums.sort()</span><br><span class="line">        dfs(nums, [])</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums =[<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">    solution=Solution().permuteUnique(nums)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
 <p>主要利用排序后对列表的切片操作，巧妙地对排列进行剪支</p>
 <p>写的非常简洁，值得好好研究</p>
 <h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><ul>
-<li><p>时间复杂度：$$O(n\times n!)$$</p>
-<p>算法的复杂度首先受 backtrack 的调用次数制约，backtrack 的调用次数为 $$\sum_{k &#x3D; 1}^{n}{P(n, k)}$$次，其中 $$P(n, k) &#x3D; \frac{n!}{(n - k)!} &#x3D; n (n - 1) … (n - k + 1)$$，该式被称作 n 的 k - 排列，或者部分排列</p>
-<p>这说明 backtrack 的调用次数是 $$O(n!)$$的。</p>
-<p>而对于 backtrack 调用的每个叶结点（最坏情况下没有重复数字共 $$n!$$ 个），我们需要将当前答案使用 $$O(n)$$ 的时间复制到答案数组中，相乘得时间复杂度为 $$O(n \times n!)$$。</p>
+<li><p>时间复杂度：<script type="math/tex">O(n\times n!)</script></p>
+<p>算法的复杂度首先受 backtrack 的调用次数制约，backtrack 的调用次数为 <script type="math/tex">\sum_{k = 1}^{n}{P(n, k)}</script>次，其中 <script type="math/tex">P(n, k) = \frac{n!}{(n - k)!} = n (n - 1) ... (n - k + 1)</script>，该式被称作 n 的 k - 排列，或者部分排列</p>
+<p>这说明 backtrack 的调用次数是 <script type="math/tex">O(n!)</script>的。</p>
+<p>而对于 backtrack 调用的每个叶结点（最坏情况下没有重复数字共 <script type="math/tex">n!</script> 个），我们需要将当前答案使用 <script type="math/tex">O(n)</script> 的时间复制到答案数组中，相乘得时间复杂度为 <script type="math/tex">O(n \times n!)</script>。</p>
 </li>
-<li><p>空间复杂度：$$O(n )$$。递归的时候栈深度会达到 O(n)<em>O</em>(<em>n</em>)，因此总空间复杂度为 O(n + n)&#x3D;O(2n)&#x3D;O(n)<em>O</em>(<em>n</em>+<em>n</em>)&#x3D;<em>O</em>(2<em>n</em>)&#x3D;<em>O</em>(<em>n</em>)。</p>
+<li><p>空间复杂度：<script type="math/tex">O(n )</script>。递归的时候栈深度会达到 O(n)<em>O</em>(<em>n</em>)，因此总空间复杂度为 O(n + n)=O(2n)=O(n)<em>O</em>(<em>n</em>+<em>n</em>)=<em>O</em>(2<em>n</em>)=<em>O</em>(<em>n</em>)。</p>
 </li>
 </ul>
 
@@ -307,7 +302,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

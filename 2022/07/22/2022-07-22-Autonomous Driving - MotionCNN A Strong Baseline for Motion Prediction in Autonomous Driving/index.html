@@ -13,7 +13,7 @@
 
     <title>
         
-          Autonomous Driving | MotionCNN: A Strong Baseline for Motion Prediction in Autonomous Driving (2022) - 伽蓝之堂 | Txing Blog
+          Autonomous Driving | MotionCNN: A Strong Baseline for Motion Prediction in Autonomous Driving (2022) - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -180,7 +180,7 @@
 <li>算法在 2021 Waymo Open Dataset Motion Prediction Challenge 取得第三名。相关代码见<a target="_blank" rel="noopener" href="https://github.com/kbrodt/waymo-motion-prediction-2021">Github</a></li>
 <li>运动预测任务最重要的一些方法：<ul>
 <li>birds-eye-view rasterized scene representations [15, 6, 4, 11, 18, 14]</li>
-<li>methods incarnated using graph neural networks [2, 8, 25]</li>
+<li>methods incarnated using graph neural networks [2, 8, 25]  </li>
 </ul>
 </li>
 </ul>
@@ -193,21 +193,23 @@
 <li>在ImageNet上预训练</li>
 <li>真实的行为难以预测，因此输出K个不同的行为假设</li>
 <li>输入：多通道栅格化图像</li>
-<li>输出：预测的K条轨迹，并带有可信度$$c_1,c_2,…,c_k$$，可信度用softmax归一化，满足$$\sum_k c_k&#x3D;1$$</li>
+<li>输出：预测的K条轨迹，并带有可信度<script type="math/tex">c_1,c_2,...,c_k</script>，可信度用softmax归一化，满足<script type="math/tex">\sum_k c_k=1</script></li>
 </ul>
 <h4 id="2-3-Loss-function"><a href="#2-3-Loss-function" class="headerlink" title="2.3 Loss function"></a>2.3 Loss function</h4><ul>
-<li><p>使用k个高斯分布，网络输出高斯分布的均值，将每个高斯的协方差固定为单位矩阵$$I$$</p>
+<li><p>使用k个高斯分布，网络输出高斯分布的均值，将每个高斯的协方差固定为单位矩阵<script type="math/tex">I</script></p>
 </li>
 <li><p>损失函数使用混合高斯分布的负的log似然度negative log-likelihood (NLL)，混合高斯由真实轨迹坐标定义  </p>
 </li>
-<li><p>给定ground truth轨迹：$$X^{gt}&#x3D;[(x_1,y_1),…,(x_T,y_T)]$$</p>
+<li>给定ground truth轨迹：<script type="math/tex">X^{gt}=[(x_1,y_1),...,(x_T,y_T)]</script></li>
+<li><p>给定K个预测的假设轨迹：<script type="math/tex">X_k=[(x_{k,1},y_{k,1}),...,(x_{k,T},y_{k,T})],k=1,...,K</script></p>
 </li>
-<li><p>给定K个预测的假设轨迹：$$X_k&#x3D;[(x_{k,1},y_{k,1}),…,(x_{k,T},y_{k,T})],k&#x3D;1,…,K$$</p>
-</li>
-<li><p>计算预测高斯混合下真实轨迹的负对数概率，其均值等于预测轨迹，单位矩阵I为协方差:compute negative log probability of the ground truth trajectory under the predicted mixture of Gaussians with the means equal to the predicted trajectories and the identity matrix I as covariance:<br>$$<br>L&#x3D;-\log P(X^{gt})&#x3D;-\log\sum_k c_k \mathcal{N}(X^{gt};\mu&#x3D;X_k,\Sigma&#x3D;I)<br>$$</p>
-</li>
-<li><p>损失函数可以进一步分解为1维高斯的乘积：<br>$$<br>L&#x3D;-\log \sum_k c_k\prod \mathcal{N}(x_t^{gt};x_{k,t},1)\mathcal{N}(y_t^{gt};y_{k,t},1)\<br>&#x3D;-\log \sum_k \exp \bigg(\log(c_k)-\frac{1}{2}\sum_{t&#x3D;1}^T (x_t^{gt}-x_{k,t})^2+(y_t^{gt}-y_{k,t})^2 \bigg)<br>$$</p>
-</li>
+<li><p>计算预测高斯混合下真实轨迹的负对数概率，其均值等于预测轨迹，单位矩阵I为协方差:compute negative log probability of the ground truth trajectory under the predicted mixture of Gaussians with the means equal to the predicted trajectories and the identity matrix I as covariance: </p>
+<script type="math/tex; mode=display">
+L=-\log P(X^{gt})=-\log\sum_k c_k \mathcal{N}(X^{gt};\mu=X_k,\Sigma=I)</script></li>
+<li><p>损失函数可以进一步分解为1维高斯的乘积：</p>
+<script type="math/tex; mode=display">
+L=-\log \sum_k c_k\prod \mathcal{N}(x_t^{gt};x_{k,t},1)\mathcal{N}(y_t^{gt};y_{k,t},1)\\
+=-\log \sum_k \exp \bigg(\log(c_k)-\frac{1}{2}\sum_{t=1}^T (x_t^{gt}-x_{k,t})^2+(y_t^{gt}-y_{k,t})^2 \bigg)</script></li>
 <li><p>建议的损失函数没有明确地惩罚产生非常接近的轨迹的模型。然而，根据经验，我们没有观察到模式崩溃，因为将所有的概率质量组合到一个模式中会导致更高的风险策略和更高的预测失误损失值。因此，优化建议的损失产生足够的多模态。</p>
 </li>
 </ul>
@@ -217,7 +219,7 @@
 <h3 id="3-Experiments"><a href="#3-Experiments" class="headerlink" title="3 Experiments"></a>3 Experiments</h3><h4 id="3-1-Dataset"><a href="#3-1-Dataset" class="headerlink" title="3.1 Dataset"></a>3.1 Dataset</h4><ul>
 <li>Waymo Open Motion Dataset [22, 7]  <ul>
 <li>[22]. Pei Sun, Henrik Kretzschmar, Xerxes Dotiwalla, Aurelien Chouard, Vijaysai Patnaik, Paul Tsui, James Guo, Yin Zhou, Yuning Chai, Benjamin Caine, Vijay Vasudevan, Wei Han, Jiquan Ngiam, Hang Zhao, Aleksei Timofeev, Scott Ettinger, Maxim Krivokon, Amy Gao, Aditya Joshi, Sheng Zhao, Shuyang Cheng, Yu Zhang, Jonathon Shlens, Zhifeng Chen, and Dragomir Anguelov. Scalability in perception for autonomous driving: Waymo open dataset, 2020. 3, 4  </li>
-<li>[7]. Scott Ettinger, Shuyang Cheng, Benjamin Caine, Chenxi Liu, Hang Zhao, Sabeek Pradhan, Yuning Chai, Ben Sapp, Charles Qi, Yin Zhou, et al. Large scale interactive motion forecasting for autonomous driving: The waymo open motion dataset. arXiv preprint arXiv:2104.10133, 2021. 1, 2, 3, 4</li>
+<li>[7]. Scott Ettinger, Shuyang Cheng, Benjamin Caine, Chenxi Liu, Hang Zhao, Sabeek Pradhan, Yuning Chai, Ben Sapp, Charles Qi, Yin Zhou, et al. Large scale interactive motion forecasting for autonomous driving: The waymo open motion dataset. arXiv preprint arXiv:2104.10133, 2021. 1, 2, 3, 4  </li>
 </ul>
 </li>
 <li>Waymo数据包括：<ul>
@@ -230,17 +232,17 @@
 </ul>
 </li>
 <li>Rasterisation details  <ul>
-<li>栅格尺寸：224 × 224 × (3 + 2T )，$$T&#x3D;11$$​是快照（snapshot）数，3是RGB图像的3个通道，包括road lines, crosswalks, traffic lights等；每个历史快照通过两个额外通道表示：（1）The mask representing the location of the target agent. （2）the mask representing all other agents nearby  </li>
-<li>智能体位于坐标$$[61,112]$$，其速度与图像的X轴对齐</li>
+<li>栅格尺寸：224 × 224 × (3 + 2T )，<script type="math/tex">T=11</script>​是快照（snapshot）数，3是RGB图像的3个通道，包括road lines, crosswalks, traffic lights等；每个历史快照通过两个额外通道表示：（1）The mask representing the location of the target agent. （2）the mask representing all other agents nearby  </li>
+<li>智能体位于坐标<script type="math/tex">[61,112]</script>，其速度与图像的X轴对齐</li>
 </ul>
 </li>
 </ul>
 <h4 id="3-2-Metrics"><a href="#3-2-Metrics" class="headerlink" title="3.2 Metrics"></a>3.2 Metrics</h4><ul>
 <li>预测的轨迹点下采样至2Hz。从预测的80个点产生16个2维坐标的子集被用于计算测试和验证度量</li>
-<li>最小化Average Displacement Error：$$minADE&#x3D;\min_k \frac{1}{T} \mid\mid X^{gt} -X \mid\mid_2$$</li>
-<li>最小化Final Displacement Error (FDE): $$minFDE&#x3D;\min_k \mid\mid x_T^{gt}- x_T \mid\mid_2$$</li>
+<li>最小化Average Displacement Error：<script type="math/tex">minADE=\min_k \frac{1}{T} \mid\mid X^{gt} -X \mid\mid_2</script></li>
+<li>最小化Final Displacement Error (FDE): <script type="math/tex">minFDE=\min_k \mid\mid x_T^{gt}- x_T \mid\mid_2</script></li>
 <li>Miss Rate(MR) and mean average precision (mAP)  in [7]<ul>
-<li>[7]. Scott Ettinger, Shuyang Cheng, Benjamin Caine, Chenxi Liu, Hang Zhao, Sabeek Pradhan, Yuning Chai, Ben Sapp, Charles Qi, Yin Zhou, et al. Large scale interactive motion forecasting for autonomous driving: The waymo open motion dataset. arXiv preprint arXiv:2104.10133, 2021. 1, 2, 3, 4</li>
+<li>[7]. Scott Ettinger, Shuyang Cheng, Benjamin Caine, Chenxi Liu, Hang Zhao, Sabeek Pradhan, Yuning Chai, Ben Sapp, Charles Qi, Yin Zhou, et al. Large scale interactive motion forecasting for autonomous driving: The waymo open motion dataset. arXiv preprint arXiv:2104.10133, 2021. 1, 2, 3, 4  </li>
 </ul>
 </li>
 </ul>
@@ -251,7 +253,7 @@
 <p> <img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220722-2.png" alt="Detailed evaluation of our MotionCNN-Xception71 model on test and validation sets of Waymo Open Motion Dataset"> </p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>作者也承认整个模型在结构和设计上比较简单，但是结果上是取得了waymo比赛的第三名。这是否意味着他们做了更多的工程化调整才取得如此的成绩？</p>
 <p>如果follow这项工作，其他人是否也能实现这样的性能是一个问题。</p>
-<p>​	</p>
+<p>​    </p>
 
 
                 <hr>
@@ -261,12 +263,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2022/07/23/2022-07-23-Autonomous Driving - A Review of Motion Planning for Highway Autonomous Driving/" data-toggle="tooltip" data-placement="top" title="Autonomous Driving | A Review of Motion Planning for Highway Autonomous Driving">&larr; Previous Post</a>
+                            <a href="/2022/07/22/2022-07-22-Network Structure - A ConvNet for the 2020s/" data-toggle="tooltip" data-placement="top" title="Network Structure | A ConvNet for the 2020s (Facebook, 2022)">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2022/07/22/2022-07-22-Network Structure - A ConvNet for the 2020s/" data-toggle="tooltip" data-placement="top" title="Network Structure | A ConvNet for the 2020s (Facebook, 2022)">Next Post &rarr;</a>
+                            <a href="/2022/07/16/2022-07-16-Autonomous Driving - ChauffeurNet Learning to Drive by Imitating the Best and Synthesizing the Worst/" data-toggle="tooltip" data-placement="top" title="Autonomous Driving | ChauffeurNet: Learning to Drive by Imitating the Best and Synthesizing the Worst (Waymo, 2018)">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -349,7 +351,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

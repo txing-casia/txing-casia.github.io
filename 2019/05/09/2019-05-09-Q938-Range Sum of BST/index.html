@@ -13,7 +13,7 @@
 
     <title>
         
-          Q938 Range Sum of BST - 伽蓝之堂 | Txing Blog
+          Q938 Range Sum of BST - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -180,16 +180,10 @@
                 <h1 id="Range-Sum-of-BST"><a href="#Range-Sum-of-BST" class="headerlink" title="Range Sum of BST"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/range-sum-of-bst/">Range Sum of BST</a></h1><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>Given the <code>root</code> node of a binary search tree, return the sum of values of all nodes with value between <code>L</code> and <code>R</code> (inclusive).</p>
 <p>The binary search tree is guaranteed to have unique values.</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
-<p>Input: root &#x3D; [10,5,15,3,7,null,18], L &#x3D; 7, R &#x3D; 15<br>Output: 32</p>
-</blockquote>
-<blockquote>
+<p>Input: root = [10,5,15,3,7,null,18], L = 7, R = 15<br>Output: 32</p>
 <p><strong>Example 2:</strong></p>
-<p>Input: root &#x3D; [10,5,15,3,7,13,18,1,null,6], L &#x3D; 6, R &#x3D; 10<br>Output: 23</p>
-</blockquote>
-<blockquote>
+<p>Input: root = [10,5,15,3,7,13,18,1,null,6], L = 6, R = 10<br>Output: 23</p>
 <p><strong>Note:</strong></p>
 <ol>
 <li>The number of nodes in the tree is at most <code>10000</code>.</li>
@@ -201,12 +195,8 @@
 <p>We showcase two implementations - one using a recursive algorithm, and one using an iterative one.</p>
 <p><strong>Recursive Implementation</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">rangeSumBST</span>(<span class="params">self, root, L, R</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">node</span>):</span><br><span class="line">            <span class="keyword">if</span> node:</span><br><span class="line">                <span class="keyword">if</span> L &lt;= node.val &lt;= R:</span><br><span class="line">                    self.ans += node.val</span><br><span class="line">                <span class="keyword">if</span> L &lt; node.val:</span><br><span class="line">                    dfs(node.left)</span><br><span class="line">                <span class="keyword">if</span> node.val &lt; R:</span><br><span class="line">                    dfs(node.right)</span><br><span class="line"></span><br><span class="line">        self.ans = <span class="number">0</span></span><br><span class="line">        dfs(root)</span><br><span class="line">        <span class="keyword">return</span> self.ans</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
 <p><strong>Iterative Implementation</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">rangeSumBST</span>(<span class="params">self, root, L, R</span>):</span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        stack = [root]</span><br><span class="line">        <span class="keyword">while</span> stack:</span><br><span class="line">            node = stack.pop()</span><br><span class="line">            <span class="keyword">if</span> node:</span><br><span class="line">                <span class="keyword">if</span> L &lt;= node.val &lt;= R:</span><br><span class="line">                    ans += node.val</span><br><span class="line">                <span class="keyword">if</span> L &lt; node.val:</span><br><span class="line">                    stack.append(node.left)</span><br><span class="line">                <span class="keyword">if</span> node.val &lt; R:</span><br><span class="line">                    stack.append(node.right)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-
 
 
                 <hr>
@@ -306,7 +296,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

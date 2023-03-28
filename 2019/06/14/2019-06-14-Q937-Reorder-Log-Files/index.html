@@ -13,7 +13,7 @@
 
     <title>
         
-          Q937 Reorder Log Files - 伽蓝之堂 | Txing Blog
+          Q937 Reorder Log Files - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -189,16 +189,12 @@
 <p>We will call these two varieties of logs <em>letter-logs</em> and <em>digit-logs</em>.  It is guaranteed that each log has at least one word after its identifier.</p>
 <p>Reorder the logs so that all of the letter-logs come before any digit-log.  The letter-logs are ordered lexicographically ignoring identifier, with the identifier used in case of ties.  The digit-logs should be put in their original order.</p>
 <p>Return the final order of the logs.</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
 <p>Input: [“a1 9 2 3 1”,”g1 act car”,”zo4 4 7”,”ab1 off key dog”,”a8 act zoo”]<br>Output: [“g1 act car”,”a8 act zoo”,”ab1 off key dog”,”a1 9 2 3 1”,”zo4 4 7”]</p>
-</blockquote>
-<blockquote>
 <p><strong>Note:</strong></p>
 <ul>
-<li>0 &lt;&#x3D; logs.length &lt;&#x3D; 100</li>
-<li>3 &lt;&#x3D; logs[i].length &lt;&#x3D; 100</li>
+<li>0 &lt;= logs.length &lt;= 100</li>
+<li>3 &lt;= logs[i].length &lt;= 100</li>
 <li>logs[i] is guaranteed to have an identifier, and a word after the identifier.</li>
 </ul>
 </blockquote>
@@ -212,17 +208,14 @@
 </ul>
 <p>It is straightforward to translate these ideas into code.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reorderLogFiles</span>(<span class="params">self, logs</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">log</span>):</span><br><span class="line">            id_, rest = log.split(<span class="string">&quot; &quot;</span>, <span class="number">1</span>) <span class="comment"># 1的意思是按空格阶段分成2段，</span></span><br><span class="line">                                          <span class="comment"># 前面n-1段各自只有1个元素</span></span><br><span class="line">            <span class="keyword">return</span> (<span class="number">0</span>, rest, id_) <span class="keyword">if</span> rest[<span class="number">0</span>].isalpha() <span class="keyword">else</span> (<span class="number">1</span>,)</span><br><span class="line">                                          <span class="comment"># 检察rest[0]是不是字符</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sorted</span>(logs, key = f)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    S=<span class="string">&quot;a1 9 2 3 1&quot;</span>,<span class="string">&quot;g1 act car&quot;</span>,<span class="string">&quot;zo4 4 7&quot;</span>,<span class="string">&quot;ab1 off key dog&quot;</span>,<span class="string">&quot;a8 act zoo&quot;</span></span><br><span class="line">    solution=Solution().reorderLogFiles(S)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
 <p><strong>Complexity Analysis</strong></p>
 <ul>
-<li><p>Time Complexity: $$O(\mathcal{A}\log \mathcal{A})$$, where $$\mathcal{A}\log \mathcal{A}$$ is the total content of <code>logs</code>.</p>
-</li>
-<li><p>Space Complexity: $$O(\mathcal{A})$$.</p>
+<li>Time Complexity: <script type="math/tex">O(\mathcal{A}\log \mathcal{A})</script>, where <script type="math/tex">\mathcal{A}\log \mathcal{A}</script> is the total content of <code>logs</code>.</li>
+<li><p>Space Complexity: <script type="math/tex">O(\mathcal{A})</script>.</p>
 </li>
 <li><p>Runtime: 36 ms, faster than 20.01% of Python online submissions for Reorder Log Files.</p>
 </li>
-<li><p>Memory Usage: 12 MB, less than 32.91% of Python online submissions for Reorder Log Files.</p>
-</li>
+<li>Memory Usage: 12 MB, less than 32.91% of Python online submissions for Reorder Log Files.</li>
 </ul>
 
 
@@ -325,7 +318,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

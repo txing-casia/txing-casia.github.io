@@ -13,7 +13,7 @@
 
     <title>
         
-          Autonomous Driving | UMBRELLA: Uncertainty-Aware Model-Based Offline Reinforcement Learning Leveraging Planning - 伽蓝之堂 | Txing Blog
+          Autonomous Driving | UMBRELLA: Uncertainty-Aware Model-Based Offline Reinforcement Learning Leveraging Planning - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -193,12 +193,12 @@
 <li><p><strong>Model-based Offline Reinforcement Learning</strong>：</p>
 <p>其主要的问题是the distributional shift。MOReL和MBOP方法将动态模型的认知不确定性估计结合到奖励函数中，以惩罚未被行为分布覆盖的状态</p>
 <ul>
-<li>Sergey Levine, Aviral Kumar, George Tucker, and Justin Fu. Offline reinforcement learning: Tutorial, review, and perspectives on open problems. CoRR, 2020. arXiv:2005.01643.</li>
+<li>Sergey Levine, Aviral Kumar, George Tucker, and Justin Fu. Offline reinforcement learning: Tutorial, review, and perspectives on open problems. CoRR, 2020. arXiv:2005.01643.  </li>
 </ul>
 <p>这些方法在多智能体环境中测试，没考虑到由行人和其它车辆行为造成的偶然不确定性（aleatoric uncertainty）的影响。[Henaff et al., 2019]通过由条件变分自动编码器（conditional variational autoencoder，CVAE）表示的随机动力学模型解决了这个问题[Kingma and Welling, 2014]。然而，他们的方法依赖于策略学习，这与基于模型的离线规划相比，可解释性和控制灵活性有所降低。</p>
 <ul>
 <li>Mikael Henaff, Alfredo Canziani, and Yann LeCun. Model-predictive policy learning with uncertainty regularization for driving in dense traffic. In International Conference on Learning Representations, \2019.  </li>
-<li>Diederik P. Kingma and Max Welling. Auto-Encoding Variational Bayes. In International Conference on Learning Representations, 2014.</li>
+<li>Diederik P. Kingma and Max Welling. Auto-Encoding Variational Bayes. In International Conference on Learning Representations, 2014.  </li>
 </ul>
 </li>
 <li><p><strong>Interaction-aware Motion Prediction and Planning</strong>：</p>
@@ -207,39 +207,37 @@
 <p>一些基于学习的模型可以生成更多的场景，但是没有考虑认知不确定性</p>
 <ul>
 <li>Jerry Liu, Wenyuan Zeng, Raquel Urtasun, and Ersin Yumer. Deep structured reactive planning. In IEEE International Conference on Robotics and Automation, 2021.  </li>
-<li>Nicholas Rhinehart, Jeff He, Charles Packer, Matthew A. Wright, Rowan McAllister, Joseph E. Gonzalez, and Sergey Levine. Contingencies from observations: Tractable contingency planning with learned behavior models. In IEEE International Conference on Robotics and Automation, 2021.</li>
+<li>Nicholas Rhinehart, Jeff He, Charles Packer, Matthew A. Wright, Rowan McAllister, Joseph E. Gonzalez, and Sergey Levine. Contingencies from observations: Tractable contingency planning with learned behavior models. In IEEE International Conference on Robotics and Automation, 2021.  </li>
 </ul>
 </li>
 </ul>
 <h3 id="3-The-UMBRELLA-Framework"><a href="#3-The-UMBRELLA-Framework" class="headerlink" title="3 The UMBRELLA Framework"></a>3 The UMBRELLA Framework</h3><ul>
 <li><p>UMBRELLA 是 MBOP 算法的扩展  </p>
 <ul>
-<li>Arthur Argenson and Gabriel Dulac-Arnold. Model-based offline planning. In International Conference on Learning Representations, 2021.</li>
+<li>Arthur Argenson and Gabriel Dulac-Arnold. Model-based offline planning. In International Conference on Learning Representations, 2021.  </li>
 </ul>
 </li>
-<li><p>问题形式化，用MDP的$$(S; A; p; r; \gamma)$$ 表示，在offline设定中，智能体不与环境直接交互，而是从数据集中学习策略$$\pi_d$$。如果观测值$$O$$并不是完全可得，那么问题就变化为（partially observable MDP，POMDP），使用 $$M_{PO}&#x3D;(S;A;O;p;r;\gamma)$$，处理该问题的常用方法是使用nth-order history 方法，可以近似得到状态估计，然后将其转变为MDP，用标准的RL方法处理。</p>
+<li><p>问题形式化，用MDP的<script type="math/tex">(S; A; p; r; \gamma)</script> 表示，在offline设定中，智能体不与环境直接交互，而是从数据集中学习策略<script type="math/tex">\pi_d</script>。如果观测值<script type="math/tex">O</script>并不是完全可得，那么问题就变化为（partially observable MDP，POMDP），使用 <script type="math/tex">M_{PO}=(S;A;O;p;r;\gamma)</script>，处理该问题的常用方法是使用nth-order history 方法，可以近似得到状态估计，然后将其转变为MDP，用标准的RL方法处理。</p>
 </li>
-<li><p>UMBRELLA使用连续的潜在变量（continuous latent variable）$$z_t\in Z$$ ，并枚举自车所有的可能行为（行为采样通过学到的BC policy）。预测N条长度界限为H的轨迹。还使用了一个return-weighted trajectory optimizer，处理POMDP问题，用持续观测状态从$$o_{t-_c:t}$$直到时间步t估计缺失的观测状态。（相关解释参考VAE算法）</p>
+<li><p>UMBRELLA使用连续的潜在变量（continuous latent variable）<script type="math/tex">z_t\in Z</script> ，并枚举自车所有的可能行为（行为采样通过学到的BC policy）。预测N条长度界限为H的轨迹。还使用了一个return-weighted trajectory optimizer，处理POMDP问题，用持续观测状态从<script type="math/tex">o_{t-_c:t}</script>直到时间步t估计缺失的观测状态。（相关解释参考VAE算法）</p>
 <ul>
-<li>$$z_t&#x3D;\mu_{\phi}+\sigma_{\phi}*\epsilon$$</li>
-<li>$$(\mu_{\phi},\sigma_{\phi})&#x3D;q_{\phi}(s_t,s_{t+1})$$</li>
-<li>$$\epsilon \sim \mathcal{N}(0,1)$$</li>
+<li><script type="math/tex; mode=display">z_t=\mu_{\phi}+\sigma_{\phi}*\epsilon</script></li>
+<li><script type="math/tex; mode=display">(\mu_{\phi},\sigma_{\phi})=q_{\phi}(s_t,s_{t+1})</script></li>
+<li><script type="math/tex; mode=display">\epsilon \sim \mathcal{N}(0,1)</script></li>
 </ul>
 </li>
 <li><p>随机动力学模型：</p>
 <ul>
-<li><p>为了建模不同的未来可能情况，学习随机前向动力学模型$$f_{m,\theta}:S\times A\times Z \rightarrow S \times \mathbb{R}$$</p>
+<li><p>为了建模不同的未来可能情况，学习随机前向动力学模型<script type="math/tex">f_{m,\theta}:S\times A\times Z \rightarrow S \times \mathbb{R}</script></p>
 </li>
 <li><p>该模型采用CVAE架构，预测下一时刻的状态</p>
 <ul>
-<li>Diederik P. Kingma and Max Welling. Auto-Encoding Variational Bayes. In International Conference on Learning Representations, 2014.</li>
+<li>Diederik P. Kingma and Max Welling. Auto-Encoding Variational Bayes. In International Conference on Learning Representations, 2014.  </li>
 </ul>
 </li>
-<li><p>$$\hat{s}_{t+1}&#x3D;f_m(s_t,a_t,z_t)_s$$</p>
-</li>
-<li><p>$$\hat{r}_{t}&#x3D;f_m(s_t,a_t,z_t)_r$$</p>
-</li>
-<li><p>其中潜在变量$$z_t$$建模了不同的未来预测，并确保了输出对于输入是非确定性的。在训练过程中，该潜在变量从后验分布$$q_{\phi}(z\mid s_t,s_{t+1})$$中采样，$$\phi$$是参数。由于实际采样只能从先验分布中采，因此使用Kullback-Leibler (KL) divergence度量后验分布和先验分布$$p(z)$$并最小化距离。</p>
+<li><script type="math/tex; mode=display">\hat{s}_{t+1}=f_m(s_t,a_t,z_t)_s</script></li>
+<li><script type="math/tex; mode=display">\hat{r}_{t}=f_m(s_t,a_t,z_t)_r</script></li>
+<li><p>其中潜在变量<script type="math/tex">z_t</script>建模了不同的未来预测，并确保了输出对于输入是非确定性的。在训练过程中，该潜在变量从后验分布<script type="math/tex">q_{\phi}(z\mid s_t,s_{t+1})</script>中采样，<script type="math/tex">\phi</script>是参数。由于实际采样只能从先验分布中采，因此使用Kullback-Leibler (KL) divergence度量后验分布和先验分布<script type="math/tex">p(z)</script>并最小化距离。</p>
 <ul>
 <li>潜变量用于区分细分情况，精细化建模</li>
 </ul>
@@ -249,14 +247,15 @@
 <li>Evidence Lower BOund： <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/400322786">https://zhuanlan.zhihu.com/p/400322786</a></li>
 </ul>
 </li>
-<li><p>损失函数为：<br>$$<br>L(\theta,\phi;s_t,s_{t+1},a_t,r_t)&#x3D;\mid\mid s_{t+1} - f_{m,\theta}(s_t,a_t,z_t)<em>s\mid\mid_2^2 + \mid\mid r_t-f</em>{m,\theta}(s_t,a_t,z_t)<em>r\mid\mid^2_2 \<br>\zeta D</em>{KL}(q_{\phi}(z_t\mid s_t,s_{t+1})\mid\mid p(z_t))<br>$$</p>
-</li>
-<li><p>BC policies $$f_{b,\psi}:S\times A^{n_c} \rightarrow A $$ ，$$f_b(s_t,a_{(t-n_c):(t-1)})$$，该函数使用当前的状态和$$n_c$$个之前的行为作为输入，输出行为$$a_t$$。通过将之前的行为串联考虑，可以使得输出的行为更加平滑。</p>
+<li><p>损失函数为：</p>
+<script type="math/tex; mode=display">
+L(\theta,\phi;s_t,s_{t+1},a_t,r_t)=\mid\mid s_{t+1} - f_{m,\theta}(s_t,a_t,z_t)_s\mid\mid_2^2 + \mid\mid r_t-f_{m,\theta}(s_t,a_t,z_t)_r\mid\mid^2_2 \\
+\zeta D_{KL}(q_{\phi}(z_t\mid s_t,s_{t+1})\mid\mid p(z_t))</script></li>
+<li><p>BC policies <script type="math/tex">f_{b,\psi}:S\times A^{n_c} \rightarrow A</script> ，<script type="math/tex">f_b(s_t,a_{(t-n_c):(t-1)})</script>，该函数使用当前的状态和<script type="math/tex">n_c</script>个之前的行为作为输入，输出行为<script type="math/tex">a_t</script>。通过将之前的行为串联考虑，可以使得输出的行为更加平滑。</p>
 </li>
 <li><p>训练BC Policy使用最小化损失函数：</p>
-<p>$$L(\psi;s_t,a_{(t-n_c):(t-1)},a_t)&#x3D;\mid\mid a_t - f_{b,\psi}(s_t,a_{(t-n_c):(t-1)})\mid\mid^2_2$$</p>
-</li>
-<li><p>截断价值函数$$f_{R,\xi}:S\times A^{n_c}\rightarrow \mathbb{R}$$ 估计H个时间步后的期望回报$$\hat{R}_H$$</p>
+<script type="math/tex; mode=display">L(\psi;s_t,a_{(t-n_c):(t-1)},a_t)=\mid\mid a_t - f_{b,\psi}(s_t,a_{(t-n_c):(t-1)})\mid\mid^2_2</script></li>
+<li><p>截断价值函数<script type="math/tex">f_{R,\xi}:S\times A^{n_c}\rightarrow \mathbb{R}</script> 估计H个时间步后的期望回报<script type="math/tex">\hat{R}_H</script></p>
 </li>
 </ul>
 </li>
@@ -273,14 +272,14 @@
 <li><p><strong>UMBRELLA Trajectory Optimizer</strong>：</p>
 <p>最终的轨迹输出使用MPPI framework</p>
 <ul>
-<li>Grady Williams, Andrew Aldrich, and Evangelos A. Theodorou. Model predictive path integral control: From theory to parallel computation. Journal of Guidance, Control, and Dynamics, 40(2): 344–357, 2017.</li>
+<li>Grady Williams, Andrew Aldrich, and Evangelos A. Theodorou. Model predictive path integral control: From theory to parallel computation. Journal of Guidance, Control, and Dynamics, 40(2): 344–357, 2017.  </li>
 </ul>
 </li>
 <li><p>最后，模型通过re-weighting获得最优轨迹：</p>
 </li>
 </ul>
-<p>$$<br>T^*<em>t &#x3D; \frac{\sum</em>{n&#x3D;1}^N e^{kR_n} A_{n,t+1}}{\sum_{n&#x3D;1}^N e^{kR_n}}<br>$$</p>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-1.png" alt="UMBRELLA Planning"></p>
+<script type="math/tex; mode=display">
+T^*_t = \frac{\sum_{n=1}^N e^{kR_n} A_{n,t+1}}{\sum_{n=1}^N e^{kR_n}}</script><p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-1.png" alt="UMBRELLA Planning"></p>
 <ul>
 <li><strong>Pessimistic Trajectory Optimizer</strong>： 面对认知的不确定性，UMBRELLA-P对最坏情况的结果进行优化，并采取悲观的行动</li>
 </ul>
@@ -293,11 +292,11 @@
 <li>基线方法：<ul>
 <li><strong>1-step IL</strong>：模仿专家行为的BC policy</li>
 <li><strong>MBOP</strong>：当前最好的基于模型的离线RL方法<ul>
-<li>Arthur Argenson and Gabriel Dulac-Arnold. Model-based offline planning. In International Conference on Learning Representations, 2021.</li>
+<li>Arthur Argenson and Gabriel Dulac-Arnold. Model-based offline planning. In International Conference on Learning Representations, 2021.  </li>
 </ul>
 </li>
 <li><strong>MPUR</strong>：最好的基于模型策略学习方法<ul>
-<li>Mikael Henaff, Alfredo Canziani, and Yann LeCun. Model-predictive policy learning with uncertainty regularization for driving in dense traffic. In International Conference on Learning Representations, 2019.</li>
+<li>Mikael Henaff, Alfredo Canziani, and Yann LeCun. Model-predictive policy learning with uncertainty regularization for driving in dense traffic. In International Conference on Learning Representations, 2019.  </li>
 </ul>
 </li>
 </ul>
@@ -306,9 +305,9 @@
 <li>Success rate (SR)：The rate of collision-free episodes，并要求在时间内到达目标位置</li>
 <li>Mean distance (MD)：NGSIM中的纵向行驶距离</li>
 <li>mean successful time (MST)  </li>
-<li>mean proximity reward $$\overline{r}_{prox}$$</li>
-<li>mean lane reward $$\overline{r}_{lane}$$  </li>
-<li>mean final reward $$\overline{r}$$</li>
+<li>mean proximity reward <script type="math/tex">\overline{r}_{prox}</script></li>
+<li>mean lane reward <script type="math/tex">\overline{r}_{lane}</script>  </li>
+<li>mean final reward <script type="math/tex">\overline{r}</script>  </li>
 </ul>
 </li>
 <li>实验结果：</li>
@@ -316,10 +315,10 @@
 <p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-2.png" alt="性能对比"></p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>奖励函数误设计仍然是一个较大的问题，也是自动驾驶策略不像人的原因之一。</p>
 <ul>
-<li>W. Bradley Knox, Alessandro Allievi, Holger Banzhaf, Felix Schmitt, and Peter Stone. Reward (mis)design for autonomous driving. 2021. arxiv:2104.13906.</li>
+<li>W. Bradley Knox, Alessandro Allievi, Holger Banzhaf, Felix Schmitt, and Peter Stone. Reward (mis)design for autonomous driving. 2021. arxiv:2104.13906.  </li>
 </ul>
-<p>模型考虑偶然不确定性：使用潜变量$$z$$，枚举可能的轨迹</p>
-<p>模型考虑认知不确定性：在reward中进行re-weighting和使用参数$$\beta$$</p>
+<p>模型考虑偶然不确定性：使用潜变量<script type="math/tex">z</script>，枚举可能的轨迹</p>
+<p>模型考虑认知不确定性：在reward中进行re-weighting和使用参数<script type="math/tex">\beta</script></p>
 
 
                 <hr>
@@ -417,7 +416,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

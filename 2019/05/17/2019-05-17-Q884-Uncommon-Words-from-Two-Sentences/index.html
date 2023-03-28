@@ -13,7 +13,7 @@
 
     <title>
         
-          Q884 Uncommon Words from Two Sentences - 伽蓝之堂 | Txing Blog
+          Q884 Uncommon Words from Two Sentences - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -184,14 +184,8 @@
 <p>A word is <em>uncommon</em> if it appears exactly once in one of the sentences, and does not appear in the other sentence.</p>
 <p>Return a list of all uncommon words. </p>
 <p>You may return the list in any order.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong><br>Input: A &#x3D; “this apple is sweet”, B &#x3D; “this apple is sour”<br>Output: [“sweet”,”sour”]</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong><br>Input: A &#x3D; “apple apple”, B &#x3D; “banana”<br>Output: [“banana”]</p>
-</blockquote>
-<blockquote>
+<p><strong>Example 1:</strong><br>Input: A = “this apple is sweet”, B = “this apple is sour”<br>Output: [“sweet”,”sour”]</p>
+<p><strong>Example 2:</strong><br>Input: A = “apple apple”, B = “banana”<br>Output: [“banana”]</p>
 <p><strong>Note:</strong></p>
 <ol>
 <li><code>0 &lt;= A.length &lt;= 200</code></li>
@@ -202,7 +196,6 @@
 <h3 id="Approach-1-Counting"><a href="#Approach-1-Counting" class="headerlink" title="Approach 1: Counting"></a>Approach 1: Counting</h3><p><strong>Intuition and Algorithm</strong></p>
 <p>Every uncommon word occurs exactly once in total. We can count the number of occurrences of every word, then return ones that occur exactly once.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">uncommonFromSentences</span>(<span class="params">self, A, B</span>):</span><br><span class="line">        count = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> A.split():</span><br><span class="line">            count[i] = count.get(i, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">            <span class="comment"># .get(i,0)意思是如果i在count里不存在，返回默认为0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> B.split():</span><br><span class="line">            count[i] = count.get(i, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#Alternatively:</span></span><br><span class="line">        <span class="comment">#count = collections.Counter(A.split())</span></span><br><span class="line">        <span class="comment">#count += collections.Counter(B.split())</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> [word <span class="keyword">for</span> word <span class="keyword">in</span> count <span class="keyword">if</span> count[word] == <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    A = <span class="string">&quot;this apple is sweet&quot;</span></span><br><span class="line">    B = <span class="string">&quot;this apple is sour&quot;</span></span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.uncommonFromSentences(A,B)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>Runtime: 32 ms, faster than 99.14% of Python3 online submissions for Uncommon Words from Two Sentences.</li>
 <li>Memory Usage: 13.3 MB, less than 23.76% of Python3 online submissions for Uncommon Words from Two Sentences.</li>
@@ -211,7 +204,6 @@
 <h3 id="Approach-2-Counting-Original"><a href="#Approach-2-Counting-Original" class="headerlink" title="Approach 2: Counting (Original)"></a>Approach 2: Counting (Original)</h3><p><strong>Intuition and Algorithm</strong></p>
 <p>Every uncommon word occurs exactly once in total. We can count the number of occurrences of every word, then return ones that occur exactly once.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">uncommonFromSentences</span>(<span class="params">self, A: <span class="built_in">str</span>, B: <span class="built_in">str</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">str</span>]:</span><br><span class="line">        count = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> A.split()+B.split():</span><br><span class="line">            count[i] = count.get(i, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> [i <span class="keyword">for</span> i <span class="keyword">in</span> count <span class="keyword">if</span> count[i] == <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p>Runtime: 36 ms, faster than 92.30% of Python3 online submissions for Uncommon Words from Two Sentences.</p>
 </li>
@@ -319,7 +311,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

@@ -13,7 +13,7 @@
 
     <title>
         
-          Reinforcement Learning | FeUdal Networks (FuN) - 伽蓝之堂 | Txing Blog
+          Reinforcement Learning | FeUdal Networks (FuN) - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -179,11 +179,11 @@
 <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>利用分层强化学习将一个复杂任务拆分为不同维度的问题被认为是一种更自然、更类人的模式。例如人在吃饭的时候，人在宏观的维度作出决策要吃哪个菜，然后身体处于低维的层次，调动肌肉产生运动，完成夹菜和吃菜的动作。在这一过程中，高维的我们没有直接考虑调用哪条肌肉，而是做什么事。这一点正是目前的RL所缺乏的能力。</p>
 <h2 id="主要工作"><a href="#主要工作" class="headerlink" title="主要工作"></a>主要工作</h2><p>FuN是在feudal reinforcement learning基础上的延展性工作，利用Manger学习子状态空间，设定子目标，将任务进行拆分；然后Worker处理子任务，完成Manger设置的子目标。</p>
 <p>其主体框架如下：</p>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200910-1.png"></p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200910-1.png" alt=""></p>
 <p>其中，Manger和Worker都是RNN，只不过处理问题的时间分辨率不一样。Worker的c步被看做Manger的一步。网络动力学关系如下：</p>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200910-2.png"></p>
-<p>$$x_t$$是图像输入，$$z_t$$是提取的特征，$$s_t$$是输入给Manger RNN的状态。$$h^M$$是Manger网络的内部状态。通过$$f^{Mrnn}$$获得子目标$$\hat{g}_t$$、归一化子目标$$g_t$$。</p>
-<p>通过一个线性映射$$\phi$$将$$c$$步的目标映射到嵌入向量$$w_t$$中。对于Work RNN，输入是状态$$z_t$$和网络内部状态$$h^W$$，$$U_t$$是输出矩阵。最后通过SoftMax选择最能满足子目标$$g_t$$的$$U_t$$。</p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200910-2.png" alt=""></p>
+<p><script type="math/tex">x_t</script>是图像输入，<script type="math/tex">z_t</script>是提取的特征，<script type="math/tex">s_t</script>是输入给Manger RNN的状态。<script type="math/tex">h^M</script>是Manger网络的内部状态。通过<script type="math/tex">f^{Mrnn}</script>获得子目标<script type="math/tex">\hat{g}_t</script>、归一化子目标<script type="math/tex">g_t</script>。</p>
+<p>通过一个线性映射<script type="math/tex">\phi</script>将<script type="math/tex">c</script>步的目标映射到嵌入向量<script type="math/tex">w_t</script>中。对于Work RNN，输入是状态<script type="math/tex">z_t</script>和网络内部状态<script type="math/tex">h^W</script>，<script type="math/tex">U_t</script>是输出矩阵。最后通过SoftMax选择最能满足子目标<script type="math/tex">g_t</script>的<script type="math/tex">U_t</script>。</p>
 <p>（文章的主体思路就是以上内容，后续部分主要讨论网络更新，reward设定等细节，我打算看了代码之后在做分析）</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>文章种在多个游戏中进行了实验对比，均取得了良好的实验效果。但遗憾的是，几乎所有的复现都说性能达不到文章中的水平。可能是实验中还有一些优化并未在文章中说明。</p>
 
@@ -283,7 +283,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

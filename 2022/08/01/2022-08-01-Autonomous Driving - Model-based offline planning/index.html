@@ -13,7 +13,7 @@
 
     <title>
         
-          Autonomous Driving | Model-based offline planning - 伽蓝之堂 | Txing Blog
+          Autonomous Driving | Model-based offline planning - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -182,85 +182,82 @@
 <li><p>Offline reinforcement learning包括：</p>
 <ul>
 <li>model-free方法：<ul>
-<li>Yifan Wu, George Tucker, and Ofir Nachum. Behavior regularized offline reinforcement learning. CoRR, abs&#x2F;1911.11361, 2019. URL <a target="_blank" rel="noopener" href="http://arxiv.org/abs/1911.11361">http://arxiv.org/abs/1911.11361</a>.  </li>
+<li>Yifan Wu, George Tucker, and Ofir Nachum. Behavior regularized offline reinforcement learning. CoRR, abs/1911.11361, 2019. URL <a target="_blank" rel="noopener" href="http://arxiv.org/abs/1911.11361">http://arxiv.org/abs/1911.11361</a>.  </li>
 <li>Xue Bin Peng, Aviral Kumar, Grace Zhang, and Sergey Levine. Advantage-weighted regression: Simple and scalable off-policy reinforcement learning. arXiv preprint arXiv:1910.00177, 2019.  </li>
 <li>Scott Fujimoto, David Meger, and Doina Precup. Off-policy deep reinforcement learning without exploration. In International Conference on Machine Learning, pp. 2052–2062, 2019.  </li>
-<li>Ziyu Wang, Alexander Novikov, Konrad Zolna, Josh S Merel, Jost Tobias Springenberg, Scott E Reed, Bobak Shahriari, Noah Siegel, Caglar Gulcehre, Nicolas Heess, et al. Critic regularized regression. Advances in Neural Information Processing Systems, 33, 2020.</li>
+<li>Ziyu Wang, Alexander Novikov, Konrad Zolna, Josh S Merel, Jost Tobias Springenberg, Scott E Reed, Bobak Shahriari, Noah Siegel, Caglar Gulcehre, Nicolas Heess, et al. Critic regularized regression. Advances in Neural Information Processing Systems, 33, 2020.  </li>
 </ul>
 </li>
 <li>model-based方法：MOPO, MoREL学习一个模型，然后用于训练一个无模型策略，这种模式和Dyna模式类似。<ul>
 <li><strong>MOPO</strong>: Tianhe Yu, Garrett Thomas, Lantao Yu, Stefano Ermon, James Zou, Sergey Levine, Chelsea Finn, and Tengyu Ma. Mopo: Model-based offline policy optimization. arXiv preprint arXiv:2005.13239, 2020.  </li>
 <li><strong>MoREL</strong>: Rahul Kidambi, Aravind Rajeswaran, Praneeth Netrapalli, and Thorsten Joachims. Morel: Modelbased offline reinforcement learning. arXiv preprint arXiv:2005.05951, 2020.  </li>
-<li><strong>Dyna</strong>: Richard S Sutton and Andrew G Barto. Reinforcement learning: An introduction. MIT press, 2018.</li>
+<li><strong>Dyna</strong>: Richard S Sutton and Andrew G Barto. Reinforcement learning: An introduction. MIT press, 2018.  </li>
 </ul>
 </li>
 </ul>
 </li>
 <li><p>本文的算法属于model-based，利用model-predictive control (MPC) ，扩展MPPI轨迹规划器，并使用实时规划，产生目标或满足奖励条件的策略。</p>
 <ul>
-<li>Grady Williams, Nolan Wagener, Brian Goldfain, Paul Drews, James M Rehg, Byron Boots, and Evangelos A Theodorou. Information theoretic mpc for model-based reinforcement learning. In 2017 IEEE International Conference on Robotics and Automation (ICRA), pp. 1714–1721. IEEE, 2017b.</li>
+<li>Grady Williams, Nolan Wagener, Brian Goldfain, Paul Drews, James M Rehg, Byron Boots, and Evangelos A Theodorou. Information theoretic mpc for model-based reinforcement learning. In 2017 IEEE International Conference on Robotics and Automation (ICRA), pp. 1714–1721. IEEE, 2017b.  </li>
 </ul>
 </li>
 <li><p>本文模型MBOP包含三个要素：</p>
 <ul>
 <li>a learnt <strong>world model</strong>, </li>
 <li>a learnt <strong>behavior-cloning policy</strong>, </li>
-<li>a learnt <strong>fixed-horizon value-function</strong>.</li>
+<li>a learnt <strong>fixed-horizon value-function</strong>.  </li>
 </ul>
 </li>
-<li><p>MBOP的核心优势是<strong>数据高效</strong>和<strong>自适应</strong>。只需仅100秒就可以训练出一个和奖励函数、目标状态、基于状态的约束相适应的策略。</p>
-</li>
-<li><p>MBOP能够对非平稳目标和约束执行zero-shot自适应，但是没有处理非平稳动力学特性的机制。</p>
-</li>
+<li>MBOP的核心优势是<strong>数据高效</strong>和<strong>自适应</strong>。只需仅100秒就可以训练出一个和奖励函数、目标状态、基于状态的约束相适应的策略。</li>
+<li>MBOP能够对非平稳目标和约束执行zero-shot自适应，但是没有处理非平稳动力学特性的机制。</li>
 </ul>
 <h3 id="Model-based-offline-planning-1"><a href="#Model-based-offline-planning-1" class="headerlink" title="Model-based offline planning"></a>Model-based offline planning</h3><ul>
-<li><p>描述问题为Markov Decision Process (MDP)，$$(S,A,p,r,\gamma)$$</p>
-<ul>
-<li>$$s$$是系统状态</li>
-<li>$$a$$是行为</li>
-<li>$$p(s_{t+1}\mid s_t,a_t)$$是状态转移概率</li>
-<li>$$r(s_t,a_t,s_{t+1})$$是奖励</li>
-<li>$$\gamma&#x3D;1$$是时间折扣系数</li>
+<li>描述问题为Markov Decision Process (MDP)，<script type="math/tex">(S,A,p,r,\gamma)</script><ul>
+<li><script type="math/tex">s</script>是系统状态</li>
+<li><script type="math/tex">a</script>是行为</li>
+<li><script type="math/tex">p(s_{t+1}\mid s_t,a_t)</script>是状态转移概率</li>
+<li><script type="math/tex">r(s_t,a_t,s_{t+1})</script>是奖励</li>
+<li><script type="math/tex">\gamma=1</script>是时间折扣系数</li>
 </ul>
 </li>
 <li><p>MBOP包括三个函数近似器：</p>
 <ul>
-<li>$$f_m$$：环境动力学的单步模型，$$(\hat{r}<em>t,\hat{s}</em>{t+1})&#x3D;f_m(s_t,a_t)$$，本文使用$$f_m(s_t,a_t)_s$$表示状态预测，使用$$f_m(s_t,a_t)_r$$表示奖励预测。</li>
-<li>$$f_b$$：表示一个行为克隆网络，$$a_t&#x3D;f_b(s_t,a_{t-1})$$，被规划算法用来引导轨迹采样的先验。</li>
-<li>$$f_R$$：是一个阉割的值函数，提供在状态s中采取行为a后，在固定界限$$R_H$$上的收益。$$\hat{R}<em>H &#x3D; f_R(s_t,a</em>{t-1})$$</li>
+<li><script type="math/tex">f_m</script>：环境动力学的单步模型，<script type="math/tex">(\hat{r}_t,\hat{s}_{t+1})=f_m(s_t,a_t)</script>，本文使用<script type="math/tex">f_m(s_t,a_t)_s</script>表示状态预测，使用<script type="math/tex">f_m(s_t,a_t)_r</script>表示奖励预测。</li>
+<li><script type="math/tex">f_b</script>：表示一个行为克隆网络，<script type="math/tex">a_t=f_b(s_t,a_{t-1})</script>，被规划算法用来引导轨迹采样的先验。</li>
+<li><script type="math/tex; mode=display">f_R$$：是一个阉割的值函数，提供在状态s中采取行为a后，在固定界限$$R_H$$上的收益。$$\hat{R}_H = f_R(s_t,a_{t-1})</script></li>
 </ul>
 </li>
 <li><p>MBOP-POLICY</p>
 <ul>
-<li>使用MPC输出每个新状态下的行为（$$a_t&#x3D;\pi(s_t)$$）。MPC在每一时间步执行一个固定长度的规划，返回长度为H的轨迹T。选择该轨迹的第一个行为$$a_t$$并返回。</li>
+<li>使用MPC输出每个新状态下的行为（<script type="math/tex">a_t=\pi(s_t)</script>）。MPC在每一时间步执行一个固定长度的规划，返回长度为H的轨迹T。选择该轨迹的第一个行为<script type="math/tex">a_t</script>并返回。</li>
 </ul>
 </li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-1.png" alt="High-Level MBOP-Policy"></p>
 <ul>
 <li>MBOP-TRAJOPT<ul>
-<li>在PDDM的基础上增加一个策略先验$$f_b$$和价值预测$$f_R$$</li>
+<li>在PDDM的基础上增加一个策略先验<script type="math/tex">f_b</script>和价值预测<script type="math/tex">f_R</script></li>
 </ul>
 </li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-2.png" alt="MBOP-Trajopt"></p>
 <blockquote>
-<p>P.S.：第11行在$$f_b$$给出的行为上加权了采样轨迹的行为，其含义可能是希望在网络没有收敛时，记录下来的行为也不要偏差太大，都保持在采样轨迹附近，参数$$\beta$$可被视为学习率。第17行给出多条轨迹中奖励最大的作为输出（re-weighting）</p>
+<p>P.S.：第11行在<script type="math/tex">f_b</script>给出的行为上加权了采样轨迹的行为，其含义可能是希望在网络没有收敛时，记录下来的行为也不要偏差太大，都保持在采样轨迹附近，参数<script type="math/tex">\beta</script>可被视为学习率。第17行给出多条轨迹中奖励最大的作为输出（re-weighting）</p>
 </blockquote>
 <h3 id="Experimental-results"><a href="#Experimental-results" class="headerlink" title="Experimental results"></a>Experimental results</h3><ul>
 <li><p>首先，在非常少的数据中心训练，其次，再迁移到基于相同系统动力学的两种novel tasks中：</p>
 <ul>
 <li><strong>goal-conditioned tasks</strong> (that ignore the original reward function)  </li>
-<li><strong>constrained tasks</strong> (that require optimising for the original reward under some state constraint)</li>
+<li><strong>constrained tasks</strong> (that require optimising for the original reward under some state constraint)  </li>
 </ul>
 </li>
 <li><p>使用的数据集RL Unplugged (RLU) 和 D4RL </p>
 <ul>
-<li><p>**RL Unplugged (RLU)**：Caglar Gulcehre, Ziyu Wang, Alexander Novikov, Tom Le Paine, Sergio Gomez Colmenarejo, Kon- ´rad Zolna, Rishabh Agarwal, Josh Merel, Daniel Mankowitz, Cosmin Paduraru, et al. Rl unplugged: Benchmarks for offline reinforcement learning. arXiv preprint arXiv:2006.13888, 2020.  </p>
+<li><p><strong>RL Unplugged (RLU)</strong>：Caglar Gulcehre, Ziyu Wang, Alexander Novikov, Tom Le Paine, Sergio Gomez Colmenarejo, Kon- ´rad Zolna, Rishabh Agarwal, Josh Merel, Daniel Mankowitz, Cosmin Paduraru, et al. Rl unplugged: Benchmarks for offline reinforcement learning. arXiv preprint arXiv:2006.13888, 2020.  </p>
 <ul>
 <li>cartpole-swingup</li>
 <li>walker</li>
-<li>quadruped</li>
+<li>quadruped  </li>
 </ul>
 </li>
 <li><p><strong>D4RL</strong>：Justin Fu, Aviral Kumar, Ofir Nachum, George Tucker, and Sergey Levine. D4rl: Datasets for deep data-driven reinforcement learning. arXiv preprint arXiv:2004.07219, 2020.  </p>
@@ -268,23 +265,26 @@
 <li>halfcheetah</li>
 <li>hopper</li>
 <li>walker2d</li>
-<li>Adroit</li>
+<li>Adroit  </li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>对于 RLU 中的 Quadruped 和 Walker 任务，由于数据集中性能高方差，在训练 $$f_b$$ 和 $$f_R$$ 的过程中，通过设定阈值，舍弃了性能不好的数据。 使用未过滤的数据来训练 $$f_s$$</p>
+<li><p>对于 RLU 中的 Quadruped 和 Walker 任务，由于数据集中性能高方差，在训练 <script type="math/tex">f_b</script> 和 <script type="math/tex">f_R</script> 的过程中，通过设定阈值，舍弃了性能不好的数据。 使用未过滤的数据来训练 <script type="math/tex">f_s</script></p>
 </li>
 <li><p>对于所有的数据集，90%用于训练，10%用于测试验证</p>
 </li>
 <li><p>性能：For the RLU datasets (Fig. 1), we observe that MBOP is able to find a near-optimal policy on most dataset sizes in Cartpole and Quadruped with as little as <strong>5000 steps</strong>, which corresponds to <strong>5 episodes</strong>, or approximately 50 seconds on Cartpole and 100 seconds on Quadruped. On the Walker datasets MBOP requires 23 episodes (approx. 10 minutes) before it finds a reasonable policy, and with sufficient data converges to a score of 900 which is near optimal. On most tasks, MBOP is able to generate a policy significantly better than the behavior data as well as the the BC prior.  </p>
 </li>
-<li><p>MBOP模型容易适应新的目标函数，例如添加新的子目标函数$$R’<em>n$$时，<br>$$<br>R’<em>n &#x3D; \sum_t f</em>{obj}(s_t)<br>$$<br>其中，$$f</em>{obj}$$是用户自定义的目标函数。只需要将轨迹更新规则改为：<br>$$<br>T_t&#x3D;\frac{\sum_{n&#x3D;1}^N e^{kR_n+k_{obj}R’<em>n}A</em>{n,t}}{\sum_{n&#x3D;1}^N e^{kR_n+k_{obj}R’_n}}<br>$$</p>
-</li>
+<li><p>MBOP模型容易适应新的目标函数，例如添加新的子目标函数<script type="math/tex">R'_n</script>时，</p>
+<script type="math/tex; mode=display">
+R'_n = \sum_t f_{obj}(s_t)</script><p>其中，<script type="math/tex">f_{obj}</script>是用户自定义的目标函数。只需要将轨迹更新规则改为：</p>
+<script type="math/tex; mode=display">
+T_t=\frac{\sum_{n=1}^N e^{kR_n+k_{obj}R'_n}A_{n,t}}{\sum_{n=1}^N e^{kR_n+k_{obj}R'_n}}</script></li>
 <li><p>为了验证上述模型的适应能力，进行了两个实验：</p>
 <ul>
-<li><strong>goal-conditioned control</strong>（忽略原始奖励，$$k&#x3D;0$$，学习新奖励）</li>
-<li><strong>constrained control</strong>（增加了state-based constraint，然后探索合适的 $$k$$ 和 $$k_{obj}$$ ）</li>
+<li><strong>goal-conditioned control</strong>（忽略原始奖励，<script type="math/tex">k=0</script>，学习新奖励）</li>
+<li><strong>constrained control</strong>（增加了state-based constraint，然后探索合适的 <script type="math/tex">k</script> 和 <script type="math/tex">k_{obj}</script> ）</li>
 </ul>
 </li>
 </ul>
@@ -389,7 +389,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

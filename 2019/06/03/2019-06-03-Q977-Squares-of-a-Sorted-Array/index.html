@@ -13,7 +13,7 @@
 
     <title>
         
-          Q977 Squares of a Sorted Array - 伽蓝之堂 | Txing Blog
+          Q977 Squares of a Sorted Array - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -181,26 +181,19 @@
 
                 <h1 id="Squares-of-a-Sorted-Array"><a href="#Squares-of-a-Sorted-Array" class="headerlink" title="Squares of a Sorted Array"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/squares-of-a-sorted-array/">Squares of a Sorted Array</a></h1><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>Given an array of integers <code>A</code> sorted in non-decreasing order, return an array of the squares of each number, also in sorted non-decreasing order.</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong><br>Input: [-4,-1,0,3,10]<br>Output: [0,1,9,16,100]</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 2:</strong><br>Input: [-7,-3,2,3,11]<br>Output: [4,9,9,49,121]</p>
 </blockquote>
 <h3 id="Approach-1-Direct-Method"><a href="#Approach-1-Direct-Method" class="headerlink" title="Approach 1: Direct Method"></a>Approach 1: Direct Method</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sortedSquares</span>(<span class="params">self, A</span>):</span><br><span class="line">        B=[]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(A)):</span><br><span class="line">            B.append(<span class="built_in">int</span>(math.<span class="built_in">pow</span>(A[i],<span class="number">2</span>)))</span><br><span class="line">        B.sort()</span><br><span class="line">        <span class="keyword">return</span> B</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    Ain=[-<span class="number">4</span>,-<span class="number">1</span>,<span class="number">0</span>,<span class="number">3</span>,<span class="number">10</span>]</span><br><span class="line">    solution=Solution().sortedSquares(Ain)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
 <p><strong>Complexity Analysis</strong></p>
 <ul>
 <li>Runtime: 220 ms, faster than 33.27% of Python online submissions forSquares of a Sorted Array.</li>
 <li>Memory Usage: 13.9 MB, less than 20.54% of Python online submissions for Squares of a Sorted Array.</li>
 </ul>
 <h2 id="Approach-2-Sort"><a href="#Approach-2-Sort" class="headerlink" title="Approach 2: Sort"></a>Approach 2: Sort</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sortedSquares</span>(<span class="params">self, A</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sorted</span>(x*x <span class="keyword">for</span> x <span class="keyword">in</span> A)</span><br></pre></td></tr></table></figure>
-
 <p><strong>Complexity Analysis</strong></p>
 <ul>
-<li><p>Time Complexity: <em>O</em>(<em>N</em>log<em>N</em>), where <em>N</em> is the length of <code>A</code>.</p>
-</li>
+<li>Time Complexity: <em>O</em>(<em>N</em>log<em>N</em>), where <em>N</em> is the length of <code>A</code>.</li>
 <li><p>Space Complexity: <em>O</em>(<em>N</em>). </p>
 </li>
 <li><p>Runtime: 200 ms, faster than 58.97% of Python online submissions for Squares of a Sorted Array.</p>
@@ -309,7 +302,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

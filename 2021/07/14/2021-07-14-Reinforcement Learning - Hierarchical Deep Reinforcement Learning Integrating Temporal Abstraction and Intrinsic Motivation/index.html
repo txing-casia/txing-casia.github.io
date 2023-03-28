@@ -13,7 +13,7 @@
 
     <title>
         
-          Reinforcement Learning | Hierarchical Deep Reinforcement Learning: Integrating Temporal Abstraction and Intrinsic Motivation - 伽蓝之堂 | Txing Blog
+          Reinforcement Learning | Hierarchical Deep Reinforcement Learning: Integrating Temporal Abstraction and Intrinsic Motivation - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -188,24 +188,27 @@
 </li>
 <li><p>Cognitive Science and Neuroscience The nature and origin of intrinsic goals in humans is a thorny issue but there are some notable insights from existing literature. There is converging evidence in developmental psychology that human infants, primates, children, and adults in diverse cultures base their core knowledge on certain cognitive systems including – entities, agents and their actions, numerical quantities, space, social-structures and intuitive theories [29]. During curiositydriven activities, toddlers use this knowledge to generate intrinsic goals such as building physically stable block structures. In order to accomplish these goals, toddlers seem to construct subgoals in the space of their core knowledge. Knowledge of space can also be utilized to learn a hierarchical decomposition of spatial environments. This has been explored in Neuroscience with the successor representation, which represents value functions in terms of the expected future state occupancy. Decomposition of the successor representation have shown to yield reasonable subgoals for spatial navigation problems [5, 30].</p>
 </li>
-<li><p>MDP过程中的高效探索是一个难题。$$\epsilon-greedy$$ 在局部探索中表现还好，但是对于整个状态空间不同区域的探索比较失败。这里通过设计本质目标 $$g$$ 和本质奖励intrinsic rewards</p>
+<li><p>MDP过程中的高效探索是一个难题。<script type="math/tex">\epsilon-greedy</script> 在局部探索中表现还好，但是对于整个状态空间不同区域的探索比较失败。这里通过设计本质目标 <script type="math/tex">g</script> 和本质奖励intrinsic rewards</p>
 </li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210714-1.png"></p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210714-1.png" alt=""></p>
 <ul>
 <li><p>agent设置：</p>
 <ul>
-<li>meta-controller: 接收状态 $$s_t$$ 然后选择子目标 $$g_t$$.</li>
-<li>controller: 根据 $$s_t$$ 和 $$g_t$$ 选择行为 $$a_t$$.</li>
+<li>meta-controller: 接收状态 <script type="math/tex">s_t</script> 然后选择子目标 <script type="math/tex">g_t</script>.</li>
+<li>controller: 根据 <script type="math/tex">s_t</script> 和 <script type="math/tex">g_t</script> 选择行为 <script type="math/tex">a_t</script>.</li>
 </ul>
 </li>
-<li><p>一个内部的critic用来为 controller 评估 $$r_t(g)$$ （这篇文章使用的是一个二值的奖励）。controller 的目标就是最大化累积的本质奖励intrinsic reward $$R_t(g)&#x3D;\sum_{t’&#x3D;t}^{\infty} \gamma^{t’-t}r_{t’}(g)$$</p>
+<li><p>一个内部的critic用来为 controller 评估 <script type="math/tex">r_t(g)</script> （这篇文章使用的是一个二值的奖励）。controller 的目标就是最大化累积的本质奖励intrinsic reward <script type="math/tex">R_t(g)=\sum_{t'=t}^{\infty} \gamma^{t'-t}r_{t'}(g)</script></p>
 </li>
-<li><p>meta-controller 的目标是最大化累积的外部奖励 extrinsic reward $$F_t&#x3D;\sum_{t’&#x3D;t}^{\infty} \gamma^{t’-t}f_{t’}$$，其中$$f_{t’}$$是从环境中收到的奖励信号，并且$$F_{t}$$和$$R_{t}$$的时间尺度是不同的。</p>
+<li><p>meta-controller 的目标是最大化累积的外部奖励 extrinsic reward <script type="math/tex">F_t=\sum_{t'=t}^{\infty} \gamma^{t'-t}f_{t'}</script>，其中<script type="math/tex">f_{t'}</script>是从环境中收到的奖励信号，并且<script type="math/tex">F_{t}</script>和<script type="math/tex">R_{t}</script>的时间尺度是不同的。</p>
 </li>
-<li><p>Controller:<br>$$<br>Q_1^*(s,a;g)&#x3D;\max_{\pi_{a,g}} \mathbb{E} \Big[r_t+\gamma \max_{a_{t+1}}Q_1^*(s_{t+1},a_{t+1};g)\Big]<br>$$</p>
-</li>
-<li><p>meta-controller:<br>$$<br>Q_2^*(s,g)&#x3D;\max_{\pi_{g}} \mathbb{E} \Big[\sum_{t’&#x3D;t}^{t+N} f_{t’}+\gamma \max_{g’}Q_2^*(s_{t+N},g’)\Big]<br>$$<br>N 代表当控制器停止时所经过的步数。</p>
+<li><p>Controller:</p>
+<script type="math/tex; mode=display">
+Q_1^*(s,a;g)=\max_{\pi_{a,g}} \mathbb{E} \Big[r_t+\gamma \max_{a_{t+1}}Q_1^*(s_{t+1},a_{t+1};g)\Big]</script></li>
+<li><p>meta-controller:</p>
+<script type="math/tex; mode=display">
+Q_2^*(s,g)=\max_{\pi_{g}} \mathbb{E} \Big[\sum_{t'=t}^{t+N} f_{t'}+\gamma \max_{g'}Q_2^*(s_{t+N},g')\Big]</script><p>N 代表当控制器停止时所经过的步数。</p>
 </li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210714-2.png" alt="算法步骤"></p>
@@ -307,7 +310,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

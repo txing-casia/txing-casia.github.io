@@ -13,7 +13,7 @@
 
     <title>
         
-          JZOffer 55-二叉树的深度-I-简单-树 - 伽蓝之堂 | Txing Blog
+          JZOffer 55-二叉树的深度-I-简单-树 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -184,24 +184,21 @@
 <p>例如：</p>
 <p>给定二叉树 [3,9,20,null,null,15,7]，</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> 3</span><br><span class="line">/ \</span><br><span class="line">9  20</span><br><span class="line"> /  \</span><br><span class="line">15   7</span><br></pre></td></tr></table></figure>
-
 <p>返回它的最大深度 3 。</p>
-</blockquote>
-<blockquote>
 <p><strong>提示：</strong></p>
 <ul>
 <li><code>节点总数 &lt;= 10000</code></li>
 </ul>
 </blockquote>
 <p>注意：本题与主站 104 题相同：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/">https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/</a></p>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>树的遍历方式总体分为两类：深度优先搜索（DFS）、广度优先搜索（BFS）；</p>
+<h3 id=""><a href="#" class="headerlink" title=" "></a> </h3><p>树的遍历方式总体分为两类：深度优先搜索（DFS）、广度优先搜索（BFS）；</p>
 <ul>
 <li>常见的 DFS ： 先序遍历、中序遍历、后序遍历；</li>
 <li>常见的 BFS ： 层序遍历（即按层遍历）。</li>
 </ul>
 <p>求树的深度需要遍历树的所有节点，本文将介绍基于 <strong>后序遍历（DFS）</strong> 和 <strong>层序遍历（BFS）</strong> 的两种解法。</p>
 <h2 id="Approach-1-后序遍历（DFS）"><a href="#Approach-1-后序遍历（DFS）" class="headerlink" title="Approach 1:  后序遍历（DFS）"></a>Approach 1:  后序遍历（DFS）</h2><ul>
-<li>树的后序遍历 &#x2F; 深度优先搜索往往利用 递归 或 栈 实现，本文使用递归实现。</li>
+<li>树的后序遍历 / 深度优先搜索往往利用 递归 或 栈 实现，本文使用递归实现。</li>
 <li>关键点： 此树的深度和其左（右）子树的深度之间的关系。显然，此树的深度 等于 左子树的深度 与 右子树的深度 中的 最大值 +1+1 。</li>
 </ul>
 <p>算法解析：</p>
@@ -215,14 +212,13 @@
 <li>返回值： 返回 此树的深度 ，即 max(maxDepth(root.left), maxDepth(root.right)) + 1。</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxDepth</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(self.maxDepth(root.left), self.maxDepth(root.right)) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度 O(N)： N 为树的节点数量，计算树的深度需要遍历所有节点。</li>
 <li>空间复杂度 O(N) ： 最差情况下（当树退化为链表时），递归深度可达到 N 。</li>
 </ul>
 <h2 id="方法二：层序遍历（BFS）"><a href="#方法二：层序遍历（BFS）" class="headerlink" title="方法二：层序遍历（BFS）"></a>方法二：层序遍历（BFS）</h2><ul>
-<li><p>树的层序遍历 &#x2F; 广度优先搜索往往利用 队列 实现。</p>
+<li><p>树的层序遍历 / 广度优先搜索往往利用 队列 实现。</p>
 </li>
 <li><p>关键点： 每遍历一层，则计数器 +1+1 ，直到遍历完成，则可得到树的深度。</p>
 </li>
@@ -230,22 +226,21 @@
 <p><strong>算法解析：</strong></p>
 <ul>
 <li><strong>特例处理</strong>： 当 root 为空，直接返回 深度 00 。</li>
-<li><strong>初始化</strong>： 队列 queue （加入根节点 root ），计数器 res &#x3D; 0。</li>
+<li><strong>初始化</strong>： 队列 queue （加入根节点 root ），计数器 res = 0。</li>
 <li><strong>循环遍历</strong>： 当 queue 为空时跳出。<ul>
 <li>初始化一个空列表 tmp ，用于临时存储下一层节点；</li>
 <li>遍历队列： 遍历 queue 中的各节点 node ，并将其左子节点和右子节点加入 tmp；</li>
-<li>更新队列： 执行 queue &#x3D; tmp ，将下一层节点赋值给 queue；</li>
-<li>统计层数： 执行 res +&#x3D; 1 ，代表层数加 1；</li>
+<li>更新队列： 执行 queue = tmp ，将下一层节点赋值给 queue；</li>
+<li>统计层数： 执行 res += 1 ，代表层数加 1；</li>
 </ul>
 </li>
 <li><strong>返回值</strong>： 返回 res 即可。</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxDepth</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        queue, res = [root], <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            tmp = []</span><br><span class="line">            <span class="keyword">for</span> node <span class="keyword">in</span> queue:</span><br><span class="line">                <span class="keyword">if</span> node.left: tmp.append(node.left)</span><br><span class="line">                <span class="keyword">if</span> node.right: tmp.append(node.right)</span><br><span class="line">            queue = tmp</span><br><span class="line">            res += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度 O(N) ： N 为树的节点数量，计算树的深度需要遍历所有节点。</li>
-<li>空间复杂度 O(N) ： 最差情况下（当树平衡时），队列 queue 同时存储 N&#x2F;2 个节点。</li>
+<li>空间复杂度 O(N) ： 最差情况下（当树平衡时），队列 queue 同时存储 N/2 个节点。</li>
 </ul>
 
 
@@ -348,7 +343,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

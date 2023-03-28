@@ -13,7 +13,7 @@
 
     <title>
         
-          Q40 Combination Sum II-中等-递归 回溯 - 伽蓝之堂 | Txing Blog
+          Q40 Combination Sum II-中等-递归 回溯 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -189,40 +189,34 @@
 <li>All numbers (including target) will be positive integers.</li>
 <li>The solution set must not contain duplicate combinations.</li>
 </ul>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
-<p>Input: candidates &#x3D; [10,1,2,7,6,1,5], target &#x3D; 8,<br>A solution set is:<br>[<br>  [1, 7],<br>  [1, 2, 5],<br>  [2, 6],<br>  [1, 1, 6]<br>]</p>
-</blockquote>
-<blockquote>
+<p>Input: candidates = [10,1,2,7,6,1,5], target = 8,<br>A solution set is:<br>[<br>  [1, 7],<br>  [1, 2, 5],<br>  [2, 6],<br>  [1, 1, 6]<br>]</p>
 <p><strong>Example 2:</strong></p>
-<p>Input: candidates &#x3D; [2,5,2,1,2], target &#x3D; 5,<br>A solution set is:<br>[<br>    [1,2,2],<br>    [5]<br>  ]</p>
+<p>Input: candidates = [2,5,2,1,2], target = 5,<br>A solution set is:<br>[<br>    [1,2,2],<br>    [5]<br>  ]</p>
 </blockquote>
-<h3 id="Approach-1-递归回溯"><a href="#Approach-1-递归回溯" class="headerlink" title="Approach 1: 递归回溯"></a>Approach 1: 递归回溯</h3><h4 id="思路与算法"><a href="#思路与算法" class="headerlink" title="思路与算法"></a>思路与算法</h4><p>由于我们需要求出所有和为 $$\textit{target}$$ 的组合，并且每个数只能使用一次，因此我们可以使用递归 + 回溯的方法来解决这个问题：</p>
+<h3 id="Approach-1-递归回溯"><a href="#Approach-1-递归回溯" class="headerlink" title="Approach 1: 递归回溯"></a>Approach 1: 递归回溯</h3><h4 id="思路与算法"><a href="#思路与算法" class="headerlink" title="思路与算法"></a>思路与算法</h4><p>由于我们需要求出所有和为 <script type="math/tex">\textit{target}</script> 的组合，并且每个数只能使用一次，因此我们可以使用递归 + 回溯的方法来解决这个问题：</p>
 <ul>
-<li><p>我们用 $$\text{dfs}(\textit{pos}, \textit{rest})$$ 表示递归的函数，其中 $$\textit{pos}$$ 表示我们当前递归到了数组 $$\textit{candidates}$$ 中的第 $$\textit{pos}$$ 个数，而 $$\textit{rest}$$ 表示我们还需要选择和为 $$\textit{rest}$$ 的数放入列表作为一个组合；</p>
+<li><p>我们用 <script type="math/tex">\text{dfs}(\textit{pos}, \textit{rest})</script> 表示递归的函数，其中 <script type="math/tex">\textit{pos}</script> 表示我们当前递归到了数组 <script type="math/tex">\textit{candidates}</script> 中的第 <script type="math/tex">\textit{pos}</script> 个数，而 <script type="math/tex">\textit{rest}</script> 表示我们还需要选择和为 <script type="math/tex">\textit{rest}</script> 的数放入列表作为一个组合；</p>
 </li>
-<li><p>对于当前的第 $$\textit{pos}$$ 个数，我们有两种方法：选或者不选。如果我们选了这个数，那么我们调用 $$\text{dfs}(\textit{pos}+1, \textit{rest} - \textit{candidates}[\textit{pos}])$$ 进行递归，注意这里必须满足 $$\textit{rest} \geq \textit{candidates}[\textit{pos}]$$。如果我们不选这个数，那么我们调用 $$\text{dfs}(\textit{pos}+1, \textit{rest})$$ 进行递归；</p>
+<li><p>对于当前的第 <script type="math/tex">\textit{pos}</script> 个数，我们有两种方法：选或者不选。如果我们选了这个数，那么我们调用 <script type="math/tex">\text{dfs}(\textit{pos}+1, \textit{rest} - \textit{candidates}[\textit{pos}])</script> 进行递归，注意这里必须满足 <script type="math/tex">\textit{rest} \geq \textit{candidates}[\textit{pos}]</script>。如果我们不选这个数，那么我们调用 <script type="math/tex">\text{dfs}(\textit{pos}+1, \textit{rest})</script> 进行递归；</p>
 </li>
-<li><p>在某次递归开始前，如果 $$\textit{rest}$$ 的值为 0，说明我们找到了一个和为 $$\textit{target}$$ 的组合，将其放入答案中。每次调用递归函数前，如果我们选了那个数，就需要将其放入列表的末尾，该列表中存储了我们选的所有数。在回溯时，如果我们选了那个数，就要将其从列表的末尾删除。</p>
+<li><p>在某次递归开始前，如果 <script type="math/tex">\textit{rest}</script> 的值为 0，说明我们找到了一个和为 <script type="math/tex">\textit{target}</script> 的组合，将其放入答案中。每次调用递归函数前，如果我们选了那个数，就需要将其放入列表的末尾，该列表中存储了我们选的所有数。在回溯时，如果我们选了那个数，就要将其从列表的末尾删除。</p>
 </li>
 </ul>
 <p>上述算法就是一个标准的递归 + 回溯算法，但是它并不适用于本题。这是因为题目描述中规定了解集不能包含重复的组合，而上述的算法中并没有去除重复的组合。</p>
-<p>例如当 $$\textit{candidates} &#x3D; [2, 2]$$，$$\textit{target} &#x3D; 2$$ 时，上述算法会将列表 [2] 放入答案两次。</p>
-<p>因此，我们需要改进上述算法，在求出组合的过程中就进行去重的操作。我们可以考虑将相同的数放在一起进行处理，也就是说，如果数 $$\textit{x}$$ 出现了 y 次，那么在递归时一次性地处理它们，即分别调用选择 $$0, 1, \cdots, y$$ 次 $$x$$ 的递归函数。这样我们就不会得到重复的组合。具体地：</p>
-<p>我们使用一个哈希映射（HashMap）统计数组 $$\textit{candidates}$$ 中每个数出现的次数。在统计完成之后，我们将结果放入一个列表 $$\textit{freq}$$ 中，方便后续的递归使用。</p>
-<p>列表 $$\textit{freq}$$ 的长度即为数组 $$\textit{candidates}$$ 中不同数的个数。其中的每一项对应着哈希映射中的一个键值对，即某个数以及它出现的次数。<br>在递归时，对于当前的第 $$\textit{pos}$$ 个数，它的值为 $$\textit{freq}[\textit{pos}][0]$$，出现的次数为 $$\textit{freq}[\textit{pos}][1]$$，那么我们可以调用</p>
-<p>$$\text{dfs}(\textit{pos}+1, \textit{rest} - i \times \textit{freq}[\textit{pos}][0])$$</p>
-<p>即我们选择了这个数 i 次。这里 i 不能大于这个数出现的次数，并且 $$i \times \textit{freq}[\textit{pos}][0]$$ 也不能大于 $$\textit{rest}$$。同时，我们需要将 i 个 $$\textit{freq}[\textit{pos}][0]$$ 放入列表中。</p>
+<p>例如当 <script type="math/tex">\textit{candidates} = [2, 2]</script>，<script type="math/tex">\textit{target} = 2</script> 时，上述算法会将列表 [2] 放入答案两次。</p>
+<p>因此，我们需要改进上述算法，在求出组合的过程中就进行去重的操作。我们可以考虑将相同的数放在一起进行处理，也就是说，如果数 <script type="math/tex">\textit{x}</script> 出现了 y 次，那么在递归时一次性地处理它们，即分别调用选择 <script type="math/tex">0, 1, \cdots, y</script> 次 <script type="math/tex">x</script> 的递归函数。这样我们就不会得到重复的组合。具体地：</p>
+<p>我们使用一个哈希映射（HashMap）统计数组 <script type="math/tex">\textit{candidates}</script> 中每个数出现的次数。在统计完成之后，我们将结果放入一个列表 <script type="math/tex">\textit{freq}</script> 中，方便后续的递归使用。</p>
+<p>列表 <script type="math/tex">\textit{freq}</script> 的长度即为数组 <script type="math/tex">\textit{candidates}</script> 中不同数的个数。其中的每一项对应着哈希映射中的一个键值对，即某个数以及它出现的次数。<br>在递归时，对于当前的第 <script type="math/tex">\textit{pos}</script> 个数，它的值为 <script type="math/tex">\textit{freq}[\textit{pos}][0]</script>，出现的次数为 <script type="math/tex">\textit{freq}[\textit{pos}][1]</script>，那么我们可以调用</p>
+<script type="math/tex; mode=display">\text{dfs}(\textit{pos}+1, \textit{rest} - i \times \textit{freq}[\textit{pos}][0])</script><p>即我们选择了这个数 i 次。这里 i 不能大于这个数出现的次数，并且 <script type="math/tex">i \times \textit{freq}[\textit{pos}][0]</script> 也不能大于 <script type="math/tex">\textit{rest}</script>。同时，我们需要将 i 个 <script type="math/tex">\textit{freq}[\textit{pos}][0]</script> 放入列表中。</p>
 <p>这样一来，我们就可以不重复地枚举所有的组合了。</p>
-<p>我们还可以进行什么优化（剪枝）呢？一种比较常用的优化方法是，我们将 $$\textit{freq}$$ 根据数从小到大排序，这样我们在递归时会先选择小的数，再选择大的数。这样做的好处是，当我们递归到 $$\text{dfs}(\textit{pos}, \textit{rest})$$ 时，如果 $$\textit{freq}[\textit{pos}][0]$$ 已经大于 $$\textit{rest}$$，那么后面还没有递归到的数也都大于 $$\textit{rest}$$，这就说明不可能再选择若干个和为 $$\textit{rest}$$ 的数放入列表了。此时，我们就可以直接回溯。</p>
+<p>我们还可以进行什么优化（剪枝）呢？一种比较常用的优化方法是，我们将 <script type="math/tex">\textit{freq}</script> 根据数从小到大排序，这样我们在递归时会先选择小的数，再选择大的数。这样做的好处是，当我们递归到 <script type="math/tex">\text{dfs}(\textit{pos}, \textit{rest})</script> 时，如果 <script type="math/tex">\textit{freq}[\textit{pos}][0]</script> 已经大于 <script type="math/tex">\textit{rest}</script>，那么后面还没有递归到的数也都大于 <script type="math/tex">\textit{rest}</script>，这就说明不可能再选择若干个和为 <script type="math/tex">\textit{rest}</script> 的数放入列表了。此时，我们就可以直接回溯。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">combinationSum2</span>(<span class="params">self, candidates, target</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">pos: <span class="built_in">int</span>, rest: <span class="built_in">int</span></span>):</span><br><span class="line">            <span class="comment"># nonlocal声明的变量不是局部变量,也不是全局变量,而是外部嵌套函数内的变量</span></span><br><span class="line">            <span class="comment"># sequence 用来暂存序列</span></span><br><span class="line">            <span class="keyword">nonlocal</span> sequence</span><br><span class="line">            <span class="keyword">if</span> rest == <span class="number">0</span>:</span><br><span class="line">                ans.append(sequence[:]) <span class="comment"># 添加答案</span></span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">if</span> pos == <span class="built_in">len</span>(freq) <span class="keyword">or</span> rest &lt; freq[pos][<span class="number">0</span>]: <span class="comment"># sequence不行，停止</span></span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">            dfs(pos + <span class="number">1</span>, rest)</span><br><span class="line"></span><br><span class="line">            most = <span class="built_in">min</span>(rest // freq[pos][<span class="number">0</span>], freq[pos][<span class="number">1</span>])</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, most + <span class="number">1</span>):</span><br><span class="line">                sequence.append(freq[pos][<span class="number">0</span>])</span><br><span class="line">                dfs(pos + <span class="number">1</span>, rest - i * freq[pos][<span class="number">0</span>])</span><br><span class="line">            sequence = sequence[:-most]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 为数据出现次数计数[(数据1，出现次数),(数据2，出现次数)]</span></span><br><span class="line">        freq = <span class="built_in">sorted</span>(collections.Counter(candidates).items())</span><br><span class="line">        ans = <span class="built_in">list</span>()</span><br><span class="line">        sequence = <span class="built_in">list</span>()</span><br><span class="line">        <span class="comment"># inputs: 序号，剩余的target</span></span><br><span class="line">        dfs(<span class="number">0</span>, target)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    candidates = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">7</span>]</span><br><span class="line">    target = <span class="number">7</span></span><br><span class="line">    solution=Solution().combinationSum2(candidates,target)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><ul>
-<li><p>时间复杂度：$$O(2^n \times n)$$，其中 n 是数组 $$\textit{candidates}$$ 的长度。在大部分递归 + 回溯的题目中，我们无法给出一个严格的渐进紧界，故这里只分析一个较为宽松的渐进上界。在最坏的情况下，数组中的每个数都不相同，那么列表 $$\textit{freq}$$ 的长度同样为 n。在递归时，每个位置可以选或不选，如果数组中所有数的和不超过 $$\textit{target}$$，那么 $$2^n$$ 种组合都会被枚举到；在 $$\textit{target}$$ 小于数组中所有数的和时，我们并不能解析地算出满足题目要求的组合的数量，但我们知道每得到一个满足要求的组合，需要 $$O(n)$$ 的时间将其放入答案中，因此我们将 $$O(2^n)$$ 与 $$O(n)$$ 相乘，即可估算出一个宽松的时间复杂度上界。</p>
-<p>由于 $$O(2^n \times n)$$ 在渐进意义下大于排序的时间复杂度 $$O(n \log n)$$，因此后者可以忽略不计。</p>
+<li><p>时间复杂度：<script type="math/tex">O(2^n \times n)</script>，其中 n 是数组 <script type="math/tex">\textit{candidates}</script> 的长度。在大部分递归 + 回溯的题目中，我们无法给出一个严格的渐进紧界，故这里只分析一个较为宽松的渐进上界。在最坏的情况下，数组中的每个数都不相同，那么列表 <script type="math/tex">\textit{freq}</script> 的长度同样为 n。在递归时，每个位置可以选或不选，如果数组中所有数的和不超过 <script type="math/tex">\textit{target}</script>，那么 <script type="math/tex">2^n</script> 种组合都会被枚举到；在 <script type="math/tex">\textit{target}</script> 小于数组中所有数的和时，我们并不能解析地算出满足题目要求的组合的数量，但我们知道每得到一个满足要求的组合，需要 <script type="math/tex">O(n)</script> 的时间将其放入答案中，因此我们将 <script type="math/tex">O(2^n)</script> 与 <script type="math/tex">O(n)</script> 相乘，即可估算出一个宽松的时间复杂度上界。</p>
+<p>由于 <script type="math/tex">O(2^n \times n)</script> 在渐进意义下大于排序的时间复杂度 <script type="math/tex">O(n \log n)</script>，因此后者可以忽略不计。</p>
 </li>
-<li><p>空间复杂度：$$O(n)$$。除了存储答案的数组外，我们需要 $$O(n)$$ 的空间存储列表 $$\textit{freq}$$、递归中存储当前选择的数的列表、以及递归需要的栈。</p>
+<li><p>空间复杂度：<script type="math/tex">O(n)</script>。除了存储答案的数组外，我们需要 <script type="math/tex">O(n)</script> 的空间存储列表 <script type="math/tex">\textit{freq}</script>、递归中存储当前选择的数的列表、以及递归需要的栈。</p>
 </li>
 </ul>
 
@@ -328,7 +322,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

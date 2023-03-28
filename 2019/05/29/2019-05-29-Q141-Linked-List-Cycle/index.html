@@ -13,7 +13,7 @@
 
     <title>
         
-          Q141 Linked List Cycle - 伽蓝之堂 | Txing Blog
+          Q141 Linked List Cycle - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -182,21 +182,14 @@
                 <h1 id="Linked-List-Cycle"><a href="#Linked-List-Cycle" class="headerlink" title="Linked List Cycle"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/linked-list-cycle/">Linked List Cycle</a></h1><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>Given a linked list, determine if it has a cycle in it.</p>
 <p>To represent a cycle in the given linked list, we use an integer <code>pos</code> which represents the position (0-indexed) in the linked list where tail connects to. If <code>pos</code> is <code>-1</code>, then there is no cycle in the linked list.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong><br>Input: head &#x3D; [3,2,0,-4], pos &#x3D; 1<br>Output: true<br>Explanation: There is a cycle in the linked list, where tail connects to the second node.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong><br>Input: head &#x3D; [1,2], pos &#x3D; 0<br>Output: true<br>Explanation: There is a cycle in the linked list, where tail connects to the first node.</p>
-</blockquote>
-<blockquote>
+<p><strong>Example 1:</strong><br>Input: head = [3,2,0,-4], pos = 1<br>Output: true<br>Explanation: There is a cycle in the linked list, where tail connects to the second node.</p>
+<p><strong>Example 2:</strong><br>Input: head = [1,2], pos = 0<br>Output: true<br>Explanation: There is a cycle in the linked list, where tail connects to the first node.</p>
 <p><strong>Example 3:</strong></p>
-<p>Input: head &#x3D; [1], pos &#x3D; -1<br>Output: false<br>Explanation: There is no cycle in the linked list.</p>
+<p>Input: head = [1], pos = -1<br>Output: false<br>Explanation: There is no cycle in the linked list.</p>
 </blockquote>
 <h3 id="Approach-1-Hash-Table"><a href="#Approach-1-Hash-Table" class="headerlink" title="Approach 1: Hash Table"></a>Approach 1: Hash Table</h3><p>This problem is similar to Q21, because they both require traverse a linked list. In fact, the key point is to set  <code>out=mid=head</code>. <code>out</code> is used in the iterations and <code>mid</code><strong>Intuition</strong></p>
 <p>To detect if a list is cyclic, we can check whether a node had been visited before. A natural way is to use a hash table. is used as an output.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">hasCycle</span>(<span class="params">self, head</span>):</span><br><span class="line">        hashmap=<span class="built_in">dict</span>()</span><br><span class="line">        <span class="keyword">while</span> head:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span>(head <span class="keyword">in</span> hashmap):</span><br><span class="line">                hashmap[head]=<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            head=head.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    head=stringToListNode([<span class="number">1</span>])<span class="comment"># 将输入的元组转换为链表</span></span><br><span class="line">    solution=Solution().hasCycle(head)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
 <p><strong>Complexity Analysis</strong></p>
 <ul>
 <li>Runtime: 32 ms, faster than 99.15% of Python online submissions forLinked List Cycle.</li>
@@ -303,7 +296,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

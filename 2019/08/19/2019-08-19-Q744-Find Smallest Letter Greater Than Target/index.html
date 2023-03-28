@@ -13,7 +13,7 @@
 
     <title>
         
-          Q744 Find Smallest Letter Greater Than Target - 伽蓝之堂 | Txing Blog
+          Q744 Find Smallest Letter Greater Than Target - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -182,17 +182,13 @@
                 <h1 id="Find-Smallest-Letter-Greater-Than-Target"><a href="#Find-Smallest-Letter-Greater-Than-Target" class="headerlink" title="Find Smallest Letter Greater Than Target"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-smallest-letter-greater-than-target/">Find Smallest Letter Greater Than Target</a></h1><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>Given a list of sorted characters <code>letters</code> containing only lowercase letters, and given a target letter <code>target</code>, find the smallest element in the list that is larger than the given target.</p>
 <p>Letters also wrap around. For example, if the target is <code>target = &#39;z&#39;</code> and <code>letters = [&#39;a&#39;, &#39;b&#39;]</code>, the answer is <code>&#39;a&#39;</code>.</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
-<p>Input:<br>letters &#x3D; [“c”, “f”, “j”]<br>target &#x3D; “a”<br>Output: “c”</p>
-<p>Input:<br>letters &#x3D; [“c”, “f”, “j”]<br>target &#x3D; “c”<br>Output: “f”</p>
-<p>Input:<br>letters &#x3D; [“c”, “f”, “j”]<br>target &#x3D; “d”<br>Output: “f”</p>
-<p>Input:<br>letters &#x3D; [“c”, “f”, “j”]<br>target &#x3D; “g”<br>Output: “j”</p>
-<p>Input:<br>letters &#x3D; [“c”, “f”, “j”]<br>target &#x3D; “j”<br>Output: “c”</p>
-<p>Input:<br>letters &#x3D; [“c”, “f”, “j”]<br>target &#x3D; “k”<br>Output: “c”</p>
-</blockquote>
-<blockquote>
+<p>Input:<br>letters = [“c”, “f”, “j”]<br>target = “a”<br>Output: “c”</p>
+<p>Input:<br>letters = [“c”, “f”, “j”]<br>target = “c”<br>Output: “f”</p>
+<p>Input:<br>letters = [“c”, “f”, “j”]<br>target = “d”<br>Output: “f”</p>
+<p>Input:<br>letters = [“c”, “f”, “j”]<br>target = “g”<br>Output: “j”</p>
+<p>Input:<br>letters = [“c”, “f”, “j”]<br>target = “j”<br>Output: “c”</p>
+<p>Input:<br>letters = [“c”, “f”, “j”]<br>target = “k”<br>Output: “c”</p>
 <p><strong>Note:</strong></p>
 <ul>
 <li><code>letters</code> has a length in range <code>[2, 10000]</code>.</li>
@@ -202,11 +198,10 @@
 </blockquote>
 <h2 id="Approach-1-Linear-Search"><a href="#Approach-1-Linear-Search" class="headerlink" title="Approach 1: Linear Search"></a>Approach 1: Linear Search</h2><p><strong>Intuition and Algorithm</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">nextGreatestLetter</span>(<span class="params">self, letters, target</span>):</span><br><span class="line">        <span class="keyword">for</span> l <span class="keyword">in</span> letters:</span><br><span class="line">            <span class="keyword">if</span> l &gt; target:</span><br><span class="line">                <span class="keyword">return</span> l</span><br><span class="line">        <span class="keyword">return</span> letters[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    letters = [<span class="string">&quot;c&quot;</span>, <span class="string">&quot;f&quot;</span>, <span class="string">&quot;j&quot;</span>]</span><br><span class="line">    target = <span class="string">&quot;j&quot;</span></span><br><span class="line">    solution=Solution().nextGreatestLetter(letters,target)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
 <p><strong>Complexity Analysis</strong></p>
 <ul>
-<li>Time complexity : $$\mathcal{O}(N)$$.</li>
-<li>Space complexity : $$\mathcal{O}(1)​$$ since it’s a constant space solution.</li>
+<li>Time complexity : <script type="math/tex">\mathcal{O}(N)</script>.</li>
+<li>Space complexity : <script type="math/tex">\mathcal{O}(1)​</script> since it’s a constant space solution.</li>
 <li>Runtime: 72 ms, faster than 99.40% of Python online submissions for Find Smallest Letter Greater Than Target.</li>
 <li>Memory Usage: 13.8 MB, less than 33.33% of Python online submissions for Find Smallest Letter Greater Than Target.</li>
 </ul>
@@ -311,7 +306,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

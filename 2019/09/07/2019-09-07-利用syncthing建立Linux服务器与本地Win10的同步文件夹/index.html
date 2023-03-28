@@ -13,7 +13,7 @@
 
     <title>
         
-          利用syncthing建立Linux服务器与本地Win10的同步文件夹 - 伽蓝之堂 | Txing Blog
+          利用syncthing建立Linux服务器与本地Win10的同步文件夹 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -176,8 +176,8 @@
                 post-container">
 
                 <h1 id="利用syncthing建立Linux服务器与本地Win10的同步文件夹"><a href="#利用syncthing建立Linux服务器与本地Win10的同步文件夹" class="headerlink" title="利用syncthing建立Linux服务器与本地Win10的同步文件夹"></a>利用syncthing建立Linux服务器与本地Win10的同步文件夹</h1><h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p>由于最近把本地的试验程序搬到了服务器上（<a target="_blank" rel="noopener" href="https://txing.tk/2019/09/06/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E9%85%8D%E7%BD%AEAnaconda3%E4%BB%A5Pytorch-RL%E7%8E%AF%E5%A2%83/">Linux服务器上配置Anaconda3以Pytorch-RL环境</a>），现在的试验结果就自然地在运行后保存在了服务器上（图片、数据）。</p>
-<p>由于没有配置服务器端的可视化界面，就没法查看结果了。如果利用pscp进行Linux$$\to$$windows的文件传输，等结果到了本地再查看，这样每跑一次实验就要单独传输一次，势必非常麻烦。</p>
-<p>于是这里就迫切需求一种<strong>及时</strong>、<strong>高效</strong>、<strong>自动</strong>的linux$$\to$$windows10的文件传输方案。 </p>
+<p>由于没有配置服务器端的可视化界面，就没法查看结果了。如果利用pscp进行Linux<script type="math/tex">\to</script>windows的文件传输，等结果到了本地再查看，这样每跑一次实验就要单独传输一次，势必非常麻烦。</p>
+<p>于是这里就迫切需求一种<strong>及时</strong>、<strong>高效</strong>、<strong>自动</strong>的linux<script type="math/tex">\to</script>windows10的文件传输方案。 </p>
 <hr>
 <p>经过一番调研，目前有这样几种方案备选：</p>
 <p><strong>1、在linux服务器端查看图片。</strong>这个方案需要使用到类似SimpleHTTPServer的服务，简单地说就是在通过浏览器在ip:8000口查看图片。这个方案仍然需要在运行完成之后单独再操作一步，虽然实现了查看图片的功能，但如果需要保存图片到本地，还是绕不开pscp的操作。</p>
@@ -201,27 +201,21 @@
 <li><p>第三步：解压文件并安装。</p>
 <p>在新建的安装包所在目录中执行解压命令，并打开文件夹</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf syncthing-linux-amd64-v1.2.2.tar.gz</span><br><span class="line">cd syncthing-linux-amd64-v1.2.2</span><br></pre></td></tr></table></figure>
-
 <p>这里通过ls命令可以看到有一个可执行文件，现在先打开它用来生成我们需要更改的配置文件</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./syncthing</span><br></pre></td></tr></table></figure>
-
 <p>等到看见类似如下字样的时候，表示启动完成，按Ctrl+c关闭</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[QQAFC] 16:59:18 INFO: Detected 1 NAT service</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>第四步：配置syncthing。由于syncthing默认是只允许本机访问，这里需要进行设置。大多数教程这里都会使用vim进行编辑，但是我的环境里没有vim，也有有sudo权限安装，因此参考这里的<a target="_blank" rel="noopener" href="https://www.youcl.com/info/10588">某教程</a>里的方法，通过nano进行编辑</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano ~/.config/syncthing/config.xml</span><br></pre></td></tr></table></figure>
-
 <p>这时会弹出一大片文本，但我们只需要找到下面这一段</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;gui enabled=&quot;true&quot; tls=&quot;false&quot;&gt;</span><br><span class="line">    &lt;address&gt;127.0.0.1:46554&lt;/address&gt;</span><br><span class="line">&lt;/gui&gt;</span><br></pre></td></tr></table></figure>
-
 <p>再把前4段数字全部变成0，即0.0.0.0:46554（冒号后面的数字不用变）。然后按Ctrl+x退出编辑，在按y保存更改。</p>
 </li>
 <li><p>第五步：再次运行syncthing</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./syncthing</span><br></pre></td></tr></table></figure>
-
 <p>在浏览器输入</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://服务器IP:46554</span><br></pre></td></tr></table></figure>
-
 <p>后面的数字是在第4步修改地址时看到的冒号后的数字，按下回车进行图形化的配置。</p>
 </li>
 <li><p>第六步：图形化配置</p>
@@ -330,7 +324,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

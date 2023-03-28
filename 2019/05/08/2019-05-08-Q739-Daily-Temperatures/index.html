@@ -13,7 +13,7 @@
 
     <title>
         
-          Q739 Daily Temperatures - 伽蓝之堂 | Txing Blog
+          Q739 Daily Temperatures - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -180,10 +180,8 @@
                 <h1 id="Daily-Temperatures"><a href="#Daily-Temperatures" class="headerlink" title="Daily Temperatures"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/daily-temperatures/">Daily Temperatures</a></h1><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>Given a list of daily temperatures <code>T</code>, return a list such that, for each day in the input, tells you how many days you would have to wait until a warmer temperature. If there is no future day for which this is possible, put <code>0</code> instead.</p>
 <p>For example, given the list of temperatures <code>T = [73, 74, 75, 71, 69, 72, 76, 73]</code>, your output should be <code>[1, 1, 4, 2, 1, 1, 0, 0]</code>.</p>
-</blockquote>
-<blockquote>
 <p><strong>Note</strong>:</p>
-<p><code>The length of </code>temperatures<code>will be in the range</code>[1, 30000]<code>. Each temperature will be an integer in the range </code>[30, 100]&#96;.</p>
+<p><code>The length of</code>temperatures<code>will be in the range</code>[1, 30000]<code>. Each temperature will be an integer in the range</code>[30, 100]`.</p>
 </blockquote>
 <h3 id="Approach-1-Stack"><a href="#Approach-1-Stack" class="headerlink" title="Approach 1: Stack"></a>Approach 1: Stack</h3><p><strong>Intuition</strong></p>
 <p>Consider trying to find the next warmer occurrence at <code>T[i]</code>. What information (about <code>T[j]</code> for <code>j &gt; i</code>) must we remember?</p>
@@ -204,7 +202,6 @@
 <li>When <code>i = 0</code>, <code>stack = [0 (73), 1 (74), 2 (75), 6 (76)]</code>. <code>ans[i] = 1</code>.</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">dailyTemperatures</span>(<span class="params">self, T</span>):</span><br><span class="line">        ans = [<span class="number">0</span>] * <span class="built_in">len</span>(T)</span><br><span class="line">        stack = [] <span class="comment">#从大到小的序号</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(T)-<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>):<span class="comment"># 从最后一个元素开始</span></span><br><span class="line">            <span class="keyword">while</span> stack <span class="keyword">and</span> T[i] &gt;= T[stack[-<span class="number">1</span>]]:</span><br><span class="line">                stack.pop()<span class="comment"># 移除最后一个元素</span></span><br><span class="line">            <span class="keyword">if</span> stack:</span><br><span class="line">                ans[i] = stack[-<span class="number">1</span>] - i</span><br><span class="line">            stack.append(i)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    A =[<span class="number">73</span>, <span class="number">74</span>, <span class="number">75</span>, <span class="number">71</span>, <span class="number">69</span>, <span class="number">72</span>, <span class="number">76</span>, <span class="number">73</span>]<span class="comment"># 73, 74, 75, 71, 69, 72, 76, 73</span></span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.dailyTemperatures(A)</span><br><span class="line">    <span class="built_in">print</span>(results) <span class="comment"># [1, 1, 4, 2, 1, 1, 0, 0]</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p>Runtime: 308 ms, faster than 70.55% of Python3 online submissions for Daily Temperatures.</p>
 </li>
@@ -311,7 +308,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

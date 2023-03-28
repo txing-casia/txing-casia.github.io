@@ -13,7 +13,7 @@
 
     <title>
         
-          Q917 Reverse Only Letters - 伽蓝之堂 | Txing Blog
+          Q917 Reverse Only Letters - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -181,24 +181,16 @@
 
                 <h1 id="Reverse-Only-Letters"><a href="#Reverse-Only-Letters" class="headerlink" title="Reverse Only Letters"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-only-letters/">Reverse Only Letters</a></h1><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>Given a string <code>S</code>, return the “reversed” string where all characters that are not a letter stay in the same place, and all letters reverse their positions.</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
 <p>Input: “ab-cd”<br>Output: “dc-ba”</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 2:</strong></p>
 <p>Input: “a-bC-dEf-ghIj”<br>Output: “j-Ih-gfE-dCba”</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 3:</strong></p>
-<p>Input: “Test1ng-Leet&#x3D;code-Q!”<br>Output: “Qedo1ct-eeLg&#x3D;ntse-T!”</p>
-</blockquote>
-<blockquote>
+<p>Input: “Test1ng-Leet=code-Q!”<br>Output: “Qedo1ct-eeLg=ntse-T!”</p>
 <p><strong>Note:</strong></p>
 <ul>
-<li>S.length &lt;&#x3D; 100</li>
-<li>33 &lt;&#x3D; S[i].ASCIIcode &lt;&#x3D; 122 </li>
+<li>S.length &lt;= 100</li>
+<li>33 &lt;= S[i].ASCIIcode &lt;= 122 </li>
 <li>S doesn’t contain <code>\</code> or <code>&quot;</code></li>
 </ul>
 </blockquote>
@@ -206,7 +198,6 @@
 <p>Collect the letters of <code>S</code> separately into a stack, so that popping the stack reverses the letters. (Alternatively, we could have collected the letters into an array and reversed the array.)</p>
 <p>Then, when writing the characters of <code>S</code>, any time we need a letter, we use the one we have prepared instead.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseOnlyLetters</span>(<span class="params">self, S</span>):</span><br><span class="line">        letters = [c <span class="keyword">for</span> c <span class="keyword">in</span> S <span class="keyword">if</span> c.isalpha()]</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> S:</span><br><span class="line">            <span class="keyword">if</span> c.isalpha():</span><br><span class="line">                ans.append(letters.pop())</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                ans.append(c)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;&quot;</span>.join(ans)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    S=<span class="string">&quot;ab-cd&quot;</span></span><br><span class="line">    solution=Solution().reverseOnlyLetters(S)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
 <p><strong>Complexity Analysis</strong></p>
 <ul>
 <li>Time Complexity:<em>O</em>(<em>N</em>), where <em>N</em> is the length of <code>S</code>.</li>
@@ -315,7 +306,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

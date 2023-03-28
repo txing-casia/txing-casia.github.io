@@ -13,7 +13,7 @@
 
     <title>
         
-          JZOffer 34-二叉树中和为某一值的路径-中等-树 - 伽蓝之堂 | Txing Blog
+          JZOffer 34-二叉树中和为某一值的路径-中等-树 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -181,18 +181,11 @@
 
                 <h4 id="JZOffer-34-二叉树中和为某一值的路径"><a href="#JZOffer-34-二叉树中和为某一值的路径" class="headerlink" title="JZOffer 34. 二叉树中和为某一值的路径"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/">JZOffer 34. 二叉树中和为某一值的路径</a></h4><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>输入一棵二叉树和一个整数，打印出二叉树中节点值的和为输入整数的所有路径。从树的根节点开始往下一直到叶节点所经过的节点形成一条路径。</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
 <p>输入：给定如下二叉树，以及目标和 <code>target = 22</code>，</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">      5</span><br><span class="line">     / \</span><br><span class="line">    4   8</span><br><span class="line">   /   / \</span><br><span class="line">  11  13  4</span><br><span class="line"> /  \    / \</span><br><span class="line">7    2  5   1</span><br></pre></td></tr></table></figure>
-
-
-
 <p>输出：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">   [5,4,11,2],</span><br><span class="line">   [5,8,4,5]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-</blockquote>
-<blockquote>
 <p><strong>Note:</strong></p>
 <ul>
 <li><code>节点总数 &lt;= 10000</code></li>
@@ -211,15 +204,14 @@
 <li>终止条件： 若节点 root 为空，则直接返回。</li>
 <li>递推工作：<ul>
 <li>路径更新： 将当前节点值 root.val 加入路径 path ；</li>
-<li>目标值更新： tar &#x3D; tar - root.val（即目标值 tar 从 sum 减至 00 ）；</li>
+<li>目标值更新： tar = tar - root.val（即目标值 tar 从 sum 减至 00 ）；</li>
 <li>路径记录： 当 ① root 为叶节点 且 ② 路径和等于目标值 ，则将此路径 path 加入 res 。</li>
-<li>先序遍历： 递归左 &#x2F; 右子节点。</li>
+<li>先序遍历： 递归左 / 右子节点。</li>
 <li>路径恢复： 向上回溯前，需要将当前节点从路径 path 中删除，即执行 path.pop() 。</li>
 </ul>
 </li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">pathSum</span>(<span class="params">self, root: TreeNode, <span class="built_in">sum</span>: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">        res, path = [], []</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">recur</span>(<span class="params">root, tar</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root: <span class="keyword">return</span></span><br><span class="line">            path.append(root.val)</span><br><span class="line">            tar -= root.val</span><br><span class="line">            <span class="keyword">if</span> tar == <span class="number">0</span> <span class="keyword">and</span> <span class="keyword">not</span> root.left <span class="keyword">and</span> <span class="keyword">not</span> root.right:</span><br><span class="line">                res.append(<span class="built_in">list</span>(path))</span><br><span class="line">            recur(root.left, tar)</span><br><span class="line">            recur(root.right, tar)</span><br><span class="line">            path.pop()</span><br><span class="line"></span><br><span class="line">        recur(root, <span class="built_in">sum</span>)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度 O(N) ： N 为二叉树的节点数，先序遍历需要遍历所有节点。</li>
@@ -326,7 +318,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

@@ -13,7 +13,7 @@
 
     <title>
         
-          pytorch-使用优化器的曲线拟合程序 - 伽蓝之堂 | Txing Blog
+          pytorch-使用优化器的曲线拟合程序 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -180,7 +180,6 @@
                 <h4 id="Pytorch-使用优化器的曲线拟合程序"><a href="#Pytorch-使用优化器的曲线拟合程序" class="headerlink" title="Pytorch - 使用优化器的曲线拟合程序"></a>Pytorch - 使用优化器的曲线拟合程序</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##############################</span></span><br><span class="line"><span class="comment"># pytorch-使用优化器的曲线拟合程序</span></span><br><span class="line"><span class="comment">##############################</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create Tensors to hold input and outputs.</span></span><br><span class="line">x = torch.linspace(-math.pi, math.pi, <span class="number">2000</span>)</span><br><span class="line">y = torch.sin(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Prepare the input tensor (x, x^2, x^3).</span></span><br><span class="line">p = torch.tensor([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">xx = x.unsqueeze(-<span class="number">1</span>).<span class="built_in">pow</span>(p)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Use the nn package to define our model and loss function.</span></span><br><span class="line">model = torch.nn.Sequential(</span><br><span class="line">    torch.nn.Linear(<span class="number">3</span>, <span class="number">1</span>),</span><br><span class="line">    torch.nn.Flatten(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">)</span><br><span class="line">loss_fn = torch.nn.MSELoss(reduction=<span class="string">&#x27;sum&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Use the optim package to define an Optimizer that will update the weights of</span></span><br><span class="line"><span class="comment"># the model for us. Here we will use RMSprop; the optim package contains many other</span></span><br><span class="line"><span class="comment"># optimization algorithms. The first argument to the RMSprop constructor tells the</span></span><br><span class="line"><span class="comment"># optimizer which Tensors it should update.</span></span><br><span class="line">learning_rate = <span class="number">1e-3</span></span><br><span class="line">optimizer = torch.optim.RMSprop(model.parameters(), lr=learning_rate)</span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2000</span>):</span><br><span class="line">    <span class="comment"># Forward pass: compute predicted y by passing x to the model.</span></span><br><span class="line">    y_pred = model(xx)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Compute and print loss.</span></span><br><span class="line">    loss = loss_fn(y_pred, y)</span><br><span class="line">    <span class="keyword">if</span> t % <span class="number">100</span> == <span class="number">99</span>:</span><br><span class="line">        <span class="built_in">print</span>(t, loss.item())</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Before the backward pass, use the optimizer object to zero all of the</span></span><br><span class="line">    <span class="comment"># gradients for the variables it will update (which are the learnable</span></span><br><span class="line">    <span class="comment"># weights of the model). This is because by default, gradients are</span></span><br><span class="line">    <span class="comment"># accumulated in buffers( i.e, not overwritten) whenever .backward()</span></span><br><span class="line">    <span class="comment"># is called. Checkout docs of torch.autograd.backward for more details.</span></span><br><span class="line">    optimizer.zero_grad()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Backward pass: compute gradient of the loss with respect to model</span></span><br><span class="line">    <span class="comment"># parameters</span></span><br><span class="line">    loss.backward()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Calling the step function on an Optimizer makes an update to its</span></span><br><span class="line">    <span class="comment"># parameters</span></span><br><span class="line">    optimizer.step()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">linear_layer = model[<span class="number">0</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;Result: y = <span class="subst">&#123;linear_layer.bias.item()&#125;</span> + <span class="subst">&#123;linear_layer.weight[:, <span class="number">0</span>].item()&#125;</span> x + <span class="subst">&#123;linear_layer.weight[:, <span class="number">1</span>].item()&#125;</span> x^2 + <span class="subst">&#123;linear_layer.weight[:, <span class="number">2</span>].item()&#125;</span> x^3&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
 
-
                 <hr>
 
                 
@@ -188,12 +187,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2022/01/06/2022-01-06-Pytorch-手动梯度下降的曲线拟合/" data-toggle="tooltip" data-placement="top" title="Pytorch-手动梯度下降的曲线拟合">&larr; Previous Post</a>
+                            <a href="/2022/01/16/2022-01-16-CoppeliaSim入门指南/" data-toggle="tooltip" data-placement="top" title="CoppeliaSim入门指南">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2022/01/06/2022-01-06-pytorch-自定义nn模块的曲线拟合程序/" data-toggle="tooltip" data-placement="top" title="pytorch-自定义nn模块的曲线拟合程序">Next Post &rarr;</a>
+                            <a href="/2022/01/06/2022-01-06-Pytorch-手动梯度下降的曲线拟合/" data-toggle="tooltip" data-placement="top" title="Pytorch-手动梯度下降的曲线拟合">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -278,7 +277,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

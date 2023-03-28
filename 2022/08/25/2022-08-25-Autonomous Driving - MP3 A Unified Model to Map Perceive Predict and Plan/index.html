@@ -13,7 +13,7 @@
 
     <title>
         
-          Autonomous Driving | MP3 A Unified Model to Map Perceive Predict and Plan (Uber ATG 2021) - 伽蓝之堂 | Txing Blog
+          Autonomous Driving | MP3 A Unified Model to Map Perceive Predict and Plan (Uber ATG 2021) - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -230,8 +230,7 @@
 </li>
 </ul>
 <h4 id="2-2-Perception-and-Prediction"><a href="#2-2-Perception-and-Prediction" class="headerlink" title="2.2 Perception and Prediction"></a>2.2 Perception and Prediction</h4><ul>
-<li><p><strong>生成轨迹集合</strong> generate a fixed set of trajectories [6, 8–10, 26, 28, 30, 36, 56]</p>
-</li>
+<li><strong>生成轨迹集合</strong> generate a fixed set of trajectories [6, 8–10, 26, 28, 30, 36, 56]</li>
 <li><p><strong>画出样本特征分布</strong> draw samples to characterize the distribution  </p>
 <ul>
 <li>Implicit latent variable model for scene-consistent motion forecasting. arXiv preprint arXiv:2007.12036, 2020.</li>
@@ -242,15 +241,13 @@
 <li><p><strong>预测时间占用图</strong> predict temporal occupancy maps </p>
 <ul>
 <li>Discrete residual flow for probabilistic pedestrian behavior prediction. arXiv preprint arXiv:1910.08041, 2019.</li>
-<li>The garden of forking paths: Towards multi-future trajectory prediction. In Proceedings of the IEEE&#x2F;CVF<br>Conference on Computer Vision and Pattern Recognition, pages 10508–10518, 2020.</li>
+<li>The garden of forking paths: Towards multi-future trajectory prediction. In Proceedings of the IEEE/CVF<br>Conference on Computer Vision and Pattern Recognition, pages 10508–10518, 2020.</li>
 <li>Scene compliant trajectory forecast with agent-centric spatio-temporal grids. IEEE RA-L, 5(2):2816–2823, 2020.</li>
 </ul>
 </li>
-<li><p>这些方法由于涉及了非最大抑制（non-maximum suppression）和可信度阈值（confidence thresholding），可能出现不安全的情况</p>
-</li>
-<li><p>occupancy grids:</p>
-<ul>
-<li>Motionnet: Joint perception and motion prediction for autonomous driving based on bird’s eye view maps. In Proceedings of the IEEE&#x2F;CVF Conference on Computer Vision and Pattern Recognition, pages 11385–11395, 2020.</li>
+<li>这些方法由于涉及了非最大抑制（non-maximum suppression）和可信度阈值（confidence thresholding），可能出现不安全的情况</li>
+<li>occupancy grids:<ul>
+<li>Motionnet: Joint perception and motion prediction for autonomous driving based on bird’s eye view maps. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, pages 11385–11395, 2020.</li>
 <li>Learning occupancy grid maps with forward sensor models. Autonomous robots, 15(2):111–127, 2003.</li>
 <li><strong>Perceive, predict, and plan: Safe motion planning through interpretable semantic representations.</strong> In Proceedings of the European Conference on Computer Vision (ECCV), 2020.</li>
 </ul>
@@ -261,7 +258,7 @@
 </ul>
 <h3 id="3-Interpretable-Mapless-Driving"><a href="#3-Interpretable-Mapless-Driving" class="headerlink" title="3 Interpretable Mapless Driving"></a>3 Interpretable Mapless Driving</h3><p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220826-2.png" alt="MP3 predicts probabilistic scene representations that are leveraged in motion planning as interpretable cost functions"></p>
 <h4 id="3-1-Extracting-Geometric-and-Semantic-Features"><a href="#3-1-Extracting-Geometric-and-Semantic-Features" class="headerlink" title="3.1 Extracting Geometric and Semantic Features"></a>3.1 Extracting Geometric and Semantic Features</h4><ul>
-<li>The result is a 3D tensor of size $$(\frac{H}{a},\frac{W}{a},\frac{Z}{a}\cdot T_p )$$,which is the input to our backbone network.</li>
+<li>The result is a 3D tensor of size <script type="math/tex">(\frac{H}{a},\frac{W}{a},\frac{Z}{a}\cdot T_p )</script>,which is the input to our backbone network.</li>
 <li>This network combines ideas from [9, 53] to extract geometric, semantic and motion information about the scene.</li>
 </ul>
 <h4 id="3-2-Interpretable-Scene-Representations"><a href="#3-2-Interpretable-Scene-Representations" class="headerlink" title="3.2 Interpretable Scene Representations"></a>3.2 Interpretable Scene Representations</h4><ul>
@@ -283,29 +280,27 @@
 <p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220826-4.png" alt="The motion field warps the occupancy over time"></p>
 <ul>
 <li>Initial Occupancy：一个BEV网格单元</li>
-<li>Temporal Motion Field：a 2D BEV velocity vector (in<br>m&#x2F;s).</li>
+<li>Temporal Motion Field：a 2D BEV velocity vector (in<br>m/s).</li>
 <li><code>Note</code>：车辆、行人和自行车被视为单独的类别，每个类别都有自己的占用流。</li>
 </ul>
 <p><strong>Probabilistic Model:</strong></p>
 <p>online Map 分为以下几个通道：</p>
 <ul>
-<li><p>可到达区域$$M^A_i$$</p>
+<li>可到达区域<script type="math/tex">M^A_i</script></li>
+<li><p>路口<script type="math/tex">M^I_i</script></p>
 </li>
-<li><p>路口$$M^I_i$$</p>
+<li><p>到最近车道线的距离。the direction of the closest lane centerline in the reachable lanes <script type="math/tex">M^{\theta}_i</script> as a Von Mises distribution since it has support between <script type="math/tex">[\pi,\pi]</script>.</p>
 </li>
-<li><p>到最近车道线的距离。the direction of the closest lane centerline in the reachable lanes $$M^{\theta}_i$$ as a Von Mises distribution since it has support between $$[\pi,\pi]$$.</p>
-</li>
-<li><p>可到达车道中线的截断距离变换为拉普拉斯算子。We model the truncated distance transform to the reachable lanes centerline $$M^D_i$$​ as a Laplacian, which we empirically found to yield more accurate results than a Gaussian</p>
-</li>
+<li>可到达车道中线的截断距离变换为拉普拉斯算子。We model the truncated distance transform to the reachable lanes centerline <script type="math/tex">M^D_i</script>​ as a Laplacian, which we empirically found to yield more accurate results than a Gaussian</li>
 </ul>
-<p>建模动态物体的occupancy $$O^c$$,为伯努利随机分布$$O^c_{t,i}$$，$$c\in {行人，车辆，自行车}$$（考虑这些物体未来行为的多模态（直走或左转）和不确定性），用$$K_{t,i}$$建模基于K个BEV运动向量$$V^c_{t,i,k}$$的行为分类分布</p>
-<p>the probability of future occupancy under our probabilistic model, we first define the probability of occupancy flowing from location $$i_1$$ to location $$i_2$$ between two consecutive time steps t and t + 1 as follows:</p>
+<p>建模动态物体的occupancy <script type="math/tex">O^c</script>,为伯努利随机分布<script type="math/tex">O^c_{t,i}</script>，<script type="math/tex">c\in \{行人，车辆，自行车\}</script>（考虑这些物体未来行为的多模态（直走或左转）和不确定性），用<script type="math/tex">K_{t,i}</script>建模基于K个BEV运动向量<script type="math/tex">V^c_{t,i,k}</script>的行为分类分布</p>
+<p>the probability of future occupancy under our probabilistic model, we first define the probability of occupancy flowing from location <script type="math/tex">i_1</script> to location <script type="math/tex">i_2</script> between two consecutive time steps t and t + 1 as follows:</p>
 <p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220829-1.png" alt="the probability of occupancy flowing"></p>
 <h4 id="3-3-Motion-Planning"><a href="#3-3-Motion-Planning" class="headerlink" title="3.3 Motion Planning"></a>3.3 Motion Planning</h4><p>设计了一个基于采样的轨迹规划器，其根据运动学灵活的生成多种轨迹，然后使用一个learned scoring function选择轨迹。</p>
 <p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220830-1.png" alt="规划器的轨迹选择方式"></p>
 <h5 id="3-3-1-Trajectory-Sampling"><a href="#3-3-1-Trajectory-Sampling" class="headerlink" title="3.3.1 Trajectory Sampling"></a>3.3.1 Trajectory Sampling</h5><p>Search-based optimal motion planning for automated driving. In IROS, 2018</p>
 <ul>
-<li>根据$$(v_x,a_x,k_x)$$在专家轨迹数据集中检索专家轨迹，$$x$$表示当前自车状态，检索出的轨迹有不同的初始速度和朝向。因此使用加速度和转向角来描述轨迹$$(a,\dot k)_t,t&#x3D;0,…,T$$，输入到a bicycle model [38]生成具有连续速度和转向角的轨迹。<ul>
+<li>根据<script type="math/tex">(v_x,a_x,k_x)</script>在专家轨迹数据集中检索专家轨迹，<script type="math/tex">x</script>表示当前自车状态，检索出的轨迹有不同的初始速度和朝向。因此使用加速度和转向角来描述轨迹<script type="math/tex">(a,\dot k)_t,t=0,...,T</script>，输入到a bicycle model [38]生成具有连续速度和转向角的轨迹。<ul>
 <li>[38]. The kinematic bicycle model: A consistent model for planning feasible trajectories for autonomous vehicles? In 2017 IEEE Intelligent Vehicles Symposium (IV), pages 812–818. IEEE, 2017.</li>
 </ul>
 </li>
@@ -315,7 +310,7 @@
 </li>
 </ul>
 <h5 id="3-3-2-Route-Prediction"><a href="#3-3-2-Route-Prediction" class="headerlink" title="3.3.2 Route Prediction"></a>3.3.2 Route Prediction</h5><ul>
-<li>由于无地图驾驶没有车道线follow，本文假设遵循command来行驶，指令$$c &#x3D; (a, d)$$, where $$a \in {keep lane, turn left, turn right}$$ is a discrete high-level action, and $$d$$ an approximate longitudinal distance to the action（行为的纵向距离）（d经过”rasterize”处理），输入给CoordConv[29]<ul>
+<li>由于无地图驾驶没有车道线follow，本文假设遵循command来行驶，指令<script type="math/tex">c = (a, d)</script>, where <script type="math/tex">a \in \{keep lane, turn left, turn right\}</script> is a discrete high-level action, and <script type="math/tex">d</script> an approximate longitudinal distance to the action（行为的纵向距离）（d经过”rasterize”处理），输入给CoordConv[29]<ul>
 <li>An intriguing failing of convolutional neural networks and the coordconv solution. In Advances in Neural Information Processing Systems, pages 9605–9616, 2018.</li>
 </ul>
 </li>
@@ -323,10 +318,11 @@
 <h5 id="3-3-2-Trajectory-Scoring"><a href="#3-3-2-Trajectory-Scoring" class="headerlink" title="3.3.2 Trajectory Scoring"></a>3.3.2 Trajectory Scoring</h5><ul>
 <li>Routing and Driving on Roads: 该评分函数鼓励车辆行驶在概率图R中概率高的区域</li>
 </ul>
-<p>$$<br>f_r(\tau,R)&#x3D;-m(\tau)\min_{i \in m(\tau)} R_i<br>$$</p>
-<p>其中$$m(\tau)$$是BEV图中和自车轨迹$$\tau$$重合的格子单元（grid-cells that overlap with SDV polygon in trajectory $$\tau$$)</p>
-<p>离开车道损失：<br>$$<br>f_a(x,M)&#x3D;\max_{i \in m(x)}[1-P(M_i^A)]<br>$$</p>
-<ul>
+<script type="math/tex; mode=display">
+f_r(\tau,R)=-m(\tau)\min_{i \in m(\tau)} R_i</script><p>其中<script type="math/tex">m(\tau)</script>是BEV图中和自车轨迹<script type="math/tex">\tau</script>重合的格子单元（grid-cells that overlap with SDV polygon in trajectory <script type="math/tex">\tau</script>)</p>
+<p>离开车道损失：</p>
+<script type="math/tex; mode=display">
+f_a(x,M)=\max_{i \in m(x)}[1-P(M_i^A)]</script><ul>
 <li><p>Safety</p>
 </li>
 <li><p>Comfort</p>
@@ -452,7 +448,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

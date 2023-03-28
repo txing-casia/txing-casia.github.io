@@ -13,7 +13,7 @@
 
     <title>
         
-          Q236-二叉树的最近公共祖先-中等-树 - 伽蓝之堂 | Txing Blog
+          Q236-二叉树的最近公共祖先-中等-树 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -182,29 +182,23 @@
                 <h4 id="236-二叉树的最近公共祖先"><a href="#236-二叉树的最近公共祖先" class="headerlink" title="236. 二叉树的最近公共祖先"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/">236. 二叉树的最近公共祖先</a></h4><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p>
 <p>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个节点 p、q，最近公共祖先表示为一个节点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
-<p>输入：root &#x3D; [3,5,1,6,2,0,8,null,null,7,4], p &#x3D; 5, q &#x3D; 1<br>输出：3<br>解释：节点 5 和节点 1 的最近公共祖先是节点 3 。</p>
-</blockquote>
-<blockquote>
+<p>输入：root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1<br>输出：3<br>解释：节点 5 和节点 1 的最近公共祖先是节点 3 。</p>
 <p><strong>Example 2:</strong></p>
-<p>输入：root &#x3D; [3,5,1,6,2,0,8,null,null,7,4], p &#x3D; 5, q &#x3D; 4<br>输出：5<br>解释：节点 5 和节点 4 的最近公共祖先是节点 5 。因为根据定义最近公共祖先节点可以为节点本身。</p>
-</blockquote>
-<blockquote>
+<p>输入：root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4<br>输出：5<br>解释：节点 5 和节点 4 的最近公共祖先是节点 5 。因为根据定义最近公共祖先节点可以为节点本身。</p>
 <p><strong>Note:</strong></p>
 <ul>
 <li>树中节点数目在范围 [2, 105] 内。</li>
-<li>-109 &lt;&#x3D; Node.val &lt;&#x3D; 109</li>
+<li>-109 &lt;= Node.val &lt;= 109</li>
 <li>所有 Node.val 互不相同 。</li>
-<li>p !&#x3D; q</li>
+<li>p != q</li>
 <li>p 和 q 均存在于给定的二叉树中。</li>
 </ul>
 </blockquote>
-<h3 id="Apporach-1-直接递归方法"><a href="#Apporach-1-直接递归方法" class="headerlink" title="Apporach 1: 直接递归方法"></a>Apporach 1: 直接递归方法</h3><p>对每个结点的 left &#x2F; right 两个子节点递归判断是否包含 p 和 q</p>
+<h3 id="Apporach-1-直接递归方法"><a href="#Apporach-1-直接递归方法" class="headerlink" title="Apporach 1: 直接递归方法"></a>Apporach 1: 直接递归方法</h3><p>对每个结点的 left / right 两个子节点递归判断是否包含 p 和 q</p>
 <ul>
-<li>当 left 和 right 同时为空 ：说明 root 的左 &#x2F; 右子树中都不包含 p,q ，返回 null ；</li>
-<li>当 left 和 right 同时不为空 ：说明 p, q 分列在 root 的 异侧 （分别在 左 &#x2F; 右子树），因此 root 为最近公共祖先，返回 root ；</li>
+<li>当 left 和 right 同时为空 ：说明 root 的左 / 右子树中都不包含 p,q ，返回 null ；</li>
+<li>当 left 和 right 同时不为空 ：说明 p, q 分列在 root 的 异侧 （分别在 左 / 右子树），因此 root 为最近公共祖先，返回 root ；</li>
 <li>当 left 为空 ，right 不为空 ：p,q 都不在 root 的左子树中，直接返回 right 。具体可分为两种情况：<ul>
 <li>p,q 其中一个在 root 的 右子树 中，此时 right 指向 p（假设为 p ）；</li>
 <li>p,q 两节点都在 root 的 右子树 中，此时的 right 指向 最近公共祖先节点 ；</li>
@@ -213,18 +207,16 @@
 <li>当 left 不为空 ， right 为空 ：与情况 3. 同理；</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">lowestCommonAncestor</span>(<span class="params">self, root: <span class="string">&#x27;TreeNode&#x27;</span>, p: <span class="string">&#x27;TreeNode&#x27;</span>, q: <span class="string">&#x27;TreeNode&#x27;</span></span>) -&gt; <span class="string">&#x27;TreeNode&#x27;</span>:     </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root <span class="keyword">or</span> root == p <span class="keyword">or</span> root == q: <span class="keyword">return</span> root</span><br><span class="line">        left = self.lowestCommonAncestor(root.left, p, q)</span><br><span class="line">        right = self.lowestCommonAncestor(root.right, p, q)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> left: <span class="keyword">return</span> right</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> right: <span class="keyword">return</span> left</span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度 O(N) ： 其中 N 为二叉树节点数；最差情况下，需要递归遍历树的所有节点.</li>
 <li>空间复杂度 O(N) ： 最差情况下，递归深度达到 N，系统使用 O(N) 大小的额外空间。</li>
 </ul>
-<h3 id="Approach-2-递归"><a href="#Approach-2-递归" class="headerlink" title="Approach 2:  递归"></a>Approach 2:  递归</h3><p>我们递归遍历整棵二叉树，定义 $$f_x$$  表示 x 节点的子树中是否包含 p 节点或 q 节点，如果包含为 true，否则为 false。那么符合条件的最近公共祖先 x 一定满足如下条件：</p>
-<p>$$(f_{\text{lson}}\ &amp;&amp;\ f_{\text{rson}})\ ||\ ((x\ &#x3D;\ p\ ||\ x\ &#x3D;\ q)\ &amp;&amp;\ (f_{\text{lson}}\ ||\ f_{\text{rson}}))$$ 其中 $$\text{lson}$$ 和 $$\text{rson}$$ 分别代表 x 节点的左孩子和右孩子。初看可能会感觉条件判断有点复杂，我们来一条条看，$$f_{\text{lson}}\ &amp;&amp;\ f_{\text{rson}}$$  说明左子树和右子树均包含 p 节点或 q 节点，如果左子树包含的是 p 节点，那么右子树只能包含 q 节点，反之亦然，因为 p 节点和 q 节点都是不同且唯一的节点，因此如果满足这个判断条件即可说明 x 就是我们要找的最近公共祖先。再来看第二条判断条件，这个判断条件即是考虑了 x 恰好是 p 节点或 q 节点且它的左子树或右子树有一个包含了另一个节点的情况，因此如果满足这个判断条件亦可说明 xx 就是我们要找的最近公共祖先。</p>
-<p>你可能会疑惑这样找出来的公共祖先深度是否是最大的。其实是最大的，因为我们是自底向上从叶子节点开始更新的，所以在所有满足条件的公共祖先中一定是深度最大的祖先先被访问到，且由于 $$f_x$$本身的定义很巧妙，在找到最近公共祖先 x 以后，$$f_x$$ 按定义被设置为 true ，即假定了这个子树中只有一个 p 节点或 q 节点，因此其他公共祖先不会再被判断为符合条件。</p>
+<h3 id="Approach-2-递归"><a href="#Approach-2-递归" class="headerlink" title="Approach 2:  递归"></a>Approach 2:  递归</h3><p>我们递归遍历整棵二叉树，定义 <script type="math/tex">f_x</script>  表示 x 节点的子树中是否包含 p 节点或 q 节点，如果包含为 true，否则为 false。那么符合条件的最近公共祖先 x 一定满足如下条件：</p>
+<p><script type="math/tex">(f_{\text{lson}}\ \&\&\ f_{\text{rson}})\ ||\ ((x\ =\ p\ ||\ x\ =\ q)\ \&\&\ (f_{\text{lson}}\ ||\ f_{\text{rson}}))</script> 其中 <script type="math/tex">\text{lson}</script> 和 <script type="math/tex">\text{rson}</script> 分别代表 x 节点的左孩子和右孩子。初看可能会感觉条件判断有点复杂，我们来一条条看，<script type="math/tex">f_{\text{lson}}\ \&\&\ f_{\text{rson}}</script>  说明左子树和右子树均包含 p 节点或 q 节点，如果左子树包含的是 p 节点，那么右子树只能包含 q 节点，反之亦然，因为 p 节点和 q 节点都是不同且唯一的节点，因此如果满足这个判断条件即可说明 x 就是我们要找的最近公共祖先。再来看第二条判断条件，这个判断条件即是考虑了 x 恰好是 p 节点或 q 节点且它的左子树或右子树有一个包含了另一个节点的情况，因此如果满足这个判断条件亦可说明 xx 就是我们要找的最近公共祖先。</p>
+<p>你可能会疑惑这样找出来的公共祖先深度是否是最大的。其实是最大的，因为我们是自底向上从叶子节点开始更新的，所以在所有满足条件的公共祖先中一定是深度最大的祖先先被访问到，且由于 <script type="math/tex">f_x</script>本身的定义很巧妙，在找到最近公共祖先 x 以后，<script type="math/tex">f_x</script> 按定义被设置为 true ，即假定了这个子树中只有一个 p 节点或 q 节点，因此其他公共祖先不会再被判断为符合条件。</p>
 <p>下图展示了一个示例，搜索树中两个节点 9 和 11 的最近公共祖先。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    TreeNode* ans;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">dfs</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="type">bool</span> lson = <span class="built_in">dfs</span>(root-&gt;left, p, q);</span><br><span class="line">        <span class="type">bool</span> rson = <span class="built_in">dfs</span>(root-&gt;right, p, q);</span><br><span class="line">        <span class="keyword">if</span> ((lson &amp;&amp; rson) || ((root-&gt;val == p-&gt;val || root-&gt;val == q-&gt;val) &amp;&amp; (lson || rson))) &#123;</span><br><span class="line">            ans = root;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">return</span> lson || rson || (root-&gt;val == p-&gt;val || root-&gt;val == q-&gt;val);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">TreeNode* <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">dfs</span>(root, p, q);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;        </span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li><p>时间复杂度：O(N)，其中 N 是二叉树的节点数。二叉树的所有节点有且只会被访问一次，因此时间复杂度为 O(N)。</p>
@@ -333,7 +325,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

@@ -13,7 +13,7 @@
 
     <title>
         
-          Q144-二叉树的前序遍历-中等-树 - 伽蓝之堂 | Txing Blog
+          Q144-二叉树的前序遍历-中等-树 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -181,38 +181,28 @@
 
                 <h4 id="144-二叉树的前序遍历"><a href="#144-二叉树的前序遍历" class="headerlink" title="144. 二叉树的前序遍历"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-preorder-traversal/">144. 二叉树的前序遍历</a></h4><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>给你二叉树的根节点 <code>root</code> ，返回它节点值的 <strong>前序</strong> 遍历。</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
-<p>输入：root &#x3D; [1,null,2,3]<br>输出：[1,2,3]</p>
-</blockquote>
-<blockquote>
+<p>输入：root = [1,null,2,3]<br>输出：[1,2,3]</p>
 <p><strong>Example 2:</strong></p>
-<p>输入：root &#x3D; []<br>输出：[]</p>
-</blockquote>
-<blockquote>
+<p>输入：root = []<br>输出：[]</p>
 <p><strong>提示：</strong></p>
 <ul>
 <li>树中节点数目在范围 [0, 100] 内</li>
-<li>-100 &lt;&#x3D; Node.val &lt;&#x3D; 100</li>
+<li>-100 &lt;= Node.val &lt;= 100</li>
 </ul>
-</blockquote>
-<blockquote>
 <p><strong>进阶：</strong> 递归算法很简单，你可以通过迭代算法完成吗？</p>
 </blockquote>
 <h3 id="Approach-1-递归"><a href="#Approach-1-递归" class="headerlink" title="Approach 1:  递归"></a>Approach 1:  递归</h3><p><strong>思路与算法</strong></p>
 <p>首先我们需要了解什么是二叉树的前序遍历：按照访问根节点——左子树——右子树的方式遍历这棵树，而在访问左子树或者右子树的时候，我们按照同样的方式遍历，直到遍历完整棵树。因此整个遍历过程天然具有递归的性质，我们可以直接用递归函数来模拟这一过程。</p>
 <p>定义 preorder(root) 表示当前遍历到 root 节点的答案。按照定义，我们只要首先将 root 节点的值加入答案，然后递归调用 preorder(root.left) 来遍历 root 节点的左子树，最后递归调用 preorder(root.right) 来遍历 root 节点的右子树即可，递归终止的条件为碰到空节点。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">preorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">preorder</span>(<span class="params">root: TreeNode</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            res.append(root.val)</span><br><span class="line">            preorder(root.left)</span><br><span class="line">            preorder(root.right)</span><br><span class="line">        </span><br><span class="line">        res = <span class="built_in">list</span>()</span><br><span class="line">        preorder(root)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li>时间复杂度：$$O(n)$$，其中 n 是二叉树的节点数。每一个节点恰好被遍历一次。</li>
-<li>空间复杂度：$$O(n)$$，为递归过程中栈的开销，平均情况下为 $$O(\log n)$$，最坏情况下树呈现链状，为 $$O(n)$$。</li>
+<li>时间复杂度：<script type="math/tex">O(n)</script>，其中 n 是二叉树的节点数。每一个节点恰好被遍历一次。</li>
+<li>空间复杂度：<script type="math/tex">O(n)</script>，为递归过程中栈的开销，平均情况下为 <script type="math/tex">O(\log n)</script>，最坏情况下树呈现链状，为 <script type="math/tex">O(n)</script>。</li>
 </ul>
 <h3 id="Approach-2-迭代"><a href="#Approach-2-迭代" class="headerlink" title="Approach 2: 迭代"></a>Approach 2: 迭代</h3><p>我们也可以用迭代的方式实现方法一的递归函数，两种方式是等价的，区别在于递归的时候隐式地维护了一个栈，而我们在迭代的时候需要显式地将这个栈模拟出来，其余的实现与细节都相同，具体可以参考下面的代码。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">preorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        res = <span class="built_in">list</span>()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">        stack = []</span><br><span class="line">        node = root</span><br><span class="line">        <span class="keyword">while</span> stack <span class="keyword">or</span> node:</span><br><span class="line">            <span class="keyword">while</span> node:</span><br><span class="line">                res.append(node.val)</span><br><span class="line">                stack.append(node)</span><br><span class="line">                node = node.left</span><br><span class="line">            node = stack.pop()</span><br><span class="line">            node = node.right</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：O(n)，其中 n 是二叉树的节点数。每一个节点恰好被遍历一次。</li>
@@ -236,7 +226,6 @@
 </ul>
 <p>这样我们利用 Morris 遍历的方法，前序遍历该二叉树，即可实现线性时间与常数空间的遍历。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">preorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        res = <span class="built_in">list</span>()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">        p1 = root</span><br><span class="line">        <span class="keyword">while</span> p1:</span><br><span class="line">            p2 = p1.left</span><br><span class="line">            <span class="keyword">if</span> p2:</span><br><span class="line">                <span class="keyword">while</span> p2.right <span class="keyword">and</span> p2.right != p1:</span><br><span class="line">                    p2 = p2.right</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> p2.right:</span><br><span class="line">                    res.append(p1.val)</span><br><span class="line">                    p2.right = p1</span><br><span class="line">                    p1 = p1.left</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    p2.right = <span class="literal">None</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res.append(p1.val)</span><br><span class="line">            p1 = p1.right</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：O(n)，其中 n 是二叉树的节点数。没有左子树的节点只被访问一次，有左子树的节点被访问两次。</li>
@@ -343,7 +332,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

@@ -13,7 +13,7 @@
 
     <title>
         
-          Q1603 Design Parking System-简单 - 伽蓝之堂 | Txing Blog
+          Q1603 Design Parking System-简单 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -182,20 +182,17 @@
 <p>Implement the ParkingSystem class:</p>
 <p>ParkingSystem(int big, int medium, int small) Initializes object of the ParkingSystem class. The number of slots for each parking space are given as part of the constructor.<br>bool addCar(int carType) Checks whether there is a parking space of carType for the car that wants to get into the parking lot. carType can be of three kinds: big, medium, or small, which are represented by 1, 2, and 3 respectively. A car can only park in a parking space of its carType. If there is no space available, return false, else park the car in that size space and return true.</p>
 <p><strong>Constraints:</strong></p>
-<p>0 &lt;&#x3D; big, medium, small &lt;&#x3D; 1000<br>carType is 1, 2, or 3<br>At most 1000 calls will be made to addCar</p>
-</blockquote>
-<blockquote>
+<p>0 &lt;= big, medium, small &lt;= 1000<br>carType is 1, 2, or 3<br>At most 1000 calls will be made to addCar</p>
 <p><strong>Example 1:</strong></p>
 <p>Input<br>[“ParkingSystem”, “addCar”, “addCar”, “addCar”, “addCar”]<br>[[1, 1, 0], [1], [2], [3], [1]]<br>Output<br>[null, true, true, false, false]</p>
-<p>Explanation<br>ParkingSystem parkingSystem &#x3D; new ParkingSystem(1, 1, 0);<br>parkingSystem.addCar(1); &#x2F;&#x2F; return true because there is 1 available slot for a big car<br>parkingSystem.addCar(2); &#x2F;&#x2F; return true because there is 1 available slot for a medium car<br>parkingSystem.addCar(3); &#x2F;&#x2F; return false because there is no available slot for a small car<br>parkingSystem.addCar(1); &#x2F;&#x2F; return false because there is no available slot for a big car. It is already occupied.</p>
+<p>Explanation<br>ParkingSystem parkingSystem = new ParkingSystem(1, 1, 0);<br>parkingSystem.addCar(1); // return true because there is 1 available slot for a big car<br>parkingSystem.addCar(2); // return true because there is 1 available slot for a medium car<br>parkingSystem.addCar(3); // return false because there is no available slot for a small car<br>parkingSystem.addCar(1); // return false because there is no available slot for a big car. It is already occupied.</p>
 </blockquote>
 <h3 id="Approach-1-直接处理"><a href="#Approach-1-直接处理" class="headerlink" title="Approach 1: 直接处理"></a>Approach 1: 直接处理</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ParkingSystem</span>:</span><br><span class="line">    carslots = [<span class="number">0</span>] * <span class="number">4</span> </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, big: <span class="built_in">int</span>, medium: <span class="built_in">int</span>, small: <span class="built_in">int</span></span>):</span><br><span class="line">        self.carslots[<span class="number">1</span>] = big</span><br><span class="line">        self.carslots[<span class="number">2</span>] = medium</span><br><span class="line">        self.carslots[<span class="number">3</span>] = small</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">addCar</span>(<span class="params">self, carType: <span class="built_in">int</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">if</span> self.carslots[carType] &gt; <span class="number">0</span>:</span><br><span class="line">            self.carslots[carType] -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"><span class="comment"># Your ParkingSystem object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"># obj = ParkingSystem(big, medium, small)</span></span><br><span class="line"><span class="comment"># param_1 = obj.addCar(carType)</span></span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li><p>时间复杂度：$$ O(n) $$ </p>
+<li><p>时间复杂度：<script type="math/tex">O(n)</script> </p>
 </li>
-<li><p>空间复杂度：$$ O(1) $$</p>
+<li><p>空间复杂度：<script type="math/tex">O(1)</script></p>
 </li>
 </ul>
 
@@ -297,7 +294,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

@@ -13,7 +13,7 @@
 
     <title>
         
-          Q824 Goat Latin - 伽蓝之堂 | Txing Blog
+          Q824 Goat Latin - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -192,16 +192,10 @@
 </li>
 </ul>
 <p>Return the final sentence representing the conversion from <code>S</code> to Goat Latin. </p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
 <p>Input: “I speak Goat Latin”<br>Output: “Imaa peaksmaaa oatGmaaaa atinLmaaaaa”</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 2:</strong></p>
 <p>Input: “The quick brown fox jumped over the lazy dog”<br>Output: “heTmaa uickqmaaa rownbmaaaa oxfmaaaaa umpedjmaaaaaa overmaaaaaaa hetmaaaaaaaa azylmaaaaaaaaa ogdmaaaaaaaaaa”</p>
-</blockquote>
-<blockquote>
 <p><strong>Note:</strong></p>
 <ul>
 <li><code>S</code> contains only uppercase, lowercase and spaces. Exactly one space between each word.</li>
@@ -211,7 +205,6 @@
 <h2 id="Approach-1-Direct-Solution"><a href="#Approach-1-Direct-Solution" class="headerlink" title="Approach 1: Direct Solution"></a>Approach 1: Direct Solution</h2><p><strong>Intuition and Algorithm</strong></p>
 <p>Here, we use a direct idea to the problem. </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">toGoatLatin</span>(<span class="params">self, S</span>):</span><br><span class="line">        out = []</span><br><span class="line">        <span class="keyword">for</span> i, w <span class="keyword">in</span> <span class="built_in">enumerate</span>(S.split(<span class="string">&#x27; &#x27;</span>)): <span class="comment"># 返回序号i和第i个单词</span></span><br><span class="line">            <span class="keyword">if</span> w[<span class="number">0</span>] <span class="keyword">not</span> <span class="keyword">in</span> <span class="built_in">list</span>(<span class="string">&#x27;aeiouAEIOU&#x27;</span>): <span class="comment"># Smart!</span></span><br><span class="line">                w = w[<span class="number">1</span>:] + w[<span class="number">0</span>]</span><br><span class="line">            out.append(w + <span class="string">&#x27;ma&#x27;</span> + <span class="string">&#x27;a&#x27;</span>*(i+<span class="number">1</span>))</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27; &#x27;</span>.join(out)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    S=<span class="string">&quot;I speak Goat Latin&quot;</span></span><br><span class="line">    solution=Solution().toGoatLatin(S)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
 <p><strong>Complexity Analysis</strong></p>
 <ul>
 <li>Time Complexity: <em>O</em>(<em>n</em>), where <em>n</em> is the total words of <code>S</code>.</li>
@@ -225,14 +218,11 @@
 <p>For each <code>word</code> in the sentence split, if it is a vowel we consider the word, otherwise we consider the rotation of the word (either <code>word[1:] + word[:1]</code> in Python, otherwise <code>word.substring(1) + word.substring(0, 1)</code>in Java).</p>
 <p>Afterwards, we add <code>&quot;ma&quot;</code>, the desired number of <code>&quot;a&quot;</code>‘s, and a space character.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">toGoatLatin</span>(<span class="params">self, S</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">convert</span>(<span class="params">word</span>):</span><br><span class="line">            <span class="keyword">if</span> word[<span class="number">0</span>] <span class="keyword">not</span> <span class="keyword">in</span> <span class="string">&#x27;aeiouAEIOU&#x27;</span>:</span><br><span class="line">                word = word[<span class="number">1</span>:] + word[:<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">return</span> word + <span class="string">&#x27;ma&#x27;</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot; &quot;</span>.join(convert(word) + <span class="string">&#x27;a&#x27;</span> * i</span><br><span class="line">                        <span class="keyword">for</span> i, word <span class="keyword">in</span> <span class="built_in">enumerate</span>(S.split(), <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
-
-
-
 <p><strong>Complexity Analysis</strong></p>
 <ul>
-<li><p>Time Complexity: <em>O</em>($$N^2​$$), where <em>N</em> is the length of <code>S</code>. This represents the complexity of rotating the word and adding extra <code>&quot;a&quot;</code> characters.</p>
+<li><p>Time Complexity: <em>O</em>(<script type="math/tex">N^2​</script>), where <em>N</em> is the length of <code>S</code>. This represents the complexity of rotating the word and adding extra <code>&quot;a&quot;</code> characters.</p>
 </li>
-<li><p>Space Complexity: <em>O</em>($$N^2$$), the space added to the answer by adding extra <code>&quot;a&quot;</code> characters.</p>
+<li><p>Space Complexity: <em>O</em>(<script type="math/tex">N^2</script>), the space added to the answer by adding extra <code>&quot;a&quot;</code> characters.</p>
 </li>
 <li><p>Runtime: 20 ms, faster than 71.17% of Python online submissions for Goat Latin.</p>
 </li>
@@ -341,7 +331,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

@@ -13,7 +13,7 @@
 
     <title>
         
-          Neuroscience | Reservoir Computing Model of Prefrontal Cortex - 伽蓝之堂 | Txing Blog
+          Neuroscience | Reservoir Computing Model of Prefrontal Cortex - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -179,14 +179,12 @@
 <p>这篇工作基于两篇之前的工作：</p>
 <ul>
 <li>Gupta AS, van der Meer MA, Touretzky DS, Redish AD. Hippocampal replay is not a simple function of experience. Neuron. 2010; 65(5):695–705. <a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.neuron.2010.01.034">https://doi.org/10.1016/j.neuron.2010.01.034</a> PMID: 20223204.  </li>
-<li>Liu K, Sibille J, Dragoi G. Generative Predictive Codes by Multiplexed Hippocampal Neuronal Tuplets. Neuron. 2018; 99(6):1329–41. e6. <a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.neuron.2018.07.047">https://doi.org/10.1016/j.neuron.2018.07.047</a> PMID: 30146305</li>
+<li>Liu K, Sibille J, Dragoi G. Generative Predictive Codes by Multiplexed Hippocampal Neuronal Tuplets. Neuron. 2018; 99(6):1329–41. e6. <a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.neuron.2018.07.047">https://doi.org/10.1016/j.neuron.2018.07.047</a> PMID: 30146305  </li>
 </ul>
 <p>使用海马体的序列重放功能，实现对运动序列的优化，最优路径重放的频率会更高。</p>
 <h2 id="主要工作"><a href="#主要工作" class="headerlink" title="主要工作"></a>主要工作</h2><ul>
-<li><p>使用RNN模拟PFC，因为皮层连接大部分是局部而复发性的。</p>
-</li>
-<li><p>解决TSP问题中的两个假设：</p>
-<ul>
+<li>使用RNN模拟PFC，因为皮层连接大部分是局部而复发性的。</li>
+<li>解决TSP问题中的两个假设：<ul>
 <li>非最优轨迹（non-optimal trajectories）里，奖励之间的距离比近最优轨迹（near-optimal  trajectories）中奖励之间的距离大。在重放中持有轨迹出现较少，以此规则获得最优轨迹。</li>
 <li>在最近激活的位置细胞重放中，正向和反向轨迹同时被编码。反向的重播允许模型在正方向和反方向上利用信息，但实际运动中，小鼠只会进行正向的运动。</li>
 </ul>
@@ -204,14 +202,14 @@
 <h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="Place-cell"><a href="#Place-cell" class="headerlink" title="Place-cell"></a>Place-cell</h3><ul>
 <li>基本设置：<ul>
 <li>时间步N</li>
-<li>轨迹$$L(t_1\rightarrow t_N)$$ </li>
-<li>位置$$S&#x3D;(x,y)$$</li>
-<li>2D高斯位置场：$$f_k(s)&#x3D;e^{-\frac{\Vert s-c_k\Vert^2}{w_k}}$$ ，$$k$$是位置细胞序号，$$f_k(s)$$是第k个位置细胞的平均发放率，$$w_k&#x3D;\frac{r_k^2}{-\log(\Theta)}$$是常数，用来约束位置神经元的最高激活大部分包含在以 $$$c_k$$为中心，$$r_k$$为半径的圆中</li>
-<li>$$r_k$$是第$$k$$个位置场的半径</li>
-<li>$$\Theta$$是控制位置细胞空间选择半径阈值</li>
+<li>轨迹<script type="math/tex">L(t_1\rightarrow t_N)</script> </li>
+<li>位置<script type="math/tex">S=(x,y)</script></li>
+<li>2D高斯位置场：<script type="math/tex">f_k(s)=e^{-\frac{\Vert s-c_k\Vert^2}{w_k}}</script> ，<script type="math/tex">k</script>是位置细胞序号，<script type="math/tex">f_k(s)</script>是第k个位置细胞的平均发放率，<script type="math/tex">w_k=\frac{r_k^2}{-\log(\Theta)}</script>是常数，用来约束位置神经元的最高激活大部分包含在以 <script type="math/tex">$c_k</script>为中心，<script type="math/tex">r_k</script>为半径的圆中</li>
+<li><script type="math/tex">r_k</script>是第<script type="math/tex">k</script>个位置场的半径</li>
+<li><script type="math/tex">\Theta</script>是控制位置细胞空间选择半径阈值</li>
 </ul>
 </li>
-<li>通过K个径向基函数来实现定位：$$X_{in}(t_n)&#x3D;{f_k(L(t_n))}_{k\in 1 \cdot\cdot\cdot K}$$</li>
+<li>通过K个径向基函数来实现定位：<script type="math/tex">X_{in}(t_n)=\{f_k(L(t_n))\}_{k\in 1 \cdot\cdot\cdot K}</script></li>
 <li>place cell可以进一步调研，这个跟脑内GPS有关（还有grid cell, head direction cell）</li>
 </ul>
 <h3 id="Hippocampus-replay"><a href="#Hippocampus-replay" class="headerlink" title="Hippocampus replay"></a>Hippocampus replay</h3><ul>
@@ -219,14 +217,19 @@
 </li>
 <li><p>random replay generative model   </p>
 </li>
-<li><p>a snippet $$S(n;s)&#x3D;X_{in}(t_n \rightarrow t_{n+s})$$</p>
-</li>
+<li>a snippet <script type="math/tex">S(n;s)=X_{in}(t_n \rightarrow t_{n+s})</script>  </li>
 </ul>
 <h3 id="Reward-propagation"><a href="#Reward-propagation" class="headerlink" title="Reward propagation"></a>Reward propagation</h3><ul>
-<li>使用TD-$$\lambda$$算法更新预测奖励V</li>
+<li>使用TD-<script type="math/tex">\lambda</script>算法更新预测奖励V</li>
 </ul>
-<h3 id="Snippet-generation-during-replay"><a href="#Snippet-generation-during-replay" class="headerlink" title="Snippet generation during replay"></a>Snippet generation during replay</h3><p>$$<br>U_{ffwd}&#x3D;W_{ffwd}*X_{in}(t_n)\<br>U_{rec}&#x3D;W_{rec}<em>X_{res}(t_{n-1})\<br>S(N;k)&#x3D;K\frac{1}{\sqrt{N}}\<br>U_{res}(t_n)&#x3D;U_{ffwd}+U_{rec}\<br>\tau \frac{\partial P_{res}}{\partial t}&#x3D;-P_{res}(t_{n-1})+U_{res}(t_n)\<br>P_{res}(t_n)&#x3D;h</em>U_{res}(t_n)+(1-h)*P_{res}(t_{n-1})\<br>X_{res}(t_n)&#x3D;\sigma_{res}(P_{res}(t_n);\Theta_{res}),\Theta_{res}&#x3D;0,\sigma_{res}&#x3D;\tanh<br>$$</p>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200925-1.png"></p>
+<h3 id="Snippet-generation-during-replay"><a href="#Snippet-generation-during-replay" class="headerlink" title="Snippet generation during replay"></a>Snippet generation during replay</h3><script type="math/tex; mode=display">
+U_{ffwd}=W_{ffwd}*X_{in}(t_n)\\
+U_{rec}=W_{rec}*X_{res}(t_{n-1})\\
+S(N;k)=K\frac{1}{\sqrt{N}}\\
+U_{res}(t_n)=U_{ffwd}+U_{rec}\\
+\tau \frac{\partial P_{res}}{\partial t}=-P_{res}(t_{n-1})+U_{res}(t_n)\\
+P_{res}(t_n)=h*U_{res}(t_n)+(1-h)*P_{res}(t_{n-1})\\
+X_{res}(t_n)=\sigma_{res}(P_{res}(t_n);\Theta_{res}),\Theta_{res}=0,\sigma_{res}=\tanh</script><p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200925-1.png" alt=""></p>
 <h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>上丘脑到丘脑底部回路superior colliculus–subthalamus (SC–S) pathway 是决定hunting的神经基础</p>
 
 
@@ -323,7 +326,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

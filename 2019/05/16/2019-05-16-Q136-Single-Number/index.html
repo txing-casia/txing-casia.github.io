@@ -13,7 +13,7 @@
 
     <title>
         
-          Q136 Single Number - 伽蓝之堂 | Txing Blog
+          Q136 Single Number - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -181,27 +181,18 @@
 
                 <h1 id="Single-Number"><a href="#Single-Number" class="headerlink" title="Single Number"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/single-number/">Single Number</a></h1><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>Given a <strong>non-empty</strong> array of integers, every element appears <em>twice</em> except for one. Find that single one.</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong><br>Input: [2,2,1]<br>Output: 1</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 2:</strong><br>Input: [4,1,2,1,2]<br>Output: 4</p>
-</blockquote>
-<blockquote>
 <p><strong>Note:</strong></p>
 <p>Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?</p>
 </blockquote>
 <h3 id="Approach-1-Math"><a href="#Approach-1-Math" class="headerlink" title="Approach 1: Math"></a>Approach 1: Math</h3><p><strong>Concept</strong></p>
-<p>$$2 * (a + b + c) - (a + a + b + b + c) &#x3D; c$$</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">singleNumber</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="number">2</span> * <span class="built_in">sum</span>(<span class="built_in">set</span>(nums)) - <span class="built_in">sum</span>(nums)</span><br></pre></td></tr></table></figure>
-
+<script type="math/tex; mode=display">2 * (a + b + c) - (a + a + b + b + c) = c</script><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">singleNumber</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="number">2</span> * <span class="built_in">sum</span>(<span class="built_in">set</span>(nums)) - <span class="built_in">sum</span>(nums)</span><br></pre></td></tr></table></figure>
 <ul>
 <li>Runtime: 32 ms, faster than 99.87% of Python3 online submissions for Single Number.</li>
 <li>Memory Usage: 15.1 MB, less than 14.91% of Python3 online submissions for Single Number.</li>
 </ul>
 <h3 id="Approach-2-Hash-Table"><a href="#Approach-2-Hash-Table" class="headerlink" title="Approach 2: Hash Table"></a>Approach 2: Hash Table</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">singleNumber</span>(<span class="params">self, nums</span>):</span><br><span class="line">        hash_table = &#123;&#125; <span class="comment"># 等同 hash_table=dict()</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                hash_table.pop(i) <span class="comment"># 如果字典为空，转入异常状态</span></span><br><span class="line">            <span class="keyword">except</span>:</span><br><span class="line">                hash_table[i] = <span class="number">1</span> <span class="comment"># 填充hash表</span></span><br><span class="line">        <span class="keyword">return</span> hash_table.popitem()[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>Runtime: 44 ms, faster than 68.21% of Python3 online submissions for Single Number.</li>
 <li>Memory Usage: 15.1 MB, less than 12.23% of Python3 online submissions for Single Number.</li>
@@ -307,7 +298,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

@@ -13,7 +13,7 @@
 
     <title>
         
-          Reinforcement Learning | Deep Deterministic Policy Gradient algorithm (DDPG) - 伽蓝之堂 | Txing Blog
+          Reinforcement Learning | Deep Deterministic Policy Gradient algorithm (DDPG) - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -186,7 +186,7 @@
 </li>
 <li><p>面向的应用场景：Many tasks of interest, most notably physical control tasks, have continuous (real valued) and high dimensional action spaces.</p>
 </li>
-<li><p>如果想把DQN用在连续的action space中，有一种办法是把action离散化。但是这样会大大增加action的维度，从而带来决策上的困难。例如一个3自由度的机器人，把每个关节角离散为10个角度，那么action space维度就会变为$$10^{3}$$。在需要精确控制的时候，这个问题会更加严重。（the number of actions increases exponentially with the number of degrees of freedom）。此外，这种粗略的离散化丢失了action的结构信息，可能会影响到问题的求解。</p>
+<li><p>如果想把DQN用在连续的action space中，有一种办法是把action离散化。但是这样会大大增加action的维度，从而带来决策上的困难。例如一个3自由度的机器人，把每个关节角离散为10个角度，那么action space维度就会变为<script type="math/tex">10^{3}</script>。在需要精确控制的时候，这个问题会更加严重。（the number of actions increases exponentially with the number of degrees of freedom）。此外，这种粗略的离散化丢失了action的结构信息，可能会影响到问题的求解。</p>
 </li>
 <li><p>DDPG本质：In this work we present a model-free, off-policy actor-critic algorithm using deep function approximators that can learn policies in high-dimensional, continuous action spaces.</p>
 </li>
@@ -195,12 +195,12 @@
 <li><p>DQN is able to learn value functions using such function approximators in a stable and robust way due to two innovations: </p>
 <ul>
 <li>the network is trained off-policy with samples from a <strong>replay buffer</strong> to minimize correlations between samples; </li>
-<li>the network is trained with a <strong>target Q network</strong> to give consistent targets during temporal difference backups</li>
+<li>the network is trained with a <strong>target Q network</strong> to give consistent targets during temporal difference backups </li>
 </ul>
 </li>
 <li><p>DDPG在实验中用摄像机的画面提取低维信息（例如：cartesian coordinates  or joint angles 笛卡尔坐标或者关节角），将其作为observation。using both low-dimensional observations (e.g. joint angles) and directly from pixels.</p>
 </li>
-<li><p>Here, we assumed the environment is fully-observed so $$s_t &#x3D; x_t$$. </p>
+<li><p>Here, we assumed the environment is fully-observed so <script type="math/tex">s_t = x_t</script>. </p>
 </li>
 <li><p>replay buffer + soft updates</p>
 </li>
@@ -208,23 +208,23 @@
 <p><strong>DDPG algorithm</strong></p>
 <blockquote>
 <hr>
-<p>Randomly initialize critic network $$Q(s,a\mid \theta^Q)$$ and actor $$\mu(s\mid\theta^{,u})$$ with weights $$\theta^Q$$ and $$\theta^{\mu}$$</p>
-<p>Initialize target network $$Q’$$ and $$\mu’$$ with weights $$\theta^{Q’}\leftarrow \theta^{Q}$$, $$\theta^{\mu’}\leftarrow \theta^{\mu}$$</p>
-<p>Initialize replay buffer $$R$$<br><strong>For</strong> $$episode &#x3D; 1$$, $$M$$ <strong>do</strong> </p>
-<p>—- Initialize a random process $$\mathscr{N}$$ for action exploration<br>—- Receive initial observation state $$s_1$$</p>
-<p>—- <strong>For</strong> $$t &#x3D; 1, T$$ <strong>do</strong> </p>
-<p>—- —- Select action $$a_t &#x3D; \mu(s_t\mid\theta^{\mu}) + \mathscr{N}_t$$ according to the current policy and exploration noise </p>
-<p>—- —- Execute action at and observe reward $$r_t$$ and observe new state $$s_{t+1}$$</p>
-<p>—- —- Store transition $$(s_t,a_t,r_t,s_{t+1})$$ in $$R$$</p>
-<p>—- —- Sample a random minibatch of $$N$$ transitions $$(s_t,a_t,r_t,s_{t+1})$$ from $$R$$</p>
-<p>—- —- Set $$y_i &#x3D; r_i + \gamma Q’(s_{i+1},\mu’(s_{i+1}\midθ^{\mu’})\mid \theta ^{Q’})$$</p>
-<p>—- —- Update critic by minimizing the loss: $$L &#x3D; \frac{1}{N} \sum_i(y_i - Q(s_i,a_i \mid \theta^Q))^2$$</p>
-<p>—- —- Update the actor policy using the sampled policy gradient: </p>
-<p>—- —- —- $$\triangledown <em>{\theta^{\mu}}J \approx \frac{1}{N}\sum\triangledown_a Q(s,a\mid \theta^Q) \mid <em>{s&#x3D;s_i,a&#x3D;\mu(s_i)}\triangledown</em>{\theta^{\mu}}\mu(s \mid \theta^{\mu})\mid</em>{s_i}$$</p>
-<p>—- —- Update the target networks: </p>
-<p>—- —- —- $$\theta^{Q’}\leftarrow\tau\theta^Q+(1-\tau)\theta^{Q’}$$, </p>
-<p>—- —- —- $$\theta^{\mu’}\leftarrow\tau\theta^{\mu}+(1-\tau)\theta^{\mu’}$$</p>
-<p>—- <strong>end For</strong> </p>
+<p>Randomly initialize critic network <script type="math/tex">Q(s,a\mid \theta^Q)</script> and actor <script type="math/tex">\mu(s\mid\theta^{\,u})</script> with weights <script type="math/tex">\theta^Q</script> and <script type="math/tex">\theta^{\mu}</script></p>
+<p>Initialize target network <script type="math/tex">Q'</script> and <script type="math/tex">\mu'</script> with weights <script type="math/tex">\theta^{Q'}\leftarrow \theta^{Q}</script>, <script type="math/tex">\theta^{\mu'}\leftarrow \theta^{\mu}</script></p>
+<p>Initialize replay buffer <script type="math/tex">R</script><br><strong>For</strong> <script type="math/tex">episode = 1</script>, <script type="math/tex">M</script> <strong>do</strong> </p>
+<p>—— Initialize a random process <script type="math/tex">\mathscr{N}</script> for action exploration<br>—— Receive initial observation state <script type="math/tex">s_1</script></p>
+<p>—— <strong>For</strong> <script type="math/tex">t = 1, T</script> <strong>do</strong> </p>
+<p>—— —— Select action <script type="math/tex">a_t = \mu(s_t\mid\theta^{\mu}) + \mathscr{N}_t</script> according to the current policy and exploration noise </p>
+<p>—— —— Execute action at and observe reward <script type="math/tex">r_t</script> and observe new state <script type="math/tex">s_{t+1}</script></p>
+<p>—— —— Store transition <script type="math/tex">(s_t,a_t,r_t,s_{t+1})</script> in <script type="math/tex">R</script></p>
+<p>—— —— Sample a random minibatch of <script type="math/tex">N</script> transitions <script type="math/tex">(s_t,a_t,r_t,s_{t+1})</script> from <script type="math/tex">R</script></p>
+<p>—— —— Set <script type="math/tex">y_i = r_i + \gamma Q'(s_{i+1},\mu'(s_{i+1}\midθ^{\mu'})\mid \theta ^{Q'})</script></p>
+<p>—— —— Update critic by minimizing the loss: <script type="math/tex">L = \frac{1}{N} \sum_i(y_i - Q(s_i,a_i \mid \theta^Q))^2</script></p>
+<p>—— —— Update the actor policy using the sampled policy gradient: </p>
+<p>—— —— —— <script type="math/tex">\triangledown _{\theta^{\mu}}J \approx \frac{1}{N}\sum\triangledown_a Q(s,a\mid \theta^Q) \mid _{s=s_i,a=\mu(s_i)}\triangledown_{\theta^{\mu}}\mu(s \mid \theta^{\mu})\mid_{s_i}</script></p>
+<p>—— —— Update the target networks: </p>
+<p>—— —— —— <script type="math/tex">\theta^{Q'}\leftarrow\tau\theta^Q+(1-\tau)\theta^{Q'}</script>, </p>
+<p>—— —— —— <script type="math/tex">\theta^{\mu'}\leftarrow\tau\theta^{\mu}+(1-\tau)\theta^{\mu'}</script></p>
+<p>—— <strong>end For</strong> </p>
 <p><strong>end For</strong></p>
 </blockquote>
 <hr>
@@ -324,7 +324,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

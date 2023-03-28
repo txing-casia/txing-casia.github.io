@@ -13,7 +13,7 @@
 
     <title>
         
-          Q766 Toeplitz Matrix - 伽蓝之堂 | Txing Blog
+          Q766 Toeplitz Matrix - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -180,16 +180,10 @@
                 <h1 id="Toeplitz-Matrix"><a href="#Toeplitz-Matrix" class="headerlink" title="Toeplitz Matrix"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/toeplitz-matrix/">Toeplitz Matrix</a></h1><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>A matrix is <em>Toeplitz</em> if every diagonal from top-left to bottom-right has the same element.</p>
 <p>Now given an <code>M x N</code> matrix, return <code>True</code> if and only if the matrix is <em>Toeplitz</em>.</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1</strong>: </p>
-<p>Input:<br>matrix &#x3D; [<br>  [1,2,3,4],<br>  [5,1,2,3],<br>  [9,5,1,2]<br>]<br>Output: True<br>Explanation:<br>In the above grid, the diagonals are:<br>“[9]”, “[5, 5]”, “[1, 1, 1]”, “[2, 2, 2]”, “[3, 3]”, “[4]”.<br>In each diagonal all elements are the same, so the answer is True.</p>
-</blockquote>
-<blockquote>
+<p>Input:<br>matrix = [<br>  [1,2,3,4],<br>  [5,1,2,3],<br>  [9,5,1,2]<br>]<br>Output: True<br>Explanation:<br>In the above grid, the diagonals are:<br>“[9]”, “[5, 5]”, “[1, 1, 1]”, “[2, 2, 2]”, “[3, 3]”, “[4]”.<br>In each diagonal all elements are the same, so the answer is True.</p>
 <p><strong>Example 2</strong>: </p>
-<p>Input:<br>matrix &#x3D; [<br>  [1,2],<br>  [2,2]<br>]<br>Output: False<br>Explanation:<br>The diagonal “[1, 2]” has different elements.</p>
-</blockquote>
-<blockquote>
+<p>Input:<br>matrix = [<br>  [1,2],<br>  [2,2]<br>]<br>Output: False<br>Explanation:<br>The diagonal “[1, 2]” has different elements.</p>
 <p><strong>Note:</strong></p>
 <ul>
 <li><code>matrix</code> will be a 2D array of integers.</li>
@@ -203,13 +197,11 @@
 <p>It turns out two coordinates are on the same diagonal if and only if <code>r1 - c1 == r2 - c2</code>.</p>
 <p>This leads to the following idea: remember the value of that diagonal as <code>groups[r-c]</code>. If we see a mismatch, the matrix is not Toeplitz; otherwise it is.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isToeplitzMatrix</span>(<span class="params">self, matrix</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        groups = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> r, row <span class="keyword">in</span> <span class="built_in">enumerate</span>(matrix):</span><br><span class="line">            <span class="keyword">for</span> c, val <span class="keyword">in</span> <span class="built_in">enumerate</span>(row):</span><br><span class="line">                <span class="keyword">if</span> (r - c) <span class="keyword">not</span> <span class="keyword">in</span> groups: <span class="comment"># 行与列的差不在groups</span></span><br><span class="line">                    groups[r - c] = val</span><br><span class="line">                <span class="keyword">elif</span> groups[r - c] != val:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
-
 <hr>
 <h3 id="Approach-2-Compare-With-Top-Left-Neighbor"><a href="#Approach-2-Compare-With-Top-Left-Neighbor" class="headerlink" title="Approach 2: Compare With Top-Left Neighbor"></a>Approach 2: Compare With Top-Left Neighbor</h3><p><strong>Intuition and Algorithm</strong></p>
-<p>For each diagonal with elements in order $a_1, a_2, a_3, \dots, a_k$, we can check $a_1 &#x3D; a_2, a_2 &#x3D; a_3, \dots, a_{k-1} &#x3D; a_k$. The matrix is <em>Toeplitz</em> if and only if all of these conditions are true for all (top-left to bottom-right) diagonals.</p>
+<p>For each diagonal with elements in order $a<em>1, a_2, a_3, \dots, a_k$, we can check $a_1 = a_2, a_2 = a_3, \dots, a</em>{k-1} = a_k$. The matrix is <em>Toeplitz</em> if and only if all of these conditions are true for all (top-left to bottom-right) diagonals.</p>
 <p>Every element belongs to some diagonal, and it’s previous element (if it exists) is it’s top-left neighbor. Thus, for the square <code>(r, c)</code>, we only need to check <code>r == 0 OR c == 0 OR matrix[r-1][c-1] == matrix[r][c]</code>.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isToeplitzMatrix</span>(<span class="params">self, matrix</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">all</span>(r == <span class="number">0</span> <span class="keyword">or</span> c == <span class="number">0</span> <span class="keyword">or</span> matrix[r-<span class="number">1</span>][c-<span class="number">1</span>] == val</span><br><span class="line">                   <span class="keyword">for</span> r, row <span class="keyword">in</span> <span class="built_in">enumerate</span>(matrix)</span><br><span class="line">                   <span class="keyword">for</span> c, val <span class="keyword">in</span> <span class="built_in">enumerate</span>(row))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># all(),相当于or的含义，括号中有元素就返回True，无元素返回False</span></span><br></pre></td></tr></table></figure>
-
 <p>Runtime: 44 ms, faster than 98.04% of Python3 online submissions forToeplitz Matrix.</p>
 <p>Memory Usage: 13.1 MB, less than 6.86% of Python3 online submissions for Toeplitz Matrix.</p>
 
@@ -311,7 +303,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

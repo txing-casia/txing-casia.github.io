@@ -13,7 +13,7 @@
 
     <title>
         
-          Reinforcement Learning | On Learning Intrinsic Rewards for Policy Gradient Methods - 伽蓝之堂 | Txing Blog
+          Reinforcement Learning | On Learning Intrinsic Rewards for Policy Gradient Methods - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -247,21 +247,40 @@
 </li>
 </ul>
 <h3 id="Gradient-Based-Learning-of-Intrinsic-Rewards-A-Derivation"><a href="#Gradient-Based-Learning-of-Intrinsic-Rewards-A-Derivation" class="headerlink" title="Gradient-Based Learning of Intrinsic Rewards: A Derivation"></a>Gradient-Based Learning of Intrinsic Rewards: A Derivation</h3><h4 id="Policy-Gradient-based-RL"><a href="#Policy-Gradient-based-RL" class="headerlink" title="Policy Gradient based RL"></a>Policy Gradient based RL</h4><ul>
-<li><p>The value of a policy $$J(\theta)&#x3D;E[\sum^{\infty}_{t&#x3D;0} \gamma^tr_t]$$  </p>
+<li><p>The value of a policy <script type="math/tex">J(\theta)=E[\sum^{\infty}_{t=0} \gamma^tr_t]</script>  </p>
 </li>
-<li><p>the gradient of the value $$J(\theta)$$ is<br>$$<br>\nabla_{\theta} J(\theta)&#x3D;E_{\theta}[G(s_t,a_t) \nabla_{\theta} \log \pi_{\theta}(a_t|s_t)]\<br>G(s_t,a_t)&#x3D;\sum^{\infty}_{i&#x3D;t} \gamma^{i-t}r_i<br>$$<br>  G是到终点为止的return</p>
+<li><p>the gradient of the value <script type="math/tex">J(\theta)</script> is   </p>
+<script type="math/tex; mode=display">
+\nabla_{\theta} J(\theta)=E_{\theta}[G(s_t,a_t) \nabla_{\theta} \log \pi_{\theta}(a_t|s_t)]\\
+G(s_t,a_t)=\sum^{\infty}_{i=t} \gamma^{i-t}r_i</script><p>  G是到终点为止的return  </p>
 </li>
 </ul>
 <h4 id="LIRPG-Learning-Intrinsic-Rewards-for-Policy-Gradient"><a href="#LIRPG-Learning-Intrinsic-Rewards-for-Policy-Gradient" class="headerlink" title="LIRPG: Learning Intrinsic Rewards for Policy Gradient"></a>LIRPG: Learning Intrinsic Rewards for Policy Gradient</h4><p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210719-1.png" alt="Learning Intrinsic Rewards for Policy Gradient"></p>
 <p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210719-2.png" alt="Algorithm 1 LIRPG: Learning Intrinsic Reward for Policy Gradient"></p>
 <ul>
 <li><p><strong>Updating Policy Parameters (θ)</strong></p>
-<p>使用内部和外部奖励之和来更新 $$\theta$$<br>$$<br>\begin{align}<br>\theta’&amp;&#x3D;\theta+\alpha\nabla_{\theta} J^{ex+in}(\theta)\<br>&amp;\approx \theta +\alpha G^{ex+in}(s_t,a_t) \nabla_{\theta} \log \pi_{\theta}(a_t|s_t)<br>\end{align}<br>$$</p>
-</li>
-<li><p><strong>Updating Intrinsic Reward Parameters (η)</strong></p>
-</li>
+<p>使用内部和外部奖励之和来更新 <script type="math/tex">\theta</script>  </p>
+<script type="math/tex; mode=display">
+\begin{align}
+\theta'&=\theta+\alpha\nabla_{\theta} J^{ex+in}(\theta)\\
+&\approx \theta +\alpha G^{ex+in}(s_t,a_t) \nabla_{\theta} \log \pi_{\theta}(a_t|s_t)
+\end{align}</script></li>
 </ul>
-<p>Given an episode and the updated policy parameters $$\theta’$$ , we update intrinsic reward parameters.<br>$$<br>\begin{align}<br>\nabla_{\eta} J^{ex}&amp;&#x3D;\nabla_{\theta’}J^{ex}\nabla_{\eta}\theta’\<br>\nabla_{\theta’}J^{ex} &amp;\approx G^{ex}(s_t,a_t) \nabla_{\theta’}\log \pi_{\theta’}(a_t \mid s_t)\<br>\nabla_{\eta} \theta’ &amp; &#x3D;\nabla_{\eta}(\theta+\alpha G^{ex+in}(s_t,a_t)\nabla_{\theta}\log \pi_{\theta}(a_t|s_t))\<br>&amp;&#x3D; \nabla_{\eta}(\alpha G^{ex+in}(s_t,a_t) \nabla_{\theta}\log \pi_{\theta}(a_t|s_t)))\<br>&amp;&#x3D; \nabla_{\eta}(\alpha \lambda G^{in}(s_t,a_t) \nabla_{\theta}\log \pi_{\theta}(a_t|s_t)))\<br>&amp;&#x3D; \alpha \lambda \sum^{\infty}<em>{i&#x3D;t} \gamma^{i-t}\nabla</em>{\eta} r^{in}<em>{\eta}(s_i,a_i)\nabla</em>{\theta} \log \pi_{\theta}(a_t\mid s_t)<br>\end{align}<br>$$<br>  The importance sampling:<br>$$<br>\nabla_{\theta’} J^{ex}&#x3D;G^{ex}(s_t,a_t)\frac{\nabla_{\theta’}\pi_{\theta’}(a_t\mid s_t)}{\pi_{\theta}(a_t\mid s_t)}\<br>$$<br>  重要性采样就是假设数据属于p(x)分布，但是实际采样是以q(x)分布采样的，需要乘以一个权重，把数据转换到p(x)分布，也就是重要性权重。  </p>
+<ul>
+<li><strong>Updating Intrinsic Reward Parameters (η)</strong></li>
+</ul>
+<p>Given an episode and the updated policy parameters <script type="math/tex">\theta'</script> , we update intrinsic reward parameters.  </p>
+<script type="math/tex; mode=display">
+\begin{align}
+\nabla_{\eta} J^{ex}&=\nabla_{\theta'}J^{ex}\nabla_{\eta}\theta'\\
+\nabla_{\theta'}J^{ex} &\approx G^{ex}(s_t,a_t) \nabla_{\theta'}\log \pi_{\theta'}(a_t \mid s_t)\\
+\nabla_{\eta} \theta' & =\nabla_{\eta}(\theta+\alpha G^{ex+in}(s_t,a_t)\nabla_{\theta}\log \pi_{\theta}(a_t|s_t))\\
+&= \nabla_{\eta}(\alpha G^{ex+in}(s_t,a_t) \nabla_{\theta}\log \pi_{\theta}(a_t|s_t)))\\
+&= \nabla_{\eta}(\alpha \lambda G^{in}(s_t,a_t) \nabla_{\theta}\log \pi_{\theta}(a_t|s_t)))\\
+&= \alpha \lambda \sum^{\infty}_{i=t} \gamma^{i-t}\nabla_{\eta} r^{in}_{\eta}(s_i,a_i)\nabla_{\theta} \log \pi_{\theta}(a_t\mid s_t)
+\end{align}</script><p>  The importance sampling:  </p>
+<script type="math/tex; mode=display">
+\nabla_{\theta'} J^{ex}=G^{ex}(s_t,a_t)\frac{\nabla_{\theta'}\pi_{\theta'}(a_t\mid s_t)}{\pi_{\theta}(a_t\mid s_t)}\\</script><p>  重要性采样就是假设数据属于p(x)分布，但是实际采样是以q(x)分布采样的，需要乘以一个权重，把数据转换到p(x)分布，也就是重要性权重。  </p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>  整个工作还是很漂亮的，尤其的这两层的梯度推导（需要结合途中公式和文本中的公式来看）。后面考虑再看几篇本质reward的文章，看看还有什么构造方式。  </p>
 
 
@@ -272,7 +291,7 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2021/07/18/2021-07-18-Q688-马在棋盘上的概率-中等-动态规划/" data-toggle="tooltip" data-placement="top" title="Q688-马在棋盘上的概率-中等-动态规划">&larr; Previous Post</a>
+                            <a href="/2021/07/18/2021-07-18-Q200. 岛屿数量-中等-深度and广度优先搜索/" data-toggle="tooltip" data-placement="top" title="Q200-岛屿数量-中等-深度and广度优先搜索">&larr; Previous Post</a>
                         </li>
                     
                     
@@ -360,7 +379,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

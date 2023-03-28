@@ -13,7 +13,7 @@
 
     <title>
         
-          Q617 Merge Two Binary Trees-简单-深度/广度优先搜索 - 伽蓝之堂 | Txing Blog
+          Q617 Merge Two Binary Trees-简单-深度/广度优先搜索 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -185,18 +185,15 @@
 <p>Given two binary trees and imagine that when you put one of them to cover the other, some nodes of the two trees are overlapped while the others are not.</p>
 <p>You need to merge them into a new binary tree. The merge rule is that if two nodes overlap, then sum node values up as the new value of the merged node. Otherwise, the NOT null node will be used as the node of new tree.</p>
 <p><strong>Note:</strong> The merging process must start from the root nodes of both trees.</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Input: </span><br><span class="line">	Tree 1                     Tree 2                  </span><br><span class="line">          1                         2                             </span><br><span class="line">         / \                       / \                            </span><br><span class="line">        3   2                     1   3                        </span><br><span class="line">       /                           \   \                      </span><br><span class="line">      5                             4   7                  </span><br><span class="line">Output: </span><br><span class="line">Merged tree:</span><br><span class="line">	     3</span><br><span class="line">	    / \</span><br><span class="line">	   4   5</span><br><span class="line">	  / \   \ </span><br><span class="line">	 5   4   7</span><br></pre></td></tr></table></figure>
 </blockquote>
 <h3 id="Approach-1-DFS"><a href="#Approach-1-DFS" class="headerlink" title="Approach 1: DFS"></a>Approach 1: DFS</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">mergeTrees</span>(<span class="params">self, t1: TreeNode, t2: TreeNode</span>) -&gt; TreeNode:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> t1:</span><br><span class="line">            <span class="keyword">return</span> t2</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> t2:</span><br><span class="line">            <span class="keyword">return</span> t1</span><br><span class="line"></span><br><span class="line">        merged = TreeNode(t1.val + t2.val)</span><br><span class="line">        merged.left = self.mergeTrees(t1.left, t2.left)</span><br><span class="line">        merged.right = self.mergeTrees(t1.right, t2.right)</span><br><span class="line">        <span class="keyword">return</span> merged</span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li><p>时间复杂度：$$O(\min(m,n))$$，其中 m 和 n 分别是两个二叉树的节点个数。对两个二叉树同时进行深度优先搜索，只有当两个二叉树中的对应节点都不为空时才会对该节点进行显性合并操作，因此被访问到的节点数不会超过较小的二叉树的节点数。</p>
+<li><p>时间复杂度：<script type="math/tex">O(\min(m,n))</script>，其中 m 和 n 分别是两个二叉树的节点个数。对两个二叉树同时进行深度优先搜索，只有当两个二叉树中的对应节点都不为空时才会对该节点进行显性合并操作，因此被访问到的节点数不会超过较小的二叉树的节点数。</p>
 </li>
-<li><p>空间复杂度：$$O(\min(m,n))$$，其中 m 和 n 分别是两个二叉树的节点个数。空间复杂度取决于递归调用的层数，递归调用的层数不会超过较小的二叉树的最大高度，最坏情况下，二叉树的高度等于节点数。</p>
+<li><p>空间复杂度：<script type="math/tex">O(\min(m,n))</script>，其中 m 和 n 分别是两个二叉树的节点个数。空间复杂度取决于递归调用的层数，递归调用的层数不会超过较小的二叉树的最大高度，最坏情况下，二叉树的高度等于节点数。</p>
 </li>
 </ul>
 <h2 id="Approach-2-BFS"><a href="#Approach-2-BFS" class="headerlink" title="Approach 2: BFS"></a>Approach 2: BFS</h2><p>也可以使用广度优先搜索合并两个二叉树。首先判断两个二叉树是否为空，如果两个二叉树都为空，则合并后的二叉树也为空，如果只有一个二叉树为空，则合并后的二叉树为另一个非空的二叉树。</p>
@@ -211,12 +208,11 @@
 </ul>
 <p>对于右子节点和右子树，处理方法与左子节点和左子树相同。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">mergeTrees</span>(<span class="params">self, t1: TreeNode, t2: TreeNode</span>) -&gt; TreeNode:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> t1:</span><br><span class="line">            <span class="keyword">return</span> t2</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> t2:</span><br><span class="line">            <span class="keyword">return</span> t1</span><br><span class="line">        </span><br><span class="line">        merged = TreeNode(t1.val + t2.val)</span><br><span class="line">        queue = collections.deque([merged])</span><br><span class="line">        queue1 = collections.deque([t1])</span><br><span class="line">        queue2 = collections.deque([t2])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> queue1 <span class="keyword">and</span> queue2:</span><br><span class="line">            node = queue.popleft()</span><br><span class="line">            node1 = queue1.popleft()</span><br><span class="line">            node2 = queue2.popleft()</span><br><span class="line">            left1, right1 = node1.left, node1.right</span><br><span class="line">            left2, right2 = node2.left, node2.right</span><br><span class="line">            <span class="keyword">if</span> left1 <span class="keyword">or</span> left2:</span><br><span class="line">                <span class="keyword">if</span> left1 <span class="keyword">and</span> left2:</span><br><span class="line">                    left = TreeNode(left1.val + left2.val)</span><br><span class="line">                    node.left = left</span><br><span class="line">                    queue.append(left)</span><br><span class="line">                    queue1.append(left1)</span><br><span class="line">                    queue2.append(left2)</span><br><span class="line">                <span class="keyword">elif</span> left1:</span><br><span class="line">                    node.left = left1</span><br><span class="line">                <span class="keyword">elif</span> left2:</span><br><span class="line">                    node.left = left2</span><br><span class="line">            <span class="keyword">if</span> right1 <span class="keyword">or</span> right2:</span><br><span class="line">                <span class="keyword">if</span> right1 <span class="keyword">and</span> right2:</span><br><span class="line">                    right = TreeNode(right1.val + right2.val)</span><br><span class="line">                    node.right = right</span><br><span class="line">                    queue.append(right)</span><br><span class="line">                    queue1.append(right1)</span><br><span class="line">                    queue2.append(right2)</span><br><span class="line">                <span class="keyword">elif</span> right1:</span><br><span class="line">                    node.right = right1</span><br><span class="line">                <span class="keyword">elif</span> right2:</span><br><span class="line">                    node.right = right2</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> merged</span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li><p>时间复杂度：$$O(\min(m,n))$$，其中 m 和 n 分别是两个二叉树的节点个数。对两个二叉树同时进行广度优先搜索，只有当两个二叉树中的对应节点都不为空时才会访问到该节点，因此被访问到的节点数不会超过较小的二叉树的节点数。</p>
+<li><p>时间复杂度：<script type="math/tex">O(\min(m,n))</script>，其中 m 和 n 分别是两个二叉树的节点个数。对两个二叉树同时进行广度优先搜索，只有当两个二叉树中的对应节点都不为空时才会访问到该节点，因此被访问到的节点数不会超过较小的二叉树的节点数。</p>
 </li>
-<li><p>空间复杂度：$$O(\min(m,n))$$，其中 m 和 n 分别是两个二叉树的节点个数。空间复杂度取决于队列中的元素个数，队列中的元素个数不会超过较小的二叉树的节点数。</p>
+<li><p>空间复杂度：<script type="math/tex">O(\min(m,n))</script>，其中 m 和 n 分别是两个二叉树的节点个数。空间复杂度取决于队列中的元素个数，队列中的元素个数不会超过较小的二叉树的节点数。</p>
 </li>
 </ul>
 
@@ -322,7 +318,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

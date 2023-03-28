@@ -13,7 +13,7 @@
 
     <title>
         
-          JZOffer 55-平衡二叉树-II-简单-树 - 伽蓝之堂 | Txing Blog
+          JZOffer 55-平衡二叉树-II-简单-树 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -181,22 +181,14 @@
 
                 <h4 id="剑指-Offer-55-II-平衡二叉树"><a href="#剑指-Offer-55-II-平衡二叉树" class="headerlink" title="剑指 Offer 55 - II. 平衡二叉树"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/">剑指 Offer 55 - II. 平衡二叉树</a></h4><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>输入一棵二叉树的根节点，判断该树是不是平衡二叉树。如果某二叉树中任意节点的左右子树的深度相差不超过1，那么它就是一棵平衡二叉树。</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
 <p>给定二叉树 <code>[3,9,20,null,null,15,7]</code></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">/ \</span><br><span class="line">9  20</span><br><span class="line"> /  \</span><br><span class="line">15   7</span><br></pre></td></tr></table></figure>
-
 <p>返回 <code>true</code> 。</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 2:</strong></p>
 <p>给定二叉树 <code>[1,2,2,3,3,null,null,4,4]</code></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">      1</span><br><span class="line">     / \</span><br><span class="line">    2   2</span><br><span class="line">   / \</span><br><span class="line">  3   3</span><br><span class="line"> / \</span><br><span class="line">4   4</span><br></pre></td></tr></table></figure>
-
 <p>返回 <code>false</code> 。</p>
-</blockquote>
-<blockquote>
 <p><strong>提示：</strong></p>
 <ul>
 <li><code>0 &lt;= 树的结点个数 &lt;= 10000</code></li>
@@ -212,8 +204,8 @@
 <ul>
 <li><p><strong>返回值：</strong></p>
 <ul>
-<li>当节点root 左 &#x2F; 右子树的深度差 $$\leq 1$$ ：则返回当前子树的深度，即节点 root 的左 &#x2F; 右子树的深度最大值 +1 （ max(left, right) + 1 ）；</li>
-<li>当节点root 左 &#x2F; 右子树的深度差 &gt; 2 ：则返回 -1 ，代表 此子树不是平衡树 。</li>
+<li>当节点root 左 / 右子树的深度差 <script type="math/tex">\leq 1</script> ：则返回当前子树的深度，即节点 root 的左 / 右子树的深度最大值 +1 （ max(left, right) + 1 ）；</li>
+<li>当节点root 左 / 右子树的深度差 &gt; 2 ：则返回 -1 ，代表 此子树不是平衡树 。</li>
 </ul>
 </li>
 <li><p><strong>终止条件：</strong></p>
@@ -227,10 +219,9 @@
 </ul>
 <p>isBalanced(root) 函数：</p>
 <ul>
-<li><strong>返回值</strong>： 若 recur(root) !&#x3D; -1 ，则说明此树平衡，返回 true ； 否则返回 false 。</li>
+<li><strong>返回值</strong>： 若 recur(root) != -1 ，则说明此树平衡，返回 true ； 否则返回 false 。</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isBalanced</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">recur</span>(<span class="params">root</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            left = recur(root.left)</span><br><span class="line">            <span class="keyword">if</span> left == -<span class="number">1</span>: <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">            right = recur(root.right)</span><br><span class="line">            <span class="keyword">if</span> right == -<span class="number">1</span>: <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">max</span>(left, right) + <span class="number">1</span> <span class="keyword">if</span> <span class="built_in">abs</span>(left - right) &lt;= <span class="number">1</span> <span class="keyword">else</span> -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> recur(root) != -<span class="number">1</span></span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度 O(N)： N 为树的节点数；最差情况下，需要递归遍历树的所有节点。</li>
@@ -239,12 +230,12 @@
 <h2 id="方法二：先序遍历-判断深度-（从顶至底）"><a href="#方法二：先序遍历-判断深度-（从顶至底）" class="headerlink" title="方法二：先序遍历 + 判断深度 （从顶至底）"></a>方法二：先序遍历 + 判断深度 （从顶至底）</h2><blockquote>
 <p>此方法容易想到，但会产生大量重复计算，时间复杂度较高。</p>
 </blockquote>
-<p>思路是构造一个获取当前子树的深度的函数 depth(root) （即 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/solution/mian-shi-ti-55-i-er-cha-shu-de-shen-du-xian-xu-bia/">面试题55 - I. 二叉树的深度 </a>），通过比较某子树的左右子树的深度差 abs(depth(root.left) - depth(root.right)) &lt;&#x3D; 1 是否成立，来判断某子树是否是二叉平衡树。若所有子树都平衡，则此树平衡。</p>
+<p>思路是构造一个获取当前子树的深度的函数 depth(root) （即 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/solution/mian-shi-ti-55-i-er-cha-shu-de-shen-du-xian-xu-bia/">面试题55 - I. 二叉树的深度 </a>），通过比较某子树的左右子树的深度差 abs(depth(root.left) - depth(root.right)) &lt;= 1 是否成立，来判断某子树是否是二叉平衡树。若所有子树都平衡，则此树平衡。</p>
 <p><strong>算法流程</strong>：<br>isBalanced(root) 函数： 判断树 root 是否平衡</p>
 <ul>
 <li><strong>特例处理</strong>： 若树根节点 root 为空，则直接返回 truetrue ；</li>
-<li><strong>返回值</strong>： 所有子树都需要满足平衡树性质，因此以下三者使用与逻辑 &amp;&amp;&amp;&amp; 连接;<ul>
-<li>abs(self.depth(root.left) - self.depth(root.right)) &lt;&#x3D; 1 ：判断 当前子树 是否是平衡树；</li>
+<li><strong>返回值</strong>： 所有子树都需要满足平衡树性质，因此以下三者使用与逻辑 \&amp;\&amp;&amp;&amp; 连接;<ul>
+<li>abs(self.depth(root.left) - self.depth(root.right)) &lt;= 1 ：判断 当前子树 是否是平衡树；</li>
 <li>self.isBalanced(root.left) ： 先序遍历递归，判断 当前子树的左子树 是否是平衡树；</li>
 <li>self.isBalanced(root.right) ： 先序遍历递归，判断 当前子树的右子树 是否是平衡树；</li>
 </ul>
@@ -253,24 +244,23 @@
 <p>depth(root) 函数： 计算树 root 的深度</p>
 <ul>
 <li><strong>终止条件</strong>： 当 root 为空，即越过叶子节点，则返回高度 0 ；</li>
-<li><strong>返回值</strong>： 返回左 &#x2F; 右子树的深度的最大值 +1 。</li>
+<li><strong>返回值</strong>： 返回左 / 右子树的深度的最大值 +1 。</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isBalanced</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root: <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">abs</span>(self.depth(root.left) - self.depth(root.right)) &lt;= <span class="number">1</span> <span class="keyword">and</span> \</span><br><span class="line">            self.isBalanced(root.left) <span class="keyword">and</span> self.isBalanced(root.right)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">depth</span>(<span class="params">self, root</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(self.depth(root.left), self.depth(root.right)) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li><p>时间复杂度 O(N) ：O(NlogN)： 最差情况下（为 “满二叉树” 时）， isBalanced(root) 遍历树所有节点，判断每个节点的深度 depth(root) 需要遍历 各子树的所有节点 。</p>
 <ul>
-<li><p>满二叉树高度的复杂度 O(log N) ，将满二叉树按层分为 log (N+1) 层；<br>通过调用 depth(root) ，判断二叉树各层的节点的对应子树的深度，需遍历节点数量为 $$N \times 1, \frac{N-1}{2} \times 2, \frac{N-3}{4} \times 4, \frac{N-7}{8} \times 8, …, 1 \times \frac{N+1}{2}$$。因此各层执行 depth(root) 的时间复杂度为 O(N)（每层开始，最多遍历 N 个节点，最少遍历 ￥￥$$\frac{N+1}{2} $$ 个节点）。</p>
+<li><p>满二叉树高度的复杂度 O(log N) ，将满二叉树按层分为 log (N+1) 层；<br>通过调用 depth(root) ，判断二叉树各层的节点的对应子树的深度，需遍历节点数量为 <script type="math/tex">N \times 1, \frac{N-1}{2} \times 2, \frac{N-3}{4} \times 4, \frac{N-7}{8} \times 8, ..., 1 \times \frac{N+1}{2}</script>。因此各层执行 depth(root) 的时间复杂度为 O(N)（每层开始，最多遍历 N 个节点，最少遍历 ￥￥<script type="math/tex">\frac{N+1}{2}</script> 个节点）。</p>
 </li>
 <li><blockquote>
-<p>其中，$$\frac{N-3}{4} \times 4 $$ 代表从此层开始总共需遍历 N-3 个节点，此层共有 44 个节点，因此每个子树需遍历 $$\frac{N-3}{4} $$个节点。</p>
+<p>其中，<script type="math/tex">\frac{N-3}{4} \times 4</script> 代表从此层开始总共需遍历 N-3 个节点，此层共有 44 个节点，因此每个子树需遍历 <script type="math/tex">\frac{N-3}{4}</script>个节点。</p>
 </blockquote>
-<p>因此，总体时间复杂度 &#x3D; 每层执行复杂度 $$\times$$ 层数复杂度 &#x3D; $$O(N \times log N)$$。</p>
+<p>因此，总体时间复杂度 = 每层执行复杂度 <script type="math/tex">\times</script> 层数复杂度 = <script type="math/tex">O(N \times log N)</script>。</p>
 </li>
 </ul>
 </li>
-<li><p>空间复杂度 O(N)：最差情况下（树退化为链表时），系统递归需要使用 O*(<em>N</em>) 的栈空间。</p>
+<li><p>空间复杂度 O(N)：最差情况下（树退化为链表时），系统递归需要使用 O<em>(</em>N*) 的栈空间。</p>
 </li>
 </ul>
 
@@ -374,7 +364,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

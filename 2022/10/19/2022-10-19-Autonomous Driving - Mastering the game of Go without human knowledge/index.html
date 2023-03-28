@@ -13,7 +13,7 @@
 
     <title>
         
-          Reinforcement Driving | Mastering the game of Go without human knowledge - 伽蓝之堂 | Txing Blog
+          Reinforcement Driving | Mastering the game of Go without human knowledge - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -175,67 +175,63 @@
 
                 <h2 id="Mastering-the-game-of-Go-without-human-knowledge"><a href="#Mastering-the-game-of-Go-without-human-knowledge" class="headerlink" title="Mastering the game of Go without human knowledge"></a>Mastering the game of Go without human knowledge</h2><p>AlphaGo和AlphaGo Master之后的又一力作，不同于AlphaGo学习人类棋谱，利用人类先验知识，AlphaGo Zero完全自学，并在学习三天后超越了AlphaGo，40天超越了AlphaGo Master。</p>
 <h3 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h3><h4 id="Reinforcement-learning-in-AlphaGo-Zero"><a href="#Reinforcement-learning-in-AlphaGo-Zero" class="headerlink" title="Reinforcement learning in AlphaGo Zero"></a>Reinforcement learning in AlphaGo Zero</h4><ul>
-<li><p>算法的特点是将RL的策略网络和价值网络合并，只改变输入层。神经网络表示为 $$(p,v)&#x3D;f_{\theta}(s)$$</p>
+<li><p>算法的特点是将RL的策略网络和价值网络合并，只改变输入层。神经网络表示为 <script type="math/tex">(p,v)=f_{\theta}(s)</script></p>
 <ul>
-<li>输入：棋局表征 $$s$$ 及其历史信息</li>
-<li>输出：下一步的落子概率 $$p$$ ，当前局面获胜概率 $$v$$</li>
-<li>训练目标是去拟合自我对弈里面产生的真实胜率 $$z$$ 和下面提到的 MCTS 产生的落子概率 $$π$$，即 $$(p,v)\rightarrow(π,z)$$。</li>
+<li>输入：棋局表征 <script type="math/tex">s</script> 及其历史信息</li>
+<li>输出：下一步的落子概率 <script type="math/tex">p</script> ，当前局面获胜概率 <script type="math/tex">v</script></li>
+<li>训练目标是去拟合自我对弈里面产生的真实胜率 <script type="math/tex">z</script> 和下面提到的 MCTS 产生的落子概率 <script type="math/tex">π</script>，即 <script type="math/tex">(p,v)\rightarrow(π,z)</script>。</li>
 </ul>
 </li>
-<li><p>MCTS（蒙特卡洛树搜索）使用 $$f_{\theta}$$ 进行自博弈，搜索策略 $$\pi$$ 一般优于网络估计的 $$p$$</p>
+<li><p>MCTS（蒙特卡洛树搜索）使用 <script type="math/tex">f_{\theta}</script> 进行自博弈，搜索策略 <script type="math/tex">\pi</script> 一般优于网络估计的 <script type="math/tex">p</script></p>
 <p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221019-1.jpg" alt="Self-play reinforcement learning in AlphaGo Zero"></p>
 </li>
 <li><p>因此，基于以下两点，可以实现训练：</p>
 <ol>
-<li>MCTS 优于网络 $$f_{\theta}(s)$$ ；</li>
-<li>$$f_{\theta}(s)$$ 性能提升后，MCTS自博弈的结果也更好，两者相互促进提升；</li>
+<li>MCTS 优于网络 <script type="math/tex">f_{\theta}(s)</script> ；</li>
+<li><script type="math/tex">f_{\theta}(s)</script> 性能提升后，MCTS自博弈的结果也更好，两者相互促进提升；</li>
 </ol>
 </li>
 <li><p>MCTS:</p>
 <ul>
 <li><p>搜索树使用神经网络策略引导仿真（自博弈）</p>
 </li>
-<li><p>搜索树的每一条边有一个先验概率 $$P(s,a)$$，一个访问数（visit count） $$N(s,a)$$，一个行为价值 $$Q(s,a)$$</p>
+<li><p>搜索树的每一条边有一个先验概率 <script type="math/tex">P(s,a)</script>，一个访问数（visit count） <script type="math/tex">N(s,a)</script>，一个行为价值 <script type="math/tex">Q(s,a)</script></p>
 </li>
-<li><p>每次仿真从根节点开始迭代进行，最大化置信上界 $$Q(s,a)+U(s,a)$$，直到达到访问过的叶子节点。$$U(s,a)\propto P(s,a)&#x2F;(1+N(s,a))$$</p>
+<li><p>每次仿真从根节点开始迭代进行，最大化置信上界 <script type="math/tex">Q(s,a)+U(s,a)</script>，直到达到访问过的叶子节点。<script type="math/tex">U(s,a)\propto P(s,a)/(1+N(s,a))</script></p>
 </li>
-<li><p>每个叶子节点位置仅被网络扩展和评估一次，以生成先验概率和评估值；$$(P(s’,\cdot),V(s’))&#x3D;f_{\theta}(s’)$$</p>
+<li><p>每个叶子节点位置仅被网络扩展和评估一次，以生成先验概率和评估值；<script type="math/tex">(P(s',\cdot),V(s'))=f_{\theta}(s')</script></p>
 </li>
-<li><p>每条边$$(s,a)$$每使用一次就增加访问数$$N(s,a)$$，并更新行为价值为仿真中的平均估计值，$$Q(s,a)&#x3D;1&#x2F;N(s,a)\sum_{s’\mid s,a\rightarrow s’} V(s’)$$ </p>
+<li><p>每条边<script type="math/tex">(s,a)</script>每使用一次就增加访问数<script type="math/tex">N(s,a)</script>，并更新行为价值为仿真中的平均估计值，<script type="math/tex">Q(s,a)=1/N(s,a)\sum_{s'\mid s,a\rightarrow s'} V(s')</script> </p>
 </li>
-<li><p>MCTS 使用的节点选择策略正比与节点访问数 $$\pi_{\alpha} \propto N(s,a)^{1&#x2F;\tau}$$，$$\tau$$ 是温度系数；</p>
+<li><p>MCTS 使用的节点选择策略正比与节点访问数 <script type="math/tex">\pi_{\alpha} \propto N(s,a)^{1/\tau}</script>，<script type="math/tex">\tau</script> 是温度系数；</p>
 </li>
-<li><p>仿真直到搜索的价值低于阈值或者到达最大次数，此时给出最终奖励$$r_T\in {-1,+1}$$</p>
+<li><p>仿真直到搜索的价值低于阈值或者到达最大次数，此时给出最终奖励<script type="math/tex">r_T\in \{-1,+1\}</script></p>
 </li>
-<li><p>每一时间步的数据存为$$(s_t,\pi_t,z_t)$$，$$z_t&#x3D;\pm r_T$$是当前玩家在第$$t$$步成为赢家获得的奖励</p>
+<li><p>每一时间步的数据存为<script type="math/tex">(s_t,\pi_t,z_t)</script>，<script type="math/tex">z_t=\pm r_T</script>是当前玩家在第<script type="math/tex">t</script>步成为赢家获得的奖励</p>
 </li>
-<li><p>网络优化：$$v\rightarrow z,p\rightarrow \pi$$</p>
+<li><p>网络优化：<script type="math/tex">v\rightarrow z,p\rightarrow \pi</script></p>
 </li>
 <li><p>损失函数为均方误差+交叉熵损失+网络权重的平方：</p>
-<p>$$l&#x3D;(z-v)^2-\pi^T\log p +c\mid\mid\theta\mid\mid^2$$</p>
-</li>
+<script type="math/tex; mode=display">l=(z-v)^2-\pi^T\log p +c\mid\mid\theta\mid\mid^2</script></li>
 </ul>
 </li>
 </ul>
 <h4 id="Empirical-analysis-of-AlphaGo-Zero-training"><a href="#Empirical-analysis-of-AlphaGo-Zero-training" class="headerlink" title="Empirical analysis of AlphaGo Zero training"></a>Empirical analysis of AlphaGo Zero training</h4><p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221019-2.jpg" alt="MCTS"></p>
 <ul>
-<li><p>MCTS行为选择策略为：$$a_t&#x3D;\arg\max_a (Q(s_t,a)+U(s_t,a))$$</p>
+<li><p>MCTS行为选择策略为：<script type="math/tex">a_t=\arg\max_a (Q(s_t,a)+U(s_t,a))</script></p>
 </li>
 <li><p>a.选择 每次仿真通过选择动作值Q和置信上限U之和最大的边来遍历树，U取决于存储的先验概率P和该边的访问次数N(一旦遍历就递增)。</p>
 </li>
-<li><p>b.扩展 扩展叶子节点，并用神经网络评估相应的棋局状态s</p>
-</li>
-<li><p>c.更新 行为价值Q被更新以跟踪该动作下的子树中所有评估值V的平均值</p>
-</li>
-<li><p>d.仿真 搜索完成后，将返回概率$$\pi$$，其与$$N^{1&#x2F;\tau}$$成比例，N是从根状态开始的节点访问计数，$$\tau$$是温度参数。</p>
+<li>b.扩展 扩展叶子节点，并用神经网络评估相应的棋局状态s</li>
+<li>c.更新 行为价值Q被更新以跟踪该动作下的子树中所有评估值V的平均值</li>
+<li><p>d.仿真 搜索完成后，将返回概率<script type="math/tex">\pi</script>，其与<script type="math/tex">N^{1/\tau}</script>成比例，N是从根状态开始的节点访问计数，<script type="math/tex">\tau</script>是温度参数。</p>
 </li>
 <li><p>附录有详细的MCTS计算方法！</p>
 </li>
-<li><p>后续性能展示过于知名，不再赘述</p>
-</li>
+<li>后续性能展示过于知名，不再赘述</li>
 </ul>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>MCTS与神经网络结合的思路可以借鉴，目前不清楚在其它任务中该框架的训练难度（GPU需求量）</p>
-<p>​	</p>
+<p>​    </p>
 
 
                 <hr>
@@ -331,7 +327,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

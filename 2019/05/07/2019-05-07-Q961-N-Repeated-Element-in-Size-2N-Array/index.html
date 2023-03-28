@@ -13,7 +13,7 @@
 
     <title>
         
-          Q961 N-Repeated Element in Size 2N Array - 伽蓝之堂 | Txing Blog
+          Q961 N-Repeated Element in Size 2N Array - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -180,20 +180,12 @@
                 <h1 id="N-Repeated-Element-in-Size-2N-Array"><a href="#N-Repeated-Element-in-Size-2N-Array" class="headerlink" title="N-Repeated Element in Size 2N Array"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/n-repeated-element-in-size-2n-array/">N-Repeated Element in Size 2N Array</a></h1><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>In a array <code>A</code> of size <code>2N</code>, there are <code>N+1</code> unique elements, and exactly one of these elements is repeated N times.</p>
 <p>Return the element repeated <code>N</code> times.</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1</strong>: </p>
 <p>Input: [1,2,3,3]<br>Output: 3</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 2</strong>: </p>
 <p>Input: [2,1,2,5,3,2]<br>Output: 2</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 3</strong>: </p>
 <p>Input: [5,1,5,2,5,3,5,4]<br>Output: 5</p>
-</blockquote>
-<blockquote>
 <p><strong>Note</strong>:</p>
 <ol>
 <li><code>4 &lt;= A.length &lt;= 10000</code></li>
@@ -204,7 +196,6 @@
 <h3 id="Approach-1-Hash-Table-Original-Answer"><a href="#Approach-1-Hash-Table-Original-Answer" class="headerlink" title="Approach 1: Hash Table (Original Answer)"></a>Approach 1: Hash Table (Original Answer)</h3><p><strong>Intuition and Algorithm</strong></p>
 <p>Using Hash table to distinguish repeated element in array <code>A</code>. </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">repeatedNTimes</span>(<span class="params">self, A</span>):</span><br><span class="line">        Hashmap=<span class="built_in">dict</span>()</span><br><span class="line">        <span class="comment"># 建立Hash Table</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(A)):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span>(A[i] <span class="keyword">in</span> Hashmap):</span><br><span class="line">                Hashmap[A[i]] = i <span class="comment">#键是数值，值是序号</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> A[i]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    A =[<span class="number">5</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">4</span>]</span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.repeatedNTimes(A)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>Runtime: 48 ms, faster than 85.41% of Python3 online submissions for N-Repeated Element in Size 2N Array.</li>
 <li>Memory Usage: 14.1 MB, less than 5.12% of Python3 online submissions for N-Repeated Element in Size 2N Array.</li>
@@ -308,7 +299,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

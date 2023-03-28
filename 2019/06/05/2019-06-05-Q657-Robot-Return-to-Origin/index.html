@@ -13,7 +13,7 @@
 
     <title>
         
-          Q657 Robot Return to Origin - 伽蓝之堂 | Txing Blog
+          Q657 Robot Return to Origin - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -183,12 +183,8 @@
 <p>There is a robot starting at position (0, 0), the origin, on a 2D plane. Given a sequence of its moves, judge if this robot <strong>ends up at (0, 0)</strong> after it completes its moves.</p>
 <p>The move sequence is represented by a string, and the character moves[i] represents its ith move. Valid moves are R (right), L (left), U (up), and D (down). If the robot returns to the origin after it finishes all of its moves, return true. Otherwise, return false.</p>
 <p><strong>Note</strong>: The way that the robot is “facing” is irrelevant. “R” will always make the robot move to the right once, “L” will always make it move left, etc. Also, assume that the magnitude of the robot’s movement is the same for each move.</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
 <p>Input: “UD”<br>Output: true<br>Explanation: The robot moves up once, and then down once. All moves have the same magnitude, so it ended up at the origin where it started. Therefore, we return true.</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 2:</strong></p>
 <p>Input: “LL”<br>Output: false<br>Explanation: The robot moves left twice. It ends up two “moves” to the left of the origin. We return false because it is not at the origin at the end of its moves.</p>
 </blockquote>
@@ -196,7 +192,6 @@
 <p>We can transform each <code>word</code> into it’s Morse Code representation.</p>
 <p>After, we put all transformations into a set <code>seen</code>, and return the size of the set.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">judgeCircle</span>(<span class="params">self, moves</span>):</span><br><span class="line">        Return=[<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> moves:</span><br><span class="line">            <span class="keyword">if</span> i==<span class="string">&#x27;U&#x27;</span>:</span><br><span class="line">                Return[<span class="number">0</span>] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> i==<span class="string">&#x27;D&#x27;</span>:</span><br><span class="line">                Return[<span class="number">0</span>] -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> i == <span class="string">&#x27;L&#x27;</span>:</span><br><span class="line">                Return[<span class="number">1</span>] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> i == <span class="string">&#x27;R&#x27;</span>:</span><br><span class="line">                Return[<span class="number">1</span>] -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">not</span>(<span class="built_in">bool</span>(Return[<span class="number">0</span>]) <span class="keyword">or</span> <span class="built_in">bool</span>(Return[<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    Action=[<span class="string">&#x27;U&#x27;</span>,<span class="string">&#x27;D&#x27;</span>]</span><br><span class="line">    solution=Solution().judgeCircle(Action)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
 <p><strong>Complexity Analysis</strong></p>
 <ul>
 <li>Time Complexity: <em>O</em>(<em>n</em>), where <em>n</em> is the amount of the movents in <code>moves</code>. </li>
@@ -305,7 +300,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

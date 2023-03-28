@@ -13,7 +13,7 @@
 
     <title>
         
-          Q82-删除排序链表中的重复元素 II-中等-链表 - 伽蓝之堂 | Txing Blog
+          Q82-删除排序链表中的重复元素 II-中等-链表 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -182,24 +182,16 @@
                 <h4 id="82-删除排序链表中的重复元素-II"><a href="#82-删除排序链表中的重复元素-II" class="headerlink" title="82. 删除排序链表中的重复元素 II"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list-ii/">82. 删除排序链表中的重复元素 II</a></h4><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>存在一个按升序排列的链表，给你这个链表的头节点 head ，请你删除链表中所有存在数字重复情况的节点，只保留原始链表中 没有重复出现 的数字。</p>
 <p>返回同样按升序排列的结果链表。</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
-<p>输入：head &#x3D; [1,2,3,3,4,4,5]<br>输出：[1,2,5]</p>
-</blockquote>
-<blockquote>
+<p>输入：head = [1,2,3,3,4,4,5]<br>输出：[1,2,5]</p>
 <p><strong>Example 2:</strong></p>
-<p>输入：head &#x3D; [7,9,6,6,7,8,3,0,9,5], k &#x3D; 5<br>输出：[7,9,6,6,8,7,3,0,9,5]</p>
-</blockquote>
-<blockquote>
+<p>输入：head = [7,9,6,6,7,8,3,0,9,5], k = 5<br>输出：[7,9,6,6,8,7,3,0,9,5]</p>
 <p><strong>Example 3:</strong></p>
-<p>输入：head &#x3D; [1,1,1,2,3]<br>输出：[2,3]</p>
-</blockquote>
-<blockquote>
+<p>输入：head = [1,1,1,2,3]<br>输出：[2,3]</p>
 <p><strong>提示：</strong></p>
 <ul>
 <li>链表中节点数目在范围 [0, 300] 内</li>
-<li>-100 &lt;&#x3D; Node.val &lt;&#x3D; 100</li>
+<li>-100 &lt;= Node.val &lt;= 100</li>
 <li>题目数据保证链表已经按升序排列</li>
 </ul>
 </blockquote>
@@ -211,7 +203,6 @@
 <li>注意 cur 和 dummy 怎么使用；</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">deleteDuplicates</span>(<span class="params">self, head: ListNode</span>) -&gt; ListNode:</span><br><span class="line">        <span class="comment"># 判断链表非空</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> head:</span><br><span class="line">            <span class="keyword">return</span> head</span><br><span class="line">        <span class="comment"># 头节点可能要修改，需要添加哑头节点</span></span><br><span class="line">        dummy = ListNode([])</span><br><span class="line">        dummy.<span class="built_in">next</span> = head</span><br><span class="line">        cur = dummy</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> cur.<span class="built_in">next</span> <span class="keyword">and</span> cur.<span class="built_in">next</span>.<span class="built_in">next</span>:</span><br><span class="line">            <span class="keyword">if</span> cur.<span class="built_in">next</span>.val == cur.<span class="built_in">next</span>.<span class="built_in">next</span>.val:</span><br><span class="line">                x = cur.<span class="built_in">next</span>.val</span><br><span class="line">                <span class="keyword">while</span> cur.<span class="built_in">next</span> <span class="keyword">and</span> cur.<span class="built_in">next</span>.val == x:</span><br><span class="line">                    cur.<span class="built_in">next</span> = cur.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                cur = cur.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">return</span> dummy.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    head = stringToListNode([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line">    solution=Solution().deleteDuplicates(head)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：O(n)，其中 n 是链表的节点数量</li>
@@ -226,16 +217,15 @@
 </ul>
 <p>什么时候需要递归呢？我们想一下这两种情况：</p>
 <ul>
-<li>如果 head.val !&#x3D; head.next.val ，说明头节点的值不等于下一个节点的值，所以当前的 head 节点必须保留；但是 head.next 节点要不要保留呢？我们还不知道，需要对 head.next 进行递归，即对 head.next 作为头节点的链表，去除值重复的节点。所以 head.next &#x3D; self.deleteDuplicates(head.next).</li>
-<li>如果 head.val &#x3D;&#x3D; head.next.val ，说明头节点的值等于下一个节点的值，所以当前的 head 节点必须删除，并且 head 之后所有与 head.val 相等的节点也都需要删除；删除到哪个节点为止呢？需要用 move 指针一直向后遍历寻找到与 head.val 不等的节点。此时 move 之前的节点都不保留了，因此返回 deleteDuplicates(move);</li>
+<li>如果 head.val != head.next.val ，说明头节点的值不等于下一个节点的值，所以当前的 head 节点必须保留；但是 head.next 节点要不要保留呢？我们还不知道，需要对 head.next 进行递归，即对 head.next 作为头节点的链表，去除值重复的节点。所以 head.next = self.deleteDuplicates(head.next).</li>
+<li>如果 head.val == head.next.val ，说明头节点的值等于下一个节点的值，所以当前的 head 节点必须删除，并且 head 之后所有与 head.val 相等的节点也都需要删除；删除到哪个节点为止呢？需要用 move 指针一直向后遍历寻找到与 head.val 不等的节点。此时 move 之前的节点都不保留了，因此返回 deleteDuplicates(move);</li>
 </ul>
 <p>题目让我们返回删除了值重复的节点后剩余的链表，结合上面两种递归调用的情况。</p>
 <ul>
-<li>如果 head.val !&#x3D; head.next.val ，头结点需要保留，因此返回的是 head；</li>
-<li>如果 head.val &#x3D;&#x3D; head.next.val ，头结点需要删除，需要返回的是deleteDuplicates(move);。</li>
+<li>如果 head.val != head.next.val ，头结点需要保留，因此返回的是 head；</li>
+<li>如果 head.val == head.next.val ，头结点需要删除，需要返回的是deleteDuplicates(move);。</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">deleteDuplicates1</span>(<span class="params">self, head</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> head <span class="keyword">or</span> <span class="keyword">not</span> head.<span class="built_in">next</span>:</span><br><span class="line">            <span class="keyword">return</span> head</span><br><span class="line">        <span class="keyword">if</span> head.val != head.<span class="built_in">next</span>.val:</span><br><span class="line">            head.<span class="built_in">next</span> = self.deleteDuplicates(head.<span class="built_in">next</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            move = head.<span class="built_in">next</span></span><br><span class="line">            <span class="keyword">while</span> move <span class="keyword">and</span> head.val == move.val:</span><br><span class="line">                move = move.<span class="built_in">next</span></span><br><span class="line">            <span class="keyword">return</span> self.deleteDuplicates(move)</span><br><span class="line">        <span class="keyword">return</span> head</span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：O(N)，每个节点访问了一次。</li>
@@ -250,12 +240,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2021/03/31/2021-03-31-Neuroscience - The posterior parietal cortex Sensorimotor interface for the planning and online control of visually guided movements/" data-toggle="tooltip" data-placement="top" title="Neuroscience | The posterior parietal cortex Sensorimotor interface for the planning and online control of visually guided movements">&larr; Previous Post</a>
+                            <a href="/2021/03/31/2021-03-31-Neuroscience - Adaptation to Visuomotor Rotation Through Interaction Between Posterior/" data-toggle="tooltip" data-placement="top" title="Neuroscience | Adaptation to Visuomotor Rotation Through Interaction Between Posterior Parietal and Motor Cortical Areas">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2021/03/30/2021-03-30-Reinforcement Learning - Sim-to-Real Transfer in Deep Reinforcement Learning for Robotics a Survey/" data-toggle="tooltip" data-placement="top" title="Reinforcement Learning | Sim-to-Real Transfer in Deep Reinforcement Learning for Robotics a Survey">Next Post &rarr;</a>
+                            <a href="/2021/03/31/2021-03-31-Neuroscience - The posterior parietal cortex Sensorimotor interface for the planning and online control of visually guided movements/" data-toggle="tooltip" data-placement="top" title="Neuroscience | The posterior parietal cortex Sensorimotor interface for the planning and online control of visually guided movements">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -342,7 +332,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

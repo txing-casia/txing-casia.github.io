@@ -13,7 +13,7 @@
 
     <title>
         
-          利用patch制作的对象在animation以及生成Gif文件时显示错误的问题 - 伽蓝之堂 | Txing Blog
+          利用patch制作的对象在animation以及生成Gif文件时显示错误的问题 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -174,7 +174,7 @@
                 post-container">
 
                 <h1 id="利用patch制作的对象在animation以及生成Gif文件时显示错误的问题"><a href="#利用patch制作的对象在animation以及生成Gif文件时显示错误的问题" class="headerlink" title="利用patch制作的对象在animation以及生成Gif文件时显示错误的问题"></a>利用patch制作的对象在animation以及生成Gif文件时显示错误的问题</h1><h2 id="Problems："><a href="#Problems：" class="headerlink" title="Problems："></a>Problems：</h2><p>animation制作动画的时候，用patch制作的对象（例如Circle）在背景层，即使设置为返回值来清除，在下一帧更新的时候，上一帧也不会消失，从而造层残影的效果。而且由于图形的利用ax.add_patch()直接添加，没办法单个删除，很让人头痛。</p>
-<p>而这一现象在plt.show()的时候，如果animation.FuncAnimation( blit&#x3D;True) 则不会在预览时出现问题，在保存为gif时候才会暴露。</p>
+<p>而这一现象在plt.show()的时候，如果animation.FuncAnimation( blit=True) 则不会在预览时出现问题，在保存为gif时候才会暴露。</p>
 <h2 id="Solutions："><a href="#Solutions：" class="headerlink" title="Solutions："></a>Solutions：</h2><h3 id="Method-1：惹不起躲得起法"><a href="#Method-1：惹不起躲得起法" class="headerlink" title="Method 1：惹不起躲得起法"></a>Method 1：惹不起躲得起法</h3><p>不使用patch制作Circle等对象，而通过lines在描点连线制作，这种方法比较笨重，想要精确表达图形每一帧都需要大量的点，而在动态时候，点的运动也是一个难题。</p>
 <h3 id="Method-2：将错就错法"><a href="#Method-2：将错就错法" class="headerlink" title="Method 2：将错就错法"></a>Method 2：将错就错法</h3><p>既然patch制作的对象难以删除，我们可以将错就错，每一帧更新的时候都用一个背景色（白色）的图形盖住上一帧的的图形，从而达到删除的效果。</p>
 <p>值得注意的是，白色图形需要比原图形略大一点，以免留下上一帧的边框。</p>
@@ -278,7 +278,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

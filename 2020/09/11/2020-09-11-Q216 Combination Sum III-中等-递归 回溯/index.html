@@ -13,7 +13,7 @@
 
     <title>
         
-          Q216 Combination Sum III-中等-递归 回溯 - 伽蓝之堂 | Txing Blog
+          Q216 Combination Sum III-中等-递归 回溯 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -188,21 +188,14 @@
 <li>All numbers will be positive integers.</li>
 <li>The solution set must not contain duplicate combinations.</li>
 </ul>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
-<p>Input: k &#x3D; 3, n &#x3D; 7<br>Output: [[1,2,4]]</p>
-</blockquote>
-<blockquote>
+<p>Input: k = 3, n = 7<br>Output: [[1,2,4]]</p>
 <p><strong>Example 2:</strong></p>
-<p>Input: k &#x3D; 3, n &#x3D; 9<br>Output: [[1,2,6], [1,3,5], [2,3,4]]</p>
+<p>Input: k = 3, n = 9<br>Output: [[1,2,6], [1,3,5], [2,3,4]]</p>
 </blockquote>
 <h3 id="Approach-1-递归回溯"><a href="#Approach-1-递归回溯" class="headerlink" title="Approach 1: 递归回溯"></a>Approach 1: 递归回溯</h3><p>做了Combination Sum I-III三道题后，对回溯法寻找合适解的问题逐渐熟悉了起来。dfs函数里面需要用if判断所得解是否合适，合适了就使用append方法，把暂存器temp到答案ans里面并return结束此分支的迭代。如果不合适，即未满足终止条件，继续搜索过程。</p>
 <p>这里需要注意的是，如果搜索范围有改变（存在不选重复数字之类的条件），记得用一个for循环在新的范围内执行dfs。如果搜索范围没有改变，就可以不用for循环，减小复杂度。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">combinationSum3</span>(<span class="params">self, k: <span class="built_in">int</span>, n: <span class="built_in">int</span></span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">temp,S,k,n</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(temp)==k <span class="keyword">and</span> n==<span class="number">0</span>:</span><br><span class="line">                ans.append(temp[:])</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(S)):</span><br><span class="line">                temp.append(S[i])</span><br><span class="line">                <span class="comment"># S[i + 1:]实现了剪枝和防止逆序选数，这是关键点</span></span><br><span class="line">                dfs(temp, S[i+<span class="number">1</span>:], k, n-S[i])</span><br><span class="line">                temp.pop()</span><br><span class="line">        ans=[]</span><br><span class="line">        S=[i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">10</span>)]</span><br><span class="line">        <span class="comment"># 暂存数组，可选项，需要k个数，需要和为n</span></span><br><span class="line">        dfs([], S, k, n)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    k = <span class="number">3</span></span><br><span class="line">    n = <span class="number">9</span></span><br><span class="line">    solution=Solution().combinationSum3(k,n)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
-
-
 
 
                 <hr>
@@ -306,7 +299,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

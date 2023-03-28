@@ -13,7 +13,7 @@
 
     <title>
         
-          Q26 Remove Duplicates from Sorted Array - 伽蓝之堂 | Txing Blog
+          Q26 Remove Duplicates from Sorted Array - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -180,30 +180,23 @@
                 <h1 id="Remove-Duplicates-from-Sorted-Array"><a href="#Remove-Duplicates-from-Sorted-Array" class="headerlink" title="Remove Duplicates from Sorted Array"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/remove-duplicates-from-sorted-array/">Remove Duplicates from Sorted Array</a></h1><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>Given a sorted array <em>nums</em>, remove the duplicates in-place such that each element appear only <em>once</em> and return the new length.</p>
 <p>Do not allocate extra space for another array, you must do this by <strong>modifying the input array in-place</strong> with O(1) extra memory.</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1</strong>: </p>
-<p>Given nums &#x3D; [1,1,2],</p>
-<p>Your function should return length &#x3D; 2, with the first two elements of nums being 1 and 2 respectively.</p>
+<p>Given nums = [1,1,2],</p>
+<p>Your function should return length = 2, with the first two elements of nums being 1 and 2 respectively.</p>
 <p>It doesn’t matter what you leave beyond the returned length.</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 2</strong>: </p>
-<p>Given nums &#x3D; [0,0,1,1,1,2,2,3,3,4],</p>
-<p>Your function should return length &#x3D; 5, with the first five elements of nums being modified to 0, 1, 2, 3, and 4 respectively.</p>
+<p>Given nums = [0,0,1,1,1,2,2,3,3,4],</p>
+<p>Your function should return length = 5, with the first five elements of nums being modified to 0, 1, 2, 3, and 4 respectively.</p>
 <p>It doesn’t matter what values are set beyond the returned length.</p>
-</blockquote>
-<blockquote>
 <p><strong>Clarification:</strong></p>
 <p>Confused why the returned value is an integer but your answer is an array?</p>
 <p>Note that the input array is passed in by <strong>reference</strong>, which means modification to the input array will be known to the caller as well.</p>
 <p>Internally you can think of this:</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">// nums is passed in by reference. (i.e., without making a copy)</span></span><br><span class="line">&gt;<span class="type">int</span> len = <span class="built_in">removeDuplicates</span>(nums);</span><br><span class="line"></span><br><span class="line">&gt;<span class="comment">// any modification to nums in your function would be known by the caller.</span></span><br><span class="line">&gt;<span class="comment">// using the length returned by your function, it prints the first len elements.</span></span><br><span class="line">&gt;<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">   <span class="built_in">print</span>(nums[i]);</span><br><span class="line">&gt;&#125;</span><br></pre></td></tr></table></figure>
 </blockquote>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="Approach-1-Two-Pointers"><a href="#Approach-1-Two-Pointers" class="headerlink" title="Approach 1: Two Pointers"></a>Approach 1: Two Pointers</h3><p>Since the array is already sorted, we can keep two pointers $i$ and $j$, where $i$ is the slow-runner while $j$ is the fast-runner. As long as $$nums[i] &#x3D; nums[j]$$, we increment $j$ to skip the duplicate.</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="Approach-1-Two-Pointers"><a href="#Approach-1-Two-Pointers" class="headerlink" title="Approach 1: Two Pointers"></a>Approach 1: Two Pointers</h3><p>Since the array is already sorted, we can keep two pointers $i$ and $j$, where $i$ is the slow-runner while $j$ is the fast-runner. As long as <script type="math/tex">nums[i] = nums[j]</script>, we increment $j$ to skip the duplicate.</p>
 <p>When we encounter $nums[j]\neq nums[i]$, the duplicate run has ended so we must copy its value to $nums[i + 1]$.  $i$ is then incremented and we repeat the same process again $j​$ reaches the end of array.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">removeDuplicates</span>(<span class="params">self, nums: <span class="string">&#x27;List[int]&#x27;</span></span>) -&gt; <span class="string">&#x27;int&#x27;</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(nums)==<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            index=<span class="number">0</span></span><br><span class="line">            <span class="keyword">while</span>(index+<span class="number">1</span>&lt;<span class="built_in">len</span>(nums)):</span><br><span class="line">                <span class="keyword">if</span> nums[index]==nums[index+<span class="number">1</span>]:</span><br><span class="line">                    nums.remove(nums[index])</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    index+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(nums)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    nums = [<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.removeDuplicates(nums)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br><span class="line">   </span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>Time complextiy : <em>O</em>(<em>n</em>). Assume that <em>n</em> is the length of array. Each of i<em>i</em> and <em>j</em> traverses at most n<em>n</em>steps.</li>
 <li>Space complexity : <em>O</em>(1).</li>
@@ -308,7 +301,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

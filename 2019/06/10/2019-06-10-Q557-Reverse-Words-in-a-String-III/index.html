@@ -13,7 +13,7 @@
 
     <title>
         
-          Q557 Reverse Words in a String III - 伽蓝之堂 | Txing Blog
+          Q557 Reverse Words in a String III - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -181,12 +181,8 @@
 
                 <h1 id="Reverse-Words-in-a-String-III"><a href="#Reverse-Words-in-a-String-III" class="headerlink" title="Reverse Words in a String III"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-words-in-a-string-iii/">Reverse Words in a String III</a></h1><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>Given a string, you need to reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order.</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
 <p>Input: “Let’s take LeetCode contest”<br>Output: “s’teL ekat edoCteeL tsetnoc”</p>
-</blockquote>
-<blockquote>
 <p><strong>Note:</strong></p>
 <p>In the string, each word is separated by single space and there will not be any extra space in the string.</p>
 </blockquote>
@@ -200,7 +196,6 @@
 </ul>
 <p>After, we can count the number of unique canonical addresses with a <code>Set</code> structure.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numUniqueEmails</span>(<span class="params">self, emails</span>):</span><br><span class="line">        seen = <span class="built_in">set</span>()</span><br><span class="line">        <span class="keyword">for</span> email <span class="keyword">in</span> emails:</span><br><span class="line">            local, domain = email.split(<span class="string">&#x27;@&#x27;</span>)</span><br><span class="line">            <span class="keyword">if</span> <span class="string">&#x27;+&#x27;</span> <span class="keyword">in</span> local:</span><br><span class="line">                local = local[:local.index(<span class="string">&#x27;+&#x27;</span>)]</span><br><span class="line">            seen.add(local.replace(<span class="string">&#x27;.&#x27;</span>,<span class="string">&#x27;&#x27;</span>) + <span class="string">&#x27;@&#x27;</span> + domain)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(seen)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    Emails=[<span class="string">&quot;test.email+alex@leetcode.com&quot;</span>,</span><br><span class="line">            <span class="string">&quot;test.e.mail+bob.cathy@leetcode.com&quot;</span>,</span><br><span class="line">            <span class="string">&quot;testemail+david@lee.tcode.com&quot;</span>]</span><br><span class="line">    solution=Solution().numUniqueEmails(Emails)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
 <p><strong>Complexity Analysis</strong></p>
 <ul>
 <li>Time Complexity: <em>O</em>(<em>n</em>), where <em>n</em> is the total content of <code>emails</code>.</li>
@@ -309,7 +304,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

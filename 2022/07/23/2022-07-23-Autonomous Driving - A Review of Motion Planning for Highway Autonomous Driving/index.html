@@ -13,7 +13,7 @@
 
     <title>
         
-          Autonomous Driving | A Review of Motion Planning for Highway Autonomous Driving - 伽蓝之堂 | Txing Blog
+          Autonomous Driving | A Review of Motion Planning for Highway Autonomous Driving - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -177,30 +177,29 @@
 
                 <h2 id="A-Review-of-Motion-Planning-for-Highway-Autonomous-Driving"><a href="#A-Review-of-Motion-Planning-for-Highway-Autonomous-Driving" class="headerlink" title="A Review of Motion Planning for Highway Autonomous Driving"></a>A Review of Motion Planning for Highway Autonomous Driving</h2><ul>
 <li>高速路具有路径高速（high speed）、路径曲率小（small curvature roads）、规则具体（specific driver rules）的几项特点。</li>
-<li>主要面临的问题：变道（Lane change），避障（obstacle avoidance），跟车（car following）合并道路（merging）</li>
+<li>主要面临的问题：变道（Lane change），避障（obstacle avoidance），跟车（car following）合并道路（merging）  </li>
 </ul>
 <h3 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h3><ul>
 <li><p>automakers now try to personalize Advanced Driving Assistance Systems (ADAS) to the driver’s style [7]. </p>
 <ul>
-<li>[7]. M. Hasenjager and H. Wersing, “Personalization in advanced driver “assistance systems and autonomous vehicles: A review,” in IEEE Int. Conf. on Intelligent Transportation Systems (ITSC), 2017.</li>
+<li>[7]. M. Hasenjager and H. Wersing, “Personalization in advanced driver “assistance systems and autonomous vehicles: A review,” in IEEE Int. Conf. on Intelligent Transportation Systems (ITSC), 2017.  </li>
 </ul>
 </li>
 <li><p>现有的一些辅助技术：</p>
 <ul>
-<li>巡航控制中的纵向合&#x2F;横向舒适度和安全性（longitudinal and lateral comfort and security with the Cruise Control (CC)）</li>
+<li>巡航控制中的纵向合/横向舒适度和安全性（longitudinal and lateral comfort and security with the Cruise Control (CC)）</li>
 <li>智能速度自适应（Intelligent Speed Adaptation (ISA)）</li>
 <li>道路保持辅助（Lane Keeping Assist (LKA)）</li>
 <li>离道警报（Lane Departure Warning (LDW)）</li>
 </ul>
 </li>
-<li><p>自动驾驶分类标准：（With such an evolution in the automotive field, the Society of Automotive Engineers (SAE) published a standard classification for autonomous vehicles with a 6-level system, from 0 (no control but active safety systems) to 5 (no human intervention for driving) [10]）</p>
-<ul>
-<li>SAE International J3016, accessed 2018-11-03. [Online]. Available: <a target="_blank" rel="noopener" href="https://www.sae.org/standards/content/j3016">https://www.sae.org/standards/content/j3016</a> 201401&#x2F;</li>
+<li>自动驾驶分类标准：（With such an evolution in the automotive field, the Society of Automotive Engineers (SAE) published a standard classification for autonomous vehicles with a 6-level system, from 0 (no control but active safety systems) to 5 (no human intervention for driving) [10]）<ul>
+<li>SAE International J3016, accessed 2018-11-03. [Online]. Available: <a target="_blank" rel="noopener" href="https://www.sae.org/standards/content/j3016">https://www.sae.org/standards/content/j3016</a> 201401/  </li>
 </ul>
 </li>
 <li><p>2007 DARPA城市挑战赛：since the Defense Advanced Research Projects Agency (DARPA) organized autonomous vehicle competitions in 2004, 2005, and 2007, and thanks to new technologies, autonomous functions are evolving quickly and treat more complex scenarios in real environments. The 11 finalist teams of the DARPA Urban Challenge 2007 [11] succeeded in navigating through a city environment.   </p>
 </li>
-<li><p>Furthermore, highways seem to be the first environment where drivers would be confident driving in a fully autonomous mode [26]</p>
+<li><p>Furthermore, highways seem to be the first environment where drivers would be confident driving in a fully autonomous mode [26]  </p>
 </li>
 </ul>
 <h3 id="2-Considerations-for-highway-motion-planning"><a href="#2-Considerations-for-highway-motion-planning" class="headerlink" title="2 Considerations for highway motion planning"></a>2 Considerations for highway motion planning</h3><h4 id="A-Terminology"><a href="#A-Terminology" class="headerlink" title="A. Terminology"></a>A. Terminology</h4><ul>
@@ -213,7 +212,7 @@
 <li>position</li>
 <li>orientation</li>
 <li>and their </li>
-<li>time derivatives (position, speed, and acceleration, linear and angular)</li>
+<li>time derivatives (position, speed, and acceleration, linear and angular)  </li>
 </ul>
 </li>
 <li><p>The <strong>geometric state space</strong> is called the <strong>configuration space</strong>  </p>
@@ -231,7 +230,7 @@
 <li><strong>maneuver</strong> (predefined motion, considered as a subspace of paths or trajectories, i.e. motion primitives)  </li>
 <li><strong>generation</strong>, which builds sequences of paths, trajectories, maneuvers, or actions  </li>
 <li><strong>planning</strong>, meaning the selection of one sequence among the generated motions  </li>
-<li><strong>prediction horizon</strong> denotes the space or&#x2F;and time horizon limit for the simulation of motion</li>
+<li><strong>prediction horizon</strong> denotes the space or/and time horizon limit for the simulation of motion  </li>
 </ul>
 </li>
 </ul>
@@ -240,14 +239,14 @@
 </ul>
 <p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220731-1.png" alt="A hierarchical scheme of Autonomous Ground Vehicle systems."></p>
 <ul>
-<li>行为规划包括：(i) route planning, (ii) prediction, (iii) decision making, (iv) generation, and (v) deformation.</li>
+<li>行为规划包括：(i) route planning, (ii) prediction, (iii) decision making, (iv) generation, and (v) deformation.  </li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220731-2.png" alt="Motion planning functions. Motion planning acts as a global, local, and reactive motion strategy."></p>
 <p>其中，decision making, generation, and deformation是核心。参考[32][33]两篇文章，总结的方法如下：</p>
 <ul>
 <li><p><strong>A high-level predictive planning</strong> built around three objectives: risk evaluation, criteria minimization, and constraint ubmission (see II-D). Those are used for decision making (iii), i.e. to select the best solution out of the candidates’ generation (iv). One either generates a set of motions and then makes a decision on the behavior motion, or, defines the behavior to adopt and then fits a set of motions. This high-level stage benefits from a longer predicted motion but is time-consuming.  </p>
 </li>
-<li><p><strong>A low-level reactive planning</strong> deforming the generated motion from the high-level planning according to a reactive approach, i.e. the deformation function (v). This acts on a shorter range of actions and thus has faster computation.</p>
+<li><p><strong>A low-level reactive planning</strong> deforming the generated motion from the high-level planning according to a reactive approach, i.e. the deformation function (v). This acts on a shorter range of actions and thus has faster computation.  </p>
 </li>
 </ul>
 <p>[32]. L. Claussmann, A. Carvalho, and G. Schildbach, “A path planner for autonomous driving on highways using a human mimicry approach with binary decision diagrams,” in IEEE European Control Conference (ECC), 2015.<br>[33]. X. Li, Z. Sun, Q. Zhu, and D. Liu, “A unified approach to local trajectory planning and control for autonomous driving along a reference path,” in IEEE Int. Conf. on Mechatronics and Automation (ICMA), 2014.  </p>
@@ -256,10 +255,9 @@
 </ul>
 <p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220731-3.png" alt="Motion planning functions. Motion planning acts as a global, local, and reactive motion strategy."></p>
 <h4 id="C-Specificities-of-Highway-Driving"><a href="#C-Specificities-of-Highway-Driving" class="headerlink" title="C. Specificities of Highway Driving"></a>C. Specificities of Highway Driving</h4><ul>
-<li><p>特点：</p>
-<ul>
+<li>特点：<ul>
 <li>单向车流</li>
-<li>高速a dynamic speed over 60km&#x2F;h</li>
+<li>高速a dynamic speed over 60km/h</li>
 <li>道路形状简单：直线道路（straight lines），回旋曲线道路（clothoids），小曲率的环形道路（circles with small curvature）</li>
 </ul>
 </li>
@@ -267,7 +265,7 @@
 <ul>
 <li>one-direction</li>
 <li>two-lane changes – right or left</li>
-<li>and to accelerate, maintain speed, or brake</li>
+<li>and to accelerate, maintain speed, or brake  </li>
 </ul>
 </li>
 <li><p>高速路的一些通常境况：</p>
@@ -282,7 +280,7 @@
 <p>受到方向和障碍物的约束，规划需要保证目标车道由充足的空间和合适的行驶速度</p>
 </li>
 <li><p><strong>Lateral-most lane changing</strong>  </p>
-<p>一些情况下的交规要求只能在最左&#x2F;右的车道行驶，因此agent会一直寻求变道的机会，直到到达目标车道</p>
+<p>一些情况下的交规要求只能在最左/右的车道行驶，因此agent会一直寻求变道的机会，直到到达目标车道</p>
 </li>
 <li><p><strong>Passing</strong>  </p>
 <p>在侧向有障碍物的时候遵守lane keeping或者car following决策的情况，需要保证侧向的安全距离  </p>
@@ -296,9 +294,9 @@
 <li><p><strong>Highway toll</strong>  </p>
 <p>高速收费站，先并入虚拟的车道线，进入收费站，之后再加速驶出，并入实际的车道线</p>
 </li>
-<li><p>高速场景特点总结：The main differences between highway, except for platooning, and city driving consist in a further look-ahead time, with a stronger focus towards the ahead direction of the road, whereas city driving involves a closer range but in all directions. The highway vehicle dynamics is also simpler with lower turn-angle, no reverse, and less braking&#x2F;acceleration, but higher and more constant speed. Thus, even if there are less hazards, the risk due to high speed is stronger. Moreover, the higher distances imply poorer sensors capacities. Finally, less traffic insures more stable scenario. The algorithms which consider all these specificities in real-time will be favored for a practical application on highways.  </p>
+<li><p>高速场景特点总结：The main differences between highway, except for platooning, and city driving consist in a further look-ahead time, with a stronger focus towards the ahead direction of the road, whereas city driving involves a closer range but in all directions. The highway vehicle dynamics is also simpler with lower turn-angle, no reverse, and less braking/acceleration, but higher and more constant speed. Thus, even if there are less hazards, the risk due to high speed is stronger. Moreover, the higher distances imply poorer sensors capacities. Finally, less traffic insures more stable scenario. The algorithms which consider all these specificities in real-time will be favored for a practical application on highways.  </p>
 </li>
-<li><p>[34]. L. Claussmann, M. Revilloud, S. Glaser, and D. Gruyer, “A study on ai-based approaches for high-level decision making in highway autonomous driving,” in IEEE. Int. Conf. on Systems, Man, and Cybernetics (SMC), 2017.</p>
+<li><p>[34]. L. Claussmann, M. Revilloud, S. Glaser, and D. Gruyer, “A study on ai-based approaches for high-level decision making in highway autonomous driving,” in IEEE. Int. Conf. on Systems, Man, and Cybernetics (SMC), 2017.  </p>
 </li>
 </ul>
 </li>
@@ -306,27 +304,23 @@
 <h4 id="D-Constraints-on-Highway-Driving"><a href="#D-Constraints-on-Highway-Driving" class="headerlink" title="D. Constraints on Highway Driving"></a>D. Constraints on Highway Driving</h4><ul>
 <li><p><strong>硬约束</strong>（hard constraints）：环境约束、交规、安全约束、避免碰撞。</p>
 </li>
-<li><p><strong>软约束</strong>（soft constraints）：时间&#x2F;距离&#x2F;能耗最小化，舒适性最大化等乘坐优化约束。</p>
+<li><p><strong>软约束</strong>（soft constraints）：时间/距离/能耗最小化，舒适性最大化等乘坐优化约束。</p>
 </li>
 <li><p>其他可行性约束依赖于车辆的运动学限制，即非完整动力学，即车辆在只有两个自由度的三维空间中发展，平滑路径，即轨迹应该可微分且其曲率连续，以及车辆的动力学限制。</p>
 </li>
 <li><p>作者在文献[27]中认为，生成运动的质量要求应该为：可行、安全、最优、可用、自适应、高效、渐进和交互（feasible, safe, optimal, usable, adaptive, efficient, progressive, and interactive）</p>
 </li>
-<li><p>[27]. M. Rodrigues, A. McGordon, G. Gest, and J. Marco, “Adaptive tactical behaviour planner for autonomous ground vehicle,” in IEEE Int. Conf. on Control, 2016.</p>
-</li>
+<li>[27]. M. Rodrigues, A. McGordon, G. Gest, and J. Marco, “Adaptive tactical behaviour planner for autonomous ground vehicle,” in IEEE Int. Conf. on Control, 2016.  </li>
 </ul>
 <h3 id="3-State-of-the-art"><a href="#3-State-of-the-art" class="headerlink" title="3 State of the art"></a>3 State of the art</h3><ul>
 <li><p>运动规划包含了5个方面：</p>
-</li>
-<li><p>(i) state estimation</p>
-</li>
-<li><p>(ii) time evolution</p>
-</li>
-<li><p>(iii) actions planning</p>
-</li>
-<li><p>(iv) criteria optimization</p>
-</li>
-<li><p>(v) compliance with constraints  </p>
+<ul>
+<li>(i) state estimation</li>
+<li>(ii) time evolution</li>
+<li>(iii) actions planning</li>
+<li>(iv) criteria optimization</li>
+<li>(v) compliance with constraints  </li>
+</ul>
 </li>
 <li><p>一个争论：是否要区分驾驶模式（distinguishing and not distinguishing the<br>driving modes），不同模式下使用不同的数据进行学习。</p>
 </li>
@@ -375,7 +369,7 @@
 <p>具体的预测上，使用Model Predictive Control (MPC)，Dynamic Programming (DP)等  </p>
 </li>
 <li><p><strong>分类6：人工智能方法</strong>（Artificial Intelligence）</p>
-<p>需要复制并模拟司机的推断和学习能力。本文将这些方法分为两类：<strong>cognitive&#x2F;rational</strong> and <strong>rules&#x2F;learning</strong>，– based on [125]’s distinction between thinking and acting humanly or rationally</p>
+<p>需要复制并模拟司机的推断和学习能力。本文将这些方法分为两类：<strong>cognitive/rational</strong> and <strong>rules/learning</strong>，– based on [125]’s distinction between thinking and acting humanly or rationally</p>
 <p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220801-1.png" alt="A map of AI-based algorithms."></p>
 <ul>
 <li><p>人工智能基于逻辑的方法（AI Logic-Based Approach）  </p>
@@ -389,20 +383,20 @@
 <li><p>Bayesian networks：依赖马尔科夫模型的状态转移因果链。The authors in [50] develop a Markov<br>Decision Process (MDP) on the <strong>choice of tentacle trajectories</strong>, and the one in [130] for a <strong>lane-staying or -changing decision.</strong>  </p>
 <ul>
 <li>[50]. H. Mouhagir, R. Talj, V. Cherfaoui, F. Aioun, and F. Guillemard, “Integrating safety distances with trajectory planning by modifying the occupancy grid for autonomous vehicle navigation,” in IEEE Int. Conf. on Intelligent Transportation Systems (ITSC), 2016.  </li>
-<li>[130]. S. Zhou, Y. Wang, M. Zheng, and M. Tomizuka, “A hierarchical planning and control framework for structured highway driving,” IFACPapersOnLine, vol. 50, no. 1, pp. 9101–9107, 2017.</li>
+<li>[130]. S. Zhou, Y. Wang, M. Zheng, and M. Tomizuka, “A hierarchical planning and control framework for structured highway driving,” IFACPapersOnLine, vol. 50, no. 1, pp. 9101–9107, 2017.  </li>
 </ul>
 <p>POMDP：</p>
 <ul>
 <li>[131] S. Ulbrich and M. Maurer, “Towards tactical lane change behavior planning for automated vehicles,” in IEEE Int. Conf. on Intelligent Transportation Systems (ITSC), 2015.</li>
 <li>[132] E. Galceran, A. G. Cunningham, R. M. Eustice, and E. Olson, “Multipolicy decision-making for autonomous driving via changepoint-based behavior prediction: Theory and experiment,” Autonomous Robots, vol. 41, no. 6, pp. 1367–1382, 2017.</li>
-<li>[133] N. Li, D. W. Oyler, M. Zhang, Y. Yildiz, I. Kolmanovsky, and A. R. Girard, “Game theoretic modeling of driver and vehicle interactions for verification and validation of autonomous vehicle control systems,” IEEE Trans. on Control Systems Technology, vol. 26, no. 5, pp. 1782– 1797, 2018.</li>
+<li>[133] N. Li, D. W. Oyler, M. Zhang, Y. Yildiz, I. Kolmanovsky, and A. R. Girard, “Game theoretic modeling of driver and vehicle interactions for verification and validation of autonomous vehicle control systems,” IEEE Trans. on Control Systems Technology, vol. 26, no. 5, pp. 1782– 1797, 2018.  </li>
 </ul>
 </li>
 <li><p>人工智能启发式算法（AI Heuristic Algorithms）  </p>
 <p>优势在于相对快速高效，但是具有启发式算法的通病，即陷入局部最优，无法保证得到全局最优。</p>
 <ul>
 <li>基于Support Vector Machines (SVM)的个性化变道决策：<ul>
-<li>C. Vallon, Z. Ercan, A. Carvalho, and F. Borrelli, “A machine learning approach for personalized autonomous lane change initiation and control,” in IEEE Intelligent Vehicles Symposium (IV), 2017.</li>
+<li>C. Vallon, Z. Ercan, A. Carvalho, and F. Borrelli, “A machine learning approach for personalized autonomous lane change initiation and control,” in IEEE Intelligent Vehicles Symposium (IV), 2017.  </li>
 </ul>
 </li>
 <li>演化算法（Evolutionary methods）。在高速场景，最优解并不是必须的，演化算法的高计算效率，获得近似次优解，足以满足要求。</li>
@@ -421,11 +415,11 @@
 </ul>
 <p>multi-goal overtaking maneuvers[144]</p>
 <ul>
-<li>D. C. K. Ngai and N. H. C. Yung, “A multiple-goal reinforcement learning method for complex vehicle overtaking maneuvers,” IEEE Trans. on Intelligent Transportation Systems, vol. 12, no. 2, pp. 509–522, 2011.</li>
+<li>D. C. K. Ngai and N. H. C. Yung, “A multiple-goal reinforcement learning method for complex vehicle overtaking maneuvers,” IEEE Trans. on Intelligent Transportation Systems, vol. 12, no. 2, pp. 509–522, 2011.  </li>
 </ul>
 <p>automated lane change maneuvers[145]</p>
 <ul>
-<li>P. Wang, C.-Y. Chan, and A. de La Fortelle, “A reinforcement learning based approach for automated lane change maneuvers,” IEEE Intelligent Vehicles Symposium (IV), 2018.</li>
+<li>P. Wang, C.-Y. Chan, and A. de La Fortelle, “A reinforcement learning based approach for automated lane change maneuvers,” IEEE Intelligent Vehicles Symposium (IV), 2018.  </li>
 </ul>
 </li>
 </ul>
@@ -433,24 +427,24 @@
 <li><p>人工智能类人的方法（AI Human-Like Methods）  </p>
 <p>类人的驾驶模型的完整描述，参考这篇文章</p>
 <ul>
-<li>D. D. Salvucci, “Modeling driver behavior in a cognitive architecture,” Human factors, vol. 48, no. 2, pp. 362–380, 2006</li>
+<li>D. D. Salvucci, “Modeling driver behavior in a cognitive architecture,” Human factors, vol. 48, no. 2, pp. 362–380, 2006 </li>
 </ul>
 <p>可以分解为风险、任务和博弈三类：</p>
 <ul>
 <li><strong>Risk estimators</strong>：执行可接受风险和目标安全之间的权衡。</li>
 <li><strong>Taxonomic models</strong>：场景和状况细分分类。  </li>
 <li><strong>Game theory</strong>：把所有车辆看做agent参与博弈，缺点是假设所有人准守规则，一些文章进行了改进：<ul>
-<li>N. Li, D. W. Oyler, M. Zhang, Y. Yildiz, I. Kolmanovsky, and A. R. Girard, “Game theoretic modeling of driver and vehicle interactions for verification and validation of autonomous vehicle control systems,”<br>IEEE Trans. on Control Systems Technology, vol. 26, no. 5, pp. 1782–1797, 2018.</li>
+<li>N. Li, D. W. Oyler, M. Zhang, Y. Yildiz, I. Kolmanovsky, and A. R. Girard, “Game theoretic modeling of driver and vehicle interactions for verification and validation of autonomous vehicle control systems,”<br>IEEE Trans. on Control Systems Technology, vol. 26, no. 5, pp. 1782–1797, 2018.  </li>
 </ul>
 </li>
 </ul>
-<p>人工智能类似人类的方法非常适合在高速公路场景中进行决策，由于这种环境的基本规则，司机的行为更容易预测。也易于理解并与驾驶员分享。但目前还没有统一的处理框架。</p>
+<p>人工智能类似人类的方法非常适合在高速公路场景中进行决策，由于这种环境的基本规则，司机的行为更容易预测。也易于理解并与驾驶员分享。但目前还没有统一的处理框架。 </p>
 </li>
 </ul>
 </li>
 </ul>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这篇文章介绍的范围太大，涵盖的研究方向和方法过多，受篇幅限制，讲的东西又很浅显，价值不大。</p>
-<p>​	</p>
+<p>​    </p>
 
 
                 <hr>
@@ -460,12 +454,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2022/07/23/2022-07-23-使用VSCode调试带参数的Python脚本/" data-toggle="tooltip" data-placement="top" title="使用VSCode调试带参数的Python脚本">&larr; Previous Post</a>
+                            <a href="/2022/08/01/2022-08-01-Autonomous Driving - DriverGym Democratising Reinforcement Learning for Autonomous Driving/" data-toggle="tooltip" data-placement="top" title="Autonomous Driving | DriverGym Democratising Reinforcement Learning for Autonomous Driving">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2022/07/22/2022-07-22-Autonomous Driving - MotionCNN A Strong Baseline for Motion Prediction in Autonomous Driving/" data-toggle="tooltip" data-placement="top" title="Autonomous Driving | MotionCNN: A Strong Baseline for Motion Prediction in Autonomous Driving (2022)">Next Post &rarr;</a>
+                            <a href="/2022/07/23/2022-07-23-使用VSCode调试带参数的Python脚本/" data-toggle="tooltip" data-placement="top" title="使用VSCode调试带参数的Python脚本">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -548,7 +542,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

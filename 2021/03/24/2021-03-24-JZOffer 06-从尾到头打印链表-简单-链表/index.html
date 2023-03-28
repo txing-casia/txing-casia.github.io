@@ -13,7 +13,7 @@
 
     <title>
         
-          JZOffer 06-从尾到头打印链表-简单-链表 - 伽蓝之堂 | Txing Blog
+          JZOffer 06-从尾到头打印链表-简单-链表 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -181,15 +181,11 @@
 
                 <h4 id="剑指-Offer-06-从尾到头打印链表"><a href="#剑指-Offer-06-从尾到头打印链表" class="headerlink" title="剑指 Offer 06. 从尾到头打印链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/">剑指 Offer 06. 从尾到头打印链表</a></h4><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
-<p>输入：head &#x3D; [1,3,2]<br>输出：[2,3,1]</p>
-</blockquote>
-<blockquote>
+<p>输入：head = [1,3,2]<br>输出：[2,3,1]</p>
 <p><strong>提示：</strong></p>
 <ul>
-<li>0 &lt;&#x3D; 链表长度 &lt;&#x3D; 10000</li>
+<li>0 &lt;= 链表长度 &lt;= 10000</li>
 </ul>
 </blockquote>
 <h3 id="Approach-1-栈"><a href="#Approach-1-栈" class="headerlink" title="Approach 1:  栈"></a>Approach 1:  栈</h3><p>栈的特点是后进先出，即最后压入栈的元素最先弹出。考虑到栈的这一特点，使用栈将链表元素顺序倒置。从链表的头节点开始，依次将每个节点压入栈内，然后依次弹出栈内的元素并存储到数组中。</p>
@@ -206,7 +202,7 @@
 </li>
 <li><p>获得栈的大小 size，创建一个数组 print，其大小为 size</p>
 </li>
-<li><p>创建下标并初始化 index &#x3D; 0</p>
+<li><p>创建下标并初始化 index = 0</p>
 </li>
 <li><p>重复 size 次下列操作：</p>
 <ul>
@@ -220,7 +216,6 @@
 </li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">from</span> enum <span class="keyword">import</span> Enum</span><br><span class="line"><span class="keyword">import</span> bisect</span><br><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reversePrint</span>(<span class="params">self, head: ListNode</span>):</span><br><span class="line">        resList = []</span><br><span class="line">        <span class="keyword">while</span> head:</span><br><span class="line">            resList.append(head.val)</span><br><span class="line">            head = head.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">return</span> resList[::-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    head = stringToListNode([<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>])</span><br><span class="line">    solution=Solution().reversePrint(head)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li><p>时间复杂度：O(n)。正向遍历一遍链表，然后从栈弹出全部节点，等于又反向遍历一遍链表。</p>
@@ -242,7 +237,7 @@
                     
                     
                         <li class="next">
-                            <a href="/2021/03/23/2021-03-23-Neuroscience - Learning of action through adaptive combination of motor primitives/" data-toggle="tooltip" data-placement="top" title="Neuroscience | Learning of action through adaptive combination of motor primitives (Nature)">Next Post &rarr;</a>
+                            <a href="/2021/03/23/2021-03-23-Q402-移掉k位数字-中等-贪心算法/" data-toggle="tooltip" data-placement="top" title="Q402-移掉K位数字-中等-贪心算法">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -329,7 +324,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

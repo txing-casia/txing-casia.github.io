@@ -13,7 +13,7 @@
 
     <title>
         
-          python环境的导出与导入 - 伽蓝之堂 | Txing Blog
+          python环境的导出与导入 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -183,30 +183,24 @@
 <li><p>比较好的方案：使用requirements.yaml</p>
 </li>
 </ul>
-<h4 id="2-1-不太好的方案：使用requirements-txt"><a href="#2-1-不太好的方案：使用requirements-txt" class="headerlink" title="2.1 不太好的方案：使用requirements.txt"></a>2.1 不太好的方案：使用requirements.txt</h4><p>使用 <code>requirements.txt </code>导出环境中所有<strong>使用库</strong>的名称和版本号。注意，这里说的“使用库”是指导出的库不一定是当前python环境中所有的库，而是所在项目中使用了的库，这是不一样的。（查看所有的库可以通过 <code>conda list</code> 实现）</p>
+<h4 id="2-1-不太好的方案：使用requirements-txt"><a href="#2-1-不太好的方案：使用requirements-txt" class="headerlink" title="2.1 不太好的方案：使用requirements.txt"></a>2.1 不太好的方案：使用requirements.txt</h4><p>使用 <code>requirements.txt</code>导出环境中所有<strong>使用库</strong>的名称和版本号。注意，这里说的“使用库”是指导出的库不一定是当前python环境中所有的库，而是所在项目中使用了的库，这是不一样的。（查看所有的库可以通过 <code>conda list</code> 实现）</p>
 <h5 id="step-1：环境导出"><a href="#step-1：环境导出" class="headerlink" title="step 1：环境导出"></a>step 1：环境导出</h5><p>这里使用的是windows下的Anaconda3，先打开Anaconda Navigator窗口，选择所需导出的环境，在选项中选择Open Terminal打开终端窗口。输入语句，进入D盘，打开工程项目文件所在的窗口</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">d:</span><br><span class="line">cd D:\Code\code_v2</span><br></pre></td></tr></table></figure>
-
 <p>输入</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip freeze &gt; requirements.txt</span><br></pre></td></tr></table></figure>
-
 <p>实现环境的导出，在项目文件目录中可以看到导出的<code>requirements.txt</code>文件，文件中包括了使用库的名称和版本号。如果该文件为空，则说明导出失败，检查上述步骤，是否是打开了所需环境的终端。</p>
 <h5 id="step-2：环境导入"><a href="#step-2：环境导入" class="headerlink" title="step 2：环境导入"></a>step 2：环境导入</h5><p>环境定位到文件所在文件夹，通过代码</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
-
 <p>即可实现环境的导入。</p>
 <p>但是这种方法存在一些问题，一些通过pip方式安装的库会在requirements.txt文件中记录路径信息，但这个路径在新设备中不一定有，因此会报错，处理起来也比较麻烦（已放弃）。</p>
 <h4 id="2-2-比较好的方案：使用requirements-yaml"><a href="#2-2-比较好的方案：使用requirements-yaml" class="headerlink" title="2.2 比较好的方案：使用requirements.yaml"></a>2.2 比较好的方案：使用requirements.yaml</h4><p>.yaml是保存环境信息的专用文件，在不同机器间导入速度快，可靠性高。</p>
 <h5 id="step-1：环境导出-1"><a href="#step-1：环境导出-1" class="headerlink" title="step 1：环境导出"></a>step 1：环境导出</h5><p>这里使用的是windows下的Anaconda3，先打开Anaconda Navigator窗口，选择所需导出的环境，在选项中选择Open Terminal打开终端窗口。输入语句，进入D盘，打开工程项目文件所在的窗口</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">d:</span><br><span class="line">cd D:\Code\code_v2</span><br></pre></td></tr></table></figure>
-
 <p>输入</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda env export &gt; requirements.yaml</span><br></pre></td></tr></table></figure>
-
 <p>实现文件导出，.yaml文件保存在项目文件目录。</p>
 <h5 id="step-2：环境导入-1"><a href="#step-2：环境导入-1" class="headerlink" title="step 2：环境导入"></a>step 2：环境导入</h5><p>打开anaconda终端，定位到.yaml文件所在目录，直接在base环境中输入</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda env create -f environment.yaml</span><br></pre></td></tr></table></figure>
-
 <p>即可完成新环境的创建，注意新环境的名称会默认和之前机器上环境的名称一致。</p>
 <p>2022年2月8日</p>
 <p>Pcon</p>
@@ -307,7 +301,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

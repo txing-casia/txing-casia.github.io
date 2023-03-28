@@ -13,7 +13,7 @@
 
     <title>
         
-          Autonomous Driving | Path Planning for Autonomous Vehicles in Unknown Semi-structured Environments - 伽蓝之堂 | Txing Blog
+          Autonomous Driving | Path Planning for Autonomous Vehicles in Unknown Semi-structured Environments - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -191,9 +191,9 @@
 </ul>
 <h3 id="2-Hybrid-state-A-Search"><a href="#2-Hybrid-state-A-Search" class="headerlink" title="2 Hybrid-state A* Search"></a>2 Hybrid-state A* Search</h3><ul>
 <li>算法描述：<ul>
-<li>自车起始状态：$$s_0&#x3D;&lt;x,y,\theta&gt;_0$$</li>
-<li>目标状态：$$s_g&#x3D;&lt;x,y,\theta&gt;_g$$</li>
-<li>扩展的4D状态空间：$$&lt;x,y,\theta,r&gt;$$，$$r&#x3D;{0,1}$$是自车的行进方向，前进or后退</li>
+<li>自车起始状态：<script type="math/tex">s_0=<x,y,\theta>_0</script></li>
+<li>目标状态：<script type="math/tex">s_g=<x,y,\theta>_g</script></li>
+<li>扩展的4D状态空间：<script type="math/tex"><x,y,\theta,r></script>，<script type="math/tex">r=\{0,1\}</script>是自车的行进方向，前进or后退</li>
 <li>惩罚倒车（乘性惩罚）和切换行驶方向（加性惩罚）的行为。</li>
 </ul>
 </li>
@@ -201,14 +201,12 @@
 <li>节点从open list中pop out，根据运动学连接三个节点：最大左转，直行，最大右转，hybrid A*生成的轨迹一定是可达的，但不保证全局最优。</li>
 </ul>
 <h4 id="Heuristics"><a href="#Heuristics" class="headerlink" title="Heuristics"></a>Heuristics</h4><ul>
-<li><p>使用了两个启发式函数：</p>
-<ul>
+<li>使用了两个启发式函数：<ul>
 <li><code>non-holonomic-without-obstacles heuristic</code>, 忽略障碍物，但考虑到汽车的非完整性。</li>
 <li><code>holonomic-with-obstacles heuristic</code>，与上一个启函数对称，忽略汽车的非完整约束，考虑障碍物地图计算最短路径。</li>
 </ul>
 </li>
-<li><p>During the Urban Challenge, we used a 160 m X 160 m grid with 1 m X 5 deg resolution.</p>
-</li>
+<li>During the Urban Challenge, we used a 160 m X 160 m grid with 1 m X 5 deg resolution.</li>
 <li><p>用 Reed–Shepp model 优化hybrid A*的解，计算最优的 Reed–Shepp path</p>
 <ul>
 <li>Reeds, J. A. and Shepp, L. A. (1990). Optimal paths for a car that goes both forwards and backwards. Pacific Journal of Mathematics, 145(2): 367–393.</li>
@@ -221,8 +219,7 @@
 <li>计算效率；</li>
 </ul>
 </li>
-<li><p>具体实施：在宽阔的地方使用大步长，在狭窄的地方使用小步长；利用Generalized Voronoi Diagram (GVD)中的$$d_O+d_V$$变化规划的弧长长度，实现变分辨率，$$d_O$$是最近障碍物距离，$$d_V$$是GVD最近边界的距离；</p>
-</li>
+<li>具体实施：在宽阔的地方使用大步长，在狭窄的地方使用小步长；利用Generalized Voronoi Diagram (GVD)中的<script type="math/tex">d_O+d_V</script>变化规划的弧长长度，实现变分辨率，<script type="math/tex">d_O</script>是最近障碍物距离，<script type="math/tex">d_V</script>是GVD最近边界的距离；</li>
 </ul>
 <h3 id="3-Trajectory-Optimization"><a href="#3-Trajectory-Optimization" class="headerlink" title="3 Trajectory Optimization"></a>3 Trajectory Optimization</h3><ul>
 <li>计算流程：<ul>
@@ -344,7 +341,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

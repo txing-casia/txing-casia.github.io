@@ -13,7 +13,7 @@
 
     <title>
         
-          Q257 Binary Tree Paths-简单-深度/广度优先搜索 - 伽蓝之堂 | Txing Blog
+          Q257 Binary Tree Paths-简单-深度/广度优先搜索 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -184,38 +184,31 @@
                 <h1 id="Binary-Tree-Paths"><a href="#Binary-Tree-Paths" class="headerlink" title="Binary Tree Paths"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-paths/">Binary Tree Paths</a></h1><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>Given a binary tree, return all root-to-leaf paths.</p>
 <p>Note: A leaf is a node with no children.</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
 <p>Input:</p>
 <pre><code>1
-</code></pre>
-<p>   &#x2F;   <br>  2     3<br>   <br> 5</p>
+</code></pre><p>   /   \<br>  2     3<br>   \<br> 5</p>
 <p>  Output: [“1-&gt;2-&gt;5”, “1-&gt;3”]</p>
 <p>  Explanation: All root-to-leaf paths are: 1-&gt;2-&gt;5, 1-&gt;3</p>
 </blockquote>
 <h3 id="Approach-1-深度优先搜索"><a href="#Approach-1-深度优先搜索" class="headerlink" title="Approach 1: 深度优先搜索"></a>Approach 1: 深度优先搜索</h3><p>最直观的方法是使用深度优先搜索。在深度优先搜索遍历二叉树时，我们需要考虑当前的节点以及它的孩子节点。</p>
 <p>如果当前节点不是叶子节点，则在当前的路径末尾添加该节点，并继续递归遍历该节点的每一个叶子节点。<br>如果当前节点是叶子节点，则在当前路径末尾添加该节点后我们就得到了一条从根节点到叶子节点的路径，将该路径加入到答案即可。<br>如此，当遍历完整棵二叉树以后我们就得到了所有从根节点到叶子节点的路径。当然，深度优先搜索也可以使用非递归的方式实现，这里不再赘述。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">binaryTreePaths</span>(<span class="params">self, root</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: List[str]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">construct_paths</span>(<span class="params">root, path</span>):</span><br><span class="line">            <span class="keyword">if</span> root:</span><br><span class="line">                path += <span class="built_in">str</span>(root.val)</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> root.left <span class="keyword">and</span> <span class="keyword">not</span> root.right:  <span class="comment"># 当前节点是叶子节点</span></span><br><span class="line">                    paths.append(path)  <span class="comment"># 把路径加入到答案中</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    path += <span class="string">&#x27;-&gt;&#x27;</span>  <span class="comment"># 当前节点不是叶子节点，继续递归遍历</span></span><br><span class="line">                    construct_paths(root.left, path)</span><br><span class="line">                    construct_paths(root.right, path)</span><br><span class="line"></span><br><span class="line">        paths = []</span><br><span class="line">        construct_paths(root, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span> paths</span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><ul>
-<li><p>时间复杂度：$$O(N^2)$$，其中 N 表示节点数目。在深度优先搜索中每个节点会被访问一次且只会被访问一次，每一次会对 path 变量进行拷贝构造，时间代价为 O(N)，故时间复杂度为 $$ O(N^2)$$。</p>
+<li><p>时间复杂度：<script type="math/tex">O(N^2)</script>，其中 N 表示节点数目。在深度优先搜索中每个节点会被访问一次且只会被访问一次，每一次会对 path 变量进行拷贝构造，时间代价为 O(N)，故时间复杂度为 <script type="math/tex">O(N^2)</script>。</p>
 </li>
-<li><p>空间复杂度：$$O(N^2)$$，其中 N 表示节点数目。除答案数组外我们需要考虑递归调用的栈空间。在最坏情况下，当二叉树中每个节点只有一个孩子节点时，即整棵二叉树呈一个链状，此时递归的层数为 N，此时每一层的 path 变量的空间代价的总和为 $$O(\sum_{i &#x3D; 1}^{N} i) &#x3D; O(N^2)$$ 空间复杂度为 $$O(N^2)$$。最好情况下，当二叉树为平衡二叉树时，它的高度为 $$\log N$$，此时空间复杂度为 $$O((\log {N})^2)$$。</p>
+<li><p>空间复杂度：<script type="math/tex">O(N^2)</script>，其中 N 表示节点数目。除答案数组外我们需要考虑递归调用的栈空间。在最坏情况下，当二叉树中每个节点只有一个孩子节点时，即整棵二叉树呈一个链状，此时递归的层数为 N，此时每一层的 path 变量的空间代价的总和为 <script type="math/tex">O(\sum_{i = 1}^{N} i) = O(N^2)</script> 空间复杂度为 <script type="math/tex">O(N^2)</script>。最好情况下，当二叉树为平衡二叉树时，它的高度为 <script type="math/tex">\log N</script>，此时空间复杂度为 <script type="math/tex">O((\log {N})^2)</script>。</p>
 </li>
 <li><p><strong>平衡二叉树</strong>（Balanced Binary Tree）又被称为AVL树（有别于AVL算法），且具有以下性质：它是一 棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树。</p>
 </li>
 </ul>
 <h3 id="Approach-2-广度优先搜索"><a href="#Approach-2-广度优先搜索" class="headerlink" title="Approach 2: 广度优先搜索"></a>Approach 2: 广度优先搜索</h3><p>我们也可以用广度优先搜索来实现。我们维护一个队列，存储节点以及根到该节点的路径。一开始这个队列里只有根节点。在每一步迭代中，我们取出队列中的首节点，如果它是叶子节点，则将它对应的路径加入到答案中。如果它不是叶子节点，则将它的所有孩子节点加入到队列的末尾。当队列为空时广度优先搜索结束，我们即能得到答案。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">binaryTreePaths</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">str</span>]:</span><br><span class="line">        paths = <span class="built_in">list</span>()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> paths</span><br><span class="line"></span><br><span class="line">        node_queue = collections.deque([root])</span><br><span class="line">        path_queue = collections.deque([<span class="built_in">str</span>(root.val)])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> node_queue:</span><br><span class="line">            node = node_queue.popleft()</span><br><span class="line">            path = path_queue.popleft()</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> node.left <span class="keyword">and</span> <span class="keyword">not</span> node.right:</span><br><span class="line">                paths.append(path)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> node.left:</span><br><span class="line">                    node_queue.append(node.left)</span><br><span class="line">                    path_queue.append(path + <span class="string">&#x27;-&gt;&#x27;</span> + <span class="built_in">str</span>(node.left.val))</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> node.right:</span><br><span class="line">                    node_queue.append(node.right)</span><br><span class="line">                    path_queue.append(path + <span class="string">&#x27;-&gt;&#x27;</span> + <span class="built_in">str</span>(node.right.val))</span><br><span class="line">        <span class="keyword">return</span> paths</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <h3 id="复杂度分析-1"><a href="#复杂度分析-1" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><ul>
-<li>时间复杂度：$$O(N^2)$$，其中 N 表示节点数目。分析同方法一。</li>
-<li>空间复杂度：$$O(N^2)$$，其中 N 表示节点数目。在最坏情况下，队列中会存在 N 个节点，保存字符串的队列中每个节点的最大长度为 N，故空间复杂度为 $$O(N^2)$$</li>
+<li>时间复杂度：<script type="math/tex">O(N^2)</script>，其中 N 表示节点数目。分析同方法一。</li>
+<li>空间复杂度：<script type="math/tex">O(N^2)</script>，其中 N 表示节点数目。在最坏情况下，队列中会存在 N 个节点，保存字符串的队列中每个节点的最大长度为 N，故空间复杂度为 <script type="math/tex">O(N^2)</script></li>
 </ul>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3>
+<h3 id=""><a href="#" class="headerlink" title=" "></a> </h3>
 
                 <hr>
 
@@ -318,7 +311,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

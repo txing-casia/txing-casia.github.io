@@ -13,7 +13,7 @@
 
     <title>
         
-          Reinforcement Learning | A survey of deep RL and IL for autonomous driving policy learning - 伽蓝之堂 | Txing Blog
+          Reinforcement Learning | A survey of deep RL and IL for autonomous driving policy learning - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -177,11 +177,11 @@
 
                 <h1 id="A-survey-of-deep-RL-and-IL-for-autonomous-driving-policy-learning"><a href="#A-survey-of-deep-RL-and-IL-for-autonomous-driving-policy-learning" class="headerlink" title="A survey of deep RL and IL for autonomous driving policy learning"></a>A survey of deep RL and IL for autonomous driving policy learning</h1><p>论文链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2101.01993v1">https://arxiv.org/abs/2101.01993v1</a></p>
 <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
-<li><p>首先介绍5类结合了IL和RL的自动驾驶模型。First, a taxonomy of the literature studies is constructed from the system perspective, among which five modes of integration of DRL&#x2F;DIL models into an AD architecture are identified. </p>
+<li><p>首先介绍5类结合了IL和RL的自动驾驶模型。First, a taxonomy of the literature studies is constructed from the system perspective, among which five modes of integration of DRL/DIL models into an AD architecture are identified. </p>
 </li>
-<li><p>其次介绍自动驾驶中具体的RL和IL任务和公式。Second, the formulations of DRL&#x2F;DIL models for conducting specified AD tasks are comprehensively reviewed, where various designs on the model state and action spaces and the reinforcement learning rewards are covered. </p>
+<li><p>其次介绍自动驾驶中具体的RL和IL任务和公式。Second, the formulations of DRL/DIL models for conducting specified AD tasks are comprehensively reviewed, where various designs on the model state and action spaces and the reinforcement learning rewards are covered. </p>
 </li>
-<li><p>最后介绍RL和IL如何解决自动驾驶模型与参与者和环境交互的安全问题。Finally, an in-depth review is conducted on how the critical issues of AD applications regarding driving safety, interaction with other traffic participants and uncertainty of the environment are addressed by the DRL&#x2F;DIL models. </p>
+<li><p>最后介绍RL和IL如何解决自动驾驶模型与参与者和环境交互的安全问题。Finally, an in-depth review is conducted on how the critical issues of AD applications regarding driving safety, interaction with other traffic participants and uncertainty of the environment are addressed by the DRL/DIL models. </p>
 </li>
 <li><p><strong>task-driven</strong> and <strong>problem-driven</strong> perspectives</p>
 </li>
@@ -196,12 +196,12 @@
 <li><p>驾驶策略基于多个等级的抽象（multiple levels of abstraction），例如行为规划、运动规划和控制（behavior planning, motion planning and control）</p>
 </li>
 <li><p>典型的自动驾驶模型结构图：</p>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220602-1.png"></p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220602-1.png" alt=""></p>
 </li>
 <li><p>相关综述的调研：</p>
 <ul>
 <li>[13, 15] survey the motion planning and control methods of automated vehicles before the era of DL.</li>
-<li>[29–33] review general DRL&#x2F;DIL methods without considering any particular applications. </li>
+<li>[29–33] review general DRL/DIL methods without considering any particular applications. </li>
 <li>[4] addresses the deep learning techniques for AD with a focus on perception<br>and control, while [34] addresses control only. </li>
 <li>[35] provides a taxonomy of AD tasks to which DRL models have been applied and highlights the key challenges.</li>
 </ul>
@@ -213,28 +213,26 @@
 </ul>
 </li>
 <li><p>强化学习（reinforcement learning）和模仿学习（imitation learning）算法分类示意图：</p>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220620-1.png"></p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220620-1.png" alt=""></p>
 </li>
 <li><p>learning from demonstrations (LfD)</p>
 </li>
 <li><p><strong>模仿学习</strong>的形式：</p>
 <ul>
-<li>A demonstration dataset $$D&#x3D;{\xi_i }_{i&#x3D;0,…,N}$$,表示一系列的轨迹</li>
-<li>$$\xi_i&#x3D;{(s^i_t,a^i_t)}_{t&#x3D;1,…,T}$$是state-action pairs（状态行为对）的序列</li>
-<li>专家策略$$\pi_E$$</li>
-<li>待优化的模仿策略$$\pi^*$$</li>
-<li>$$\pi^*&#x3D;\arg\min_{\pi} \mathbb{D}(\pi_E,\pi)$$</li>
-<li>$$\mathbb{D}$$是策略间的相似性度量函数</li>
+<li>A demonstration dataset <script type="math/tex">D=\{\xi_i \}_{i=0,...,N}</script>,表示一系列的轨迹</li>
+<li><script type="math/tex">\xi_i=\{(s^i_t,a^i_t)\}_{t=1,...,T}</script>是state-action pairs（状态行为对）的序列</li>
+<li>专家策略<script type="math/tex">\pi_E</script></li>
+<li>待优化的模仿策略<script type="math/tex">\pi^*</script></li>
+<li><script type="math/tex; mode=display">\pi^*=\arg\min_{\pi} \mathbb{D}(\pi_E,\pi)</script></li>
+<li><script type="math/tex">\mathbb{D}</script>是策略间的相似性度量函数</li>
 </ul>
 </li>
 <li><p>模仿学习的三个分类：</p>
 <ul>
 <li><p><strong>Behavior Clone (BC) :</strong></p>
 <ul>
-<li><p>$$\min_{\theta} \mathbb{E}\mid\mid\pi_{\theta}-\pi_E\mid\mid_2$$</p>
-</li>
-<li><p>$$J(\theta)&#x3D;\mathbb{E}<em>{(s,a)\sim D}[(\pi</em>{\theta}(s)-a)^2]$$</p>
-</li>
+<li><script type="math/tex; mode=display">\min_{\theta} \mathbb{E}\mid\mid\pi_{\theta}-\pi_E\mid\mid_2</script></li>
+<li><script type="math/tex; mode=display">J(\theta)=\mathbb{E}_{(s,a)\sim D}[(\pi_{\theta}(s)-a)^2]</script></li>
 <li><p>BC在训练集中表现良好，但在泛化性上表现差，covariate shift [66, 67]</p>
 </li>
 <li><p>代表方法：</p>
@@ -249,13 +247,11 @@
 </li>
 <li><p><strong>Inverse Reinforcement Learning (IRL)：</strong></p>
 <ul>
-<li><p>$$\max_{\theta} \mathbb{E}<em>{\pi_E}[G_t|r</em>{\theta}]-\mathbb{E}<em>{\pi}[G_t|r</em>{\theta}]$$</p>
-</li>
-<li><p>$$J(\theta)&#x3D;\mathbb{E}<em>{\xi_i \sim D}[\log P(\xi_i|r</em>{\theta})]$$</p>
-</li>
+<li><script type="math/tex; mode=display">\max_{\theta} \mathbb{E}_{\pi_E}[G_t|r_{\theta}]-\mathbb{E}_{\pi}[G_t|r_{\theta}]</script></li>
+<li><script type="math/tex; mode=display">J(\theta)=\mathbb{E}_{\xi_i \sim D}[\log P(\xi_i|r_{\theta})]</script></li>
 <li><p>代表方法：</p>
 <ul>
-<li><p>**guided cost learning (GCL)**——C. Finn, S. Levine, and P. Abbeel, “Guided cost learning: Deep inverse optimal control via policy optimization,” in International Conference on Machine Learning, 2016, pp. 49–58.</p>
+<li><p><strong>guided cost learning (GCL)</strong>——C. Finn, S. Levine, and P. Abbeel, “Guided cost learning: Deep inverse optimal control via policy optimization,” in International Conference on Machine Learning, 2016, pp. 49–58.</p>
 <p>（it handles unknown dynamics in high-dimensional complex systems and learns complex neural network cost functions through an efficient sample-based approximation.）</p>
 </li>
 </ul>
@@ -263,25 +259,28 @@
 </ul>
 </li>
 <li><p><strong>Generative Adversarial Imitation Learning (GAIL):</strong></p>
-</li>
-<li><p>Generative adversarial imitation learning (GAIL) [81] directly learns a policy from expert demonstrations while requiring neither the <strong>reward design</strong> in RL nor the <strong>expensive RL process</strong> in the inner loop of IRL.</p>
-</li>
-<li><p>$$\min_{\pi_{\theta}}\max_{D_{\omega}} \mathbb{E}<em>{\pi</em>{\theta}}[\log D_{\omega}(s,a)]+\mathbb{E}<em>{\pi_E}[\log(1-D</em>{\omega}(s,a))]-\lambda H(\pi_{\theta})$$，其中$$H(\pi)$$是一个正则熵项，生成器和判别器通过下式更新：</p>
-</li>
-<li><p>$$\nabla_{\theta}J(\theta)&#x3D;\mathbb{E}<em>{\pi}[\nabla</em>{\theta} \log \pi_{\theta}(a\mid s)Q(s,a)]-\lambda\nabla_{\theta}H(\pi_{\theta})$$</p>
-</li>
-<li><p>$$\nabla_{\omega}J(\omega)&#x3D;\mathbb{E}<em>{\pi}[\nabla</em>{\omega} \log D_{\omega}(s,a)]+\mathbb{E}<em>{\pi_E}[\nabla</em>{\omega} \log(1-D_{\omega}(s,a))]$$</p>
-</li>
-<li><p>Fu et al.[84] proposed adversarial inverse reinforcement learning (AIRL) based on an adversarial reward learning formulation, which can recover reward functions that are robust to dynamics changes. </p>
 <ul>
-<li>J. Fu, K. Luo, and S. Levine, “Learning robust rewards with adversarial inverse reinforcement learning,” CoRR, vol. abs&#x2F;1710.11248, 2017.</li>
+<li>Generative adversarial imitation learning (GAIL) [81] directly learns a policy from expert demonstrations while requiring neither the <strong>reward design</strong> in RL nor the <strong>expensive RL process</strong> in the inner loop of IRL.</li>
+<li><script type="math/tex">\min_{\pi_{\theta}}\max_{D_{\omega}} \mathbb{E}_{\pi_{\theta}}[\log D_{\omega}(s,a)]+\mathbb{E}_{\pi_E}[\log(1-D_{\omega}(s,a))]-\lambda H(\pi_{\theta})</script>，其中<script type="math/tex">H(\pi)</script>是一个正则熵项，生成器和判别器通过下式更新：</li>
+<li><script type="math/tex; mode=display">\nabla_{\theta}J(\theta)=\mathbb{E}_{\pi}[\nabla_{\theta} \log \pi_{\theta}(a\mid s)Q(s,a)]-\lambda\nabla_{\theta}H(\pi_{\theta})</script></li>
+<li><script type="math/tex; mode=display">\nabla_{\omega}J(\omega)=\mathbb{E}_{\pi}[\nabla_{\omega} \log D_{\omega}(s,a)]+\mathbb{E}_{\pi_E}[\nabla_{\omega} \log(1-D_{\omega}(s,a))]</script></li>
+<li>Fu et al.[84] proposed adversarial inverse reinforcement learning (AIRL) based on an adversarial reward learning formulation, which can recover reward functions that are robust to dynamics changes. <ul>
+<li>J. Fu, K. Luo, and S. Levine, “Learning robust rewards with adversarial inverse reinforcement learning,” CoRR, vol. abs/1710.11248, 2017.</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><h2 id="AD（Autonomous-driving）系统的几个模块："><a href="#AD（Autonomous-driving）系统的几个模块：" class="headerlink" title="AD（Autonomous driving）系统的几个模块："></a>AD（Autonomous driving）系统的几个模块：</h2></li>
 </ul>
-<h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><p>- </p>
+</li>
+<li><p>AD（Autonomous driving）系统的几个模块：</p>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+<h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><ul>
+<li></li>
+</ul>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2>
 
                 <hr>
@@ -379,7 +378,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

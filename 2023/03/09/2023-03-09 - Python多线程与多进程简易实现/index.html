@@ -13,7 +13,7 @@
 
     <title>
         
-          python多线程与多进程简易实现 - 伽蓝之堂 | Txing Blog
+          python多线程与多进程简易实现 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -178,11 +178,7 @@
 <p><strong>最后，通过本次优化调用48个核，成功把代码运行效率提升了10倍，效果显著</strong></p>
 <p><strong>NOTE</strong>：Python虽然可以通过threading库实现多线程，但由于全局解释器锁（GIL）的存在，一个时刻只能有1个线程执行，并不是真正的多线程；在一些情况下，例如跑不满一个核，由于线程之间还有通信成本，多线程python程序时间效率上并不一定优于单线程python程序；</p>
 <h4 id="2-实现方法"><a href="#2-实现方法" class="headerlink" title="2 实现方法"></a>2 实现方法</h4><h5 id="2-1-Python-多线程实现："><a href="#2-1-Python-多线程实现：" class="headerlink" title="2.1 Python 多线程实现："></a>2.1 Python 多线程实现：</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fun</span>(<span class="params">name,ind</span>):</span><br><span class="line">    <span class="built_in">print</span>(name,ind)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    process_list = []</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):  </span><br><span class="line">        p = threading.Thread(target=fun,args=(i,<span class="number">1</span>)) </span><br><span class="line">        p.start()</span><br><span class="line">        process_list.append(p)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> process_list:</span><br><span class="line">        p.join()  <span class="comment"># 等待进程结束</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Finish&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
 <h5 id="2-2-Python-多进程实现："><a href="#2-2-Python-多进程实现：" class="headerlink" title="2.2 Python 多进程实现："></a>2.2 Python 多进程实现：</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span>  Process</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fun</span>(<span class="params">name,ind</span>):</span><br><span class="line">    <span class="built_in">print</span>(name,ind)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    process_list = []</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):  </span><br><span class="line">        p = Process(target=fun,args=(i,<span class="number">1</span>)) </span><br><span class="line">        p.start()</span><br><span class="line">        process_list.append(p)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> process_list:</span><br><span class="line">        p.join()  <span class="comment"># 等待进程结束</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Finish&quot;</span>)</span><br></pre></td></tr></table></figure>
-
 <p>2023年03月09日</p>
 <p>PCon</p>
 
@@ -280,7 +276,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

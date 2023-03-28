@@ -13,7 +13,7 @@
 
     <title>
         
-          Q349 Intersection of Two Arrays - 伽蓝之堂 | Txing Blog
+          Q349 Intersection of Two Arrays - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -181,16 +181,10 @@
 
                 <h1 id="Intersection-of-Two-Arrays"><a href="#Intersection-of-Two-Arrays" class="headerlink" title="Intersection of Two Arrays"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/peak-index-in-a-mountain-array/">Intersection of Two Arrays</a></h1><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>Given two arrays, write a function to compute their intersection.</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
-<p>Input: nums1 &#x3D; [1,2,2,1], nums2 &#x3D; [2,2]<br>Output: [2]</p>
-</blockquote>
-<blockquote>
+<p>Input: nums1 = [1,2,2,1], nums2 = [2,2]<br>Output: [2]</p>
 <p><strong>Example 2:</strong></p>
-<p>Input: nums1 &#x3D; [4,9,5], nums2 &#x3D; [9,4,9,8,4]<br>Output: [9,4]</p>
-</blockquote>
-<blockquote>
+<p>Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]<br>Output: [9,4]</p>
 <p><strong>Note:</strong></p>
 <ul>
 <li>Each element in the result must be unique.</li>
@@ -199,7 +193,6 @@
 </blockquote>
 <h2 id="Approach-1-Array"><a href="#Approach-1-Array" class="headerlink" title="Approach 1: Array"></a>Approach 1: Array</h2><p><strong>Intuition and Algorithm</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">intersection</span>(<span class="params">self, nums1, nums2</span>):</span><br><span class="line">        out=[]</span><br><span class="line">        <span class="keyword">for</span> A <span class="keyword">in</span> nums1:</span><br><span class="line">            <span class="keyword">if</span> A <span class="keyword">in</span> nums2 <span class="keyword">and</span> A <span class="keyword">not</span> <span class="keyword">in</span> out:</span><br><span class="line">                out.append(A)</span><br><span class="line">        <span class="keyword">return</span> out</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums1 = [<span class="number">4</span>, <span class="number">9</span>, <span class="number">5</span>]</span><br><span class="line">    nums2 = [<span class="number">9</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">8</span>, <span class="number">4</span>]</span><br><span class="line">    solution=Solution().intersection(nums1,nums2)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
 <p><strong>Complexity Analysis</strong></p>
 <ul>
 <li>Time Complexity: <em>O</em>(<em>N</em>), where <em>N</em> is the length of <code>nums1</code>.</li>
@@ -211,11 +204,10 @@
 <p>The comparison <code>A[i] &lt; A[i+1]</code> in a mountain array looks like <code>[True, True, True, ..., True, False, False, ..., False]</code>: 1 or more boolean <code>True</code>s, followed by 1 or more boolean <code>False</code>. For example, in the mountain array <code>[1, 2, 3, 4, 1]</code>, the comparisons <code>A[i] &lt; A[i+1]</code> would be <code>True, True, True, False</code>.</p>
 <p>We can binary search over this array of comparisons, to find the largest index <code>i</code> such that <code>A[i] &lt; A[i+1]</code>. For more on <em>binary search</em>, see the <a target="_blank" rel="noopener" href="https://leetcode.com/explore/learn/card/binary-search/">LeetCode explore topic here.</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">intersection</span>(<span class="params">self, nums1, nums2</span>):</span><br><span class="line">        set1 = <span class="built_in">set</span>(nums1)</span><br><span class="line">        set2 = <span class="built_in">set</span>(nums2)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">list</span>(set2 &amp; set1)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums1 = [<span class="number">4</span>, <span class="number">9</span>, <span class="number">5</span>]</span><br><span class="line">    nums2 = [<span class="number">9</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">8</span>, <span class="number">4</span>]</span><br><span class="line">    solution=Solution().intersection(nums1,nums2)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
 <p><strong>Complexity Analysis</strong></p>
 <ul>
-<li>Time complexity : $$\mathcal{O}(n + m)$$ in the average case and $$\mathcal{O}(n \times m)$$ <a target="_blank" rel="noopener" href="https://wiki.python.org/moin/TimeComplexity#set">in the worst case when load factor is high enough</a>.</li>
-<li>Space complexity : $$\mathcal{O}(n + m)$$ in the worst case when all elements in the arrays are different.</li>
+<li>Time complexity : <script type="math/tex">\mathcal{O}(n + m)</script> in the average case and <script type="math/tex">\mathcal{O}(n \times m)</script> <a target="_blank" rel="noopener" href="https://wiki.python.org/moin/TimeComplexity#set">in the worst case when load factor is high enough</a>.</li>
+<li>Space complexity : <script type="math/tex">\mathcal{O}(n + m)</script> in the worst case when all elements in the arrays are different.</li>
 <li>Runtime: 28 ms, faster than 93.60% of Python online submissions for Intersection of Two Arrays.</li>
 <li>Memory Usage: 11.9 MB, less than 50.78% of Python online submissions for Intersection of Two Arrays.</li>
 </ul>
@@ -320,7 +312,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

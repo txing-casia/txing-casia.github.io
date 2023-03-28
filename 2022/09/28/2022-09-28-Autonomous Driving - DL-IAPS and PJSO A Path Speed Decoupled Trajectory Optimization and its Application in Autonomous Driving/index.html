@@ -13,7 +13,7 @@
 
     <title>
         
-          Autonomous Driving | DL-IAPS and PJSO: A Path/Speed Decoupled Trajectory Optimization and its Application in Autonomous Driving (Baidu, 2020) - 伽蓝之堂 | Txing Blog
+          Autonomous Driving | DL-IAPS and PJSO: A Path/Speed Decoupled Trajectory Optimization and its Application in Autonomous Driving (Baidu, 2020) - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -173,29 +173,26 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="DL-IAPS-and-PJSO-A-Path-x2F-Speed-Decoupled-Trajectory-Optimization-and-its-Application-in-Autonomous-Driving"><a href="#DL-IAPS-and-PJSO-A-Path-x2F-Speed-Decoupled-Trajectory-Optimization-and-its-Application-in-Autonomous-Driving" class="headerlink" title="DL-IAPS and PJSO: A Path&#x2F;Speed Decoupled Trajectory Optimization and its Application in Autonomous Driving"></a>DL-IAPS and PJSO: A Path&#x2F;Speed Decoupled Trajectory Optimization and its Application in Autonomous Driving</h2><p>本文是以下三者的结合：</p>
+                <h2 id="DL-IAPS-and-PJSO-A-Path-Speed-Decoupled-Trajectory-Optimization-and-its-Application-in-Autonomous-Driving"><a href="#DL-IAPS-and-PJSO-A-Path-Speed-Decoupled-Trajectory-Optimization-and-its-Application-in-Autonomous-Driving" class="headerlink" title="DL-IAPS and PJSO: A Path/Speed Decoupled Trajectory Optimization and its Application in Autonomous Driving"></a>DL-IAPS and PJSO: A Path/Speed Decoupled Trajectory Optimization and its Application in Autonomous Driving</h2><p>本文是以下三者的结合：</p>
 <ul>
 <li>collision-free trajectory planning problem</li>
 <li>Dual-Loop Iterative Anchoring Path Smoothing (DL-IAPS)</li>
 <li>Piece-wise Jerk Speed Optimization (PJSO)</li>
 </ul>
 <h3 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h3><ul>
-<li><p>一些环境不支持车辆倒车，但在parking上倒车是必要的，因此需要自由空间轨迹规划算法 Free space trajectory planning algorithm</p>
-</li>
-<li><p>当前主流的自由空间轨迹规划方法有两类：</p>
-<ul>
-<li><strong>路径-速度联合优化方法</strong>（path&#x2F;speed coupled method）: Nonlinear Model Predictive Control (NMPC), Mixed Interger Programming (MIP), Hierarchical Optimization-Based Collision Avoidance (H-OBCA)。这些方法可以优雅地将车辆动力学和避障结合成一个单一的优化问题，但具有高计算复杂度和低鲁棒性；</li>
-<li><strong>路径-速度解耦优化方法</strong>（path&#x2F;speed decoupled method）: 先计算平滑路径后计算轨迹轮廓。该方式具有更高的计算效率，但可能不具有控制可行性，在极端情况下无法保证路径或速度的平滑性。</li>
+<li>一些环境不支持车辆倒车，但在parking上倒车是必要的，因此需要自由空间轨迹规划算法 Free space trajectory planning algorithm</li>
+<li>当前主流的自由空间轨迹规划方法有两类：<ul>
+<li><strong>路径-速度联合优化方法</strong>（path/speed coupled method）: Nonlinear Model Predictive Control (NMPC), Mixed Interger Programming (MIP), Hierarchical Optimization-Based Collision Avoidance (H-OBCA)。这些方法可以优雅地将车辆动力学和避障结合成一个单一的优化问题，但具有高计算复杂度和低鲁棒性；</li>
+<li><strong>路径-速度解耦优化方法</strong>（path/speed decoupled method）: 先计算平滑路径后计算轨迹轮廓。该方式具有更高的计算效率，但可能不具有控制可行性，在极端情况下无法保证路径或速度的平滑性。</li>
 </ul>
 </li>
-<li><p>*<em>Hybrid A</em> method: ** “Path planning for autonomous vehicles in unknown semi-structured environments,” The International Journal of Robotics Research, vol. 29, no. 5, pp. 485–501, 2010.</p>
+<li><p><strong>Hybrid A* method: </strong> “Path planning for autonomous vehicles in unknown semi-structured environments,” The International Journal of Robotics Research, vol. 29, no. 5, pp. 485–501, 2010.</p>
 </li>
 <li><p>迭代曲率约束路径平滑 iterative curvature constrained path smoothing (i.e., DL-IAPS)</p>
 </li>
 <li><p>舒适的最小时间分段加加速度优化 comfortable minimum-time piece-wise jerk speed optimization (i.e., PJSO)</p>
 </li>
-<li><p>主要贡献：</p>
-<ul>
+<li>主要贡献：<ul>
 <li>精确实时的碰撞避免轨迹生成，Precise Collision Avoidance in Real-Time，轨迹长度9-14s，检测时间0.18−0.21s</li>
 <li>具备可行性的控制，Control Feasibility</li>
 <li>兼顾驾驶舒适性和最短行驶时间，Driving comfort and Minimum Traversal Time</li>
@@ -215,7 +212,7 @@
 </ul>
 <p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220929-1.jpg" alt="非线性路径平滑优化问题"></p>
 <h4 id="Outer-Loop-for-Collision-Avoidance"><a href="#Outer-Loop-for-Collision-Avoidance" class="headerlink" title="Outer Loop for Collision Avoidance:"></a>Outer Loop for Collision Avoidance:</h4><ul>
-<li>collision check and $$B_k$$ updates</li>
+<li>collision check and <script type="math/tex">B_k</script> updates</li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220929-2.jpg" alt="碰撞检测"></p>
 <h4 id="Piece-wise-Jerk-Speed-Optimization"><a href="#Piece-wise-Jerk-Speed-Optimization" class="headerlink" title="Piece-wise Jerk Speed Optimization"></a>Piece-wise Jerk Speed Optimization</h4><p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220929-3.jpg" alt="Jerk形式推导"></p>
@@ -327,7 +324,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

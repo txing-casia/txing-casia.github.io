@@ -13,7 +13,7 @@
 
     <title>
         
-          Q1561 你可以获得的最大硬币数目-排序 - 伽蓝之堂 | Txing Blog
+          Q1561 你可以获得的最大硬币数目-排序 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -179,30 +179,19 @@
 <p>有 3n 堆数目不一的硬币，你和你的朋友们打算按以下方式分硬币：</p>
 <p>每一轮中，你将会选出<strong>任意</strong>3 堆硬币（不一定连续）。<br>Alice 将会取走硬币数量最多的那一堆。<br>你将会取走硬币数量第二多的那一堆。<br>Bob 将会取走最后一堆。<br>重复这个过程，直到没有更多硬币。<br>给你一个整数数组 piles ，其中 piles[i] 是第 i 堆中硬币的数目。</p>
 <p>返回你可以获得的最大硬币数目。</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
-<p>输入：piles &#x3D; [2,4,1,2,7,8]<br>输出：9<br>解释：选出 (2, 7, 8) ，Alice 取走 8 枚硬币的那堆，你取走 7 枚硬币的那堆，Bob 取走最后一堆。<br>选出 (1, 2, 4) , Alice 取走 4 枚硬币的那堆，你取走 2 枚硬币的那堆，Bob 取走最后一堆。<br>你可以获得的最大硬币数目：7 + 2 &#x3D; 9.<br>考虑另外一种情况，如果选出的是 (1, 2, 8) 和 (2, 4, 7) ，你就只能得到 2 + 4 &#x3D; 6 枚硬币，这不是最优解。</p>
-</blockquote>
-<blockquote>
+<p>输入：piles = [2,4,1,2,7,8]<br>输出：9<br>解释：选出 (2, 7, 8) ，Alice 取走 8 枚硬币的那堆，你取走 7 枚硬币的那堆，Bob 取走最后一堆。<br>选出 (1, 2, 4) , Alice 取走 4 枚硬币的那堆，你取走 2 枚硬币的那堆，Bob 取走最后一堆。<br>你可以获得的最大硬币数目：7 + 2 = 9.<br>考虑另外一种情况，如果选出的是 (1, 2, 8) 和 (2, 4, 7) ，你就只能得到 2 + 4 = 6 枚硬币，这不是最优解。</p>
 <p><strong>Example 2：</strong></p>
-<p>输入：piles &#x3D; [2,4,5]<br>输出：4</p>
-</blockquote>
-<blockquote>
+<p>输入：piles = [2,4,5]<br>输出：4</p>
 <p><strong>Example 3：</strong></p>
-<p>输入：piles &#x3D; [9,8,7,6,5,1,2,3,4]<br>输出：18</p>
-</blockquote>
-<blockquote>
+<p>输入：piles = [9,8,7,6,5,1,2,3,4]<br>输出：18</p>
 <p><strong>Note</strong></p>
-<p>3 &lt;&#x3D; piles.length &lt;&#x3D; 10^5</p>
-<p>piles.length % 3 &#x3D;&#x3D; 0</p>
-<p>1 &lt;&#x3D; piles[i] &lt;&#x3D; 10^4</p>
+<p>3 &lt;= piles.length &lt;= 10^5</p>
+<p>piles.length % 3 == 0</p>
+<p>1 &lt;= piles[i] &lt;= 10^4</p>
 </blockquote>
 <h3 id="Approach-1-Intuitive-Solution"><a href="#Approach-1-Intuitive-Solution" class="headerlink" title="Approach 1: Intuitive Solution"></a>Approach 1: Intuitive Solution</h3><p>Bob取走最小的n堆，剩下的2n堆里面，我每次取次小的。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxCoins</span>(<span class="params">self, piles</span>):</span><br><span class="line">        piles_sort=<span class="built_in">sorted</span>(piles)</span><br><span class="line">        <span class="built_in">print</span>(piles_sort[<span class="built_in">int</span>(<span class="built_in">len</span>(piles)/<span class="number">3</span>):<span class="built_in">len</span>(piles):<span class="number">2</span>])</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(piles_sort[<span class="built_in">int</span>(<span class="built_in">len</span>(piles)/<span class="number">3</span>):<span class="built_in">len</span>(piles):<span class="number">2</span>])</span><br><span class="line">    	<span class="comment"># return sum(piles_sort[int(len(piles)/3)::2])</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    piles = [<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">8</span>]</span><br><span class="line">    solution=Solution().maxCoins(piles)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li>时间复杂度：O(N)。</li>
 <li>空间复杂度：O(N)。</li>
@@ -304,7 +293,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

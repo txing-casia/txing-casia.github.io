@@ -13,7 +13,7 @@
 
     <title>
         
-          Q867 Transpose Matrix - 伽蓝之堂 | Txing Blog
+          Q867 Transpose Matrix - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -180,16 +180,10 @@
                 <h1 id="Transpose-Matrix"><a href="#Transpose-Matrix" class="headerlink" title="Transpose Matrix"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/transpose-matrix/">Transpose Matrix</a></h1><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>Given a matrix <code>A</code>, return the transpose of <code>A</code>.</p>
 <p>The transpose of a matrix is the matrix flipped over it’s main diagonal, switching the row and column indices of the matrix.</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1</strong>: </p>
 <p>Input: [[1,2,3],[4,5,6],[7,8,9]]<br>Output: [[1,4,7],[2,5,8],[3,6,9]]</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 2</strong>: </p>
 <p>Input: [[1,2,3],[4,5,6]]<br>Output: [[1,4],[2,5],[3,6]]</p>
-</blockquote>
-<blockquote>
 <p><strong>Note:</strong></p>
 <ul>
 <li><code>1 &lt;= A.length &lt;= 1000</code></li>
@@ -201,7 +195,6 @@
 <p>The transpose of a matrix <code>A</code> with dimensions <code>R x C</code> is a matrix <code>ans</code> with dimensions <code>C x R</code> for which <code>ans[c][r] = A[r][c]</code>.</p>
 <p>Let’s initialize a new matrix <code>ans</code> representing the answer. Then, we’ll copy each entry of the matrix as appropriate.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">transpose</span>(<span class="params">self, A</span>):</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(A[<span class="number">0</span>])):</span><br><span class="line">            temp = []</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(A)):</span><br><span class="line">                temp.append(A[j][i])</span><br><span class="line">            res.append(temp)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    A = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>],[<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>]]</span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.transpose(A)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
 
 
                 <hr>
@@ -301,7 +294,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

@@ -13,7 +13,7 @@
 
     <title>
         
-          JZOffer 32-I-从上到下打印二叉树-中等-树 - 伽蓝之堂 | Txing Blog
+          JZOffer 32-I-从上到下打印二叉树-中等-树 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -181,15 +181,11 @@
 
                 <h4 id="JZOffer-32-I-从上到下打印二叉树"><a href="#JZOffer-32-I-从上到下打印二叉树" class="headerlink" title="JZOffer 32 - I. 从上到下打印二叉树"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/">JZOffer 32 - I. 从上到下打印二叉树</a></h4><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>从上到下打印出二叉树的每个节点，同一层的节点按照从左到右的顺序打印。</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
 <p>给定二叉树: <code>[3,9,20,null,null,15,7]</code>,</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  3</span><br><span class="line"> / \</span><br><span class="line">9  20</span><br><span class="line">  /  \</span><br><span class="line"> 15   7</span><br></pre></td></tr></table></figure>
 <p>输出：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;[3,9,20,15,7]</span><br></pre></td></tr></table></figure>
-</blockquote>
-<blockquote>
 <p><strong>Note:</strong></p>
 <ul>
 <li><code>节点总数 &lt;= 1000</code></li>
@@ -200,10 +196,8 @@
 </ul>
 <p><strong>算法流程</strong>：</p>
 <ul>
-<li><p>特例处理： 当树的根节点为空，则直接返回空列表 [] ；</p>
-</li>
-<li><p>初始化： 打印结果列表 res &#x3D; [] ，包含根节点的队列 queue &#x3D; [root] ；</p>
-</li>
+<li>特例处理： 当树的根节点为空，则直接返回空列表 [] ；</li>
+<li>初始化： 打印结果列表 res = [] ，包含根节点的队列 queue = [root] ；</li>
 <li><p>BFS 循环： 当队列 queue 为空时跳出；</p>
 <ul>
 <li>出队： 队首元素出队，记为 node；</li>
@@ -218,12 +212,11 @@
 <p>Python 中使用 collections 中的双端队列 deque() ，其 popleft() 方法可达到 O(1)O(1) 时间复杂度；列表 list 的 pop(0) 方法时间复杂度为 O(N)</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">levelOrder</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root: <span class="keyword">return</span> []</span><br><span class="line">        res, queue = [], collections.deque()</span><br><span class="line">        queue.append(root)</span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            node = queue.popleft()</span><br><span class="line">            res.append(node.val)</span><br><span class="line">            <span class="keyword">if</span> node.left: queue.append(node.left)</span><br><span class="line">            <span class="keyword">if</span> node.right: queue.append(node.right)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li><p>时间复杂度 O(N) ： N 为二叉树的节点数量，即 BFS 需循环 N 次。</p>
 </li>
-<li><p>空间复杂度 O(N) ： 最差情况下，即当树为平衡二叉树时，最多有 N&#x2F;2 个树节点同时在 queue 中，使用 O(N)大小的额外空间。</p>
+<li><p>空间复杂度 O(N) ： 最差情况下，即当树为平衡二叉树时，最多有 N/2 个树节点同时在 queue 中，使用 O(N)大小的额外空间。</p>
 </li>
 </ul>
 
@@ -327,7 +320,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

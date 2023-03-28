@@ -13,7 +13,7 @@
 
     <title>
         
-          HJ26 字符串排序-中等-字符串 - 伽蓝之堂 | Txing Blog
+          HJ26 字符串排序-中等-字符串 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -151,9 +151,9 @@
                         
                           <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
                         
-                          <a class="tag" href="/tags/#String" title="String">String</a>
-                        
                           <a class="tag" href="/tags/#Medium" title="Medium">Medium</a>
+                        
+                          <a class="tag" href="/tags/#String" title="String">String</a>
                         
                     </div>
                     <h1>HJ26 字符串排序-中等-字符串</h1>
@@ -179,7 +179,7 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h4 id="HJ26-字符串排序"><a href="#HJ26-字符串排序" class="headerlink" title="HJ26 字符串排序 "></a><a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/5190a1db6f4f4ddb92fd9c365c944584?tpId=37&&tqId=21249&rp=1&ru=/ta/huawei&qru=/ta/huawei/question-ranking">HJ26 字符串排序 </a></h4><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
+                <h4 id="HJ26-字符串排序"><a href="#HJ26-字符串排序" class="headerlink" title="HJ26 字符串排序 "></a><a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/5190a1db6f4f4ddb92fd9c365c944584?tpId=37&amp;&amp;tqId=21249&amp;rp=1&amp;ru=/ta/huawei&amp;qru=/ta/huawei/question-ranking">HJ26 字符串排序 </a></h4><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p> <strong>规则 1</strong> ：英文字母从 A 到 Z 排列，不区分大小写。</p>
 <p> 如，输入： Type 输出： epTy</p>
 <p> <strong>规则 2</strong> ：同一个英文字母的大小写同时存在时，按照输入顺序排列。</p>
@@ -189,13 +189,13 @@
 <p> 注意有多组测试数据，即输入有多行，每一行单独处理（换行符隔开的表示不同行）</p>
 <p> 输入描述：</p>
 <ul>
-<li>输入字符串</li>
+<li><p>输入字符串</p>
+<p>输出描述：</p>
+</li>
+<li><p>输出字符串</p>
+<p>示例1<br>输入：A Famous Saying: Much Ado About Nothing (2012/8).<br>输出：A aaAAbc dFgghh: iimM nNn oooos Sttuuuy (2012/8).</p>
+</li>
 </ul>
-<p> 输出描述：</p>
-<ul>
-<li>输出字符串</li>
-</ul>
-<p> 示例1<br> 输入：A Famous Saying: Much Ado About Nothing (2012&#x2F;8).<br> 输出：A aaAAbc dFgghh: iimM nNn oooos Sttuuuy (2012&#x2F;8).</p>
 </blockquote>
 <h3 id="Approach"><a href="#Approach" class="headerlink" title="Approach"></a>Approach</h3><ul>
 <li>sorted(iterable,str.upper)就可以实现：<ul>
@@ -206,11 +206,10 @@
 <li>str.isalpha实现的是如果字符串至少有一个字符并且所有字符都是字母则返回 True，否则返回 False。</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        s = <span class="built_in">input</span>()</span><br><span class="line">        a = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> s:</span><br><span class="line">            <span class="keyword">if</span> i.isalpha():</span><br><span class="line">                a += i</span><br><span class="line">        b = <span class="built_in">sorted</span>(a, key=<span class="built_in">str</span>.upper)</span><br><span class="line">        index = <span class="number">0</span></span><br><span class="line">        d = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(s)):</span><br><span class="line">            <span class="keyword">if</span> s[i].isalpha():</span><br><span class="line">                d += b[index]</span><br><span class="line">                index += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                d += s[i]</span><br><span class="line">        <span class="built_in">print</span>(d)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li>时间复杂度：$$O(N)$$，N是序列长度。</li>
-<li>空间复杂度：$$O(1)$$。常数个变量。</li>
+<li>时间复杂度：<script type="math/tex">O(N)</script>，N是序列长度。</li>
+<li>空间复杂度：<script type="math/tex">O(1)</script>。常数个变量。</li>
 </ul>
 
 
@@ -221,12 +220,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2021/07/05/2021-07-05-ACM数据格式处理python方法总结/" data-toggle="tooltip" data-placement="top" title="ACM数据格式处理python方法总结">&larr; Previous Post</a>
+                            <a href="/2021/07/06/2021-07-06-Reinforcement Learning - Option Discovery in Hierarchical Reinforcement Learning using Spatio-Temporal Clustering - 副本/" data-toggle="tooltip" data-placement="top" title="Reinforcement Learning | Option Discovery in Hierarchical Reinforcement Learning using Spatio-Temporal Clustering">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2021/07/01/2021-07-01-Reinforcement Learning - Hierarchical Deep Reinforcement Learning for Continuous Action Control/" data-toggle="tooltip" data-placement="top" title="Reinforcement Learning | Hierarchical Deep Reinforcement Learning for Continuous Action Control">Next Post &rarr;</a>
+                            <a href="/2021/07/05/2021-07-05-ACM数据格式处理python方法总结/" data-toggle="tooltip" data-placement="top" title="ACM数据格式处理python方法总结">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -257,9 +256,9 @@
                         
                           <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
                         
-                          <a class="tag" href="/tags/#String" title="String">String</a>
-                        
                           <a class="tag" href="/tags/#Medium" title="Medium">Medium</a>
+                        
+                          <a class="tag" href="/tags/#String" title="String">String</a>
                         
                     </div>
                 </section>
@@ -313,7 +312,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

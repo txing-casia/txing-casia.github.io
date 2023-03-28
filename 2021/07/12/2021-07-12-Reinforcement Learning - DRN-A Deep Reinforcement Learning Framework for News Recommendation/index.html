@@ -13,7 +13,7 @@
 
     <title>
         
-          Reinforcement Learning | DRN: A Deep Reinforcement Learning Framework for News Recommendation - 伽蓝之堂 | Txing Blog
+          Reinforcement Learning | DRN: A Deep Reinforcement Learning Framework for News Recommendation - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -180,7 +180,7 @@
 <li><p>针对新闻和用户动态特征的问题，目前的方法主要存在三个问题：</p>
 <ul>
 <li>模型<strong>只考虑当前奖励</strong>（例如CTR，点击转化率）</li>
-<li>很少有模型考虑<strong>使用用户的反馈</strong>而不是点击&#x2F;不点击的标签（例如用户反馈频率）</li>
+<li>很少有模型考虑<strong>使用用户的反馈</strong>而不是点击/不点击的标签（例如用户反馈频率）</li>
 <li>模型总是<strong>推荐相似的东西</strong>，会使得用户感到无聊</li>
 </ul>
 </li>
@@ -199,24 +199,24 @@
 <li>Second, users’ interest on different news might evolve during time.</li>
 </ul>
 </li>
-<li>Second, current recommendation methods [23, 35, 36, 43] usually only consider the click &#x2F; no click labels or ratings as users’ feedback.</li>
-<li>The third major issue of current recommendation methods is its tendency to keep recommending similar items to users, which might decrease users’ interest in similar topics.</li>
+<li>Second, current recommendation methods [23, 35, 36, 43] usually only consider the click / no click labels or ratings as users’ feedback.</li>
+<li>The third major issue of current recommendation methods is its tendency to keep recommending similar items to users, which might decrease users’ interest in similar topics. </li>
 </ul>
 </li>
-<li><p>一般的强化学习推荐方法使用 $$\epsilon-greedy$$ 或者 Upper Confidence Bound (UCB) 方法增加推荐的探索能力。</p>
-<p>但是 $$\epsilon-greedy$$ 会损害当前推荐的性能，而UCB在一件物品尝试了几次之后才能得到相对准确的奖励评估。因此需要更高效的探索方式。</p>
+<li><p>一般的强化学习推荐方法使用 <script type="math/tex">\epsilon-greedy</script> 或者 Upper Confidence Bound (UCB) 方法增加推荐的探索能力。</p>
+<p>但是 <script type="math/tex">\epsilon-greedy</script> 会损害当前推荐的性能，而UCB在一件物品尝试了几次之后才能得到相对准确的奖励评估。因此需要更高效的探索方式。</p>
 </li>
 <li><p>通过使用 Dueling Bandit Gradient Descent (DBGD) 算法作为探索策略，它会随机从候选项的邻域或者候选项中选择推荐对象。这个探索策略可以避免推荐完全无关的信息，因此可以保持当前策略的精度。</p>
 </li>
 <li><p>模型框图：</p>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-1.png"></p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-1.png" alt=""></p>
 </li>
 <li><p>算法每1小时更新一次。Every one hour, the agent will use the log in the memory to update its recommendation algorithm.</p>
 </li>
 <li><p>主要贡献：</p>
 <ul>
 <li>我们认为用户的活跃性有助于提高推荐的准确性，这可以提供额外的信息，而不是简单地使用用户点击标签。 </li>
-<li>应用了更有效的探索方法，避免了由经典探索方法(例如，$$\epsilon$$-greedy和置信上限)引起的推荐准确度下降。 </li>
+<li>应用了更有效的探索方法，避免了由经典探索方法(例如，<script type="math/tex">\epsilon</script>-greedy和置信上限)引起的推荐准确度下降。 </li>
 <li>我们的系统已经在线部署在商业新闻推荐应用程序中。大量的离线和在线实验显示了我们方法的优越性能。</li>
 </ul>
 </li>
@@ -243,28 +243,33 @@
 <ul>
 <li><p><strong>News features</strong> includes 417 dimension one hot features that describe whether certain property appears in this piece of news, including headline, provider, ranking, entity name, category, topic category, and click counts in last 1 hour, 6 hours, 24 hours, 1 week, and 1 year respectively. </p>
 </li>
-<li><p><strong>User features</strong> mainly describes the features (i.e., headline, provider, ranking, entity name, category, and topic category) of the news that the user clicked in 1 hour, 6 hours, 24 hours, 1 week, and 1 year respectively. There is also a total click count for each time granularity. Therefore, there will be totally 413 × 5 &#x3D; 2065 dimensions. </p>
+<li><p><strong>User features</strong> mainly describes the features (i.e., headline, provider, ranking, entity name, category, and topic category) of the news that the user clicked in 1 hour, 6 hours, 24 hours, 1 week, and 1 year respectively. There is also a total click count for each time granularity. Therefore, there will be totally 413 × 5 = 2065 dimensions. </p>
 </li>
-<li><p><strong>User news features</strong>. These 25-dimensional features describe the interaction between user and one certain piece of news, i.e., the frequency for the entity (also category, topic category and provider) to appear in the history of the user’s readings. </p>
-</li>
-<li><p><strong>Context features</strong>. These 32-dimensional features describe the context when a news request happens, including time, weekday, and the freshness of the news (the gap between request time and news publish time).</p>
-</li>
+<li><strong>User news features</strong>. These 25-dimensional features describe the interaction between user and one certain piece of news, i.e., the frequency for the entity (also category, topic category and provider) to appear in the history of the user’s readings. </li>
+<li><strong>Context features</strong>. These 32-dimensional features describe the context when a news request happens, including time, weekday, and the freshness of the news (the gap between request time and news publish time).</li>
 </ul>
 </li>
 <li><p>模型框架，包含离线和在线部分</p>
 </li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-3.png" alt="Model framework"></p>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-4.png" alt="Q network"><br>$$<br>y_{s,a}&#x3D;Q(s,a)&#x3D;r_{immediate}+\gamma r_{future}\<br>y_{s,a,t}&#x3D;r_{a,t+1}+\gamma Q\big(s_{a,t+1},\arg \max_{a’} Q(s_{a,t+1},a’;W_t);W_t’\big)<br>$$</p>
-<h3 id="User-Activeness"><a href="#User-Activeness" class="headerlink" title="User Activeness"></a>User Activeness</h3><p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-3.png" alt="User activeness estimation"><br>$$<br>\lambda(t)&#x3D;\lim_{dt\rightarrow 0} \frac{\Pr{t \leq T&lt;t+dt\mid T\geq t }}{d t}\<br>S(t)&#x3D;e^{-\int_0^\infty \lambda(x)dx}\<br>T_0&#x3D;\int_0^{\infty}S(t)dt<br>$$<br>the maximum user activeness is truncated to 1.</p>
-<p>The click &#x2F; no click label $$r_{click}$$ and the user activeness $$r_{active}$$ are combined as:<br>$$<br>r_{total}&#x3D;r_{click}+\beta r_{active}<br>$$</p>
-<ul>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-4.png" alt="Q network"></p>
+<script type="math/tex; mode=display">
+y_{s,a}=Q(s,a)=r_{immediate}+\gamma r_{future}\\
+y_{s,a,t}=r_{a,t+1}+\gamma Q\big(s_{a,t+1},\arg \max_{a'} Q(s_{a,t+1},a';W_t);W_t'\big)</script><h3 id="User-Activeness"><a href="#User-Activeness" class="headerlink" title="User Activeness"></a>User Activeness</h3><p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-3.png" alt="User activeness estimation"></p>
+<script type="math/tex; mode=display">
+\lambda(t)=\lim_{dt\rightarrow 0} \frac{\Pr\{t \leq T<t+dt\mid T\geq t \}}{d t}\\
+S(t)=e^{-\int_0^\infty \lambda(x)dx}\\
+T_0=\int_0^{\infty}S(t)dt</script><p>the maximum user activeness is truncated to 1.</p>
+<p>The click / no click label <script type="math/tex">r_{click}</script> and the user activeness <script type="math/tex">r_{active}</script> are combined as:</p>
+<script type="math/tex; mode=display">
+r_{total}=r_{click}+\beta r_{active}</script><ul>
 <li>网络框架</li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-2.png" alt="Exploration by Dueling Bandit Gradient Descent"></p>
-<p>$$\hat{L}$$ 首先使用概率交错方法从 $$L$$ 和 $$\tilde{L}$$ 。大致就是首先随机从 $$L$$ 和 $$\tilde{L}$$ 选择推荐项，之后按照概率值更新网络 $$\tilde{Q}$$</p>
-<p>$$<br>\Delta W&#x3D;\alpha \cdot rand(-1,1)\cdot W\<br>W’&#x3D;W+\eta \tilde{W}<br>$$</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>感觉整体框架还是很好理解的，针对任务的改进比较多，对强化学习框架的改动比较小。</p>
+<script type="math/tex; mode=display">\hat{L}$$ 首先使用概率交错方法从 $$L$$ 和 $$\tilde{L}$$ 。大致就是首先随机从 $$L$$ 和 $$\tilde{L}$$ 选择推荐项，之后按照概率值更新网络 $$\tilde{Q}</script><script type="math/tex; mode=display">
+\Delta W=\alpha \cdot rand(-1,1)\cdot W\\
+W'=W+\eta \tilde{W}</script><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>感觉整体框架还是很好理解的，针对任务的改进比较多，对强化学习框架的改动比较小。</p>
 <p>两个网络的构造也类似于DQN中的target network，输入的高维特征类比于输入的图像信息。</p>
 
 
@@ -363,7 +368,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

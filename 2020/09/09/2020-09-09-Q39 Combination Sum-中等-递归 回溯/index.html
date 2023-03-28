@@ -13,7 +13,7 @@
 
     <title>
         
-          Q39 Combination Sum-中等-递归 回溯 - 伽蓝之堂 | Txing Blog
+          Q39 Combination Sum-中等-递归 回溯 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -189,27 +189,20 @@
 <li>All numbers (including target) will be positive integers.</li>
 <li>The solution set must not contain duplicate combinations.</li>
 </ul>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
-<p>Input: candidates &#x3D; [2,3,6,7], target &#x3D; 7,<br>A solution set is:<br>[<br>     [7],<br>     [2,2,3]<br>   ]</p>
-</blockquote>
-<blockquote>
+<p>Input: candidates = [2,3,6,7], target = 7,<br>A solution set is:<br>[<br>     [7],<br>     [2,2,3]<br>   ]</p>
 <p><strong>Example 2:</strong></p>
-<p>Input: candidates &#x3D; [2,3,5], target &#x3D; 8,<br>A solution set is:<br>[<br>  [2,2,2,2],<br>  [2,3,3],<br>  [3,5]<br>]</p>
-</blockquote>
-<blockquote>
+<p>Input: candidates = [2,3,5], target = 8,<br>A solution set is:<br>[<br>  [2,2,2,2],<br>  [2,3,3],<br>  [3,5]<br>]</p>
 <p><strong>Constraints:</strong></p>
-<p>1 &lt;&#x3D; candidates.length &lt;&#x3D; 30<br>1 &lt;&#x3D; candidates[i] &lt;&#x3D; 200<br>Each element of candidate is unique.<br>1 &lt;&#x3D; target &lt;&#x3D; 500</p>
+<p>1 &lt;= candidates.length &lt;= 30<br>1 &lt;= candidates[i] &lt;= 200<br>Each element of candidate is unique.<br>1 &lt;= target &lt;= 500</p>
 </blockquote>
 <h3 id="Approach-1-搜索回溯"><a href="#Approach-1-搜索回溯" class="headerlink" title="Approach 1: 搜索回溯"></a>Approach 1: 搜索回溯</h3><h4 id="思路与算法"><a href="#思路与算法" class="headerlink" title="思路与算法"></a>思路与算法</h4><p>对于这类寻找所有可行解的题，我们都可以尝试用「搜索回溯」的方法来解决。</p>
-<p>回到本题，我们定义递归函数 dfs(target, combine, idx) 表示当前在 candidates 数组的第 idx 位，还剩 target 要组合，已经组合的列表为 combine。递归的终止条件为 target &lt;&#x3D; 0 或者 candidates 数组被全部用完。那么在当前的函数中，每次我们可以选择跳过不用第 idx 个数，即执行 dfs(target, combine, idx + 1)。也可以选择使用第 idx 个数，即执行 dfs(target - candidates[idx], combine, idx)，注意到每个数字可以被无限制重复选取，因此搜索的下标仍为 idx。</p>
+<p>回到本题，我们定义递归函数 dfs(target, combine, idx) 表示当前在 candidates 数组的第 idx 位，还剩 target 要组合，已经组合的列表为 combine。递归的终止条件为 target &lt;= 0 或者 candidates 数组被全部用完。那么在当前的函数中，每次我们可以选择跳过不用第 idx 个数，即执行 dfs(target, combine, idx + 1)。也可以选择使用第 idx 个数，即执行 dfs(target - candidates[idx], combine, idx)，注意到每个数字可以被无限制重复选取，因此搜索的下标仍为 idx。</p>
 <p>更形象化地说，如果我们将整个搜索过程用一个树来表达，即如下图呈现，每次的搜索都会延伸出两个分叉，直到递归的终止条件，这样我们就能不重复且不遗漏地找到所有可行解：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">combinationSum2</span>(<span class="params">self, candidates, target</span>):</span><br><span class="line">        ans=[] <span class="comment"># 汇总可行解</span></span><br><span class="line">        temp=[] <span class="comment"># 存放当前解</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">recursion</span>(<span class="params">idx,<span class="built_in">sum</span></span>):</span><br><span class="line">            <span class="keyword">if</span> idx &gt;= <span class="built_in">len</span>(candidates) <span class="keyword">or</span> <span class="built_in">sum</span> &gt;= target: <span class="comment"># 判断合法，不合法则检测是否满足target；合法则继续迭代</span></span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">sum</span> - target == <span class="number">0</span>:</span><br><span class="line">                    ans.append(temp[:])</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            temp.append(candidates[idx])</span><br><span class="line">            recursion(idx, <span class="built_in">sum</span> + candidates[idx])</span><br><span class="line">            temp.pop() <span class="comment"># 删除最后一个元素</span></span><br><span class="line">            recursion(idx + <span class="number">1</span>, <span class="built_in">sum</span>)</span><br><span class="line">        recursion(<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    candidates = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">7</span>]</span><br><span class="line">    target = <span class="number">7</span></span><br><span class="line">    solution=Solution().combinationSum(candidates,target)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><ul>
-<li>时间复杂度：$$O(S)$$，其中 S 为所有可行解的长度之和。从分析给出的搜索树我们可以看出时间复杂度取决于搜索树所有叶子节点的深度之和，即所有可行解的长度之和。在这题中，我们很难给出一个比较紧的上界，我们知道 $$O(n \times 2^n)$$ 是一个比较松的上界，即在这份代码中，n 个位置每次考虑选或者不选，如果符合条件，就加入答案的时间代价。但是实际运行的时候，因为不可能所有的解都满足条件，递归的时候我们还会用 $$target - candidates[idx] &gt;&#x3D; 0$$ 进行剪枝，所以实际运行情况是远远小于这个上界的。</li>
-<li>空间复杂度：$$O(\textit{target})$$。除答案数组外，空间复杂度取决于递归的栈深度，在最差情况下需要递归 $$O(\textit{target})$$ 层。</li>
+<li>时间复杂度：<script type="math/tex">O(S)</script>，其中 S 为所有可行解的长度之和。从分析给出的搜索树我们可以看出时间复杂度取决于搜索树所有叶子节点的深度之和，即所有可行解的长度之和。在这题中，我们很难给出一个比较紧的上界，我们知道 <script type="math/tex">O(n \times 2^n)</script> 是一个比较松的上界，即在这份代码中，n 个位置每次考虑选或者不选，如果符合条件，就加入答案的时间代价。但是实际运行的时候，因为不可能所有的解都满足条件，递归的时候我们还会用 <script type="math/tex">target - candidates[idx] >= 0</script> 进行剪枝，所以实际运行情况是远远小于这个上界的。</li>
+<li>空间复杂度：<script type="math/tex">O(\textit{target})</script>。除答案数组外，空间复杂度取决于递归的栈深度，在最差情况下需要递归 <script type="math/tex">O(\textit{target})</script> 层。</li>
 </ul>
 
 
@@ -225,7 +218,7 @@
                     
                     
                         <li class="next">
-                            <a href="/2020/09/08/2020-09-08-Q77 Combinations-中等-递归 回溯/" data-toggle="tooltip" data-placement="top" title="Q77 Combinations-中等-递归 回溯">Next Post &rarr;</a>
+                            <a href="/2020/09/08/2020-09-08-Neuroscience-A New Paradigm for Exploring Neural Substrates of Action Execution/" data-toggle="tooltip" data-placement="top" title="Neuroscience | A New Paradigm for Exploring Neural Substrates of Action Execution">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -314,7 +307,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

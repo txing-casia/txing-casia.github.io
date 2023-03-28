@@ -13,7 +13,7 @@
 
     <title>
         
-          Q771 Jewels and Stones - 伽蓝之堂 | Txing Blog
+          Q771 Jewels and Stones - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -180,23 +180,16 @@
                 <h1 id="Jewels-and-Stones"><a href="#Jewels-and-Stones" class="headerlink" title="Jewels and Stones"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/jewels-and-stones/">Jewels and Stones</a></h1><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>You’re given strings <code>J</code> representing the types of stones that are jewels, and <code>S</code> representing the stones you have.  Each character in <code>S</code> is a type of stone you have.  You want to know how many of the stones you have are also jewels.</p>
 <p>The letters in <code>J</code> are guaranteed distinct, and all characters in <code>J</code> and <code>S</code> are letters. Letters are case sensitive, so <code>&quot;a&quot;</code> is considered a different type of stone from <code>&quot;A&quot;</code>.</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1</strong>: </p>
-<p>Input: J &#x3D; “aA”, S &#x3D; “aAAbbbb”<br>Output: 3</p>
-</blockquote>
-<blockquote>
+<p>Input: J = “aA”, S = “aAAbbbb”<br>Output: 3</p>
 <p><strong>Example 1</strong>: </p>
-<p>Input: J &#x3D; “z”, S &#x3D; “ZZ”<br>Output: 0</p>
-</blockquote>
-<blockquote>
+<p>Input: J = “z”, S = “ZZ”<br>Output: 0</p>
 <p><strong>Note</strong>:</p>
 <p>S and J will consist of letters and have length at most 50.<br>The characters in J are distinct.</p>
 </blockquote>
 <h3 id="Approach-1-Brute-Force"><a href="#Approach-1-Brute-Force" class="headerlink" title="Approach 1: Brute Force"></a>Approach 1: Brute Force</h3><p><strong>Intuition and Algorithm</strong></p>
 <p>The brute force approach is simple. Loop through each element <em>i ,j</em> and find if they are equal.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numJewelsInStones</span>(<span class="params">self, J: <span class="built_in">str</span>, S: <span class="built_in">str</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        num=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> J:</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> S:</span><br><span class="line">                <span class="keyword">if</span> i==j:</span><br><span class="line">                    num+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> num</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    J = <span class="string">&quot;aA&quot;</span></span><br><span class="line">    S=<span class="string">&quot;aAAbbbbb&quot;</span></span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.numJewelsInStones(J,S)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>Runtime: 40 ms, faster than 68.64% of Python3 online submissions for Jewels and Stones.</li>
 <li>Memory Usage: 13.3 MB, less than 5.25% of Python3 online submissions for Jewels and Stones.</li>
@@ -204,7 +197,6 @@
 <hr>
 <h3 id="Approach-2-Hash-Table"><a href="#Approach-2-Hash-Table" class="headerlink" title="Approach 2: Hash Table"></a>Approach 2: Hash Table</h3><p>In my opinion, the second approach cancels the nested loop which should be much faster than the first approach. However, it has no effect at all. :worried:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numJewelsInStones</span>(<span class="params">self, J: <span class="built_in">str</span>, S: <span class="built_in">str</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        Hashmap=<span class="built_in">dict</span>()</span><br><span class="line">        num=<span class="number">0</span></span><br><span class="line">        <span class="comment"># 建立Hash Table</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(J)):</span><br><span class="line">            Hashmap[J[i]] = i <span class="comment">#键是数值，值是序号</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> S:</span><br><span class="line">            <span class="keyword">if</span> j <span class="keyword">in</span> Hashmap:</span><br><span class="line">                num+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> num</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>Runtime: 40 ms, faster than 68.64% of Python3 online submissions for Jewels and Stones.</li>
 <li>Memory Usage: 13 MB, less than 5.25% of Python3 online submissions for Jewels and Stones.</li>
@@ -308,7 +300,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

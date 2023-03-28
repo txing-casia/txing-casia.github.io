@@ -13,7 +13,7 @@
 
     <title>
         
-          Q1685-有序数组中差绝对值之和-中等-贪心 - 伽蓝之堂 | Txing Blog
+          Q1685-有序数组中差绝对值之和-中等-贪心 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -182,17 +182,11 @@
                 <h4 id="1685-有序数组中差绝对值之和"><a href="#1685-有序数组中差绝对值之和" class="headerlink" title="1685. 有序数组中差绝对值之和"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sum-of-absolute-differences-in-a-sorted-array/">1685. 有序数组中差绝对值之和</a></h4><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>给你一个 非递减 有序整数数组 nums 。</p>
 <p>请你建立并返回一个整数数组 result，它跟 nums 长度相同，且result[i] 等于 nums[i] 与数组中所有其他元素差的绝对值之和。</p>
-<p>换句话说， result[i] 等于 sum(|nums[i]-nums[j]|) ，其中 0 &lt;&#x3D; j &lt; nums.length 且 j !&#x3D; i （下标从 0 开始）。</p>
-</blockquote>
-<blockquote>
+<p>换句话说， result[i] 等于 sum(|nums[i]-nums[j]|) ，其中 0 &lt;= j &lt; nums.length 且 j != i （下标从 0 开始）。</p>
 <p><strong>Example 1:</strong></p>
-<p>输入：nums &#x3D; [2,3,5]<br>输出：[4,3,5]<br>解释：假设数组下标从 0 开始，那么<br>result[0] &#x3D; |2-2| + |2-3| + |2-5| &#x3D; 0 + 1 + 3 &#x3D; 4，<br>result[1] &#x3D; |3-2| + |3-3| + |3-5| &#x3D; 1 + 0 + 2 &#x3D; 3，<br>result[2] &#x3D; |5-2| + |5-3| + |5-5| &#x3D; 3 + 2 + 0 &#x3D; 5。</p>
-</blockquote>
-<blockquote>
+<p>输入：nums = [2,3,5]<br>输出：[4,3,5]<br>解释：假设数组下标从 0 开始，那么<br>result[0] = |2-2| + |2-3| + |2-5| = 0 + 1 + 3 = 4，<br>result[1] = |3-2| + |3-3| + |3-5| = 1 + 0 + 2 = 3，<br>result[2] = |5-2| + |5-3| + |5-5| = 3 + 2 + 0 = 5。</p>
 <p><strong>Example 2:</strong></p>
-<p>输入：nums &#x3D; [1,4,6,8,10]<br>输出：[24,15,13,15,21]</p>
-</blockquote>
-<blockquote>
+<p>输入：nums = [1,4,6,8,10]<br>输出：[24,15,13,15,21]</p>
 <p><strong>Note:</strong></p>
 <ul>
 <li><code>2 &lt;= nums.length &lt;= 10^5</code></li>
@@ -201,17 +195,15 @@
 </blockquote>
 <h3 id="Approach-1-贪心"><a href="#Approach-1-贪心" class="headerlink" title="Approach 1: 贪心"></a>Approach 1: 贪心</h3><p>直接思路是在一层循环中遍历每个元素sum[i]，第二层循环计算它与其他元素差值的绝对值，并且求和。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getSumAbsoluteDifferences</span>(<span class="params">self, nums</span>):</span><br><span class="line">        N = <span class="built_in">len</span>(nums)</span><br><span class="line">        ans=[]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">            dif = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">                <span class="keyword">if</span> i != j:</span><br><span class="line">                    dif += <span class="built_in">abs</span>(nums[i] - nums[j])</span><br><span class="line">            ans.append(dif)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-
 <p>这样做的时间复杂度是O(n^2)，提示超出了时间限制，于是我们摄像能不能减少时间复杂度。</p>
 <p>利用非递减数组的性质，可以提前计算前i项和 prefixSum[i] ，将后续的计算简化为：</p>
-<p>对 sums[i] 左边的元素，单项差值为 $$sums[i]-sums[j], (N \geq i&gt;j)$$，前 i 项求和为 $$i*sums[i]-sum(sums[j])$$</p>
-<p>对 sums[i] 右边的元素，单项差值为 $$sums[j]-sums[i],(N\geq j&gt;i)$$，前 i 项求和为 $$sum(sums[j])-(N-i-1)*sums[i]$$</p>
+<p>对 sums[i] 左边的元素，单项差值为 <script type="math/tex">sums[i]-sums[j], (N \geq i>j)</script>，前 i 项求和为 <script type="math/tex">i*sums[i]-sum(sums[j])</script></p>
+<p>对 sums[i] 右边的元素，单项差值为 <script type="math/tex">sums[j]-sums[i],(N\geq j>i)</script>，前 i 项求和为 <script type="math/tex">sum(sums[j])-(N-i-1)*sums[i]</script></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getSumAbsoluteDifferences</span>(<span class="params">self, nums</span>):</span><br><span class="line">        N = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="built_in">sum</span> = <span class="number">0</span></span><br><span class="line">        output = []</span><br><span class="line">        prefixSum =[]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">            <span class="built_in">sum</span> += nums[i]</span><br><span class="line">            prefixSum.append(<span class="built_in">sum</span>) <span class="comment"># 前i项和</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">            output.append((i+<span class="number">1</span>)*nums[i]-prefixSum[i] + prefixSum[N-<span class="number">1</span>]-prefixSum[i]-nums[i]*(N-<span class="number">1</span>-i))</span><br><span class="line">        <span class="keyword">return</span> output</span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li>时间复杂度：$$O(N)$$，N是序列长度。</li>
-<li>空间复杂度：$$O(1)$$。常数个变量。</li>
+<li>时间复杂度：<script type="math/tex">O(N)</script>，N是序列长度。</li>
+<li>空间复杂度：<script type="math/tex">O(1)</script>。常数个变量。</li>
 </ul>
 
 
@@ -314,7 +306,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

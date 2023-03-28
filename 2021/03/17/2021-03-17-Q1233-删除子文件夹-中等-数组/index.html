@@ -13,7 +13,7 @@
 
     <title>
         
-          Q1233-删除子文件夹-中等-数组 - 伽蓝之堂 | Txing Blog
+          Q1233-删除子文件夹-中等-数组 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -185,40 +185,31 @@
 <ul>
 <li><p>如果文件夹 folder[i] 位于另一个文件夹 folder[j] 下，那么 folder[i] 就是 folder[j] 的子文件夹。文件夹的「路径」是由一个或多个按以下格式串联形成的字符串：</p>
 </li>
-<li><p>&#x2F; 后跟一个或者多个小写英文字母。<br>例如，&#x2F;leetcode 和 &#x2F;leetcode&#x2F;problems 都是有效的路径，而空字符串和 &#x2F; 不是。</p>
+<li><p>/ 后跟一个或者多个小写英文字母。<br>例如，/leetcode 和 /leetcode/problems 都是有效的路径，而空字符串和 / 不是。</p>
 </li>
 </ul>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
-<p>输入：folder &#x3D; [“&#x2F;a”,”&#x2F;a&#x2F;b”,”&#x2F;c&#x2F;d”,”&#x2F;c&#x2F;d&#x2F;e”,”&#x2F;c&#x2F;f”]<br>输出：[“&#x2F;a”,”&#x2F;c&#x2F;d”,”&#x2F;c&#x2F;f”]<br>解释：”&#x2F;a&#x2F;b&#x2F;“ 是 “&#x2F;a” 的子文件夹，而 “&#x2F;c&#x2F;d&#x2F;e” 是 “&#x2F;c&#x2F;d” 的子文件夹。</p>
-</blockquote>
-<blockquote>
+<p>输入：folder = [“/a”,”/a/b”,”/c/d”,”/c/d/e”,”/c/f”]<br>输出：[“/a”,”/c/d”,”/c/f”]<br>解释：”/a/b/“ 是 “/a” 的子文件夹，而 “/c/d/e” 是 “/c/d” 的子文件夹。</p>
 <p><strong>Example 2：</strong></p>
-<p>输入：folder &#x3D; [“&#x2F;a”,”&#x2F;a&#x2F;b&#x2F;c”,”&#x2F;a&#x2F;b&#x2F;d”]<br>输出：[“&#x2F;a”]<br>解释：文件夹 “&#x2F;a&#x2F;b&#x2F;c” 和 “&#x2F;a&#x2F;b&#x2F;d&#x2F;“ 都会被删除，因为它们都是 “&#x2F;a” 的子文件夹。</p>
-</blockquote>
-<blockquote>
+<p>输入：folder = [“/a”,”/a/b/c”,”/a/b/d”]<br>输出：[“/a”]<br>解释：文件夹 “/a/b/c” 和 “/a/b/d/“ 都会被删除，因为它们都是 “/a” 的子文件夹。</p>
 <p><strong>Example 3：</strong></p>
-<p>输入：folder &#x3D; [“&#x2F;a&#x2F;b&#x2F;c”,”&#x2F;a&#x2F;b&#x2F;d”,”&#x2F;a&#x2F;b&#x2F;ca”]<br>输出：[“&#x2F;a&#x2F;b&#x2F;c”,”&#x2F;a&#x2F;b&#x2F;ca”,”&#x2F;a&#x2F;b&#x2F;d”]</p>
-</blockquote>
-<blockquote>
+<p>输入：folder = [“/a/b/c”,”/a/b/d”,”/a/b/ca”]<br>输出：[“/a/b/c”,”/a/b/ca”,”/a/b/d”]</p>
 <p><strong>Note:</strong></p>
 <ul>
-<li>1 &lt;&#x3D; folder.length &lt;&#x3D; 4 * 10^4</li>
-<li>2 &lt;&#x3D; folder[i].length &lt;&#x3D; 100</li>
-<li>folder[i] 只包含小写字母和 &#x2F;</li>
-<li>folder[i] 总是以字符 &#x2F; 起始</li>
+<li>1 &lt;= folder.length &lt;= 4 * 10^4</li>
+<li>2 &lt;= folder[i].length &lt;= 100</li>
+<li>folder[i] 只包含小写字母和 /</li>
+<li>folder[i] 总是以字符 / 起始</li>
 <li>每个文件夹名都是唯一的</li>
 </ul>
 </blockquote>
 <h3 id="Approach-1-排序文件夹"><a href="#Approach-1-排序文件夹" class="headerlink" title="Approach 1:  排序文件夹"></a>Approach 1:  排序文件夹</h3><p>对folder排序，排序第一个的是最短路，它一定是一个父文件夹，否则会有更短的文件夹在其前面。然后从左到右依次查找后面的文件夹路径是否包含那个父文件夹的路径，如果没有，把路径加入roots；如果有，跳过该路径，检查下一个。</p>
 <p>startswith()方法用于检查字符串是否是以指定子字符串开头，如果是则返回 True，否则返回 False。如果参数 beg 和 end 指定值，则在指定范围内检查。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">removeSubfolders</span>(<span class="params">self, folder</span>):</span><br><span class="line">        <span class="comment"># 首先对folder排序，然后把第一个文件夹放入res中。但我们可以理解为，最短的文件夹一定不是一个子文件夹，否则还会有一个更短的父文件夹。然后遍历folder，因为已经排序了，所以每次只和res最后一个比较就可以。如果开头部分不相同，说明当前遍历到了一个新的文件夹目录，加入res。</span></span><br><span class="line">        folder.sort()</span><br><span class="line">        roots = [folder[<span class="number">0</span>]]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(folder)):</span><br><span class="line">            fd = folder[i]</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> fd.startswith(roots[-<span class="number">1</span>] + <span class="string">&quot;/&quot;</span>):</span><br><span class="line">                roots.append(fd)</span><br><span class="line">        <span class="keyword">return</span> roots</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    folder = [<span class="string">&quot;/a&quot;</span>,<span class="string">&quot;/a/b&quot;</span>,<span class="string">&quot;/c/d&quot;</span>,<span class="string">&quot;/c/d/e&quot;</span>,<span class="string">&quot;/c/f&quot;</span>]</span><br><span class="line">    solution=Solution().removeSubfolders(folder)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li>时间复杂度：$$O(N)$$，其中 N 为文件夹个数</li>
-<li>空间复杂度：$$O(N)$$，建立roots数组</li>
+<li>时间复杂度：<script type="math/tex">O(N)</script>，其中 N 为文件夹个数</li>
+<li>空间复杂度：<script type="math/tex">O(N)</script>，建立roots数组</li>
 </ul>
 
 
@@ -234,7 +225,7 @@
                     
                     
                         <li class="next">
-                            <a href="/2021/03/16/2021-03-16-Q1546-和为目标值的最大数目不重叠非空子数组数目-中等-动态规划/" data-toggle="tooltip" data-placement="top" title="Q1546-和为目标值的最大数目不重叠非空子数组数目-中等-动态规划">Next Post &rarr;</a>
+                            <a href="/2021/03/16/2021-03-16-Q560-和为K的子数组-中等-动态规划/" data-toggle="tooltip" data-placement="top" title="Q560-和为K的子数组-中等-动态规划">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -321,7 +312,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

@@ -13,7 +13,7 @@
 
     <title>
         
-          Autonomous Driving | On the Choice of Data for Efficient Training and Validation of End-to-End Driving Models - 伽蓝之堂 | Txing Blog
+          Autonomous Driving | On the Choice of Data for Efficient Training and Validation of End-to-End Driving Models - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -232,8 +232,7 @@
 <li>Huazhe Xu, Yang Gao, Fisher Yu, and Trevor Darrell. <strong>End-to-end Learning of Driving Models from Large-scale Video Datasets</strong>. In Proc. of CVPR, pages 2174–2182, Honolulu, HI, USA, July 2017.</li>
 </ul>
 </li>
-<li><p>self-attention</p>
-<ul>
+<li>self-attention<ul>
 <li>Keishi Ishihara, Anssi Kanervisto, Jun Miura, and Ville Hautamaki. <strong>Multi-task Learning with Attention for End-to-end Autonomous Driving</strong>. In Proc. of CVPR - Workshops, pages 2902–2911, Virtual, June 2021.</li>
 </ul>
 </li>
@@ -248,14 +247,14 @@
 <li>Aditya Prakash, Kashyap Chitta, and Andreas Geiger. <strong>Multi-Modal Fusion Transformer for End-to-End Autonomous Driving</strong>. In Proc. of CVPR, pages 7077–7087, Virtual, June 2021.</li>
 </ul>
 </li>
-<li><p>affordances</p>
-<ul>
+<li>affordances<ul>
 <li>Axel Sauer, Nikolay Savinov, and Andreas Geiger. <strong>Conditional Affordance Learning for Driving in Urban Environments</strong>. In Proc. of CoRL, pages 237–252, Zürich, Switzerland, Oct. 2018.</li>
 </ul>
 </li>
 <li><p>waypoints 替代速度</p>
-</li>
-<li><p>Kashyap Chitta, Aditya Prakash, and Andreas Geiger. NEAT: <strong>Neural Attention Fields for End-to-End Autonomous Driving</strong>. In Proc. of ICCV, pages 15793–15803, Virtual, Oct. 2021.</p>
+<ul>
+<li>Kashyap Chitta, Aditya Prakash, and Andreas Geiger. NEAT: <strong>Neural Attention Fields for End-to-End Autonomous Driving</strong>. In Proc. of ICCV, pages 15793–15803, Virtual, Oct. 2021.</li>
+</ul>
 </li>
 <li><p>probabilistic output</p>
 <ul>
@@ -300,7 +299,7 @@
 </ul>
 </li>
 <li>Leaderboard [1]<ul>
-<li>CARLA Autonomous Driving Leaderboard. <a target="_blank" rel="noopener" href="https://leaderboard.carla.org/">https://leaderboard.carla.org</a>, 2020. 3, 5, 6</li>
+<li>CARLA Autonomous Driving Leaderboard. <a target="_blank" rel="noopener" href="https://leaderboard.carla.org">https://leaderboard.carla.org</a>, 2020. 3, 5, 6</li>
 </ul>
 </li>
 </ul>
@@ -326,11 +325,11 @@
 </ul>
 <p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-5.png" alt="Validation and test design"></p>
 <ul>
-<li><p>不同数据集上的驾驶得分$$DS\in[0,1]$$，包括两部分分数：</p>
+<li><p>不同数据集上的驾驶得分<script type="math/tex">DS\in[0,1]</script>，包括两部分分数：</p>
 <ul>
-<li><p>完成路线  route completion percentage $$RC\in [0, 1]$$;</p>
+<li><p>完成路线  route completion percentage <script type="math/tex">RC\in [0, 1]</script>;</p>
 </li>
-<li><p>避免事故  infraction score $$IS \in [0, 1]$$;</p>
+<li><p>避免事故  infraction score <script type="math/tex">IS \in [0, 1]</script>;</p>
 </li>
 </ul>
 </li>
@@ -351,12 +350,9 @@
 <ul>
 <li><p>结论（不完整）：</p>
 <ul>
-<li><p>随机性对仿真实验的影响大。随机种子、carla等。</p>
-</li>
-<li><p>训练集和验证集的选择对结果影响大。</p>
-</li>
-<li><p>数据量从100k-220k变化时，对大约160，000幅图像的训练似乎已经在性能和复杂性之间提供了良好的平衡，同时使用更大但计算上更昂贵的数据量可以获得最佳结果。（Training on approximately 160, 000 images already seems to provide a good trade-off between performance and complexity, while best results are obtained using larger but computationally more expensive amounts of data.）。</p>
-</li>
+<li>随机性对仿真实验的影响大。随机种子、carla等。</li>
+<li>训练集和验证集的选择对结果影响大。</li>
+<li>数据量从100k-220k变化时，对大约160，000幅图像的训练似乎已经在性能和复杂性之间提供了良好的平衡，同时使用更大但计算上更昂贵的数据量可以获得最佳结果。（Training on approximately 160, 000 images already seems to provide a good trade-off between performance and complexity, while best results are obtained using larger but computationally more expensive amounts of data.）。</li>
 <li><p>数据越少路线完成率越高，但事故率也高；数据越多，事故率显著降低，但路线完成率也降低；</p>
 </li>
 <li><p>专家数据是必要的。不完美的专家数据对结果影响大</p>
@@ -462,7 +458,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

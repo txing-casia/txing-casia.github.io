@@ -13,7 +13,7 @@
 
     <title>
         
-          Q134-加油站-中等-贪心 - 伽蓝之堂 | Txing Blog
+          Q134-加油站-中等-贪心 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -189,18 +189,14 @@
 <li>输入数组均为非空数组，且长度相同。</li>
 <li>输入数组中的元素均为非负数。</li>
 </ul>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
-<p>输入:<br>gas  &#x3D; [1,2,3,4,5]<br>cost &#x3D; [3,4,5,1,2]</p>
+<p>输入:<br>gas  = [1,2,3,4,5]<br>cost = [3,4,5,1,2]</p>
 <p>输出: 3</p>
-<p>解释:<br>从 3 号加油站(索引为 3 处)出发，可获得 4 升汽油。此时油箱有 &#x3D; 0 + 4 &#x3D; 4 升汽油<br>开往 4 号加油站，此时油箱有 4 - 1 + 5 &#x3D; 8 升汽油<br>开往 0 号加油站，此时油箱有 8 - 2 + 1 &#x3D; 7 升汽油<br>开往 1 号加油站，此时油箱有 7 - 3 + 2 &#x3D; 6 升汽油<br>开往 2 号加油站，此时油箱有 6 - 4 + 3 &#x3D; 5 升汽油<br>开往 3 号加油站，你需要消耗 5 升汽油，正好足够你返回到 3 号加油站。<br>因此，3 可为起始索引。</p>
-</blockquote>
-<blockquote>
+<p>解释:<br>从 3 号加油站(索引为 3 处)出发，可获得 4 升汽油。此时油箱有 = 0 + 4 = 4 升汽油<br>开往 4 号加油站，此时油箱有 4 - 1 + 5 = 8 升汽油<br>开往 0 号加油站，此时油箱有 8 - 2 + 1 = 7 升汽油<br>开往 1 号加油站，此时油箱有 7 - 3 + 2 = 6 升汽油<br>开往 2 号加油站，此时油箱有 6 - 4 + 3 = 5 升汽油<br>开往 3 号加油站，你需要消耗 5 升汽油，正好足够你返回到 3 号加油站。<br>因此，3 可为起始索引。</p>
 <p><strong>Example 2:</strong></p>
-<p>输入:<br>gas  &#x3D; [2,3,4]<br>cost &#x3D; [3,4,3]</p>
+<p>输入:<br>gas  = [2,3,4]<br>cost = [3,4,3]</p>
 <p>输出: -1</p>
-<p>解释:<br>你不能从 0 号或 1 号加油站出发，因为没有足够的汽油可以让你行驶到下一个加油站。<br>我们从 2 号加油站出发，可以获得 4 升汽油。 此时油箱有 &#x3D; 0 + 4 &#x3D; 4 升汽油<br>开往 0 号加油站，此时油箱有 4 - 3 + 2 &#x3D; 3 升汽油<br>开往 1 号加油站，此时油箱有 3 - 3 + 3 &#x3D; 3 升汽油<br>你无法返回 2 号加油站，因为返程需要消耗 4 升汽油，但是你的油箱只有 3 升汽油。<br>因此，无论怎样，你都不可能绕环路行驶一周。</p>
+<p>解释:<br>你不能从 0 号或 1 号加油站出发，因为没有足够的汽油可以让你行驶到下一个加油站。<br>我们从 2 号加油站出发，可以获得 4 升汽油。 此时油箱有 = 0 + 4 = 4 升汽油<br>开往 0 号加油站，此时油箱有 4 - 3 + 2 = 3 升汽油<br>开往 1 号加油站，此时油箱有 3 - 3 + 3 = 3 升汽油<br>你无法返回 2 号加油站，因为返程需要消耗 4 升汽油，但是你的油箱只有 3 升汽油。<br>因此，无论怎样，你都不可能绕环路行驶一周。</p>
 </blockquote>
 <h3 id="Approach-1-直接求解"><a href="#Approach-1-直接求解" class="headerlink" title="Approach 1: 直接求解"></a>Approach 1: 直接求解</h3><p>这个方法比较笨，但是最直接。</p>
 <p>把一次环形拆分为3段：</p>
@@ -211,21 +207,19 @@
 </ul>
 <p>依次计算</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">canCompleteCircuit</span>(<span class="params">self, gas: <span class="type">List</span>[<span class="built_in">int</span>], cost: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        ans = -<span class="number">1</span></span><br><span class="line">        <span class="comment"># 以每个加油站为出发点依次正向遍历，直到最后一个加油站</span></span><br><span class="line">        <span class="keyword">for</span> step <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(gas)):</span><br><span class="line">            start = step <span class="comment"># 起始加油站编号</span></span><br><span class="line">            num_step = <span class="number">0</span> <span class="comment"># 走过的加油站数目</span></span><br><span class="line">            oil = gas[start] <span class="comment"># 油箱中油存量</span></span><br><span class="line">            <span class="comment"># 正向遍历到最后一个加油站i+1</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(step,<span class="built_in">len</span>(gas)-<span class="number">1</span>):</span><br><span class="line">                oil -= cost[i] </span><br><span class="line">                <span class="keyword">if</span> oil &lt; <span class="number">0</span>:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                oil += gas[i+<span class="number">1</span>]</span><br><span class="line">                num_step += <span class="number">1</span></span><br><span class="line">			<span class="comment"># 最后一个加油站到第一个加油站单独判断</span></span><br><span class="line">            oil -= cost[-<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">if</span> oil &gt;= <span class="number">0</span>:</span><br><span class="line">                oil += gas[<span class="number">0</span>]</span><br><span class="line">                num_step += <span class="number">1</span></span><br><span class="line">                <span class="comment"># 判断是否走完一圈</span></span><br><span class="line">                <span class="keyword">if</span> num_step == <span class="built_in">len</span>(gas):</span><br><span class="line">                    ans = start</span><br><span class="line">                    <span class="keyword">return</span> ans <span class="comment"># 题目说了是唯一解</span></span><br><span class="line">            <span class="keyword">else</span>: <span class="comment"># 油不够，退出循环</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="comment"># 从第一个加油站遍历到出发的加油站</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(step):</span><br><span class="line">                oil -= cost[j]</span><br><span class="line">                <span class="keyword">if</span> oil &lt; <span class="number">0</span>:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                oil += gas[j+<span class="number">1</span>]</span><br><span class="line">                num_step += <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> num_step == <span class="built_in">len</span>(gas):</span><br><span class="line">                    ans = start</span><br><span class="line">                    <span class="keyword">return</span> ans</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li>时间复杂度：$$O(N^2)$$。</li>
-<li>空间复杂度：$$O(1)$$.</li>
+<li>时间复杂度：<script type="math/tex">O(N^2)</script>。</li>
+<li>空间复杂度：<script type="math/tex">O(1)</script>.</li>
 </ul>
 <h3 id="Approach-2-问题分析简化运算"><a href="#Approach-2-问题分析简化运算" class="headerlink" title="Approach 2: 问题分析简化运算"></a>Approach 2: 问题分析简化运算</h3><p>这是个逻辑题。<br>首先，老司机们都知道，开车的时候，油不能为负数，先变成负数再往后加回来是不可以的。<br>然后开完一圈回来，如果耗得油总量比加的总量还多那铁定开不回来。</p>
 <p>再然后，我们只要遍历一遍就可以了。为什么呢，假设从头开始开一遍，累计下来耗油最多的点的后面那个点开始出发，一定就是跑完以后剩下油最多的。</p>
 <p>比如我们跑到第i个点，这时候总消耗减去总加油最大，那说明前面i个点的消耗是整条链上最多的。然后如果总油数比总消耗多，说明可以保证开完一圈。<br>那么如果想保证能开完一圈，就要从它后面那个点开始开。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">canCompleteCircuit</span>(<span class="params">self, gas: <span class="type">List</span>[<span class="built_in">int</span>], cost: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        left = [gas[i] - cost[i] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(gas))]</span><br><span class="line">        minValue = <span class="number">999</span></span><br><span class="line">        minIndex = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        sumValue = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> j, l <span class="keyword">in</span> <span class="built_in">enumerate</span>(left):</span><br><span class="line">            sumValue += l</span><br><span class="line">            <span class="keyword">if</span> sumValue &lt; minValue:</span><br><span class="line">                minValue = sumValue</span><br><span class="line">                minIndex = j</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> sumValue &lt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> (minIndex + <span class="number">1</span>) % <span class="built_in">len</span>(gas)</span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li>时间复杂度：$$O(N)$$。</li>
-<li>空间复杂度：$$O(1)$$.</li>
+<li>时间复杂度：<script type="math/tex">O(N)</script>。</li>
+<li>空间复杂度：<script type="math/tex">O(1)</script>.</li>
 </ul>
 
 
@@ -236,7 +230,7 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2021/07/22/2021-07-22-Reinforcement Learning - Intrinsically Motivated Reinforcement Learning An Evolutionary Perspective/" data-toggle="tooltip" data-placement="top" title="Reinforcement Learning | Intrinsically Motivated Reinforcement Learning: An Evolutionary Perspective">&larr; Previous Post</a>
+                            <a href="/2021/07/21/2021-07-21-Q419-甲板上的战舰-中等-深度and宽度优先搜索/" data-toggle="tooltip" data-placement="top" title="Q419-甲板上的战舰-中等-深度/宽度优先搜索">&larr; Previous Post</a>
                         </li>
                     
                     
@@ -328,7 +322,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

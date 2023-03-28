@@ -13,7 +13,7 @@
 
     <title>
         
-          Q744-寻找比目标字母大的最小字母-简单-二分法 - 伽蓝之堂 | Txing Blog
+          Q744-寻找比目标字母大的最小字母-简单-二分法 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -182,18 +182,14 @@
                 <h4 id="22-括号生成"><a href="#22-括号生成" class="headerlink" title="22. 括号生成"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/generate-parentheses/">22. 括号生成</a></h4><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>给你一个排序后的字符列表 letters ，列表中只包含小写英文字母。另给出一个目标字母 target，请你寻找在这一有序列表里比目标字母大的最小字母。</p>
 <p>在比较时，字母是依序循环出现的。举个例子：</p>
-<p>如果目标字母 target &#x3D; ‘z’ 并且字符列表为 letters &#x3D; [‘a’, ‘b’]，则答案返回 ‘a’</p>
-</blockquote>
-<blockquote>
+<p>如果目标字母 target = ‘z’ 并且字符列表为 letters = [‘a’, ‘b’]，则答案返回 ‘a’</p>
 <p><strong>Example 1:</strong></p>
-<p>输入:<br>letters &#x3D; [“c”, “f”, “j”]<br>target &#x3D; “a”<br>输出: “c”</p>
-<p>输入:<br>letters &#x3D; [“c”, “f”, “j”]<br>target &#x3D; “c”<br>输出: “f”</p>
-<p>输入:<br>letters &#x3D; [“c”, “f”, “j”]<br>target &#x3D; “d”<br>输出: “f”</p>
-<p>输入:<br>letters &#x3D; [“c”, “f”, “j”]<br>target &#x3D; “g”<br>输出: “j”</p>
-<p>输入:<br>letters &#x3D; [“c”, “f”, “j”]<br>target &#x3D; “j”<br>输出: “c”</p>
-<p>输入:<br>letters &#x3D; [“c”, “f”, “j”]<br>target &#x3D; “k”<br>输出: “c”</p>
-</blockquote>
-<blockquote>
+<p>输入:<br>letters = [“c”, “f”, “j”]<br>target = “a”<br>输出: “c”</p>
+<p>输入:<br>letters = [“c”, “f”, “j”]<br>target = “c”<br>输出: “f”</p>
+<p>输入:<br>letters = [“c”, “f”, “j”]<br>target = “d”<br>输出: “f”</p>
+<p>输入:<br>letters = [“c”, “f”, “j”]<br>target = “g”<br>输出: “j”</p>
+<p>输入:<br>letters = [“c”, “f”, “j”]<br>target = “j”<br>输出: “c”</p>
+<p>输入:<br>letters = [“c”, “f”, “j”]<br>target = “k”<br>输出: “c”</p>
 <p><strong>Note:</strong></p>
 <ul>
 <li><code>letters</code>长度范围在<code>[2, 10000]</code>区间内。</li>
@@ -202,21 +198,19 @@
 </ul>
 </blockquote>
 <h3 id="Approach-1-查找法"><a href="#Approach-1-查找法" class="headerlink" title="Approach 1: 查找法"></a>Approach 1: 查找法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">nextGreatestLetter</span>(<span class="params">self, letters, target: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">26</span>):</span><br><span class="line">            ans = <span class="built_in">chr</span>((<span class="built_in">ord</span>(target) - <span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>) + i ) % <span class="number">26</span> + <span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>))</span><br><span class="line">            <span class="keyword">if</span> ans <span class="keyword">in</span> letters:</span><br><span class="line">                <span class="keyword">return</span> ans</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li><p>时间复杂度：$$O(n)$$，</p>
+<li><p>时间复杂度：<script type="math/tex">O(n)</script>，</p>
 </li>
-<li><p>空间复杂度：$$O(1)$$，</p>
+<li><p>空间复杂度：<script type="math/tex">O(1)</script>，</p>
 </li>
 </ul>
-<h3 id="Approach-2-二分法"><a href="#Approach-2-二分法" class="headerlink" title="Approach 2: 二分法"></a>Approach 2: 二分法</h3><p>注意由于是循环的数组，所以最后输出的时候有个取余的操作，是为了处理当 $$L&#x3D;len(letters)$$ 的情况</p>
+<h3 id="Approach-2-二分法"><a href="#Approach-2-二分法" class="headerlink" title="Approach 2: 二分法"></a>Approach 2: 二分法</h3><p>注意由于是循环的数组，所以最后输出的时候有个取余的操作，是为了处理当 <script type="math/tex">L=len(letters)</script> 的情况</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">nextGreatestLetter2</span>(<span class="params">self, letters, target: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        L = <span class="number">0</span></span><br><span class="line">        R = <span class="built_in">len</span>(letters) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> L &lt;= R:</span><br><span class="line">            M = L + (R - L) // <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> letters[M] &lt;= target:</span><br><span class="line">                L = M + <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> letters[M] &gt; target:</span><br><span class="line">                R = M - <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> letters[L % <span class="built_in">len</span>(letters)]</span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li>时间复杂度：$$O(\log N)$$。$$N$$ 指的是 letters 的长度，我们只查看数组中的 $$\log n$$ 个元素。</li>
-<li>空间复杂度：$$O(1)$$。</li>
+<li>时间复杂度：<script type="math/tex">O(\log N)</script>。<script type="math/tex">N</script> 指的是 letters 的长度，我们只查看数组中的 <script type="math/tex">\log n</script> 个元素。</li>
+<li>空间复杂度：<script type="math/tex">O(1)</script>。</li>
 </ul>
 
 
@@ -319,7 +313,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

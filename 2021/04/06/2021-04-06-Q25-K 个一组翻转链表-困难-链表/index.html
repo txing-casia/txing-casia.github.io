@@ -13,7 +13,7 @@
 
     <title>
         
-          Q25-K 个一组翻转链表-困难-链表 - 伽蓝之堂 | Txing Blog
+          Q25-K 个一组翻转链表-困难-链表 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -185,26 +185,18 @@
 <p>如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序。</p>
 <p><strong>进阶：</strong></p>
 <p>你可以设计一个只使用常数额外空间的算法来解决此问题吗？<br>你不能只是单纯的改变节点内部的值，而是需要实际进行节点交换。</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
-<p>输入：head &#x3D; [1,2,3,4,5], k &#x3D; 2<br>输出：[2,1,4,3,5]</p>
-</blockquote>
-<blockquote>
+<p>输入：head = [1,2,3,4,5], k = 2<br>输出：[2,1,4,3,5]</p>
 <p><strong>Example 2:</strong></p>
-<p>输入：head &#x3D; [1,2,3,4,5], k &#x3D; 3<br>输出：[3,2,1,4,5]</p>
-</blockquote>
-<blockquote>
+<p>输入：head = [1,2,3,4,5], k = 3<br>输出：[3,2,1,4,5]</p>
 <p><strong>Example 3:</strong></p>
-<p>输入：head &#x3D; [1,2,3,4,5], k &#x3D; 1<br>输出：[1,2,3,4,5]</p>
-</blockquote>
-<blockquote>
+<p>输入：head = [1,2,3,4,5], k = 1<br>输出：[1,2,3,4,5]</p>
 <p><strong>提示：</strong></p>
 <ul>
 <li>列表中节点的数量在范围 sz 内</li>
-<li>1 &lt;&#x3D; sz &lt;&#x3D; 5000</li>
-<li>0 &lt;&#x3D; Node.val &lt;&#x3D; 1000</li>
-<li>1 &lt;&#x3D; k &lt;&#x3D; sz</li>
+<li>1 &lt;= sz &lt;= 5000</li>
+<li>0 &lt;= Node.val &lt;= 1000</li>
+<li>1 &lt;= k &lt;= sz</li>
 </ul>
 </blockquote>
 <h3 id="Approach-1-自顶向下归并排序"><a href="#Approach-1-自顶向下归并排序" class="headerlink" title="Approach 1: 自顶向下归并排序"></a>Approach 1: 自顶向下归并排序</h3><p>思路与算法</p>
@@ -217,10 +209,9 @@
 <p>有的同学可能发现这又是一件麻烦事：链表翻转之后，链表的头节点发生了变化，那么应该返回哪个节点呢？照理来说，前 k 个节点翻转之后，链表的头节点应该是第 k 个节点。那么要在遍历过程中记录第 k 个节点吗？但是如果链表里面没有 k 个节点，答案又还是原来的头节点。我们又多了一大堆循环和判断要写，太崩溃了！</p>
 <p>等等！还记得我们创建了节点 pre 吗？这个节点一开始被连接到了头节点的前面，而无论之后链表有没有翻转，它的 next 指针都会指向正确的头节点。那么我们只要返回它的下一个节点就好了。至此，问题解决。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="comment"># 翻转一个子链表，并且返回新的头与尾</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverse</span>(<span class="params">self, head: ListNode, tail: ListNode</span>):</span><br><span class="line">        prev = tail.<span class="built_in">next</span></span><br><span class="line">        p = head</span><br><span class="line">        <span class="keyword">while</span> prev != tail:</span><br><span class="line">            nex = p.<span class="built_in">next</span></span><br><span class="line">            p.<span class="built_in">next</span> = prev</span><br><span class="line">            prev = p</span><br><span class="line">            p = nex</span><br><span class="line">        <span class="keyword">return</span> tail, head</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseKGroup</span>(<span class="params">self, head: ListNode, k: <span class="built_in">int</span></span>) -&gt; ListNode:</span><br><span class="line">        hair = ListNode(<span class="number">0</span>)</span><br><span class="line">        hair.<span class="built_in">next</span> = head</span><br><span class="line">        pre = hair</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> head:</span><br><span class="line">            tail = pre</span><br><span class="line">            <span class="comment"># 查看剩余部分长度是否大于等于 k</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(k):</span><br><span class="line">                tail = tail.<span class="built_in">next</span></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> tail:</span><br><span class="line">                    <span class="keyword">return</span> hair.<span class="built_in">next</span></span><br><span class="line">            nex = tail.<span class="built_in">next</span></span><br><span class="line">            head, tail = self.reverse(head, tail)</span><br><span class="line">            <span class="comment"># 把子链表重新接回原链表</span></span><br><span class="line">            pre.<span class="built_in">next</span> = head</span><br><span class="line">            tail.<span class="built_in">next</span> = nex</span><br><span class="line">            pre = tail</span><br><span class="line">            head = tail.<span class="built_in">next</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> hair.<span class="built_in">next</span></span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li><p>时间复杂度：O(n)，其中 n 为链表的长度。head 指针会在 $$O(\lfloor \frac{n}{k} \rfloor)$$个节点上停留，每次停留需要进行一次 O(k) 的翻转操作。</p>
+<li><p>时间复杂度：O(n)，其中 n 为链表的长度。head 指针会在 <script type="math/tex">O(\lfloor \frac{n}{k} \rfloor)</script>个节点上停留，每次停留需要进行一次 O(k) 的翻转操作。</p>
 <p>空间复杂度：O(1)，我们只需要建立常数个变量。</p>
 </li>
 </ul>
@@ -325,7 +316,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

@@ -13,7 +13,7 @@
 
     <title>
         
-          Q83 Remove Duplicates from Sorted List - 伽蓝之堂 | Txing Blog
+          Q83 Remove Duplicates from Sorted List - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -181,16 +181,11 @@
 
                 <h1 id="Remove-Duplicates-from-Sorted-List"><a href="#Remove-Duplicates-from-Sorted-List" class="headerlink" title="Remove Duplicates from Sorted List"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/remove-duplicates-from-sorted-list/">Remove Duplicates from Sorted List</a></h1><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>Given a sorted linked list, delete all duplicates such that each element appear only <em>once</em>.</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong><br>Input: 1-&gt;1-&gt;2<br>Output: 1-&gt;2</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong><br>Input: 1-&gt;1-&gt;2-&gt;3-&gt;3<br>Output: 1-&gt;2-&gt;3</p>
 </blockquote>
 <h3 id="Approach-1-Dummy-List"><a href="#Approach-1-Dummy-List" class="headerlink" title="Approach 1: Dummy List"></a>Approach 1: Dummy List</h3><p>This problem is similar to Q21, because they both require traverse a linked list. In fact, the key point is to set  <code>out=mid=head</code>. <code>out</code> is used in the iterations and <code>mid</code> is used as an output.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">deleteDuplicates</span>(<span class="params">self, head: ListNode</span>) -&gt; ListNode:</span><br><span class="line">        out=mid=head</span><br><span class="line">        <span class="keyword">while</span> head:</span><br><span class="line">            <span class="keyword">if</span> out.val!=head.val:</span><br><span class="line">                out.<span class="built_in">next</span>=head</span><br><span class="line">                out=out.<span class="built_in">next</span></span><br><span class="line">            head=head.<span class="built_in">next</span></span><br><span class="line">            out.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> mid</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    head=stringToListNode([<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>])<span class="comment"># 将输入的元组转换为链表</span></span><br><span class="line">    solution=Solution().deleteDuplicates(head)</span><br><span class="line">    <span class="built_in">print</span>(listNodeToString(solution))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
 <p><strong>Complexity Analysis</strong></p>
 <ul>
 <li>Runtime: 48 ms, faster than 87.51% of Python3 online submissions forRemove Duplicates from Sorted List.</li>
@@ -198,17 +193,16 @@
 </ul>
 <h3 id="Approach-2-Straight-Forward"><a href="#Approach-2-Straight-Forward" class="headerlink" title="Approach 2: Straight-Forward"></a>Approach 2: Straight-Forward</h3><p>This is a simple problem that merely tests your ability to manipulate list node pointers. Because the input list is sorted, we can determine if a node is a duplicate by comparing its value to the node <em>after</em> it in the list. If it is a duplicate, we change the <code>next</code> pointer of the current node so that it skips the next node and points directly to the one after the next node.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">deleteDuplicates</span>(<span class="params">self, head: ListNode</span>) -&gt; ListNode:</span><br><span class="line">        out = head</span><br><span class="line">        <span class="keyword">while</span> out <span class="keyword">and</span> out.<span class="built_in">next</span>:</span><br><span class="line">            <span class="keyword">if</span> out.val==out.<span class="built_in">next</span>.val:</span><br><span class="line">                out.<span class="built_in">next</span> = out.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                out=out.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">return</span> head</span><br></pre></td></tr></table></figure>
-
 <p><strong>Complexity Analysis</strong></p>
 <ul>
 <li><p>Time complexity : <em>O</em>(<em>n</em>). Because each node in the list is checked exactly once to determine if it is a duplicate or not, the total run time is <em>O</em>(<em>n</em>), where <em>n</em> is the number of nodes in the list.</p>
 </li>
 <li><p>Space complexity : <em>O</em>(1). No additional space is used.</p>
 </li>
-<li><p>Runtime: 48 ms, faster than 87.51% of Python3 online submissions forRemove Duplicates from Sorted List.</p>
-</li>
-<li><p>Memory Usage: 13.3 MB, less than 22.63% of Python3 online submissions for Remove Duplicates from Sorted List.</p>
-</li>
+</ul>
+<ul>
+<li>Runtime: 48 ms, faster than 87.51% of Python3 online submissions forRemove Duplicates from Sorted List.</li>
+<li>Memory Usage: 13.3 MB, less than 22.63% of Python3 online submissions for Remove Duplicates from Sorted List.</li>
 </ul>
 
 
@@ -311,7 +305,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

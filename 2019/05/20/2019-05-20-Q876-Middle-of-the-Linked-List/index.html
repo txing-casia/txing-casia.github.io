@@ -13,7 +13,7 @@
 
     <title>
         
-          Q876 Middle of the Linked List - 伽蓝之堂 | Txing Blog
+          Q876 Middle of the Linked List - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -182,36 +182,28 @@
                 <h1 id="Middle-of-the-Linked-List"><a href="#Middle-of-the-Linked-List" class="headerlink" title="Middle of the Linked List"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/middle-of-the-linked-list/">Middle of the Linked List</a></h1><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>Given a non-empty, singly linked list with head node <code>head</code>, return a middle node of linked list.</p>
 <p>If there are two middle nodes, return the second middle node.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong><br>Input: [1,2,3,4,5]<br>Output: Node 3 from this list (Serialization: [3,4,5])<br>The returned node has value 3.  (The judge’s serialization of this node is [3,4,5]).<br>Note that we returned a ListNode object ans, such that:<br>ans.val &#x3D; 3, ans.next.val &#x3D; 4, ans.next.next.val &#x3D; 5, and ans.next.next.next &#x3D; NULL.</p>
-</blockquote>
-<blockquote>
+<p><strong>Example 1:</strong><br>Input: [1,2,3,4,5]<br>Output: Node 3 from this list (Serialization: [3,4,5])<br>The returned node has value 3.  (The judge’s serialization of this node is [3,4,5]).<br>Note that we returned a ListNode object ans, such that:<br>ans.val = 3, ans.next.val = 4, ans.next.next.val = 5, and ans.next.next.next = NULL.</p>
 <p><strong>Example 2:</strong><br>Input: [1,2,3,4,5,6]<br>Output: Node 4 from this list (Serialization: [4,5,6])<br>Since the list has two middle nodes with values 3 and 4, we return the second one.</p>
 </blockquote>
 <h3 id="Approach-1-Output-to-Array"><a href="#Approach-1-Output-to-Array" class="headerlink" title="Approach 1: Output to Array"></a>Approach 1: Output to Array</h3><p><strong>Intuition and Algorithm</strong></p>
 <p>Put every node into an array <code>A</code> in order. Then the middle node is just <code>A[A.length // 2]</code>, since we can retrieve each node by index.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">middleNode</span>(<span class="params">self, head</span>):</span><br><span class="line">        A = [head]</span><br><span class="line">        <span class="keyword">while</span> A[-<span class="number">1</span>].<span class="built_in">next</span>:</span><br><span class="line">            A.append(A[-<span class="number">1</span>].<span class="built_in">next</span>)</span><br><span class="line">        <span class="keyword">return</span> A[<span class="built_in">len</span>(A) // <span class="number">2</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    head=stringToListNode([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])<span class="comment"># 将输入的元组转换为链表</span></span><br><span class="line">    <span class="built_in">print</span>(listNodeToString(Solution().middleNode(head))) <span class="comment"># 输出为[3,4,5]是因为list转换为string自动把后面的[4,5]带出来了，实际上只传了3的地址</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
 <p><strong>Complexity Analysis</strong></p>
 <ul>
 <li>Time Complexity: <em>O</em>(<em>N</em>), where <em>N</em> is the number of nodes in the given list.</li>
-<li>Space Complexity: <em>O</em>(<em>N</em>), the space used by <code>A</code>.</li>
+<li>Space Complexity: <em>O</em>(<em>N</em>), the space used by <code>A</code>. </li>
 </ul>
 <hr>
 <h3 id="Approach-2-Fast-and-Slow-Pointer"><a href="#Approach-2-Fast-and-Slow-Pointer" class="headerlink" title="Approach 2: Fast and Slow Pointer"></a>Approach 2: Fast and Slow Pointer</h3><p><strong>Intuition and Algorithm</strong></p>
 <p>When traversing the list with a pointer <code>slow</code>, make another pointer <code>fast</code> that traverses twice as fast. When <code>fast</code> reaches the end of the list, <code>slow</code> must be in the middle.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">middleNode</span>(<span class="params">self, head</span>):</span><br><span class="line">        slow = fast = head</span><br><span class="line">        <span class="keyword">while</span> fast <span class="keyword">and</span> fast.<span class="built_in">next</span>:</span><br><span class="line">            slow = slow.<span class="built_in">next</span></span><br><span class="line">            fast = fast.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">return</span> slow</span><br></pre></td></tr></table></figure>
-
 <ul>
-<li><p>Time Complexity: <em>O</em>(<em>N</em>), where <em>N</em> is the number of nodes in the given list.</p>
-</li>
-<li><p>Space Complexity: <em>O</em>(1), the space used by <code>slow</code> and <code>fast</code>. </p>
-</li>
-<li><p>Runtime: 32 ms, faster than 96.73% of Python3 online submissions forMiddle of the Linked List.</p>
-</li>
-<li><p>Memory Usage: 13.2 MB, less than 23.44% of Python3 online submissions for Middle of the Linked List.</p>
-</li>
+<li>Time Complexity: <em>O</em>(<em>N</em>), where <em>N</em> is the number of nodes in the given list.</li>
+<li>Space Complexity: <em>O</em>(1), the space used by <code>slow</code> and <code>fast</code>. </li>
+</ul>
+<ul>
+<li>Runtime: 32 ms, faster than 96.73% of Python3 online submissions forMiddle of the Linked List.</li>
+<li>Memory Usage: 13.2 MB, less than 23.44% of Python3 online submissions for Middle of the Linked List.</li>
 </ul>
 
 
@@ -222,7 +214,7 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2019/05/21/2019-05-21-Q206-Reverse-Linked-List/" data-toggle="tooltip" data-placement="top" title="Q206 Reverse Linked List">&larr; Previous Post</a>
+                            <a href="/2019/05/21/2019-05-21-Achievements-in-Weibo-Management/" data-toggle="tooltip" data-placement="top" title="Achievements in Weibo Management">&larr; Previous Post</a>
                         </li>
                     
                     
@@ -314,7 +306,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

@@ -13,7 +13,7 @@
 
     <title>
         
-          Q1721-交换链表中的节点-中等-链表 - 伽蓝之堂 | Txing Blog
+          Q1721-交换链表中的节点-中等-链表 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -182,30 +182,21 @@
                 <h4 id="1721-交换链表中的节点"><a href="#1721-交换链表中的节点" class="headerlink" title="1721. 交换链表中的节点"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/swapping-nodes-in-a-linked-list/">1721. 交换链表中的节点</a></h4><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
 <p>给你链表的头节点 head 和一个整数 k 。</p>
 <p>交换 链表正数第 k 个节点和倒数第 k 个节点的值后，返回链表的头节点（链表 从 1 开始索引）。</p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
-<p>输入：head &#x3D; [1,2,3,4,5], k &#x3D; 2<br>输出：[1,4,3,2,5]</p>
-</blockquote>
-<blockquote>
+<p>输入：head = [1,2,3,4,5], k = 2<br>输出：[1,4,3,2,5]</p>
 <p><strong>Example 2:</strong></p>
-<p>输入：head &#x3D; [7,9,6,6,7,8,3,0,9,5], k &#x3D; 5<br>输出：[7,9,6,6,8,7,3,0,9,5]</p>
-</blockquote>
-<blockquote>
+<p>输入：head = [7,9,6,6,7,8,3,0,9,5], k = 5<br>输出：[7,9,6,6,8,7,3,0,9,5]</p>
 <p><strong>Example 3:</strong></p>
-<p>输入：head &#x3D; [1], k &#x3D; 1<br>输出：[1]</p>
-</blockquote>
-<blockquote>
+<p>输入：head = [1], k = 1<br>输出：[1]</p>
 <p><strong>提示：</strong></p>
 <ul>
 <li>链表中节点的数目是 n</li>
-<li>1 &lt;&#x3D; k &lt;&#x3D; n &lt;&#x3D; 105</li>
-<li>0 &lt;&#x3D; Node.val &lt;&#x3D; 100</li>
+<li>1 &lt;= k &lt;= n &lt;= 105</li>
+<li>0 &lt;= Node.val &lt;= 100</li>
 </ul>
 </blockquote>
 <h3 id="Approach-1-遍历搜索（超时）"><a href="#Approach-1-遍历搜索（超时）" class="headerlink" title="Approach 1:  遍历搜索（超时）"></a>Approach 1:  遍历搜索（超时）</h3><p>自己思考没想出什么特别的计算手段，就想到遍历链表找到前k和后k个结点，然后进行交换</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">swapNodes</span>(<span class="params">self, head: ListNode, k: <span class="built_in">int</span></span>) -&gt; ListNode:</span><br><span class="line">        <span class="comment"># 找前k-1个点</span></span><br><span class="line">        L=head</span><br><span class="line">        num=<span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> L:</span><br><span class="line">            num+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> num == k-<span class="number">1</span>: <span class="comment"># 找到前k-1个结点</span></span><br><span class="line">                FK=L</span><br><span class="line">            L=L.<span class="built_in">next</span></span><br><span class="line">        <span class="comment"># 找后k+1个结点</span></span><br><span class="line">        k=num-k</span><br><span class="line">        num=<span class="number">0</span></span><br><span class="line">        ans=L=head <span class="comment"># 保证ans和L相同地址</span></span><br><span class="line">        <span class="keyword">while</span> L:</span><br><span class="line">            num+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> num == k:</span><br><span class="line">                LK=L</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            L=L.<span class="built_in">next</span> </span><br><span class="line">        <span class="comment"># 交换</span></span><br><span class="line">        FK2=FK.<span class="built_in">next</span></span><br><span class="line">        FK3=FK.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">        LK2=LK.<span class="built_in">next</span></span><br><span class="line">        LK3=LK.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">        </span><br><span class="line">        FK.<span class="built_in">next</span>=LK2</span><br><span class="line">        LK2.<span class="built_in">next</span>=FK3</span><br><span class="line">        LK.<span class="built_in">next</span>=FK2</span><br><span class="line">        FK2.<span class="built_in">next</span>=LK3</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> listNodeToString(ans)</span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：O(n+q)，其中 n 是链表的节点数量，p是倒数第k个结点是链表的第p个结点。</li>
@@ -213,11 +204,10 @@
 </ul>
 <h3 id="Approach-2-快慢指针"><a href="#Approach-2-快慢指针" class="headerlink" title="Approach 2:  快慢指针"></a>Approach 2:  快慢指针</h3><p>快慢指针用法挺多<br>1.n等分<br>2.检测有无环<br>3.从后数第几个</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">swapNodes1</span>(<span class="params">self, head: ListNode, k: <span class="built_in">int</span></span>) -&gt; ListNode:</span><br><span class="line">        fast = head</span><br><span class="line">        <span class="keyword">while</span> k - <span class="number">1</span> != <span class="number">0</span>: <span class="comment"># 1 2 3 4 5 6 7  k=3 往后移2步到3</span></span><br><span class="line">            fast = fast.<span class="built_in">next</span></span><br><span class="line">            k -= <span class="number">1</span></span><br><span class="line">        L = fast <span class="comment"># L = 3</span></span><br><span class="line">        slow = head</span><br><span class="line">        <span class="keyword">while</span> fast.<span class="built_in">next</span>: <span class="comment"># slow = 5, fast = 7</span></span><br><span class="line">            fast = fast.<span class="built_in">next</span></span><br><span class="line">            slow = slow.<span class="built_in">next</span></span><br><span class="line">        R = slow <span class="comment"># R = 5</span></span><br><span class="line">        </span><br><span class="line">        L.val,R.val = R.val,L.val <span class="comment">#3 和 5 的val 交换</span></span><br><span class="line">        <span class="keyword">return</span> head</span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li>时间复杂度：*O(n)*。其中<code>n</code>为链表的长度。</li>
-<li>空间复杂度：*O(1)*。需要额外的常数大小的辅助空间。</li>
+<li>时间复杂度：<em>O(n)</em>。其中<code>n</code>为链表的长度。</li>
+<li>空间复杂度：<em>O(1)</em>。需要额外的常数大小的辅助空间。</li>
 </ul>
 
 
@@ -320,7 +310,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

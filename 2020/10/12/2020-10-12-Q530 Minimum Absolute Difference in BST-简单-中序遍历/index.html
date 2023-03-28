@@ -13,7 +13,7 @@
 
     <title>
         
-          Q530 Minimum Absolute Difference in BST-简单-中序遍历 - 伽蓝之堂 | Txing Blog
+          Q530 Minimum Absolute Difference in BST-简单-中序遍历 - 伽蓝之堂
         
     </title>
 
@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Txing</a>
+            <a class="navbar-brand" href="/">Dr. Zhou</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -181,22 +181,18 @@
 <p>Given a binary search tree with non-negative values, find the minimum absolute difference between values of any two nodes.</p>
 <p><strong>Note:</strong></p>
 <p>There are at least two nodes in this BST.<br>This question is the same as 783: <a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-distance-between-bst-nodes/">https://leetcode.com/problems/minimum-distance-between-bst-nodes/</a></p>
-</blockquote>
-<blockquote>
 <p><strong>Example 1:</strong></p>
 <p>Input:</p>
-<p>   1<br>    <br>     3<br>    &#x2F;<br>   2</p>
+<p>   1<br>    \<br>     3<br>    /<br>   2</p>
 <p>Output:<br>1</p>
 <p>Explanation:<br>The minimum absolute difference is 1, which is the difference between 2 and 1 (or between 2 and 3).</p>
 </blockquote>
 <h3 id="Approach-1-中序遍历"><a href="#Approach-1-中序遍历" class="headerlink" title="Approach 1: 中序遍历"></a>Approach 1: 中序遍历</h3><p>考虑对升序数组 a 求任意两个元素之差的绝对值的最小值，答案一定为相邻两个元素之差的最小值，即</p>
-<p>$$\textit{ans}&#x3D;\min_{i&#x3D;0}^{n-2}\left{a[i+1]-a[i]\right}$$</p>
-<p>其中 n 为数组 a 的长度。其他任意间隔距离大于等于 2 的下标对 (i,j) 的元素之差一定大于下标对 (i,i+1) 的元素之差，故不需要再被考虑。</p>
+<script type="math/tex; mode=display">\textit{ans}=\min_{i=0}^{n-2}\left\{a[i+1]-a[i]\right\}</script><p>其中 n 为数组 a 的长度。其他任意间隔距离大于等于 2 的下标对 (i,j) 的元素之差一定大于下标对 (i,i+1) 的元素之差，故不需要再被考虑。</p>
 <p>回到本题，本题要求二叉搜索树任意两节点差的绝对值的最小值，而我们知道二叉搜索树有个性质为<strong>二叉搜索树中序遍历得到的值序列是递增有序的</strong>，因此我们只要得到中序遍历后的值序列即能用上文提及的方法来解决。</p>
-<p>朴素的方法是经过一次中序遍历将值保存在一个数组中再进行遍历求解，我们也可以在中序遍历的过程中用 $$\textit{pre}$$ 变量保存前驱节点的值，这样即能边遍历边更新答案，不再需要显式创建数组来保存，需要注意的是 $$\textit{pre}$$ 的初始值需要设置成任意负数标记开头，下文代码中设置为 -1。</p>
+<p>朴素的方法是经过一次中序遍历将值保存在一个数组中再进行遍历求解，我们也可以在中序遍历的过程中用 <script type="math/tex">\textit{pre}</script> 变量保存前驱节点的值，这样即能边遍历边更新答案，不再需要显式创建数组来保存，需要注意的是 <script type="math/tex">\textit{pre}</script> 的初始值需要设置成任意负数标记开头，下文代码中设置为 -1。</p>
 <p>二叉树的中序遍历有多种方式，包括递归、栈、Morris 遍历等，读者可选择自己最擅长的来实现。下文代码提供最普遍的递归方法来实现，其他遍历方法的介绍可以详细看<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/">「94. 二叉树的中序遍历」</a>的题解，这里不再赘述。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getMinimumDifference</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">root</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            dfs(root.left)</span><br><span class="line">            nums.append(root.val)</span><br><span class="line">            dfs(root.right)</span><br><span class="line"></span><br><span class="line">        nums = []</span><br><span class="line">        dfs(root)</span><br><span class="line">        res = <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(nums)):</span><br><span class="line">            res = <span class="built_in">min</span>(res, nums[i] - nums[i - <span class="number">1</span>])</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：O(n)，其中 n 为二叉搜索树节点的个数。每个节点在中序遍历中都会被访问一次且只会被访问一次，因此总时间复杂度为 O(n)。</li>
@@ -204,7 +200,6 @@
 </ul>
 <h3 id="Approach-2-中序遍历（空间优化）"><a href="#Approach-2-中序遍历（空间优化）" class="headerlink" title="Approach 2: 中序遍历（空间优化）"></a>Approach 2: 中序遍历（空间优化）</h3><p>保留前驱结点，滚动式更新结果</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getMinimumDifference</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">root</span>):</span><br><span class="line">            <span class="keyword">nonlocal</span> res, pre</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span> </span><br><span class="line">            dfs(root.left)</span><br><span class="line">            <span class="keyword">if</span> pre != -<span class="number">1</span>:</span><br><span class="line">                res = <span class="built_in">min</span>(res, root.val-pre)</span><br><span class="line">            pre = root.val</span><br><span class="line">            dfs(root.right)</span><br><span class="line">        </span><br><span class="line">        pre = -<span class="number">1</span></span><br><span class="line">        res = <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)</span><br><span class="line">        dfs(root)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
 
 
                 <hr>
@@ -304,7 +299,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Txing 2023 
+                    Copyright &copy; Dr. Zhou 2023 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
