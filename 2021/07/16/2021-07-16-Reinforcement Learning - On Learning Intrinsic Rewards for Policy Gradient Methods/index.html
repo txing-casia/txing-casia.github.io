@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="On Learning Intrinsic Rewards for Policy Gradient Methods 论文链接：https:&#x2F;&#x2F;dl.acm.org&#x2F;doi&#x2F;pdf&#x2F;10.5555&#x2F;3327345.3327375 主要内容  本文提出基于 optimal reward framework [Singh et al., 2010] 的本质奖励学习方法，并和 PPO 算法（M">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reinforcement Learning | On Learning Intrinsic Rewards for Policy Gradient Methods">
+<meta property="og:url" content="https://txing-casia.github.io/2021/07/16/2021-07-16-Reinforcement%20Learning%20-%20On%20Learning%20Intrinsic%20Rewards%20for%20Policy%20Gradient%20Methods/index.html">
+<meta property="og:site_name" content="Txing">
+<meta property="og:description" content="On Learning Intrinsic Rewards for Policy Gradient Methods 论文链接：https:&#x2F;&#x2F;dl.acm.org&#x2F;doi&#x2F;pdf&#x2F;10.5555&#x2F;3327345.3327375 主要内容  本文提出基于 optimal reward framework [Singh et al., 2010] 的本质奖励学习方法，并和 PPO 算法（M">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-07-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-25T01:54:15.000Z">
+<meta property="article:author" content="Txing">
+<meta property="article:tag" content="Reinforcement Learning">
+<meta property="article:tag" content="HRL">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://txing-casia.github.io/2021/07/16/2021-07-16-Reinforcement%20Learning%20-%20On%20Learning%20Intrinsic%20Rewards%20for%20Policy%20Gradient%20Methods/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Reinforcement Learning | On Learning Intrinsic Rewards for Policy Gradient Methods | Txing</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Txing</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到 | 伽蓝之堂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/16/2021-07-16-Reinforcement%20Learning%20-%20On%20Learning%20Intrinsic%20Rewards%20for%20Policy%20Gradient%20Methods/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用类人决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Reinforcement Learning | On Learning Intrinsic Rewards for Policy Gradient Methods
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-07-16 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-16T00:00:00+08:00">2021-07-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-03-25 09:54:15" itemprop="dateModified" datetime="2023-03-25T09:54:15+08:00">2023-03-25</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="on-learning-intrinsic-rewards-for-policy-gradient-methods">On
+Learning Intrinsic Rewards for Policy Gradient Methods</h1>
+<p>论文链接：https://dl.acm.org/doi/pdf/10.5555/3327345.3327375</p>
+<h2 id="主要内容">主要内容</h2>
+<ul>
+<li>本文提出基于 <strong>optimal reward framework</strong> [Singh et
+al., 2010] 的本质奖励学习方法，并和 PPO 算法（Mujoco）结合</li>
+</ul>
+<p>Satinder Singh, Richard L Lewis, Andrew G Barto, and Jonathan Sorg.
+Intrinsically motivated reinforcement learning: An evolutionary
+perspective. IEEE Transactions on Autonomous Mental Development,
+2(2):70–82, 2010.</p>
+<ul>
+<li>在一些游戏场景中缺少清晰的奖励函数选择方式。有时候存在多个目标，最小化能量消耗，最大化吞吐量，最小化延时等（minimizing
+energy consumption and maximizing throughput and minimizing
+latency）</li>
+<li>早期的工作证明了最优策略的奖励函数并不唯一，例如使用一个势能函数（potential-based
+reward [Ng et al., 1999]）的奖励函数不会改变最优策略。</li>
+</ul>
+<p>Andrew Y Ng, Daishi Harada, and Stuart J Russell. Policy invariance
+under reward transformations: Theory and application to reward shaping.
+In Proceedings of the Sixteenth International Conference on Machine
+Learning, pages 278–287. Morgan Kaufmann Publishers Inc., 1999.</p>
+<ul>
+<li><p>另一方面，由于实际任务中的各种限制（e.g., inadequate memory,
+representational capacity, computation, training data,
+etc.），智能体很难学习到最优策略。因此，在解决奖励设计问题时，希望设计能改变最优策略的奖励函数变换方式。</p></li>
+<li><p>构造奖励函数的好处：</p>
+<ul>
+<li>比原始的奖励函数更少的稀疏性，加快学习过程 [Rajeswaran et al.,
+2017]；</li>
+<li>帮助探索状态边界的区域，例如count-based reward
+鼓励探索很少探索到的区域 [Bellemare et al., 2016, Ostrovski et al.,
+2017, Tang et al., 2017]；</li>
+</ul></li>
+<li><p>相关的方法：</p>
+<ul>
+<li>preference elicitation</li>
+<li>inverse RL</li>
+<li>intrinsically motivated RL</li>
+<li>optimal rewards</li>
+<li>potentialbased shaping rewards</li>
+<li>more general reward shaping</li>
+<li>mechanism design</li>
+</ul></li>
+<li><p>主要贡献：</p>
+<ul>
+<li>基于策略梯度的方法推导intrinsic rewards学习方法，并与
+task-specifying (hereafter extrinsic) reward
+相结合，最大化外部奖励。</li>
+<li>内部和外部奖励之和的参数通过策略梯度方法更新训练</li>
+</ul></li>
+<li><p>使用本质奖励的主要原因是对RL
+agent的训练都是有限的（表征能力，可得到的数据，计算能力限制等等），通过集合内部奖励可以环节这些限制。The
+main intuition is that in practice all RL agents are bounded
+(computationally, representationally, in terms of data availability,
+etc.) and the optimal intrinsic reward can help mitigate these
+bounds.</p></li>
+</ul>
+<h3 id="background-and-related-work">Background and Related Work</h3>
+<ul>
+<li><p><strong>Optimal rewards and reward design</strong></p>
+<p>Sorg et al.
+[2010]提出了PGRD算法，这是一种可扩展的算法，仅适用于基于前瞻搜索(例如，UCT)的规划agent(因此agent本身不是基于学习的agent；只学习与固定规划者一起使用的奖励)。Sorg
+et al. [2010] introduced PGRD (Policy Gradient for Reward Design), a
+scalable algorithm that only works with lookahead-search (e.g., UCT)
+based planning agents (and hence the agent itself is not a
+learning-based agent; only the reward to use with the fixed planner is
+learned).</p></li>
+<li><p><strong>Reward shaping and Auxiliary rewards</strong></p>
+<ul>
+<li><p>Reward shaping [Ng et al.,
+1999]提供了一个一般性的答案，说明什么样的奖励函数修改空间不会改变最优策略，特别是基于势能的奖励函数。Reward
+shaping [Ng et al., 1999] provides a general answer to what space of
+reward function modifications do not change the optimal policy,
+specifically potential-based rewards.</p></li>
+<li><p>The <strong>UNREAL</strong> agent <strong>[Jaderberg et al.,
+2016]</strong> used pseudo-reward computed from unsupervised auxiliary
+tasks to refine its internal representations.</p>
+<p>Max Jaderberg, Volodymyr Mnih, Wojciech Marian Czarnecki, Tom Schaul,
+Joel Z Leibo, David Silver, and Koray Kavukcuoglu. Reinforcement
+learning with unsupervised auxiliary tasks. arXiv preprint
+arXiv:1611.05397, 2016.</p></li>
+<li><p>In <strong>Bellemare et al. [2016]</strong>, <strong>Ostrovski et
+al. [2017]</strong>, and <strong>Tang et al. [2017]</strong>, a
+pseudo-count based reward bonus was given to the agent to encourage
+exploration</p></li>
+<li><p><strong>Pathak et al. [2017]</strong> used self-supervised
+prediction errors as intrinsic rewards to help the agent
+explore.</p></li>
+<li><p>本文的主要出发点是学习本质奖励，使其能够映射高维的观测和行为到奖励中。The
+main departure point in this paper is that we learn the parameters of an
+intrinsic reward function that maps high-dimensional observations and
+actions to rewards.</p></li>
+</ul></li>
+<li><p><strong>Hierarchical RL</strong></p>
+<ul>
+<li>另一类的的本质奖励在分层强化学习中使用，比如FeUdal
+Network通过manager和worker在不同时间尺度尽心学习，manager学习抽象的目标指挥worker最大化外部奖励</li>
+<li>Finally, another difference is that hierarchical RL typically treats
+the lower-level learner as a black box while we train the intrinsic
+reward using gradients through the policy module in our
+architecture.</li>
+</ul></li>
+<li><p><strong>Meta Learning for RL</strong></p>
+<ul>
+<li>这篇工作也可以被当做meta-RL方向的工作</li>
+<li>与之前工作的区别：在单个任务中元学习到内部奖励，而不是快速适应新的任务。However,
+a key distinction from the prior work on meta learning for RL [Finn et
+al., 2017, Duan et al., 2017, Wang et al., 2016, Duan et al., 2016b] is
+that our method aims to meta-learn intrinsic rewards within a single
+task, whereas much of the prior work is designed to quickly adapt to new
+tasks in a few-shot learning scenario.</li>
+</ul></li>
+</ul>
+<h3
+id="gradient-based-learning-of-intrinsic-rewards-a-derivation">Gradient-Based
+Learning of Intrinsic Rewards: A Derivation</h3>
+<h4 id="policy-gradient-based-rl">Policy Gradient based RL</h4>
+<ul>
+<li><p>The value of a policy <span
+class="math display">\[J(\theta)=E[\sum^{\infty}_{t=0}
+\gamma^tr_t]\]</span></p></li>
+<li><p>the gradient of the value <span
+class="math display">\[J(\theta)\]</span> is<br />
+<span class="math display">\[
+\nabla_{\theta} J(\theta)=E_{\theta}[G(s_t,a_t) \nabla_{\theta} \log
+\pi_{\theta}(a_t|s_t)]\\
+G(s_t,a_t)=\sum^{\infty}_{i=t} \gamma^{i-t}r_i
+\]</span> G是到终点为止的return</p></li>
+</ul>
+<h4 id="lirpg-learning-intrinsic-rewards-for-policy-gradient">LIRPG:
+Learning Intrinsic Rewards for Policy Gradient</h4>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210719-1.png"
+alt="Learning Intrinsic Rewards for Policy Gradient" />
+<figcaption aria-hidden="true">Learning Intrinsic Rewards for Policy
+Gradient</figcaption>
+</figure>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210719-2.png"
+alt="Algorithm 1 LIRPG: Learning Intrinsic Reward for Policy Gradient" />
+<figcaption aria-hidden="true">Algorithm 1 LIRPG: Learning Intrinsic
+Reward for Policy Gradient</figcaption>
+</figure>
+<ul>
+<li><p><strong>Updating Policy Parameters (θ)</strong></p>
+<p>使用内部和外部奖励之和来更新 <span
+class="math display">\[\theta\]</span><br />
+<span class="math display">\[
+\begin{align}
+\theta&#39;&amp;=\theta+\alpha\nabla_{\theta} J^{ex+in}(\theta)\\
+&amp;\approx \theta +\alpha G^{ex+in}(s_t,a_t) \nabla_{\theta} \log
+\pi_{\theta}(a_t|s_t)
+\end{align}
+\]</span></p></li>
+<li><p><strong>Updating Intrinsic Reward Parameters
+(η)</strong></p></li>
+</ul>
+<p>Given an episode and the updated policy parameters <span
+class="math display">\[\theta&#39;\]</span> , we update intrinsic reward
+parameters.<br />
+<span class="math display">\[
+\begin{align}
+\nabla_{\eta}
+J^{ex}&amp;=\nabla_{\theta&#39;}J^{ex}\nabla_{\eta}\theta&#39;\\
+\nabla_{\theta&#39;}J^{ex} &amp;\approx G^{ex}(s_t,a_t)
+\nabla_{\theta&#39;}\log \pi_{\theta&#39;}(a_t \mid s_t)\\
+\nabla_{\eta} \theta&#39; &amp; =\nabla_{\eta}(\theta+\alpha
+G^{ex+in}(s_t,a_t)\nabla_{\theta}\log \pi_{\theta}(a_t|s_t))\\
+&amp;= \nabla_{\eta}(\alpha G^{ex+in}(s_t,a_t) \nabla_{\theta}\log
+\pi_{\theta}(a_t|s_t)))\\
+&amp;= \nabla_{\eta}(\alpha \lambda G^{in}(s_t,a_t) \nabla_{\theta}\log
+\pi_{\theta}(a_t|s_t)))\\
+&amp;= \alpha \lambda \sum^{\infty}_{i=t} \gamma^{i-t}\nabla_{\eta}
+r^{in}_{\eta}(s_i,a_i)\nabla_{\theta} \log \pi_{\theta}(a_t\mid s_t)
+\end{align}  
+\]</span> The importance sampling:<br />
+<span class="math display">\[
+\nabla_{\theta&#39;}
+J^{ex}=G^{ex}(s_t,a_t)\frac{\nabla_{\theta&#39;}\pi_{\theta&#39;}(a_t\mid
+s_t)}{\pi_{\theta}(a_t\mid s_t)}\\  
+\]</span>
+重要性采样就是假设数据属于p(x)分布，但是实际采样是以q(x)分布采样的，需要乘以一个权重，把数据转换到p(x)分布，也就是重要性权重。</p>
+<h2 id="总结">总结</h2>
+<p>整个工作还是很漂亮的，尤其的这两层的梯度推导（需要结合途中公式和文本中的公式来看）。后面考虑再看几篇本质reward的文章，看看还有什么构造方式。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Reinforcement-Learning/" rel="tag"># Reinforcement Learning</a>
+              <a href="/tags/HRL/" rel="tag"># HRL</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/07/14/2021-07-14-Reinforcement%20Learning%20-%20Hierarchical%20Deep%20Reinforcement%20Learning%20Integrating%20Temporal%20Abstraction%20and%20Intrinsic%20Motivation/" rel="prev" title="Reinforcement Learning | Hierarchical Deep Reinforcement Learning: Integrating Temporal Abstraction and Intrinsic Motivation">
+      <i class="fa fa-chevron-left"></i> Reinforcement Learning | Hierarchical Deep Reinforcement Learning: Integrating Temporal Abstraction and Intrinsic Motivation
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/07/18/2021-07-18-Q688-%E9%A9%AC%E5%9C%A8%E6%A3%8B%E7%9B%98%E4%B8%8A%E7%9A%84%E6%A6%82%E7%8E%87-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="next" title="Q688-马在棋盘上的概率-中等-动态规划">
+      Q688-马在棋盘上的概率-中等-动态规划 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#on-learning-intrinsic-rewards-for-policy-gradient-methods"><span class="nav-number">1.</span> <span class="nav-text">On
+Learning Intrinsic Rewards for Policy Gradient Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9"><span class="nav-number">1.1.</span> <span class="nav-text">主要内容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#background-and-related-work"><span class="nav-number">1.1.1.</span> <span class="nav-text">Background and Related Work</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gradient-based-learning-of-intrinsic-rewards-a-derivation"><span class="nav-number">1.1.2.</span> <span class="nav-text">Gradient-Based
+Learning of Intrinsic Rewards: A Derivation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#policy-gradient-based-rl"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">Policy Gradient based RL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lirpg-learning-intrinsic-rewards-for-policy-gradient"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">LIRPG:
+Learning Intrinsic Rewards for Policy Gradient</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.2.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Txing</p>
+  <div class="site-description" itemprop="description">泛用类人决战型机器人博士</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/yourname" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Txing</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

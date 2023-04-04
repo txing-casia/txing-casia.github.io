@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Intrinsically Motivated Reinforcement Learning: An Evolutionary Perspective 论文链接：https:&#x2F;&#x2F;ieeexplore.ieee.org&#x2F;stamp&#x2F;stamp.jsp?tp&#x3D;&amp;arnumber&#x3D;5471106 主要内容  intrinsically motivated 这个词最开始是在1950年的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reinforcement Learning | Intrinsically Motivated Reinforcement Learning: An Evolutionary Perspective">
+<meta property="og:url" content="https://txing-casia.github.io/2021/07/22/2021-07-22-Reinforcement%20Learning%20-%20Intrinsically%20Motivated%20Reinforcement%20Learning%20An%20Evolutionary%20Perspective/index.html">
+<meta property="og:site_name" content="Txing">
+<meta property="og:description" content="Intrinsically Motivated Reinforcement Learning: An Evolutionary Perspective 论文链接：https:&#x2F;&#x2F;ieeexplore.ieee.org&#x2F;stamp&#x2F;stamp.jsp?tp&#x3D;&amp;arnumber&#x3D;5471106 主要内容  intrinsically motivated 这个词最开始是在1950年的">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-07-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-25T01:54:15.003Z">
+<meta property="article:author" content="Txing">
+<meta property="article:tag" content="Reinforcement Learning">
+<meta property="article:tag" content="HRL">
+<meta property="article:tag" content="Reward Shaping">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://txing-casia.github.io/2021/07/22/2021-07-22-Reinforcement%20Learning%20-%20Intrinsically%20Motivated%20Reinforcement%20Learning%20An%20Evolutionary%20Perspective/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Reinforcement Learning | Intrinsically Motivated Reinforcement Learning: An Evolutionary Perspective | Txing</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Txing</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到 | 伽蓝之堂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/22/2021-07-22-Reinforcement%20Learning%20-%20Intrinsically%20Motivated%20Reinforcement%20Learning%20An%20Evolutionary%20Perspective/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用类人决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Reinforcement Learning | Intrinsically Motivated Reinforcement Learning: An Evolutionary Perspective
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-07-22 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-22T00:00:00+08:00">2021-07-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-03-25 09:54:15" itemprop="dateModified" datetime="2023-03-25T09:54:15+08:00">2023-03-25</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1
+id="intrinsically-motivated-reinforcement-learning-an-evolutionary-perspective">Intrinsically
+Motivated Reinforcement Learning: An Evolutionary Perspective</h1>
+<p>论文链接：https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=5471106</p>
+<h2 id="主要内容">主要内容</h2>
+<ul>
+<li><p>intrinsically motivated
+这个词最开始是在1950年的文章中提出的，文章认为需要有一种内在的操纵驱动力来解释为什么猴子会在没有任何外在奖励的情况下精力充沛地持续工作数小时来解决复杂的机械难题。内在动机行为对智力增长至关重要</p></li>
+<li><p>本文解决了如何在人工系统中实现类似于内在动机的过程的问题，特别关注可能会或可能不会区分内在动机和外在动机的因素，其中外在动机是指由行为的特定奖励结果产生的动机，而不是行为本身。</p></li>
+<li><p>相关工作：</p>
+<ul>
+<li><p>定义有趣度：Lenat's AM system [18], for example, focused on
+heuristic definitions of “interestingness,”</p></li>
+<li><p>建立好奇心框架：Schmidhuber [32] [33] [34] [35] [36] [37]
+introduced methods for implementing forms of curiosity using the
+framework of computational reinforcement learning (RL)1 [47].</p></li>
+<li><p>奖励函数设计：Other researchers have reported interesting results
+of computational experiments involving evolutionary search for RL reward
+functions [1], [8], [19], [31], [43], but they did not directly address
+the motivational issues on which we focus.</p></li>
+<li><p>寻找本质奖励：Uchibe and Doya [51] do address intrinsic reward in
+an evolutionary context, but their aim and approach differ significantly
+from ours.</p>
+<p>[51]. E. Uchibe and K. Doya, "Finding intrinsic rewards by embodied
+evolution and constrained reinforcement learning", <em>Neural
+Netw.</em>, vol. 21, no. 10, pp. 1447-1455, 2008.</p></li>
+<li><p>与我们最接近的研究是 Elfwing
+等人的研究。[11]其中使用遗传算法来搜索塑造奖励[23]和其他提高 RL
+学习系统性能的学习算法参数。</p>
+<p>[11]. S. Elfwing, E. Uchibe, K. Doya and H. I. Christensen,
+"Co-evolution of shaping rewards and meta-parameters in reinforcement
+learning", <em>Adapt. Behav.</em>, vol. 16, pp. 400-412, 2008.</p></li>
+</ul></li>
+<li><p>使用RL的模型结构示意图</p></li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210722-1.png"
+alt="Agent–environment interactions in reinforcement learning" />
+<figcaption aria-hidden="true">Agent–environment interactions in
+reinforcement learning</figcaption>
+</figure>
+<ul>
+<li><p>这篇文章[3]使用属于内部奖励（intrinsic
+reward），并将其与强化学习框架结合。所谓内部奖励，就是内部动机生成的奖励函数；外部奖励就是常规的强化学习框架的奖励函数。</p>
+<p>[3]. A. G. Barto, S. Singh and N. Chentanez, "Intrinsically motivated
+learning of hierarchical collections of skills", <em>Proc. Int. Conf.
+Develop. Learn.</em>, 2004.</p></li>
+<li><p>目前的方法基本都是构建特殊的内部奖励函数，并且将其与一般的强化学习算法结合。例如基于好奇心的内部驱动方法[32]。</p>
+<p>[32]. J. Schmidhuber, <em>Adaptive Confidence and Adaptive
+Curiosity</em>, 1991.</p></li>
+<li><p>这种内部动机的RL框架更加符合生物实际。并且奖励和奖励信号是不同的概念，RL模型中使用的更类似于奖励信号。</p>
+<ul>
+<li><p>奖励（Reward）指的是获得的好处；</p></li>
+<li><p>奖励信号（Reward signal）指的是大脑中奖励神经元发放的信号；</p>
+<p>Schultz [38], [39] writes that “Rewards are objects or events that
+make us come back for more,” whereas reward signals are produced by
+reward neurons in the brain.</p></li>
+</ul></li>
+<li><p>RL中的环境应该分为an external environment 和 an internal
+environment.</p></li>
+<li><p>但是并不能从行为上区分是否使用了内部奖励[25]。但是内部动机是通过外部奖励形成的。</p>
+<p>[25]. P.-Y. Oudeyer and F. Kaplan, "What is intrinsic motivation? A
+typology of computational approaches", <em>Frontiers Neurorobot.</em>,
+2007.</p></li>
+<li><p>Primary and Secondary
+Reward：使用内部动机意义在于作为一种次要的奖励信号，配合主要的外部奖励信号完成行为</p></li>
+<li><p>生物动机心理学依据：</p>
+<p>Among the most influential theories of motivation in psychology is
+the drive theory of Hull [13] [14] [15]. According to Hull's theory, all
+behavior is motivated either by an organism's survival and reproductive
+needs giving rise to primary drives (such as hunger, thirst, sex, and
+the avoidance of pain), or by derivative drives that have acquired their
+motivational significance through learning. Primary drives are the
+result of physiological deficits—“tissue needs”— and they energize
+behavior whose result is to reduce the deficit. A key additional feature
+of Hull's theory is that a need reduction, and hence a drive reduction,
+acts as a primary reinforcer for learning: behavior that reduces a
+primary drive is reinforced. Additionally, through the process of
+secondary reinforcement in which a neutral stimulus is paired with a
+primary reinforcer, the formerly neutral stimulus becomes a secondary
+reinforcer, i.e., acquires the reinforcing power of the primary
+reinforcer. In this way, stimuli that predict primary reward, i.e.,
+predict a reduction in a primary drive, become rewarding themselves.
+According to this influential theory (in its several variants), all
+behavior is energized and directed by its relevance to primal drives,
+either directly or as the result of learning through secondary
+reinforcement.</p></li>
+<li><p>一些驱动力对行为影响的例子，在某些条件下，饥饿的老鼠宁愿探索不熟悉的空间，也不愿进食；他们忍受穿越电网的痛苦，去探索新的空间。</p></li>
+<li><p>但是饥饿、口渴、繁衍这些驱动都伴随着满足的状态，他们是否能作为次要驱动还是有待研究。下面介绍基于进化的观点。</p></li>
+<li><p>使用一个适应度函数和一些环境兴趣的分布（an explicit fitness
+function and some distribution of environments of
+interest），这个适应度可以是累积的外部奖励和等形式。</p></li>
+<li><p><strong>实验1：</strong></p></li>
+<li><p>一个6x6的格子空间中分割了4个3x3的子空间，格子之间的墙壁不是全部封闭的，其中2个子格子空间中分别有一个打开的盒子和一个封闭的盒子（盒子位置在智能体生命周期内是不再变化的），一个打开的盒子在每个时间步以
+0.1
+的概率关闭，密闭的盒子里总是装着食物。智能体在这样的格子迷宫中要找到打开的盒子，并在封闭的盒子中寻找食物。智能体的行动分为上下左右4个方向。</p></li>
+<li><p>当代理食用食物时，它会在一个时间步长内感到饱足。代理在所有其他时间步都饥饿。智能体每吃一次食物，它的适应度就会增加
+1</p></li>
+<li><p>在格子迷宫环境中假设了两只钟情况：</p>
+<ol type="1">
+<li>constant condition:
+食物总是智能体10000步生命周期中，在封闭的盒子中出现；</li>
+<li>step condition:
+智能体的生命周期是20000步，食物总是出现在10000步之后出现在封闭盒子中；</li>
+</ol></li>
+<li><p>符号说明：</p>
+<ul>
+<li>agent <span class="math display">\[\mathcal{A}\]</span></li>
+<li>a space of reward function <span
+class="math display">\[R_\mathcal{A}\]</span></li>
+<li>a specific reward function <span
+class="math display">\[r_\mathcal{A} \in R_\mathcal{A}\]</span></li>
+<li>a sampled environment <span class="math display">\[E \sim
+P(\varepsilon)\]</span></li>
+<li>history of agent <span class="math display">\[\mathcal{A}\]</span>
+adapting to environment <span class="math display">\[E\]</span> over its
+lifetime using the reward function <span
+class="math display">\[r_\mathcal{A}\]</span>, i.e., <span
+class="math display">\[h \sim \langle
+\mathcal{A}(r_\mathcal{A}),E\rangle\]</span></li>
+<li>fitness function <span class="math display">\[\mathcal{F}\]</span>
+produces a scalar evaluation <span
+class="math display">\[\mathcal{F}(h)\]</span> for each history <span
+class="math display">\[h\]</span></li>
+<li>optimal reward function <span
+class="math display">\[r^*_{\mathcal{A}} \in
+R_{\mathcal{A}}\]</span></li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+r^*_{\mathcal{A}}=\arg \max_{r_\mathcal{A} \in R_\mathcal{A}}
+\mathbb{E}_{E\sim P(\varepsilon)} \mathbb{E}_{h \sim \langle
+\mathcal{A}(r_\mathcal{A}),E\rangle}[\mathcal{F}(h)]
+\]</span></p>
+<ul>
+<li><p>使用的算法 the lookup-table -greedy Q-learning [52].</p>
+<p>[52]. C. J. C. H. Watkins, “Learning from Delayed Rewards,” Ph.D.
+dissertation, Cambridge Univ., Cambridge, U.K., 1989</p></li>
+</ul>
+<p><span class="math display">\[
+Q_{t+1}(s_t,a_t)=(1-\alpha)Q_t(s_t,a_t)+\alpha[r_t + \gamma \max_b
+(Q_t(s_{t+1},b))]
+\]</span></p>
+<p>之后通过实验验证了<span
+class="math display">\[r*\]</span>的奖励函数趋近最优奖励函数</p>
+<ul>
+<li><p><strong>实验2</strong></p>
+<ul>
+<li>一个三走廊的觅食环境，虫子每次随机出现正在其中一个走廊的尽头。由于每次虫子的位置是随机且未知的，智能体过去的经验不能直接直到新的觅食，所以这个环境是非马尔科夫的。</li>
+<li>实验要求智能体在固定的10000步之内尽可能多地吃到虫子。</li>
+</ul>
+<p><span class="math display">\[
+Q_d(s,a)=r_{\mathcal{A}}(s,a)+\gamma\sum_{s&#39;\in \mathcal{S}}
+\hat{T}(s&#39;|s,a)\max_{a&#39;} Q_{d-1}(s&#39;,a&#39;)\\
+\hat{T}(s&#39;|s,a)=\frac{n_{s,a,s&#39;}}{n_{s,a}}
+\]</span></p>
+<p>其中 <span class="math display">\[n_{s,a,s&#39;}\]</span> 表示在
+<span class="math display">\[s\]</span> 状态下，选择 <span
+class="math display">\[a\]</span> 后转移到 <span
+class="math display">\[s&#39;\]</span> 的次数。 <span
+class="math display">\[n_{s,a}\]</span> 表示在 <span
+class="math display">\[s\]</span> 状态下，选择 <span
+class="math display">\[a\]</span> 的次数。</p></li>
+<li><p>奖励函数：<span
+class="math display">\[r_{\mathcal{A}}(s,a)=\beta_F\varPhi_F(s) +
+\beta_c\varPhi_c(s,a,h)\]</span> ，其中 <span
+class="math display">\[\beta_F\]</span> 和 <span
+class="math display">\[\beta_c\]</span> 是权重系数。特征 <span
+class="math display">\[\varPhi_F(s)\]</span> 在智能体饱的时候是 1
+，其他时候是 0 。特征 <span class="math display">\[\varPhi_c(s,a,h) =
+1-\frac{1}{c(s,a,h)}\]</span> ，其中 <span
+class="math display">\[c(s,a,h)\]</span> 是智能体在历史 <span
+class="math display">\[h\]</span> 中执行行为的时间步数。</p></li>
+<li><p>当参数 <span class="math display">\[\beta_c\]</span>
+为正时，智能体会因为最近没有从当前状态采取的行动而获得奖励。这种奖励不是外部环境的固定函数.
+feature <span class="math display">\[\varPhi_F(s)\]</span> is a
+hunger-status feature, and thus when <span
+class="math display">\[\beta_F=1\]</span> and <span
+class="math display">\[\beta_c=0\]</span>, the reward function is the
+fitness-based reward function</p></li>
+</ul>
+<p>最终基于适应度的奖励函数表现次于最优奖励函数2个数量级。因此利用内在奖励
+<span class="math display">\[\varPhi_c(s,a,h)\]</span>
+对提升探索能力很有意义。</p>
+<h2 id="总结">总结</h2>
+<p>视角很独特，实验很新奇。</p>
+<p>但是文章发表在自主心理发展IEEE TRANSACTIONS ON AUTONOMOUS MENTAL
+DEVELOPMENT，因此作为一篇概念文章比较好。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Reinforcement-Learning/" rel="tag"># Reinforcement Learning</a>
+              <a href="/tags/HRL/" rel="tag"># HRL</a>
+              <a href="/tags/Reward-Shaping/" rel="tag"># Reward Shaping</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/07/22/2021-07-22-Q994-%E8%85%90%E7%83%82%E7%9A%84%E6%A9%98%E5%AD%90-%E4%B8%AD%E7%AD%89-%E6%B7%B1%E5%BA%A6and%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" rel="prev" title="Q994-腐烂的橘子-中等-深度/宽度优先搜索">
+      <i class="fa fa-chevron-left"></i> Q994-腐烂的橘子-中等-深度/宽度优先搜索
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/07/30/2021-07-30-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/" rel="next" title="排序算法总结">
+      排序算法总结 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#intrinsically-motivated-reinforcement-learning-an-evolutionary-perspective"><span class="nav-number">1.</span> <span class="nav-text">Intrinsically
+Motivated Reinforcement Learning: An Evolutionary Perspective</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9"><span class="nav-number">1.1.</span> <span class="nav-text">主要内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.2.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Txing</p>
+  <div class="site-description" itemprop="description">泛用类人决战型机器人博士</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/yourname" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Txing</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

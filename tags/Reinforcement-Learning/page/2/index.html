@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="泛用类人决战型机器人博士">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Txing">
+<meta property="og:url" content="https://txing-casia.github.io/tags/Reinforcement-Learning/page/2/index.html">
+<meta property="og:site_name" content="Txing">
+<meta property="og:description" content="泛用类人决战型机器人博士">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Txing">
+<meta property="article:tag" content="Txing">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://txing-casia.github.io/tags/Reinforcement-Learning/page/2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : false,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Tag: Reinforcement Learning | Txing</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Txing</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到 | 伽蓝之堂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content tag">
+            
+
+  
+  
+  
+  <div class="post-block">
+    <div class="posts-collapse">
+      <div class="collection-title">
+        <h2 class="collection-header">Reinforcement Learning
+          <small>Tag</small>
+        </h2>
+      </div>
+
+      
+    <div class="collection-year">
+      <span class="collection-header">2022</span>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2022-05-31T00:00:00+08:00"
+              content="2022-05-31">
+          05-31
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/2022/05/31/2022-05-30-Reinforcement%20Learning%20-%20a%20survey%20of%20deep%20RL%20and%20IL%20for%20autonomous%20driving%20policy%20learning/" itemprop="url">
+            <span itemprop="name">Reinforcement Learning | A survey of deep RL and IL for autonomous driving policy learning</span>
+          </a>
+      </div>
+
+    </header>
+  </article>
+    <div class="collection-year">
+      <span class="collection-header">2021</span>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2021-07-22T00:00:00+08:00"
+              content="2021-07-22">
+          07-22
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/2021/07/22/2021-07-22-Reinforcement%20Learning%20-%20Intrinsically%20Motivated%20Reinforcement%20Learning%20An%20Evolutionary%20Perspective/" itemprop="url">
+            <span itemprop="name">Reinforcement Learning | Intrinsically Motivated Reinforcement Learning: An Evolutionary Perspective</span>
+          </a>
+      </div>
+
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2021-07-16T00:00:00+08:00"
+              content="2021-07-16">
+          07-16
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/2021/07/16/2021-07-16-Reinforcement%20Learning%20-%20On%20Learning%20Intrinsic%20Rewards%20for%20Policy%20Gradient%20Methods/" itemprop="url">
+            <span itemprop="name">Reinforcement Learning | On Learning Intrinsic Rewards for Policy Gradient Methods</span>
+          </a>
+      </div>
+
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2021-07-14T00:00:00+08:00"
+              content="2021-07-14">
+          07-14
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/2021/07/14/2021-07-14-Reinforcement%20Learning%20-%20Hierarchical%20Deep%20Reinforcement%20Learning%20Integrating%20Temporal%20Abstraction%20and%20Intrinsic%20Motivation/" itemprop="url">
+            <span itemprop="name">Reinforcement Learning | Hierarchical Deep Reinforcement Learning: Integrating Temporal Abstraction and Intrinsic Motivation</span>
+          </a>
+      </div>
+
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2021-07-12T00:00:00+08:00"
+              content="2021-07-12">
+          07-12
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/2021/07/12/2021-07-12-Reinforcement%20Learning%20-%20DRN-A%20Deep%20Reinforcement%20Learning%20Framework%20for%20News%20Recommendation/" itemprop="url">
+            <span itemprop="name">Reinforcement Learning | DRN: A Deep Reinforcement Learning Framework for News Recommendation</span>
+          </a>
+      </div>
+
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2021-07-08T00:00:00+08:00"
+              content="2021-07-08">
+          07-08
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/2021/07/08/2021-07-08-Reinforcement%20Learning%20-%20Option-critic%20architecture/" itemprop="url">
+            <span itemprop="name">Reinforcement Learning | Option-critic Architecture</span>
+          </a>
+      </div>
+
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2021-07-06T00:00:00+08:00"
+              content="2021-07-06">
+          07-06
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/2021/07/06/2021-07-06-Reinforcement%20Learning%20-%20Option%20Discovery%20in%20Hierarchical%20Reinforcement%20Learning%20using%20Spatio-Temporal%20Clustering%20-%20%E5%89%AF%E6%9C%AC/" itemprop="url">
+            <span itemprop="name">Reinforcement Learning | Option Discovery in Hierarchical Reinforcement Learning using Spatio-Temporal Clustering</span>
+          </a>
+      </div>
+
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2021-07-01T00:00:00+08:00"
+              content="2021-07-01">
+          07-01
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/2021/07/01/2021-07-01-Reinforcement%20Learning%20-%20Hierarchical%20Deep%20Reinforcement%20Learning%20for%20Continuous%20Action%20Control/" itemprop="url">
+            <span itemprop="name">Reinforcement Learning | Hierarchical Deep Reinforcement Learning for Continuous Action Control</span>
+          </a>
+      </div>
+
+    </header>
+  </article>
+
+    </div>
+  </div>
+  
+  
+  
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/tags/Reinforcement-Learning/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/tags/Reinforcement-Learning/">1</a><span class="page-number current">2</span><a class="page-number" href="/tags/Reinforcement-Learning/page/3/">3</a><a class="page-number" href="/tags/Reinforcement-Learning/page/4/">4</a><a class="extend next" rel="next" href="/tags/Reinforcement-Learning/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Txing</p>
+  <div class="site-description" itemprop="description">泛用类人决战型机器人博士</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/yourname" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Txing</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="CoppeliaSim入门指南 1 软件安装 CoppeliaSim 以前叫做 V-rep，是一款广泛使用的机器人仿真软件环境。在本指南中，尝试在 python 中实现对 CoppeliaSim 的调用。  CoppeliaSim下载地址：https:&#x2F;&#x2F;www.coppeliarobotics.com&#x2F;  下载完成后按照默认引导完成安装。 2 环境配置 然后新建 python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CoppeliaSim入门指南">
+<meta property="og:url" content="https://txing-casia.github.io/2022/01/16/2022-01-16-CoppeliaSim%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="Txing">
+<meta property="og:description" content="CoppeliaSim入门指南 1 软件安装 CoppeliaSim 以前叫做 V-rep，是一款广泛使用的机器人仿真软件环境。在本指南中，尝试在 python 中实现对 CoppeliaSim 的调用。  CoppeliaSim下载地址：https:&#x2F;&#x2F;www.coppeliarobotics.com&#x2F;  下载完成后按照默认引导完成安装。 2 环境配置 然后新建 python">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-01-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-25T01:54:15.008Z">
+<meta property="article:author" content="Txing">
+<meta property="article:tag" content="V-rep">
+<meta property="article:tag" content="CoppeliaSim">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://txing-casia.github.io/2022/01/16/2022-01-16-CoppeliaSim%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>CoppeliaSim入门指南 | Txing</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Txing</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到 | 伽蓝之堂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/01/16/2022-01-16-CoppeliaSim%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用类人决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CoppeliaSim入门指南
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-01-16 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-16T00:00:00+08:00">2022-01-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-03-25 09:54:15" itemprop="dateModified" datetime="2023-03-25T09:54:15+08:00">2023-03-25</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="coppeliasim入门指南">CoppeliaSim入门指南</h1>
+<h3 id="软件安装">1 软件安装</h3>
+<p>CoppeliaSim 以前叫做
+V-rep，是一款广泛使用的机器人仿真软件环境。在本指南中，尝试在 python
+中实现对 CoppeliaSim 的调用。</p>
+<blockquote>
+<p>CoppeliaSim下载地址：https://www.coppeliarobotics.com/</p>
+</blockquote>
+<p>下载完成后按照默认引导完成安装。</p>
+<h3 id="环境配置">2 环境配置</h3>
+<p>然后新建 python 工程环境，在工程文件夹内需要添加三个 CoppeliaSim
+相关的文件，分别为：</p>
+<ul>
+<li><p>sim.py（原vrep.py）</p>
+<blockquote>
+<p>位置：C:Files</p>
+</blockquote></li>
+<li><p>simConst.py（原vrepConst.py）</p>
+<blockquote>
+<p>位置：C:Files</p>
+</blockquote></li>
+<li><p>remoteApi.dll</p>
+<blockquote>
+<p>位置：C:Files</p>
+</blockquote></li>
+</ul>
+<p>在 CoppeliaSim 窗口中，双击 main
+文件，添加如下所示第三行代码。帮助实现与 python 的远程连接</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220117-1.png"
+alt="main文件位置" />
+<figcaption aria-hidden="true">main文件位置</figcaption>
+</figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-- The main script is not supposed to be modified, except in special cases.</span><br><span class="line">require(&#x27;defaultMainScript&#x27;)</span><br><span class="line">simRemoteApi.start(19999)</span><br></pre></td></tr></table></figure>
+<h3 id="程序代码">3 程序代码</h3>
+<p>在 python 窗口中，添加如下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Make sure to have the server side running in CoppeliaSim: </span></span><br><span class="line"><span class="comment"># in a child script of a CoppeliaSim scene, add following command</span></span><br><span class="line"><span class="comment"># to be executed just once, at simulation start:</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># simRemoteApi.start(19997)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># then start simulation, and run this program.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># IMPORTANT: for each successful call to simxStart, there</span></span><br><span class="line"><span class="comment"># should be a corresponding call to simxFinish at the end!</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">import</span> sim</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;--------------------------------------------------------------&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;&quot;sim.py&quot; could not be imported. This means very probably that&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;either &quot;sim.py&quot; or the remoteApi library could not be found.&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;Make sure both are in the same folder as this file,&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;or appropriately adjust the file &quot;sim.py&quot;&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;--------------------------------------------------------------&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> (<span class="string">&#x27;Program started&#x27;</span>)</span><br><span class="line">sim.simxFinish(-<span class="number">1</span>) <span class="comment"># just in case, close all opened connections</span></span><br><span class="line">clientID=sim.simxStart(<span class="string">&#x27;127.0.0.1&#x27;</span>,<span class="number">19999</span>,<span class="literal">True</span>,<span class="literal">True</span>,<span class="number">5000</span>,<span class="number">5</span>) <span class="comment"># Connect to CoppeliaSim</span></span><br><span class="line"><span class="keyword">if</span> clientID!=-<span class="number">1</span>:</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;Connected to remote API server&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Now try to retrieve data in a blocking fashion (i.e. a service call):</span></span><br><span class="line">    res,objs=sim.simxGetObjects(clientID,sim.sim_handle_all,sim.simx_opmode_blocking)</span><br><span class="line">    <span class="keyword">if</span> res==sim.simx_return_ok:</span><br><span class="line">        <span class="built_in">print</span> (<span class="string">&#x27;Number of objects in the scene: &#x27;</span>,<span class="built_in">len</span>(objs))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span> (<span class="string">&#x27;Remote API function call returned with error code: &#x27;</span>,res)</span><br><span class="line"></span><br><span class="line">    time.sleep(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Now retrieve streaming data (i.e. in a non-blocking fashion):</span></span><br><span class="line">    startTime=time.time()</span><br><span class="line">    sim.simxGetIntegerParameter(clientID,sim.sim_intparam_mouse_x,sim.simx_opmode_streaming) <span class="comment"># Initialize streaming</span></span><br><span class="line">    <span class="keyword">while</span> time.time()-startTime &lt; <span class="number">5</span>:</span><br><span class="line">        returnCode,data=sim.simxGetIntegerParameter(clientID,sim.sim_intparam_mouse_x,sim.simx_opmode_buffer) <span class="comment"># Try to retrieve the streamed data</span></span><br><span class="line">        <span class="keyword">if</span> returnCode==sim.simx_return_ok: <span class="comment"># After initialization of streaming, it will take a few ms before the first value arrives, so check the return code</span></span><br><span class="line">            <span class="built_in">print</span> (<span class="string">&#x27;Mouse position x: &#x27;</span>,data) <span class="comment"># Mouse position x is actualized when the cursor is over CoppeliaSim&#x27;s window</span></span><br><span class="line">        time.sleep(<span class="number">0.005</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Now send some data to CoppeliaSim in a non-blocking fashion:</span></span><br><span class="line">    sim.simxAddStatusbarMessage(clientID,<span class="string">&#x27;Hello CoppeliaSim!&#x27;</span>,sim.simx_opmode_oneshot)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Before closing the connection to CoppeliaSim, make sure that the last command sent out had time to arrive. You can guarantee this with (for example):</span></span><br><span class="line">    sim.simxGetPingTime(clientID)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Now close the connection to CoppeliaSim:</span></span><br><span class="line">    sim.simxFinish(clientID)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;Failed connecting to remote API server&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span> (<span class="string">&#x27;Program ended&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>代码来自于样例程序simpleTest.py (C:Files)</p>
+<h3 id="功能实现">4 功能实现</h3>
+<p>功能大致是：获取 CoppeliaSim 窗口中鼠标的 x 坐标，并返回到 python
+窗口输出。</p>
+<p>运行方式为：先点击 CoppeliaSim 的 start simulation
+按键运行仿真，再运行 python 程序，会自动实现通信。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/V-rep/" rel="tag"># V-rep</a>
+              <a href="/tags/CoppeliaSim/" rel="tag"># CoppeliaSim</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/01/06/2022-01-06-pytorch-%E4%BD%BF%E7%94%A8%E4%BC%98%E5%8C%96%E5%99%A8%E7%9A%84%E6%9B%B2%E7%BA%BF%E6%8B%9F%E5%90%88%E7%A8%8B%E5%BA%8F/" rel="prev" title="pytorch-使用优化器的曲线拟合程序">
+      <i class="fa fa-chevron-left"></i> pytorch-使用优化器的曲线拟合程序
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/01/17/2022-01-17-Gym%E6%A1%86%E6%9E%B6%E4%B8%8B%E7%9A%84CoppeliaSim%E5%80%92%E7%AB%8B%E6%91%86%E5%AE%9E%E7%8E%B0/" rel="next" title="Gym框架下的CoppeliaSim小车倒立摆实现">
+      Gym框架下的CoppeliaSim小车倒立摆实现 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#coppeliasim%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97"><span class="nav-number">1.</span> <span class="nav-text">CoppeliaSim入门指南</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="nav-number">1.0.1.</span> <span class="nav-text">1 软件安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-number">1.0.2.</span> <span class="nav-text">2 环境配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E4%BB%A3%E7%A0%81"><span class="nav-number">1.0.3.</span> <span class="nav-text">3 程序代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.0.4.</span> <span class="nav-text">4 功能实现</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Txing</p>
+  <div class="site-description" itemprop="description">泛用类人决战型机器人博士</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/yourname" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Txing</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

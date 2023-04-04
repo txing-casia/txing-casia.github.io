@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Learning to Utilize Shaping Rewards A New Approach of Reward Shaping 论文链接：NIPS 2020 背景 人工方式塑造奖励函数有着先天的缺陷，这里提出了一种双层优化（ bi-level optimization problem）的方式来自适应的设计奖励函数。实验在sparse-reward的环境中进行验证。  lo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reinforcement Learning | Learning to Utilize Shaping Rewards: A New Approach of Reward Shaping">
+<meta property="og:url" content="https://txing-casia.github.io/2020/12/31/2020-12-31-Reinforcement%20Learning%20-%20Learning%20to%20Utilize%20Shaping%20Rewards%20A%20New%20Approach%20of%20Reward%20Shaping/index.html">
+<meta property="og:site_name" content="Txing">
+<meta property="og:description" content="Learning to Utilize Shaping Rewards A New Approach of Reward Shaping 论文链接：NIPS 2020 背景 人工方式塑造奖励函数有着先天的缺陷，这里提出了一种双层优化（ bi-level optimization problem）的方式来自适应的设计奖励函数。实验在sparse-reward的环境中进行验证。  lo">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-12-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-25T01:54:14.978Z">
+<meta property="article:author" content="Txing">
+<meta property="article:tag" content="Reinforcement Learning">
+<meta property="article:tag" content="Reward Shaping">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://txing-casia.github.io/2020/12/31/2020-12-31-Reinforcement%20Learning%20-%20Learning%20to%20Utilize%20Shaping%20Rewards%20A%20New%20Approach%20of%20Reward%20Shaping/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Reinforcement Learning | Learning to Utilize Shaping Rewards: A New Approach of Reward Shaping | Txing</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Txing</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到 | 伽蓝之堂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/12/31/2020-12-31-Reinforcement%20Learning%20-%20Learning%20to%20Utilize%20Shaping%20Rewards%20A%20New%20Approach%20of%20Reward%20Shaping/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用类人决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Reinforcement Learning | Learning to Utilize Shaping Rewards: A New Approach of Reward Shaping
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-12-31 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-31T00:00:00+08:00">2020-12-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-03-25 09:54:14" itemprop="dateModified" datetime="2023-03-25T09:54:14+08:00">2023-03-25</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1
+id="learning-to-utilize-shaping-rewards-a-new-approach-of-reward-shaping">Learning
+to Utilize Shaping Rewards A New Approach of Reward Shaping</h1>
+<p>论文链接：NIPS 2020</p>
+<h2 id="背景">背景</h2>
+<p>人工方式塑造奖励函数有着先天的缺陷，这里提出了一种双层优化（ bi-level
+optimization
+problem）的方式来自适应的设计奖励函数。实验在sparse-reward的环境中进行验证。</p>
+<ul>
+<li><p>lower level使用塑造的奖励优化策略；</p></li>
+<li><p>upper level优化参数化的塑造权重函数来最大化真实的奖励；</p></li>
+</ul>
+<h2 id="主要工作">主要工作</h2>
+<ul>
+<li><p>Reward Shaping
+(RS)：一个常用的提高样本效率的方法是把可能的领域知识迁移到额外的奖励函数中，从而在原始和新的奖励驱使下学习更快更好。</p></li>
+<li><p>但是奖励的设计不可避免的涉及了人工的操作，</p></li>
+</ul>
+<h3 id="parameterized-reward-shaping">3 Parameterized Reward
+Shaping</h3>
+<h4 id="bi-level-optimization">3.1 Bi-level Optimization</h4>
+<ul>
+<li>定义参数化奖励塑造函数：</li>
+</ul>
+<p><span class="math display">\[
+\tilde{r}(s,a)=r(s,a)+z_{\phi}(s,a)f(s,a)
+\]</span></p>
+<p><span
+class="math display">\[z_{\phi}(s,a)\]</span>是权重向量，形式是使用参数化函数。<span
+class="math display">\[f\]</span>是shaping 奖励函数。</p>
+<p><span class="math display">\[
+\text{Step 1: }\
+\max_{\phi} \mathbb{E}_{s\sim \rho^{\pi},a\sim\pi_{\theta}} [r(s,a)]\\
+\text{Step 2: }\
+\theta=\arg \max_{\theta&#39;} \mathbb{E}_{s\sim
+\rho^{\pi},a\sim\pi_{\theta&#39;}}[r(s,a)+z_{\phi}(s,a)f(s,a)]
+\]</span> 通过真实的环境奖励<span
+class="math display">\[r(s,a)\]</span>更新<span
+class="math display">\[z_{\phi}(s,a)\]</span>，在根据shaping reward
+function更新policy。</p>
+<h4 id="gradient-computation">3.2 Gradient Computation</h4>
+<ul>
+<li><p>固定<span
+class="math display">\[z_{\phi}\]</span>，计算累计修正奖励<span
+class="math display">\[\tilde J\]</span>关于参数<span
+class="math display">\[\theta\]</span>的梯度： <span
+class="math display">\[
+\nabla_{\phi}\tilde J(\pi_{\theta})= \mathbb{E}_{s\sim
+\rho^{\pi},a\sim\pi_{\theta}} \big[\nabla_{\theta}\log
+\pi_{\theta}(s,a)\tilde Q(s,a)\big]
+\]</span></p></li>
+<li><p>定理1：目标函数<span
+class="math display">\[J(z_{\phi})\]</span>关于参数<span
+class="math display">\[\phi\]</span>的梯度为： <span
+class="math display">\[
+\nabla_{\phi} J(z_{\phi})= \mathbb{E}_{s\sim
+\rho^{\pi},a\sim\pi_{\theta}} \big[\nabla_{\theta}\log \pi_{\theta}(s,a)
+Q(s,a)\big]
+\]</span> 这个定理首先假设了<span
+class="math display">\[\pi_{\theta}\]</span>关于<span
+class="math display">\[\phi\]</span>的梯度存在，但是即使有了定理1也不能直接计算出这个梯度，因为<span
+class="math display">\[\pi_{\theta}\]</span>关于<span
+class="math display">\[\phi\]</span>的梯度不能直接计算，下面会讨论如何计算<span
+class="math display">\[\nabla_{\phi}\pi_{\theta}(s,a)\]</span></p></li>
+</ul>
+<h3 id="gradient-approximation">4 Gradient Approximation</h3>
+<h4 id="explicit-maping">4.1 Explicit Maping</h4>
+<ul>
+<li>假设行为输出在<span
+class="math display">\[[0,1]\]</span>，构建一个扩展的状态空间（extended
+state space）<span
+class="math display">\[\mathcal{S}_z=\{(s,z_{\phi}(s))|{\forall}s\in
+\mathcal{S} \}\]</span>，根据链式法则，得到<span
+class="math display">\[\nabla_{\phi}\pi_{\theta}(s,a,z_{\phi}(s))=\nabla_{z}\pi_{\theta}(s,a,z_{\phi}(s))\nabla_{\phi}z_{\phi}(s)\]</span>，相应的，上级目标函数<span
+class="math display">\[J(z_{\phi})\]</span>关于<span
+class="math display">\[\phi\]</span>的梯度为： <span
+class="math display">\[
+\nabla_{\phi}J(z_{\phi})=\mathbb{E}_{s\sim \rho^{\pi},a \sim
+\pi_{\theta}}[\nabla_z \log
+\pi_{\theta}(s,a,z)|_{z=z_{\phi}(s)}\nabla_{\phi}z_{\phi}(s)Q^{\pi}(s,a)]
+\]</span></li>
+</ul>
+<h4 id="meta-gradient-learning">4.2 Meta-Gradient Learning</h4>
+<ul>
+<li><p>考虑到参数<span class="math display">\[\theta\]</span>和<span
+class="math display">\[\phi\]</span>之间的关系，可以通过计算元梯度（meta-gradient）<span
+class="math display">\[\nabla_{\phi}\theta\]</span>的方式计算： <span
+class="math display">\[
+\nabla_{\phi}\pi_{\theta}(s,a)=\nabla_{\theta}\pi_{\theta}(s,a)\nabla_{\phi}\theta
+\]</span></p></li>
+<li><p>对<span class="math display">\[\theta\]</span>的更新： <span
+class="math display">\[
+\theta&#39;=\theta+\alpha\sum_{i=1}^N \nabla_{\theta}\log
+\pi_{\theta}(s_i,a_i)\tilde Q(s_i,a_i)
+\]</span> 其中<span
+class="math display">\[N\]</span>是batch样本数，<span
+class="math display">\[\alpha\]</span>是学习率</p></li>
+<li><p>meta-gradient<span
+class="math display">\[\nabla_{\phi}\theta&#39;\]</span>： <span
+class="math display">\[
+\nabla_{\phi}\theta&#39;=\nabla_{\phi}(\theta+\alpha\sum_{i=1}^{N}\nabla_{\theta}\log
+\pi_{\theta}(s_i,a_i)\tilde Q(s_i,a_i)\\
+=\alpha \sum_{i=1}^{N} \nabla_{\theta}\log \pi_{\theta}(s_i,a_i)^{\top}
+\nabla_{\phi}\tilde Q(s_i,a_i)\\
+\]</span> 这里<span
+class="math display">\[\theta\]</span>是一个常数。</p>
+<p>在计算过程中，例如采用蒙特卡洛返回，对每一个在buffer中的样本<span
+class="math display">\[i\]</span>，定义<span
+class="math display">\[\tau_i=(s^0_i,a^0_i,\tilde
+r^0_i,s^1_i,a^1_i,\tilde r^1_i,...)\]</span>表示采样的轨迹由于<span
+class="math display">\[\tilde
+r_i^t=r^t_i+z_{\phi}(s^t_i,a^t_i)f(s^t_i,a^t_i)\]</span>，其中<span
+class="math display">\[r^t_i\]</span>是采样的真实奖励。 <span
+class="math display">\[
+\nabla_{\phi}\theta&#39;=\alpha \sum_{i=1}^{N} \nabla_{\theta}\log
+\pi_{\theta}(s_i,a_i)^{\top} \nabla_{\phi}\tilde Q(s_i,a_i)\\
+\approx \alpha\sum_{i=1}^N  \nabla_{\theta}\log
+\pi_{\theta}(s_i,a_i)^{\top} \nabla_{\phi} \sum_{t=0}^{|\tau_i|-1}
+\gamma^t (r^t_i +z_{\phi}(s^t_i,a^t_i)f(s^t_i,a^t_i))\\
+=\alpha\sum_{i=1}^N  \nabla_{\theta}\log \pi_{\theta}(s_i,a_i)^{\top}
+\sum_{t=0}^{|\tau_i|-1}\gamma^t
+f(s^t_i,a^t_i)\nabla_{\phi}z_{\phi}(s^t_i,a^t_i)
+\]</span></p></li>
+</ul>
+<h4 id="incremental-meta-gradient-learning">4.3 Incremental
+Meta-Gradient Learning</h4>
+<ul>
+<li><p>考虑之前假设的策略参数<span
+class="math display">\[\theta\]</span>关于<span
+class="math display">\[\phi\]</span>是恒定的，实际上，可以看做不是恒定的。</p></li>
+<li><p>Incremental Meta-Gradient Learning (IMGL) <span
+class="math display">\[
+\nabla_{\phi}\theta&#39;=\nabla_{\phi}\theta + \alpha \sum_{i=1}^{N}
+\nabla_{\theta}\log \pi_{\theta}(s_i,a_i)^{\top}  \tilde Q(s_i,a_i) +
+\alpha \sum_{i=1}^{N} \log
+\pi_{\theta}(s_i,a_i)^{\top}  \nabla_{\theta}\tilde Q(s_i,a_i)\\
+=\nabla_{\phi}\theta + \alpha \sum_{i=1}^{N} \big(\nabla_{\theta}\log
+\pi_{\theta}(s_i,a_i)^{\top}\nabla_{\phi}\theta \big)  \tilde Q(s_i,a_i)
++ \alpha \sum_{i=1}^{N} \log
+\pi_{\theta}(s_i,a_i)^{\top}  \nabla_{\theta}\tilde Q(s_i,a_i)\\
+=\big( I_n + \alpha \sum_{i=1}^{N} \tilde Q(s_i,a_i)\nabla_{\theta}\log
+\pi_{\theta}(s_i,a_i)^{\top}    \big) \nabla_{\phi}\theta+ \alpha
+\sum_{i=1}^{N} \log \pi_{\theta}(s_i,a_i)^{\top}  \nabla_{\theta}\tilde
+Q(s_i,a_i)\\
+\]</span></p></li>
+</ul>
+<h2 id="总结">总结</h2>
+<p>挺有意思的一个工作，提供了三种梯度更新方式，分别对应精确映射，蒙特卡洛更新和TD更新。三个方式有着不同的梯度近似精度。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Reinforcement-Learning/" rel="tag"># Reinforcement Learning</a>
+              <a href="/tags/Reward-Shaping/" rel="tag"># Reward Shaping</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/12/23/2020-12-23-Collective%20Intelligence%20-%20A%20Constructive%20Model%20for%20Collective%20Intelligence/" rel="prev" title="Collective Intelligence |  A Constructive Model for Collective Intelligence">
+      <i class="fa fa-chevron-left"></i> Collective Intelligence |  A Constructive Model for Collective Intelligence
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/01/03/2021-01-03-%E5%9C%A8VS%20Code%E9%85%8D%E7%BD%AELaTeX%E7%8E%AF%E5%A2%83/" rel="next" title="在VS Code配置编译LaTeX环境">
+      在VS Code配置编译LaTeX环境 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#learning-to-utilize-shaping-rewards-a-new-approach-of-reward-shaping"><span class="nav-number">1.</span> <span class="nav-text">Learning
+to Utilize Shaping Rewards A New Approach of Reward Shaping</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.2.</span> <span class="nav-text">主要工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#parameterized-reward-shaping"><span class="nav-number">1.2.1.</span> <span class="nav-text">3 Parameterized Reward
+Shaping</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#bi-level-optimization"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">3.1 Bi-level Optimization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gradient-computation"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">3.2 Gradient Computation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gradient-approximation"><span class="nav-number">1.2.2.</span> <span class="nav-text">4 Gradient Approximation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#explicit-maping"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">4.1 Explicit Maping</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#meta-gradient-learning"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">4.2 Meta-Gradient Learning</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#incremental-meta-gradient-learning"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">4.3 Incremental
+Meta-Gradient Learning</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Txing</p>
+  <div class="site-description" itemprop="description">泛用类人决战型机器人博士</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/yourname" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Txing</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

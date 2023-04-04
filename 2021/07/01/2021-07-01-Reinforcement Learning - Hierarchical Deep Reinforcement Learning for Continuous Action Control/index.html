@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Hierarchical Deep Reinforcement Learning for Continuous Action Control 论文链接：https:&#x2F;&#x2F;ieeexplore.ieee.org&#x2F;stamp&#x2F;stamp.jsp?tp&#x3D;&amp;arnumber&#x3D;8310962&amp;tag&#x3D;1 背景 机器人连续行为空间的控制是一个难题，尤其是在应对复合任务的时候。  In">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reinforcement Learning | Hierarchical Deep Reinforcement Learning for Continuous Action Control">
+<meta property="og:url" content="https://txing-casia.github.io/2021/07/01/2021-07-01-Reinforcement%20Learning%20-%20Hierarchical%20Deep%20Reinforcement%20Learning%20for%20Continuous%20Action%20Control/index.html">
+<meta property="og:site_name" content="Txing">
+<meta property="og:description" content="Hierarchical Deep Reinforcement Learning for Continuous Action Control 论文链接：https:&#x2F;&#x2F;ieeexplore.ieee.org&#x2F;stamp&#x2F;stamp.jsp?tp&#x3D;&amp;arnumber&#x3D;8310962&amp;tag&#x3D;1 背景 机器人连续行为空间的控制是一个难题，尤其是在应对复合任务的时候。  In">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-06-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-25T01:54:14.997Z">
+<meta property="article:author" content="Txing">
+<meta property="article:tag" content="Reinforcement Learning">
+<meta property="article:tag" content="HRL">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://txing-casia.github.io/2021/07/01/2021-07-01-Reinforcement%20Learning%20-%20Hierarchical%20Deep%20Reinforcement%20Learning%20for%20Continuous%20Action%20Control/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Reinforcement Learning | Hierarchical Deep Reinforcement Learning for Continuous Action Control | Txing</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Txing</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到 | 伽蓝之堂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/01/2021-07-01-Reinforcement%20Learning%20-%20Hierarchical%20Deep%20Reinforcement%20Learning%20for%20Continuous%20Action%20Control/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用类人决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Reinforcement Learning | Hierarchical Deep Reinforcement Learning for Continuous Action Control
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-07-01 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-01T00:00:00+08:00">2021-07-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-03-25 09:54:14" itemprop="dateModified" datetime="2023-03-25T09:54:14+08:00">2023-03-25</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1
+id="hierarchical-deep-reinforcement-learning-for-continuous-action-control">Hierarchical
+Deep Reinforcement Learning for Continuous Action Control</h1>
+<p>论文链接：https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=8310962&amp;tag=1</p>
+<h2 id="背景">背景</h2>
+<p>机器人连续行为空间的控制是一个难题，尤其是在应对复合任务的时候。</p>
+<ul>
+<li>In addition, many works introduced linear function approximations to
+enhance the generalization ability of algorithms [5], [6] to handle more
+complex environments.</li>
+<li>Moreover, learning agents also need to consider many physical
+factors to keep the robot moving smoothly</li>
+</ul>
+<h2 id="主要内容">主要内容</h2>
+<ul>
+<li><p>hierarchical-deep deterministic policy gradient (h-DDPG)</p></li>
+<li><p>第一层使用多个actor网络学习基本技能，第二层学习复合的技能。</p></li>
+<li><p>Results show that the proposed algorithm can successfully learn
+high performance basic skills and compound skills simultaneously.
+Results also show that its performance in solving compound tasks in the
+three scenarios outperform discrete action deep reinforcement learning
+algorithm.</p></li>
+<li><p>Contributions:</p>
+<ul>
+<li><ol type="1">
+<li>learn multiple basic skills at the same time;</li>
+</ol></li>
+<li><ol start="2" type="1">
+<li>learn compound skills to solve compound tasks by reusing basic
+skills;</li>
+</ol></li>
+<li><ol start="3" type="1">
+<li>handle the above two kinds of skill learning within the same process
+and time scale.</li>
+</ol></li>
+</ul></li>
+<li><p>一些方法：</p>
+<ul>
+<li>deterministic policy gradients [18], [26], [27]</li>
+<li>stochastic policy gradients [28], [29]</li>
+<li>trust region policy optimization [30]</li>
+<li>Some work has also been done to integrate modelbased methods to
+accelerate learning in continuous action spaces [31]</li>
+</ul></li>
+<li><p>分层强化学习：</p>
+<ul>
+<li>Various works on hierarchical reinforcement learning exist [33],
+[34]</li>
+<li>including work considering deep architectures [35], [36]</li>
+<li>Work in <strong>[36]</strong> is focuses on finding the best
+hierarchical structure of the tasks with clustering methods, and is
+mainly concerned with how to decompose tasks</li>
+</ul></li>
+<li><p>Most recent work on deep hierarchical reinforcement learning can
+be found in [37] and [38].</p></li>
+<li><p>针对图像输入的DDPG，更改了conv网络的激活函数，思想来自the mlpconv
+layer。可以减少网络参数数量</p></li>
+<li><p>基本能力的定义：Basic tasks are fundamentally nontask specific
+and rather are tied to the physical capabilities of the robot, such as
+rotating a wheel or bending a joint to a specific direction.</p></li>
+<li><p>符合任务定义：Conversely, compound tasks are defined to be tasks
+that can only be achieved by combining different patterns.</p></li>
+</ul>
+<h2 id="总结">总结</h2>
+<p>这篇文章讲述并不是很清晰，也缺少理论证明，感觉最大的贡献就是使用了多个actor网络学习基础技能，但这个也是比较典型的分层强化学习思路，和option类似。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Reinforcement-Learning/" rel="tag"># Reinforcement Learning</a>
+              <a href="/tags/HRL/" rel="tag"># HRL</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/06/29/2021-06-28-Reinforcement%20Learning%20-%20Proximal%20Policy%20Optimization%20Algorithms/" rel="prev" title="Reinforcement Learning | Proximal Policy Optimization Algorithms">
+      <i class="fa fa-chevron-left"></i> Reinforcement Learning | Proximal Policy Optimization Algorithms
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/07/05/2021-07-05-ACM%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F%E5%A4%84%E7%90%86python%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/" rel="next" title="ACM数据格式处理python方法总结">
+      ACM数据格式处理python方法总结 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hierarchical-deep-reinforcement-learning-for-continuous-action-control"><span class="nav-number">1.</span> <span class="nav-text">Hierarchical
+Deep Reinforcement Learning for Continuous Action Control</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9"><span class="nav-number">1.2.</span> <span class="nav-text">主要内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Txing</p>
+  <div class="site-description" itemprop="description">泛用类人决战型机器人博士</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/yourname" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Txing</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

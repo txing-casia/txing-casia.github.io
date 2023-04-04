@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="94. 二叉树的中序遍历 Question  给定一个二叉树的根节点 root ，返回它的 中序 遍历。   Example 1: 输入：root &#x3D; [1,null,2,3] 输出：[1,3,2]   Example 2: 输入：root &#x3D; [1,null,2] 输出：[1,2]   Note:  树中节点数目在范围 [0, 100] 内 -100 &amp;lt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Q94-二叉树的中序遍历-中等-树">
+<meta property="og:url" content="https://txing-casia.github.io/2021/04/19/2021-04-19-Q94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86-%E4%B8%AD%E7%AD%89-%E6%A0%91/index.html">
+<meta property="og:site_name" content="Txing">
+<meta property="og:description" content="94. 二叉树的中序遍历 Question  给定一个二叉树的根节点 root ，返回它的 中序 遍历。   Example 1: 输入：root &#x3D; [1,null,2,3] 输出：[1,3,2]   Example 2: 输入：root &#x3D; [1,null,2] 输出：[1,2]   Note:  树中节点数目在范围 [0, 100] 内 -100 &amp;lt">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-25T01:54:14.995Z">
+<meta property="article:author" content="Txing">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Medium">
+<meta property="article:tag" content="Tree">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://txing-casia.github.io/2021/04/19/2021-04-19-Q94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86-%E4%B8%AD%E7%AD%89-%E6%A0%91/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Q94-二叉树的中序遍历-中等-树 | Txing</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Txing</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到 | 伽蓝之堂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/04/19/2021-04-19-Q94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86-%E4%B8%AD%E7%AD%89-%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用类人决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Q94-二叉树的中序遍历-中等-树
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-04-19 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-19T00:00:00+08:00">2021-04-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-03-25 09:54:14" itemprop="dateModified" datetime="2023-03-25T09:54:14+08:00">2023-03-25</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="二叉树的中序遍历"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/">94.
+二叉树的中序遍历</a></h4>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>给定一个二叉树的根节点 <code>root</code> ，返回它的
+<strong>中序</strong> 遍历。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>输入：root = [1,null,2,3] 输出：[1,3,2]</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>输入：root = [1,null,2] 输出：[1,2]</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ul>
+<li>树中节点数目在范围 <code>[0, 100]</code> 内</li>
+<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>进阶：</strong>
+递归算法很简单，你可以通过迭代算法完成吗？</p>
+</blockquote>
+<h3 id="approach-1-递归">Approach 1: 递归</h3>
+<p>思路与算法</p>
+<p>首先我们需要了解什么是二叉树的中序遍历：按照访问左子树——根节点——右子树的方式遍历这棵树，而在访问左子树或者右子树的时候我们按照同样的方式遍历，直到遍历完整棵树。因此整个遍历过程天然具有递归的性质，我们可以直接用递归函数来模拟这一过程。</p>
+<p>定义 inorder(root) 表示当前遍历到 <span
+class="math display">\[\textit{root}\]</span>节点的答案，那么按照定义，我们只要递归调用
+inorder(root.left) 来遍历 <span
+class="math display">\[\textit{root}\]</span> 节点的左子树，然后将 <span
+class="math display">\[\textit{root}\]</span>
+节点的值加入答案，再递归调用inorder(root.right) 来遍历 <span
+class="math display">\[\textit{root}\]</span>
+节点的右子树即可，递归终止的条件为碰到空节点。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">inorder</span>(<span class="params">root: TreeNode</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span> </span><br><span class="line">            inorder(root.left)</span><br><span class="line">            res.append(root.val)</span><br><span class="line">            inorder(root.right)</span><br><span class="line">        res=<span class="built_in">list</span>()</span><br><span class="line">        inorder(root)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)，其中 n
+为二叉树节点的个数。二叉树的遍历中每个节点会被访问一次且只会被访问一次</li>
+<li>空间复杂度：O(n)。空间复杂度取决于递归的栈深度，而栈深度在二叉树为一条链的情况下会达到
+O(n) 的级别。</li>
+<li></li>
+</ul>
+<h3 id="approach-2-迭代">Approach 2: 迭代</h3>
+<p>思路与算法</p>
+<p>方法一的递归函数我们也可以用迭代的方式实现，两种方式是等价的，区别在于递归的时候隐式地维护了一个栈，而我们在迭代的时候需要显式地将这个栈模拟出来，其他都相同，具体实现可以看下面的代码。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        res = <span class="built_in">list</span>()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">        p1 = root</span><br><span class="line">        <span class="keyword">while</span> p1:</span><br><span class="line">            p2 = p1.left</span><br><span class="line">            <span class="keyword">if</span> p2:</span><br><span class="line">                <span class="keyword">while</span> p2.right <span class="keyword">and</span> p2.right != p1:</span><br><span class="line">                    p2 = p2.right</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> p2.right:</span><br><span class="line">                    p2.right = p1</span><br><span class="line">                    p1 = p1.left</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    res.append(p1.val)</span><br><span class="line">                    p2.right = <span class="literal">None</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res.append(p1.val)</span><br><span class="line">            p1 = p1.right</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)，其中 n
+为二叉树节点的个数。二叉树的遍历中每个节点会被访问一次且只会被访问一次。</li>
+<li>空间复杂度：O(n)。空间复杂度取决于栈深度，而栈深度在二叉树为一条链的情况下会达到
+O(n) 的级别。</li>
+</ul>
+<h3 id="approach-3-morris-遍历">Approach 3: Morris 遍历</h3>
+<p>思路与算法</p>
+<p>Morris
+遍历算法是另一种遍历二叉树的方法，它能将非递归的中序遍历空间复杂度降为
+O(1)。</p>
+<p>Morris 遍历算法整体步骤如下（假设当前遍历到的节点为 x）：</p>
+<ul>
+<li>如果 x 无左孩子，先将 x 的值加入答案数组，再访问 x 的右孩子，即
+<span class="math display">\[x = x.\textit{right}\]</span>。</li>
+<li>如果 x 有左孩子，则找到 x
+左子树上最右的节点（即左子树中序遍历的最后一个节点，x
+在中序遍历中的前驱节点），我们记为 <span
+class="math display">\[p2\]</span>。根据 <span
+class="math display">\[\textit{p2}\]</span>
+的右孩子是否为空，进行如下操作。
+<ul>
+<li>如果 <span class="math display">\[\textit{p2}\]</span>
+的右孩子为空，则将其右孩子指向 x，然后访问 x 的左孩子，即 <span
+class="math display">\[x = x.\textit{left}\]</span></li>
+<li>如果 <span class="math display">\[\textit{p2}\]</span>
+的右孩子不为空，则此时其右孩子指向 x，说明我们已经遍历完 x
+的左子树，我们将 <span class="math display">\[\textit{p2}\]</span>
+的右孩子置空，将 x 的值加入答案数组，然后访问 x 的右孩子，即 <span
+class="math display">\[x = x.\textit{right}\]</span>。</li>
+</ul></li>
+<li>重复上述操作，直至访问完整棵树。</li>
+</ul>
+<p>其实整个过程我们就多做一步：假设当前遍历到的节点为 x，将 x
+的左子树中最右边的节点的右孩子指向
+x，这样在左子树遍历完成后我们通过这个指向走回了
+x，且能通过这个指向知晓我们已经遍历完成了左子树，而不用再通过栈来维护，省去了栈的空间复杂度。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">preorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        res = <span class="built_in">list</span>()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">        p1 = root</span><br><span class="line">        <span class="keyword">while</span> p1:</span><br><span class="line">            p2 = p1.left</span><br><span class="line">            <span class="keyword">if</span> p2:</span><br><span class="line">                <span class="keyword">while</span> p2.right <span class="keyword">and</span> p2.right != p1:</span><br><span class="line">                    p2 = p2.right</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> p2.right:</span><br><span class="line">                    </span><br><span class="line">                    p2.right = p1</span><br><span class="line">                    p1 = p1.left</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    res.append(p1.val)</span><br><span class="line">                    p2.right = <span class="literal">None</span></span><br><span class="line">                    p1 = p1.right</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res.append(p1.val)</span><br><span class="line">                p1 = p1.right</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)，其中 nn 为二叉搜索树的节点个数。Morris
+遍历中每个节点会被访问两次，因此总时间复杂度为 <span
+class="math display">\[O(2n)=O(n)\]</span>。</li>
+<li>空间复杂度：O(1)。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+              <a href="/tags/Medium/" rel="tag"># Medium</a>
+              <a href="/tags/Tree/" rel="tag"># Tree</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/15/2021-04-15-JZOffer%2028-%E5%AF%B9%E7%A7%B0%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91-%E7%AE%80%E5%8D%95-%E6%A0%91/" rel="prev" title="JZOffer 28-对称的二叉树-简单-树">
+      <i class="fa fa-chevron-left"></i> JZOffer 28-对称的二叉树-简单-树
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/04/20/2021-04-20-Q236-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88-%E4%B8%AD%E7%AD%89-%E6%A0%91/" rel="next" title="Q236-二叉树的最近公共祖先-中等-树">
+      Q236-二叉树的最近公共祖先-中等-树 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="nav-number">1.</span> <span class="nav-text">94.
+二叉树的中序遍历</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#question"><span class="nav-number"></span> <span class="nav-text">Question</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#approach-1-%E9%80%92%E5%BD%92"><span class="nav-number"></span> <span class="nav-text">Approach 1: 递归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#approach-2-%E8%BF%AD%E4%BB%A3"><span class="nav-number"></span> <span class="nav-text">Approach 2: 迭代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#approach-3-morris-%E9%81%8D%E5%8E%86"><span class="nav-number"></span> <span class="nav-text">Approach 3: Morris 遍历</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Txing</p>
+  <div class="site-description" itemprop="description">泛用类人决战型机器人博士</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/yourname" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Txing</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
