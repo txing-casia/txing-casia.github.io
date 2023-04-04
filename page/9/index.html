@@ -223,8 +223,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="岛屿数量"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-islands/">200.
+          <h4 id="岛屿数量"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-islands/">200.
 岛屿数量</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -279,8 +278,7 @@ MN。</p></li>
 <li>时间复杂度：<span class="math display">\[O(MN)\]</span>，其中 M 和 N
 分别为行数和列数。</li>
 <li>空间复杂度：<span class="math display">\[O(\min(M,
-N))\]</span>，在最坏情况下，整个网格均为陆地，队列的大小可以达到<span
-class="math display">\[ \min(M, N)\]</span>。</li>
+N))\]</span>，在最坏情况下，整个网格均为陆地，队列的大小可以达到<span class="math display">\[ \min(M, N)\]</span>。</li>
 </ul>
 
       
@@ -461,16 +459,13 @@ task, whereas much of the prior work is designed to quickly adapt to new
 tasks in a few-shot learning scenario.</li>
 </ul></li>
 </ul>
-<h3
-id="gradient-based-learning-of-intrinsic-rewards-a-derivation">Gradient-Based
+<h3 id="gradient-based-learning-of-intrinsic-rewards-a-derivation">Gradient-Based
 Learning of Intrinsic Rewards: A Derivation</h3>
 <h4 id="policy-gradient-based-rl">Policy Gradient based RL</h4>
 <ul>
-<li><p>The value of a policy <span
-class="math display">\[J(\theta)=E[\sum^{\infty}_{t=0}
+<li><p>The value of a policy <span class="math display">\[J(\theta)=E[\sum^{\infty}_{t=0}
 \gamma^tr_t]\]</span></p></li>
-<li><p>the gradient of the value <span
-class="math display">\[J(\theta)\]</span> is<br />
+<li><p>the gradient of the value <span class="math display">\[J(\theta)\]</span> is<br>
 <span class="math display">\[
 \nabla_{\theta} J(\theta)=E_{\theta}[G(s_t,a_t) \nabla_{\theta} \log
 \pi_{\theta}(a_t|s_t)]\\
@@ -480,23 +475,18 @@ G(s_t,a_t)=\sum^{\infty}_{i=t} \gamma^{i-t}r_i
 <h4 id="lirpg-learning-intrinsic-rewards-for-policy-gradient">LIRPG:
 Learning Intrinsic Rewards for Policy Gradient</h4>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210719-1.png"
-alt="Learning Intrinsic Rewards for Policy Gradient" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210719-1.png" alt="Learning Intrinsic Rewards for Policy Gradient">
 <figcaption aria-hidden="true">Learning Intrinsic Rewards for Policy
 Gradient</figcaption>
 </figure>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210719-2.png"
-alt="Algorithm 1 LIRPG: Learning Intrinsic Reward for Policy Gradient" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210719-2.png" alt="Algorithm 1 LIRPG: Learning Intrinsic Reward for Policy Gradient">
 <figcaption aria-hidden="true">Algorithm 1 LIRPG: Learning Intrinsic
 Reward for Policy Gradient</figcaption>
 </figure>
 <ul>
 <li><p><strong>Updating Policy Parameters (θ)</strong></p>
-<p>使用内部和外部奖励之和来更新 <span
-class="math display">\[\theta\]</span><br />
+<p>使用内部和外部奖励之和来更新 <span class="math display">\[\theta\]</span><br>
 <span class="math display">\[
 \begin{align}
 \theta&#39;&amp;=\theta+\alpha\nabla_{\theta} J^{ex+in}(\theta)\\
@@ -507,9 +497,8 @@ class="math display">\[\theta\]</span><br />
 <li><p><strong>Updating Intrinsic Reward Parameters
 (η)</strong></p></li>
 </ul>
-<p>Given an episode and the updated policy parameters <span
-class="math display">\[\theta&#39;\]</span> , we update intrinsic reward
-parameters.<br />
+<p>Given an episode and the updated policy parameters <span class="math display">\[\theta&#39;\]</span> , we update intrinsic reward
+parameters.<br>
 <span class="math display">\[
 \begin{align}
 \nabla_{\eta}
@@ -525,7 +514,7 @@ G^{ex+in}(s_t,a_t)\nabla_{\theta}\log \pi_{\theta}(a_t|s_t))\\
 &amp;= \alpha \lambda \sum^{\infty}_{i=t} \gamma^{i-t}\nabla_{\eta}
 r^{in}_{\eta}(s_i,a_i)\nabla_{\theta} \log \pi_{\theta}(a_t\mid s_t)
 \end{align}  
-\]</span> The importance sampling:<br />
+\]</span> The importance sampling:<br>
 <span class="math display">\[
 \nabla_{\theta&#39;}
 J^{ex}=G^{ex}(s_t,a_t)\frac{\nabla_{\theta&#39;}\pi_{\theta&#39;}(a_t\mid
@@ -598,8 +587,7 @@ s_t)}{\pi_{\theta}(a_t\mid s_t)}\\
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1
-id="hierarchical-deep-reinforcement-learning-integrating-temporal-abstraction-and-intrinsic-motivation">Hierarchical
+          <h1 id="hierarchical-deep-reinforcement-learning-integrating-temporal-abstraction-and-intrinsic-motivation">Hierarchical
 Deep Reinforcement Learning: Integrating Temporal Abstraction and
 Intrinsic Motivation</h1>
 <p>论文链接：https://proceedings.neurips.cc/paper/2016/file/f442d33fa06832082290ad8544a8da27-Paper.pdf</p>
@@ -635,35 +623,26 @@ successor representation, which represents value functions in terms of
 the expected future state occupancy. Decomposition of the successor
 representation have shown to yield reasonable subgoals for spatial
 navigation problems [5, 30].</p></li>
-<li><p>MDP过程中的高效探索是一个难题。<span
-class="math display">\[\epsilon-greedy\]</span>
+<li><p>MDP过程中的高效探索是一个难题。<span class="math display">\[\epsilon-greedy\]</span>
 在局部探索中表现还好，但是对于整个状态空间不同区域的探索比较失败。这里通过设计本质目标
 <span class="math display">\[g\]</span> 和本质奖励intrinsic
 rewards</p></li>
 </ul>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210714-1.png" /></p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210714-1.png"></p>
 <ul>
 <li><p>agent设置：</p>
 <ul>
 <li>meta-controller: 接收状态 <span class="math display">\[s_t\]</span>
 然后选择子目标 <span class="math display">\[g_t\]</span>.</li>
-<li>controller: 根据 <span class="math display">\[s_t\]</span> 和 <span
-class="math display">\[g_t\]</span> 选择行为 <span
-class="math display">\[a_t\]</span>.</li>
+<li>controller: 根据 <span class="math display">\[s_t\]</span> 和 <span class="math display">\[g_t\]</span> 选择行为 <span class="math display">\[a_t\]</span>.</li>
 </ul></li>
-<li><p>一个内部的critic用来为 controller 评估 <span
-class="math display">\[r_t(g)\]</span>
+<li><p>一个内部的critic用来为 controller 评估 <span class="math display">\[r_t(g)\]</span>
 （这篇文章使用的是一个二值的奖励）。controller
-的目标就是最大化累积的本质奖励intrinsic reward <span
-class="math display">\[R_t(g)=\sum_{t&#39;=t}^{\infty}
+的目标就是最大化累积的本质奖励intrinsic reward <span class="math display">\[R_t(g)=\sum_{t&#39;=t}^{\infty}
 \gamma^{t&#39;-t}r_{t&#39;}(g)\]</span></p></li>
 <li><p>meta-controller 的目标是最大化累积的外部奖励 extrinsic reward
 <span class="math display">\[F_t=\sum_{t&#39;=t}^{\infty}
-\gamma^{t&#39;-t}f_{t&#39;}\]</span>，其中<span
-class="math display">\[f_{t&#39;}\]</span>是从环境中收到的奖励信号，并且<span
-class="math display">\[F_{t}\]</span>和<span
-class="math display">\[R_{t}\]</span>的时间尺度是不同的。</p></li>
+\gamma^{t&#39;-t}f_{t&#39;}\]</span>，其中<span class="math display">\[f_{t&#39;}\]</span>是从环境中收到的奖励信号，并且<span class="math display">\[F_{t}\]</span>和<span class="math display">\[R_{t}\]</span>的时间尺度是不同的。</p></li>
 <li><p>Controller: <span class="math display">\[
 Q_1^*(s,a;g)=\max_{\pi_{a,g}} \mathbb{E} \Big[r_t+\gamma
 \max_{a_{t+1}}Q_1^*(s_{t+1},a_{t+1};g)\Big]
@@ -674,9 +653,7 @@ f_{t&#39;}+\gamma \max_{g&#39;}Q_2^*(s_{t+N},g&#39;)\Big]
 \]</span> N 代表当控制器停止时所经过的步数。</p></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210714-2.png"
-alt="算法步骤" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210714-2.png" alt="算法步骤">
 <figcaption aria-hidden="true">算法步骤</figcaption>
 </figure>
 <h2 id="总结">总结</h2>
@@ -745,8 +722,7 @@ alt="算法步骤" />
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="被围绕的区域"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/surrounded-regions/">130.
+          <h4 id="被围绕的区域"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/surrounded-regions/">130.
 被围绕的区域</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -896,8 +872,7 @@ m)\]</span>，其中 n 和 m
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1
-id="drn-a-deep-reinforcement-learning-framework-for-news-recommendation">DRN:
+          <h1 id="drn-a-deep-reinforcement-learning-framework-for-news-recommendation">DRN:
 A Deep Reinforcement Learning Framework for News Recommendation</h1>
 <p>论文链接：http://www.personal.psu.edu/~gjz5038/paper/www2018_reinforceRec/www2018_reinforceRec.pdf</p>
 <h2 id="主要内容">主要内容</h2>
@@ -930,23 +905,20 @@ consider the click / no click labels or ratings as users’ feedback.</li>
 tendency to keep recommending similar items to users, which might
 decrease users’ interest in similar topics.</li>
 </ul></li>
-<li><p>一般的强化学习推荐方法使用 <span
-class="math display">\[\epsilon-greedy\]</span> 或者 Upper Confidence
+<li><p>一般的强化学习推荐方法使用 <span class="math display">\[\epsilon-greedy\]</span> 或者 Upper Confidence
 Bound (UCB) 方法增加推荐的探索能力。</p>
 <p>但是 <span class="math display">\[\epsilon-greedy\]</span>
 会损害当前推荐的性能，而UCB在一件物品尝试了几次之后才能得到相对准确的奖励评估。因此需要更高效的探索方式。</p></li>
 <li><p>通过使用 Dueling Bandit Gradient Descent (DBGD)
 算法作为探索策略，它会随机从候选项的邻域或者候选项中选择推荐对象。这个探索策略可以避免推荐完全无关的信息，因此可以保持当前策略的精度。</p></li>
 <li><p>模型框图：</p>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-1.png" /></p></li>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-1.png"></p></li>
 <li><p>算法每1小时更新一次。Every one hour, the agent will use the log
 in the memory to update its recommendation algorithm.</p></li>
 <li><p>主要贡献：</p>
 <ul>
 <li>我们认为用户的活跃性有助于提高推荐的准确性，这可以提供额外的信息，而不是简单地使用用户点击标签。</li>
-<li>应用了更有效的探索方法，避免了由经典探索方法(例如，<span
-class="math display">\[\epsilon\]</span>-greedy和置信上限)引起的推荐准确度下降。</li>
+<li>应用了更有效的探索方法，避免了由经典探索方法(例如，<span class="math display">\[\epsilon\]</span>-greedy和置信上限)引起的推荐准确度下降。</li>
 <li>我们的系统已经在线部署在商业新闻推荐应用程序中。大量的离线和在线实验显示了我们方法的优越性能。</li>
 </ul></li>
 <li><p>一些推荐方法的特点：</p>
@@ -1016,50 +988,35 @@ news publish time).</p></li>
 <li><p>模型框架，包含离线和在线部分</p></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-3.png"
-alt="Model framework" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-3.png" alt="Model framework">
 <figcaption aria-hidden="true">Model framework</figcaption>
 </figure>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-4.png"
-alt="Q network" /> <span class="math display">\[
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-4.png" alt="Q network"> <span class="math display">\[
 y_{s,a}=Q(s,a)=r_{immediate}+\gamma r_{future}\\
 y_{s,a,t}=r_{a,t+1}+\gamma Q\big(s_{a,t+1},\arg \max_{a&#39;}
 Q(s_{a,t+1},a&#39;;W_t);W_t&#39;\big)
 \]</span></p>
 <h3 id="user-activeness">User Activeness</h3>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-3.png"
-alt="User activeness estimation" /> <span class="math display">\[
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-3.png" alt="User activeness estimation"> <span class="math display">\[
 \lambda(t)=\lim_{dt\rightarrow 0} \frac{\Pr\{t \leq T&lt;t+dt\mid T\geq
 t \}}{d t}\\
 S(t)=e^{-\int_0^\infty \lambda(x)dx}\\
 T_0=\int_0^{\infty}S(t)dt
 \]</span> the maximum user activeness is truncated to 1.</p>
-<p>The click / no click label <span
-class="math display">\[r_{click}\]</span> and the user activeness <span
-class="math display">\[r_{active}\]</span> are combined as: <span
-class="math display">\[
+<p>The click / no click label <span class="math display">\[r_{click}\]</span> and the user activeness <span class="math display">\[r_{active}\]</span> are combined as: <span class="math display">\[
 r_{total}=r_{click}+\beta r_{active}
 \]</span></p>
 <ul>
 <li>网络框架</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-2.png"
-alt="Exploration by Dueling Bandit Gradient Descent" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-2.png" alt="Exploration by Dueling Bandit Gradient Descent">
 <figcaption aria-hidden="true">Exploration by Dueling Bandit Gradient
 Descent</figcaption>
 </figure>
 <p><span class="math display">\[\hat{L}\]</span> 首先使用概率交错方法从
-<span class="math display">\[L\]</span> 和 <span
-class="math display">\[\tilde{L}\]</span> 。大致就是首先随机从 <span
-class="math display">\[L\]</span> 和 <span
-class="math display">\[\tilde{L}\]</span>
-选择推荐项，之后按照概率值更新网络 <span
-class="math display">\[\tilde{Q}\]</span></p>
+<span class="math display">\[L\]</span> 和 <span class="math display">\[\tilde{L}\]</span> 。大致就是首先随机从 <span class="math display">\[L\]</span> 和 <span class="math display">\[\tilde{L}\]</span>
+选择推荐项，之后按照概率值更新网络 <span class="math display">\[\tilde{Q}\]</span></p>
 <p><span class="math display">\[
 \Delta W=\alpha \cdot rand(-1,1)\cdot W\\
 W&#39;=W+\eta \tilde{W}
@@ -1175,8 +1132,7 @@ pseudo-reward functions if desired)</p></li>
 <h3 id="option-framework">Option Framework</h3>
 <ul>
 <li>option框架假设对于option <span class="math display">\[\omega\in
-\Omega\]</span> 由三元组 <span
-class="math display">\[(I_{\omega},\pi_{\omega},\beta_{\omega})\]</span>
+\Omega\]</span> 由三元组 <span class="math display">\[(I_{\omega},\pi_{\omega},\beta_{\omega})\]</span>
 组成。
 <ul>
 <li><span class="math display">\[I_{\omega} \subseteq S\]</span>
@@ -1186,18 +1142,14 @@ class="math display">\[(I_{\omega},\pi_{\omega},\beta_{\omega})\]</span>
 <li><span class="math display">\[\beta_{\omega}: S \rightarrow
 [0,1]\]</span> 是终止函数</li>
 </ul></li>
-<li>当使用option框架时， MDP就变成了Semi-MDP，它有相应的最优值函数<span
-class="math display">\[V_{\Omega}(s)\]</span> 和option-value函数 <span
-class="math display">\[Q_{\Omega}(s,\omega)\]</span>
-。所谓的Semi-MDP就是指从状态s到下一个状态s‘要经过 <span
-class="math display">\[\tau\]</span>
+<li>当使用option框架时， MDP就变成了Semi-MDP，它有相应的最优值函数<span class="math display">\[V_{\Omega}(s)\]</span> 和option-value函数 <span class="math display">\[Q_{\Omega}(s,\omega)\]</span>
+。所谓的Semi-MDP就是指从状态s到下一个状态s‘要经过 <span class="math display">\[\tau\]</span>
 步的MDP，大致就是状态之间存在时间上的不连续。</li>
 <li>通过一些针对MDP的算法实现多个option并行地学习，这就是
 <strong>intra-option learning</strong> 的主要思路</li>
 <li>接下来就是要实现两个关键任务：learning <strong>option
 policies</strong> and <strong>termination functions</strong></li>
-<li>算法流程：一个外部的策略 <span
-class="math display">\[\pi_{\Omega}\]</span> 选择option来执行控制，
+<li>算法流程：一个外部的策略 <span class="math display">\[\pi_{\Omega}\]</span> 选择option来执行控制，
 intra-option policy <span class="math display">\[\pi_{\omega}\]</span>
 开始执行，直到终点（用终点函数来判断停止执行）</li>
 <li>定义option-value function can be written as:</li>
@@ -1224,8 +1176,7 @@ U(\omega,s&#39;)=(1-\beta_{\omega,\vartheta}(s&#39;))Q_{\Omega}(s&#39;,\omega)+\
 \]</span></p>
 <p>如果option <span class="math display">\[\omega_t\]</span> 在时刻 t
 被初始化并被执行，此时状态为 <span class="math display">\[s_t\]</span>
-，然后在1步之后，状态转移到 <span
-class="math display">\[(s_{t+1},\omega_{t+1})\]</span> 的概率是：</p>
+，然后在1步之后，状态转移到 <span class="math display">\[(s_{t+1},\omega_{t+1})\]</span> 的概率是：</p>
 <p><span class="math display">\[
 P(s_{t+1},\omega_{t+1} \mid s_t,\omega_t)=\sum_a
 \pi_{\omega_t,\theta}(a|s_t)P(s_{t+1} \mid s_t,a)\\
@@ -1234,8 +1185,7 @@ P(s_{t+1},\omega_{t+1} \mid s_t,\omega_t)=\sum_a
 \]</span></p>
 <p>显然，给出计算过程是均匀的。在温和的条件下，由于选项到处可用，它实际上是遍历的，并且在
 state-option 对上存在唯一的平稳分布。</p>
-<p>接下来计算期望累积回报关于intra-option策略的参数 <span
-class="math display">\[\theta\]</span>
+<p>接下来计算期望累积回报关于intra-option策略的参数 <span class="math display">\[\theta\]</span>
 的梯度，假设它是随机的可微分的，我们得到</p>
 <p><span class="math display">\[
 \frac{\partial Q_{\Omega}(s,\omega)}{\partial \theta}=\Bigg(\sum_a
@@ -1246,11 +1196,8 @@ P(s&#39;|s,a)\frac{\partial U(\omega,s&#39;)}{\partial \theta}
 \]</span></p>
 <p><strong>Theorem 1</strong> (<strong>Intra-Option Policy Gradient
 Theorem</strong>). Given a set of Markov options with stochastic
-intra-option policies differentiable in their parameters <span
-class="math display">\[\theta\]</span>, the gradient of the expected
-discounted return with respect to <span
-class="math display">\[\theta\]</span> and initial condition <span
-class="math display">\[(s_0,\omega_0)\]</span> is:</p>
+intra-option policies differentiable in their parameters <span class="math display">\[\theta\]</span>, the gradient of the expected
+discounted return with respect to <span class="math display">\[\theta\]</span> and initial condition <span class="math display">\[(s_0,\omega_0)\]</span> is:</p>
 <p><span class="math display">\[
 \sum_{s,\omega} \mu_{\Omega}(s,\omega \mid s_0,\omega_0)\sum_a
 \frac{\partial \pi_{\omega,\theta}(a \mid s)}{\partial \theta}
@@ -1262,8 +1209,7 @@ Q_U(s,\omega,a)
 \mu_{\Omega}(s,\omega \mid s_0,\omega_0)=\sum_{t=0}^{\infty}\gamma^t
 P(s_t=s,\omega_t=\omega \mid s_0,\omega_0)
 \]</span></p>
-<p>下面计算终点函数的梯度，假设时间是随机化的并且可微的关于参数 <span
-class="math display">\[\vartheta\]</span></p>
+<p>下面计算终点函数的梯度，假设时间是随机化的并且可微的关于参数 <span class="math display">\[\vartheta\]</span></p>
 <p><span class="math display">\[
 \frac{\partial Q_{\Omega}(s,\omega)}{\partial \vartheta} = \sum_a
 \pi_{\omega,\theta}(a \mid s)\sum_{s&#39;}\gamma P(s&#39; \mid s,a)
@@ -1285,10 +1231,8 @@ U(\omega&#39;,s&#39;&#39;)}{\partial \vartheta}
 = Q_{\Omega}(s&#39;,\omega)-V_{\Omega}(s&#39;)\]</span> .</p>
 <p><strong>Theorem 2</strong> (<strong>Termination Gradient
 Theorem</strong>). Given a set of Markov options with stochastic
-termination functions differentiable in their parameters <span
-class="math display">\[\vartheta\]</span>, the gradient of the expected
-discounted return objective with respect to <span
-class="math display">\[\vartheta\]</span> and the initial condition
+termination functions differentiable in their parameters <span class="math display">\[\vartheta\]</span>, the gradient of the expected
+discounted return objective with respect to <span class="math display">\[\vartheta\]</span> and the initial condition
 <span class="math display">\[(s_1, \omega_0)\]</span> is:</p>
 <p><span class="math display">\[
 -\sum_{s&#39;,\omega}\mu_{\Omega}(s&#39;,\omega \mid
@@ -1296,8 +1240,7 @@ s_1,\omega_0)\frac{\partial \beta_{\omega,\vartheta}(s&#39;)}{\partial
 \vartheta}A_{\Omega}(s&#39;,\omega)
 \]</span></p>
 <p>其中 <span class="math display">\[\mu_{\Omega}(s&#39;,\omega \mid
-s_1,\omega_0)\]</span> 是状态-选项对 <span
-class="math display">\[(s_1,\omega_0)\]</span> 的折扣权重</p>
+s_1,\omega_0)\]</span> 是状态-选项对 <span class="math display">\[(s_1,\omega_0)\]</span> 的折扣权重</p>
 <p><span class="math display">\[
 \mu_{\Omega}(s,\omega \mid s_1,\omega_0)=\sum_{t=0}^{\infty} \gamma^t
 P(s_{t+1}=s,\omega_t=\omega|s_1,\omega_0)
@@ -1306,18 +1249,14 @@ P(s_{t+1}=s,\omega_t=\omega|s_1,\omega_0)
 <li>算法结构：</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210709-1.png"
-alt="算法结构" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210709-1.png" alt="算法结构">
 <figcaption aria-hidden="true">算法结构</figcaption>
 </figure>
 <ul>
 <li>算法伪代码：</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210709-2.png"
-alt="算法伪代码" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210709-2.png" alt="算法伪代码">
 <figcaption aria-hidden="true">算法伪代码</figcaption>
 </figure>
 <ul>
@@ -1392,8 +1331,7 @@ with code找出来看看，估计会比FuN的结构的HRL更容易复现吧。</
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1
-id="option-discovery-in-hierarchical-reinforcement-learning-using-spatio-temporal-clustering">Option
+          <h1 id="option-discovery-in-hierarchical-reinforcement-learning-using-spatio-temporal-clustering">Option
 Discovery in Hierarchical Reinforcement Learning using Spatio-Temporal
 Clustering</h1>
 <p>论文链接：https://arxiv.org/pdf/1605.05359v3.pdf</p>
@@ -1441,8 +1379,7 @@ of states from which the action can be activated</li>
 following option O.</li>
 <li><span class="math inline">\(\beta\)</span> is the termination
 function: When an agent enters a state s while following option O, the
-option could be terminated with a probability <span
-class="math inline">\(\beta(s)\)</span>.</li>
+option could be terminated with a probability <span class="math inline">\(\beta(s)\)</span>.</li>
 </ul></li>
 <li><p>Semi-Markov Decision Process (SMDP)</p></li>
 </ul>
@@ -1474,7 +1411,7 @@ Q(s,o)\leftarrow Q(s,o)+\alpha[r+\gamma^k \max_{a\in O} Q(s,a)-Q(s,o)]
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/05/2021-07-05-ACM%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F%E5%A4%84%E7%90%86python%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/05/2021-07-05-HJ26%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8E%92%E5%BA%8F-%E4%B8%AD%E7%AD%89-%E5%AD%97%E7%AC%A6%E4%B8%B2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1488,7 +1425,7 @@ Q(s,o)\leftarrow Q(s,o)+\alpha[r+\gamma^k \max_{a\in O} Q(s,a)-Q(s,o)]
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/07/05/2021-07-05-ACM%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F%E5%A4%84%E7%90%86python%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">ACM数据格式处理python方法总结</a>
+            <a href="/2021/07/05/2021-07-05-HJ26%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8E%92%E5%BA%8F-%E4%B8%AD%E7%AD%89-%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-title-link" itemprop="url">HJ26 字符串排序-中等-字符串</a>
         </h2>
 
         <div class="post-meta">
@@ -1519,134 +1456,39 @@ Q(s,o)\leftarrow Q(s,o)+\alpha[r+\gamma^k \max_{a\in O} Q(s,a)-Q(s,o)]
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1
-id="acm数据格式处理python方法总结">ACM数据格式处理python方法总结</h1>
-<h2 id="oj在线编程常见输入输出练习场">OJ在线编程常见输入输出练习场</h2>
-<p>在线测试网址：https://ac.nowcoder.com/acm/contest/5652#question</p>
-<p>华为机考模拟试题：https://www.nowcoder.com/ta/huawei</p>
-<h3 id="总结">总结：</h3>
+          <h4 id="hj26-字符串排序"><a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/5190a1db6f4f4ddb92fd9c365c944584?tpId=37&amp;&amp;tqId=21249&amp;rp=1&amp;ru=/ta/huawei&amp;qru=/ta/huawei/question-ranking">HJ26
+字符串排序</a></h4>
+<h2 id="question">Question</h2>
+<blockquote>
+<p><strong>规则 1</strong> ：英文字母从 A 到 Z 排列，不区分大小写。</p>
+<p>如，输入： Type 输出： epTy</p>
+<p><strong>规则 2</strong>
+：同一个英文字母的大小写同时存在时，按照输入顺序排列。</p>
+<p>如，输入： BabA 输出： aABb</p>
+<p><strong>规则 3</strong> ：非英文字母的其它字符保持原来的位置。</p>
+<p>如，输入： By?e 输出： Be?y</p>
+<p>注意有多组测试数据，即输入有多行，每一行单独处理（换行符隔开的表示不同行）</p>
+<p>输入描述： - 输入字符串</p>
+<p>输出描述： - 输出字符串</p>
+<p>示例1 输入：A Famous Saying: Much Ado About Nothing (2012/8). 输出：A
+aaAAbc dFgghh: iimM nNn oooos Sttuuuy (2012/8).</p>
+</blockquote>
+<h3 id="approach">Approach</h3>
 <ul>
-<li><p>数据行数具体是多少不重要，可通过while来解决，每行数据长度是否已知也无所谓。</p></li>
-<li><p>熟悉sys，map，try-except的具体使用框架和方式</p></li>
-<li><p>熟悉split()，strip()函数的使用方式</p></li>
-<li><p>一些字符相关的函数：</p>
+<li>sorted(iterable,str.upper)就可以实现：
 <ul>
-<li>字符转化为asc-ii码函数（ord('a')）可以用来判断是否大小写/数字</li>
+<li>1）字符由A到Z的排序</li>
+<li>2）能够实现同字母（A与a算同字母），由输入先后书序排列。</li>
 </ul></li>
-<li><p>字符串.isalnum() 所有字符都是数字或者字母，为真返回
-Ture，否则返回 False。</p>
-<ul>
-<li>字符串.isalpha() 所有字符都是字母，为真返回 Ture，否则返回
-False。</li>
-<li>字符串.isdigit() 所有字符都是数字，为真返回 Ture，否则返回
-False。</li>
-<li>字符串.islower() 所有字符都是小写，为真返回 Ture，否则返回
-False。</li>
-<li>字符串.isupper() 所有字符都是大写，为真返回 Ture，否则返回
-False。</li>
-<li>字符串.istitle() 所有单词都是首字母大写，为真返回 Ture，否则返回
-False。</li>
-<li>字符串.isspace() 所有字符都是空白字符，为真返回 Ture，否则返回
-False。</li>
-</ul></li>
-<li><p>进制转换：</p>
-<ul>
-<li>16进制转为10进制：int(num,16)</li>
-<li>2进制转为10进制：int(num,2)</li>
-<li>8进制转为10进制：int(num,8)</li>
-<li>10进制转为16进制：hex(num)</li>
-<li>10进制转2进制：bin(num)</li>
-<li>10进制转8进制：oct(num)</li>
-</ul></li>
-<li><p>输出分割方式：</p>
-<ul>
-<li>按照空格分割：print(a, end=' ')</li>
-<li>按照行分割：print(a) or print(a, end='')</li>
-</ul></li>
+<li>str.isalpha实现的是如果字符串至少有一个字符并且所有字符都是字母则返回
+True，否则返回 False。</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入多行字符串转换为二维矩阵</span></span><br><span class="line">num=<span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line"><span class="comment"># 创建已知大小的二维矩阵</span></span><br><span class="line">T = [[<span class="number">0</span>]*num <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num)]</span><br><span class="line">i=<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">	<span class="comment"># 字符串分割！！！</span></span><br><span class="line">    T[i][:]=<span class="built_in">list</span>(<span class="string">&#x27;&#x27;</span>.join(line.strip().split()))</span><br><span class="line">    i+=<span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>读入一个二维矩阵：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 读取字符举证</span></span><br><span class="line">a = []</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin: </span><br><span class="line">    a.append(line.split())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取数字矩阵</span></span><br><span class="line">a = []</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin: </span><br><span class="line">    a.append(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>,line.split())))</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">num = <span class="built_in">input</span>()</span><br><span class="line"><span class="comment"># print(&#x27; &#x27;.join(sorted(input().split())))</span></span><br><span class="line"><span class="comment"># 连续的数字不被拆开</span></span><br><span class="line"><span class="comment"># a= list(input().split()) # 可以不加list()</span></span><br><span class="line">a = <span class="built_in">input</span>().split()</span><br><span class="line"><span class="comment"># 去除字符串数组中多余的括号</span></span><br><span class="line">a[<span class="number">0</span>]=a[<span class="number">0</span>].replace(<span class="string">&#x27;[&#x27;</span>,<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">a[-<span class="number">1</span>]=a[-<span class="number">1</span>].replace(<span class="string">&#x27;]&#x27;</span>,<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">int</span>(a[<span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        s = <span class="built_in">input</span>()</span><br><span class="line">        a = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> s:</span><br><span class="line">            <span class="keyword">if</span> i.isalpha():</span><br><span class="line">                a += i</span><br><span class="line">        b = <span class="built_in">sorted</span>(a, key=<span class="built_in">str</span>.upper)</span><br><span class="line">        index = <span class="number">0</span></span><br><span class="line">        d = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(s)):</span><br><span class="line">            <span class="keyword">if</span> s[i].isalpha():</span><br><span class="line">                d += b[index]</span><br><span class="line">                index += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                d += s[i]</span><br><span class="line">        <span class="built_in">print</span>(d)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
 <ul>
-<li><strong>已知数据行数，已知每行长度</strong>：外加循环或者判断条件</li>
+<li>时间复杂度：<span class="math display">\[O(N)\]</span>，N是序列长度。</li>
+<li>空间复杂度：<span class="math display">\[O(1)\]</span>。常数个变量。</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a,b = <span class="built_in">map</span>(<span class="built_in">int</span>,<span class="built_in">input</span>().split(<span class="string">&#x27; &#x27;</span>))</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong>未知数据行数，未知每行长度</strong>：使用sys库提取每行数据，结合strip()（去除
-）和split()（分割函数，方便提取元素）函数实现数组建立</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27; &#x27;</span>.join(<span class="built_in">sorted</span>(line.strip().split())))</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong>已知行数，未知每行长度</strong>：行数可以不储存不使用，每行未知长度数据，可以用下面语句直接变成一个数组</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split())) <span class="comment"># a直接就是整数数组</span></span><br></pre></td></tr></table></figure>
-<p>下面给出了几个输入输出案例（包括<strong>数字</strong>和<strong>字符串</strong>部分）：</p>
-<h3 id="ab1">1. A+B(1)</h3>
-<p>输入包括两个正整数a,b(1 &lt;= a, b &lt;= 10^9),输入数据包括多组。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        a,b = <span class="built_in">map</span>(<span class="built_in">int</span>,<span class="built_in">input</span>().split(<span class="string">&#x27; &#x27;</span>))</span><br><span class="line">        <span class="comment"># a,b = map(int,input().split())</span></span><br><span class="line">        <span class="built_in">print</span>(a + b)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span> </span><br></pre></td></tr></table></figure>
-<h3 id="ab2">2. A+B(2)</h3>
-<p>输入第一行包括一个数据组数t(1 &lt;= t &lt;= 100)
-接下来每行包括两个正整数a,b(1 &lt;= a, b &lt;= 10^9)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    num = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line">    <span class="comment"># num = int(sys.stdin.readline().strip()) # 读取一整行输入，strip()去掉末尾空行或空格，int()转换为整数形式</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num):</span><br><span class="line">        a , b = <span class="built_in">map</span>(<span class="built_in">int</span>,<span class="built_in">input</span>().split(<span class="string">&#x27; &#x27;</span>))</span><br><span class="line">        <span class="built_in">print</span>(a + b)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="built_in">input</span>()</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">sum</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, line.split())))</span><br></pre></td></tr></table></figure>
-<h3 id="ab3">3. A+B(3)</h3>
-<p>输入包括两个正整数a,b(1 &lt;= a, b &lt;= 10^9),输入数据有多组,
-如果输入为0 0则结束输入</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        a , b = <span class="built_in">map</span>(<span class="built_in">int</span>,<span class="built_in">input</span>().split(<span class="string">&#x27; &#x27;</span>))</span><br><span class="line">        <span class="keyword">if</span> a != <span class="number">0</span> <span class="keyword">and</span> b != <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(a + b)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<h3 id="ab4">4. A+B(4)</h3>
-<p>输入数据包括多组。 每组数据一行,每行的第一个整数为整数的个数n(1 &lt;=
-n &lt;= 100), n为0的时候结束输入。
-接下来n个正整数,即需要求和的每个正整数。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        a = <span class="built_in">input</span>().split(<span class="string">&#x27; &#x27;</span>) <span class="comment"># a是字符数组</span></span><br><span class="line">        <span class="comment"># a = sys.stdin.readline().split(&#x27; &#x27;)</span></span><br><span class="line">        <span class="built_in">sum</span> = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">int</span>(a[<span class="number">0</span>]) != <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(a)):</span><br><span class="line">                <span class="built_in">sum</span> += <span class="built_in">int</span>(a[i])</span><br><span class="line">            <span class="built_in">print</span>(<span class="built_in">sum</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        a = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split())) <span class="comment"># a直接就是整数数组</span></span><br><span class="line">        <span class="keyword">if</span> a[<span class="number">0</span>] != <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="built_in">sum</span>(a[<span class="number">1</span>:]))</span><br><span class="line">        <span class="keyword">else</span>: </span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<p>使用sys库</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, line.strip().split()))[<span class="number">0</span>]!=<span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">sum</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, line.strip().split()[<span class="number">1</span>:])))</span><br></pre></td></tr></table></figure>
-<h3 id="ab5">5. A+B(5)</h3>
-<p>输入的第一行包括一个正整数t(1 &lt;= t &lt;= 100), 表示数据组数。
-接下来t行, 每行一组数据。 每行的第一个整数为整数的个数n(1 &lt;= n &lt;=
-100)。 接下来n个正整数, 即需要求和的每个正整数。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    nums = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(nums):</span><br><span class="line">        a = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>,<span class="built_in">input</span>().split()))</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">sum</span>(a[<span class="number">1</span>:]))</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<p>一个更简洁的代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        numlist = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().strip().split()))</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(numlist) == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="built_in">sum</span>(numlist[<span class="number">1</span>:]))</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
-<h3 id="ab6">6. A+B(6)</h3>
-<p>输入数据有多组, 每行表示一组输入数据。
-每行的第一个整数为整数的个数n(1 &lt;= n &lt;= 100)。 接下来n个正整数,
-即需要求和的每个正整数。 每组数据输出求和的结果</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">sum</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, line.strip().split()[<span class="number">1</span>:])))</span><br></pre></td></tr></table></figure>
-<h3 id="ab7">7. A+B(7)</h3>
-<p>输入数据有多组, 每行表示一组输入数据。
-每行不定有n个整数，空格隔开。(1 &lt;= n &lt;= 100)。
-每组数据输出求和的结果</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">sum</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, line.strip().split())))</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">sum</span>(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().strip().split()))))</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<h3 id="字符串排序1">8. 字符串排序(1)</h3>
-<p>输入有两行，第一行n 第二行是n个空格隔开的字符串
-输出一行排序后的字符串，空格隔开，无结尾空格</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">num = <span class="built_in">input</span>()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27; &#x27;</span>.join(<span class="built_in">sorted</span>(<span class="built_in">input</span>().split())))</span><br><span class="line"><span class="comment"># sorted(num,reverse=Ture) # 逆序排序</span></span><br></pre></td></tr></table></figure>
-<h3 id="字符串排序2">9. 字符串排序(2)</h3>
-<p>多个测试用例，每个测试用例一行。 每行通过空格隔开，有n个字符，n＜100
-对于每组测试用例，输出一行排序过的字符串，每个字符串通过空格隔开</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27; &#x27;</span>.join(<span class="built_in">sorted</span>(line.strip().split())))</span><br></pre></td></tr></table></figure>
-<h3 id="字符串排序3">10. 字符串排序(3)</h3>
-<p>多个测试用例，每个测试用例一行。 每行通过,隔开，有n个字符，n＜100
-对于每组用例输出一行排序后的字符串，用','隔开，无结尾空格</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;,&#x27;</span>.join(<span class="built_in">sorted</span>(line.strip().split(<span class="string">&#x27;,&#x27;</span>))))</span><br></pre></td></tr></table></figure>
-<h3 id="自测本地通过但是提交为0">11. 自测本地通过，但是提交为0</h3>
-<p>每年前几场在线笔试编程题的时候，总有同学询问为什么我本地测试通过，自测也通过，提交代码系统却返回通过率0。
-打开以下链接可以查看正确的代码
-https://ac.nowcoder.com/acm/contest/5657#question
-这不是系统的错，可能是因为</p>
-<ol type="1">
-<li>你对题目理解错了，你的代码只过了样例或你自己的数据</li>
-<li>你的代码逻辑有问题，你的代码只过了样例或你自己的数据</li>
-</ol>
-<p>总之就是你的代码只是过了样例和自测数据，后台的测试数据你根本不可见，要多自己思考。</p>
-<p>这个题目如果你提交后通过率为0，又觉得自己代码是正确的，可以 点击查看
-通过的代码</p>
-<p>谨记：
-当你笔试的时候怀疑系统或者题目数据有问题的时候请务必先怀疑自己的代码!</p>
-<p>请帮忙把这个练习专题发给你的朋友同学吧，感谢感谢</p>
 
       
     </div>

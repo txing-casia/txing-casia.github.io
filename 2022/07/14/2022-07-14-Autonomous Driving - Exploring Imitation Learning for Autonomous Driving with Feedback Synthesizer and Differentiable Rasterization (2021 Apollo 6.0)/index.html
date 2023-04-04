@@ -27,12 +27,16 @@
 <meta property="og:site_name" content="Txing">
 <meta property="og:description" content="Exploring Imitation Learning for Autonomous Driving with Feedback Synthesizer and Differentiable Rasterization (2021, Apollo 6.0) Introduction  our work adopts a mid-to-mid approach (mid2mid允许便利">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220714-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220714-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220714-3.png">
 <meta property="article:published_time" content="2022-07-13T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-03-25T01:54:15.012Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Imitation Learning">
 <meta property="article:tag" content="Autonomous Driving">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220714-1.png">
 
 <link rel="canonical" href="https://txing-casia.github.io/2022/07/14/2022-07-14-Autonomous%20Driving%20-%20Exploring%20Imitation%20Learning%20for%20Autonomous%20Driving%20with%20Feedback%20Synthesizer%20and%20Differentiable%20Rasterization%20(2021%20Apollo%206.0)/">
 
@@ -226,8 +230,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2
-id="exploring-imitation-learning-for-autonomous-driving-with-feedback-synthesizer-and-differentiable-rasterization-2021-apollo-6.0">Exploring
+        <h2 id="exploring-imitation-learning-for-autonomous-driving-with-feedback-synthesizer-and-differentiable-rasterization-2021-apollo-6.0">Exploring
 Imitation Learning for Autonomous Driving with Feedback Synthesizer and
 Differentiable Rasterization (2021, Apollo 6.0)</h2>
 <h3 id="introduction">Introduction</h3>
@@ -238,7 +241,7 @@ us to augment data handily and go beyond pure imitation by having
 task-specific losses) where our system’s input is constructed by
 building a top-down image representation of the environment that
 incorporates both static and dynamic information from our <strong>HD
-Map</strong> and <strong>perception system</strong>.<br />
+Map</strong> and <strong>perception system</strong>.<br>
 </p></li>
 <li><p>Following the philosophy of <strong>DAgger</strong> [2], we
 introduce a <strong>feedback synthesizer</strong>（反馈合成器）that
@@ -250,7 +253,7 @@ IV.</p>
 <ul>
 <li>[2]. S. Ross, G. Gordon, and D. Bagnell, “A reduction of imitation
 learning and structured prediction to no-regret online learning,” in
-AISTATS, 2011, pp. 627–635.<br />
+AISTATS, 2011, pp. 627–635.<br>
 </li>
 </ul></li>
 <li><p>启发本文的文章：</p>
@@ -265,7 +268,7 @@ drive by imitating the best and synthesizing the worst,” in RSS,
 Burgard, “Driving through ghosts: Behavioral cloning with false
 positives,” in IROS, 2020.</li>
 <li>D. Chen, B. Zhou, V. Koltun, and P. Krahenbuhl, “Learning by
-cheating,” in CoRL, 2020, pp. 66–75.<br />
+cheating,” in CoRL, 2020, pp. 66–75.<br>
 </li>
 </ul></li>
 <li><p>单纯的模仿学习没有关于任务的明确的重要目标和约束，因此难免会学习到非期望的行为。通过引入task
@@ -305,7 +308,7 @@ module</strong>（空间注意力机制） in our network design.</p>
 accurate and human-like driving using semantic maps and attention,” in
 IROS, 2020, pp. 2346–2353.</li>
 <li>[13]. J. Kim and M. Bansal, “Attentional bottleneck: Towards an
-interpretable deep driving network,” in CVPR Workshops, 2020.<br />
+interpretable deep driving network,” in CVPR Workshops, 2020.<br>
 </li>
 </ul></li>
 <li><p>为了提高舒适度，提出了可选择的后处理规划器作为看门人，进行高级别的决策引导和组成新的轨迹。we
@@ -383,9 +386,7 @@ multiple channels by scene rasterization</li>
 <li>The image size is W × H with ρ meters per pixel in resolution.</li>
 <li>agent汽车的位置永远在图像的中心位置 <span class="math display">\[p_0
 = [i_0,j_0]^T\]</span> ，这种图片模式称为ego-centered</li>
-<li>模型输入<span
-class="math display">\[\mathcal{I}\]</span>是多通道图像，不仅包括ego-vehicle、路况信息、还有车辆速度信息<span
-class="math display">\[v_0\]</span></li>
+<li>模型输入<span class="math display">\[\mathcal{I}\]</span>是多通道图像，不仅包括ego-vehicle、路况信息、还有车辆速度信息<span class="math display">\[v_0\]</span></li>
 </ul></li>
 <li><p><strong>Model Design</strong>：</p>
 <ul>
@@ -396,21 +397,16 @@ class="math display">\[v_0\]</span></li>
 <li>C. 一个可微分的光栅化模块（加在LSTM decoder上）</li>
 </ul></li>
 <li><p><strong>A.</strong> CNN骨架模型使用MobileNetV2
-[37]以平衡输出精度和推断速度。输出特征是<span
-class="math display">\[F_h\]</span>，经过一个MLP（multilayer
-perceptron）层之后，输出扁平的特征<span
-class="math display">\[h_0\]</span>。该特征作为同时作为LSTM
+[37]以平衡输出精度和推断速度。输出特征是<span class="math display">\[F_h\]</span>，经过一个MLP（multilayer
+perceptron）层之后，输出扁平的特征<span class="math display">\[h_0\]</span>。该特征作为同时作为LSTM
 decoder的初始隐藏状态被使用。</p>
-<p>为了减轻计算量，主干CNN的中间特征<span
-class="math display">\[F_I\]</span>传递给空间注意力模块。注意力使用的是Atrous
+<p>为了减轻计算量，主干CNN的中间特征<span class="math display">\[F_I\]</span>传递给空间注意力模块。注意力使用的是Atrous
 Spatial Attentional Bottleneck from [13] （J. Kim and M. Bansal,
 “Attentional bottleneck: Towards an interpretable deep driving network,”
 in CVPR Workshops, 2020）</p></li>
-<li><p><strong>B.</strong> LSTM的 cell state <span
-class="math display">\[c_0\]</span> is initialized by the Glorot
+<li><p><strong>B.</strong> LSTM的 cell state <span class="math display">\[c_0\]</span> is initialized by the Glorot
 initialization [38]</p>
-<p>模型输出是汽车的转向角序列（steering angle）和加速度序列，记为<span
-class="math display">\[(\delta_{t-1},a_{t-1})\]</span>。</p>
+<p>模型输出是汽车的转向角序列（steering angle）和加速度序列，记为<span class="math display">\[(\delta_{t-1},a_{t-1})\]</span>。</p>
 <p>动力学层： <span class="math display">\[
 \begin{align}
 \begin{cases}
@@ -431,40 +427,25 @@ Rasterizer使用三个高斯基函数来描述汽车的形状。</p>
 \Sigma^k=R(\phi_t)^T \text{diag}(\sigma_l,\sigma_{\omega})R(\phi_t)
 \end{cases}
 \end{align}
-\]</span> 其中，<span
-class="math display">\[(\sigma_l,sigma_{\omega})=(\frac{1}{3}\alpha
-l,\alpha \omega)\]</span>，<span
-class="math display">\[\alpha\]</span>是固定的比例系数，<span
-class="math display">\[l\]</span>和<span
-class="math display">\[\omega\]</span>是车辆的长度和宽度。<span
-class="math display">\[R(\phi_t)\]</span>表示旋转矩阵。</p></li>
+\]</span> 其中，<span class="math display">\[(\sigma_l,sigma_{\omega})=(\frac{1}{3}\alpha
+l,\alpha \omega)\]</span>，<span class="math display">\[\alpha\]</span>是固定的比例系数，<span class="math display">\[l\]</span>和<span class="math display">\[\omega\]</span>是车辆的长度和宽度。<span class="math display">\[R(\phi_t)\]</span>表示旋转矩阵。</p></li>
 </ul></li>
 <li><p><strong>Loss：</strong></p>
-<p>trajectory imitation loss：<span
-class="math display">\[L_{imit}=\sum^{N-1}_{t=0}\lambda\mid\mid s_t -
+<p>trajectory imitation loss：<span class="math display">\[L_{imit}=\sum^{N-1}_{t=0}\lambda\mid\mid s_t -
 \hat{s}_t\mid\mid_2\]</span></p>
 <p>four task losses：</p>
 <ul>
-<li><p>obstacle collision：<span
-class="math display">\[L_{obs}=\sum^{N-1}_{t=0}\frac{1}{WH}\sum_i\sum_j
+<li><p>obstacle collision：<span class="math display">\[L_{obs}=\sum^{N-1}_{t=0}\frac{1}{WH}\sum_i\sum_j
 g_{i,j} \tau_{i,j}^{obs}\]</span></p></li>
-<li><p>off-route：<span
-class="math display">\[L_{route}=\sum^{N-1}_{t=0}\frac{1}{WH}\sum_i\sum_j
+<li><p>off-route：<span class="math display">\[L_{route}=\sum^{N-1}_{t=0}\frac{1}{WH}\sum_i\sum_j
 g_{i,j} \tau_{i,j}^{route}\]</span></p></li>
-<li><p>off-road：<span
-class="math display">\[L_{road}=\sum^{N-1}_{t=0}\frac{1}{WH}\sum_i\sum_j
+<li><p>off-road：<span class="math display">\[L_{road}=\sum^{N-1}_{t=0}\frac{1}{WH}\sum_i\sum_j
 g_{i,j} \tau_{i,j}^{road}\]</span></p></li>
-<li><p>traffic signal violation：<span
-class="math display">\[L_{signal}=\sum^{N-1}_{t=0}\frac{1}{WH}\sum_i\sum_j
-g_{i,j} \tau_{i,j}^{signal}\]</span> 其中，<span
-class="math display">\[\tau^{obs}\]</span>, <span
-class="math display">\[\tau^{route}\]</span>, <span
-class="math display">\[\tau^{road}\]</span>, and <span
-class="math display">\[\tau^{signal}\]</span> 是响应的二值掩码（binary
+<li><p>traffic signal violation：<span class="math display">\[L_{signal}=\sum^{N-1}_{t=0}\frac{1}{WH}\sum_i\sum_j
+g_{i,j} \tau_{i,j}^{signal}\]</span> 其中，<span class="math display">\[\tau^{obs}\]</span>, <span class="math display">\[\tau^{route}\]</span>, <span class="math display">\[\tau^{road}\]</span>, and <span class="math display">\[\tau^{signal}\]</span> 是响应的二值掩码（binary
 masks）</p></li>
 <li><p>总的损失函数：</p>
-<p><span
-class="math display">\[L=L_{imit}+\lambda_{task}(L_{obs}+L_{route}+L_{road}+L_{signal})\]</span></p></li>
+<p><span class="math display">\[L=L_{imit}+\lambda_{task}(L_{obs}+L_{route}+L_{road}+L_{signal})\]</span></p></li>
 </ul></li>
 </ul>
 <h3 id="data-augmentation">Data Augmentation</h3>
@@ -472,13 +453,9 @@ class="math display">\[L=L_{imit}+\lambda_{task}(L_{obs}+L_{route}+L_{road}+L_{s
 <li><p><strong>Random
 Synthesizer</strong>：随机扰动轨迹，产生off-road和碰撞的场景。起始点和终止点保持不变，扰动中间过程的<strong>一个</strong>点，并平滑路径轨迹，通过对最大曲率进行阈值处理，仅保留真实的扰动轨迹。</p></li>
 <li><p><strong>Feedback
-Synthesizer</strong>：学习一个驾驶策略帮助生成新的轨迹数据。用上一次迭代的策略<span
-class="math display">\[\pi_{t-1}\]</span>生成轨迹数据，用于训练策略<span
-class="math display">\[\pi_t\]</span>。具体算法如下：</p>
+Synthesizer</strong>：学习一个驾驶策略帮助生成新的轨迹数据。用上一次迭代的策略<span class="math display">\[\pi_{t-1}\]</span>生成轨迹数据，用于训练策略<span class="math display">\[\pi_t\]</span>。具体算法如下：</p>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220714-1.png"
-alt="Feedback Synthesizer" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220714-1.png" alt="Feedback Synthesizer">
 <figcaption aria-hidden="true">Feedback Synthesizer</figcaption>
 </figure></li>
 <li><p><strong>Post-processing
@@ -497,35 +474,25 @@ Planner</strong>：保证舒适和安全。相关实现在 Apollo 6.0
 <ul>
 <li><p><strong>Implementation Details</strong></p>
 <p>方形的BEV图（俯瞰图）宽度<span class="math display">\[W\times
-H=200\times200\]</span>，<span
-class="math display">\[\rho=0.2m/pixel\]</span>。ego-vehicle位于图片的<span
-class="math display">\[i_0=100,j_0=160\]</span>的位置。使用Apollo的感知模块（“Baidu
+H=200\times200\]</span>，<span class="math display">\[\rho=0.2m/pixel\]</span>。ego-vehicle位于图片的<span class="math display">\[i_0=100,j_0=160\]</span>的位置。使用Apollo的感知模块（“Baidu
 Apollo open platform,”
 http://apollo.auto/）光栅化2秒的历史数据或者预测数据。使用Adam
-optimizer，且初始学习率为<span
-class="math display">\[0.0003\]</span>。</p></li>
+optimizer，且初始学习率为<span class="math display">\[0.0003\]</span>。</p></li>
 <li><p><strong>Dataset and Augmented Data</strong></p>
 <ul>
 <li><p>400 hours’ driving data demonstrated by human-drivers in southern
 San Francisco bay area。</p></li>
-<li><p>经过数据预处理后，保留了250k帧作为原始的训练数据<span
-class="math display">\[D_0\]</span></p></li>
-<li><p>利用random synthesizer生成400k帧数据，记为<span
-class="math display">\[D_r\]</span></p></li>
+<li><p>经过数据预处理后，保留了250k帧作为原始的训练数据<span class="math display">\[D_0\]</span></p></li>
+<li><p>利用random synthesizer生成400k帧数据，记为<span class="math display">\[D_r\]</span></p></li>
 <li><p>设置feedback steps T = 5，feedback
-synthesizer生成465k帧数据，记为<span
-class="math display">\[D_f\]</span></p></li>
+synthesizer生成465k帧数据，记为<span class="math display">\[D_f\]</span></p></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220714-2.png"
-alt="不同模型配置的性能对比" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220714-2.png" alt="不同模型配置的性能对比">
 <figcaption aria-hidden="true">不同模型配置的性能对比</figcaption>
 </figure>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220714-3.png"
-alt="offroad,speeding,collision,and failed to arrive性能对比" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220714-3.png" alt="offroad,speeding,collision,and failed to arrive性能对比">
 <figcaption aria-hidden="true">offroad,speeding,collision,and failed to
 arrive性能对比</figcaption>
 </figure></li>
@@ -544,17 +511,9 @@ dynamic obstacles, for example, overtaking a slow vehicle.</li>
 </ul></li>
 <li><p><strong>Evaluation Metrics</strong></p>
 <p>除了通过率和成功率以外，还使用了舒适度评分。舒适度评分是根据自动驾驶状态和人类驾驶状态的相识度计算得到的。</p>
-<p>在人驾数据集<span
-class="math display">\[D_0\]</span>中还包括了角速度和角加加速度<span
-class="math display">\[(\omega,j)\]</span>，使用这两个数据，可得舒适度评分为：<span
-class="math display">\[c=\frac{\sum_{i=1}^N P(\omega,j\mid
+<p>在人驾数据集<span class="math display">\[D_0\]</span>中还包括了角速度和角加加速度<span class="math display">\[(\omega,j)\]</span>，使用这两个数据，可得舒适度评分为：<span class="math display">\[c=\frac{\sum_{i=1}^N P(\omega,j\mid
 D_0)}{n}\]</span>。其中，<span class="math display">\[P(\omega,j\mid
-D_0)\]</span>表示状态<span
-class="math display">\[(\omega,j)\]</span>在人驾数据<span
-class="math display">\[D_0\]</span>中出现的概率，<span
-class="math display">\[n\]</span>表示帧数。<span
-class="math display">\[\omega\]</span>和<span
-class="math display">\[j\]</span>都经过离散化处理（0.1 and
+D_0)\]</span>表示状态<span class="math display">\[(\omega,j)\]</span>在人驾数据<span class="math display">\[D_0\]</span>中出现的概率，<span class="math display">\[n\]</span>表示帧数。<span class="math display">\[\omega\]</span>和<span class="math display">\[j\]</span>都经过离散化处理（0.1 and
 1.0），直接查表读取响应的概率。</p>
 <p>agent被要求在时间限制之内到达目的地，同时避免碰撞等事故（出现则判定失败）。</p></li>
 <li><p><strong>Runtime Analysis</strong></p>

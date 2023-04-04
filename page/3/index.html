@@ -223,8 +223,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2
-id="on-the-choice-of-data-for-efficient-training-and-validation-of-end-to-end-driving-models">On
+          <h2 id="on-the-choice-of-data-for-efficient-training-and-validation-of-end-to-end-driving-models">On
 the Choice of Data for Efficient Training and Validation of End-to-End
 Driving Models</h2>
 <p>本文关注数据集的设计，包括针对自动驾驶端到端模型训练集和验证集。</p>
@@ -235,9 +234,7 @@ Driving Models</h2>
 <li>调查了随机种子和不确定性的影响，给出了哪些报告的改进可以被认为是显著的；</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-1.png"
-alt="本文关注数据而非模型" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-1.png" alt="本文关注数据而非模型">
 <figcaption aria-hidden="true">本文关注数据而非模型</figcaption>
 </figure>
 <h3 id="introduction">1 Introduction</h3>
@@ -445,26 +442,20 @@ Leaderboard标准配置）。</p></li>
 <li><p>输入：一个RGB前置相机图像、一个LiDAR点云</p></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-2.png"
-alt="End-to-end driving method" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-2.png" alt="End-to-end driving method">
 <figcaption aria-hidden="true">End-to-end driving method</figcaption>
 </figure>
 <ul>
 <li><p>使用Conditional Imitation Learning</p></li>
 <li><p>不同训练集设置情况：</p>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-3.png"
-alt="Training set design" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-3.png" alt="Training set design">
 <figcaption aria-hidden="true">Training set design</figcaption>
 </figure></li>
 <li><p>验证集和测试集路线类型</p></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-4.png"
-alt="Validation and test route types" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-4.png" alt="Validation and test route types">
 <figcaption aria-hidden="true">Validation and test route
 types</figcaption>
 </figure>
@@ -472,34 +463,26 @@ types</figcaption>
 <li>不同验证集和测试集设置情况</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-5.png"
-alt="Validation and test design" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-5.png" alt="Validation and test design">
 <figcaption aria-hidden="true">Validation and test design</figcaption>
 </figure>
 <ul>
-<li><p>不同数据集上的驾驶得分<span
-class="math display">\[DS\in[0,1]\]</span>，包括两部分分数：</p>
+<li><p>不同数据集上的驾驶得分<span class="math display">\[DS\in[0,1]\]</span>，包括两部分分数：</p>
 <ul>
-<li><p>完成路线 route completion percentage <span
-class="math display">\[RC\in [0, 1]\]</span>;</p></li>
+<li><p>完成路线 route completion percentage <span class="math display">\[RC\in [0, 1]\]</span>;</p></li>
 <li><p>避免事故 infraction score <span class="math display">\[IS \in [0,
 1]\]</span>;</p></li>
 </ul></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-6.png"
-alt="Driving scores" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-6.png" alt="Driving scores">
 <figcaption aria-hidden="true">Driving scores</figcaption>
 </figure>
 <ul>
 <li>不同训练集和验证集的性能对比</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-7.png"
-alt="Pearson correlation between the validation set performance and the test set performance (given by the driving score)" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-7.png" alt="Pearson correlation between the validation set performance and the test set performance (given by the driving score)">
 <figcaption aria-hidden="true">Pearson correlation between the
 validation set performance and the test set performance (given by the
 driving score)</figcaption>
@@ -508,9 +491,7 @@ driving score)</figcaption>
 <li>不同验证集下的测试集得分对比</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-8.png"
-alt="Test driving scores given in (%) obtained on R^test, having used different validation sets" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-8.png" alt="Test driving scores given in (%) obtained on R^test, having used different validation sets">
 <figcaption aria-hidden="true">Test driving scores given in (%) obtained
 on R^test, having used different validation sets</figcaption>
 </figure>
@@ -518,9 +499,7 @@ on R^test, having used different validation sets</figcaption>
 <li>不同训练集下的性能对比</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-9.png"
-alt="Performance on different training sets" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220824-9.png" alt="Performance on different training sets">
 <figcaption aria-hidden="true">Performance on different training
 sets</figcaption>
 </figure>
@@ -681,8 +660,7 @@ data.）。</p></li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2
-id="off-policy-deep-reinforcement-learning-without-exploration-2019">Off-Policy
+          <h2 id="off-policy-deep-reinforcement-learning-without-exploration-2019">Off-Policy
 Deep Reinforcement Learning without Exploration (2019)</h2>
 <p>类似DQN和DDPG的off-policy
 RL算法在被禁止探索，并在没有数据策略分布修正的的情况下，难以取得好的效果。本文通过限制off-policy
@@ -705,9 +683,7 @@ error，最大化奖励的同时，最小化批量数据中状态-行为对和�
 </ul>
 <h3 id="background">2 Background</h3>
 <ul>
-<li>贝尔曼算子（Bellman operator）<span
-class="math display">\[\Tau^{\pi}\]</span>： <span
-class="math display">\[
+<li>贝尔曼算子（Bellman operator）<span class="math display">\[\Tau^{\pi}\]</span>： <span class="math display">\[
 \Tau^{\pi}Q(s,a)=\mathbb{E}_{s&#39;}[r+\gamma Q(s&#39;,\pi(s&#39;))]
 \]</span></li>
 </ul>
@@ -716,8 +692,7 @@ class="math display">\[
 <ul>
 <li><p>Extrapolation error is an error in off-policy value learning
 which is introduced by the mismatch between the dataset and true
-state-action visitation of the current policy，或者<span
-class="math display">\[(s,a)\]</span>在数据集中不存在</p></li>
+state-action visitation of the current policy，或者<span class="math display">\[(s,a)\]</span>在数据集中不存在</p></li>
 <li><p>外推误差的成因：</p>
 <ul>
 <li><p><strong>数据缺省</strong>（Absent Data）：state-action pair (s,
@@ -759,9 +734,7 @@ million time steps数据作为专家数据。</li>
 DDPG与环境交互正常训练。</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220820-1.png"
-alt="Figure 1" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220820-1.png" alt="Figure 1">
 <figcaption aria-hidden="true">Figure 1</figcaption>
 </figure>
 <p>Even in the concurrent experiment, where both agents are trained with
@@ -850,17 +823,14 @@ Reinforcement Learning</h3>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2
-id="goal-driven-self-attentive-recurrent-networks-for-trajectory-prediction">Goal-driven
+          <h2 id="goal-driven-self-attentive-recurrent-networks-for-trajectory-prediction">Goal-driven
 Self-Attentive Recurrent Networks for Trajectory Prediction</h2>
 <p>提出了一种基于U-Net
 architecture和注意力的循环网络框架，增加了语义信息来预测轨迹终点。提出的算法在公开数据集SDD,
 inD, ETH/UCY上部分取得了SOTA的成绩，还简化了模型。</p>
 <h3 id="introduction">1 Introduction</h3>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220817-2.png"
-alt="Levels of multi-agent learning in autonomous driving" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220817-2.png" alt="Levels of multi-agent learning in autonomous driving">
 <figcaption aria-hidden="true">Levels of multi-agent learning in
 autonomous driving</figcaption>
 </figure>
@@ -929,8 +899,7 @@ autonomous driving</figcaption>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2
-id="smarts-scalable-multi-agent-reinforcement-learning-training-school-for-autonomous-driving">SMARTS:
+          <h2 id="smarts-scalable-multi-agent-reinforcement-learning-training-school-for-autonomous-driving">SMARTS:
 Scalable Multi-Agent Reinforcement Learning Training School for
 Autonomous Driving</h2>
 <p>顾名思义，SMARTS是针对多智能体算法的自动驾驶强化学习仿真平台。</p>
@@ -971,9 +940,7 @@ merge道路场景（即&gt;--&lt;形道路）是多智能体交互的难点，�
 <li><p>Key Features：</p></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220817-1.png"
-alt="Levels of multi-agent learning in autonomous driving" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220817-1.png" alt="Levels of multi-agent learning in autonomous driving">
 <figcaption aria-hidden="true">Levels of multi-agent learning in
 autonomous driving</figcaption>
 </figure>
@@ -981,9 +948,7 @@ autonomous driving</figcaption>
 <li>场景：</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220817-2.png"
-alt="Levels of multi-agent learning in autonomous driving" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220817-2.png" alt="Levels of multi-agent learning in autonomous driving">
 <figcaption aria-hidden="true">Levels of multi-agent learning in
 autonomous driving</figcaption>
 </figure>
@@ -1070,8 +1035,7 @@ be found in our implementation code.</p></li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2
-id="an-optimistic-perspective-on-offline-reinforcement-learning-google">An
+          <h2 id="an-optimistic-perspective-on-offline-reinforcement-learning-google">An
 Optimistic Perspective on Offline Reinforcement Learning (Google)</h2>
 <p>作者用online DQN在60款 Atari
 2600游戏上获取数据样本，然后用这些样本(fixed
@@ -1162,7 +1126,7 @@ Learning</h3>
 <li><p>offline的模式分离了模型对经验的利用、生成能力（exploit） vs
 探索效率（explore）</p></li>
 <li><p>offline RL面临的挑战是<strong>distribution
-mismatch</strong>：错误匹配当前使用的策略和固定的离线数据集。例如，当采取了数据集中不存在的行为时，并不知道响应的奖励是多少。<br />
+mismatch</strong>：错误匹配当前使用的策略和固定的离线数据集。例如，当采取了数据集中不存在的行为时，并不知道响应的奖励是多少。<br>
 </p></li>
 <li><p>本文尝试在不解决distribution
 mismatch的基础上，训练高性能的agent</p></li>
@@ -1178,10 +1142,10 @@ DQN和REM两个采取该思想的方法。</li>
 <li><p>该方法是对DQN算法的简单扩展，使用集成多个参数化的Q函数来近视Q值。</p>
 <ul>
 <li>Faußer, S. and Schwenker, F. Neural network ensembles in
-reinforcement learning. Neural Processing Letters, 2015<br />
+reinforcement learning. Neural Processing Letters, 2015<br>
 </li>
 <li>Osband, I., Blundell, C., Pritzel, A., and Van Roy, B. Deep
-exploration via bootstrapped DQN. NeurIPS, 2016.<br />
+exploration via bootstrapped DQN. NeurIPS, 2016.<br>
 </li>
 <li>Anschel, O., Baram, N., and Shimkin, N. Averaged-dqn: Variance
 reduction and stabilization for deep reinforcement learning. ICML,
@@ -1194,13 +1158,10 @@ Pritzel, A., and Van Roy, B. Deep exploration via bootstrapped DQN.
 NeurIPS, 2016.</li>
 </ul></li>
 <li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220812-2.png"
-alt="损失函数" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220812-2.png" alt="损失函数">
 <figcaption aria-hidden="true">损失函数</figcaption>
 </figure>
-<p>其中，<span
-class="math display">\[l_{\lambda}\]</span>是Huber损失。算法使用所有Q函数的均值作为输出。</p></li>
+<p>其中，<span class="math display">\[l_{\lambda}\]</span>是Huber损失。算法使用所有Q函数的均值作为输出。</p></li>
 </ul>
 <h4 id="random-ensemble-mixture-rem">4.2 Random Ensemble Mixture
 (REM)</h4>
@@ -1216,32 +1177,23 @@ combination），将多个Q 函数近似器作为1个近似器使用。使用(K 
 1)-simplex计算混合的概率。</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220812-3.png"
-alt="模型结构" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220812-3.png" alt="模型结构">
 <figcaption aria-hidden="true">模型结构</figcaption>
 </figure>
 <ul>
 <li><p>对于每个mini-batch，随机产生一个分类分布（categorical
-distribution）<span
-class="math display">\[\alpha\]</span>，它定义了一个逼近最优Q-函数的K个估计器的凸组合</p></li>
+distribution）<span class="math display">\[\alpha\]</span>，它定义了一个逼近最优Q-函数的K个估计器的凸组合</p></li>
 <li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220817-3.png"
-alt="REM的loss形式" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220817-3.png" alt="REM的loss形式">
 <figcaption aria-hidden="true">REM的loss形式</figcaption>
 </figure>
-<p>其中，<span
-class="math display">\[P_{\Delta}\]</span>表示标准的(K-1)-simplex的概率分布，<span
-class="math display">\[\Delta^{K-1}=\{\alpha\in R^K:
+<p>其中，<span class="math display">\[P_{\Delta}\]</span>表示标准的(K-1)-simplex的概率分布，<span class="math display">\[\Delta^{K-1}=\{\alpha\in R^K:
 \alpha_1+\alpha_2+...+\alpha_K=1,\alpha_k\geq0,k=1,...,K
 \}\]</span></p></li>
 <li><p>对于<span class="math display">\[P_{\Delta}\]</span>：先从Uniform
-(0,1)分布中采样K个独立同分布的值，然后归一化它们获得有效的分类分布（<span
-class="math display">\[a&#39;_k \sim U(0,1),a_k=a&#39;_k/\sum_k
+(0,1)分布中采样K个独立同分布的值，然后归一化它们获得有效的分类分布（<span class="math display">\[a&#39;_k \sim U(0,1),a_k=a&#39;_k/\sum_k
 a&#39;_i\]</span>）</p></li>
-<li><p>对于Q值的求解，使用<span
-class="math display">\[Q(s,a)=\frac{1}{K}\sum_k Q_{\theta}^k
+<li><p>对于Q值的求解，使用<span class="math display">\[Q(s,a)=\frac{1}{K}\sum_k Q_{\theta}^k
 (s,a)\]</span></p></li>
 </ul>
 <h3 id="offline-rl-on-atari-2600-games">5 Offline RL on Atari 2600
@@ -1253,30 +1205,22 @@ replay数据集，每个游戏2亿帧（200 million frames）</li>
 <li>ofline RL算法性能对比：</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220812-1.png"
-alt="Offline RL on Atari 2600." />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220812-1.png" alt="Offline RL on Atari 2600.">
 <figcaption aria-hidden="true">Offline RL on Atari 2600.</figcaption>
 </figure>
 <ul>
 <li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220818-1.png"
-alt="Offline QR-DQN vs. DQN (Nature)" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220818-1.png" alt="Offline QR-DQN vs. DQN (Nature)">
 <figcaption aria-hidden="true">Offline QR-DQN vs. DQN
 (Nature)</figcaption>
 </figure></li>
 <li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220818-2.png"
-alt="Offline Agents on DQN Replay Dataset" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220818-2.png" alt="Offline Agents on DQN Replay Dataset">
 <figcaption aria-hidden="true">Offline Agents on DQN Replay
 Dataset</figcaption>
 </figure></li>
 <li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220818-3.png"
-alt="Asymptotic performance of offline agents" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220818-3.png" alt="Asymptotic performance of offline agents">
 <figcaption aria-hidden="true">Asymptotic performance of offline
 agents</figcaption>
 </figure></li>
@@ -1286,9 +1230,7 @@ TD3，offline BCQ等算法</p>
 <li><p>Fujimoto, S., Meger, D., and Precup, D. Off-policy deep
 reinforcement learning without exploration. ICML, 2019b.</p>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220818-4.png"
-alt="Asymptotic performance of offline agents" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220818-4.png" alt="Asymptotic performance of offline agents">
 <figcaption aria-hidden="true">Asymptotic performance of offline
 agents</figcaption>
 </figure></li>
@@ -1362,8 +1304,7 @@ Q-learning变体和offline连续情况的RL算法可以再看看。</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2
-id="umbrella-uncertainty-aware-model-based-offline-reinforcement-learning-leveraging-planning">UMBRELLA:
+          <h2 id="umbrella-uncertainty-aware-model-based-offline-reinforcement-learning-leveraging-planning">UMBRELLA:
 Uncertainty-Aware Model-Based Offline Reinforcement Learning Leveraging
 Planning</h2>
 <ul>
@@ -1375,7 +1316,7 @@ Planning</h2>
 <li><p>主要贡献：</p>
 <ul>
 <li>提出了一个基于模型的离线规划算法UMBRELLA，在观测上考虑了认知和偶然的不确定性（epistemic
-和 aleatoric）<br />
+和 aleatoric）<br>
 </li>
 <li>引入了一个消融实验，优化最坏情况模型</li>
 <li>实验中，在稠密车流（with dense
@@ -1402,7 +1343,7 @@ Welling,
 <li>Mikael Henaff, Alfredo Canziani, and Yann LeCun. Model-predictive
 policy learning with uncertainty regularization for driving in dense
 traffic. In International Conference on Learning Representations,
-\2019.<br />
+\2019.<br>
 </li>
 <li>Diederik P. Kingma and Max Welling. Auto-Encoding Variational Bayes.
 In International Conference on Learning Representations, 2014.</li>
@@ -1416,7 +1357,7 @@ and prediction）的行为交互</p>
 <ul>
 <li>Jerry Liu, Wenyuan Zeng, Raquel Urtasun, and Ersin Yumer. Deep
 structured reactive planning. In IEEE International Conference on
-Robotics and Automation, 2021.<br />
+Robotics and Automation, 2021.<br>
 </li>
 <li>Nicholas Rhinehart, Jeff He, Charles Packer, Matthew A. Wright,
 Rowan McAllister, Joseph E. Gonzalez, and Sergey Levine. Contingencies
@@ -1435,47 +1376,33 @@ planning. In International Conference on Learning Representations,
 </ul></li>
 <li><p>问题形式化，用MDP的<span class="math display">\[(S; A; p; r;
 \gamma)\]</span>
-表示，在offline设定中，智能体不与环境直接交互，而是从数据集中学习策略<span
-class="math display">\[\pi_d\]</span>。如果观测值<span
-class="math display">\[O\]</span>并不是完全可得，那么问题就变化为（partially
-observable MDP，POMDP），使用 <span
-class="math display">\[M_{PO}=(S;A;O;p;r;\gamma)\]</span>，处理该问题的常用方法是使用nth-order
+表示，在offline设定中，智能体不与环境直接交互，而是从数据集中学习策略<span class="math display">\[\pi_d\]</span>。如果观测值<span class="math display">\[O\]</span>并不是完全可得，那么问题就变化为（partially
+observable MDP，POMDP），使用 <span class="math display">\[M_{PO}=(S;A;O;p;r;\gamma)\]</span>，处理该问题的常用方法是使用nth-order
 history
 方法，可以近似得到状态估计，然后将其转变为MDP，用标准的RL方法处理。</p></li>
-<li><p>UMBRELLA使用连续的潜在变量（continuous latent variable）<span
-class="math display">\[z_t\in Z\]</span>
+<li><p>UMBRELLA使用连续的潜在变量（continuous latent variable）<span class="math display">\[z_t\in Z\]</span>
 ，并枚举自车所有的可能行为（行为采样通过学到的BC
 policy）。预测N条长度界限为H的轨迹。还使用了一个return-weighted
-trajectory optimizer，处理POMDP问题，用持续观测状态从<span
-class="math display">\[o_{t-_c:t}\]</span>直到时间步t估计缺失的观测状态。（相关解释参考VAE算法）</p>
+trajectory optimizer，处理POMDP问题，用持续观测状态从<span class="math display">\[o_{t-_c:t}\]</span>直到时间步t估计缺失的观测状态。（相关解释参考VAE算法）</p>
 <ul>
-<li><span
-class="math display">\[z_t=\mu_{\phi}+\sigma_{\phi}*\epsilon\]</span></li>
-<li><span
-class="math display">\[(\mu_{\phi},\sigma_{\phi})=q_{\phi}(s_t,s_{t+1})\]</span></li>
+<li><span class="math display">\[z_t=\mu_{\phi}+\sigma_{\phi}*\epsilon\]</span></li>
+<li><span class="math display">\[(\mu_{\phi},\sigma_{\phi})=q_{\phi}(s_t,s_{t+1})\]</span></li>
 <li><span class="math display">\[\epsilon \sim
 \mathcal{N}(0,1)\]</span></li>
 </ul></li>
 <li><p>随机动力学模型：</p>
 <ul>
-<li><p>为了建模不同的未来可能情况，学习随机前向动力学模型<span
-class="math display">\[f_{m,\theta}:S\times A\times Z \rightarrow S
+<li><p>为了建模不同的未来可能情况，学习随机前向动力学模型<span class="math display">\[f_{m,\theta}:S\times A\times Z \rightarrow S
 \times \mathbb{R}\]</span></p></li>
 <li><p>该模型采用CVAE架构，预测下一时刻的状态</p>
 <ul>
 <li>Diederik P. Kingma and Max Welling. Auto-Encoding Variational Bayes.
 In International Conference on Learning Representations, 2014.</li>
 </ul></li>
-<li><p><span
-class="math display">\[\hat{s}_{t+1}=f_m(s_t,a_t,z_t)_s\]</span></p></li>
-<li><p><span
-class="math display">\[\hat{r}_{t}=f_m(s_t,a_t,z_t)_r\]</span></p></li>
-<li><p>其中潜在变量<span
-class="math display">\[z_t\]</span>建模了不同的未来预测，并确保了输出对于输入是非确定性的。在训练过程中，该潜在变量从后验分布<span
-class="math display">\[q_{\phi}(z\mid s_t,s_{t+1})\]</span>中采样，<span
-class="math display">\[\phi\]</span>是参数。由于实际采样只能从先验分布中采，因此使用Kullback-Leibler
-(KL) divergence度量后验分布和先验分布<span
-class="math display">\[p(z)\]</span>并最小化距离。</p>
+<li><p><span class="math display">\[\hat{s}_{t+1}=f_m(s_t,a_t,z_t)_s\]</span></p></li>
+<li><p><span class="math display">\[\hat{r}_{t}=f_m(s_t,a_t,z_t)_r\]</span></p></li>
+<li><p>其中潜在变量<span class="math display">\[z_t\]</span>建模了不同的未来预测，并确保了输出对于输入是非确定性的。在训练过程中，该潜在变量从后验分布<span class="math display">\[q_{\phi}(z\mid s_t,s_{t+1})\]</span>中采样，<span class="math display">\[\phi\]</span>是参数。由于实际采样只能从先验分布中采，因此使用Kullback-Leibler
+(KL) divergence度量后验分布和先验分布<span class="math display">\[p(z)\]</span>并最小化距离。</p>
 <ul>
 <li>潜变量用于区分细分情况，精细化建模</li>
 </ul></li>
@@ -1490,43 +1417,30 @@ r_t-f_{m,\theta}(s_t,a_t,z_t)_r\mid\mid^2_2 \\
 \zeta D_{KL}(q_{\phi}(z_t\mid s_t,s_{t+1})\mid\mid p(z_t))
 \]</span></p></li>
 <li><p>BC policies <span class="math display">\[f_{b,\psi}:S\times
-A^{n_c} \rightarrow A \]</span> ，<span
-class="math display">\[f_b(s_t,a_{(t-n_c):(t-1)})\]</span>，该函数使用当前的状态和<span
-class="math display">\[n_c\]</span>个之前的行为作为输入，输出行为<span
-class="math display">\[a_t\]</span>。通过将之前的行为串联考虑，可以使得输出的行为更加平滑。</p></li>
+A^{n_c} \rightarrow A \]</span> ，<span class="math display">\[f_b(s_t,a_{(t-n_c):(t-1)})\]</span>，该函数使用当前的状态和<span class="math display">\[n_c\]</span>个之前的行为作为输入，输出行为<span class="math display">\[a_t\]</span>。通过将之前的行为串联考虑，可以使得输出的行为更加平滑。</p></li>
 <li><p>训练BC Policy使用最小化损失函数：</p>
-<p><span
-class="math display">\[L(\psi;s_t,a_{(t-n_c):(t-1)},a_t)=\mid\mid a_t -
+<p><span class="math display">\[L(\psi;s_t,a_{(t-n_c):(t-1)},a_t)=\mid\mid a_t -
 f_{b,\psi}(s_t,a_{(t-n_c):(t-1)})\mid\mid^2_2\]</span></p></li>
 <li><p>截断价值函数<span class="math display">\[f_{R,\xi}:S\times
-A^{n_c}\rightarrow \mathbb{R}\]</span> 估计H个时间步后的期望回报<span
-class="math display">\[\hat{R}_H\]</span></p></li>
+A^{n_c}\rightarrow \mathbb{R}\]</span> 估计H个时间步后的期望回报<span class="math display">\[\hat{R}_H\]</span></p></li>
 </ul></li>
 <li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-3.png"
-alt="Simplified network architecture of the stochastic forward dynamics model during training" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-3.png" alt="Simplified network architecture of the stochastic forward dynamics model during training">
 <figcaption aria-hidden="true">Simplified network architecture of the
 stochastic forward dynamics model during training</figcaption>
 </figure></li>
 <li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-4.png"
-alt="Behavior-cloned policy network architecture" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-4.png" alt="Behavior-cloned policy network architecture">
 <figcaption aria-hidden="true">Behavior-cloned policy network
 architecture</figcaption>
 </figure></li>
 <li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-5.png"
-alt="Truncated value function network architecture" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-5.png" alt="Truncated value function network architecture">
 <figcaption aria-hidden="true">Truncated value function network
 architecture</figcaption>
 </figure></li>
 <li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-6.png"
-alt="Signal flow of the stochastic forward dynamics model" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-6.png" alt="Signal flow of the stochastic forward dynamics model">
 <figcaption aria-hidden="true">Signal flow of the stochastic forward
 dynamics model</figcaption>
 </figure></li>
@@ -1544,9 +1458,7 @@ Journal of Guidance, Control, and Dynamics, 40(2): 344–357, 2017.</li>
 T^*_t = \frac{\sum_{n=1}^N e^{kR_n} A_{n,t+1}}{\sum_{n=1}^N e^{kR_n}}
 \]</span></p>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-1.png"
-alt="UMBRELLA Planning" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-1.png" alt="UMBRELLA Planning">
 <figcaption aria-hidden="true">UMBRELLA Planning</figcaption>
 </figure>
 <ul>
@@ -1557,7 +1469,7 @@ alt="UMBRELLA Planning" />
 <ul>
 <li>环境：
 <ul>
-<li><strong>NGSIM</strong>：多智能体自动驾驶环境<br />
+<li><strong>NGSIM</strong>：多智能体自动驾驶环境<br>
 </li>
 <li><strong>CARLA</strong>：城市多智能体自动驾驶场景</li>
 </ul></li>
@@ -1568,7 +1480,7 @@ alt="UMBRELLA Planning" />
 <ul>
 <li>Arthur Argenson and Gabriel Dulac-Arnold. Model-based offline
 planning. In International Conference on Learning Representations,
-2021.<br />
+2021.<br>
 </li>
 </ul></li>
 <li><strong>MPUR</strong>：最好的基于模型策略学习方法
@@ -1576,7 +1488,7 @@ planning. In International Conference on Learning Representations,
 <li>Mikael Henaff, Alfredo Canziani, and Yann LeCun. Model-predictive
 policy learning with uncertainty regularization for driving in dense
 traffic. In International Conference on Learning Representations,
-2019.<br />
+2019.<br>
 </li>
 </ul></li>
 </ul></li>
@@ -1585,23 +1497,18 @@ traffic. In International Conference on Learning Representations,
 <li>Success rate (SR)：The rate of collision-free
 episodes，并要求在时间内到达目标位置</li>
 <li>Mean distance (MD)：NGSIM中的纵向行驶距离</li>
-<li>mean successful time (MST)<br />
+<li>mean successful time (MST)<br>
 </li>
-<li>mean proximity reward <span
-class="math display">\[\overline{r}_{prox}\]</span></li>
-<li>mean lane reward <span
-class="math display">\[\overline{r}_{lane}\]</span><br />
+<li>mean proximity reward <span class="math display">\[\overline{r}_{prox}\]</span></li>
+<li>mean lane reward <span class="math display">\[\overline{r}_{lane}\]</span><br>
 </li>
-<li>mean final reward <span
-class="math display">\[\overline{r}\]</span><br />
+<li>mean final reward <span class="math display">\[\overline{r}\]</span><br>
 </li>
 </ul></li>
 <li>实验结果：</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-2.png"
-alt="性能对比" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-2.png" alt="性能对比">
 <figcaption aria-hidden="true">性能对比</figcaption>
 </figure>
 <h3 id="总结">总结</h3>
@@ -1611,10 +1518,8 @@ alt="性能对比" />
 and Peter Stone. Reward (mis)design for autonomous driving. 2021.
 arxiv:2104.13906.</li>
 </ul>
-<p>模型考虑偶然不确定性：使用潜变量<span
-class="math display">\[z\]</span>，枚举可能的轨迹</p>
-<p>模型考虑认知不确定性：在reward中进行re-weighting和使用参数<span
-class="math display">\[\beta\]</span></p>
+<p>模型考虑偶然不确定性：使用潜变量<span class="math display">\[z\]</span>，枚举可能的轨迹</p>
+<p>模型考虑认知不确定性：在reward中进行re-weighting和使用参数<span class="math display">\[\beta\]</span></p>
 
       
     </div>
@@ -1679,8 +1584,7 @@ class="math display">\[\beta\]</span></p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2
-id="urban-driver-learning-to-drive-from-real-world-demonstrations-using-policy-gradients">Urban
+          <h2 id="urban-driver-learning-to-drive-from-real-world-demonstrations-using-policy-gradients">Urban
 Driver: Learning to Drive from Real-world Demonstrations Using Policy
 Gradients</h2>
 <ul>
@@ -1691,9 +1595,7 @@ Gradients</h2>
 </ul>
 <h3 id="introduction">Introduction</h3>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220803-1.png"
-alt="本文的闭环训练算法概览" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220803-1.png" alt="本文的闭环训练算法概览">
 <figcaption aria-hidden="true">本文的闭环训练算法概览</figcaption>
 </figure>
 <ul>
@@ -1721,7 +1623,7 @@ H. Li, and Q. Kong. Baidu apollo em motion planner. ArXiv, 2018.</li>
 <li>A* [11]</li>
 <li>RRTs [12]</li>
 <li>POMDP with solver [13]</li>
-<li>dynamic programming [14]<br />
+<li>dynamic programming [14]<br>
 </li>
 </ul></li>
 <li><p>整体上是依赖human engineering，而不是数据驱动</p></li>
@@ -1731,7 +1633,7 @@ H. Li, and Q. Kong. Baidu apollo em motion planner. ArXiv, 2018.</li>
 <li>依赖仿真器的构造、精确编码和优化的奖励信号
 <ul>
 <li>S. Shalev-Shwartz, S. Shammah, and A. Shashua. Safe, multi-agent,
-reinforcement learning for autonomous driving. ArXiv, 2016.<br />
+reinforcement learning for autonomous driving. ArXiv, 2016.<br>
 </li>
 </ul></li>
 <li>手工编程的仿真器，不能还原真实的长尾场景</li>
@@ -1752,7 +1654,7 @@ cloning）面临协变量偏移问题（covariate shift）</li>
 <ul>
 <li>W. Zeng, W. Luo, S. Suo, A. Sadat, B. Yang, S. Casas, and R.
 Urtasun. End-to-end interpretable neural motion planner. Int. Conference
-on Computer Vision and Pattern Recognition (CVPR), \2019.<br />
+on Computer Vision and Pattern Recognition (CVPR), \2019.<br>
 </li>
 <li>S. Casas, A. Sadat, and R. Urtasun. Mp3: A unified model to map,
 perceive, predict and plan. In Proceedings of the IEEE/CVF Conference on
@@ -1769,7 +1671,7 @@ motion prediction dataset. Conference on Robot Learning (CoRL),
 <li>M.-F. Chang, J. Lambert, P. Sangkloy, J. Singh, S. Bak, A. Hartnett,
 P. C. De Wang, S. Lucey, D. Ramanan, and J. Hays. Argoverse: 3d tracking
 and forecasting with rich maps supplementary material. Int. Conf. on
-Computer Vision and Pattern Recognition (CVPR).<br />
+Computer Vision and Pattern Recognition (CVPR).<br>
 </li>
 <li>state-of-the-art solutions for motion forecasting [8, 9]
 <ul>
@@ -1779,7 +1681,7 @@ representation. In Int. Conf. on Computer Vision and Pattern Recognition
 (CVPR), 2020.</li>
 <li>[9] M. Liang, B. Yang, R. Hu, Y. Chen, R. Liao, S. Feng, and R.
 Urtasun. Learning lane graph representations for motion forecasting.
-2020.<br />
+2020.<br>
 </li>
 </ul></li>
 </ul></li>
@@ -1793,34 +1695,23 @@ and showed their usefulness for training and validating ML
 planners.</li>
 </ul></li>
 </ul>
-<h3
-id="differentiable-traffic-simulator-from-real-world-driving-data">Differentiable
+<h3 id="differentiable-traffic-simulator-from-real-world-driving-data">Differentiable
 Traffic Simulator from Real-world Driving Data</h3>
 <ul>
-<li>真实世界的经验轨迹：<span
-class="math display">\[\overline{\tau}=\{\overline{s}_1,\overline{s}_2,...,\overline{s}_T\}\]</span></li>
-<li>仿真的目标是迭代地生成观测状态序列<span
-class="math display">\[\tau=\{s_1,s_2,...,s_T\}\]</span>，然后计算车辆轨迹<span
-class="math display">\[p_t\]</span>，包括<span
-class="math display">\[(x;y;\theta)\]</span></li>
-<li><span class="math display">\[s_{t+1}=S(s_t,a_t)\]</span>，<span
-class="math display">\[p_{t+1}=f(p_t,a_t)\]</span></li>
+<li>真实世界的经验轨迹：<span class="math display">\[\overline{\tau}=\{\overline{s}_1,\overline{s}_2,...,\overline{s}_T\}\]</span></li>
+<li>仿真的目标是迭代地生成观测状态序列<span class="math display">\[\tau=\{s_1,s_2,...,s_T\}\]</span>，然后计算车辆轨迹<span class="math display">\[p_t\]</span>，包括<span class="math display">\[(x;y;\theta)\]</span></li>
+<li><span class="math display">\[s_{t+1}=S(s_t,a_t)\]</span>，<span class="math display">\[p_{t+1}=f(p_t,a_t)\]</span></li>
 </ul>
 <h3 id="imitation-learning-using-a-differentiable-simulator">Imitation
 Learning Using a Differentiable Simulator</h3>
 <ul>
 <li><span class="math display">\[L(s_t,a_t)=\mid\mid \overline{p}_t -
 p_t\mid\mid_1\]</span></li>
-<li><span
-class="math display">\[J(\pi)=\mathbb{E}_{\overline{\tau}\sim\pi_E}\mathbb{E}_{\tau\sim\pi}
-\sum_{t}\gamma^t L(s_t,a_t)\]</span>，<span
-class="math display">\[\pi_E\]</span>是专家策略，<span
-class="math display">\[\pi\]</span>是模型的策略，希望两个策略接近</li>
+<li><span class="math display">\[J(\pi)=\mathbb{E}_{\overline{\tau}\sim\pi_E}\mathbb{E}_{\tau\sim\pi}
+\sum_{t}\gamma^t L(s_t,a_t)\]</span>，<span class="math display">\[\pi_E\]</span>是专家策略，<span class="math display">\[\pi\]</span>是模型的策略，希望两个策略接近</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220803-2.png"
-alt="Imitation learning from expert demonstrations" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220803-2.png" alt="Imitation learning from expert demonstrations">
 <figcaption aria-hidden="true">Imitation learning from expert
 demonstrations</figcaption>
 </figure>
@@ -1828,16 +1719,14 @@ demonstrations</figcaption>
 <p>P.S.：由于轨迹的开始阶段均来自专家策略，会引入bias，在策略更新的时候，在运动开始的第K步之后才计算梯度，以此避免bias</p>
 </blockquote>
 <ul>
-<li><p>策略梯度的计算（用下标表示偏微分，<span
-class="math display">\[\theta\]</span>是策略参数）： <span
-class="math display">\[
+<li><p>策略梯度的计算（用下标表示偏微分，<span class="math display">\[\theta\]</span>是策略参数）： <span class="math display">\[
 J_s^t = L_s+L_a\pi_s+\gamma J^{t+1}_{\theta}(S_s+S_a\pi_{s})\\
 J_{\theta}^t =
 L_a\pi_{\theta}+\gamma(J_s^{t+1}S_a\pi_{\theta}+J_{\theta}^{t+1})
 \]</span> &gt; Ref: N. Heess, G. Wayne, D. Silver, T. Lillicrap, T.
 Erez, and Y. Tassa. Learning continuous control policies by stochastic
 value gradients. In Advances in Neural Information Processing Systems,
-\2015.<br />
+\2015.<br>
 ### Experiments</p></li>
 <li><p>Lyft Motion Prediction Dataset
 [6]：数据采集自加利福尼亚州帕洛阿尔托的复杂城市路线。数据集捕捉各种真实世界的情况，例如在多车道交通中驾驶、转弯、在十字路口与车辆互动等。</p>
@@ -1845,18 +1734,18 @@ value gradients. In Advances in Neural Information Processing Systems,
 <li>J. Houston, G. Zuidhof, L. Bergamini, Y. Ye, A. Jain, S. Omari, V.
 Iglovikov, and P. Ondruska. One thousand and one hours: Self-driving
 motion prediction dataset. Conference on Robot Learning (CoRL),
-2020.<br />
+2020.<br>
 </li>
 </ul></li>
 <li><p>模型在100小时子集上训练，并在25小时子集上测试。</p></li>
 <li><p>three state-of-the-art baselines：</p>
 <ul>
-<li>Naive Behavioral Cloning (BC)<br />
+<li>Naive Behavioral Cloning (BC)<br>
 </li>
 <li>Behavioral Cloning + Perturbations (BC-perturb)
 <ul>
 <li>M. Bansal, A. Krizhevsky, and A. Ogale. Chauffeurnet: Learning to
-drive by imitating the best and synthesizing the worst. 12 2018.<br />
+drive by imitating the best and synthesizing the worst. 12 2018.<br>
 </li>
 </ul></li>
 <li>Multi-step Prediction (MS Prediction)
@@ -1867,9 +1756,7 @@ prediction of learned time series models. In AAAI, 2015.</li>
 </ul></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220803-3.png"
-alt="性能对比" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220803-3.png" alt="性能对比">
 <figcaption aria-hidden="true">性能对比</figcaption>
 </figure>
 <blockquote>
@@ -1894,9 +1781,7 @@ comparison, namely Interventions per 1000 Miles (I1K)</li>
 </ul></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220803-4.png"
-alt="仿真结果" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220803-4.png" alt="仿真结果">
 <figcaption aria-hidden="true">仿真结果</figcaption>
 </figure>
 <h3 id="总结">总结</h3>

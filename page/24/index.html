@@ -223,8 +223,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1
-id="linux服务器上配置anaconda3以pytorch-rl环境">Linux服务器上配置Anaconda3以Pytorch-RL环境</h1>
+          <h1 id="linux服务器上配置anaconda3以pytorch-rl环境">Linux服务器上配置Anaconda3以Pytorch-RL环境</h1>
 <p>通过上传安装包的方式在服务器安装Anaconda3只需要在<strong>相应的目录下</strong>执行一句命令：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash Anaconda3-2019.07-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
 <p>安装途中会提示安装位置为默认路径：</p>
@@ -237,13 +236,12 @@ id="linux服务器上配置anaconda3以pytorch-rl环境">Linux服务器上配置
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python --version</span><br><span class="line">&gt; Python 3.6.9 :: Anaconda, Inc.</span><br></pre></td></tr></table></figure>
 <p>接下来激活新建的环境并进行配置：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source activate opensim-rl</span><br></pre></td></tr></table></figure>
-<p>参考我之前的一篇经验（<a
-target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/30636305">Anaconda新环境下快速安装多个Python软件包</a>）可以快速在新环境中批量安装软件包：</p>
+<p>参考我之前的一篇经验（<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/30636305">Anaconda新环境下快速安装多个Python软件包</a>）可以快速在新环境中批量安装软件包：</p>
 <p><strong>在新环境中</strong>输入：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install anaconda </span><br></pre></td></tr></table></figure>
 <p>等待安装完成。</p>
 <p>这里就基本把会调用的包都装上了，接下来开始安装PyTorch。</p>
-<hr />
+<hr>
 <p>继续呆在<strong>激活的opensim-rl环境</strong>里</p>
 <p>由于PyTorch版本的选择和cuda版本有关，虽然因此先检查服务器上的cuda版本号：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat /usr/local/cuda/version.txt</span><br><span class="line">&gt; CUDA Version 9.0.103</span><br></pre></td></tr></table></figure>
@@ -256,9 +254,8 @@ target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/30636305">Anac
 <li><p><strong>（科学方法1）开VPN下载，会很稳定。</strong></p></li>
 <li><p>（科学方法2）添加国内清华、中科大的镜像源，多一些链接路径会增加成功的概率。</p></li>
 </ol>
-<p>这里我们用了<a
-target="_blank" rel="noopener" href="http://www.landeng26.info/">Lantern</a>每个月500M的免费流量帮助下载，速度比较快</p>
-<hr />
+<p>这里我们用了<a target="_blank" rel="noopener" href="http://www.landeng26.info/">Lantern</a>每个月500M的免费流量帮助下载，速度比较快</p>
+<hr>
 <p>最后开始安装gym</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install gym</span><br></pre></td></tr></table></figure>
 <p>搞定！</p>
@@ -326,8 +323,7 @@ target="_blank" rel="noopener" href="http://www.landeng26.info/">Lantern</a>每�
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="find-smallest-letter-greater-than-target"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/find-smallest-letter-greater-than-target/">Find
+          <h1 id="find-smallest-letter-greater-than-target"><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-smallest-letter-greater-than-target/">Find
 Smallest Letter Greater Than Target</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -363,10 +359,8 @@ least 2 unique letters.</li>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">nextGreatestLetter</span>(<span class="params">self, letters, target</span>):</span><br><span class="line">        <span class="keyword">for</span> l <span class="keyword">in</span> letters:</span><br><span class="line">            <span class="keyword">if</span> l &gt; target:</span><br><span class="line">                <span class="keyword">return</span> l</span><br><span class="line">        <span class="keyword">return</span> letters[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    letters = [<span class="string">&quot;c&quot;</span>, <span class="string">&quot;f&quot;</span>, <span class="string">&quot;j&quot;</span>]</span><br><span class="line">    target = <span class="string">&quot;j&quot;</span></span><br><span class="line">    solution=Solution().nextGreatestLetter(letters,target)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <p><strong>Complexity Analysis</strong></p>
 <ul>
-<li>Time complexity : <span
-class="math display">\[\mathcal{O}(N)\]</span>.</li>
-<li>Space complexity : <span
-class="math display">\[\mathcal{O}(1)​\]</span> since it's a constant
+<li>Time complexity : <span class="math display">\[\mathcal{O}(N)\]</span>.</li>
+<li>Space complexity : <span class="math display">\[\mathcal{O}(1)​\]</span> since it's a constant
 space solution.</li>
 <li>Runtime: 72 ms, faster than 99.40% of Python online submissions for
 Find Smallest Letter Greater Than Target.</li>
@@ -437,8 +431,7 @@ for Find Smallest Letter Greater Than Target.</li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="binary-search"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/binary-search/">Binary
+          <h1 id="binary-search"><a target="_blank" rel="noopener" href="https://leetcode.com/problems/binary-search/">Binary
 Search</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -475,25 +468,17 @@ unique.</li>
 <ul>
 <li>Time complexity : <span class="math display">\[\mathcal{O}(\log
 N)\]</span>.</li>
-<li>Let's compute time complexity with the help of <a
-target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)">master
+<li>Let's compute time complexity with the help of <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)">master
 theorem</a> <span class="math display">\[T(N) =
 aT\left(\frac{N}{b}\right) + \Theta(N^d)\]</span>. The equation
-represents dividing the problem up into <span
-class="math display">\[a\]</span> subproblems of size <span
-class="math display">\[\frac{N}{b}\]</span> in <span
-class="math display">\[\Theta(N^d)\]</span> time. Here at step there is
+represents dividing the problem up into <span class="math display">\[a\]</span> subproblems of size <span class="math display">\[\frac{N}{b}\]</span> in <span class="math display">\[\Theta(N^d)\]</span> time. Here at step there is
 only one subproblem <code>a = 1</code>, its size is a half of the
 initial problem <code>b = 2</code>, and all this happens in a constant
-time <code>d = 0</code>. That means that <span
-class="math display">\[\log_b{a} = d\]</span> and hence we're dealing
-with <a
-target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)#Case_2_example">case
-2</a> that results in <span
-class="math display">\[\mathcal{O}(n^{\log_b{a}} \log^{d + 1} N)=O(\log
+time <code>d = 0</code>. That means that <span class="math display">\[\log_b{a} = d\]</span> and hence we're dealing
+with <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)#Case_2_example">case
+2</a> that results in <span class="math display">\[\mathcal{O}(n^{\log_b{a}} \log^{d + 1} N)=O(\log
 N) \]</span>time complexity.</li>
-<li>Space complexity : <span
-class="math display">\[\mathcal{O}(1)\]</span> since it's a constant
+<li>Space complexity : <span class="math display">\[\mathcal{O}(1)\]</span> since it's a constant
 space solution.</li>
 <li>Runtime: 236 ms, faster than 11.72% of Python online submissions for
 Binary Search.</li>
@@ -564,8 +549,7 @@ for Binary Search.</li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="two-sum-ii---input-array-is-sorted"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/">Two
+          <h1 id="two-sum-ii---input-array-is-sorted"><a target="_blank" rel="noopener" href="https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/">Two
 Sum II - Input array is sorted</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -667,8 +651,7 @@ for Two Sum II - Input array is sorted.</li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="intersection-of-two-arrays"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/peak-index-in-a-mountain-array/">Intersection
+          <h1 id="intersection-of-two-arrays"><a target="_blank" rel="noopener" href="https://leetcode.com/problems/peak-index-in-a-mountain-array/">Intersection
 of Two Arrays</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -714,16 +697,13 @@ or more boolean <code>True</code>s, followed by 1 or more boolean
 <code>True, True, True, False</code>.</p>
 <p>We can binary search over this array of comparisons, to find the
 largest index <code>i</code> such that <code>A[i] &lt; A[i+1]</code>.
-For more on <em>binary search</em>, see the <a
-target="_blank" rel="noopener" href="https://leetcode.com/explore/learn/card/binary-search/">LeetCode
+For more on <em>binary search</em>, see the <a target="_blank" rel="noopener" href="https://leetcode.com/explore/learn/card/binary-search/">LeetCode
 explore topic here.</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">intersection</span>(<span class="params">self, nums1, nums2</span>):</span><br><span class="line">        set1 = <span class="built_in">set</span>(nums1)</span><br><span class="line">        set2 = <span class="built_in">set</span>(nums2)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">list</span>(set2 &amp; set1)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums1 = [<span class="number">4</span>, <span class="number">9</span>, <span class="number">5</span>]</span><br><span class="line">    nums2 = [<span class="number">9</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">8</span>, <span class="number">4</span>]</span><br><span class="line">    solution=Solution().intersection(nums1,nums2)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <p><strong>Complexity Analysis</strong></p>
 <ul>
 <li>Time complexity : <span class="math display">\[\mathcal{O}(n +
-m)\]</span> in the average case and <span
-class="math display">\[\mathcal{O}(n \times m)\]</span> <a
-target="_blank" rel="noopener" href="https://wiki.python.org/moin/TimeComplexity#set">in the worst case
+m)\]</span> in the average case and <span class="math display">\[\mathcal{O}(n \times m)\]</span> <a target="_blank" rel="noopener" href="https://wiki.python.org/moin/TimeComplexity#set">in the worst case
 when load factor is high enough</a>.</li>
 <li>Space complexity : <span class="math display">\[\mathcal{O}(n +
 m)\]</span> in the worst case when all elements in the arrays are
@@ -797,8 +777,7 @@ for Intersection of Two Arrays.</li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="peak-index-in-a-mountain-array"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/peak-index-in-a-mountain-array/">Peak
+          <h1 id="peak-index-in-a-mountain-array"><a target="_blank" rel="noopener" href="https://leetcode.com/problems/peak-index-in-a-mountain-array/">Peak
 Index in a Mountain Array</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -856,8 +835,7 @@ or more boolean <code>True</code>s, followed by 1 or more boolean
 <code>True, True, True, False</code>.</p>
 <p>We can binary search over this array of comparisons, to find the
 largest index <code>i</code> such that <code>A[i] &lt; A[i+1]</code>.
-For more on <em>binary search</em>, see the <a
-target="_blank" rel="noopener" href="https://leetcode.com/explore/learn/card/binary-search/">LeetCode
+For more on <em>binary search</em>, see the <a target="_blank" rel="noopener" href="https://leetcode.com/explore/learn/card/binary-search/">LeetCode
 explore topic here.</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">peakIndexInMountainArray</span>(<span class="params">self, A</span>):</span><br><span class="line">        lo, hi = <span class="number">0</span>, <span class="built_in">len</span>(A) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> lo &lt; hi:</span><br><span class="line">            mi = (lo + hi) / <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> A[mi] &lt; A[mi + <span class="number">1</span>]:</span><br><span class="line">                lo = mi + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                hi = mi</span><br><span class="line">        <span class="keyword">return</span> lo</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    A=[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">0</span>]</span><br><span class="line">    solution=Solution().peakIndexInMountainArray(A)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <p><strong>Complexity Analysis</strong></p>
@@ -934,8 +912,7 @@ for Peak Index in a Mountain Array.</li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="reverse-only-letters"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-only-letters/">Reverse Only
+          <h1 id="reverse-only-letters"><a target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-only-letters/">Reverse Only
 Letters</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -1045,8 +1022,7 @@ for Reverse Only Letters.</li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="longest-uncommon-subsequence-i"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-uncommon-subsequence-i/">Longest
+          <h1 id="longest-uncommon-subsequence-i"><a target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-uncommon-subsequence-i/">Longest
 Uncommon Subsequence I</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>

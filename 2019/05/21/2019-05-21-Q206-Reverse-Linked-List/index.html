@@ -30,8 +30,8 @@
 <meta property="article:published_time" content="2019-05-20T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-03-25T01:54:14.953Z">
 <meta property="article:author" content="Txing">
-<meta property="article:tag" content="Python">
 <meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Python">
 <meta property="article:tag" content="Easy">
 <meta property="article:tag" content="Linked List">
 <meta name="twitter:card" content="summary">
@@ -228,8 +228,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="reverse-linked-list"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-linked-list/">Reverse Linked
+        <h1 id="reverse-linked-list"><a target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-linked-list/">Reverse Linked
 List</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -261,13 +260,12 @@ forReverse Linked List.</p></li>
 <li><p>Memory Usage: 14.5 MB, less than 50.22% of Python3 online
 submissions for Reverse Linked List.</p></li>
 </ul>
-<hr />
+<hr>
 <h3 id="approach-2-recursive">Approach 2: Recursive</h3>
 <p><strong>Intuition and Algorithm</strong></p>
 <p>The recursive version is slightly trickier and the key is to work
 backwards. Assume that the rest of the list had already been reversed,
-now how do I reverse the front part? Let's assume the list is: <span
-class="math display">\[n_1 \to … \to n_{k-1} \to n_k \to n_{k+1} \to …
+now how do I reverse the front part? Let's assume the list is: <span class="math display">\[n_1 \to … \to n_{k-1} \to n_k \to n_{k+1} \to …
 \to n_m \to \phi​\]</span></p>
 <p>Assume from node <span class="math display">\[n_{k+1}\]</span> to
 <span class="math display">\[n_m\]</span> had been reversed and you are
@@ -276,8 +274,7 @@ at node <span class="math display">\[n_k\]</span>.</p>
 n_{k+1} \leftarrow … \leftarrow n_m\]</span></p>
 <p>We want <span class="math display">\[n_{k+1}\]</span>’s next node to
 point to <span class="math display">\[n_k\]</span>.</p>
-<p>So, <span class="math display">\[n_k\]</span>.next.next = <span
-class="math display">\[n_k​\]</span>;</p>
+<p>So, <span class="math display">\[n_k\]</span>.next.next = <span class="math display">\[n_k​\]</span>;</p>
 <p>Be very careful that <span class="math display">\[n_1\]</span>'s next
 must point to <span class="math display">\[\phi​\]</span>. If you forget
 about this, your linked list has a cycle in it. This bug could be caught
@@ -305,8 +302,8 @@ submissions for Reverse Linked List.</p></li>
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Python/" rel="tag"># Python</a>
               <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
               <a href="/tags/Easy/" rel="tag"># Easy</a>
               <a href="/tags/Linked-List/" rel="tag"># Linked List</a>
           </div>

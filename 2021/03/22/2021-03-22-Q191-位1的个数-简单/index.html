@@ -30,8 +30,8 @@
 <meta property="article:published_time" content="2021-03-21T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-03-25T01:54:14.986Z">
 <meta property="article:author" content="Txing">
-<meta property="article:tag" content="Python">
 <meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Python">
 <meta property="article:tag" content="Easy">
 <meta name="twitter:card" content="summary">
 
@@ -227,14 +227,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="位1的个数"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-1-bits/">191.
+        <h4 id="位1的个数"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-1-bits/">191.
 位1的个数</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
 <p>编写一个函数，输入是一个无符号整数（以二进制串的形式），返回其二进制表达式中数字位数为
-'1' 的个数（也被称为<a
-target="_blank" rel="noopener" href="https://baike.baidu.com/item/汉明重量">汉明重量</a>）。</p>
+'1' 的个数（也被称为<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/汉明重量">汉明重量</a>）。</p>
 </blockquote>
 <blockquote>
 <p><strong>Example 1:</strong></p>
@@ -270,8 +268,7 @@ Java）中，没有无符号整数类型。在这种情况下，输入和输出�
 </blockquote>
 <h3 id="approach-1-循环检查二进制位">Approach 1: 循环检查二进制位</h3>
 <p>我们可以直接循环检查给定整数 n 的二进制位的每一位是否为
-1。具体代码中，当检查第 i 位时，我们可以让 n 与 <span
-class="math display">\[2^i\]</span> 进行与运算，当且仅当 n 的第 i 位为 1
+1。具体代码中，当检查第 i 位时，我们可以让 n 与 <span class="math display">\[2^i\]</span> 进行与运算，当且仅当 n 的第 i 位为 1
 时，运算结果不为 0。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">hammingWeight</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        ret = <span class="built_in">sum</span>(<span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">32</span>) <span class="keyword">if</span> n &amp; (<span class="number">1</span> &lt;&lt; i)) </span><br><span class="line">        <span class="keyword">return</span> ret</span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="built_in">input</span> = <span class="number">11111111111111111111111111111101</span></span><br><span class="line">    solution=Solution().hammingWeight(<span class="built_in">input</span>)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
@@ -280,8 +277,7 @@ class="math display">\[2^i\]</span> 进行与运算，当且仅当 n 的第 i �
 <span class="math display">\[\text{int}\]</span>
 型的二进制位数，k=32。我们需要检查 n 的二进制位的每一位，一共需要检查 32
 位。</p></li>
-<li><p>空间复杂度：<span
-class="math display">\[O(1)\]</span>，我们只需要常数的空间保存若干变量。</p></li>
+<li><p>空间复杂度：<span class="math display">\[O(1)\]</span>，我们只需要常数的空间保存若干变量。</p></li>
 </ul>
 <h3 id="approach-2-位运算优化">Approach 2: 位运算优化</h3>
 <p>观察这个运算：<span class="math display">\[n~\&amp;~(n -
@@ -300,8 +296,7 @@ n 与 n - 1 做与运算，直到 n 变为 0 即可。因为每次运算会使�
 n)\]</span>。循环次数等于 n 的二进制位中 1 的个数，最坏情况下 n
 的二进制位全部为 1。我们需要循环 <span class="math display">\[\log
 n\]</span> 次。</li>
-<li>空间复杂度：<span
-class="math display">\[O(1)\]</span>，我们只需要常数的空间保存若干变量。</li>
+<li>空间复杂度：<span class="math display">\[O(1)\]</span>，我们只需要常数的空间保存若干变量。</li>
 </ul>
 
     </div>
@@ -312,8 +307,8 @@ class="math display">\[O(1)\]</span>，我们只需要常数的空间保存若�
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Python/" rel="tag"># Python</a>
               <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
               <a href="/tags/Easy/" rel="tag"># Easy</a>
           </div>
 

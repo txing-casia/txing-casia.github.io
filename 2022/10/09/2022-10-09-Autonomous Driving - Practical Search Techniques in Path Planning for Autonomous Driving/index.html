@@ -27,12 +27,23 @@
 <meta property="og:site_name" content="Txing">
 <meta property="og:description" content="Practical Search Techniques in Path Planning for Autonomous Driving 本文是stanford大学在 2007 DARPA Urban Challenge 中产出的一项工作，提出了著名的混合A*算法。 混合A*算法包含两个主要步骤：   求解基于改进的A*算法的粗略轨迹，节点之间在动力学上是连续的；   使用数值非">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-1.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-2.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-3.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-4.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-5.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-6.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-7.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-8.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-9.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-10.jpg">
 <meta property="article:published_time" content="2022-10-08T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-03-18T17:30:34.138Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Autonomous Driving">
 <meta property="article:tag" content="Planning">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-1.jpg">
 
 <link rel="canonical" href="https://txing-casia.github.io/2022/10/09/2022-10-09-Autonomous%20Driving%20-%20Practical%20Search%20Techniques%20in%20Path%20Planning%20for%20Autonomous%20Driving/">
 
@@ -226,8 +237,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2
-id="practical-search-techniques-in-path-planning-for-autonomous-driving">Practical
+        <h2 id="practical-search-techniques-in-path-planning-for-autonomous-driving">Practical
 Search Techniques in Path Planning for Autonomous Driving</h2>
 <p>本文是stanford大学在 2007 DARPA Urban Challenge
 中产出的一项工作，提出了著名的混合A*算法。</p>
@@ -265,9 +275,7 @@ CG)下降来局部改善解的质量，产生至少是局部最优的路径，�
 </ul>
 <h3 id="hybrid-state-a-search">2 Hybrid-State A* Search</h3>
 <ul>
-<li>本文的方法的第一阶段使用3D运动学状态空间的<span
-class="math display">\[A*\]</span>算法的变体，但修改了状态更新规则，该规则在<span
-class="math display">\[A*\]</span>的离散搜索节点中使用连续状态。</li>
+<li>本文的方法的第一阶段使用3D运动学状态空间的<span class="math display">\[A*\]</span>算法的变体，但修改了状态更新规则，该规则在<span class="math display">\[A*\]</span>的离散搜索节点中使用连续状态。</li>
 <li>由于合并了同一网格中的连续坐标状态，因此不保证损失最小解（minimal-cost
 solution），但路径一定是可行的（drivable）。</li>
 <li>搜索空间<span class="math display">\[(x,
@@ -280,9 +288,7 @@ goes both forwards and backwards. Pacific Journal of Mathematics
 145(2):367–393</li>
 </ul></li>
 <li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-1.jpg"
-alt="搜索规则对比" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-1.jpg" alt="搜索规则对比">
 <figcaption aria-hidden="true">搜索规则对比</figcaption>
 </figure></li>
 <li>算法规划向前和向后的运动，并对向后驾驶以及转换运动方向进行惩罚</li>
@@ -295,17 +301,13 @@ alt="搜索规则对比" />
 <li>对求解的 Reed-and-Shepp path
 进行碰撞检测，确定无碰撞后才会加入到路径树中。</li>
 <li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-2.jpg"
-alt="不同启发函数的对比" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-2.jpg" alt="不同启发函数的对比">
 <figcaption aria-hidden="true">不同启发函数的对比</figcaption>
 </figure></li>
 <li>出于计算的原因，不希望将Reed-Shepp展开应用于每个节点(尤其是远离目标的节点，在那里大多数这样的路径可能会穿过障碍物)。在我们的实现中，我们使用了一个简单的选择规则，其中Reed-Shepp扩展应用于每N个节点中的一个，其中N作为目标成本启发式算法的函数而减少(随着我们越来越接近目标，导致更频繁的分析扩展)。</li>
 <li>带有Reed-Shepp扩展的搜索树如下图所示。由节点的短增量扩展生成的搜索树显示在黄绿色范围内，Reed-Shepp扩展显示为通向目标的单紫色线。我们发现，搜索树的这种分析扩展在准确性和计划时间方面都带来了显著的好处。</li>
 <li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-3.jpg"
-alt="Analytic Reed-and-Shepp expansion" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-3.jpg" alt="Analytic Reed-and-Shepp expansion">
 <figcaption aria-hidden="true">Analytic Reed-and-Shepp
 expansion</figcaption>
 </figure></li>
@@ -335,19 +337,14 @@ Voronoi Diagram (GVD) 边缘（edge）的距离；</p>
 <ol type="1">
 <li><span class="math display">\[d_O \geq d_O^{max}\]</span>
 时其值为0；</li>
-<li><span
-class="math display">\[\rho_V(x,y)\in[0,1]\]</span>，并且在<span
-class="math display">\[(x,y)\]</span>处连续，因为不存在同时满足<span
-class="math display">\[d_O=d_V=0\]</span> 的情况；</li>
+<li><span class="math display">\[\rho_V(x,y)\in[0,1]\]</span>，并且在<span class="math display">\[(x,y)\]</span>处连续，因为不存在同时满足<span class="math display">\[d_O=d_V=0\]</span> 的情况；</li>
 <li>势场仅在障碍物内部取到最大值；</li>
 <li>势场仅在GVD边界上取到最小值；</li>
 </ol></li>
 <li>Voronoi场比传统势场的关键优势在于，场值与导航的可用间隙成比例。即使狭窄的开口仍然可以通航，而标准势场并不总是如此，传统势场可能封闭这些道路。</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-4.jpg"
-alt="Voronoi field" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-4.jpg" alt="Voronoi field">
 <figcaption aria-hidden="true">Voronoi field</figcaption>
 </figure>
 <h3 id="local-optimization-and-smoothing">4 Local Optimization and
@@ -377,9 +374,7 @@ y_{i}}{\Delta x_{i}} \mid\]</span> 表示顶点处的切角变化；</li>
 <li>目标函数定义为：</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-5.jpg"
-alt="目标函数" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-5.jpg" alt="目标函数">
 <figcaption aria-hidden="true">目标函数</figcaption>
 </figure>
 <p>损失函数的第一项可以高效地引导机器人移动，无论狭窄和开阔的地方都能远离障碍物；</p>
@@ -390,21 +385,15 @@ alt="目标函数" />
 <li>梯度求解：</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-6.jpg"
-alt="目标函数梯度-1" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-6.jpg" alt="目标函数梯度-1">
 <figcaption aria-hidden="true">目标函数梯度-1</figcaption>
 </figure>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-7.jpg"
-alt="目标函数梯度-2" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-7.jpg" alt="目标函数梯度-2">
 <figcaption aria-hidden="true">目标函数梯度-2</figcaption>
 </figure>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-8.jpg"
-alt="目标函数梯度-3" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-8.jpg" alt="目标函数梯度-3">
 <figcaption aria-hidden="true">目标函数梯度-3</figcaption>
 </figure>
 <ul>
@@ -418,15 +407,11 @@ the hybrid A* search, CG smoothing, and interpolation were on the order
 of 50–300ms.</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-9.jpg"
-alt="轨迹平滑" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-9.jpg" alt="轨迹平滑">
 <figcaption aria-hidden="true">轨迹平滑</figcaption>
 </figure>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-10.jpg"
-alt="轨迹案例" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221011-10.jpg" alt="轨迹案例">
 <figcaption aria-hidden="true">轨迹案例</figcaption>
 </figure>
 <h3 id="总结">总结</h3>
@@ -451,8 +436,8 @@ A*求粗略轨迹-&gt;共轭梯度轨迹平滑-&gt;非参数插值-&gt;共轭梯
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/09/30/2022-09-30-Autonomous%20Driving%20-%20From%20smart%20parking%20towards%20autonomous%20valet%20parking%20A%20survey%20challenges%20and%20future%20Works/" rel="prev" title="Autonomous Driving | From smart parking towards autonomous valet parking: A survey, challenges and future Works">
-      <i class="fa fa-chevron-left"></i> Autonomous Driving | From smart parking towards autonomous valet parking: A survey, challenges and future Works
+    <a href="/2022/09/30/2022-09-30-Autonomous%20Driving%20-%20Parallel%20Angular%20and%20Perpendicular%20Parking%20for%20Self-Driving%20Cars%20using%20Deep%20Reinforcement%20Learning/" rel="prev" title="Autonomous Driving | Parallel, Angular and Perpendicular Parking for Self-Driving Cars using Deep Reinforcement Learning">
+      <i class="fa fa-chevron-left"></i> Autonomous Driving | Parallel, Angular and Perpendicular Parking for Self-Driving Cars using Deep Reinforcement Learning
     </a></div>
       <div class="post-nav-item">
     <a href="/2022/10/14/2022-10-14-Autonomous%20Driving%20-%20Path%20Planning%20for%20Autonomous%20Vehicles%20in%20Unknown%20Semi-structured%20Environments/" rel="next" title="Autonomous Driving | Path Planning for Autonomous Vehicles in Unknown Semi-structured Environments">
