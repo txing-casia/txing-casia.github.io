@@ -226,7 +226,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="pytorch-tutorial"><a target="_blank" rel="noopener" href="https://pytorch.org/tutorials/">Pytorch Tutorial</a></h1>
+        <h1 id="pytorch-tutorial"><a
+target="_blank" rel="noopener" href="https://pytorch.org/tutorials/">Pytorch Tutorial</a></h1>
 <h2 id="tensors">Tensors</h2>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> print_function</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line"><span class="comment"># Construct a 5x3 matrix, uninitialized</span></span><br><span class="line">x = torch.empty(<span class="number">5</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Construct a randomly initialized matrix</span></span><br><span class="line">x = torch.rand(<span class="number">5</span>,<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Construct a matrix filled zeros and of dtype long</span></span><br><span class="line">x = torch.zeros(<span class="number">5</span>, <span class="number">3</span>, dtype=torch.long)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Construct a tensor directly from data</span></span><br><span class="line">x = torch.tensor([<span class="number">5.5</span>, <span class="number">3</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># or create a tensor based on an existing tensor. These methods will reuse properties of the input tensor, e.g. dtype, unless new values are provided by user</span></span><br><span class="line">x = x.new_ones(<span class="number">5</span>, <span class="number">3</span>, dtype=torch.double)      <span class="comment"># new_* methods take in sizes</span></span><br><span class="line">x = torch.randn_like(x, dtype=torch.<span class="built_in">float</span>)    <span class="comment"># override dtype!</span></span><br><span class="line"><span class="built_in">print</span>(x)                                      <span class="comment"># result has the same size</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Get its size:</span></span><br><span class="line"><span class="built_in">print</span>(x.size())</span><br><span class="line"><span class="comment"># &#x27;torch.Size&#x27; is in fact a tuple, so it supports all tuple operations.</span></span><br></pre></td></tr></table></figure>
 <h2 id="operations">Operations</h2>
@@ -352,7 +353,8 @@ its history</em>.</li>
 <p>A loss function takes the (output, target) pair of inputs, and
 computes a value that estimates how far away the output is from the
 target.</p>
-<p>There are several different <a target="_blank" rel="noopener" href="https://pytorch.org/docs/nn.html#loss-functions">loss
+<p>There are several different <a
+target="_blank" rel="noopener" href="https://pytorch.org/docs/nn.html#loss-functions">loss
 functions</a> under the nn package. A simple loss is:
 <code>nn.MSELoss</code> which computes the mean-squared error between
 the input and the target.</p>
@@ -383,7 +385,8 @@ conv1’s bias gradients before and after the backward.</p>
 <p><strong>Read Later:</strong></p>
 <p>The neural network package contains various modules and loss
 functions that form the building blocks of deep neural networks. A full
-list with documentation is <a target="_blank" rel="noopener" href="https://pytorch.org/docs/nn">here</a>.</p>
+list with documentation is <a
+target="_blank" rel="noopener" href="https://pytorch.org/docs/nn">here</a>.</p>
 <p><strong>The only thing left to learn is:</strong></p>
 <p>Updating the weights of the network</p>
 <h3 id="update-the-weights">Update the weights</h3>
@@ -400,7 +403,8 @@ implements all these methods. Using it is very simple:</p>
 <blockquote>
 <p>Observe how gradient buffers had to be manually set to zero using
 <code>optimizer.zero_grad()</code>. This is because gradients are
-accumulated as explained in <a target="_blank" rel="noopener" href="https://pytorch.org/tutorials/beginner/blitz/neural_networks_tutorial.html#backprop">Backprop</a>
+accumulated as explained in <a
+target="_blank" rel="noopener" href="https://pytorch.org/tutorials/beginner/blitz/neural_networks_tutorial.html#backprop">Backprop</a>
 section.</p>
 </blockquote>
 <h2 id="training-a-classifier">TRAINING A CLASSIFIER</h2>
@@ -522,17 +526,22 @@ level.</li>
 </ul>
 <h2 id="training-on-multiple-gpus">Training on multiple GPUs</h2>
 <p>If you want to see even more MASSIVE speedup using all of your GPUs,
-please check out <a target="_blank" rel="noopener" href="https://pytorch.org/tutorials/beginner/blitz/data_parallel_tutorial.html">Optional:
+please check out <a
+target="_blank" rel="noopener" href="https://pytorch.org/tutorials/beginner/blitz/data_parallel_tutorial.html">Optional:
 Data Parallelism</a>.</p>
 <h2 id="where-do-i-go-next">Where do I go next?</h2>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html">Train
+<li><a
+target="_blank" rel="noopener" href="https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html">Train
 neural nets to play video games</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/pytorch/examples/tree/master/imagenet">Train a
+<li><a
+target="_blank" rel="noopener" href="https://github.com/pytorch/examples/tree/master/imagenet">Train a
 state-of-the-art ResNet network on imagenet</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/pytorch/examples/tree/master/dcgan">Train a
+<li><a
+target="_blank" rel="noopener" href="https://github.com/pytorch/examples/tree/master/dcgan">Train a
 face generator using Generative Adversarial Networks</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/pytorch/examples/tree/master/word_language_model">Train
+<li><a
+target="_blank" rel="noopener" href="https://github.com/pytorch/examples/tree/master/word_language_model">Train
 a word-level language model using Recurrent LSTM networks</a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/pytorch/examples">More examples</a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/pytorch/tutorials">More
@@ -542,8 +551,9 @@ Forums</a></li>
 <li><a target="_blank" rel="noopener" href="https://pytorch.slack.com/messages/beginner/">Chat with
 other users on Slack</a></li>
 </ul>
-<hr>
-<h2 id="save-model"><a target="_blank" rel="noopener" href="https://pytorch.org/tutorials/beginner/saving_loading_models.html">Save
+<hr />
+<h2 id="save-model"><a
+target="_blank" rel="noopener" href="https://pytorch.org/tutorials/beginner/saving_loading_models.html">Save
 Model</a></h2>
 <p>In PyTorch, the learnable parameters (i.e. weights and biases) of an
 <code>torch.nn.Module</code> model are contained in the model’s
@@ -560,7 +570,8 @@ be easily saved, updated, altered, and restored, adding a great deal of
 modularity to PyTorch models and optimizers.</p>
 <p><strong>Example:</strong></p>
 <p>Let’s take a look at the <em>state_dict</em> from the simple model
-used in the <a target="_blank" rel="noopener" href="https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html#sphx-glr-beginner-blitz-cifar10-tutorial-py">Training
+used in the <a
+target="_blank" rel="noopener" href="https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html#sphx-glr-beginner-blitz-cifar10-tutorial-py">Training
 a classifier</a> tutorial.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Define model</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TheModelClass</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(TheModelClass, self).__init__()</span><br><span class="line">        self.conv1 = nn.Conv2d(<span class="number">3</span>, <span class="number">6</span>, <span class="number">5</span>)</span><br><span class="line">        self.pool = nn.MaxPool2d(<span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line">        self.conv2 = nn.Conv2d(<span class="number">6</span>, <span class="number">16</span>, <span class="number">5</span>)</span><br><span class="line">        self.fc1 = nn.Linear(<span class="number">16</span> * <span class="number">5</span> * <span class="number">5</span>, <span class="number">120</span>)</span><br><span class="line">        self.fc2 = nn.Linear(<span class="number">120</span>, <span class="number">84</span>)</span><br><span class="line">        self.fc3 = nn.Linear(<span class="number">84</span>, <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = self.pool(F.relu(self.conv1(x)))</span><br><span class="line">        x = self.pool(F.relu(self.conv2(x)))</span><br><span class="line">        x = x.view(-<span class="number">1</span>, <span class="number">16</span> * <span class="number">5</span> * <span class="number">5</span>)</span><br><span class="line">        x = F.relu(self.fc1(x))</span><br><span class="line">        x = F.relu(self.fc2(x))</span><br><span class="line">        x = self.fc3(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialize model</span></span><br><span class="line">model = TheModelClass()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialize optimizer</span></span><br><span class="line">optimizer = optim.SGD(model.parameters(), lr=<span class="number">0.001</span>, momentum=<span class="number">0.9</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print model&#x27;s state_dict</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Model&#x27;s state_dict:&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> param_tensor <span class="keyword">in</span> model.state_dict():</span><br><span class="line">    <span class="built_in">print</span>(param_tensor, <span class="string">&quot;\t&quot;</span>, model.state_dict()[param_tensor].size())</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print optimizer&#x27;s state_dict</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Optimizer&#x27;s state_dict:&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> var_name <span class="keyword">in</span> optimizer.state_dict():</span><br><span class="line">    <span class="built_in">print</span>(var_name, <span class="string">&quot;\t&quot;</span>, optimizer.state_dict()[var_name])</span><br></pre></td></tr></table></figure>
 <p><strong>Save:</strong></p>
@@ -591,7 +602,8 @@ using<code>model.load_state_dict(PATH)</code>.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Model class must be defined somewhere</span></span><br><span class="line">model = torch.load(PATH)</span><br><span class="line">model.<span class="built_in">eval</span>()</span><br></pre></td></tr></table></figure>
 <p>This save/load process uses the most intuitive syntax and involves
 the least amount of code. Saving a model in this way will save the
-entire module using Python’s <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/pickle.html">pickle</a> module.
+entire module using Python’s <a
+target="_blank" rel="noopener" href="https://docs.python.org/3/library/pickle.html">pickle</a> module.
 The disadvantage of this approach is that the serialized data is bound
 to the specific classes and the exact directory structure used when the
 model is saved. The reason for this is because pickle does not save the

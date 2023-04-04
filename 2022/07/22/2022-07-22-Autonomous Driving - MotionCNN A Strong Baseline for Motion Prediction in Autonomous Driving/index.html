@@ -27,15 +27,12 @@
 <meta property="og:site_name" content="Txing">
 <meta property="og:description" content="MotionCNN: A Strong Baseline for Motion Prediction in Autonomous Driving 1 Introduction  Motion prediction 目前仍然是一个困难的任务，本文提出了一个可以进行多模式的行为预测（multimodal motion prediction）的较强的baseline (based purel">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220722-1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220722-2.png">
 <meta property="article:published_time" content="2022-07-21T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-03-25T01:54:15.013Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Imitation Learning">
 <meta property="article:tag" content="Autonomous Driving">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220722-1.png">
 
 <link rel="canonical" href="https://txing-casia.github.io/2022/07/22/2022-07-22-Autonomous%20Driving%20-%20MotionCNN%20A%20Strong%20Baseline%20for%20Motion%20Prediction%20in%20Autonomous%20Driving/">
 
@@ -229,17 +226,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="motioncnn-a-strong-baseline-for-motion-prediction-in-autonomous-driving">MotionCNN:
+        <h2
+id="motioncnn-a-strong-baseline-for-motion-prediction-in-autonomous-driving">MotionCNN:
 A Strong Baseline for Motion Prediction in Autonomous Driving</h2>
 <h3 id="introduction">1 Introduction</h3>
 <ul>
 <li>Motion prediction
 目前仍然是一个困难的任务，本文提出了一个可以进行多模式的行为预测（multimodal
 motion prediction）的较强的baseline (based purely on Convolutional
-Neural Networks (CNNs)<br>
+Neural Networks (CNNs)<br />
 </li>
 <li>算法在 2021 Waymo Open Dataset Motion Prediction Challenge
-取得第三名。相关代码见<a target="_blank" rel="noopener" href="https://github.com/kbrodt/waymo-motion-prediction-2021">Github</a></li>
+取得第三名。相关代码见<a
+target="_blank" rel="noopener" href="https://github.com/kbrodt/waymo-motion-prediction-2021">Github</a></li>
 <li>运动预测任务最重要的一些方法：
 <ul>
 <li>birds-eye-view rasterized scene representations [15, 6, 4, 11, 18,
@@ -259,23 +258,30 @@ Neural Networks (CNNs)<br>
 <li>在ImageNet上预训练</li>
 <li>真实的行为难以预测，因此输出K个不同的行为假设</li>
 <li>输入：多通道栅格化图像</li>
-<li>输出：预测的K条轨迹，并带有可信度<span class="math display">\[c_1,c_2,...,c_k\]</span>，可信度用softmax归一化，满足<span class="math display">\[\sum_k c_k=1\]</span></li>
+<li>输出：预测的K条轨迹，并带有可信度<span
+class="math display">\[c_1,c_2,...,c_k\]</span>，可信度用softmax归一化，满足<span
+class="math display">\[\sum_k c_k=1\]</span></li>
 </ul>
 <h4 id="loss-function">2.3 Loss function</h4>
 <ul>
-<li><p>使用k个高斯分布，网络输出高斯分布的均值，将每个高斯的协方差固定为单位矩阵<span class="math display">\[I\]</span></p></li>
+<li><p>使用k个高斯分布，网络输出高斯分布的均值，将每个高斯的协方差固定为单位矩阵<span
+class="math display">\[I\]</span></p></li>
 <li><p>损失函数使用混合高斯分布的负的log似然度negative log-likelihood
-(NLL)，混合高斯由真实轨迹坐标定义<br>
+(NLL)，混合高斯由真实轨迹坐标定义<br />
 </p></li>
-<li><p>给定ground truth轨迹：<span class="math display">\[X^{gt}=[(x_1,y_1),...,(x_T,y_T)]\]</span></p></li>
-<li><p>给定K个预测的假设轨迹：<span class="math display">\[X_k=[(x_{k,1},y_{k,1}),...,(x_{k,T},y_{k,T})],k=1,...,K\]</span></p></li>
+<li><p>给定ground truth轨迹：<span
+class="math display">\[X^{gt}=[(x_1,y_1),...,(x_T,y_T)]\]</span></p></li>
+<li><p>给定K个预测的假设轨迹：<span
+class="math display">\[X_k=[(x_{k,1},y_{k,1}),...,(x_{k,T},y_{k,T})],k=1,...,K\]</span></p></li>
 <li><p>计算预测高斯混合下真实轨迹的负对数概率，其均值等于预测轨迹，单位矩阵I为协方差:compute
 negative log probability of the ground truth trajectory under the
 predicted mixture of Gaussians with the means equal to the predicted
-trajectories and the identity matrix I as covariance: <span class="math display">\[
+trajectories and the identity matrix I as covariance: <span
+class="math display">\[
 L=-\log P(X^{gt})=-\log\sum_k c_k \mathcal{N}(X^{gt};\mu=X_k,\Sigma=I)
 \]</span></p></li>
-<li><p>损失函数可以进一步分解为1维高斯的乘积： <span class="math display">\[
+<li><p>损失函数可以进一步分解为1维高斯的乘积： <span
+class="math display">\[
 L=-\log \sum_k c_k\prod
 \mathcal{N}(x_t^{gt};x_{k,t},1)\mathcal{N}(y_t^{gt};y_{k,t},1)\\
 =-\log \sum_k \exp \bigg(\log(c_k)-\frac{1}{2}\sum_{t=1}^T
@@ -298,27 +304,27 @@ Benjamin Caine, Vijay Vasudevan, Wei Han, Jiquan Ngiam, Hang Zhao,
 Aleksei Timofeev, Scott Ettinger, Maxim Krivokon, Amy Gao, Aditya Joshi,
 Sheng Zhao, Shuyang Cheng, Yu Zhang, Jonathon Shlens, Zhifeng Chen, and
 Dragomir Anguelov. Scalability in perception for autonomous driving:
-Waymo open dataset, 2020. 3, 4<br>
+Waymo open dataset, 2020. 3, 4<br />
 </li>
 <li>[7]. Scott Ettinger, Shuyang Cheng, Benjamin Caine, Chenxi Liu, Hang
 Zhao, Sabeek Pradhan, Yuning Chai, Ben Sapp, Charles Qi, Yin Zhou, et
 al. Large scale interactive motion forecasting for autonomous driving:
 The waymo open motion dataset. arXiv preprint arXiv:2104.10133, 2021. 1,
-2, 3, 4<br>
+2, 3, 4<br />
 </li>
 </ul></li>
 <li>Waymo数据包括：
 <ul>
-<li>object trajectories<br>
+<li>object trajectories<br />
 </li>
 <li>3D maps for 103354 segments</li>
 <li>Each segment is a 20 seconds recording of an object trajectory at
-10Hz<br>
+10Hz<br />
 </li>
 <li>map data for the area covered by the segment</li>
 <li>A single sample comprises 1 second of history and 8 seconds of
 future data obtained by breaking the segments into 9-second windows with
-5 second overlap<br>
+5 second overlap<br />
 </li>
 <li>每个这样的样本包含多达8个标记为“有效”的代理，模型需要预测它们在未来8秒内的位置。Every
 such sample contains up to 8 agents marked as ”valid” for which the
@@ -327,21 +333,25 @@ future.</li>
 </ul></li>
 <li>Rasterisation details
 <ul>
-<li>栅格尺寸：224 × 224 × (3 + 2T )，<span class="math display">\[T=11\]</span>​是快照（snapshot）数，3是RGB图像的3个通道，包括road
+<li>栅格尺寸：224 × 224 × (3 + 2T )，<span
+class="math display">\[T=11\]</span>​是快照（snapshot）数，3是RGB图像的3个通道，包括road
 lines, crosswalks, traffic
 lights等；每个历史快照通过两个额外通道表示：（1）The mask representing
 the location of the target agent. （2）the mask representing all other
-agents nearby<br>
+agents nearby<br />
 </li>
-<li>智能体位于坐标<span class="math display">\[[61,112]\]</span>，其速度与图像的X轴对齐</li>
+<li>智能体位于坐标<span
+class="math display">\[[61,112]\]</span>，其速度与图像的X轴对齐</li>
 </ul></li>
 </ul>
 <h4 id="metrics">3.2 Metrics</h4>
 <ul>
 <li>预测的轨迹点下采样至2Hz。从预测的80个点产生16个2维坐标的子集被用于计算测试和验证度量</li>
-<li>最小化Average Displacement Error：<span class="math display">\[minADE=\min_k \frac{1}{T} \mid\mid X^{gt} -X
+<li>最小化Average Displacement Error：<span
+class="math display">\[minADE=\min_k \frac{1}{T} \mid\mid X^{gt} -X
 \mid\mid_2\]</span></li>
-<li>最小化Final Displacement Error (FDE): <span class="math display">\[minFDE=\min_k \mid\mid x_T^{gt}- x_T
+<li>最小化Final Displacement Error (FDE): <span
+class="math display">\[minFDE=\min_k \mid\mid x_T^{gt}- x_T
 \mid\mid_2\]</span></li>
 <li>Miss Rate(MR) and mean average precision (mAP) in [7]
 <ul>
@@ -371,12 +381,16 @@ validation loss values during training.</p>
 <p>In Tab. 2 we also provide more detailed evaluation results for
 different object types separately.</p>
 <figure>
-<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220722-1.png" alt="Quantitative evaluation on test and validation sets of Waymo Open Motion Dataset">
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220722-1.png"
+alt="Quantitative evaluation on test and validation sets of Waymo Open Motion Dataset" />
 <figcaption aria-hidden="true">Quantitative evaluation on test and
 validation sets of Waymo Open Motion Dataset</figcaption>
 </figure>
 <figure>
-<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220722-2.png" alt="Detailed evaluation of our MotionCNN-Xception71 model on test and validation sets of Waymo Open Motion Dataset">
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220722-2.png"
+alt="Detailed evaluation of our MotionCNN-Xception71 model on test and validation sets of Waymo Open Motion Dataset" />
 <figcaption aria-hidden="true">Detailed evaluation of our
 MotionCNN-Xception71 model on test and validation sets of Waymo Open
 Motion Dataset</figcaption>
@@ -404,12 +418,12 @@ Motion Dataset</figcaption>
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/07/16/2022-07-16-Autonomous%20Driving%20-%20ChauffeurNet%20Learning%20to%20Drive%20by%20Imitating%20the%20Best%20and%20Synthesizing%20the%20Worst/" rel="prev" title="Autonomous Driving | ChauffeurNet: Learning to Drive by Imitating the Best and Synthesizing the Worst (Waymo, 2018)">
-      <i class="fa fa-chevron-left"></i> Autonomous Driving | ChauffeurNet: Learning to Drive by Imitating the Best and Synthesizing the Worst (Waymo, 2018)
+    <a href="/2022/07/22/2022-07-22-Network%20Structure%20-%20A%20ConvNet%20for%20the%202020s/" rel="prev" title="Network Structure | A ConvNet for the 2020s (Facebook, 2022)">
+      <i class="fa fa-chevron-left"></i> Network Structure | A ConvNet for the 2020s (Facebook, 2022)
     </a></div>
       <div class="post-nav-item">
-    <a href="/2022/07/22/2022-07-22-Network%20Structure%20-%20A%20ConvNet%20for%20the%202020s/" rel="next" title="Network Structure | A ConvNet for the 2020s (Facebook, 2022)">
-      Network Structure | A ConvNet for the 2020s (Facebook, 2022) <i class="fa fa-chevron-right"></i>
+    <a href="/2022/07/23/2022-07-23-Autonomous%20Driving%20-%20A%20Review%20of%20Motion%20Planning%20for%20Highway%20Autonomous%20Driving/" rel="next" title="Autonomous Driving | A Review of Motion Planning for Highway Autonomous Driving">
+      Autonomous Driving | A Review of Motion Planning for Highway Autonomous Driving <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>

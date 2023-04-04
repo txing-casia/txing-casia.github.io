@@ -233,7 +233,8 @@ Constrain Cognitive Rule Structures</h1>
 <p>低层、高层认知之间的影响。</p>
 <h2 id="主要工作">主要工作</h2>
 <p>利用贝叶斯推断做规则结构的聚类。对每个输入维度单独用一个专家判别器判断sample是否属于本规则，输出为0或者1。</p>
-<p>最后用加权的形式综合各个专家的观点<span class="math display">\[\pi(a)=w_C(t)\pi_C(a)+(1-w_C(t))\pi_S(a)\]</span>（两个专家情况）</p>
+<p>最后用加权的形式综合各个专家的观点<span
+class="math display">\[\pi(a)=w_C(t)\pi_C(a)+(1-w_C(t))\pi_S(a)\]</span>（两个专家情况）</p>
 <p>然后对权重进行更新 <span class="math display">\[
 w_C(t+1)=\frac{w_C(t)p(r_t|S_t,a_t,Color)}{w_C(t)p(r_t|S_t,a_t,Color)+(1-w_C(t))p(r_t|S_t,a_t,Shape)}
 \]</span></p>

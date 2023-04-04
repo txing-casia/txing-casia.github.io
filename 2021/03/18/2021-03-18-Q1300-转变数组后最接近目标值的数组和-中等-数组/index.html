@@ -30,8 +30,8 @@
 <meta property="article:published_time" content="2021-03-17T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-03-25T01:54:14.985Z">
 <meta property="article:author" content="Txing">
-<meta property="article:tag" content="Algorithm">
 <meta property="article:tag" content="Python">
+<meta property="article:tag" content="Algorithm">
 <meta property="article:tag" content="Medium">
 <meta name="twitter:card" content="summary">
 
@@ -227,7 +227,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="转变数组后最接近目标值的数组和"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sum-of-mutated-array-closest-to-target/">1300.
+        <h4 id="转变数组后最接近目标值的数组和"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sum-of-mutated-array-closest-to-target/">1300.
 转变数组后最接近目标值的数组和</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -260,7 +261,8 @@
 </ul>
 </blockquote>
 <h3 id="approach-1-排序文件夹">Approach 1: 排序文件夹</h3>
-<p>由于数组 arr 中每个元素值的范围是 [1,<span class="math display">\[10^5\]</span>]，在可以直接枚举的范围内，因此我们可以对所有可能作为
+<p>由于数组 arr 中每个元素值的范围是 [1,<span
+class="math display">\[10^5\]</span>]，在可以直接枚举的范围内，因此我们可以对所有可能作为
 value 的值进行枚举。</p>
 <p>那么 value 值的上下界是多少呢？我们需要进行一些分析：</p>
 <ul>
@@ -296,11 +298,14 @@ arr[0] + ... + arr[i - 1] + x \times (n - i)
 <ul>
 <li>时间复杂度：<span class="math display">\[O((N + C)\log
 N)\]</span>，其中 N 是数组 arr 的长度，C 是一个常数，为数组 arr
-中的最大值，不会超过 10^5 。排序需要的时间复杂度为 <span class="math display">\[O(N \log N)\]</span>，二分查找的单次时间复杂度为
+中的最大值，不会超过 10^5 。排序需要的时间复杂度为 <span
+class="math display">\[O(N \log N)\]</span>，二分查找的单次时间复杂度为
 <span class="math display">\[O(\log N)\]</span>，需要进行 C 次。</li>
 <li>空间复杂度：<span class="math display">\[O(N)\]</span>，我们需要
-O(N)O(N) 的空间用来存储数组 arr 的前缀和，排序需要 <span class="math display">\[O(\log N)\]</span>
-的栈空间，因此最后总空间复杂度为 <span class="math display">\[O(N)\]</span>。</li>
+O(N)O(N) 的空间用来存储数组 arr 的前缀和，排序需要 <span
+class="math display">\[O(\log N)\]</span>
+的栈空间，因此最后总空间复杂度为 <span
+class="math display">\[O(N)\]</span>。</li>
 </ul>
 <h3 id="approach-2-双重二分查找">Approach 2: 双重二分查找</h3>
 <p>方法一的枚举策略建立在数组 arr 的元素范围不大的条件之上。如果数组 arr
@@ -335,11 +340,14 @@ value_lower，并直接通过 value_lower + 1 计算出 value_upper
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：<span class="math display">\[O(N\log N)\]</span>，其中 N
-是数组 arr 的长度。排序需要的时间复杂度为 <span class="math display">\[O(N \log N)\]</span>，外层二分查找的时间复杂度为
+是数组 arr 的长度。排序需要的时间复杂度为 <span
+class="math display">\[O(N \log N)\]</span>，外层二分查找的时间复杂度为
 <span class="math display">\[O(\log
-C)\]</span>，内层二分查找的时间复杂度为 <span class="math display">\[O(\log N)\]</span>，它们的乘积在数量级上小于
+C)\]</span>，内层二分查找的时间复杂度为 <span
+class="math display">\[O(\log N)\]</span>，它们的乘积在数量级上小于
 <span class="math display">\[O(N \log N)\]</span>。</li>
-<li>空间复杂度：<span class="math display">\[O(N)\]</span>。分析同方法一。</li>
+<li>空间复杂度：<span
+class="math display">\[O(N)\]</span>。分析同方法一。</li>
 </ul>
 
     </div>
@@ -350,8 +358,8 @@ C)\]</span>，内层二分查找的时间复杂度为 <span class="math display"
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
               <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
               <a href="/tags/Medium/" rel="tag"># Medium</a>
           </div>
 

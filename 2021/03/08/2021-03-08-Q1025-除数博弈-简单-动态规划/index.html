@@ -30,8 +30,8 @@
 <meta property="article:published_time" content="2021-03-07T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-03-25T01:54:14.982Z">
 <meta property="article:author" content="Txing">
-<meta property="article:tag" content="Algorithm">
 <meta property="article:tag" content="Python">
+<meta property="article:tag" content="Algorithm">
 <meta property="article:tag" content="Easy">
 <meta property="article:tag" content="Dynamic Planning">
 <meta name="twitter:card" content="summary">
@@ -228,7 +228,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="除数博弈"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/divisor-game/">1025.
+        <h4 id="除数博弈"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/divisor-game/">1025.
 除数博弈</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -258,35 +259,53 @@ False。假设两个玩家都以最佳状态参与游戏。</p>
 <h3 id="approach-1-归纳法">Approach 1: 归纳法</h3>
 <p>博弈类的问题常常让我们摸不着头脑。当我们没有解题思路的时候，不妨试着写几项试试：</p>
 <ul>
-<li>N=1 的时候，区间 (0, 1) 中没有整数是 n 的因数，所以此时 <span class="math display">\[\text{Alice}\]</span> 败。</li>
+<li>N=1 的时候，区间 (0, 1) 中没有整数是 n 的因数，所以此时 <span
+class="math display">\[\text{Alice}\]</span> 败。</li>
 <li>N = 2 的时候，<span class="math display">\[\text{Alice}\]</span>
 只能拿 1，N 变成 1，<span class="math display">\[\text{Bob}\]</span>
 无法继续操作，故<span class="math display">\[ \text{Alice}\]</span>
 胜。</li>
 <li>N = 3 的时候，<span class="math display">\[\text{Alice}\]</span>
-只能拿 1，N 变成 2 ，根据 N = 2 的结论，我们知道此时 <span class="math display">\[\text{Bob}\]</span> 会获胜，<span class="math display">\[\text{Alice}\]</span> 败。</li>
+只能拿 1，N 变成 2 ，根据 N = 2 的结论，我们知道此时 <span
+class="math display">\[\text{Bob}\]</span> 会获胜，<span
+class="math display">\[\text{Alice}\]</span> 败。</li>
 <li>N = 4 的时候，<span class="math display">\[\text{Alice}\]</span>
 能拿 1 或 2 ，如果 <span class="math display">\[\text{Alice}\]</span> 拿
 1，根据 N=3 的结论，<span class="math display">\[\text{Bob}\]</span>
 会失败，<span class="math display">\[\text{Alice}\]</span> 会获胜。</li>
 <li>N=5 的时候，<span class="math display">\[\text{Alice}\]</span>
-只能拿 1，根据 N=4 的结论，<span class="math display">\[\text{Alice}\]</span> 会失败。 ......</li>
+只能拿 1，根据 N=4 的结论，<span
+class="math display">\[\text{Alice}\]</span> 会失败。 ......</li>
 </ul>
 <p>写到这里，也许你有了一些猜想。没关系，请大胆地猜想，在这种情况下大胆地猜想是
-AC 的第一步。也许你会发现这样一个现象：N 为奇数的时候 <span class="math display">\[\text{Alice}\]</span>（先手）必败，N 为偶数的时候
+AC 的第一步。也许你会发现这样一个现象：N 为奇数的时候 <span
+class="math display">\[\text{Alice}\]</span>（先手）必败，N 为偶数的时候
 <span class="math display">\[\text{Alice}\]</span> 必胜。
 这个猜想是否正确呢？下面我们来想办法证明它。</p>
 <p><strong>证明</strong></p>
 <ul>
-<li><p><span class="math display">\[N = 1\]</span> 和 <span class="math display">\[N = 2 \]</span>时结论成立。</p></li>
-<li><p><span class="math display">\[N &gt; 2\]</span> 时，假设 <span class="math display">\[N \leq k\]</span> 时该结论成立，则 <span class="math display">\[N = k + 1\]</span> 时：</p>
+<li><p><span class="math display">\[N = 1\]</span> 和 <span
+class="math display">\[N = 2 \]</span>时结论成立。</p></li>
+<li><p><span class="math display">\[N &gt; 2\]</span> 时，假设 <span
+class="math display">\[N \leq k\]</span> 时该结论成立，则 <span
+class="math display">\[N = k + 1\]</span> 时：</p>
 <ul>
 <li>如果 k 为偶数，则 <span class="math display">\[k + 1\]</span>
 为奇数，x 是 <span class="math display">\[k + 1\]</span>
-的因数，只可能是奇数，而奇数减去奇数等于偶数，且 <span class="math display">\[k + 1 - x \leq k\]</span>，故轮到 <span class="math display">\[\text{Bob}\]</span>
+的因数，只可能是奇数，而奇数减去奇数等于偶数，且 <span
+class="math display">\[k + 1 - x \leq k\]</span>，故轮到 <span
+class="math display">\[\text{Bob}\]</span>
 的时候都是偶数。而根据我们的猜想假设 <span class="math display">\[N\leq
-k\]</span> 的时候偶数的时候先手必胜，故此时无论 <span class="math display">\[\text{Alice}\]</span> 拿走什么，<span class="math display">\[\text{Bob}\]</span> 都会处于必胜态，所以<span class="math display">\[\text{Alice}\]</span> 处于必败态。</li>
-<li>如果 k 为奇数，则 k + 1 为偶数，x 可以是奇数也可以是偶数，若 <span class="math display">\[\text{Alice}\]</span> 减去一个奇数，那么 <span class="math display">\[k + 1 - x\]</span> 是一个小于等于 <span class="math display">\[k\]</span> 的奇数，此时 <span class="math display">\[\text{Bob}\]</span> 占有它，处于必败态，则 <span class="math display">\[\text{Alice}\]</span> 处于必胜态。
+k\]</span> 的时候偶数的时候先手必胜，故此时无论 <span
+class="math display">\[\text{Alice}\]</span> 拿走什么，<span
+class="math display">\[\text{Bob}\]</span> 都会处于必胜态，所以<span
+class="math display">\[\text{Alice}\]</span> 处于必败态。</li>
+<li>如果 k 为奇数，则 k + 1 为偶数，x 可以是奇数也可以是偶数，若 <span
+class="math display">\[\text{Alice}\]</span> 减去一个奇数，那么 <span
+class="math display">\[k + 1 - x\]</span> 是一个小于等于 <span
+class="math display">\[k\]</span> 的奇数，此时 <span
+class="math display">\[\text{Bob}\]</span> 占有它，处于必败态，则 <span
+class="math display">\[\text{Alice}\]</span> 处于必胜态。
 综上所述，这个猜想是正确的。</li>
 </ul></li>
 </ul>
@@ -298,23 +317,33 @@ k\]</span> 的时候偶数的时候先手必胜，故此时无论 <span class="m
 <li><p>空间复杂度：<span class="math display">\[O(1)\]</span></p></li>
 </ul>
 <h3 id="approach-2-动态规划">Approach 2: 动态规划</h3>
-<p>在「方法一」中，我们写出了前面几项的答案，在这个过程中我们发现，<span class="math display">\[\text{Alice}\]</span> 处在 <span class="math display">\[N = k\]</span>
+<p>在「方法一」中，我们写出了前面几项的答案，在这个过程中我们发现，<span
+class="math display">\[\text{Alice}\]</span> 处在 <span
+class="math display">\[N = k\]</span>
 的状态时，他（她）做一步操作，必然使得 Bob 处于 N = m (m &lt; k)
 的状态。因此我们只要看是否存在一个 m 是必败的状态，那么 Alice
-直接执行对应的操作让当前的数字变成 m，<span class="math display">\[\text{Alice}\]</span>
-就必胜了，如果没有任何一个是必败的状态的话，说明 <span class="math display">\[\text{Alice}\]</span>
-无论怎么进行操作，最后都会让 <span class="math display">\[\text{Bob}\]</span> 处于必胜的状态，此时 <span class="math display">\[\text{Alice}\]</span> 是必败的。</p>
+直接执行对应的操作让当前的数字变成 m，<span
+class="math display">\[\text{Alice}\]</span>
+就必胜了，如果没有任何一个是必败的状态的话，说明 <span
+class="math display">\[\text{Alice}\]</span>
+无论怎么进行操作，最后都会让 <span
+class="math display">\[\text{Bob}\]</span> 处于必胜的状态，此时 <span
+class="math display">\[\text{Alice}\]</span> 是必败的。</p>
 <p>结合以上我们定义 <span class="math display">\[f[i]\]</span>
-表示当前数字 i 的时候先手是处于必胜态还是必败态，<span class="math display">\[\texttt{true}\]</span> 表示先手必胜，<span class="math display">\[\texttt{false}\]</span>
+表示当前数字 i 的时候先手是处于必胜态还是必败态，<span
+class="math display">\[\texttt{true}\]</span> 表示先手必胜，<span
+class="math display">\[\texttt{false}\]</span>
 表示先手必败，从前往后递推，根据我们上文的分析，枚举 i 在 (0, i) 中 i
 的因数 j ，看是否存在 <span class="math display">\[f[i-j]\]</span>
 为必败态即可。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">divisorGame1</span>(<span class="params">self, N: <span class="built_in">int</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">    f=[<span class="literal">False</span>]*(N+<span class="number">5</span>)</span><br><span class="line">    f[<span class="number">1</span>]=<span class="literal">False</span></span><br><span class="line">    f[<span class="number">2</span>]=<span class="literal">True</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>,N+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,i):</span><br><span class="line">            <span class="keyword">if</span> i%j==<span class="number">0</span> <span class="keyword">and</span> <span class="keyword">not</span>(f[i-j]):</span><br><span class="line">                f[i]=<span class="literal">True</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> f[N]</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li>时间复杂度：<span class="math display">\[O(n^2)\]</span>。递推的时候一共有 n
+<li>时间复杂度：<span
+class="math display">\[O(n^2)\]</span>。递推的时候一共有 n
 个状态要计算，每个状态需要 <span class="math display">\[O(n)\]</span>
-的时间枚举因数，因此总时间复杂度为 <span class="math display">\[O(n^2)\]</span></li>
+的时间枚举因数，因此总时间复杂度为 <span
+class="math display">\[O(n^2)\]</span></li>
 <li>空间复杂度：<span class="math display">\[O(n)\]</span>。我们需要
 <span class="math display">\[O(n)\]</span> 的空间存储递推数组 f
 的值。</li>
@@ -328,8 +357,8 @@ k\]</span> 的时候偶数的时候先手必胜，故此时无论 <span class="m
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
               <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
               <a href="/tags/Easy/" rel="tag"># Easy</a>
               <a href="/tags/Dynamic-Planning/" rel="tag"># Dynamic Planning</a>
           </div>

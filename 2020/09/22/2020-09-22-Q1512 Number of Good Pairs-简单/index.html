@@ -30,8 +30,8 @@
 <meta property="article:published_time" content="2020-09-21T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-03-25T01:54:14.973Z">
 <meta property="article:author" content="Txing">
-<meta property="article:tag" content="Algorithm">
 <meta property="article:tag" content="Python">
+<meta property="article:tag" content="Algorithm">
 <meta property="article:tag" content="Easy">
 <meta name="twitter:card" content="summary">
 
@@ -227,7 +227,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="number-of-good-pairs"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-good-pairs/">Number of
+        <h1 id="number-of-good-pairs"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-good-pairs/">Number of
 Good Pairs</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -259,7 +260,8 @@ are good.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numIdenticalPairs</span>(<span class="params">self, nums</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        n=<span class="built_in">len</span>(nums)</span><br><span class="line">        ans=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>,n):</span><br><span class="line">                <span class="keyword">if</span> nums[i]==nums[j]:</span><br><span class="line">                    ans+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums =[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>]</span><br><span class="line">    solution=Solution().numIdenticalPairs(nums)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li><p>时间复杂度：<span class="math display">\[O(\frac{N(N+1)}{2})\]</span></p></li>
+<li><p>时间复杂度：<span
+class="math display">\[O(\frac{N(N+1)}{2})\]</span></p></li>
 <li><p>空间复杂度：O(1)</p></li>
 </ul>
 <h2 id="approach-2-组合计数">Approach 2: 组合计数</h2>
@@ -267,7 +269,8 @@ are good.</p>
 v，那么满足题目中所说的 <span class="math display">\[{\rm nums}[i] =
 {\rm nums}[j] = k(i &lt; j)\]</span> 的 <span class="math display">\[(i,
 j)\]</span> 的数量就是 <span class="math display">\[\frac{v(v - 1)}{2}
-\]</span>，即 k 这个数值对答案的贡献是 <span class="math display">\[\frac{v(v -
+\]</span>，即 k 这个数值对答案的贡献是 <span
+class="math display">\[\frac{v(v -
 1)}{2}\]</span>。我们只需要把所有数值的贡献相加，即可得到答案。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numIdenticalPairs</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        m = collections.Counter(nums)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(v * (v - <span class="number">1</span>) // <span class="number">2</span> <span class="keyword">for</span> k, v <span class="keyword">in</span> m.items())</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
@@ -284,8 +287,8 @@ j)\]</span> 的数量就是 <span class="math display">\[\frac{v(v - 1)}{2}
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
               <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
               <a href="/tags/Easy/" rel="tag"># Easy</a>
           </div>
 

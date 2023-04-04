@@ -30,8 +30,8 @@
 <meta property="article:published_time" content="2021-05-06T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-03-25T01:54:14.997Z">
 <meta property="article:author" content="Txing">
-<meta property="article:tag" content="Algorithm">
 <meta property="article:tag" content="Python">
+<meta property="article:tag" content="Algorithm">
 <meta property="article:tag" content="Medium">
 <meta property="article:tag" content="Greedy">
 <meta name="twitter:card" content="summary">
@@ -228,7 +228,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="有序数组中差绝对值之和"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sum-of-absolute-differences-in-a-sorted-array/">1685.
+        <h4 id="有序数组中差绝对值之和"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sum-of-absolute-differences-in-a-sorted-array/">1685.
 有序数组中差绝对值之和</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -262,15 +263,21 @@ result[0] = |2-2| + |2-3| + |2-5| = 0 + 1 + 3 = 4， result[1] = |3-2| +
 <p>这样做的时间复杂度是O(n^2)，提示超出了时间限制，于是我们摄像能不能减少时间复杂度。</p>
 <p>利用非递减数组的性质，可以提前计算前i项和 prefixSum[i]
 ，将后续的计算简化为：</p>
-<p>对 sums[i] 左边的元素，单项差值为 <span class="math display">\[sums[i]-sums[j], (N \geq i&gt;j)\]</span>，前 i
-项求和为 <span class="math display">\[i*sums[i]-sum(sums[j])\]</span></p>
-<p>对 sums[i] 右边的元素，单项差值为 <span class="math display">\[sums[j]-sums[i],(N\geq j&gt;i)\]</span>，前 i
-项求和为 <span class="math display">\[sum(sums[j])-(N-i-1)*sums[i]\]</span></p>
+<p>对 sums[i] 左边的元素，单项差值为 <span
+class="math display">\[sums[i]-sums[j], (N \geq i&gt;j)\]</span>，前 i
+项求和为 <span
+class="math display">\[i*sums[i]-sum(sums[j])\]</span></p>
+<p>对 sums[i] 右边的元素，单项差值为 <span
+class="math display">\[sums[j]-sums[i],(N\geq j&gt;i)\]</span>，前 i
+项求和为 <span
+class="math display">\[sum(sums[j])-(N-i-1)*sums[i]\]</span></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getSumAbsoluteDifferences</span>(<span class="params">self, nums</span>):</span><br><span class="line">        N = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="built_in">sum</span> = <span class="number">0</span></span><br><span class="line">        output = []</span><br><span class="line">        prefixSum =[]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">            <span class="built_in">sum</span> += nums[i]</span><br><span class="line">            prefixSum.append(<span class="built_in">sum</span>) <span class="comment"># 前i项和</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">            output.append((i+<span class="number">1</span>)*nums[i]-prefixSum[i] + prefixSum[N-<span class="number">1</span>]-prefixSum[i]-nums[i]*(N-<span class="number">1</span>-i))</span><br><span class="line">        <span class="keyword">return</span> output</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li>时间复杂度：<span class="math display">\[O(N)\]</span>，N是序列长度。</li>
-<li>空间复杂度：<span class="math display">\[O(1)\]</span>。常数个变量。</li>
+<li>时间复杂度：<span
+class="math display">\[O(N)\]</span>，N是序列长度。</li>
+<li>空间复杂度：<span
+class="math display">\[O(1)\]</span>。常数个变量。</li>
 </ul>
 
     </div>
@@ -281,8 +288,8 @@ result[0] = |2-2| + |2-3| + |2-5| = 0 + 1 + 3 = 4， result[1] = |3-2| +
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
               <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
               <a href="/tags/Medium/" rel="tag"># Medium</a>
               <a href="/tags/Greedy/" rel="tag"># Greedy</a>
           </div>

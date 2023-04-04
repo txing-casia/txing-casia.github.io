@@ -225,7 +225,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="latex的pdf预览中无法通过光标正向反向定位">LaTeX的PDF预览中，无法通过光标正向/反向定位</h1>
+        <h1
+id="latex的pdf预览中无法通过光标正向反向定位">LaTeX的PDF预览中，无法通过光标正向/反向定位</h1>
 <p>我一直是在Atom上编辑LaTeX的，觉得正/反向定位这个功能无伤大雅就没去填坑。现在又挺想用这个功能，趁着这个超长假期，打算补上这个坑。</p>
 <h3 id="软件环境">软件环境</h3>
 <ul>
@@ -242,12 +243,15 @@ error ”。</p>
 <p>继续挖掘，发现SyncTeX一般是作为TeXLive的一部分，和它捆绑安装的，如果当初安装的是TeXLive，那么一般也就安装了SyncTeX。</p>
 <p>进一步挖掘，认识到实际情况还要复杂一些，按层次来说，bug应该出在缺失了MiKTeX下的SyncTeX。</p>
 <p>CTeX安装自带了MiKTeX，但是所安装的MiKTeX却没有包含SyncTeX（其它途径安装会包含）。</p>
-<p><a target="_blank" rel="noopener" href="https://tex.stackexchange.com/questions/338078/how-to-get-synctex-for-windows-to-allow-atom-pdf-view-to-synch#">Stack
+<p><a
+target="_blank" rel="noopener" href="https://tex.stackexchange.com/questions/338078/how-to-get-synctex-for-windows-to-allow-atom-pdf-view-to-synch#">Stack
 Exchange</a>提供了SyncTeX的链接方便下载，同时还需要下载一个kpathseaXXX.dll文件，因为在执行SyncTeX的时候会调用它。</p>
-<hr>
+<hr />
 <p>因此，处理办法分为两步：</p>
 <ul>
-<li><strong>Step 1</strong>：下载<a target="_blank" rel="noopener" href="https://github.com/aminophen/w32tex-build/blob/master/synctex.exe">SyncTeX.exe</a>和<a target="_blank" rel="noopener" href="https://github.com/aminophen/w32tex-build/blob/master/kpathsea623.dll">kpathsea623.dll</a></li>
+<li><strong>Step 1</strong>：下载<a
+target="_blank" rel="noopener" href="https://github.com/aminophen/w32tex-build/blob/master/synctex.exe">SyncTeX.exe</a>和<a
+target="_blank" rel="noopener" href="https://github.com/aminophen/w32tex-build/blob/master/kpathsea623.dll">kpathsea623.dll</a></li>
 <li><strong>Step
 2</strong>：把两个文件放到MiKTeX的bin文件夹下（eg：C:Files (x86))</li>
 </ul>

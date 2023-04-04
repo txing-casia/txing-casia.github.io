@@ -27,17 +27,12 @@
 <meta property="og:site_name" content="Txing">
 <meta property="og:description" content="ChauffeurNet: Learning to Drive by Imitating the Best and Synthesizing the Worst 1. Introduction  提出通过扰动专家的驾驶数据创建更多有趣的驾驶情景，例如碰撞和off-road等。 在模仿学习中，并不是模仿所有的数据，而是利imitation loss惩罚不期望的情况。 数据：30 mil">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220716-1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220716-2.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220718-1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220718-2.png">
 <meta property="article:published_time" content="2022-07-15T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-03-25T01:54:15.012Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Imitation Learning">
 <meta property="article:tag" content="Autonomous Driving">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220716-1.png">
 
 <link rel="canonical" href="https://txing-casia.github.io/2022/07/16/2022-07-16-Autonomous%20Driving%20-%20ChauffeurNet%20Learning%20to%20Drive%20by%20Imitating%20the%20Best%20and%20Synthesizing%20the%20Worst/">
 
@@ -231,7 +226,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="chauffeurnet-learning-to-drive-by-imitating-the-best-and-synthesizing-the-worst">ChauffeurNet:
+        <h2
+id="chauffeurnet-learning-to-drive-by-imitating-the-best-and-synthesizing-the-worst">ChauffeurNet:
 Learning to Drive by Imitating the Best and Synthesizing the Worst</h2>
 <h3 id="introduction">1. Introduction</h3>
 <ul>
@@ -239,7 +235,7 @@ Learning to Drive by Imitating the Best and Synthesizing the Worst</h2>
 <li><p>在模仿学习中，并不是模仿所有的数据，而是利imitation
 loss惩罚不期望的情况。</p></li>
 <li><p>数据：30 million real-world expert driving examples,
-corresponding to about 60 days of continual driving<br>
+corresponding to about 60 days of continual driving<br />
 </p></li>
 <li><p>由于无论是原始传感器输入还是直接的控制器输出都很难产生扰动，因此在mid-level的输入输出数据上实施扰动。</p></li>
 </ul>
@@ -290,9 +286,11 @@ Representation</h4>
 <li>agent位姿<span class="math display">\[P_t=(x_t,y_t)\]</span></li>
 <li>方向角<span class="math display">\[\theta_t\]</span></li>
 <li>速度<span class="math display">\[s_t\]</span></li>
-<li>图像大小：W × H pixels, <span class="math display">\[\varphi\]</span> meters/pixel<br>
+<li>图像大小：W × H pixels, <span
+class="math display">\[\varphi\]</span> meters/pixel<br />
 </li>
-<li>因此agent只能看见前方的 <span class="math display">\[R_{forward}=(H-v_0)\phi\]</span> 米</li>
+<li>因此agent只能看见前方的 <span
+class="math display">\[R_{forward}=(H-v_0)\phi\]</span> 米</li>
 </ul></li>
 <li>表征内容：
 <ul>
@@ -325,19 +323,24 @@ poses：agent过去的姿态被渲染成一个单一的灰度图像，显示为�
 </ul></li>
 </ul>
 <figure>
-<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220716-1.png" alt="Driving model inputs (a-g) and output (h)">
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220716-1.png"
+alt="Driving model inputs (a-g) and output (h)" />
 <figcaption aria-hidden="true">Driving model inputs (a-g) and output
 (h)</figcaption>
 </figure>
 <ul>
-<li>用<span class="math display">\[I\]</span>表示上述枚举的各种输入，ChauffeurNet模型循环地预测未来的自车姿态，并用绿色点表示。
+<li>用<span
+class="math display">\[I\]</span>表示上述枚举的各种输入，ChauffeurNet模型循环地预测未来的自车姿态，并用绿色点表示。
 <span class="math display">\[
 P_{t+\delta t} = \text{ChauffeurNet}(I,P_t)
 \]</span></li>
 </ul>
 <h4 id="model-design">3.2 Model Design</h4>
 <figure>
-<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220716-2.png" alt="Training the driving model">
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220716-2.png"
+alt="Training the driving model" />
 <figcaption aria-hidden="true">Training the driving model</figcaption>
 </figure>
 <ul>
@@ -355,13 +358,15 @@ representation）</li>
 points）以及其它信息</p></li>
 <li><p>AgentRNN还将车辆的边界框预测为每个未来时间步的空间热图。（The
 AgentRNN also predicts the bounding box of the vehicle as a spatial
-heatmap at each future timestep）<br>
+heatmap at each future timestep）<br />
 </p></li>
 <li><p>point <span class="math display">\[P_k\]</span></p></li>
-<li><p>the agent bounding box heatmap <span class="math display">\[B_k\]</span><br>
+<li><p>the agent bounding box heatmap <span
+class="math display">\[B_k\]</span><br />
 </p></li>
 <li><p>memory <span class="math display">\[M_k\]</span></p></li>
-<li><p>FeatureNet 输出的特征<span class="math display">\[F\]</span></p></li>
+<li><p>FeatureNet 输出的特征<span
+class="math display">\[F\]</span></p></li>
 <li><p><span class="math display">\[P_k,B_k =
 \text{AgentRNN}(k,F,M_{k-1},B_{k-1})\]</span></p></li>
 </ul></li>
@@ -381,7 +386,9 @@ of view (on-road vs. off-road)）</p></li>
 </ul>
 <h4 id="system-architecture">3.3 System Architecture</h4>
 <figure>
-<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220718-1.png" alt="Software architecture for the end-to-end driving pipeline">
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220718-1.png"
+alt="Software architecture for the end-to-end driving pipeline" />
 <figcaption aria-hidden="true">Software architecture for the end-to-end
 driving pipeline</figcaption>
 </figure>
@@ -392,9 +399,13 @@ driving pipeline</figcaption>
 <li>概率分布<span class="math display">\[P_k(x,y)\]</span></li>
 <li>预测边界的热图<span class="math display">\[B_k(x,y)\]</span></li>
 <li>回归边界朝向输出<span class="math display">\[\theta_k\]</span> (a
-regressed box heading output <span class="math display">\[\theta_k\]</span>)</li>
+regressed box heading output <span
+class="math display">\[\theta_k\]</span>)</li>
 </ul></li>
-<li><p>定义上述三个变量响应的损失函数：(上标<span class="math display">\[gt\]</span>表示相应的ground-truth值；<span class="math display">\[H(a,b)\]</span>表示交叉熵函数；<span class="math display">\[P^{gt}_k\]</span>是二值图像，并且只有ground-truth目标坐标取值为1)</p>
+<li><p>定义上述三个变量响应的损失函数：(上标<span
+class="math display">\[gt\]</span>表示相应的ground-truth值；<span
+class="math display">\[H(a,b)\]</span>表示交叉熵函数；<span
+class="math display">\[P^{gt}_k\]</span>是二值图像，并且只有ground-truth目标坐标取值为1)</p>
 <ul>
 <li><span class="math display">\[L_p=H(P_k,P^{gt}_k)\]</span></li>
 <li><span class="math display">\[L_B=\frac{1}{WH}\sum_x \sum_y
@@ -403,7 +414,8 @@ H(B_k(x,y),B_k^{gt}(x,y))\]</span></li>
 \theta_k^{gt} \mid\mid_1\]</span></li>
 </ul></li>
 <li><p>精细的位置预测用<span class="math display">\[\delta
-P_k^{gt}\]</span>表示，并用<span class="math display">\[L_1\]</span>损失计算误差：</p>
+P_k^{gt}\]</span>表示，并用<span
+class="math display">\[L_1\]</span>损失计算误差：</p>
 <p><span class="math display">\[L_{p-subpixel} = \mid\mid \delta
 P_k-\delta P_k^{gt} \mid\mid_1\]</span></p>
 <p><span class="math display">\[L_{speed}=\mid\mid s_k-s_k^{gt}
@@ -415,35 +427,45 @@ fractional part）</p></li>
 <h3 id="beyond-pure-imitation">5. Beyond Pure Imitation</h3>
 <ul>
 <li><p>合成扰动（Synthesizing
-Perturbations），路径的起始点和终点不变，晃动中间某个点的位置，幅度是<span class="math display">\[[-0.5,0.5]\]</span>米，扰动的车头朝向角度为<span class="math display">\[[-\pi/3,\pi/3]\]</span>弧度。最后结合扰动点和端点，拟合出一条平滑的轨迹，让车能在干扰之后回到原来的轨迹。</p></li>
+Perturbations），路径的起始点和终点不变，晃动中间某个点的位置，幅度是<span
+class="math display">\[[-0.5,0.5]\]</span>米，扰动的车头朝向角度为<span
+class="math display">\[[-\pi/3,\pi/3]\]</span>弧度。最后结合扰动点和端点，拟合出一条平滑的轨迹，让车能在干扰之后回到原来的轨迹。</p></li>
 <li><p>通过与最大曲率阈值比较，去除生成的一些不切实际的轨迹</p></li>
 <li><p>允许生成的轨迹与其它车辆发生碰撞的情况，这些cases可以帮助训练避免这些情况。</p></li>
 <li><p>Beyond the Imitation Loss：</p>
 <ul>
 <li><p><strong>Collision Loss</strong></p>
-<p>直接测量预测的智能体边框<span class="math display">\[B_k\]</span>和ground-truth场景中其它目标边框的重叠区域（directly
+<p>直接测量预测的智能体边框<span
+class="math display">\[B_k\]</span>和ground-truth场景中其它目标边框的重叠区域（directly
 measures the overlap of the predicted agent box Bk with the ground-truth
-boxes of all the scene objects at each timestep） <span class="math display">\[
+boxes of all the scene objects at each timestep） <span
+class="math display">\[
 L_{collosion}=\frac{1}{WH}\sum_x \sum_y B_{k}(x,y)\cdot Obj^{gt}_k (x,y)
-\]</span> 其中，<span class="math display">\[B_k\]</span>是输出的预测的智能体边框似然度地图，<span class="math display">\[Obj^{gt}_k\]</span>是一个二值掩码图，其中其它的动态目标用1表示</p></li>
+\]</span> 其中，<span
+class="math display">\[B_k\]</span>是输出的预测的智能体边框似然度地图，<span
+class="math display">\[Obj^{gt}_k\]</span>是一个二值掩码图，其中其它的动态目标用1表示</p></li>
 <li><p><strong>On road loss</strong></p>
 <p>避免agent冲出道路边界 <span class="math display">\[
 L_{onroad}=\frac{1}{WH}\sum_x \sum_y B_k(x,y)\cdot (1-Road^{gt}(x,y))
 \]</span></p></li>
 <li><p><strong>Geometry loss</strong></p>
-<p>不与目标几何位置重叠的区域作为一个惩罚项损失 <span class="math display">\[
+<p>不与目标几何位置重叠的区域作为一个惩罚项损失 <span
+class="math display">\[
 L_{geom}=\frac{1}{WH}\sum_x \sum_yB_k(x,y)\cdot(1-Geom^{gt}(x,y))
 \]</span></p></li>
 <li><p><strong>Auxiliary losses</strong></p>
-<p>使用a recurrent perception network PerceptionRNN预测他车轨迹 <span class="math display">\[
+<p>使用a recurrent perception network PerceptionRNN预测他车轨迹 <span
+class="math display">\[
 L_{objects}=\frac{1}{WH}\sum_x \sum_y H(Obj_k (x,y),obj^{gt}_k(x,y))
 \]</span></p></li>
 </ul></li>
 <li><p>本文使用的损失函数用两组损失组成：模仿损失（imitation
 losses）和环境损失（environment losses）：</p>
 <ul>
-<li>模仿损失：<span class="math display">\[L_{imit}=\{L_p,L_B,L_{\theta},L_{p-subpixel},L_{speed}\}\]</span></li>
-<li>环境损失：<span class="math display">\[L_{env}=\{L_{collision},L_{onroad},L_{geom},L_{objects},L_{road}\}\]</span></li>
+<li>模仿损失：<span
+class="math display">\[L_{imit}=\{L_p,L_B,L_{\theta},L_{p-subpixel},L_{speed}\}\]</span></li>
+<li>环境损失：<span
+class="math display">\[L_{env}=\{L_{collision},L_{onroad},L_{geom},L_{objects},L_{road}\}\]</span></li>
 <li>总损失：<span class="math display">\[L=\omega_{imit}\sum_{l\in
 L_{imit}}l +\omega_{env}\sum_{l \in L_{env}} l\]</span></li>
 </ul>
@@ -452,7 +474,9 @@ imitation losses cause the model to imitate the expert’s demonstrations,
 while the environment losses discourage undesirable behavior such as
 collisions.)</p>
 <figure>
-<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220718-2.png" alt="Visualization of predictions and loss functions on an example input">
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220718-2.png"
+alt="Visualization of predictions and loss functions on an example input" />
 <figcaption aria-hidden="true">Visualization of predictions and loss
 functions on an example input</figcaption>
 </figure></li>
@@ -461,12 +485,16 @@ functions on an example input</figcaption>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;"><span class="math display">\[T_{scene}\]</span></th>
-<th style="text-align: center;"><span class="math display">\[T_{pose}\]</span></th>
+<th style="text-align: center;"><span
+class="math display">\[T_{scene}\]</span></th>
+<th style="text-align: center;"><span
+class="math display">\[T_{pose}\]</span></th>
 <th style="text-align: center;"><span class="math display">\[\delta
 t\]</span></th>
-<th style="text-align: center;"><span class="math display">\[N\]</span></th>
-<th style="text-align: center;"><span class="math display">\[\Delta\]</span></th>
+<th style="text-align: center;"><span
+class="math display">\[N\]</span></th>
+<th style="text-align: center;"><span
+class="math display">\[\Delta\]</span></th>
 </tr>
 </thead>
 <tbody>
@@ -478,11 +506,16 @@ t\]</span></th>
 <td style="text-align: center;">25 deg</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><span class="math display">\[W\]</span></td>
-<td style="text-align: center;"><span class="math display">\[H\]</span></td>
-<td style="text-align: center;"><span class="math display">\[u_0\]</span></td>
-<td style="text-align: center;"><span class="math display">\[v_0\]</span></td>
-<td style="text-align: center;"><span class="math display">\[\phi\]</span></td>
+<td style="text-align: center;"><span
+class="math display">\[W\]</span></td>
+<td style="text-align: center;"><span
+class="math display">\[H\]</span></td>
+<td style="text-align: center;"><span
+class="math display">\[u_0\]</span></td>
+<td style="text-align: center;"><span
+class="math display">\[v_0\]</span></td>
+<td style="text-align: center;"><span
+class="math display">\[\phi\]</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">400 px</td>
@@ -516,8 +549,8 @@ t\]</span></th>
       <i class="fa fa-chevron-left"></i> Autonomous Driving | Exploring Imitation Learning for Autonomous Driving with Feedback Synthesizer and Differentiable Rasterization (2021, Apollo 6.0)
     </a></div>
       <div class="post-nav-item">
-    <a href="/2022/07/22/2022-07-22-Autonomous%20Driving%20-%20MotionCNN%20A%20Strong%20Baseline%20for%20Motion%20Prediction%20in%20Autonomous%20Driving/" rel="next" title="Autonomous Driving | MotionCNN: A Strong Baseline for Motion Prediction in Autonomous Driving (2022)">
-      Autonomous Driving | MotionCNN: A Strong Baseline for Motion Prediction in Autonomous Driving (2022) <i class="fa fa-chevron-right"></i>
+    <a href="/2022/07/22/2022-07-22-Network%20Structure%20-%20A%20ConvNet%20for%20the%202020s/" rel="next" title="Network Structure | A ConvNet for the 2020s (Facebook, 2022)">
+      Network Structure | A ConvNet for the 2020s (Facebook, 2022) <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>

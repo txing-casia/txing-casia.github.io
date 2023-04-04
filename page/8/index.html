@@ -299,7 +299,8 @@
 <h4 id="方法描述">1.1 方法描述：</h4>
 <p>从数组A第一个元素开始，两两比较相邻元素的大小，如果前面的大于后面的，则把两元素交换位置，这样一次遍历后，最末位的元素就是最大的元素，重复上述过程n次，排序完成。</p>
 <p><strong>简述：把相邻元素两两对比，一个一个移动到正确位置。</strong></p>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210729-2.gif"></p>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210729-2.gif" /></p>
 <h4 id="代码实现">1.2 代码实现：</h4>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 冒泡排序</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bubbleSort</span>(<span class="params">alist</span>):</span><br><span class="line">    n = <span class="built_in">len</span>(alist)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n-<span class="number">1</span>, <span class="number">0</span>, -<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, i):</span><br><span class="line">            <span class="keyword">if</span> alist[j] &gt; alist[j+<span class="number">1</span>]:</span><br><span class="line">                alist[j], alist[j+<span class="number">1</span>] = alist[j+<span class="number">1</span>], alist[j]</span><br><span class="line">    <span class="keyword">return</span> alist</span><br></pre></td></tr></table></figure>
 <h4 id="算法优化">1.3 算法优化：</h4>
@@ -320,23 +321,27 @@ n-1 次遍历来排好 n 个数据，因为最后一个数据必须在第 n-1
 <p>　　注意选择排序与冒泡排序的区别：冒泡排序通过依次交换相邻两个顺序不合法的元素位置，从而将当前最小（大）元素放到合适的位置；而选择排序每遍历一次都记住了当前最小（大）元素的位置，最后仅需一次交换操作即可将其放到合适的位置。</p>
 <p>​
 <strong>简述：以一个元素为基，遍历数组寻找比它更小的值，找到后按顺序排到正确位置。</strong></p>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210729-3.gif"></p>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210729-3.gif" /></p>
 <h4 id="代码实现-1">2.2 代码实现：</h4>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 选择排序</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">selectionSort</span>(<span class="params">alist</span>):</span><br><span class="line">    n = <span class="built_in">len</span>(alist)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n - <span class="number">1</span>):</span><br><span class="line">        <span class="comment"># 寻找[i,n]区间里的最小值</span></span><br><span class="line">        min_index = i</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">if</span> alist[j] &lt; alist[min_index]:</span><br><span class="line">                min_index = j</span><br><span class="line">        alist[i], alist[min_index] = alist[min_index], alist[i]</span><br><span class="line">    <span class="keyword">return</span> alist</span><br></pre></td></tr></table></figure>
 <h2 id="插入排序">3. 插入排序</h2>
 <h4 id="方法描述-2">3.1 方法描述：</h4>
-<p>插入排序的算法复杂度仍然是<span class="math display">\[O(n^2)\]</span>，但其工作原理稍有不同。它总是<strong>保持一个位置靠前的已排好的子表</strong>，然后每一个新的数据项被
+<p>插入排序的算法复杂度仍然是<span
+class="math display">\[O(n^2)\]</span>，但其工作原理稍有不同。它总是<strong>保持一个位置靠前的已排好的子表</strong>，然后每一个新的数据项被
 “插入”
 到前边的子表里，排好的子表增加一项。我们认为只含有一个数据项的列表是已经排好的。每排后面一个数据（从
 1 开始到
 n-1），这个的数据会和已排好子表中的数据比较。比较时，我们把之前已经排好的列表中比这个数据大的移到它的右边。当子表数据小于当前数据，或者当前数据已经和子表的所有数据比较了时，就可以在此处插入当前数据项。</p>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210729-1.gif"></p>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210729-1.gif" /></p>
 <h4 id="代码实现-2">3.2 代码实现：</h4>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 插入排序</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">insertionSort</span>(<span class="params">alist</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(alist)):</span><br><span class="line">        currentvalue=alist[i]</span><br><span class="line">        position=i</span><br><span class="line">        <span class="keyword">while</span> alist[position-<span class="number">1</span>]&gt;currentvalue <span class="keyword">and</span> position&gt;<span class="number">0</span>:</span><br><span class="line">            alist[position]=alist[position-<span class="number">1</span>]</span><br><span class="line">            position=position-<span class="number">1</span></span><br><span class="line">        alist[position]=currentvalue</span><br><span class="line">    <span class="keyword">return</span> alist</span><br></pre></td></tr></table></figure>
 <p>注意，这里在用 Python
 实现的时候需要注意，第一次我采用的是下面的代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 插入排序</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">insertionSort</span>(<span class="params">blist</span>):</span><br><span class="line">    n = <span class="built_in">len</span>(blist)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">        <span class="comment"># 寻找a[i]合适的插入位置</span></span><br><span class="line">        temp = blist[i]</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i, <span class="number">0</span>, -<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> (temp &lt; blist[j-<span class="number">1</span>]):</span><br><span class="line">                blist[j] = blist[j-<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        blist[j-<span class="number">1</span>] = temp</span><br><span class="line">    <span class="keyword">return</span> blist</span><br></pre></td></tr></table></figure>
-<p>在测试性能的时候发现，当数列的逐渐变大的时候，运行时间并不是按照<span class="math display">\[n^2\]</span>的速度增长，后来分析发现：</p>
+<p>在测试性能的时候发现，当数列的逐渐变大的时候，运行时间并不是按照<span
+class="math display">\[n^2\]</span>的速度增长，后来分析发现：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i, <span class="number">0</span>, -<span class="number">1</span>):</span><br></pre></td></tr></table></figure>
 <p>这行代码在数列很大的时候，会不听的新建列表，这回损害性能，这是非算法思想因素的影响，但是需要注意一下。可以用<code>while</code>和一个列表代替。</p>
 <h2 id="希尔排序">4. 希尔排序</h2>
@@ -345,14 +350,17 @@ n-1），这个的数据会和已排好子表中的数据比较。比较时，�
 “缩小间隔排序”，它以插入排序为基础，将原来要排序的列表划分为一些子列表，再对每一个子列表执行插入排序，从而实现对插入排序性能的改进。划分子列的特定方法是希尔排序的关键。我们并不是将原始列表分成含有连续元素的子列，而是确定一个划分列表的增量
 “i”，这个i更准确地说，是划分的间隔。然后把每间隔为i的所有元素选出来组成子列表，然后对每个子序列进行插入排序，最后当
 i=1 时，对整体进行一次直接插入排序。</p>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210729-4.gif"></p>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210729-5.png"></p>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210729-4.gif" /></p>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210729-5.png" /></p>
 <h4 id="代码实现-3">4.2 代码实现</h4>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 希尔排序</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">shellSort</span>(<span class="params">alist</span>):</span><br><span class="line">    n = <span class="built_in">len</span>(alist)</span><br><span class="line">    gap = n // <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> gap &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gap):</span><br><span class="line">            gapInsetionSort(alist, i, gap)</span><br><span class="line">        gap = gap // <span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> alist</span><br><span class="line"></span><br><span class="line"><span class="comment"># # start子数列开始的起始位置， gap表示间隔</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">gapInsetionSort</span>(<span class="params">alist,startpos,gap</span>):</span><br><span class="line">    <span class="comment">#希尔排序的辅助函数</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(startpos+gap,<span class="built_in">len</span>(alist),gap):</span><br><span class="line">        position=i</span><br><span class="line">        currentvalue=alist[i]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> position&gt;startpos <span class="keyword">and</span> alist[position-gap]&gt;currentvalue:</span><br><span class="line">            alist[position]=alist[position-gap]</span><br><span class="line">            position=position-gap</span><br><span class="line">        alist[position]=currentvalue</span><br></pre></td></tr></table></figure>
 <h2 id="并归排序">5. 并归排序</h2>
 <h4 id="方法描述-4">5.1 方法描述：</h4>
 <p>归并排序是一种递归算法，它持续地将一个列表分成两半。如果列表是空的或者只有一个元素，那么根据定义，它就被排序好了（最基本的情况）。如果列表里的元素超过一个，我们就把列表拆分，然后分别对两个部分调用递归排序。一旦这两个部分被排序好了，然后就可以对这两部分数列进行归并了。归并是这样一个过程：把两个排序好了的列表结合在一起组合成一个单一的有序的新列表。有自顶向下（递归法）和自底向上的两种实现方法。</p>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210730-1.png"></p>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210730-1.png" /></p>
 <h4 id="代码实现-4">5.2 代码实现</h4>
 <p><strong>自顶向下（递归法）方法实现</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 归并排序</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">mergeSort</span>(<span class="params">alist</span>):</span><br><span class="line">    n = <span class="built_in">len</span>(alist)</span><br><span class="line">    __mergeSort(alist, <span class="number">0</span>, n-<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> alist</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对arr[l...r]的范围进行排序</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">__mergeSort</span>(<span class="params">alist, start, end</span>):</span><br><span class="line">    <span class="comment">#当数列的大小比较小的时候，数列近乎有序的概率较大</span></span><br><span class="line">    <span class="keyword">if</span> (end-start &lt;= <span class="number">15</span>):</span><br><span class="line">        insertionSortHelp(alist, start, end)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> start &gt;= end:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="comment"># 存在风险，start+end可能越界</span></span><br><span class="line">    mid = (start + end) // <span class="number">2</span></span><br><span class="line">    <span class="comment"># mid = start + (end - start) // 2</span></span><br><span class="line">    __mergeSort(alist, start, mid)</span><br><span class="line">    __mergeSort(alist, mid + <span class="number">1</span>, end)</span><br><span class="line">    <span class="comment">#优化</span></span><br><span class="line">    <span class="keyword">if</span> alist[mid] &gt; alist[mid+<span class="number">1</span>]:</span><br><span class="line">        merge(alist, start, mid, end)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并有序数列alist[start....mid] 和 alist[mid+1...end]，使之成为有序数列</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">merge</span>(<span class="params">alist, start, mid, end</span>):</span><br><span class="line">    <span class="comment"># 复制一份</span></span><br><span class="line">    blist = alist[start:end+<span class="number">1</span>]</span><br><span class="line">    l = start</span><br><span class="line">    k = mid + <span class="number">1</span></span><br><span class="line">    pos = start</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> pos &lt;= end:</span><br><span class="line">        <span class="keyword">if</span> (l &gt; mid):</span><br><span class="line">            alist[pos] = blist[k-start]</span><br><span class="line">            k += <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> (k &gt; end):</span><br><span class="line">            alist[pos] = blist[l-start]</span><br><span class="line">            l += <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> blist[l-start] &lt;= blist[k-start]:</span><br><span class="line">            alist[pos] = blist[l-start]</span><br><span class="line">            l += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            alist[pos] = blist[k-start]</span><br><span class="line">            k += <span class="number">1</span></span><br><span class="line">        pos += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">insertionSortHelp</span>(<span class="params">alist,l, r</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(l+<span class="number">1</span>,r+<span class="number">1</span>):</span><br><span class="line">        currentvalue=alist[i]</span><br><span class="line">        position=i</span><br><span class="line">        <span class="keyword">while</span> alist[position-<span class="number">1</span>]&gt;currentvalue <span class="keyword">and</span> position&gt;l:</span><br><span class="line">            alist[position]=alist[position-<span class="number">1</span>]</span><br><span class="line">            position=position-<span class="number">1</span></span><br><span class="line">        alist[position]=currentvalue</span><br><span class="line">    <span class="keyword">return</span> alist</span><br></pre></td></tr></table></figure>
@@ -368,16 +376,271 @@ i=1 时，对整体进行一次直接插入排序。</p>
 <li>重新排序数列，所有比基准值小的元素摆放在基准前面，所有比基准值大的元素摆在基准后面（相同的数可以到任何一边）。在这个分区结束之后，该基准就处于数列的中间位置。这个称为分区（partition）操作。</li>
 <li>递归地（recursively）把小于基准值元素的子数列和大于基准值元素的子数列排序。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210730-1.png"></p>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210730-1.png" /></p>
 <h4 id="代码实现-5">6.2 代码实现</h4>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">__quickSort</span>(<span class="params">alist, l, r</span>):</span><br><span class="line"></span><br><span class="line">    <span class="comment">#当数列的大小比较小的时候，数列近乎有序的概率较大</span></span><br><span class="line">    <span class="comment"># if (r - l &lt;= 15):</span></span><br><span class="line">    <span class="comment">#     insertionSortHelp(alist, l, r)</span></span><br><span class="line">    <span class="comment">#     return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> l &gt;= r:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="comment"># p = partition(alist, l, r)</span></span><br><span class="line">    p = partitionQS(alist, l, r)</span><br><span class="line"></span><br><span class="line">    __quickSort(alist, l, p-<span class="number">1</span>)</span><br><span class="line">    __quickSort(alist, p+<span class="number">1</span>, r)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在alist[l...r]中寻找j,使得alist[l...j] &lt;= alist[l], alist[j+1...r] &gt;alist[l]</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">partition</span>(<span class="params">alist, l, r</span>):</span><br><span class="line">    pos = randint(l, r)</span><br><span class="line">    alist[pos], alist[l] = alist[l], alist[pos]</span><br><span class="line">    v = alist[l]</span><br><span class="line">    <span class="comment"># v = alist[l]</span></span><br><span class="line">    j = l</span><br><span class="line">    i = l + <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> i &lt;= r:</span><br><span class="line">        <span class="keyword">if</span> alist[i] &lt;= v:</span><br><span class="line">            alist[j+<span class="number">1</span>],alist[i] = alist[i],alist[j+<span class="number">1</span>]</span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    alist[l], alist[j] = alist[j], alist[l]</span><br><span class="line">    <span class="keyword">return</span> j</span><br></pre></td></tr></table></figure>
 <p><strong>快速排序一些可以优化的点</strong></p>
 <ul>
-<li>当数列近乎有序的时，由于每次选取的都是第一个数，所以造成数列分割的极其不等，此时快排蜕化成<span class="math display">\[O(n^2)\]</span>的算法，
+<li>当数列近乎有序的时，由于每次选取的都是第一个数，所以造成数列分割的极其不等，此时快排蜕化成<span
+class="math display">\[O(n^2)\]</span>的算法，
 此时只要随机选取基准点即可</li>
 <li>当数列中包含大量的重复元素的时候，这一版的代码也会造成"分割不等“的问题，此时需要将重复元素均匀的分散的自数列旁</li>
 <li>使用三路快排</li>
 </ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/22/2021-07-22-Reinforcement%20Learning%20-%20Intrinsically%20Motivated%20Reinforcement%20Learning%20An%20Evolutionary%20Perspective/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用类人决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/22/2021-07-22-Reinforcement%20Learning%20-%20Intrinsically%20Motivated%20Reinforcement%20Learning%20An%20Evolutionary%20Perspective/" class="post-title-link" itemprop="url">Reinforcement Learning | Intrinsically Motivated Reinforcement Learning: An Evolutionary Perspective</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-07-22 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-22T00:00:00+08:00">2021-07-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-03-25 09:54:15" itemprop="dateModified" datetime="2023-03-25T09:54:15+08:00">2023-03-25</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1
+id="intrinsically-motivated-reinforcement-learning-an-evolutionary-perspective">Intrinsically
+Motivated Reinforcement Learning: An Evolutionary Perspective</h1>
+<p>论文链接：https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=5471106</p>
+<h2 id="主要内容">主要内容</h2>
+<ul>
+<li><p>intrinsically motivated
+这个词最开始是在1950年的文章中提出的，文章认为需要有一种内在的操纵驱动力来解释为什么猴子会在没有任何外在奖励的情况下精力充沛地持续工作数小时来解决复杂的机械难题。内在动机行为对智力增长至关重要</p></li>
+<li><p>本文解决了如何在人工系统中实现类似于内在动机的过程的问题，特别关注可能会或可能不会区分内在动机和外在动机的因素，其中外在动机是指由行为的特定奖励结果产生的动机，而不是行为本身。</p></li>
+<li><p>相关工作：</p>
+<ul>
+<li><p>定义有趣度：Lenat's AM system [18], for example, focused on
+heuristic definitions of “interestingness,”</p></li>
+<li><p>建立好奇心框架：Schmidhuber [32] [33] [34] [35] [36] [37]
+introduced methods for implementing forms of curiosity using the
+framework of computational reinforcement learning (RL)1 [47].</p></li>
+<li><p>奖励函数设计：Other researchers have reported interesting results
+of computational experiments involving evolutionary search for RL reward
+functions [1], [8], [19], [31], [43], but they did not directly address
+the motivational issues on which we focus.</p></li>
+<li><p>寻找本质奖励：Uchibe and Doya [51] do address intrinsic reward in
+an evolutionary context, but their aim and approach differ significantly
+from ours.</p>
+<p>[51]. E. Uchibe and K. Doya, "Finding intrinsic rewards by embodied
+evolution and constrained reinforcement learning", <em>Neural
+Netw.</em>, vol. 21, no. 10, pp. 1447-1455, 2008.</p></li>
+<li><p>与我们最接近的研究是 Elfwing
+等人的研究。[11]其中使用遗传算法来搜索塑造奖励[23]和其他提高 RL
+学习系统性能的学习算法参数。</p>
+<p>[11]. S. Elfwing, E. Uchibe, K. Doya and H. I. Christensen,
+"Co-evolution of shaping rewards and meta-parameters in reinforcement
+learning", <em>Adapt. Behav.</em>, vol. 16, pp. 400-412, 2008.</p></li>
+</ul></li>
+<li><p>使用RL的模型结构示意图</p></li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210722-1.png"
+alt="Agent–environment interactions in reinforcement learning" />
+<figcaption aria-hidden="true">Agent–environment interactions in
+reinforcement learning</figcaption>
+</figure>
+<ul>
+<li><p>这篇文章[3]使用属于内部奖励（intrinsic
+reward），并将其与强化学习框架结合。所谓内部奖励，就是内部动机生成的奖励函数；外部奖励就是常规的强化学习框架的奖励函数。</p>
+<p>[3]. A. G. Barto, S. Singh and N. Chentanez, "Intrinsically motivated
+learning of hierarchical collections of skills", <em>Proc. Int. Conf.
+Develop. Learn.</em>, 2004.</p></li>
+<li><p>目前的方法基本都是构建特殊的内部奖励函数，并且将其与一般的强化学习算法结合。例如基于好奇心的内部驱动方法[32]。</p>
+<p>[32]. J. Schmidhuber, <em>Adaptive Confidence and Adaptive
+Curiosity</em>, 1991.</p></li>
+<li><p>这种内部动机的RL框架更加符合生物实际。并且奖励和奖励信号是不同的概念，RL模型中使用的更类似于奖励信号。</p>
+<ul>
+<li><p>奖励（Reward）指的是获得的好处；</p></li>
+<li><p>奖励信号（Reward signal）指的是大脑中奖励神经元发放的信号；</p>
+<p>Schultz [38], [39] writes that “Rewards are objects or events that
+make us come back for more,” whereas reward signals are produced by
+reward neurons in the brain.</p></li>
+</ul></li>
+<li><p>RL中的环境应该分为an external environment 和 an internal
+environment.</p></li>
+<li><p>但是并不能从行为上区分是否使用了内部奖励[25]。但是内部动机是通过外部奖励形成的。</p>
+<p>[25]. P.-Y. Oudeyer and F. Kaplan, "What is intrinsic motivation? A
+typology of computational approaches", <em>Frontiers Neurorobot.</em>,
+2007.</p></li>
+<li><p>Primary and Secondary
+Reward：使用内部动机意义在于作为一种次要的奖励信号，配合主要的外部奖励信号完成行为</p></li>
+<li><p>生物动机心理学依据：</p>
+<p>Among the most influential theories of motivation in psychology is
+the drive theory of Hull [13] [14] [15]. According to Hull's theory, all
+behavior is motivated either by an organism's survival and reproductive
+needs giving rise to primary drives (such as hunger, thirst, sex, and
+the avoidance of pain), or by derivative drives that have acquired their
+motivational significance through learning. Primary drives are the
+result of physiological deficits—“tissue needs”— and they energize
+behavior whose result is to reduce the deficit. A key additional feature
+of Hull's theory is that a need reduction, and hence a drive reduction,
+acts as a primary reinforcer for learning: behavior that reduces a
+primary drive is reinforced. Additionally, through the process of
+secondary reinforcement in which a neutral stimulus is paired with a
+primary reinforcer, the formerly neutral stimulus becomes a secondary
+reinforcer, i.e., acquires the reinforcing power of the primary
+reinforcer. In this way, stimuli that predict primary reward, i.e.,
+predict a reduction in a primary drive, become rewarding themselves.
+According to this influential theory (in its several variants), all
+behavior is energized and directed by its relevance to primal drives,
+either directly or as the result of learning through secondary
+reinforcement.</p></li>
+<li><p>一些驱动力对行为影响的例子，在某些条件下，饥饿的老鼠宁愿探索不熟悉的空间，也不愿进食；他们忍受穿越电网的痛苦，去探索新的空间。</p></li>
+<li><p>但是饥饿、口渴、繁衍这些驱动都伴随着满足的状态，他们是否能作为次要驱动还是有待研究。下面介绍基于进化的观点。</p></li>
+<li><p>使用一个适应度函数和一些环境兴趣的分布（an explicit fitness
+function and some distribution of environments of
+interest），这个适应度可以是累积的外部奖励和等形式。</p></li>
+<li><p><strong>实验1：</strong></p></li>
+<li><p>一个6x6的格子空间中分割了4个3x3的子空间，格子之间的墙壁不是全部封闭的，其中2个子格子空间中分别有一个打开的盒子和一个封闭的盒子（盒子位置在智能体生命周期内是不再变化的），一个打开的盒子在每个时间步以
+0.1
+的概率关闭，密闭的盒子里总是装着食物。智能体在这样的格子迷宫中要找到打开的盒子，并在封闭的盒子中寻找食物。智能体的行动分为上下左右4个方向。</p></li>
+<li><p>当代理食用食物时，它会在一个时间步长内感到饱足。代理在所有其他时间步都饥饿。智能体每吃一次食物，它的适应度就会增加
+1</p></li>
+<li><p>在格子迷宫环境中假设了两只钟情况：</p>
+<ol type="1">
+<li>constant condition:
+食物总是智能体10000步生命周期中，在封闭的盒子中出现；</li>
+<li>step condition:
+智能体的生命周期是20000步，食物总是出现在10000步之后出现在封闭盒子中；</li>
+</ol></li>
+<li><p>符号说明：</p>
+<ul>
+<li>agent <span class="math display">\[\mathcal{A}\]</span></li>
+<li>a space of reward function <span
+class="math display">\[R_\mathcal{A}\]</span></li>
+<li>a specific reward function <span
+class="math display">\[r_\mathcal{A} \in R_\mathcal{A}\]</span></li>
+<li>a sampled environment <span class="math display">\[E \sim
+P(\varepsilon)\]</span></li>
+<li>history of agent <span class="math display">\[\mathcal{A}\]</span>
+adapting to environment <span class="math display">\[E\]</span> over its
+lifetime using the reward function <span
+class="math display">\[r_\mathcal{A}\]</span>, i.e., <span
+class="math display">\[h \sim \langle
+\mathcal{A}(r_\mathcal{A}),E\rangle\]</span></li>
+<li>fitness function <span class="math display">\[\mathcal{F}\]</span>
+produces a scalar evaluation <span
+class="math display">\[\mathcal{F}(h)\]</span> for each history <span
+class="math display">\[h\]</span></li>
+<li>optimal reward function <span
+class="math display">\[r^*_{\mathcal{A}} \in
+R_{\mathcal{A}}\]</span></li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+r^*_{\mathcal{A}}=\arg \max_{r_\mathcal{A} \in R_\mathcal{A}}
+\mathbb{E}_{E\sim P(\varepsilon)} \mathbb{E}_{h \sim \langle
+\mathcal{A}(r_\mathcal{A}),E\rangle}[\mathcal{F}(h)]
+\]</span></p>
+<ul>
+<li><p>使用的算法 the lookup-table -greedy Q-learning [52].</p>
+<p>[52]. C. J. C. H. Watkins, “Learning from Delayed Rewards,” Ph.D.
+dissertation, Cambridge Univ., Cambridge, U.K., 1989</p></li>
+</ul>
+<p><span class="math display">\[
+Q_{t+1}(s_t,a_t)=(1-\alpha)Q_t(s_t,a_t)+\alpha[r_t + \gamma \max_b
+(Q_t(s_{t+1},b))]
+\]</span></p>
+<p>之后通过实验验证了<span
+class="math display">\[r*\]</span>的奖励函数趋近最优奖励函数</p>
+<ul>
+<li><p><strong>实验2</strong></p>
+<ul>
+<li>一个三走廊的觅食环境，虫子每次随机出现正在其中一个走廊的尽头。由于每次虫子的位置是随机且未知的，智能体过去的经验不能直接直到新的觅食，所以这个环境是非马尔科夫的。</li>
+<li>实验要求智能体在固定的10000步之内尽可能多地吃到虫子。</li>
+</ul>
+<p><span class="math display">\[
+Q_d(s,a)=r_{\mathcal{A}}(s,a)+\gamma\sum_{s&#39;\in \mathcal{S}}
+\hat{T}(s&#39;|s,a)\max_{a&#39;} Q_{d-1}(s&#39;,a&#39;)\\
+\hat{T}(s&#39;|s,a)=\frac{n_{s,a,s&#39;}}{n_{s,a}}
+\]</span></p>
+<p>其中 <span class="math display">\[n_{s,a,s&#39;}\]</span> 表示在
+<span class="math display">\[s\]</span> 状态下，选择 <span
+class="math display">\[a\]</span> 后转移到 <span
+class="math display">\[s&#39;\]</span> 的次数。 <span
+class="math display">\[n_{s,a}\]</span> 表示在 <span
+class="math display">\[s\]</span> 状态下，选择 <span
+class="math display">\[a\]</span> 的次数。</p></li>
+<li><p>奖励函数：<span
+class="math display">\[r_{\mathcal{A}}(s,a)=\beta_F\varPhi_F(s) +
+\beta_c\varPhi_c(s,a,h)\]</span> ，其中 <span
+class="math display">\[\beta_F\]</span> 和 <span
+class="math display">\[\beta_c\]</span> 是权重系数。特征 <span
+class="math display">\[\varPhi_F(s)\]</span> 在智能体饱的时候是 1
+，其他时候是 0 。特征 <span class="math display">\[\varPhi_c(s,a,h) =
+1-\frac{1}{c(s,a,h)}\]</span> ，其中 <span
+class="math display">\[c(s,a,h)\]</span> 是智能体在历史 <span
+class="math display">\[h\]</span> 中执行行为的时间步数。</p></li>
+<li><p>当参数 <span class="math display">\[\beta_c\]</span>
+为正时，智能体会因为最近没有从当前状态采取的行动而获得奖励。这种奖励不是外部环境的固定函数.
+feature <span class="math display">\[\varPhi_F(s)\]</span> is a
+hunger-status feature, and thus when <span
+class="math display">\[\beta_F=1\]</span> and <span
+class="math display">\[\beta_c=0\]</span>, the reward function is the
+fitness-based reward function</p></li>
+</ul>
+<p>最终基于适应度的奖励函数表现次于最优奖励函数2个数量级。因此利用内在奖励
+<span class="math display">\[\varPhi_c(s,a,h)\]</span>
+对提升探索能力很有意义。</p>
+<h2 id="总结">总结</h2>
+<p>视角很独特，实验很新奇。</p>
+<p>但是文章发表在自主心理发展IEEE TRANSACTIONS ON AUTONOMOUS MENTAL
+DEVELOPMENT，因此作为一篇概念文章比较好。</p>
 
       
     </div>
@@ -442,7 +705,8 @@ i=1 时，对整体进行一次直接插入排序。</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="腐烂的橘子"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/rotting-oranges/">994.
+          <h4 id="腐烂的橘子"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/rotting-oranges/">994.
 腐烂的橘子</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -516,7 +780,8 @@ dis[x][y][i]dis[x][y][i] 表示只考虑第 ii
 个腐烂橘子为起点的广度优先搜索，坐标位于 (x, y)
 的新鲜橘子被腐烂的时间，设没有被腐烂的新鲜橘子的
 dis[x][y][i]=infdis[x][y][i]=inf
-，即无限大，表示没有被腐烂，那么每个新鲜橘子被腐烂的最短时间即为 <span class="math display">\[
+，即无限大，表示没有被腐烂，那么每个新鲜橘子被腐烂的最短时间即为 <span
+class="math display">\[
 \min_i dis[x][y][i]
 \]</span>
 最后的答案就是所有新鲜橘子被腐烂的最短时间的最大值，如果是无限大，说明有新鲜橘子没有被腐烂，输出
@@ -542,9 +807,11 @@ cnt-=1 ，最后搜索结束时如果 cnt 大于 0 ，说明有新鲜橘子没�
 即进行一次广度优先搜索的时间，其中 <code>n=grid.length</code>,
 <code>m=grid[0].length</code> 。</li>
 <li>空间复杂度：<span class="math display">\[O(nm)\]</span> 需要额外的
-<code>disdis</code> 数组记录每个新鲜橘子被腐烂的最短时间，大小为 <span class="math display">\[O(nm)\]</span>，且广度优先搜索中队列里存放的状态最多不会超过
+<code>disdis</code> 数组记录每个新鲜橘子被腐烂的最短时间，大小为 <span
+class="math display">\[O(nm)\]</span>，且广度优先搜索中队列里存放的状态最多不会超过
 nm 个，最多需要 <span class="math display">\[O(nm)\]</span>
-的空间，所以最后的空间复杂度为 <span class="math display">\[O(nm)\]</span>。</li>
+的空间，所以最后的空间复杂度为 <span
+class="math display">\[O(nm)\]</span>。</li>
 </ul>
 
       
@@ -565,7 +832,7 @@ nm 个，最多需要 <span class="math display">\[O(nm)\]</span>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/22/2021-07-22-Reinforcement%20Learning%20-%20Intrinsically%20Motivated%20Reinforcement%20Learning%20An%20Evolutionary%20Perspective/">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/21/2021-07-21-Q419-%E7%94%B2%E6%9D%BF%E4%B8%8A%E7%9A%84%E6%88%98%E8%88%B0-%E4%B8%AD%E7%AD%89-%E6%B7%B1%E5%BA%A6and%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -579,7 +846,7 @@ nm 个，最多需要 <span class="math display">\[O(nm)\]</span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/07/22/2021-07-22-Reinforcement%20Learning%20-%20Intrinsically%20Motivated%20Reinforcement%20Learning%20An%20Evolutionary%20Perspective/" class="post-title-link" itemprop="url">Reinforcement Learning | Intrinsically Motivated Reinforcement Learning: An Evolutionary Perspective</a>
+            <a href="/2021/07/21/2021-07-21-Q419-%E7%94%B2%E6%9D%BF%E4%B8%8A%E7%9A%84%E6%88%98%E8%88%B0-%E4%B8%AD%E7%AD%89-%E6%B7%B1%E5%BA%A6and%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" class="post-title-link" itemprop="url">Q419-甲板上的战舰-中等-深度/宽度优先搜索</a>
         </h2>
 
         <div class="post-meta">
@@ -589,7 +856,7 @@ nm 个，最多需要 <span class="math display">\[O(nm)\]</span>
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2021-07-22 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-22T00:00:00+08:00">2021-07-22</time>
+              <time title="Created: 2021-07-21 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-21T00:00:00+08:00">2021-07-21</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -610,171 +877,40 @@ nm 个，最多需要 <span class="math display">\[O(nm)\]</span>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="intrinsically-motivated-reinforcement-learning-an-evolutionary-perspective">Intrinsically
-Motivated Reinforcement Learning: An Evolutionary Perspective</h1>
-<p>论文链接：https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=5471106</p>
-<h2 id="主要内容">主要内容</h2>
+          <h4 id="甲板上的战舰"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/battleships-in-a-board/">419.
+甲板上的战舰</a></h4>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>给定一个二维的甲板， 请计算其中有多少艘战舰。 战舰用 'X'表示，空位用
+'.'表示。 你需要遵守以下规则：</p>
+<p>给你一个有效的甲板，仅由战舰或者空位组成。
+战舰只能水平或者垂直放置。换句话说,战舰只能由 1xN (1 行, N 列)组成，或者
+Nx1 (N 行, 1 列)组成，其中N可以是任意大小。
+两艘战舰之间至少有一个水平或垂直的空位分隔 - 即没有相邻的战舰。</p>
+<p>输入二维数组board</p>
+<p>输出有多少战舰</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">X..X</span><br><span class="line">...X</span><br><span class="line">...X</span><br></pre></td></tr></table></figure>
+<p>输出：2</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<p>不用考虑无效样本</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...X</span><br><span class="line">XXXX</span><br><span class="line">...X</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="approach-1-深度优先搜索递归">Approach 1: 深度优先搜索+递归</h3>
+<p>简单处理，DFS越来越熟练了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">countBattleships</span>(<span class="params">self, board: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">str</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">DFS</span>(<span class="params">cur_i,cur_j</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="number">0</span>&lt;=cur_i <span class="keyword">and</span> cur_i&lt;r <span class="keyword">and</span> <span class="number">0</span>&lt;=cur_j <span class="keyword">and</span> cur_j&lt;c <span class="keyword">and</span> board[cur_i][cur_j] == <span class="string">&#x27;X&#x27;</span>:</span><br><span class="line">                board[cur_i][cur_j] = <span class="string">&quot;.&quot;</span></span><br><span class="line">                <span class="keyword">for</span> di,dj <span class="keyword">in</span> [(-<span class="number">1</span>,<span class="number">0</span>),(<span class="number">1</span>,<span class="number">0</span>),(<span class="number">0</span>,-<span class="number">1</span>),(<span class="number">0</span>,<span class="number">1</span>)]:</span><br><span class="line">                    DFS(cur_i+di,cur_j+dj)</span><br><span class="line">            </span><br><span class="line">        r,c = <span class="built_in">len</span>(board),<span class="built_in">len</span>(board[<span class="number">0</span>])</span><br><span class="line">        ans=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(c):</span><br><span class="line">                <span class="keyword">if</span> board[i][j] == <span class="string">&#x27;X&#x27;</span>:</span><br><span class="line">                    ans+=<span class="number">1</span></span><br><span class="line">                    DFS(i,j)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans </span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
 <ul>
-<li><p>intrinsically motivated
-这个词最开始是在1950年的文章中提出的，文章认为需要有一种内在的操纵驱动力来解释为什么猴子会在没有任何外在奖励的情况下精力充沛地持续工作数小时来解决复杂的机械难题。内在动机行为对智力增长至关重要</p></li>
-<li><p>本文解决了如何在人工系统中实现类似于内在动机的过程的问题，特别关注可能会或可能不会区分内在动机和外在动机的因素，其中外在动机是指由行为的特定奖励结果产生的动机，而不是行为本身。</p></li>
-<li><p>相关工作：</p>
-<ul>
-<li><p>定义有趣度：Lenat's AM system [18], for example, focused on
-heuristic definitions of “interestingness,”</p></li>
-<li><p>建立好奇心框架：Schmidhuber [32] [33] [34] [35] [36] [37]
-introduced methods for implementing forms of curiosity using the
-framework of computational reinforcement learning (RL)1 [47].</p></li>
-<li><p>奖励函数设计：Other researchers have reported interesting results
-of computational experiments involving evolutionary search for RL reward
-functions [1], [8], [19], [31], [43], but they did not directly address
-the motivational issues on which we focus.</p></li>
-<li><p>寻找本质奖励：Uchibe and Doya [51] do address intrinsic reward in
-an evolutionary context, but their aim and approach differ significantly
-from ours.</p>
-<p>[51]. E. Uchibe and K. Doya, "Finding intrinsic rewards by embodied
-evolution and constrained reinforcement learning", <em>Neural
-Netw.</em>, vol. 21, no. 10, pp. 1447-1455, 2008.</p></li>
-<li><p>与我们最接近的研究是 Elfwing
-等人的研究。[11]其中使用遗传算法来搜索塑造奖励[23]和其他提高 RL
-学习系统性能的学习算法参数。</p>
-<p>[11]. S. Elfwing, E. Uchibe, K. Doya and H. I. Christensen,
-"Co-evolution of shaping rewards and meta-parameters in reinforcement
-learning", <em>Adapt. Behav.</em>, vol. 16, pp. 400-412, 2008.</p></li>
-</ul></li>
-<li><p>使用RL的模型结构示意图</p></li>
+<li>时间复杂度：<span class="math display">\[O(R \times
+C)\]</span>。其中 R 是给定网格中的行数，C
+是列数。我们访问每个网格最多一次。</li>
+<li>空间复杂度：<span class="math display">\[O(1)\]</span></li>
 </ul>
-<figure>
-<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210722-1.png" alt="Agent–environment interactions in reinforcement learning">
-<figcaption aria-hidden="true">Agent–environment interactions in
-reinforcement learning</figcaption>
-</figure>
-<ul>
-<li><p>这篇文章[3]使用属于内部奖励（intrinsic
-reward），并将其与强化学习框架结合。所谓内部奖励，就是内部动机生成的奖励函数；外部奖励就是常规的强化学习框架的奖励函数。</p>
-<p>[3]. A. G. Barto, S. Singh and N. Chentanez, "Intrinsically motivated
-learning of hierarchical collections of skills", <em>Proc. Int. Conf.
-Develop. Learn.</em>, 2004.</p></li>
-<li><p>目前的方法基本都是构建特殊的内部奖励函数，并且将其与一般的强化学习算法结合。例如基于好奇心的内部驱动方法[32]。</p>
-<p>[32]. J. Schmidhuber, <em>Adaptive Confidence and Adaptive
-Curiosity</em>, 1991.</p></li>
-<li><p>这种内部动机的RL框架更加符合生物实际。并且奖励和奖励信号是不同的概念，RL模型中使用的更类似于奖励信号。</p>
-<ul>
-<li><p>奖励（Reward）指的是获得的好处；</p></li>
-<li><p>奖励信号（Reward signal）指的是大脑中奖励神经元发放的信号；</p>
-<p>Schultz [38], [39] writes that “Rewards are objects or events that
-make us come back for more,” whereas reward signals are produced by
-reward neurons in the brain.</p></li>
-</ul></li>
-<li><p>RL中的环境应该分为an external environment 和 an internal
-environment.</p></li>
-<li><p>但是并不能从行为上区分是否使用了内部奖励[25]。但是内部动机是通过外部奖励形成的。</p>
-<p>[25]. P.-Y. Oudeyer and F. Kaplan, "What is intrinsic motivation? A
-typology of computational approaches", <em>Frontiers Neurorobot.</em>,
-2007.</p></li>
-<li><p>Primary and Secondary
-Reward：使用内部动机意义在于作为一种次要的奖励信号，配合主要的外部奖励信号完成行为</p></li>
-<li><p>生物动机心理学依据：</p>
-<p>Among the most influential theories of motivation in psychology is
-the drive theory of Hull [13] [14] [15]. According to Hull's theory, all
-behavior is motivated either by an organism's survival and reproductive
-needs giving rise to primary drives (such as hunger, thirst, sex, and
-the avoidance of pain), or by derivative drives that have acquired their
-motivational significance through learning. Primary drives are the
-result of physiological deficits—“tissue needs”— and they energize
-behavior whose result is to reduce the deficit. A key additional feature
-of Hull's theory is that a need reduction, and hence a drive reduction,
-acts as a primary reinforcer for learning: behavior that reduces a
-primary drive is reinforced. Additionally, through the process of
-secondary reinforcement in which a neutral stimulus is paired with a
-primary reinforcer, the formerly neutral stimulus becomes a secondary
-reinforcer, i.e., acquires the reinforcing power of the primary
-reinforcer. In this way, stimuli that predict primary reward, i.e.,
-predict a reduction in a primary drive, become rewarding themselves.
-According to this influential theory (in its several variants), all
-behavior is energized and directed by its relevance to primal drives,
-either directly or as the result of learning through secondary
-reinforcement.</p></li>
-<li><p>一些驱动力对行为影响的例子，在某些条件下，饥饿的老鼠宁愿探索不熟悉的空间，也不愿进食；他们忍受穿越电网的痛苦，去探索新的空间。</p></li>
-<li><p>但是饥饿、口渴、繁衍这些驱动都伴随着满足的状态，他们是否能作为次要驱动还是有待研究。下面介绍基于进化的观点。</p></li>
-<li><p>使用一个适应度函数和一些环境兴趣的分布（an explicit fitness
-function and some distribution of environments of
-interest），这个适应度可以是累积的外部奖励和等形式。</p></li>
-<li><p><strong>实验1：</strong></p></li>
-<li><p>一个6x6的格子空间中分割了4个3x3的子空间，格子之间的墙壁不是全部封闭的，其中2个子格子空间中分别有一个打开的盒子和一个封闭的盒子（盒子位置在智能体生命周期内是不再变化的），一个打开的盒子在每个时间步以
-0.1
-的概率关闭，密闭的盒子里总是装着食物。智能体在这样的格子迷宫中要找到打开的盒子，并在封闭的盒子中寻找食物。智能体的行动分为上下左右4个方向。</p></li>
-<li><p>当代理食用食物时，它会在一个时间步长内感到饱足。代理在所有其他时间步都饥饿。智能体每吃一次食物，它的适应度就会增加
-1</p></li>
-<li><p>在格子迷宫环境中假设了两只钟情况：</p>
-<ol type="1">
-<li>constant condition:
-食物总是智能体10000步生命周期中，在封闭的盒子中出现；</li>
-<li>step condition:
-智能体的生命周期是20000步，食物总是出现在10000步之后出现在封闭盒子中；</li>
-</ol></li>
-<li><p>符号说明：</p>
-<ul>
-<li>agent <span class="math display">\[\mathcal{A}\]</span></li>
-<li>a space of reward function <span class="math display">\[R_\mathcal{A}\]</span></li>
-<li>a specific reward function <span class="math display">\[r_\mathcal{A} \in R_\mathcal{A}\]</span></li>
-<li>a sampled environment <span class="math display">\[E \sim
-P(\varepsilon)\]</span></li>
-<li>history of agent <span class="math display">\[\mathcal{A}\]</span>
-adapting to environment <span class="math display">\[E\]</span> over its
-lifetime using the reward function <span class="math display">\[r_\mathcal{A}\]</span>, i.e., <span class="math display">\[h \sim \langle
-\mathcal{A}(r_\mathcal{A}),E\rangle\]</span></li>
-<li>fitness function <span class="math display">\[\mathcal{F}\]</span>
-produces a scalar evaluation <span class="math display">\[\mathcal{F}(h)\]</span> for each history <span class="math display">\[h\]</span></li>
-<li>optimal reward function <span class="math display">\[r^*_{\mathcal{A}} \in
-R_{\mathcal{A}}\]</span></li>
-</ul></li>
-</ul>
-<p><span class="math display">\[
-r^*_{\mathcal{A}}=\arg \max_{r_\mathcal{A} \in R_\mathcal{A}}
-\mathbb{E}_{E\sim P(\varepsilon)} \mathbb{E}_{h \sim \langle
-\mathcal{A}(r_\mathcal{A}),E\rangle}[\mathcal{F}(h)]
-\]</span></p>
-<ul>
-<li><p>使用的算法 the lookup-table -greedy Q-learning [52].</p>
-<p>[52]. C. J. C. H. Watkins, “Learning from Delayed Rewards,” Ph.D.
-dissertation, Cambridge Univ., Cambridge, U.K., 1989</p></li>
-</ul>
-<p><span class="math display">\[
-Q_{t+1}(s_t,a_t)=(1-\alpha)Q_t(s_t,a_t)+\alpha[r_t + \gamma \max_b
-(Q_t(s_{t+1},b))]
-\]</span></p>
-<p>之后通过实验验证了<span class="math display">\[r*\]</span>的奖励函数趋近最优奖励函数</p>
-<ul>
-<li><p><strong>实验2</strong></p>
-<ul>
-<li>一个三走廊的觅食环境，虫子每次随机出现正在其中一个走廊的尽头。由于每次虫子的位置是随机且未知的，智能体过去的经验不能直接直到新的觅食，所以这个环境是非马尔科夫的。</li>
-<li>实验要求智能体在固定的10000步之内尽可能多地吃到虫子。</li>
-</ul>
-<p><span class="math display">\[
-Q_d(s,a)=r_{\mathcal{A}}(s,a)+\gamma\sum_{s&#39;\in \mathcal{S}}
-\hat{T}(s&#39;|s,a)\max_{a&#39;} Q_{d-1}(s&#39;,a&#39;)\\
-\hat{T}(s&#39;|s,a)=\frac{n_{s,a,s&#39;}}{n_{s,a}}
-\]</span></p>
-<p>其中 <span class="math display">\[n_{s,a,s&#39;}\]</span> 表示在
-<span class="math display">\[s\]</span> 状态下，选择 <span class="math display">\[a\]</span> 后转移到 <span class="math display">\[s&#39;\]</span> 的次数。 <span class="math display">\[n_{s,a}\]</span> 表示在 <span class="math display">\[s\]</span> 状态下，选择 <span class="math display">\[a\]</span> 的次数。</p></li>
-<li><p>奖励函数：<span class="math display">\[r_{\mathcal{A}}(s,a)=\beta_F\varPhi_F(s) +
-\beta_c\varPhi_c(s,a,h)\]</span> ，其中 <span class="math display">\[\beta_F\]</span> 和 <span class="math display">\[\beta_c\]</span> 是权重系数。特征 <span class="math display">\[\varPhi_F(s)\]</span> 在智能体饱的时候是 1
-，其他时候是 0 。特征 <span class="math display">\[\varPhi_c(s,a,h) =
-1-\frac{1}{c(s,a,h)}\]</span> ，其中 <span class="math display">\[c(s,a,h)\]</span> 是智能体在历史 <span class="math display">\[h\]</span> 中执行行为的时间步数。</p></li>
-<li><p>当参数 <span class="math display">\[\beta_c\]</span>
-为正时，智能体会因为最近没有从当前状态采取的行动而获得奖励。这种奖励不是外部环境的固定函数.
-feature <span class="math display">\[\varPhi_F(s)\]</span> is a
-hunger-status feature, and thus when <span class="math display">\[\beta_F=1\]</span> and <span class="math display">\[\beta_c=0\]</span>, the reward function is the
-fitness-based reward function</p></li>
-</ul>
-<p>最终基于适应度的奖励函数表现次于最优奖励函数2个数量级。因此利用内在奖励
-<span class="math display">\[\varPhi_c(s,a,h)\]</span>
-对提升探索能力很有意义。</p>
-<h2 id="总结">总结</h2>
-<p>视角很独特，实验很新奇。</p>
-<p>但是文章发表在自主心理发展IEEE TRANSACTIONS ON AUTONOMOUS MENTAL
-DEVELOPMENT，因此作为一篇概念文章比较好。</p>
 
       
     </div>
@@ -839,7 +975,8 @@ DEVELOPMENT，因此作为一篇概念文章比较好。</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="加油站"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/gas-station/">134.
+          <h4 id="加油站"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/gas-station/">134.
 加油站</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -925,103 +1062,6 @@ DEVELOPMENT，因此作为一篇概念文章比较好。</p>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/21/2021-07-21-Q419-%E7%94%B2%E6%9D%BF%E4%B8%8A%E7%9A%84%E6%88%98%E8%88%B0-%E4%B8%AD%E7%AD%89-%E6%B7%B1%E5%BA%A6and%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用类人决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/21/2021-07-21-Q419-%E7%94%B2%E6%9D%BF%E4%B8%8A%E7%9A%84%E6%88%98%E8%88%B0-%E4%B8%AD%E7%AD%89-%E6%B7%B1%E5%BA%A6and%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" class="post-title-link" itemprop="url">Q419-甲板上的战舰-中等-深度/宽度优先搜索</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-07-21 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-21T00:00:00+08:00">2021-07-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-25 09:54:15" itemprop="dateModified" datetime="2023-03-25T09:54:15+08:00">2023-03-25</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="甲板上的战舰"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/battleships-in-a-board/">419.
-甲板上的战舰</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>给定一个二维的甲板， 请计算其中有多少艘战舰。 战舰用 'X'表示，空位用
-'.'表示。 你需要遵守以下规则：</p>
-<p>给你一个有效的甲板，仅由战舰或者空位组成。
-战舰只能水平或者垂直放置。换句话说,战舰只能由 1xN (1 行, N 列)组成，或者
-Nx1 (N 行, 1 列)组成，其中N可以是任意大小。
-两艘战舰之间至少有一个水平或垂直的空位分隔 - 即没有相邻的战舰。</p>
-<p>输入二维数组board</p>
-<p>输出有多少战舰</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">X..X</span><br><span class="line">...X</span><br><span class="line">...X</span><br></pre></td></tr></table></figure>
-<p>输出：2</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<p>不用考虑无效样本</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...X</span><br><span class="line">XXXX</span><br><span class="line">...X</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="approach-1-深度优先搜索递归">Approach 1: 深度优先搜索+递归</h3>
-<p>简单处理，DFS越来越熟练了</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">countBattleships</span>(<span class="params">self, board: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">str</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">DFS</span>(<span class="params">cur_i,cur_j</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="number">0</span>&lt;=cur_i <span class="keyword">and</span> cur_i&lt;r <span class="keyword">and</span> <span class="number">0</span>&lt;=cur_j <span class="keyword">and</span> cur_j&lt;c <span class="keyword">and</span> board[cur_i][cur_j] == <span class="string">&#x27;X&#x27;</span>:</span><br><span class="line">                board[cur_i][cur_j] = <span class="string">&quot;.&quot;</span></span><br><span class="line">                <span class="keyword">for</span> di,dj <span class="keyword">in</span> [(-<span class="number">1</span>,<span class="number">0</span>),(<span class="number">1</span>,<span class="number">0</span>),(<span class="number">0</span>,-<span class="number">1</span>),(<span class="number">0</span>,<span class="number">1</span>)]:</span><br><span class="line">                    DFS(cur_i+di,cur_j+dj)</span><br><span class="line">            </span><br><span class="line">        r,c = <span class="built_in">len</span>(board),<span class="built_in">len</span>(board[<span class="number">0</span>])</span><br><span class="line">        ans=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(c):</span><br><span class="line">                <span class="keyword">if</span> board[i][j] == <span class="string">&#x27;X&#x27;</span>:</span><br><span class="line">                    ans+=<span class="number">1</span></span><br><span class="line">                    DFS(i,j)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans </span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：<span class="math display">\[O(R \times
-C)\]</span>。其中 R 是给定网格中的行数，C
-是列数。我们访问每个网格最多一次。</li>
-<li>空间复杂度：<span class="math display">\[O(1)\]</span></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/21/2021-07-21-Q695-%E5%B2%9B%E5%B1%BF%E7%9A%84%E6%9C%80%E5%A4%A7%E9%9D%A2%E7%A7%AF-%E4%B8%AD%E7%AD%89-%E6%B7%B1%E5%BA%A6and%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1067,7 +1107,8 @@ C)\]</span>。其中 R 是给定网格中的行数，C
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="岛屿的最大面积"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/max-area-of-island/">695.
+          <h4 id="岛屿的最大面积"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/max-area-of-island/">695.
 岛屿的最大面积</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -1118,7 +1159,8 @@ C)\]</span>。其中 R 是给定网格中的行数，C
 C)\]</span>。其中 R 是给定网格中的行数，C
 是列数。我们访问每个网格最多一次。</li>
 <li>空间复杂度：<span class="math display">\[O(R \times
-C)\]</span>，递归的深度最大可能是整个网格的大小，因此最大可能使用 <span class="math display">\[O(R \times C)\]</span> 的栈空间。</li>
+C)\]</span>，递归的深度最大可能是整个网格的大小，因此最大可能使用 <span
+class="math display">\[O(R \times C)\]</span> 的栈空间。</li>
 </ul>
 <h3 id="approach-2-广度优先搜索">Approach 2: 广度优先搜索</h3>
 <p>广度优先的写法需要建立一个队列que，记录当前遍历到的结点，结合while
@@ -1136,7 +1178,9 @@ que进行遍历</p>
 C)\]</span>。其中 R 是给定网格中的行数，C
 是列数。我们访问每个网格最多一次。</li>
 <li>空间复杂度：<span class="math display">\[O(R \times
-C)\]</span>，队列中最多会存放所有的土地，土地的数量最多为 <span class="math display">\[R \times C\]</span> 块，因此使用的空间为 <span class="math display">\[O(R \times C)\]</span>。</li>
+C)\]</span>，队列中最多会存放所有的土地，土地的数量最多为 <span
+class="math display">\[R \times C\]</span> 块，因此使用的空间为 <span
+class="math display">\[O(R \times C)\]</span>。</li>
 <li></li>
 </ul>
 
@@ -1158,7 +1202,7 @@ C)\]</span>，队列中最多会存放所有的土地，土地的数量最多为
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/18/2021-07-18-Q688-%E9%A9%AC%E5%9C%A8%E6%A3%8B%E7%9B%98%E4%B8%8A%E7%9A%84%E6%A6%82%E7%8E%87-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/18/2021-07-18-Q200.%20%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F-%E4%B8%AD%E7%AD%89-%E6%B7%B1%E5%BA%A6and%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1172,7 +1216,7 @@ C)\]</span>，队列中最多会存放所有的土地，土地的数量最多为
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/07/18/2021-07-18-Q688-%E9%A9%AC%E5%9C%A8%E6%A3%8B%E7%9B%98%E4%B8%8A%E7%9A%84%E6%A6%82%E7%8E%87-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="post-title-link" itemprop="url">Q688-马在棋盘上的概率-中等-动态规划</a>
+            <a href="/2021/07/18/2021-07-18-Q200.%20%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F-%E4%B8%AD%E7%AD%89-%E6%B7%B1%E5%BA%A6and%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" class="post-title-link" itemprop="url">Q200-岛屿数量-中等-深度and广度优先搜索</a>
         </h2>
 
         <div class="post-meta">
@@ -1203,87 +1247,64 @@ C)\]</span>，队列中最多会存放所有的土地，土地的数量最多为
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="马在棋盘上的概率"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/knight-probability-in-chessboard/">688.
-“马”在棋盘上的概率</a></h4>
+          <h4 id="岛屿数量"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-islands/">200.
+岛屿数量</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
-<p>已知一个 NxN 的国际象棋棋盘，棋盘的行号和列号都是从 0
-开始。即最左上角的格子记为 (0, 0)，最右下角的记为 (N-1, N-1)。</p>
-<p>现有一个 “马”（也译作 “骑士”）位于 (r, c) ，并打算进行 K 次移动。</p>
-<p>如下图所示，国际象棋的 “马” 每一步先沿水平或垂直方向移动 2
-个格子，然后向与之相垂直的方向再移动 1 个格子，共有 8 个可选的位置。</p>
-<p>现在 “马”
-每一步都从可选的位置（包括棋盘外部的）中独立随机地选择一个进行移动，直到移动了
-K 次或跳到了棋盘外面。</p>
-<p>求移动结束后，“马” 仍留在棋盘上的概率。</p>
+<p>给你一个由 '1'（陆地）和
+'0'（水）组成的的二维网格，请你计算网格中岛屿的数量。</p>
+<p>岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。</p>
+<p>此外，你可以假设该网格的四条边均被水包围。</p>
 </blockquote>
 <blockquote>
 <p><strong>Example 1:</strong></p>
-<p>输入: 3, 2, 0, 0 输出: 0.0625 解释: 输入的数据依次为 N, K, r, c 第 1
-步时，有且只有 2 种走法令 “马”
-可以留在棋盘上（跳到（1,2）或（2,1））。对于以上的两种情况，各自在第2步均有且只有2种走法令
-“马” 仍然留在棋盘上。 所以 “马” 在结束后仍在棋盘上的概率为 0.0625。</p>
+<p>输入：grid = [ ["1","1","1","1","0"], ["1","1","0","1","0"],
+["1","1","0","0","0"], ["0","0","0","0","0"]] 输出：1</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>输入：grid = [ ["1","1","0","0","0"], ["1","1","0","0","0"],
+["0","0","1","0","0"], ["0","0","0","1","1"]] 输出：3</p>
 </blockquote>
 <blockquote>
 <p><strong>Note:</strong></p>
 <ul>
-<li><code>N</code> 的取值范围为 [1, 25]</li>
-<li><code>K</code> 的取值范围为 [0, 100]</li>
-<li>开始时，“马” 总是位于棋盘上</li>
+<li><code>m == grid.length</code></li>
+<li><code>n == grid[i].length</code></li>
+<li><code>1 &lt;= m, n &lt;= 300</code></li>
+<li><code>grid[i][j]</code> 的值为 <code>'0'</code> 或
+<code>'1'</code></li>
 </ul>
 </blockquote>
-<h3 id="approach-1-动态规划">Approach 1: 动态规划</h3>
-<ul>
-<li>令 <code>f[r][c][steps]</code> 代表马在位置 <code>(r, c)</code>
-移动了 <code>steps</code>
-次以后还留在棋盘上的概率，根据马的移动方式，我们有以下递归：</li>
-</ul>
-<p><span class="math display">\[
-f[r][c][steps]=\sum_{dr,dc} f[r+dr][c+dc][steps-1]\cdot \frac{1}{8}
-\]</span></p>
-<ul>
-<li>根据题目我们可以知道 (dr, dc) 的可能数据对是 (2, 1), (2, -1), (-2,
-1), (-2, -1), (1, 2), (1, -2), (-1, 2), (-1, -2)。</li>
-<li>我们将使用二维的 dp 和 dp2 来存储我们的数据，而不是使用三维数组 f。
-<ul>
-<li><code>dp2</code> 代表 <code>f[][][steps]</code>；</li>
-<li><code>dp</code> 代表 <code>f[][][steps-1]</code>；</li>
-</ul></li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">knightProbability</span>(<span class="params">self, N, K, r, c</span>):</span><br><span class="line">        dp = [[<span class="number">0</span>] * N <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(N)]</span><br><span class="line">        dp[r][c] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(K): <span class="comment"># 走k步还在棋盘内的概率</span></span><br><span class="line">            dp2 = [[<span class="number">0</span>] * N <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(N)]</span><br><span class="line">            <span class="keyword">for</span> r, row <span class="keyword">in</span> <span class="built_in">enumerate</span>(dp):</span><br><span class="line">                <span class="keyword">for</span> c, val <span class="keyword">in</span> <span class="built_in">enumerate</span>(row):</span><br><span class="line">                    <span class="keyword">for</span> dr, dc <span class="keyword">in</span> ((<span class="number">2</span>,<span class="number">1</span>),(<span class="number">2</span>,-<span class="number">1</span>),(-<span class="number">2</span>,<span class="number">1</span>),(-<span class="number">2</span>,-<span class="number">1</span>),</span><br><span class="line">                                   (<span class="number">1</span>,<span class="number">2</span>),(<span class="number">1</span>,-<span class="number">2</span>),(-<span class="number">1</span>,<span class="number">2</span>),(-<span class="number">1</span>,-<span class="number">2</span>)):</span><br><span class="line">                        <span class="comment"># 走了一步之后还在棋盘内</span></span><br><span class="line">                        <span class="keyword">if</span> <span class="number">0</span> &lt;= r + dr &lt; N <span class="keyword">and</span> <span class="number">0</span> &lt;= c + dc &lt; N:</span><br><span class="line">                            dp2[r+dr][c+dc] += val / <span class="number">8.0</span></span><br><span class="line">            dp = dp2</span><br><span class="line">        <span class="comment"># map()函数把sum依次作用在dp的每一项上，在map()外再使用sum()完成二维数组的求和</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(<span class="built_in">map</span>(<span class="built_in">sum</span>, dp))</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    N, K, r, c = <span class="number">3</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    solution=Solution().solve(N, K, r, c)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<h3 id="approach-1-深度优先搜索">Approach 1: 深度优先搜索</h3>
+<p>我们可以将二维网格看成一个无向图，竖直或水平相邻的 11
+之间有边相连。</p>
+<p>为了求出岛屿的数量，我们可以扫描整个二维网格。如果一个位置为
+11，则以其为起始节点开始进行深度优先搜索。在深度优先搜索的过程中，每个搜索到的
+11 都会被重新标记为 00。</p>
+<p>最终岛屿的数量就是我们进行深度优先搜索的次数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">self, grid, r, c</span>):</span><br><span class="line">        grid[r][c] = <span class="number">0</span></span><br><span class="line">        nr, nc = <span class="built_in">len</span>(grid), <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">for</span> x, y <span class="keyword">in</span> [(r - <span class="number">1</span>, c), (r + <span class="number">1</span>, c), (r, c - <span class="number">1</span>), (r, c + <span class="number">1</span>)]:</span><br><span class="line">            <span class="keyword">if</span> <span class="number">0</span> &lt;= x &lt; nr <span class="keyword">and</span> <span class="number">0</span> &lt;= y &lt; nc <span class="keyword">and</span> grid[x][y] == <span class="string">&quot;1&quot;</span>:</span><br><span class="line">                self.dfs(grid, x, y)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numIslands</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">str</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        nr = <span class="built_in">len</span>(grid)</span><br><span class="line">        <span class="keyword">if</span> nr == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        nc = <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">        num_islands = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> r <span class="keyword">in</span> <span class="built_in">range</span>(nr):</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">range</span>(nc):</span><br><span class="line">                <span class="keyword">if</span> grid[r][c] == <span class="string">&quot;1&quot;</span>:</span><br><span class="line">                    num_islands += <span class="number">1</span></span><br><span class="line">                    self.dfs(grid, r, c)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> num_islands</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li>时间复杂度：<span class="math display">\[O(N^2 K)\]</span>。其中 N,
-K 为题目中的定义。我们对 <span class="math display">\[N^2\]</span>
-元素的每一层 dp 进行 O(1) 工作，并且考虑了 K 层。</li>
-<li>空间复杂度：<span class="math display">\[O(N^2)\]</span>，dp 和 dp2
-的大小。</li>
+<li><p>时间复杂度：O(MN)，其中 M 和 N 分别为行数和列数。</p></li>
+<li><p>空间复杂度：O(MN)，在最坏情况下，整个网格均为陆地，深度优先搜索的深度达到
+MN。</p></li>
 </ul>
-<h3 id="approach-2-矩阵求幂">Approach 2: 矩阵求幂</h3>
-<p>方法 1 中表示的状态重复表达了过渡到其他的线性组合的状态。
-任何情况下，我们都可以将整个转换表示为这些线性组合的矩阵。然后，这个矩阵的第
-n 次方代表了 n 移动的转换，因此我们可以将问题简化为矩阵求幂问题。</p>
-<p><strong>算法：</strong></p>
-<ul>
-<li>首先，我们可以利用棋盘上的对称性。马可能有 n^2
-的状态（假设它在板上）。由于横轴、纵轴和对角线的对称性，我们可以假设骑士在棋盘的左上象限，并且列数等于或大于行数。对于任何一个位置，通过满足条件通过轴反射得到位置将是该位置的标准索引。</li>
-<li>这将使状态数从 <span class="math display">\[N^2\]</span> 减少到大约
-<span class="math display">\[\frac{N^2}{8}\]</span> ，这使得在这个 <span class="math display">\[O(\frac{N^2}{8}) \times O(\frac{N^2}{8})\]</span>
-矩阵上下求幂大约快 <span class="math display">\[8^3\]</span> 倍。</li>
-<li>现在，如果我们知道每一个状态在一次移动后都会变成某种状态的线性组合，那么让我们写一个过渡矩阵
-<span class="math display">\[\mathcal{T}\]</span>，其中 <span class="math display">\[\mathcal{T}\]</span> 的第 i 行代表了第 i
-个状态的线性组合。然后，<span class="math display">\[\mathcal{T}^n\]</span> 表示 n
-次移动的转换，我们需要第 i 行的总和，其中 i 是起始位置的索引。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">knightProbability2</span>(<span class="params">self, N, K, sr, sc</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">canonical</span>(<span class="params">r, c</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="number">2</span> * r &gt; N: r = N - <span class="number">1</span> - r</span><br><span class="line">            <span class="keyword">if</span> <span class="number">2</span> * c &gt; N: c = N - <span class="number">1</span> - c</span><br><span class="line">            <span class="keyword">if</span> r &gt; c: r, c = c, r</span><br><span class="line">            <span class="keyword">return</span> r*N + c</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">matrix_mult</span>(<span class="params">A, B</span>):</span><br><span class="line">            ZB = <span class="built_in">zip</span>(*B)</span><br><span class="line">            <span class="keyword">return</span> [[<span class="built_in">sum</span>(a * b <span class="keyword">for</span> a, b <span class="keyword">in</span> <span class="built_in">zip</span>(row, col))</span><br><span class="line">                    <span class="keyword">for</span> col <span class="keyword">in</span> ZB] <span class="keyword">for</span> row <span class="keyword">in</span> A]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">matrix_expo</span>(<span class="params">A, K</span>):</span><br><span class="line">            <span class="keyword">if</span> K == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span> [[+(i==j) <span class="keyword">for</span> j <span class="keyword">in</span> xrange(<span class="built_in">len</span>(A))]</span><br><span class="line">                        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="built_in">len</span>(A))]</span><br><span class="line">            <span class="keyword">if</span> K == <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> A</span><br><span class="line">            <span class="keyword">elif</span> K % <span class="number">2</span>:</span><br><span class="line">                <span class="keyword">return</span> matrix_mult(matrix_expo(A, K-<span class="number">1</span>), A)</span><br><span class="line">            B = matrix_expo(A, K/<span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> matrix_mult(B, B)</span><br><span class="line"></span><br><span class="line">        index = [<span class="number">0</span>] * (N*N)</span><br><span class="line">        t = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> r <span class="keyword">in</span> xrange(N):</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> xrange(N):</span><br><span class="line">                <span class="keyword">if</span> r*N + c == canonical(r, c):</span><br><span class="line">                    index[r*N + c] = t</span><br><span class="line">                    t += <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    index[r*N + c] = index[canonical(r, c)]</span><br><span class="line"></span><br><span class="line">        T = []</span><br><span class="line">        <span class="keyword">for</span> r <span class="keyword">in</span> xrange(N):</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> xrange(N):</span><br><span class="line">                <span class="keyword">if</span> r*N + c == canonical(r, c):</span><br><span class="line">                    row = [<span class="number">0</span>] * t</span><br><span class="line">                    <span class="keyword">for</span> dr, dc <span class="keyword">in</span> ((<span class="number">2</span>,<span class="number">1</span>),(<span class="number">2</span>,-<span class="number">1</span>),(-<span class="number">2</span>,<span class="number">1</span>),(-<span class="number">2</span>,-<span class="number">1</span>),</span><br><span class="line">                                    (<span class="number">1</span>,<span class="number">2</span>),(<span class="number">1</span>,-<span class="number">2</span>),(-<span class="number">1</span>,<span class="number">2</span>),(-<span class="number">1</span>,-<span class="number">2</span>)):</span><br><span class="line">                        <span class="keyword">if</span> <span class="number">0</span> &lt;= r+dr &lt; N <span class="keyword">and</span> <span class="number">0</span> &lt;= c+dc &lt; N:</span><br><span class="line">                            row[index[(r+dr)*N + c+dc]] += <span class="number">0.125</span></span><br><span class="line">                    T.append(row)</span><br><span class="line"></span><br><span class="line">        Tk = matrix_expo(T, K)</span><br><span class="line">        i = index[sr * N + sc]</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(Tk[i])</span><br></pre></td></tr></table></figure>
+<h3 id="approach-2-广度优先搜索">Approach 2: 广度优先搜索</h3>
+<p>同样地，我们也可以使用广度优先搜索代替深度优先搜索。</p>
+<p>为了求出岛屿的数量，我们可以扫描整个二维网格。如果一个位置为
+1，则将其加入队列，开始进行广度优先搜索。在广度优先搜索的过程中，每个搜索到的
+1 都会被重新标记为 0。直到队列为空，搜索结束。</p>
+<p>最终岛屿的数量就是我们进行广度优先搜索的次数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numIslands</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">str</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        nr = <span class="built_in">len</span>(grid)</span><br><span class="line">        <span class="keyword">if</span> nr == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        nc = <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">        num_islands = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> r <span class="keyword">in</span> <span class="built_in">range</span>(nr):</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">range</span>(nc):</span><br><span class="line">                <span class="keyword">if</span> grid[r][c] == <span class="string">&quot;1&quot;</span>:</span><br><span class="line">                    num_islands += <span class="number">1</span></span><br><span class="line">                    grid[r][c] = <span class="string">&quot;0&quot;</span></span><br><span class="line">                    neighbors = collections.deque([(r, c)])</span><br><span class="line">                    <span class="keyword">while</span> neighbors:</span><br><span class="line">                        row, col = neighbors.popleft()</span><br><span class="line">                        <span class="keyword">for</span> x, y <span class="keyword">in</span> [(row - <span class="number">1</span>, col), (row + <span class="number">1</span>, col), (row, col - <span class="number">1</span>), (row, col + <span class="number">1</span>)]:</span><br><span class="line">                            <span class="keyword">if</span> <span class="number">0</span> &lt;= x &lt; nr <span class="keyword">and</span> <span class="number">0</span> &lt;= y &lt; nc <span class="keyword">and</span> grid[x][y] == <span class="string">&quot;1&quot;</span>:</span><br><span class="line">                                neighbors.append((x, y))</span><br><span class="line">                                grid[x][y] = <span class="string">&quot;0&quot;</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> num_islands</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li><p>时间复杂度：<span class="math display">\[O(N^6
-\log(K))\]</span>。其中 N, K 为题目中的定义。大约有 <span class="math display">\[\frac{N^2}{8}\]</span>
-规范状态，这使得我们的矩阵乘法 <span class="math display">\[O(N^6)\]</span>。为了找到这个矩阵的第 K
-次幂，我们做了 <span class="math display">\[O(\log(K))\]</span>
-matrix乘法。</p></li>
-<li><p>空间复杂度：<span class="math display">\[O(N^4)\]</span>，矩阵有大约 <span class="math display">\[\frac{N^4}{64}\]</span> 个元素。</p></li>
+<li>时间复杂度：<span class="math display">\[O(MN)\]</span>，其中 M 和 N
+分别为行数和列数。</li>
+<li>空间复杂度：<span class="math display">\[O(\min(M,
+N))\]</span>，在最坏情况下，整个网格均为陆地，队列的大小可以达到<span
+class="math display">\[ \min(M, N)\]</span>。</li>
 </ul>
 
       
