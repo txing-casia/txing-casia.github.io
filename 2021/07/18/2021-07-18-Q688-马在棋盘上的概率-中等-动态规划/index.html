@@ -30,8 +30,8 @@
 <meta property="article:published_time" content="2021-07-17T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-03-25T01:54:15.000Z">
 <meta property="article:author" content="Txing">
-<meta property="article:tag" content="Python">
 <meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Python">
 <meta property="article:tag" content="Medium">
 <meta property="article:tag" content="Dynamic Planning">
 <meta name="twitter:card" content="summary">
@@ -228,8 +228,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="马在棋盘上的概率"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/knight-probability-in-chessboard/">688.
+        <h4 id="马在棋盘上的概率"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/knight-probability-in-chessboard/">688.
 “马”在棋盘上的概率</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -294,29 +293,22 @@ n 次方代表了 n 移动的转换，因此我们可以将问题简化为矩阵
 <li>首先，我们可以利用棋盘上的对称性。马可能有 n^2
 的状态（假设它在板上）。由于横轴、纵轴和对角线的对称性，我们可以假设骑士在棋盘的左上象限，并且列数等于或大于行数。对于任何一个位置，通过满足条件通过轴反射得到位置将是该位置的标准索引。</li>
 <li>这将使状态数从 <span class="math display">\[N^2\]</span> 减少到大约
-<span class="math display">\[\frac{N^2}{8}\]</span> ，这使得在这个 <span
-class="math display">\[O(\frac{N^2}{8}) \times O(\frac{N^2}{8})\]</span>
+<span class="math display">\[\frac{N^2}{8}\]</span> ，这使得在这个 <span class="math display">\[O(\frac{N^2}{8}) \times O(\frac{N^2}{8})\]</span>
 矩阵上下求幂大约快 <span class="math display">\[8^3\]</span> 倍。</li>
 <li>现在，如果我们知道每一个状态在一次移动后都会变成某种状态的线性组合，那么让我们写一个过渡矩阵
-<span class="math display">\[\mathcal{T}\]</span>，其中 <span
-class="math display">\[\mathcal{T}\]</span> 的第 i 行代表了第 i
-个状态的线性组合。然后，<span
-class="math display">\[\mathcal{T}^n\]</span> 表示 n
+<span class="math display">\[\mathcal{T}\]</span>，其中 <span class="math display">\[\mathcal{T}\]</span> 的第 i 行代表了第 i
+个状态的线性组合。然后，<span class="math display">\[\mathcal{T}^n\]</span> 表示 n
 次移动的转换，我们需要第 i 行的总和，其中 i 是起始位置的索引。</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">knightProbability2</span>(<span class="params">self, N, K, sr, sc</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">canonical</span>(<span class="params">r, c</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="number">2</span> * r &gt; N: r = N - <span class="number">1</span> - r</span><br><span class="line">            <span class="keyword">if</span> <span class="number">2</span> * c &gt; N: c = N - <span class="number">1</span> - c</span><br><span class="line">            <span class="keyword">if</span> r &gt; c: r, c = c, r</span><br><span class="line">            <span class="keyword">return</span> r*N + c</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">matrix_mult</span>(<span class="params">A, B</span>):</span><br><span class="line">            ZB = <span class="built_in">zip</span>(*B)</span><br><span class="line">            <span class="keyword">return</span> [[<span class="built_in">sum</span>(a * b <span class="keyword">for</span> a, b <span class="keyword">in</span> <span class="built_in">zip</span>(row, col))</span><br><span class="line">                    <span class="keyword">for</span> col <span class="keyword">in</span> ZB] <span class="keyword">for</span> row <span class="keyword">in</span> A]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">matrix_expo</span>(<span class="params">A, K</span>):</span><br><span class="line">            <span class="keyword">if</span> K == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span> [[+(i==j) <span class="keyword">for</span> j <span class="keyword">in</span> xrange(<span class="built_in">len</span>(A))]</span><br><span class="line">                        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="built_in">len</span>(A))]</span><br><span class="line">            <span class="keyword">if</span> K == <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> A</span><br><span class="line">            <span class="keyword">elif</span> K % <span class="number">2</span>:</span><br><span class="line">                <span class="keyword">return</span> matrix_mult(matrix_expo(A, K-<span class="number">1</span>), A)</span><br><span class="line">            B = matrix_expo(A, K/<span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> matrix_mult(B, B)</span><br><span class="line"></span><br><span class="line">        index = [<span class="number">0</span>] * (N*N)</span><br><span class="line">        t = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> r <span class="keyword">in</span> xrange(N):</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> xrange(N):</span><br><span class="line">                <span class="keyword">if</span> r*N + c == canonical(r, c):</span><br><span class="line">                    index[r*N + c] = t</span><br><span class="line">                    t += <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    index[r*N + c] = index[canonical(r, c)]</span><br><span class="line"></span><br><span class="line">        T = []</span><br><span class="line">        <span class="keyword">for</span> r <span class="keyword">in</span> xrange(N):</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> xrange(N):</span><br><span class="line">                <span class="keyword">if</span> r*N + c == canonical(r, c):</span><br><span class="line">                    row = [<span class="number">0</span>] * t</span><br><span class="line">                    <span class="keyword">for</span> dr, dc <span class="keyword">in</span> ((<span class="number">2</span>,<span class="number">1</span>),(<span class="number">2</span>,-<span class="number">1</span>),(-<span class="number">2</span>,<span class="number">1</span>),(-<span class="number">2</span>,-<span class="number">1</span>),</span><br><span class="line">                                    (<span class="number">1</span>,<span class="number">2</span>),(<span class="number">1</span>,-<span class="number">2</span>),(-<span class="number">1</span>,<span class="number">2</span>),(-<span class="number">1</span>,-<span class="number">2</span>)):</span><br><span class="line">                        <span class="keyword">if</span> <span class="number">0</span> &lt;= r+dr &lt; N <span class="keyword">and</span> <span class="number">0</span> &lt;= c+dc &lt; N:</span><br><span class="line">                            row[index[(r+dr)*N + c+dc]] += <span class="number">0.125</span></span><br><span class="line">                    T.append(row)</span><br><span class="line"></span><br><span class="line">        Tk = matrix_expo(T, K)</span><br><span class="line">        i = index[sr * N + sc]</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(Tk[i])</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li><p>时间复杂度：<span class="math display">\[O(N^6
-\log(K))\]</span>。其中 N, K 为题目中的定义。大约有 <span
-class="math display">\[\frac{N^2}{8}\]</span>
-规范状态，这使得我们的矩阵乘法 <span
-class="math display">\[O(N^6)\]</span>。为了找到这个矩阵的第 K
+\log(K))\]</span>。其中 N, K 为题目中的定义。大约有 <span class="math display">\[\frac{N^2}{8}\]</span>
+规范状态，这使得我们的矩阵乘法 <span class="math display">\[O(N^6)\]</span>。为了找到这个矩阵的第 K
 次幂，我们做了 <span class="math display">\[O(\log(K))\]</span>
 matrix乘法。</p></li>
-<li><p>空间复杂度：<span
-class="math display">\[O(N^4)\]</span>，矩阵有大约 <span
-class="math display">\[\frac{N^4}{64}\]</span> 个元素。</p></li>
+<li><p>空间复杂度：<span class="math display">\[O(N^4)\]</span>，矩阵有大约 <span class="math display">\[\frac{N^4}{64}\]</span> 个元素。</p></li>
 </ul>
 
     </div>
@@ -327,8 +319,8 @@ class="math display">\[\frac{N^4}{64}\]</span> 个元素。</p></li>
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Python/" rel="tag"># Python</a>
               <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
               <a href="/tags/Medium/" rel="tag"># Medium</a>
               <a href="/tags/Dynamic-Planning/" rel="tag"># Dynamic Planning</a>
           </div>
@@ -339,12 +331,12 @@ class="math display">\[\frac{N^4}{64}\]</span> 个元素。</p></li>
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/07/16/2021-07-16-Reinforcement%20Learning%20-%20On%20Learning%20Intrinsic%20Rewards%20for%20Policy%20Gradient%20Methods/" rel="prev" title="Reinforcement Learning | On Learning Intrinsic Rewards for Policy Gradient Methods">
-      <i class="fa fa-chevron-left"></i> Reinforcement Learning | On Learning Intrinsic Rewards for Policy Gradient Methods
+    <a href="/2021/07/18/2021-07-18-Q200.%20%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F-%E4%B8%AD%E7%AD%89-%E6%B7%B1%E5%BA%A6and%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" rel="prev" title="Q200-岛屿数量-中等-深度and广度优先搜索">
+      <i class="fa fa-chevron-left"></i> Q200-岛屿数量-中等-深度and广度优先搜索
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/07/18/2021-07-18-Q200.%20%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F-%E4%B8%AD%E7%AD%89-%E6%B7%B1%E5%BA%A6and%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" rel="next" title="Q200-岛屿数量-中等-深度and广度优先搜索">
-      Q200-岛屿数量-中等-深度and广度优先搜索 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/07/21/2021-07-21-Q695-%E5%B2%9B%E5%B1%BF%E7%9A%84%E6%9C%80%E5%A4%A7%E9%9D%A2%E7%A7%AF-%E4%B8%AD%E7%AD%89-%E6%B7%B1%E5%BA%A6and%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" rel="next" title="Q695-岛屿的最大面积-中等-深度/宽度优先搜索">
+      Q695-岛屿的最大面积-中等-深度/宽度优先搜索 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>

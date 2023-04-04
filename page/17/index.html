@@ -223,8 +223,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1
-id="小鼠趋利-避害机制的神经基础-曹鹏教授">小鼠趋利-避害机制的神经基础-曹鹏教授</h1>
+          <h1 id="小鼠趋利-避害机制的神经基础-曹鹏教授">小鼠趋利-避害机制的神经基础-曹鹏教授</h1>
 <h2 id="趋利">1、趋利</h2>
 <ul>
 <li>最先发现的是一种鸟类的“滚蛋行为”，即把在巢附近的物体（台球，立方块，套娃等）物体用嘴使其滚到自己的巢里，这是他们的<strong>本能行为</strong>。</li>
@@ -322,11 +321,8 @@ id="小鼠趋利-避害机制的神经基础-曹鹏教授">小鼠趋利-避害�
 <h2 id="实施步骤">实施步骤</h2>
 <ul>
 <li><p>Step 1：下载<a target="_blank" rel="noopener" href="https://code.visualstudio.com/">VS
-Code</a>，<a
-target="_blank" rel="noopener" href="https://www.sumatrapdfreader.org/free-pdf-reader.html">SumatraPDF</a>，<a
-target="_blank" rel="noopener" href="https://mirrors.aliyun.com/CTAN/systems/texlive/Images/">texlive
-(阿里云)</a>或者<a
-target="_blank" rel="noopener" href="https://mirrors.huaweicloud.com/CTAN/systems/texlive/Images/">texlive
+Code</a>，<a target="_blank" rel="noopener" href="https://www.sumatrapdfreader.org/free-pdf-reader.html">SumatraPDF</a>，<a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/CTAN/systems/texlive/Images/">texlive
+(阿里云)</a>或者<a target="_blank" rel="noopener" href="https://mirrors.huaweicloud.com/CTAN/systems/texlive/Images/">texlive
 (华为云)</a>，texlive只下载texlive.iso文件，安装参考网上教程</p></li>
 <li><p>Step 2：VS Code中安装 LaTeX Workshop 插件</p></li>
 <li><p>Step 3：修改 user setting</p></li>
@@ -340,8 +336,7 @@ target="_blank" rel="noopener" href="https://mirrors.huaweicloud.com/CTAN/system
 </ul>
 <h2 id="参考资料">参考资料</h2>
 <ul>
-<li><a
-target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/38178015">使用VSCode编写LaTeX</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/38178015">使用VSCode编写LaTeX</a></li>
 </ul>
 
       
@@ -487,8 +482,7 @@ Model of Arm Dynamics</li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1
-id="learning-to-utilize-shaping-rewards-a-new-approach-of-reward-shaping">Learning
+          <h1 id="learning-to-utilize-shaping-rewards-a-new-approach-of-reward-shaping">Learning
 to Utilize Shaping Rewards A New Approach of Reward Shaping</h1>
 <p>论文链接：NIPS 2020</p>
 <h2 id="背景">背景</h2>
@@ -514,56 +508,34 @@ Shaping</h3>
 <p><span class="math display">\[
 \tilde{r}(s,a)=r(s,a)+z_{\phi}(s,a)f(s,a)
 \]</span></p>
-<p><span
-class="math display">\[z_{\phi}(s,a)\]</span>是权重向量，形式是使用参数化函数。<span
-class="math display">\[f\]</span>是shaping 奖励函数。</p>
+<p><span class="math display">\[z_{\phi}(s,a)\]</span>是权重向量，形式是使用参数化函数。<span class="math display">\[f\]</span>是shaping 奖励函数。</p>
 <p><span class="math display">\[
 \text{Step 1: }\
 \max_{\phi} \mathbb{E}_{s\sim \rho^{\pi},a\sim\pi_{\theta}} [r(s,a)]\\
 \text{Step 2: }\
 \theta=\arg \max_{\theta&#39;} \mathbb{E}_{s\sim
 \rho^{\pi},a\sim\pi_{\theta&#39;}}[r(s,a)+z_{\phi}(s,a)f(s,a)]
-\]</span> 通过真实的环境奖励<span
-class="math display">\[r(s,a)\]</span>更新<span
-class="math display">\[z_{\phi}(s,a)\]</span>，在根据shaping reward
+\]</span> 通过真实的环境奖励<span class="math display">\[r(s,a)\]</span>更新<span class="math display">\[z_{\phi}(s,a)\]</span>，在根据shaping reward
 function更新policy。</p>
 <h4 id="gradient-computation">3.2 Gradient Computation</h4>
 <ul>
-<li><p>固定<span
-class="math display">\[z_{\phi}\]</span>，计算累计修正奖励<span
-class="math display">\[\tilde J\]</span>关于参数<span
-class="math display">\[\theta\]</span>的梯度： <span
-class="math display">\[
+<li><p>固定<span class="math display">\[z_{\phi}\]</span>，计算累计修正奖励<span class="math display">\[\tilde J\]</span>关于参数<span class="math display">\[\theta\]</span>的梯度： <span class="math display">\[
 \nabla_{\phi}\tilde J(\pi_{\theta})= \mathbb{E}_{s\sim
 \rho^{\pi},a\sim\pi_{\theta}} \big[\nabla_{\theta}\log
 \pi_{\theta}(s,a)\tilde Q(s,a)\big]
 \]</span></p></li>
-<li><p>定理1：目标函数<span
-class="math display">\[J(z_{\phi})\]</span>关于参数<span
-class="math display">\[\phi\]</span>的梯度为： <span
-class="math display">\[
+<li><p>定理1：目标函数<span class="math display">\[J(z_{\phi})\]</span>关于参数<span class="math display">\[\phi\]</span>的梯度为： <span class="math display">\[
 \nabla_{\phi} J(z_{\phi})= \mathbb{E}_{s\sim
 \rho^{\pi},a\sim\pi_{\theta}} \big[\nabla_{\theta}\log \pi_{\theta}(s,a)
 Q(s,a)\big]
-\]</span> 这个定理首先假设了<span
-class="math display">\[\pi_{\theta}\]</span>关于<span
-class="math display">\[\phi\]</span>的梯度存在，但是即使有了定理1也不能直接计算出这个梯度，因为<span
-class="math display">\[\pi_{\theta}\]</span>关于<span
-class="math display">\[\phi\]</span>的梯度不能直接计算，下面会讨论如何计算<span
-class="math display">\[\nabla_{\phi}\pi_{\theta}(s,a)\]</span></p></li>
+\]</span> 这个定理首先假设了<span class="math display">\[\pi_{\theta}\]</span>关于<span class="math display">\[\phi\]</span>的梯度存在，但是即使有了定理1也不能直接计算出这个梯度，因为<span class="math display">\[\pi_{\theta}\]</span>关于<span class="math display">\[\phi\]</span>的梯度不能直接计算，下面会讨论如何计算<span class="math display">\[\nabla_{\phi}\pi_{\theta}(s,a)\]</span></p></li>
 </ul>
 <h3 id="gradient-approximation">4 Gradient Approximation</h3>
 <h4 id="explicit-maping">4.1 Explicit Maping</h4>
 <ul>
-<li>假设行为输出在<span
-class="math display">\[[0,1]\]</span>，构建一个扩展的状态空间（extended
-state space）<span
-class="math display">\[\mathcal{S}_z=\{(s,z_{\phi}(s))|{\forall}s\in
-\mathcal{S} \}\]</span>，根据链式法则，得到<span
-class="math display">\[\nabla_{\phi}\pi_{\theta}(s,a,z_{\phi}(s))=\nabla_{z}\pi_{\theta}(s,a,z_{\phi}(s))\nabla_{\phi}z_{\phi}(s)\]</span>，相应的，上级目标函数<span
-class="math display">\[J(z_{\phi})\]</span>关于<span
-class="math display">\[\phi\]</span>的梯度为： <span
-class="math display">\[
+<li>假设行为输出在<span class="math display">\[[0,1]\]</span>，构建一个扩展的状态空间（extended
+state space）<span class="math display">\[\mathcal{S}_z=\{(s,z_{\phi}(s))|{\forall}s\in
+\mathcal{S} \}\]</span>，根据链式法则，得到<span class="math display">\[\nabla_{\phi}\pi_{\theta}(s,a,z_{\phi}(s))=\nabla_{z}\pi_{\theta}(s,a,z_{\phi}(s))\nabla_{\phi}z_{\phi}(s)\]</span>，相应的，上级目标函数<span class="math display">\[J(z_{\phi})\]</span>关于<span class="math display">\[\phi\]</span>的梯度为： <span class="math display">\[
 \nabla_{\phi}J(z_{\phi})=\mathbb{E}_{s\sim \rho^{\pi},a \sim
 \pi_{\theta}}[\nabla_z \log
 \pi_{\theta}(s,a,z)|_{z=z_{\phi}(s)}\nabla_{\phi}z_{\phi}(s)Q^{\pi}(s,a)]
@@ -571,36 +543,22 @@ class="math display">\[
 </ul>
 <h4 id="meta-gradient-learning">4.2 Meta-Gradient Learning</h4>
 <ul>
-<li><p>考虑到参数<span class="math display">\[\theta\]</span>和<span
-class="math display">\[\phi\]</span>之间的关系，可以通过计算元梯度（meta-gradient）<span
-class="math display">\[\nabla_{\phi}\theta\]</span>的方式计算： <span
-class="math display">\[
+<li><p>考虑到参数<span class="math display">\[\theta\]</span>和<span class="math display">\[\phi\]</span>之间的关系，可以通过计算元梯度（meta-gradient）<span class="math display">\[\nabla_{\phi}\theta\]</span>的方式计算： <span class="math display">\[
 \nabla_{\phi}\pi_{\theta}(s,a)=\nabla_{\theta}\pi_{\theta}(s,a)\nabla_{\phi}\theta
 \]</span></p></li>
-<li><p>对<span class="math display">\[\theta\]</span>的更新： <span
-class="math display">\[
+<li><p>对<span class="math display">\[\theta\]</span>的更新： <span class="math display">\[
 \theta&#39;=\theta+\alpha\sum_{i=1}^N \nabla_{\theta}\log
 \pi_{\theta}(s_i,a_i)\tilde Q(s_i,a_i)
-\]</span> 其中<span
-class="math display">\[N\]</span>是batch样本数，<span
-class="math display">\[\alpha\]</span>是学习率</p></li>
-<li><p>meta-gradient<span
-class="math display">\[\nabla_{\phi}\theta&#39;\]</span>： <span
-class="math display">\[
+\]</span> 其中<span class="math display">\[N\]</span>是batch样本数，<span class="math display">\[\alpha\]</span>是学习率</p></li>
+<li><p>meta-gradient<span class="math display">\[\nabla_{\phi}\theta&#39;\]</span>： <span class="math display">\[
 \nabla_{\phi}\theta&#39;=\nabla_{\phi}(\theta+\alpha\sum_{i=1}^{N}\nabla_{\theta}\log
 \pi_{\theta}(s_i,a_i)\tilde Q(s_i,a_i)\\
 =\alpha \sum_{i=1}^{N} \nabla_{\theta}\log \pi_{\theta}(s_i,a_i)^{\top}
 \nabla_{\phi}\tilde Q(s_i,a_i)\\
-\]</span> 这里<span
-class="math display">\[\theta\]</span>是一个常数。</p>
-<p>在计算过程中，例如采用蒙特卡洛返回，对每一个在buffer中的样本<span
-class="math display">\[i\]</span>，定义<span
-class="math display">\[\tau_i=(s^0_i,a^0_i,\tilde
-r^0_i,s^1_i,a^1_i,\tilde r^1_i,...)\]</span>表示采样的轨迹由于<span
-class="math display">\[\tilde
-r_i^t=r^t_i+z_{\phi}(s^t_i,a^t_i)f(s^t_i,a^t_i)\]</span>，其中<span
-class="math display">\[r^t_i\]</span>是采样的真实奖励。 <span
-class="math display">\[
+\]</span> 这里<span class="math display">\[\theta\]</span>是一个常数。</p>
+<p>在计算过程中，例如采用蒙特卡洛返回，对每一个在buffer中的样本<span class="math display">\[i\]</span>，定义<span class="math display">\[\tau_i=(s^0_i,a^0_i,\tilde
+r^0_i,s^1_i,a^1_i,\tilde r^1_i,...)\]</span>表示采样的轨迹由于<span class="math display">\[\tilde
+r_i^t=r^t_i+z_{\phi}(s^t_i,a^t_i)f(s^t_i,a^t_i)\]</span>，其中<span class="math display">\[r^t_i\]</span>是采样的真实奖励。 <span class="math display">\[
 \nabla_{\phi}\theta&#39;=\alpha \sum_{i=1}^{N} \nabla_{\theta}\log
 \pi_{\theta}(s_i,a_i)^{\top} \nabla_{\phi}\tilde Q(s_i,a_i)\\
 \approx \alpha\sum_{i=1}^N  \nabla_{\theta}\log
@@ -614,11 +572,8 @@ f(s^t_i,a^t_i)\nabla_{\phi}z_{\phi}(s^t_i,a^t_i)
 <h4 id="incremental-meta-gradient-learning">4.3 Incremental
 Meta-Gradient Learning</h4>
 <ul>
-<li><p>考虑之前假设的策略参数<span
-class="math display">\[\theta\]</span>关于<span
-class="math display">\[\phi\]</span>是恒定的，实际上，可以看做不是恒定的。</p></li>
-<li><p>Incremental Meta-Gradient Learning (IMGL) <span
-class="math display">\[
+<li><p>考虑之前假设的策略参数<span class="math display">\[\theta\]</span>关于<span class="math display">\[\phi\]</span>是恒定的，实际上，可以看做不是恒定的。</p></li>
+<li><p>Incremental Meta-Gradient Learning (IMGL) <span class="math display">\[
 \nabla_{\phi}\theta&#39;=\nabla_{\phi}\theta + \alpha \sum_{i=1}^{N}
 \nabla_{\theta}\log \pi_{\theta}(s_i,a_i)^{\top}  \tilde Q(s_i,a_i) +
 \alpha \sum_{i=1}^{N} \log
@@ -735,8 +690,7 @@ Model for Collective Intelligence</h1>
 <li>是否可以开发形式化理论来解决基于人类的进化问题。这方面研究可以发现CI系统的局限性，提供效率上的理论保证</li>
 </ul></li>
 </ul>
-<p><img
-src="https://github.com/txing-casia/txing-casia.github.io/blob/master/img/20201223-1.png" /></p>
+<p><img src="https://github.com/txing-casia/txing-casia.github.io/blob/master/img/20201223-1.png"></p>
 
       
     </div>
@@ -825,8 +779,7 @@ learning</h3>
 to an action.</p></li>
 <li><p>眼动可由自下而上和自上而下两种方式驱动。Studies have shown that
 eye movements can be driven both in a bottom-up, task-independent manner
-based on low-level features of the visual scene<span
-class="math display">\[^1\]</span> (for example, towards moving
+based on low-level features of the visual scene<span class="math display">\[^1\]</span> (for example, towards moving
 high-contrast objects) as well as in a top-down, task-dependent
 manner<span class="math display">\[^2\]</span>.</p></li>
 <li><ol type="1">
@@ -841,8 +794,7 @@ manner<span class="math display">\[^2\]</span>.</p></li>
 <li><p>有边界的飘移扩散模型。Choice accuracy and reaction time are then
 explained by <strong>a bounded drift-diffusion model</strong> in which
 the decision variable reaches a positive or negative bound</p></li>
-<li><p>这个漂移扩散模型存在着大量的延时，但实际上收集的传感信息可用来影响运动中的想法<span
-class="math display">\[^{20}\]</span></p>
+<li><p>这个漂移扩散模型存在着大量的延时，但实际上收集的传感信息可用来影响运动中的想法<span class="math display">\[^{20}\]</span></p>
 <p>[20]. Resulaj A , Kiani R , Wolpert D M , et al. Changes of mind in
 decision-making[J]. Nature, 2009, 461(7261):263-266.</p></li>
 <li><p>人在不同的实验条件下都能趋向最优的决策，适应可变性</p>
@@ -850,8 +802,7 @@ decision-making[J]. Nature, 2009, 461(7261):263-266.</p></li>
 making, movement planning and statistical decision theory. Trends Cogn.
 Sci. 12, 291–297 (2008).</p></li>
 <li><p>决策是趋向<strong>规避风险</strong>还是<strong>冒风险</strong>（risk
-averse or risk seeking），偏好奖励的方差大的还是小的<span
-class="math display">\[^{23-25}\]</span></p></li>
+averse or risk seeking），偏好奖励的方差大的还是小的<span class="math display">\[^{23-25}\]</span></p></li>
 </ul>
 <p>[23]. Nagengast, A. J., Braun, D. A. &amp; Wolpert, D. M.
 Risk-sensitive optimal feedback control accounts for sensorimotor
@@ -1090,8 +1041,7 @@ interfaces.</p></li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1
-id="generative-predictive-codes-by-multiplexed-hippocampal-neuronal-tuplets">Generative
+          <h1 id="generative-predictive-codes-by-multiplexed-hippocampal-neuronal-tuplets">Generative
 Predictive Codes by Multiplexed Hippocampal Neuronal Tuplets</h1>
 <p>论文链接：https://www.sciencedirect.com/science/article/pii/S0896627318306457</p>
 <h2 id="背景">背景</h2>
@@ -1204,7 +1154,7 @@ anchoring</strong> and <strong>route planning</strong>:</p>
 an effort to explain navigational behaviors in rodents that could not be
 logically reduced to associations between specific stimuli and rewarded
 behavioral responses.</p></li>
-<li><p>快速切换a roundabout route到直接路径<br />
+<li><p>快速切换a roundabout route到直接路径<br>
 </p></li>
 <li><p>Grieves, R.M. &amp; Jeffery, K.J. The representation of space in
 the brain.<em>Behav. Processes</em> 135, 113–131

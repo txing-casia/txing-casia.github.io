@@ -30,8 +30,8 @@
 <meta property="article:published_time" content="2021-07-21T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-03-25T01:54:15.003Z">
 <meta property="article:author" content="Txing">
-<meta property="article:tag" content="Python">
 <meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Python">
 <meta property="article:tag" content="Medium">
 <meta property="article:tag" content="BFS">
 <meta name="twitter:card" content="summary">
@@ -228,8 +228,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="腐烂的橘子"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/rotting-oranges/">994.
+        <h4 id="腐烂的橘子"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/rotting-oranges/">994.
 腐烂的橘子</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -303,8 +302,7 @@ dis[x][y][i]dis[x][y][i] 表示只考虑第 ii
 个腐烂橘子为起点的广度优先搜索，坐标位于 (x, y)
 的新鲜橘子被腐烂的时间，设没有被腐烂的新鲜橘子的
 dis[x][y][i]=infdis[x][y][i]=inf
-，即无限大，表示没有被腐烂，那么每个新鲜橘子被腐烂的最短时间即为 <span
-class="math display">\[
+，即无限大，表示没有被腐烂，那么每个新鲜橘子被腐烂的最短时间即为 <span class="math display">\[
 \min_i dis[x][y][i]
 \]</span>
 最后的答案就是所有新鲜橘子被腐烂的最短时间的最大值，如果是无限大，说明有新鲜橘子没有被腐烂，输出
@@ -330,11 +328,9 @@ cnt-=1 ，最后搜索结束时如果 cnt 大于 0 ，说明有新鲜橘子没�
 即进行一次广度优先搜索的时间，其中 <code>n=grid.length</code>,
 <code>m=grid[0].length</code> 。</li>
 <li>空间复杂度：<span class="math display">\[O(nm)\]</span> 需要额外的
-<code>disdis</code> 数组记录每个新鲜橘子被腐烂的最短时间，大小为 <span
-class="math display">\[O(nm)\]</span>，且广度优先搜索中队列里存放的状态最多不会超过
+<code>disdis</code> 数组记录每个新鲜橘子被腐烂的最短时间，大小为 <span class="math display">\[O(nm)\]</span>，且广度优先搜索中队列里存放的状态最多不会超过
 nm 个，最多需要 <span class="math display">\[O(nm)\]</span>
-的空间，所以最后的空间复杂度为 <span
-class="math display">\[O(nm)\]</span>。</li>
+的空间，所以最后的空间复杂度为 <span class="math display">\[O(nm)\]</span>。</li>
 </ul>
 
     </div>
@@ -345,8 +341,8 @@ class="math display">\[O(nm)\]</span>。</li>
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Python/" rel="tag"># Python</a>
               <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
               <a href="/tags/Medium/" rel="tag"># Medium</a>
               <a href="/tags/BFS/" rel="tag"># BFS</a>
           </div>

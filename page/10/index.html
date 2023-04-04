@@ -178,7 +178,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/05/2021-07-05-ACM%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F%E5%A4%84%E7%90%86python%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/05/2021-07-05-HJ26%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8E%92%E5%BA%8F-%E4%B8%AD%E7%AD%89-%E5%AD%97%E7%AC%A6%E4%B8%B2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -192,7 +192,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/07/05/2021-07-05-ACM%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F%E5%A4%84%E7%90%86python%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">ACM数据格式处理python方法总结</a>
+            <a href="/2021/07/05/2021-07-05-HJ26%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8E%92%E5%BA%8F-%E4%B8%AD%E7%AD%89-%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-title-link" itemprop="url">HJ26 字符串排序-中等-字符串</a>
         </h2>
 
         <div class="post-meta">
@@ -223,134 +223,39 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1
-id="acm数据格式处理python方法总结">ACM数据格式处理python方法总结</h1>
-<h2 id="oj在线编程常见输入输出练习场">OJ在线编程常见输入输出练习场</h2>
-<p>在线测试网址：https://ac.nowcoder.com/acm/contest/5652#question</p>
-<p>华为机考模拟试题：https://www.nowcoder.com/ta/huawei</p>
-<h3 id="总结">总结：</h3>
+          <h4 id="hj26-字符串排序"><a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/5190a1db6f4f4ddb92fd9c365c944584?tpId=37&amp;&amp;tqId=21249&amp;rp=1&amp;ru=/ta/huawei&amp;qru=/ta/huawei/question-ranking">HJ26
+字符串排序</a></h4>
+<h2 id="question">Question</h2>
+<blockquote>
+<p><strong>规则 1</strong> ：英文字母从 A 到 Z 排列，不区分大小写。</p>
+<p>如，输入： Type 输出： epTy</p>
+<p><strong>规则 2</strong>
+：同一个英文字母的大小写同时存在时，按照输入顺序排列。</p>
+<p>如，输入： BabA 输出： aABb</p>
+<p><strong>规则 3</strong> ：非英文字母的其它字符保持原来的位置。</p>
+<p>如，输入： By?e 输出： Be?y</p>
+<p>注意有多组测试数据，即输入有多行，每一行单独处理（换行符隔开的表示不同行）</p>
+<p>输入描述： - 输入字符串</p>
+<p>输出描述： - 输出字符串</p>
+<p>示例1 输入：A Famous Saying: Much Ado About Nothing (2012/8). 输出：A
+aaAAbc dFgghh: iimM nNn oooos Sttuuuy (2012/8).</p>
+</blockquote>
+<h3 id="approach">Approach</h3>
 <ul>
-<li><p>数据行数具体是多少不重要，可通过while来解决，每行数据长度是否已知也无所谓。</p></li>
-<li><p>熟悉sys，map，try-except的具体使用框架和方式</p></li>
-<li><p>熟悉split()，strip()函数的使用方式</p></li>
-<li><p>一些字符相关的函数：</p>
+<li>sorted(iterable,str.upper)就可以实现：
 <ul>
-<li>字符转化为asc-ii码函数（ord('a')）可以用来判断是否大小写/数字</li>
+<li>1）字符由A到Z的排序</li>
+<li>2）能够实现同字母（A与a算同字母），由输入先后书序排列。</li>
 </ul></li>
-<li><p>字符串.isalnum() 所有字符都是数字或者字母，为真返回
-Ture，否则返回 False。</p>
-<ul>
-<li>字符串.isalpha() 所有字符都是字母，为真返回 Ture，否则返回
-False。</li>
-<li>字符串.isdigit() 所有字符都是数字，为真返回 Ture，否则返回
-False。</li>
-<li>字符串.islower() 所有字符都是小写，为真返回 Ture，否则返回
-False。</li>
-<li>字符串.isupper() 所有字符都是大写，为真返回 Ture，否则返回
-False。</li>
-<li>字符串.istitle() 所有单词都是首字母大写，为真返回 Ture，否则返回
-False。</li>
-<li>字符串.isspace() 所有字符都是空白字符，为真返回 Ture，否则返回
-False。</li>
-</ul></li>
-<li><p>进制转换：</p>
-<ul>
-<li>16进制转为10进制：int(num,16)</li>
-<li>2进制转为10进制：int(num,2)</li>
-<li>8进制转为10进制：int(num,8)</li>
-<li>10进制转为16进制：hex(num)</li>
-<li>10进制转2进制：bin(num)</li>
-<li>10进制转8进制：oct(num)</li>
-</ul></li>
-<li><p>输出分割方式：</p>
-<ul>
-<li>按照空格分割：print(a, end=' ')</li>
-<li>按照行分割：print(a) or print(a, end='')</li>
-</ul></li>
+<li>str.isalpha实现的是如果字符串至少有一个字符并且所有字符都是字母则返回
+True，否则返回 False。</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入多行字符串转换为二维矩阵</span></span><br><span class="line">num=<span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line"><span class="comment"># 创建已知大小的二维矩阵</span></span><br><span class="line">T = [[<span class="number">0</span>]*num <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num)]</span><br><span class="line">i=<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">	<span class="comment"># 字符串分割！！！</span></span><br><span class="line">    T[i][:]=<span class="built_in">list</span>(<span class="string">&#x27;&#x27;</span>.join(line.strip().split()))</span><br><span class="line">    i+=<span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>读入一个二维矩阵：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 读取字符举证</span></span><br><span class="line">a = []</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin: </span><br><span class="line">    a.append(line.split())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取数字矩阵</span></span><br><span class="line">a = []</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin: </span><br><span class="line">    a.append(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>,line.split())))</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">num = <span class="built_in">input</span>()</span><br><span class="line"><span class="comment"># print(&#x27; &#x27;.join(sorted(input().split())))</span></span><br><span class="line"><span class="comment"># 连续的数字不被拆开</span></span><br><span class="line"><span class="comment"># a= list(input().split()) # 可以不加list()</span></span><br><span class="line">a = <span class="built_in">input</span>().split()</span><br><span class="line"><span class="comment"># 去除字符串数组中多余的括号</span></span><br><span class="line">a[<span class="number">0</span>]=a[<span class="number">0</span>].replace(<span class="string">&#x27;[&#x27;</span>,<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">a[-<span class="number">1</span>]=a[-<span class="number">1</span>].replace(<span class="string">&#x27;]&#x27;</span>,<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">int</span>(a[<span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        s = <span class="built_in">input</span>()</span><br><span class="line">        a = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> s:</span><br><span class="line">            <span class="keyword">if</span> i.isalpha():</span><br><span class="line">                a += i</span><br><span class="line">        b = <span class="built_in">sorted</span>(a, key=<span class="built_in">str</span>.upper)</span><br><span class="line">        index = <span class="number">0</span></span><br><span class="line">        d = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(s)):</span><br><span class="line">            <span class="keyword">if</span> s[i].isalpha():</span><br><span class="line">                d += b[index]</span><br><span class="line">                index += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                d += s[i]</span><br><span class="line">        <span class="built_in">print</span>(d)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
 <ul>
-<li><strong>已知数据行数，已知每行长度</strong>：外加循环或者判断条件</li>
+<li>时间复杂度：<span class="math display">\[O(N)\]</span>，N是序列长度。</li>
+<li>空间复杂度：<span class="math display">\[O(1)\]</span>。常数个变量。</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a,b = <span class="built_in">map</span>(<span class="built_in">int</span>,<span class="built_in">input</span>().split(<span class="string">&#x27; &#x27;</span>))</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong>未知数据行数，未知每行长度</strong>：使用sys库提取每行数据，结合strip()（去除
-）和split()（分割函数，方便提取元素）函数实现数组建立</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27; &#x27;</span>.join(<span class="built_in">sorted</span>(line.strip().split())))</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong>已知行数，未知每行长度</strong>：行数可以不储存不使用，每行未知长度数据，可以用下面语句直接变成一个数组</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split())) <span class="comment"># a直接就是整数数组</span></span><br></pre></td></tr></table></figure>
-<p>下面给出了几个输入输出案例（包括<strong>数字</strong>和<strong>字符串</strong>部分）：</p>
-<h3 id="ab1">1. A+B(1)</h3>
-<p>输入包括两个正整数a,b(1 &lt;= a, b &lt;= 10^9),输入数据包括多组。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        a,b = <span class="built_in">map</span>(<span class="built_in">int</span>,<span class="built_in">input</span>().split(<span class="string">&#x27; &#x27;</span>))</span><br><span class="line">        <span class="comment"># a,b = map(int,input().split())</span></span><br><span class="line">        <span class="built_in">print</span>(a + b)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span> </span><br></pre></td></tr></table></figure>
-<h3 id="ab2">2. A+B(2)</h3>
-<p>输入第一行包括一个数据组数t(1 &lt;= t &lt;= 100)
-接下来每行包括两个正整数a,b(1 &lt;= a, b &lt;= 10^9)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    num = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line">    <span class="comment"># num = int(sys.stdin.readline().strip()) # 读取一整行输入，strip()去掉末尾空行或空格，int()转换为整数形式</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num):</span><br><span class="line">        a , b = <span class="built_in">map</span>(<span class="built_in">int</span>,<span class="built_in">input</span>().split(<span class="string">&#x27; &#x27;</span>))</span><br><span class="line">        <span class="built_in">print</span>(a + b)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="built_in">input</span>()</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">sum</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, line.split())))</span><br></pre></td></tr></table></figure>
-<h3 id="ab3">3. A+B(3)</h3>
-<p>输入包括两个正整数a,b(1 &lt;= a, b &lt;= 10^9),输入数据有多组,
-如果输入为0 0则结束输入</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        a , b = <span class="built_in">map</span>(<span class="built_in">int</span>,<span class="built_in">input</span>().split(<span class="string">&#x27; &#x27;</span>))</span><br><span class="line">        <span class="keyword">if</span> a != <span class="number">0</span> <span class="keyword">and</span> b != <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(a + b)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<h3 id="ab4">4. A+B(4)</h3>
-<p>输入数据包括多组。 每组数据一行,每行的第一个整数为整数的个数n(1 &lt;=
-n &lt;= 100), n为0的时候结束输入。
-接下来n个正整数,即需要求和的每个正整数。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        a = <span class="built_in">input</span>().split(<span class="string">&#x27; &#x27;</span>) <span class="comment"># a是字符数组</span></span><br><span class="line">        <span class="comment"># a = sys.stdin.readline().split(&#x27; &#x27;)</span></span><br><span class="line">        <span class="built_in">sum</span> = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">int</span>(a[<span class="number">0</span>]) != <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(a)):</span><br><span class="line">                <span class="built_in">sum</span> += <span class="built_in">int</span>(a[i])</span><br><span class="line">            <span class="built_in">print</span>(<span class="built_in">sum</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        a = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split())) <span class="comment"># a直接就是整数数组</span></span><br><span class="line">        <span class="keyword">if</span> a[<span class="number">0</span>] != <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="built_in">sum</span>(a[<span class="number">1</span>:]))</span><br><span class="line">        <span class="keyword">else</span>: </span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<p>使用sys库</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, line.strip().split()))[<span class="number">0</span>]!=<span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">sum</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, line.strip().split()[<span class="number">1</span>:])))</span><br></pre></td></tr></table></figure>
-<h3 id="ab5">5. A+B(5)</h3>
-<p>输入的第一行包括一个正整数t(1 &lt;= t &lt;= 100), 表示数据组数。
-接下来t行, 每行一组数据。 每行的第一个整数为整数的个数n(1 &lt;= n &lt;=
-100)。 接下来n个正整数, 即需要求和的每个正整数。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    nums = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(nums):</span><br><span class="line">        a = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>,<span class="built_in">input</span>().split()))</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">sum</span>(a[<span class="number">1</span>:]))</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<p>一个更简洁的代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        numlist = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().strip().split()))</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(numlist) == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="built_in">sum</span>(numlist[<span class="number">1</span>:]))</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
-<h3 id="ab6">6. A+B(6)</h3>
-<p>输入数据有多组, 每行表示一组输入数据。
-每行的第一个整数为整数的个数n(1 &lt;= n &lt;= 100)。 接下来n个正整数,
-即需要求和的每个正整数。 每组数据输出求和的结果</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">sum</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, line.strip().split()[<span class="number">1</span>:])))</span><br></pre></td></tr></table></figure>
-<h3 id="ab7">7. A+B(7)</h3>
-<p>输入数据有多组, 每行表示一组输入数据。
-每行不定有n个整数，空格隔开。(1 &lt;= n &lt;= 100)。
-每组数据输出求和的结果</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">sum</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, line.strip().split())))</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">sum</span>(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().strip().split()))))</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<h3 id="字符串排序1">8. 字符串排序(1)</h3>
-<p>输入有两行，第一行n 第二行是n个空格隔开的字符串
-输出一行排序后的字符串，空格隔开，无结尾空格</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">num = <span class="built_in">input</span>()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27; &#x27;</span>.join(<span class="built_in">sorted</span>(<span class="built_in">input</span>().split())))</span><br><span class="line"><span class="comment"># sorted(num,reverse=Ture) # 逆序排序</span></span><br></pre></td></tr></table></figure>
-<h3 id="字符串排序2">9. 字符串排序(2)</h3>
-<p>多个测试用例，每个测试用例一行。 每行通过空格隔开，有n个字符，n＜100
-对于每组测试用例，输出一行排序过的字符串，每个字符串通过空格隔开</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27; &#x27;</span>.join(<span class="built_in">sorted</span>(line.strip().split())))</span><br></pre></td></tr></table></figure>
-<h3 id="字符串排序3">10. 字符串排序(3)</h3>
-<p>多个测试用例，每个测试用例一行。 每行通过,隔开，有n个字符，n＜100
-对于每组用例输出一行排序后的字符串，用','隔开，无结尾空格</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;,&#x27;</span>.join(<span class="built_in">sorted</span>(line.strip().split(<span class="string">&#x27;,&#x27;</span>))))</span><br></pre></td></tr></table></figure>
-<h3 id="自测本地通过但是提交为0">11. 自测本地通过，但是提交为0</h3>
-<p>每年前几场在线笔试编程题的时候，总有同学询问为什么我本地测试通过，自测也通过，提交代码系统却返回通过率0。
-打开以下链接可以查看正确的代码
-https://ac.nowcoder.com/acm/contest/5657#question
-这不是系统的错，可能是因为</p>
-<ol type="1">
-<li>你对题目理解错了，你的代码只过了样例或你自己的数据</li>
-<li>你的代码逻辑有问题，你的代码只过了样例或你自己的数据</li>
-</ol>
-<p>总之就是你的代码只是过了样例和自测数据，后台的测试数据你根本不可见，要多自己思考。</p>
-<p>这个题目如果你提交后通过率为0，又觉得自己代码是正确的，可以 点击查看
-通过的代码</p>
-<p>谨记：
-当你笔试的时候怀疑系统或者题目数据有问题的时候请务必先怀疑自己的代码!</p>
-<p>请帮忙把这个练习专题发给你的朋友同学吧，感谢感谢</p>
 
       
     </div>
@@ -415,8 +320,7 @@ https://ac.nowcoder.com/acm/contest/5657#question
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1
-id="hierarchical-deep-reinforcement-learning-for-continuous-action-control">Hierarchical
+          <h1 id="hierarchical-deep-reinforcement-learning-for-continuous-action-control">Hierarchical
 Deep Reinforcement Learning for Continuous Action Control</h1>
 <p>论文链接：https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=8310962&amp;tag=1</p>
 <h2 id="背景">背景</h2>
@@ -636,15 +540,13 @@ L(s,a,\theta_k,\theta)=\min
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2
-id="安装atari环境报错缺少ale_c.dll解决办法">安装Atari环境报错缺少ale_c.dll解决办法</h2>
+          <h2 id="安装atari环境报错缺少ale_c.dll解决办法">安装Atari环境报错缺少ale_c.dll解决办法</h2>
 <h3 id="背景"><strong>背景：</strong></h3>
 <p>在Atari游戏环境中做RL测试。通过anaconda新建了环境，配置好torch，numpy，gym等环境。运行中报错如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FileNotFoundError: Could not find module &#x27;D:\Anaconda3\envs\PPOenv\lib\site-packages\atari_py\ale_interface\ale_c.dll&#x27; (or one of its dependencies). Try using the full path with constructor syntax.</span><br></pre></td></tr></table></figure>
 <p>意思是所显示路径下缺少ale_c.dll</p>
 <h3 id="处理方法"><strong>处理方法：</strong></h3>
-<h4
-id="方法1对我情况无效但点赞很多">方法1（对我情况无效，但点赞很多）</h4>
+<h4 id="方法1对我情况无效但点赞很多">方法1（对我情况无效，但点赞很多）</h4>
 <p>首先检索到了这个方案（作者@razzzu）</p>
 <p>https://github.com/openai/gym/issues/1726</p>
 <p><strong>Step1:</strong> 卸载相关库</p>
@@ -669,10 +571,8 @@ shown below</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">&#x27;adventure&#x27;</span>, <span class="string">&#x27;air_raid&#x27;</span>, <span class="string">&#x27;alien&#x27;</span>, <span class="string">&#x27;amidar&#x27;</span>, <span class="string">&#x27;assault&#x27;</span>, <span class="string">&#x27;asterix&#x27;</span>, <span class="string">&#x27;asteroids&#x27;</span>, <span class="string">&#x27;atlantis&#x27;</span>, <span class="string">&#x27;bank_heist&#x27;</span>, <span class="string">&#x27;battle_zone&#x27;</span>, <span class="string">&#x27;beam_rider&#x27;</span>, <span class="string">&#x27;berzerk&#x27;</span>, <span class="string">&#x27;bowling&#x27;</span>, <span class="string">&#x27;boxing&#x27;</span>, <span class="string">&#x27;breakout&#x27;</span>, <span class="string">&#x27;carnival&#x27;</span>, <span class="string">&#x27;centipede&#x27;</span>, <span class="string">&#x27;chopper_command&#x27;</span>, <span class="string">&#x27;crazy_climber&#x27;</span>, <span class="string">&#x27;defender&#x27;</span>, <span class="string">&#x27;demon_attack&#x27;</span>, <span class="string">&#x27;double_dunk&#x27;</span>, <span class="string">&#x27;elevator_action&#x27;</span>, <span class="string">&#x27;enduro&#x27;</span>, <span class="string">&#x27;fishing_derby&#x27;</span>, <span class="string">&#x27;freeway&#x27;</span>, <span class="string">&#x27;frostbite&#x27;</span>, <span class="string">&#x27;gopher&#x27;</span>, <span class="string">&#x27;gravitar&#x27;</span>, <span class="string">&#x27;hero&#x27;</span>, <span class="string">&#x27;ice_hockey&#x27;</span>, <span class="string">&#x27;jamesbond&#x27;</span>, <span class="string">&#x27;journey_escape&#x27;</span>, <span class="string">&#x27;kaboom&#x27;</span>, <span class="string">&#x27;kangaroo&#x27;</span>, <span class="string">&#x27;krull&#x27;</span>, <span class="string">&#x27;kung_fu_master&#x27;</span>, <span class="string">&#x27;montezuma_revenge&#x27;</span>, <span class="string">&#x27;ms_pacman&#x27;</span>, <span class="string">&#x27;name_this_game&#x27;</span>, <span class="string">&#x27;phoenix&#x27;</span>, <span class="string">&#x27;pitfall&#x27;</span>, <span class="string">&#x27;pong&#x27;</span>, <span class="string">&#x27;pooyan&#x27;</span>, <span class="string">&#x27;private_eye&#x27;</span>, <span class="string">&#x27;qbert&#x27;</span>, <span class="string">&#x27;riverraid&#x27;</span>, <span class="string">&#x27;road_runner&#x27;</span>, <span class="string">&#x27;robotank&#x27;</span>, <span class="string">&#x27;seaquest&#x27;</span>, <span class="string">&#x27;skiing&#x27;</span>, <span class="string">&#x27;solaris&#x27;</span>, <span class="string">&#x27;space_invaders&#x27;</span>, <span class="string">&#x27;star_gunner&#x27;</span>, <span class="string">&#x27;tennis&#x27;</span>, <span class="string">&#x27;time_pilot&#x27;</span>, <span class="string">&#x27;tutankham&#x27;</span>, <span class="string">&#x27;up_n_down&#x27;</span>, <span class="string">&#x27;venture&#x27;</span>, <span class="string">&#x27;video_pinball&#x27;</span>, <span class="string">&#x27;wizard_of_wor&#x27;</span>, <span class="string">&#x27;yars_revenge&#x27;</span>, <span class="string">&#x27;zaxxon&#x27;</span>]</span><br></pre></td></tr></table></figure>
 <p>我在完成上述步骤后发现还是缺少ale_c.dll，于是打算直接下载一个ale_c.dll</p>
 <h4 id="方法2-有效">方法2 （有效）</h4>
-<p>根据<a
-target="_blank" rel="noopener" href="https://stackoverflow.com/questions/63080326/could-not-find-module-atari-py-ale-interface-ale-c-dll-or-one-of-its-dependenc/64104353#64104353">stackoverflow上的方法</a></p>
-<p><strong>Step1:</strong> Download ale_c.dll from <a
-target="_blank" rel="noopener" href="https://drive.google.com/file/d/1WQrEBliYbASwNDyyVIlPFSZHRwAa7sPp/view?usp=sharing">here</a>.(下载需要梯子，我在博客img中放了文件备份)
+<p>根据<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/63080326/could-not-find-module-atari-py-ale-interface-ale-c-dll-or-one-of-its-dependenc/64104353#64104353">stackoverflow上的方法</a></p>
+<p><strong>Step1:</strong> Download ale_c.dll from <a target="_blank" rel="noopener" href="https://drive.google.com/file/d/1WQrEBliYbASwNDyyVIlPFSZHRwAa7sPp/view?usp=sharing">here</a>.(下载需要梯子，我在博客img中放了文件备份)
 <strong>Step2:</strong> Copy it in C:Raval-packages_py_interface (Your
 path can be different).</p>
 <p>成功解决问题！</p>
@@ -740,8 +640,7 @@ path can be different).</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="有序数组中差绝对值之和"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sum-of-absolute-differences-in-a-sorted-array/">1685.
+          <h4 id="有序数组中差绝对值之和"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sum-of-absolute-differences-in-a-sorted-array/">1685.
 有序数组中差绝对值之和</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -775,21 +674,15 @@ result[0] = |2-2| + |2-3| + |2-5| = 0 + 1 + 3 = 4， result[1] = |3-2| +
 <p>这样做的时间复杂度是O(n^2)，提示超出了时间限制，于是我们摄像能不能减少时间复杂度。</p>
 <p>利用非递减数组的性质，可以提前计算前i项和 prefixSum[i]
 ，将后续的计算简化为：</p>
-<p>对 sums[i] 左边的元素，单项差值为 <span
-class="math display">\[sums[i]-sums[j], (N \geq i&gt;j)\]</span>，前 i
-项求和为 <span
-class="math display">\[i*sums[i]-sum(sums[j])\]</span></p>
-<p>对 sums[i] 右边的元素，单项差值为 <span
-class="math display">\[sums[j]-sums[i],(N\geq j&gt;i)\]</span>，前 i
-项求和为 <span
-class="math display">\[sum(sums[j])-(N-i-1)*sums[i]\]</span></p>
+<p>对 sums[i] 左边的元素，单项差值为 <span class="math display">\[sums[i]-sums[j], (N \geq i&gt;j)\]</span>，前 i
+项求和为 <span class="math display">\[i*sums[i]-sum(sums[j])\]</span></p>
+<p>对 sums[i] 右边的元素，单项差值为 <span class="math display">\[sums[j]-sums[i],(N\geq j&gt;i)\]</span>，前 i
+项求和为 <span class="math display">\[sum(sums[j])-(N-i-1)*sums[i]\]</span></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getSumAbsoluteDifferences</span>(<span class="params">self, nums</span>):</span><br><span class="line">        N = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="built_in">sum</span> = <span class="number">0</span></span><br><span class="line">        output = []</span><br><span class="line">        prefixSum =[]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">            <span class="built_in">sum</span> += nums[i]</span><br><span class="line">            prefixSum.append(<span class="built_in">sum</span>) <span class="comment"># 前i项和</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">            output.append((i+<span class="number">1</span>)*nums[i]-prefixSum[i] + prefixSum[N-<span class="number">1</span>]-prefixSum[i]-nums[i]*(N-<span class="number">1</span>-i))</span><br><span class="line">        <span class="keyword">return</span> output</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li>时间复杂度：<span
-class="math display">\[O(N)\]</span>，N是序列长度。</li>
-<li>空间复杂度：<span
-class="math display">\[O(1)\]</span>。常数个变量。</li>
+<li>时间复杂度：<span class="math display">\[O(N)\]</span>，N是序列长度。</li>
+<li>空间复杂度：<span class="math display">\[O(1)\]</span>。常数个变量。</li>
 </ul>
 
       
@@ -855,8 +748,7 @@ class="math display">\[O(1)\]</span>。常数个变量。</li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="摆动序列"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/wiggle-subsequence/">376.
+          <h4 id="摆动序列"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/wiggle-subsequence/">376.
 摆动序列</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -894,18 +786,14 @@ target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/wiggle-sub
 </blockquote>
 <h3 id="approach-1-贪心">Approach 1: 贪心</h3>
 <p>一开始没看到可以删减元素，打算使用双循环，遍历每个元素作为开头的子序列，计算最长的摇摆子序列。但是跑例子2的时候处了问题。</p>
-<p>后来发现可以删除元素，所以考虑第二层循环里面不同加break了，可以继续计数，同时考虑了几个特殊情况，例如<span
-class="math display">\[[0,0,0]\]</span> 输出 1, <span
-class="math display">\[[1,2,3,4,5]\]</span> 输出 2 等。代码如下：</p>
+<p>后来发现可以删除元素，所以考虑第二层循环里面不同加break了，可以继续计数，同时考虑了几个特殊情况，例如<span class="math display">\[[0,0,0]\]</span> 输出 1, <span class="math display">\[[1,2,3,4,5]\]</span> 输出 2 等。代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wiggleMaxLength</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        N = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> N == <span class="number">1</span> <span class="keyword">or</span> (N == <span class="number">2</span> <span class="keyword">and</span> nums[<span class="number">0</span>] == nums[<span class="number">1</span>]):</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        ans = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,N-<span class="number">1</span>):</span><br><span class="line">            dif_old = nums[i] - nums[i-<span class="number">1</span>]</span><br><span class="line">            length = <span class="number">2</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>,N):</span><br><span class="line">                dif_new = nums[j] - nums[j-<span class="number">1</span>]</span><br><span class="line">                <span class="keyword">if</span> dif_old * dif_new &lt; <span class="number">0</span>:</span><br><span class="line">                    length += <span class="number">1</span></span><br><span class="line">                    ans = <span class="built_in">max</span>(length,ans) </span><br><span class="line">                    dif_old = dif_new</span><br><span class="line">                <span class="keyword">elif</span> dif_new != <span class="number">0</span>:</span><br><span class="line">                    ans = <span class="built_in">max</span>(length,ans) </span><br><span class="line">                    dif_old = dif_new</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
 <p>进一步补考虑，实际上由于删除机制，最长的子序列一定是从头开始计数的，所以可以去掉第一层循环，减小时间复杂度从O(n^2)到O(n)</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wiggleMaxLength</span>(<span class="params">self, nums</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        N = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> N == <span class="number">1</span> <span class="keyword">or</span> (N == <span class="number">2</span> <span class="keyword">and</span> nums[<span class="number">0</span>] == nums[<span class="number">1</span>]):</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        ans = <span class="number">1</span></span><br><span class="line">       </span><br><span class="line">        dif_old = nums[<span class="number">1</span>] - nums[<span class="number">0</span>]</span><br><span class="line">        length = <span class="number">2</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,N):</span><br><span class="line">            dif_new = nums[j] - nums[j-<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">if</span> dif_old * dif_new &lt; <span class="number">0</span>:</span><br><span class="line">                length += <span class="number">1</span></span><br><span class="line">                ans = <span class="built_in">max</span>(length,ans) </span><br><span class="line">                dif_old = dif_new</span><br><span class="line">            <span class="keyword">elif</span> dif_new != <span class="number">0</span>:</span><br><span class="line">                ans = <span class="built_in">max</span>(length,ans) </span><br><span class="line">                dif_old = dif_new</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li>时间复杂度：<span
-class="math display">\[O(N)\]</span>，N是序列长度。</li>
-<li>空间复杂度：<span
-class="math display">\[O(1)\]</span>。常数个变量。</li>
+<li>时间复杂度：<span class="math display">\[O(N)\]</span>，N是序列长度。</li>
+<li>空间复杂度：<span class="math display">\[O(1)\]</span>。常数个变量。</li>
 </ul>
 <h3 id="approach-2-动态规划">Approach 2: 动态规划</h3>
 <p>每当我们选择一个元素作为摆动序列的一部分时，这个元素要么是上升的，要么是下降的，这取决于前一个元素的大小。那么列出状态表达式为：</p>
@@ -919,22 +807,14 @@ class="math display">\[O(1)\]</span>。常数个变量。</li>
 <ul>
 <li>当 <span class="math display">\[\textit{nums}[i] \leq
 \textit{nums}[i - 1]\]</span>
-时，我们无法选出更长的「上升摆动序列」的方案。因为对于任何以 <span
-class="math display">\[\textit{nums}[i]\]</span>
-结尾的「上升摆动序列」，我们都可以将 <span
-class="math display">\[\textit{nums}[i]\]</span> 替换为 <span
-class="math display">\[\textit{nums}[i - 1]\]</span>，使其成为以 <span
-class="math display">\[\textit{nums}[i - 1]\]</span>
+时，我们无法选出更长的「上升摆动序列」的方案。因为对于任何以 <span class="math display">\[\textit{nums}[i]\]</span>
+结尾的「上升摆动序列」，我们都可以将 <span class="math display">\[\textit{nums}[i]\]</span> 替换为 <span class="math display">\[\textit{nums}[i - 1]\]</span>，使其成为以 <span class="math display">\[\textit{nums}[i - 1]\]</span>
 结尾的「上升摆动序列」。</li>
 <li>当 <span class="math display">\[\textit{nums}[i] &gt;
-\textit{nums}[i - 1]\]</span> 时，我们既可以从 <span
-class="math display">\[up[i - 1]\]</span> 进行转移，也可以从 <span
-class="math display">\[\textit{down}[i - 1]\]</span>
+\textit{nums}[i - 1]\]</span> 时，我们既可以从 <span class="math display">\[up[i - 1]\]</span> 进行转移，也可以从 <span class="math display">\[\textit{down}[i - 1]\]</span>
 进行转移。下面我们证明从 <span class="math display">\[\textit{down}[i -
-1]\]</span> 转移是必然合法的，即必然存在一个 <span
-class="math display">\[\textit{down}[i - 1]\]</span>
-对应的最长的「下降摆动序列」的末尾元素小于 <span
-class="math display">\[\textit{nums}[i]\]</span>。
+1]\]</span> 转移是必然合法的，即必然存在一个 <span class="math display">\[\textit{down}[i - 1]\]</span>
+对应的最长的「下降摆动序列」的末尾元素小于 <span class="math display">\[\textit{nums}[i]\]</span>。
 <ul>
 <li>我们记这个末尾元素在原序列中的下标为 j，假设从 j
 往前的第一个「谷」为 nums[k]，我们总可以让 j 移动到
@@ -978,17 +858,12 @@ max(up[i-1]+1,down[i-1]) &amp; nums[i]&lt;nums[i−1]
 <p><strong>思路及解法</strong></p>
 <p>注意到方法一中，我们仅需要前一个状态来进行转移，所以我们维护两个变量即可。这样我们可以写出如下的代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wiggleMaxLength</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> n</span><br><span class="line">        </span><br><span class="line">        up = down = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">if</span> nums[i] &gt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                up = <span class="built_in">max</span>(up, down + <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">elif</span> nums[i] &lt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                down = <span class="built_in">max</span>(up + <span class="number">1</span>, down)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(up, down)</span><br></pre></td></tr></table></figure>
-<p>注意到每有一个「峰」到「谷」的下降趋势，<span
-class="math display">\[\textit{down}\]</span>
-值才会增加，每有一个「谷」到「峰」的上升趋势，<span
-class="math display">\[\textit{up}\]</span> 值才会增加。且过程中 <span
-class="math display">\[\textit{down}\]</span> 与 <span
-class="math display">\[\textit{up}\]</span> 的差的绝对值值恒不大于 1，即
+<p>注意到每有一个「峰」到「谷」的下降趋势，<span class="math display">\[\textit{down}\]</span>
+值才会增加，每有一个「谷」到「峰」的上升趋势，<span class="math display">\[\textit{up}\]</span> 值才会增加。且过程中 <span class="math display">\[\textit{down}\]</span> 与 <span class="math display">\[\textit{up}\]</span> 的差的绝对值值恒不大于 1，即
 <span class="math display">\[\textit{up} \leq \textit{down} + 1\]</span>
 且 <span class="math display">\[\textit{down} \leq \textit{up} +
 1\]</span>，于是有 <span class="math display">\[\max(\textit{up},
-\textit{down} + 1) = \textit{down} + 1\]</span> 且 <span
-class="math display">\[\max(\textit{up} + 1, \textit{down}) =
+\textit{down} + 1) = \textit{down} + 1\]</span> 且 <span class="math display">\[\max(\textit{up} + 1, \textit{down}) =
 \textit{up} + 1\]</span>。这样我们可以省去不必要的比较大小的过程。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wiggleMaxLength</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> n</span><br><span class="line">        </span><br><span class="line">        up = down = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">if</span> nums[i] &gt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                up = down + <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> nums[i] &lt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                down = up + <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(up, down)</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
@@ -1058,14 +933,11 @@ class="math display">\[\max(\textit{up} + 1, \textit{down}) =
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="两地调度"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/two-city-scheduling/">1029.
+          <h4 id="两地调度"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/two-city-scheduling/">1029.
 两地调度</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
-<p>公司计划面试 2N 人。第 i 人飞往 A 市的费用为 <span
-class="math display">\[costs[i][0]\]</span>，飞往 B 市的费用为 <span
-class="math display">\[costs[i][1]\]</span>。</p>
+<p>公司计划面试 2N 人。第 i 人飞往 A 市的费用为 <span class="math display">\[costs[i][0]\]</span>，飞往 B 市的费用为 <span class="math display">\[costs[i][1]\]</span>。</p>
 <p>返回将每个人都飞到某座城市的最低费用，要求每个城市都有 N 人抵达。</p>
 </blockquote>
 <blockquote>
@@ -1169,8 +1041,7 @@ A 市，费用为 10。 第二个人去 A 市，费用为 30。 第三个人去 
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="二叉搜索树的范围和"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/range-sum-of-bst/">938.
+          <h4 id="二叉搜索树的范围和"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/range-sum-of-bst/">938.
 二叉搜索树的范围和</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -1204,12 +1075,10 @@ root，分以下四种情况讨论：</p>
 <p>返回 0。</p></li>
 <li><p><span class="math display">\[\textit{root}\]</span> 节点的值大于
 <span class="math display">\[\textit{high}\]</span></p>
-<p>由于二叉搜索树右子树上所有节点的值均大于根节点的值，即均大于 <span
-class="math display">\[\textit{high}\]</span>，故无需考虑右子树，返回左子树的范围和。</p></li>
+<p>由于二叉搜索树右子树上所有节点的值均大于根节点的值，即均大于 <span class="math display">\[\textit{high}\]</span>，故无需考虑右子树，返回左子树的范围和。</p></li>
 <li><p><span class="math display">\[\textit{root}\]</span>
 节点的值小于<span class="math display">\[ \textit{low}\]</span></p>
-<p>由于二叉搜索树左子树上所有节点的值均小于根节点的值，即均小于 <span
-class="math display">\[\textit{low}\]</span>，故无需考虑左子树，返回右子树的范围和。</p></li>
+<p>由于二叉搜索树左子树上所有节点的值均小于根节点的值，即均小于 <span class="math display">\[\textit{low}\]</span>，故无需考虑左子树，返回右子树的范围和。</p></li>
 <li><p><span class="math display">\[\textit{root}\]</span> 节点的值在
 <span class="math display">\[[\textit{low},\textit{high}]\]</span>
 范围内</p>

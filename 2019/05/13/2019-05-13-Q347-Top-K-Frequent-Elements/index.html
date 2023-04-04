@@ -30,8 +30,8 @@
 <meta property="article:published_time" content="2019-05-12T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-03-25T01:54:14.951Z">
 <meta property="article:author" content="Txing">
-<meta property="article:tag" content="Python">
 <meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Python">
 <meta property="article:tag" content="Hash Table">
 <meta name="twitter:card" content="summary">
 
@@ -227,8 +227,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="top-k-frequent-elements"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/top-k-frequent-elements/">Top K
+        <h1 id="top-k-frequent-elements"><a target="_blank" rel="noopener" href="https://leetcode.com/problems/top-k-frequent-elements/">Top K
 Frequent Elements</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -265,23 +264,17 @@ use the heap which is also known as priority queue.</p>
 structure <code>HashMap</code> but have to fill it manually. Python
 provides us both a dictionary structure for the hash map and a method
 <code>Counter</code> in the <code>collections</code> library to build
-the hash map we need. This step takes <span
-class="math display">\[\mathcal{O}(N)\]</span> time where <code>N</code>
+the hash map we need. This step takes <span class="math display">\[\mathcal{O}(N)\]</span> time where <code>N</code>
 is number of elements in the list.</p>
 <p>The second step is to build a heap. The time complexity of adding an
-element in a heap is <span
-class="math display">\[\mathcal{O}(\log(k))\]</span> and we do it
-<code>N</code> times that means <span
-class="math display">\[\mathcal{O}(N \log(k))\]</span> time complexity
+element in a heap is <span class="math display">\[\mathcal{O}(\log(k))\]</span> and we do it
+<code>N</code> times that means <span class="math display">\[\mathcal{O}(N \log(k))\]</span> time complexity
 for this step.</p>
-<p>The last step to build an output list has <span
-class="math display">\[\mathcal{O}(k \log(k))\]</span> time
+<p>The last step to build an output list has <span class="math display">\[\mathcal{O}(k \log(k))\]</span> time
 complexity.</p>
 <p>In Python there is a method <code>nlargest</code> in
-<code>heapq</code> library (<a
-target="_blank" rel="noopener" href="https://hg.python.org/cpython/file/2.7/Lib/heapq.py#l203">check
-here the source code</a>) which has the same <span
-class="math display">\[\mathcal{O}(k \log(k))​\]</span> time complexity
+<code>heapq</code> library (<a target="_blank" rel="noopener" href="https://hg.python.org/cpython/file/2.7/Lib/heapq.py#l203">check
+here the source code</a>) which has the same <span class="math display">\[\mathcal{O}(k \log(k))​\]</span> time complexity
 and combines two last steps in one line.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"><span class="keyword">import</span> heapq</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">topKFrequent</span>(<span class="params">self, nums, k</span>):</span><br><span class="line">        count = collections.Counter(nums)</span><br><span class="line">        <span class="keyword">return</span> heapq.nlargest(k, count.keys(), key=count.get)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums =[<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">    k=<span class="number">2</span></span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.topKFrequent(nums,k)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <ul>
@@ -299,8 +292,8 @@ for Top K Frequent Elements.</li>
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Python/" rel="tag"># Python</a>
               <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
               <a href="/tags/Hash-Table/" rel="tag"># Hash Table</a>
           </div>
 

@@ -27,12 +27,16 @@
 <meta property="og:site_name" content="Txing">
 <meta property="og:description" content="Model-based offline planning  由于成本、安全性等因素，很多情况下不能够直接与系统交互来学习控制策略，因此，只能从记录的log数据中学习控制策略（offline reinforcement learning）。本文介绍了一种从log数据中学到超越成圣log数据的原策略的新策略的方法，命名为 model-based ofline planning (MBOP)。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-3.png">
 <meta property="article:published_time" content="2022-07-31T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-03-25T01:54:15.014Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Imitation Learning">
 <meta property="article:tag" content="Autonomous Driving">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-1.png">
 
 <link rel="canonical" href="https://txing-casia.github.io/2022/08/01/2022-08-01-Autonomous%20Driving%20-%20Model-based%20offline%20planning/">
 
@@ -241,20 +245,20 @@ model-based ofline planning (MBOP)。</li>
 <ul>
 <li>Yifan Wu, George Tucker, and Ofir Nachum. Behavior regularized
 offline reinforcement learning. CoRR, abs/1911.11361, 2019. URL
-http://arxiv.org/abs/1911.11361.<br />
+http://arxiv.org/abs/1911.11361.<br>
 </li>
 <li>Xue Bin Peng, Aviral Kumar, Grace Zhang, and Sergey Levine.
 Advantage-weighted regression: Simple and scalable off-policy
-reinforcement learning. arXiv preprint arXiv:1910.00177, 2019.<br />
+reinforcement learning. arXiv preprint arXiv:1910.00177, 2019.<br>
 </li>
 <li>Scott Fujimoto, David Meger, and Doina Precup. Off-policy deep
 reinforcement learning without exploration. In International Conference
-on Machine Learning, pp. 2052–2062, 2019.<br />
+on Machine Learning, pp. 2052–2062, 2019.<br>
 </li>
 <li>Ziyu Wang, Alexander Novikov, Konrad Zolna, Josh S Merel, Jost
 Tobias Springenberg, Scott E Reed, Bobak Shahriari, Noah Siegel, Caglar
 Gulcehre, Nicolas Heess, et al. Critic regularized regression. Advances
-in Neural Information Processing Systems, 33, 2020.<br />
+in Neural Information Processing Systems, 33, 2020.<br>
 </li>
 </ul></li>
 <li>model-based方法：MOPO,
@@ -263,11 +267,11 @@ MoREL学习一个模型，然后用于训练一个无模型策略，这种模式
 <li><strong>MOPO</strong>: Tianhe Yu, Garrett Thomas, Lantao Yu, Stefano
 Ermon, James Zou, Sergey Levine, Chelsea Finn, and Tengyu Ma. Mopo:
 Model-based offline policy optimization. arXiv preprint
-arXiv:2005.13239, 2020.<br />
+arXiv:2005.13239, 2020.<br>
 </li>
 <li><strong>MoREL</strong>: Rahul Kidambi, Aravind Rajeswaran, Praneeth
 Netrapalli, and Thorsten Joachims. Morel: Modelbased offline
-reinforcement learning. arXiv preprint arXiv:2005.05951, 2020.<br />
+reinforcement learning. arXiv preprint arXiv:2005.05951, 2020.<br>
 </li>
 <li><strong>Dyna</strong>: Richard S Sutton and Andrew G Barto.
 Reinforcement learning: An introduction. MIT press, 2018.</li>
@@ -286,7 +290,7 @@ Conference on Robotics and Automation (ICRA), pp. 1714–1721. IEEE,
 <ul>
 <li>a learnt <strong>world model</strong>,</li>
 <li>a learnt <strong>behavior-cloning policy</strong>,</li>
-<li>a learnt <strong>fixed-horizon value-function</strong>.<br />
+<li>a learnt <strong>fixed-horizon value-function</strong>.<br>
 </li>
 </ul></li>
 <li>MBOP的核心优势是<strong>数据高效</strong>和<strong>自适应</strong>。只需仅100秒就可以训练出一个和奖励函数、目标状态、基于状态的约束相适应的策略。</li>
@@ -295,8 +299,7 @@ Conference on Robotics and Automation (ICRA), pp. 1714–1721. IEEE,
 <h3 id="model-based-offline-planning-1">Model-based offline
 planning</h3>
 <ul>
-<li>描述问题为Markov Decision Process (MDP)，<span
-class="math display">\[(S,A,p,r,\gamma)\]</span>
+<li>描述问题为Markov Decision Process (MDP)，<span class="math display">\[(S,A,p,r,\gamma)\]</span>
 <ul>
 <li><span class="math display">\[s\]</span>是系统状态</li>
 <li><span class="math display">\[a\]</span>是行为</li>
@@ -307,50 +310,31 @@ s_t,a_t)\]</span>是状态转移概率</li>
 </ul></li>
 <li>MBOP包括三个函数近似器：
 <ul>
-<li><span
-class="math display">\[f_m\]</span>：环境动力学的单步模型，<span
-class="math display">\[(\hat{r}_t,\hat{s}_{t+1})=f_m(s_t,a_t)\]</span>，本文使用<span
-class="math display">\[f_m(s_t,a_t)_s\]</span>表示状态预测，使用<span
-class="math display">\[f_m(s_t,a_t)_r\]</span>表示奖励预测。</li>
-<li><span
-class="math display">\[f_b\]</span>：表示一个行为克隆网络，<span
-class="math display">\[a_t=f_b(s_t,a_{t-1})\]</span>，被规划算法用来引导轨迹采样的先验。</li>
-<li><span
-class="math display">\[f_R\]</span>：是一个阉割的值函数，提供在状态s中采取行为a后，在固定界限<span
-class="math display">\[R_H\]</span>上的收益。<span
-class="math display">\[\hat{R}_H = f_R(s_t,a_{t-1})\]</span></li>
+<li><span class="math display">\[f_m\]</span>：环境动力学的单步模型，<span class="math display">\[(\hat{r}_t,\hat{s}_{t+1})=f_m(s_t,a_t)\]</span>，本文使用<span class="math display">\[f_m(s_t,a_t)_s\]</span>表示状态预测，使用<span class="math display">\[f_m(s_t,a_t)_r\]</span>表示奖励预测。</li>
+<li><span class="math display">\[f_b\]</span>：表示一个行为克隆网络，<span class="math display">\[a_t=f_b(s_t,a_{t-1})\]</span>，被规划算法用来引导轨迹采样的先验。</li>
+<li><span class="math display">\[f_R\]</span>：是一个阉割的值函数，提供在状态s中采取行为a后，在固定界限<span class="math display">\[R_H\]</span>上的收益。<span class="math display">\[\hat{R}_H = f_R(s_t,a_{t-1})\]</span></li>
 </ul></li>
 <li>MBOP-POLICY
 <ul>
-<li>使用MPC输出每个新状态下的行为（<span
-class="math display">\[a_t=\pi(s_t)\]</span>）。MPC在每一时间步执行一个固定长度的规划，返回长度为H的轨迹T。选择该轨迹的第一个行为<span
-class="math display">\[a_t\]</span>并返回。</li>
+<li>使用MPC输出每个新状态下的行为（<span class="math display">\[a_t=\pi(s_t)\]</span>）。MPC在每一时间步执行一个固定长度的规划，返回长度为H的轨迹T。选择该轨迹的第一个行为<span class="math display">\[a_t\]</span>并返回。</li>
 </ul></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-1.png"
-alt="High-Level MBOP-Policy" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-1.png" alt="High-Level MBOP-Policy">
 <figcaption aria-hidden="true">High-Level MBOP-Policy</figcaption>
 </figure>
 <ul>
 <li>MBOP-TRAJOPT
 <ul>
-<li>在PDDM的基础上增加一个策略先验<span
-class="math display">\[f_b\]</span>和价值预测<span
-class="math display">\[f_R\]</span></li>
+<li>在PDDM的基础上增加一个策略先验<span class="math display">\[f_b\]</span>和价值预测<span class="math display">\[f_R\]</span></li>
 </ul></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-2.png"
-alt="MBOP-Trajopt" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-2.png" alt="MBOP-Trajopt">
 <figcaption aria-hidden="true">MBOP-Trajopt</figcaption>
 </figure>
 <blockquote>
-<p>P.S.：第11行在<span
-class="math display">\[f_b\]</span>给出的行为上加权了采样轨迹的行为，其含义可能是希望在网络没有收敛时，记录下来的行为也不要偏差太大，都保持在采样轨迹附近，参数<span
-class="math display">\[\beta\]</span>可被视为学习率。第17行给出多条轨迹中奖励最大的作为输出（re-weighting）</p>
+<p>P.S.：第11行在<span class="math display">\[f_b\]</span>给出的行为上加权了采样轨迹的行为，其含义可能是希望在网络没有收敛时，记录下来的行为也不要偏差太大，都保持在采样轨迹附近，参数<span class="math display">\[\beta\]</span>可被视为学习率。第17行给出多条轨迹中奖励最大的作为输出（re-weighting）</p>
 </blockquote>
 <h3 id="experimental-results">Experimental results</h3>
 <ul>
@@ -358,7 +342,7 @@ class="math display">\[\beta\]</span>可被视为学习率。第17行给出多�
 tasks中：</p>
 <ul>
 <li><strong>goal-conditioned tasks</strong> (that ignore the original
-reward function)<br />
+reward function)<br>
 </li>
 <li><strong>constrained tasks</strong> (that require optimising for the
 original reward under some state constraint)</li>
@@ -386,9 +370,7 @@ reinforcement learning. arXiv preprint arXiv:2004.07219, 2020.
 </ul></li>
 </ul></li>
 <li><p>对于 RLU 中的 Quadruped 和 Walker
-任务，由于数据集中性能高方差，在训练 <span
-class="math display">\[f_b\]</span> 和 <span
-class="math display">\[f_R\]</span>
+任务，由于数据集中性能高方差，在训练 <span class="math display">\[f_b\]</span> 和 <span class="math display">\[f_R\]</span>
 的过程中，通过设定阈值，舍弃了性能不好的数据。 使用未过滤的数据来训练
 <span class="math display">\[f_s\]</span></p></li>
 <li><p>对于所有的数据集，90%用于训练，10%用于测试验证</p></li>
@@ -402,29 +384,23 @@ policy, and with sufficient data converges to a score of 900 which is
 near optimal. On most tasks, MBOP is able to generate a policy
 significantly better than the behavior data as well as the the BC
 prior.</p></li>
-<li><p>MBOP模型容易适应新的目标函数，例如添加新的子目标函数<span
-class="math display">\[R&#39;_n\]</span>时， <span
-class="math display">\[
+<li><p>MBOP模型容易适应新的目标函数，例如添加新的子目标函数<span class="math display">\[R&#39;_n\]</span>时， <span class="math display">\[
 R&#39;_n = \sum_t f_{obj}(s_t)
-\]</span> 其中，<span
-class="math display">\[f_{obj}\]</span>是用户自定义的目标函数。只需要将轨迹更新规则改为：
+\]</span> 其中，<span class="math display">\[f_{obj}\]</span>是用户自定义的目标函数。只需要将轨迹更新规则改为：
 <span class="math display">\[
 T_t=\frac{\sum_{n=1}^N e^{kR_n+k_{obj}R&#39;_n}A_{n,t}}{\sum_{n=1}^N
 e^{kR_n+k_{obj}R&#39;_n}}
 \]</span></p></li>
 <li><p>为了验证上述模型的适应能力，进行了两个实验：</p>
 <ul>
-<li><strong>goal-conditioned control</strong>（忽略原始奖励，<span
-class="math display">\[k=0\]</span>，学习新奖励）</li>
+<li><strong>goal-conditioned control</strong>（忽略原始奖励，<span class="math display">\[k=0\]</span>，学习新奖励）</li>
 <li><strong>constrained control</strong>（增加了state-based
 constraint，然后探索合适的 <span class="math display">\[k\]</span> 和
 <span class="math display">\[k_{obj}\]</span> ）</li>
 </ul></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-3.png"
-alt="ZERO-SHOT TASK ADAPTATION" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-3.png" alt="ZERO-SHOT TASK ADAPTATION">
 <figcaption aria-hidden="true">ZERO-SHOT TASK ADAPTATION</figcaption>
 </figure>
 <h3 id="总结">总结</h3>
