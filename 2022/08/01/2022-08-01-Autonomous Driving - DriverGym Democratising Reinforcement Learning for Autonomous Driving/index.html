@@ -27,16 +27,12 @@
 <meta property="og:site_name" content="Txing">
 <meta property="og:description" content="DriverGym: Democratising Reinforcement Learning for Autonomous Driving  现状：目前缺少open-source platform来用real-world data训练和高效地验证RL算法。 DriverGym 平台的特点：  开源（opensource） 与Gym兼容（OpenAI Gym-compatible">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220801-2.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220801-3.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220801-4.png">
 <meta property="article:published_time" content="2022-07-31T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-03-25T01:54:15.014Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Imitation Learning">
 <meta property="article:tag" content="Autonomous Driving">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220801-2.png">
 
 <link rel="canonical" href="https://txing-casia.github.io/2022/08/01/2022-08-01-Autonomous%20Driving%20-%20DriverGym%20Democratising%20Reinforcement%20Learning%20for%20Autonomous%20Driving/">
 
@@ -230,7 +226,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="drivergym-democratising-reinforcement-learning-for-autonomous-driving">DriverGym:
+        <h2
+id="drivergym-democratising-reinforcement-learning-for-autonomous-driving">DriverGym:
 Democratising Reinforcement Learning for Autonomous Driving</h2>
 <ul>
 <li>现状：目前缺少open-source platform来用real-world
@@ -241,18 +238,20 @@ data训练和高效地验证RL算法。</li>
 <li>与Gym兼容（OpenAI Gym-compatible environment specifically
 tailored）</li>
 <li>超过1000小时专家记录数据（more than 1000 hours of expert logged
-data）<br>
+data）<br />
 </li>
 <li>灵活的闭环评估协议（flexible closed-loop evaluation protocol）</li>
 <li>提供行为克隆baselines（provide behavior cloning baselines using
-supervised learning and RL）<br>
+supervised learning and RL）<br />
 </li>
 <li>代码：https://lyft.github.io/l5kit/ （已失效）</li>
 </ul></li>
 <li>环境结构：</li>
 </ul>
 <figure>
-<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220801-2.png" alt="DriverGym">
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220801-2.png"
+alt="DriverGym" />
 <figcaption aria-hidden="true">DriverGym</figcaption>
 </figure>
 <blockquote>
@@ -270,7 +269,9 @@ trained policies.</p>
 <li>自动驾驶开源RL仿真环境的对比</li>
 </ul>
 <figure>
-<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220801-3.png" alt="自动驾驶开源RL仿真环境的对比">
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220801-3.png"
+alt="自动驾驶开源RL仿真环境的对比" />
 <figcaption aria-hidden="true">自动驾驶开源RL仿真环境的对比</figcaption>
 </figure>
 <ul>
@@ -300,7 +301,7 @@ community,</li>
 <li>J. Houston, G. Zuidhof, L. Bergamini, Y. Ye, A. Jain, S. Omari, V.
 Iglovikov, and P. Ondruska. One thousand and one hours: Self-driving
 motion prediction dataset. https://level-5.global/level5/data/,
-2020.<br>
+2020.<br />
 </li>
 </ul></li>
 <li><p>支持反应式的行为仿真</p>
@@ -331,13 +332,13 @@ training code.</li>
 <ul>
 <li>E. Espié, Christophe Guionneau, Bernhard Wymann, Christos
 Dimitrakakis, Rémi Coulom, and Andrew Sumner. Torcs, the open racing car
-simulator. 2005.<br>
+simulator. 2005.<br />
 </li>
 </ul></li>
 <li><strong>Highway-Env</strong>：环境与Gym兼容，但缺少交通灯、评估协议和专家数据
 <ul>
 <li>Edouard Leurent. An environment for autonomous driving
-decision-making. https://github.com/eleurent/highway-env, 2018.<br>
+decision-making. https://github.com/eleurent/highway-env, 2018.<br />
 </li>
 </ul></li>
 </ul></li>
@@ -348,7 +349,7 @@ rules），真实性有限。
 <ul>
 <li>A. Dosovitskiy, G. Ros, Felipe Codevilla, Antonio M. López, and V.
 Koltun. Carla: An open urban driving simulator. ArXiv, abs/1711.03938,
-2017.<br>
+2017.<br />
 </li>
 </ul></li>
 <li><strong>SUMO</strong>：支持多变的交通情况训练和测试，但周围车辆使用手写规则（hand-coded
@@ -359,7 +360,7 @@ Erdmann, Yun-Pang Flötteröd, Robert Hilbrich, Leonhard Lücken, Johannes
 Rummel, Peter Wagner, and Evamarie Wießner. Microscopic traffic
 simulation using sumo. In The 21st IEEE International Conference on
 Intelligent Transportation Systems. IEEE, 2018. URL
-https://elib.dlr.de/124092/.<br>
+https://elib.dlr.de/124092/.<br />
 </li>
 </ul></li>
 <li><strong>SMARTS</strong>
@@ -374,7 +375,7 @@ Yadmellat, Mohsen Rohani, Nicolas Perez Nieves, Yihan Ni, Seyedershad
 Banijamali, Alexander Cowen Rivers, Zheng Tian, Daniel Palenicek,
 Haitham Ammar, Hongbo Zhang, Wulong Liu, Jianye Hao, and Jintao Wang.
 Smarts: Scalable multi-agent reinforcement learning training school for
-autonomous driving. ArXiv, abs/2010.09776, 2020.<br>
+autonomous driving. ArXiv, abs/2010.09776, 2020.<br />
 </li>
 </ul></li>
 <li><strong>CRTS</strong>：提供了logs数据接口，使用64小时的真实驾驶数据（real-world
@@ -383,7 +384,7 @@ logs）训练周围车辆的行为。集成在Carla中。
 <li>Blazej Osinski, Piotr Milos, Adam Jakubowski, Pawel Ziecina, Michal
 Martyniak, Christopher Galias, Antonia Breuer, Silviu Homoceanu, and
 Henryk Michalewski. Carla real traffic scenarios - novel training ground
-and benchmark for autonomous driving. ArXiv, abs/2012.11329, 2020.<br>
+and benchmark for autonomous driving. ArXiv, abs/2012.11329, 2020.<br />
 </li>
 </ul></li>
 <li><strong>DriverGym</strong>：支持反应式的agent使用数据驱动模型学习真实世界的数据，并提供了1000小时真实的驾驶记录可用于仿真agent</li>
@@ -393,16 +394,19 @@ and benchmark for autonomous driving. ArXiv, abs/2012.11329, 2020.<br>
 <ul>
 <li><p>模型兼容两个流行的框架训练策略：</p>
 <ul>
-<li><strong>SB3</strong>：<a target="_blank" rel="noopener" href="https://github.com/DLR-RM/stable-baselines3">Stable Baselines3
-(SB3)</a>是 PyTorch 中强化学习算法的一组可靠实现。它是<a target="_blank" rel="noopener" href="https://github.com/hill-a/stable-baselines">Stable
+<li><strong>SB3</strong>：<a
+target="_blank" rel="noopener" href="https://github.com/DLR-RM/stable-baselines3">Stable Baselines3
+(SB3)</a>是 PyTorch 中强化学习算法的一组可靠实现。它是<a
+target="_blank" rel="noopener" href="https://github.com/hill-a/stable-baselines">Stable
 Baselines</a>的下一个主要版本。
 <ul>
 <li>Antonin Raffin, Ashley Hill, Maximilian Ernestus, Adam Gleave, Anssi
 Kanervisto, and Noah Dormann. Stable baselines3.
-https://github.com/DLR-RM/stable-baselines3, 2019.<br>
+https://github.com/DLR-RM/stable-baselines3, 2019.<br />
 </li>
 </ul></li>
-<li><strong>RLlib</strong>：RLlib是一个开源强化学习库,提供了高度可扩展能力和不同应用的统一的<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=API&amp;spm=1001.2101.3001.7020">API</a>。RLlib原生支持Tensorflow，Tensorflow
+<li><strong>RLlib</strong>：RLlib是一个开源强化学习库,提供了高度可扩展能力和不同应用的统一的<a
+target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=API&amp;spm=1001.2101.3001.7020">API</a>。RLlib原生支持Tensorflow，Tensorflow
 Eager，以及PyTorch，但其内部与这些框架无关。
 <ul>
 <li>Eric Liang, Richard Liaw, Robert Nishihara, Philipp Moritz, Roy Fox,
@@ -413,14 +417,17 @@ Rllib: Abstractions for distributed reinforcement learning. In ICML,
 </ul></li>
 <li><p>例子场景：绿线是策略预测的轨迹</p>
 <figure>
-<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220801-4.png" alt="Visualization of an episode rollout (ego in red, agents in blue) in DriverGym. The policy prediction (green line) is scaled by factor of 10 and shown at 2 second intervals for better viewing">
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220801-4.png"
+alt="Visualization of an episode rollout (ego in red, agents in blue) in DriverGym. The policy prediction (green line) is scaled by factor of 10 and shown at 2 second intervals for better viewing" />
 <figcaption aria-hidden="true">Visualization of an episode rollout (ego
 in red, agents in blue) in DriverGym. The policy prediction (green line)
 is scaled by factor of 10 and shown at 2 second intervals for better
 viewing</figcaption>
 </figure></li>
 <li><p>action space：行为为 <span class="math display">\[(x; y;
-yaw)\]</span> (yaw是朝向)，用于更新ego-agent行为；环境输出 <span class="math display">\[(acceleration; steer)\]</span>
+yaw)\]</span> (yaw是朝向)，用于更新ego-agent行为；环境输出 <span
+class="math display">\[(acceleration; steer)\]</span>
 用于计算下一时刻的observation</p></li>
 <li><p>reactive agent：允许周围车辆使用两种方式控制：</p>
 <ul>
@@ -452,8 +459,8 @@ agent models，用于控制车辆行为</li>
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/07/23/2022-07-23-Autonomous%20Driving%20-%20A%20Review%20of%20Motion%20Planning%20for%20Highway%20Autonomous%20Driving/" rel="prev" title="Autonomous Driving | A Review of Motion Planning for Highway Autonomous Driving">
-      <i class="fa fa-chevron-left"></i> Autonomous Driving | A Review of Motion Planning for Highway Autonomous Driving
+    <a href="/2022/07/23/2022-07-23-%E4%BD%BF%E7%94%A8VSCode%E8%B0%83%E8%AF%95%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84Python%E8%84%9A%E6%9C%AC/" rel="prev" title="使用VSCode调试带参数的Python脚本">
+      <i class="fa fa-chevron-left"></i> 使用VSCode调试带参数的Python脚本
     </a></div>
       <div class="post-nav-item">
     <a href="/2022/08/01/2022-08-01-Autonomous%20Driving%20-%20Model-based%20offline%20planning/" rel="next" title="Autonomous Driving | Model-based offline planning">

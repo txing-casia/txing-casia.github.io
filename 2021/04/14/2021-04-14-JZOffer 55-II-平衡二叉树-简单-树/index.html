@@ -30,8 +30,8 @@
 <meta property="article:published_time" content="2021-04-13T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-03-25T01:54:14.994Z">
 <meta property="article:author" content="Txing">
-<meta property="article:tag" content="Algorithm">
 <meta property="article:tag" content="Python">
+<meta property="article:tag" content="Algorithm">
 <meta property="article:tag" content="Easy">
 <meta property="article:tag" content="Tree">
 <meta name="twitter:card" content="summary">
@@ -228,7 +228,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="剑指-offer-55---ii.-平衡二叉树"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/">剑指
+        <h4 id="剑指-offer-55---ii.-平衡二叉树"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/">剑指
 Offer 55 - II. 平衡二叉树</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -299,7 +300,8 @@ O(N) 的栈空间。</li>
 <blockquote>
 <p>此方法容易想到，但会产生大量重复计算，时间复杂度较高。</p>
 </blockquote>
-<p>思路是构造一个获取当前子树的深度的函数 depth(root) （即 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/solution/mian-shi-ti-55-i-er-cha-shu-de-shen-du-xian-xu-bia/">面试题55
+<p>思路是构造一个获取当前子树的深度的函数 depth(root) （即 <a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/solution/mian-shi-ti-55-i-er-cha-shu-de-shen-du-xian-xu-bia/">面试题55
 - I. 二叉树的深度</a>），通过比较某子树的左右子树的深度差
 abs(depth(root.left) - depth(root.right)) &lt;= 1
 是否成立，来判断某子树是否是二叉平衡树。若所有子树都平衡，则此树平衡。</p>
@@ -335,17 +337,21 @@ isBalanced(root) 遍历树所有节点，判断每个节点的深度 depth(root)
 <ul>
 <li><p>满二叉树高度的复杂度 O(log N) ，将满二叉树按层分为 log (N+1) 层；
 通过调用 depth(root)
-，判断二叉树各层的节点的对应子树的深度，需遍历节点数量为 <span class="math display">\[N \times 1, \frac{N-1}{2} \times 2, \frac{N-3}{4}
+，判断二叉树各层的节点的对应子树的深度，需遍历节点数量为 <span
+class="math display">\[N \times 1, \frac{N-1}{2} \times 2, \frac{N-3}{4}
 \times 4, \frac{N-7}{8} \times 8, ..., 1 \times
 \frac{N+1}{2}\]</span>。因此各层执行 depth(root) 的时间复杂度为
-O(N)（每层开始，最多遍历 N 个节点，最少遍历 ￥￥<span class="math display">\[\frac{N+1}{2} \]</span> 个节点）。</p></li>
+O(N)（每层开始，最多遍历 N 个节点，最少遍历 ￥￥<span
+class="math display">\[\frac{N+1}{2} \]</span> 个节点）。</p></li>
 <li><blockquote>
 <p>其中，<span class="math display">\[\frac{N-3}{4} \times 4 \]</span>
 代表从此层开始总共需遍历 N-3 个节点，此层共有 44
 个节点，因此每个子树需遍历 <span class="math display">\[\frac{N-3}{4}
 \]</span>个节点。</p>
 </blockquote>
-<p>因此，总体时间复杂度 = 每层执行复杂度 <span class="math display">\[\times\]</span> 层数复杂度 = <span class="math display">\[O(N \times log N)\]</span>。</p></li>
+<p>因此，总体时间复杂度 = 每层执行复杂度 <span
+class="math display">\[\times\]</span> 层数复杂度 = <span
+class="math display">\[O(N \times log N)\]</span>。</p></li>
 </ul></li>
 <li><p>空间复杂度 O(N)：最差情况下（树退化为链表时），系统递归需要使用
 O<em>(</em>N*) 的栈空间。</p></li>
@@ -359,8 +365,8 @@ O<em>(</em>N*) 的栈空间。</p></li>
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
               <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
               <a href="/tags/Easy/" rel="tag"># Easy</a>
               <a href="/tags/Tree/" rel="tag"># Tree</a>
           </div>

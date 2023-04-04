@@ -223,7 +223,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="hippocampal-place-cell-sequences-depict-future-paths-to-remembered-goals">Hippocampal
+          <h1
+id="hippocampal-place-cell-sequences-depict-future-paths-to-remembered-goals">Hippocampal
 place-cell sequences depict future paths to remembered goals</h1>
 <p>论文链接：https://www.nature.com/articles/nature12112#Abs1</p>
 <h2 id="背景">背景</h2>
@@ -315,7 +316,8 @@ populations产生的</p></li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="minimum-absolute-difference-in-bst"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-absolute-difference-in-bst/">Minimum
+          <h1 id="minimum-absolute-difference-in-bst"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-absolute-difference-in-bst/">Minimum
 Absolute Difference in BST</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -329,7 +331,7 @@ https://leetcode.com/problems/minimum-distance-between-bst-nodes/</p>
 <blockquote>
 <p><strong>Example 1:</strong></p>
 <p>Input:</p>
-<p>1<br>
+<p>1<br />
 3 / 2</p>
 <p>Output: 1</p>
 <p>Explanation: The minimum absolute difference is 1, which is the
@@ -338,7 +340,8 @@ difference between 2 and 1 (or between 2 and 3).</p>
 <h3 id="approach-1-中序遍历">Approach 1: 中序遍历</h3>
 <p>考虑对升序数组 a
 求任意两个元素之差的绝对值的最小值，答案一定为相邻两个元素之差的最小值，即</p>
-<p><span class="math display">\[\textit{ans}=\min_{i=0}^{n-2}\left\{a[i+1]-a[i]\right\}\]</span></p>
+<p><span
+class="math display">\[\textit{ans}=\min_{i=0}^{n-2}\left\{a[i+1]-a[i]\right\}\]</span></p>
 <p>其中 n 为数组 a 的长度。其他任意间隔距离大于等于 2 的下标对 (i,j)
 的元素之差一定大于下标对 (i,i+1) 的元素之差，故不需要再被考虑。</p>
 <p>回到本题，本题要求二叉搜索树任意两节点差的绝对值的最小值，而我们知道二叉搜索树有个性质为<strong>二叉搜索树中序遍历得到的值序列是递增有序的</strong>，因此我们只要得到中序遍历后的值序列即能用上文提及的方法来解决。</p>
@@ -348,7 +351,8 @@ difference between 2 and 1 (or between 2 and 3).</p>
 <span class="math display">\[\textit{pre}\]</span>
 的初始值需要设置成任意负数标记开头，下文代码中设置为 -1。</p>
 <p>二叉树的中序遍历有多种方式，包括递归、栈、Morris
-遍历等，读者可选择自己最擅长的来实现。下文代码提供最普遍的递归方法来实现，其他遍历方法的介绍可以详细看<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/">「94.
+遍历等，读者可选择自己最擅长的来实现。下文代码提供最普遍的递归方法来实现，其他遍历方法的介绍可以详细看<a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/">「94.
 二叉树的中序遍历」</a>的题解，这里不再赘述。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getMinimumDifference</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">root</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            dfs(root.left)</span><br><span class="line">            nums.append(root.val)</span><br><span class="line">            dfs(root.right)</span><br><span class="line"></span><br><span class="line">        nums = []</span><br><span class="line">        dfs(root)</span><br><span class="line">        res = <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(nums)):</span><br><span class="line">            res = <span class="built_in">min</span>(res, nums[i] - nums[i - <span class="number">1</span>])</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
@@ -427,7 +431,8 @@ O(n) 级别。</li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="design-parking-system"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/design-parking-system/">Design
+          <h1 id="design-parking-system"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/design-parking-system/">Design
 Parking System</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -637,7 +642,8 @@ uninstall会提示你连带删除很多其他的库，如果提示了，尽量�
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="xor-operation-in-an-array"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/xor-operation-in-an-array/">XOR
+          <h1 id="xor-operation-in-an-array"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/xor-operation-in-an-array/">XOR
 Operation in an Array</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -738,7 +744,8 @@ bitwise XOR operator.</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="reservoir-computing-model-of-prefrontal-cortex-creates-novel-combinations-of-previous-navigation-sequences-from-hippocampal-place-cell-replay-with-spatial-reward-propagation">Reservoir
+          <h1
+id="reservoir-computing-model-of-prefrontal-cortex-creates-novel-combinations-of-previous-navigation-sequences-from-hippocampal-place-cell-replay-with-spatial-reward-propagation">Reservoir
 computing model of prefrontal cortex creates novel combinations of
 previous navigation sequences from hippocampal place-cell replay with
 spatial reward propagation</h1>
@@ -754,7 +761,7 @@ credit assignment）</p>
 <li>Gupta AS, van der Meer MA, Touretzky DS, Redish AD. Hippocampal
 replay is not a simple function of experience. Neuron. 2010;
 65(5):695–705. https://doi.org/10.1016/j.neuron.2010.01.034 PMID:
-20223204.<br>
+20223204.<br />
 </li>
 <li>Liu K, Sibille J, Dragoi G. Generative Predictive Codes by
 Multiplexed Hippocampal Neuronal Tuplets. Neuron. 2018; 99(6):1329–41.
@@ -791,12 +798,19 @@ https://doi.org/10.1016/j.conb.2016.07.015 PMID: 27543753</li>
 <li>轨迹<span class="math display">\[L(t_1\rightarrow t_N)\]</span></li>
 <li>位置<span class="math display">\[S=(x,y)\]</span></li>
 <li>2D高斯位置场：<span class="math display">\[f_k(s)=e^{-\frac{\Vert
-s-c_k\Vert^2}{w_k}}\]</span> ，<span class="math display">\[k\]</span>是位置细胞序号，<span class="math display">\[f_k(s)\]</span>是第k个位置细胞的平均发放率，<span class="math display">\[w_k=\frac{r_k^2}{-\log(\Theta)}\]</span>是常数，用来约束位置神经元的最高激活大部分包含在以
-<span class="math display">\[$c_k\]</span>为中心，<span class="math display">\[r_k\]</span>为半径的圆中</li>
-<li><span class="math display">\[r_k\]</span>是第<span class="math display">\[k\]</span>个位置场的半径</li>
-<li><span class="math display">\[\Theta\]</span>是控制位置细胞空间选择半径阈值</li>
+s-c_k\Vert^2}{w_k}}\]</span> ，<span
+class="math display">\[k\]</span>是位置细胞序号，<span
+class="math display">\[f_k(s)\]</span>是第k个位置细胞的平均发放率，<span
+class="math display">\[w_k=\frac{r_k^2}{-\log(\Theta)}\]</span>是常数，用来约束位置神经元的最高激活大部分包含在以
+<span class="math display">\[$c_k\]</span>为中心，<span
+class="math display">\[r_k\]</span>为半径的圆中</li>
+<li><span class="math display">\[r_k\]</span>是第<span
+class="math display">\[k\]</span>个位置场的半径</li>
+<li><span
+class="math display">\[\Theta\]</span>是控制位置细胞空间选择半径阈值</li>
 </ul></li>
-<li>通过K个径向基函数来实现定位：<span class="math display">\[X_{in}(t_n)=\{f_k(L(t_n))\}_{k\in 1
+<li>通过K个径向基函数来实现定位：<span
+class="math display">\[X_{in}(t_n)=\{f_k(L(t_n))\}_{k\in 1
 \cdot\cdot\cdot K}\]</span></li>
 <li>place cell可以进一步调研，这个跟脑内GPS有关（还有grid cell, head
 direction cell）</li>
@@ -807,14 +821,15 @@ direction cell）</li>
 awake state: a potential substrate for memory consolidation and
 retrieval. Nature neuroscience. 2011; 14(2):147–53.
 https://doi.org/10.1038/nn. 2732 PMID: 21270783</p></li>
-<li><p>random replay generative model<br>
+<li><p>random replay generative model<br />
 </p></li>
 <li><p>a snippet <span class="math display">\[S(n;s)=X_{in}(t_n
 \rightarrow t_{n+s})\]</span></p></li>
 </ul>
 <h3 id="reward-propagation">Reward propagation</h3>
 <ul>
-<li>使用TD-<span class="math display">\[\lambda\]</span>算法更新预测奖励V</li>
+<li>使用TD-<span
+class="math display">\[\lambda\]</span>算法更新预测奖励V</li>
 </ul>
 <h3 id="snippet-generation-during-replay">Snippet generation during
 replay</h3>
@@ -828,7 +843,8 @@ t}=-P_{res}(t_{n-1})+U_{res}(t_n)\\
 P_{res}(t_n)=h*U_{res}(t_n)+(1-h)*P_{res}(t_{n-1})\\
 X_{res}(t_n)=\sigma_{res}(P_{res}(t_n);\Theta_{res}),\Theta_{res}=0,\sigma_{res}=\tanh
 \]</span></p>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200925-1.png"></p>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200925-1.png" /></p>
 <h2 id="结论">结论</h2>
 <p>上丘脑到丘脑底部回路superior colliculus–subthalamus (SC–S) pathway
 是决定hunting的神经基础</p>
@@ -896,7 +912,8 @@ X_{res}(t_n)=\sigma_{res}(P_{res}(t_n);\Theta_{res}),\Theta_{res}=0,\sigma_{res}
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="a-subcortical-excitatory-circuit-for-sensory-triggered-predatory-hunting-in-mice">A
+          <h1
+id="a-subcortical-excitatory-circuit-for-sensory-triggered-predatory-hunting-in-mice">A
 subcortical excitatory circuit for sensory-triggered predatory hunting
 in mice</h1>
 <p>论文链接：https://www.nature.com/articles/s41593-019-0405-4</p>
@@ -905,7 +922,8 @@ in mice</h1>
 <li>捕猎是动物生存的基本能力，本文讨论如何将感知线索转换为触发捕猎行为的神经信号转换回路。</li>
 <li>上丘脑到丘脑底部回路：该回路激活产生捕猎行为，在时间上与捕猎后的进食无关；该回路失活，捕猎行为抑制，其它能力不受影响。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200925-1.png"></p>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200925-1.png" /></p>
 <h2 id="结论">结论</h2>
 <p>上丘脑到丘脑底部回路superior colliculus–subthalamus (SC–S) pathway
 是决定hunting的神经基础</p>
@@ -981,7 +999,8 @@ Constrain Cognitive Rule Structures</h1>
 <p>低层、高层认知之间的影响。</p>
 <h2 id="主要工作">主要工作</h2>
 <p>利用贝叶斯推断做规则结构的聚类。对每个输入维度单独用一个专家判别器判断sample是否属于本规则，输出为0或者1。</p>
-<p>最后用加权的形式综合各个专家的观点<span class="math display">\[\pi(a)=w_C(t)\pi_C(a)+(1-w_C(t))\pi_S(a)\]</span>（两个专家情况）</p>
+<p>最后用加权的形式综合各个专家的观点<span
+class="math display">\[\pi(a)=w_C(t)\pi_C(a)+(1-w_C(t))\pi_S(a)\]</span>（两个专家情况）</p>
 <p>然后对权重进行更新 <span class="math display">\[
 w_C(t+1)=\frac{w_C(t)p(r_t|S_t,a_t,Color)}{w_C(t)p(r_t|S_t,a_t,Color)+(1-w_C(t))p(r_t|S_t,a_t,Shape)}
 \]</span></p>

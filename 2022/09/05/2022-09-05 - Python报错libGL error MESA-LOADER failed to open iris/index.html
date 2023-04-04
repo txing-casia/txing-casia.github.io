@@ -225,14 +225,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="python报错libgl-error-mesa-loader-failed-to-open-iris">Python报错libGL
+        <h2
+id="python报错libgl-error-mesa-loader-failed-to-open-iris">Python报错libGL
 error: MESA-LOADER: failed to open iris</h2>
 <h3 id="问题背景">1 问题背景</h3>
 <p>执行gym-like环境代码时，渲染动画输出时报错无法找到系统显卡驱动（笔记本，核显，Ubuntu），报错信息：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">libGL error: MESA-LOADER: failed to open iris: /usr/lib/dri/iris_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$$&#123;ORIGIN&#125;/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: iris</span><br><span class="line">libGL error: MESA-LOADER: failed to open iris: /usr/lib/dri/iris_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$$&#123;ORIGIN&#125;/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: iris</span><br><span class="line">libGL error: MESA-LOADER: failed to open swrast: /usr/lib/dri/swrast_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$$&#123;ORIGIN&#125;/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: swrast</span><br></pre></td></tr></table></figure>
 <p>然而，根据提示，在<code>/usr/lib/x86_64-linux-gnu/dri</code>路径下是可以找<code>iris_dri.so</code>驱动的。</p>
 <h3 id="处理办法">2 处理办法</h3>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/538877347">这篇博客</a>提供了一个有效解决方法：</p>
+<p><a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/538877347">这篇博客</a>提供了一个有效解决方法：</p>
 <p>Step 1: 建立一个 /usr/lib/dri/iris_dri.so 的软连接</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(base) pcon@pcon-ThinkPad-L14-Gen-2:/usr/lib$ sudo mkdir dri</span><br><span class="line">(base) pcon@pcon-ThinkPad-L14-Gen-2:/usr/lib$ cd dri </span><br><span class="line">(base) pcon@pcon-ThinkPad-L14-Gen-2:/usr/lib/dri$ sudo ln -s /usr/lib/x86_64-linux-gnu/dri/iris_dri.so iris_dri.so</span><br></pre></td></tr></table></figure>
 <p>Step 2: 再次python执行代码，报错变为</p>
@@ -240,7 +242,8 @@ error: MESA-LOADER: failed to open iris</h2>
 <p>这是由于 conda 里的 libstdcxx-ng 版本不够高造成的。</p>
 <p>Step 3：执行以下命令查看GLIBCXX版本信息</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(base) pcon@pcon-ThinkPad-L14-Gen-2:~/anaconda3$ strings /home/pcon/anaconda3//lib/libstdc++.so.6 | grep GLIBCXX</span><br></pre></td></tr></table></figure>
-<p>Step 4：升级 conda 里的 libstdcxx-ng (根据<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/538877347">博客</a>)
+<p>Step 4：升级 conda 里的 libstdcxx-ng (根据<a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/538877347">博客</a>)
 。（截至2022.09该版本号有效）</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(base) pcon@pcon-ThinkPad-L14-Gen-2:~/anaconda3$ conda install libstdcxx-ng=12.1.0</span><br></pre></td></tr></table></figure>
 <p>再次查看版本号</p>

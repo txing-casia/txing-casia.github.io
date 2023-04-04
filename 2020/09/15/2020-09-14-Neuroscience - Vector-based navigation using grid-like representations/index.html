@@ -27,17 +27,11 @@
 <meta property="og:site_name" content="Txing">
 <meta property="og:description" content="Vector-based navigation using grid-like representations in artificial agent 论文链接：https:&#x2F;&#x2F;www.nature.com&#x2F;articles&#x2F;s41586-018-0102-6&#x2F; 背景 RL在许多方面取得了好的成绩，但在哺乳动物的空间行为（mammalian spatial behaviour）的熟练度上">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200914-1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200914-2.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200914-3.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200915-1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200915-2.png">
 <meta property="article:published_time" content="2020-09-14T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-03-25T01:54:14.970Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Neuroscience">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200914-1.png">
 
 <link rel="canonical" href="https://txing-casia.github.io/2020/09/15/2020-09-14-Neuroscience%20-%20Vector-based%20navigation%20using%20grid-like%20representations/">
 
@@ -231,7 +225,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="vector-based-navigation-using-grid-like-representations-in-artificial-agent">Vector-based
+        <h1
+id="vector-based-navigation-using-grid-like-representations-in-artificial-agent">Vector-based
 navigation using grid-like representations in artificial agent</h1>
 <p>论文链接：https://www.nature.com/articles/s41586-018-0102-6/</p>
 <h2 id="背景">背景</h2>
@@ -261,7 +256,8 @@ time。LSTM映射位置和方向到一个线性层，在线性层中使用dropou
 <li><p>entorhinal network内嗅皮层网络帮助形成稳定的空间活动</p></li>
 <li><p>实验效果如下图：</p></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200914-1.png"></p>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200914-1.png" /></p>
 <ul>
 <li>vector-based navigation:
 内嗅网格细胞产生目标驱动向量度量欧式空间，使得动物能够沿着一条直接路径到达目标。文中利用监督学习来实现这一能力。</li>
@@ -278,7 +274,8 @@ cell distribution</h4>
 <ul>
 <li>地图直径为<span class="math display">\[L\]</span></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200914-2.png"></p>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200914-2.png" /></p>
 <ul>
 <li>符号说明：
 <ul>
@@ -286,18 +283,22 @@ cell distribution</h4>
 [0,1]^N\]</span></li>
 <li>位置<span class="math display">\[\overrightarrow{x} \in
 R^2\]</span></li>
-<li>place cell centres <span class="math display">\[\overrightarrow{\mu}_i^{(c)} \in
+<li>place cell centres <span
+class="math display">\[\overrightarrow{\mu}_i^{(c)} \in
 R^2\]</span></li>
-<li>place cell scale <span class="math display">\[\sigma^{(c)}\]</span></li>
+<li>place cell scale <span
+class="math display">\[\sigma^{(c)}\]</span></li>
 </ul></li>
 </ul>
 <h4 id="ground-truth-head-direction-cell-distribution">1.2 Ground truth
 head-direction cell distribution</h4>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200914-3.png"></p>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200914-3.png" /></p>
 <ul>
 <li>参数说明：
 <ul>
-<li>Head-direction cell激活<span class="math display">\[\overrightarrow{h} \in [0,1]^M\]</span></li>
+<li>Head-direction cell激活<span
+class="math display">\[\overrightarrow{h} \in [0,1]^M\]</span></li>
 <li>给定面向角度<span class="math display">\[\varphi\]</span></li>
 <li>使用mixture of Von Mises distributions with concentration parameter
 <span class="math display">\[k^{(h)}\]</span></li>
@@ -306,7 +307,8 @@ head-direction cell distribution</h4>
 <h4 id="supervised-learning-inputs">1.3 Supervised learning inputs</h4>
 <ul>
 <li>每个时刻传入速度<span class="math display">\[v_t\in
-\mathbb{R}\]</span>以及the sine and cosine of its angular velocity <span class="math display">\[\varphi_t\]</span></li>
+\mathbb{R}\]</span>以及the sine and cosine of its angular velocity <span
+class="math display">\[\varphi_t\]</span></li>
 </ul>
 <h4 id="grid-cell-network-architecture">1.4 Grid cell network
 architecture</h4>
@@ -314,30 +316,42 @@ architecture</h4>
 <li>consists of three layers: <strong>a recurrent layer</strong>(LSTM,
 128 hidden units ,with no peephole connections), <strong>a linear
 layer</strong>, and <strong>an output layer</strong> (Fig 1a).</li>
-<li>Input to the recurrent LSTM layer: <span class="math display">\[[v_t,\sin(\varphi_t),\cos(\varphi_t)]\]</span></li>
+<li>Input to the recurrent LSTM layer: <span
+class="math display">\[[v_t,\sin(\varphi_t),\cos(\varphi_t)]\]</span></li>
 <li>LSTM的初始<strong>细胞状态</strong>和<strong>隐层状态</strong>为
-<span class="math display">\[\overrightarrow{l}_0\]</span> and <span class="math display">\[\overrightarrow{m}_0\]</span></li>
+<span class="math display">\[\overrightarrow{l}_0\]</span> and <span
+class="math display">\[\overrightarrow{m}_0\]</span></li>
 </ul>
 <p><span class="math display">\[
 \overrightarrow{l}_0=W^{cp}\overrightarrow{c}_0+W^{(cd)}\overrightarrow{h}_0\\
 \overrightarrow{m}_0=W^{hp}\overrightarrow{c}_0+W^{(hd)}\overrightarrow{h}_0
 \]</span></p>
-<p><span class="math display">\[(W^{cp},W^{cd},W^{hp},W^{hd})\]</span>是两个线性转换器的参数</p>
+<p><span
+class="math display">\[(W^{cp},W^{cd},W^{hp},W^{hd})\]</span>是两个线性转换器的参数</p>
 <ul>
-<li>通过线性编码网络的均值，以及LSTM的输出<span class="math display">\[\overrightarrow{m}_t\]</span>，计算预测的place
+<li>通过线性编码网络的均值，以及LSTM的输出<span
+class="math display">\[\overrightarrow{m}_t\]</span>，计算预测的place
 cells<span class="math display">\[\overrightarrow{y}_t\]</span>和head
-direction cells <span class="math display">\[\overrightarrow{z}_t\]</span></li>
+direction cells <span
+class="math display">\[\overrightarrow{z}_t\]</span></li>
 <li>线性编码网络包含三组权重和偏置。
 <ul>
-<li>第一组：从LSTM的隐层状态<span class="math display">\[\overrightarrow{m}_t\]</span>映射到线性激活层<span class="math display">\[\overrightarrow{g}_t\in
+<li>第一组：从LSTM的隐层状态<span
+class="math display">\[\overrightarrow{m}_t\]</span>映射到线性激活层<span
+class="math display">\[\overrightarrow{g}_t\in
 \mathbb{R}^{512}\]</span>的权重和偏置</li>
-<li>第二组：从线性激活层<span class="math display">\[\overrightarrow{g}_t\]</span>映射到预测的头部朝向<span class="math display">\[\overrightarrow{z}_t\]</span>的权重和偏置通过softmax
-functions<br>
+<li>第二组：从线性激活层<span
+class="math display">\[\overrightarrow{g}_t\]</span>映射到预测的头部朝向<span
+class="math display">\[\overrightarrow{z}_t\]</span>的权重和偏置通过softmax
+functions<br />
 </li>
-<li>第三组：从线性激活层<span class="math display">\[\overrightarrow{g}_t\]</span>映射到预测的位置细胞输出<span class="math display">\[\overrightarrow{y}_t\]</span>的权重和偏置通过softmax
+<li>第三组：从线性激活层<span
+class="math display">\[\overrightarrow{g}_t\]</span>映射到预测的位置细胞输出<span
+class="math display">\[\overrightarrow{y}_t\]</span>的权重和偏置通过softmax
 functions</li>
 </ul></li>
-<li>dropout：线性激活层<span class="math display">\[\overrightarrow{g}_t\]</span>每个单元的沉默概率是0.5</li>
+<li>dropout：线性激活层<span
+class="math display">\[\overrightarrow{g}_t\]</span>每个单元的沉默概率是0.5</li>
 <li>注意线性编码网络中间没有非线性层</li>
 </ul>
 <h4 id="supervised-learning-loss">1.5 Supervised learning loss</h4>
@@ -349,13 +363,17 @@ L(\overrightarrow{y},\overrightarrow{z},\overrightarrow{c},\overrightarrow{h})=-
 c_i \log(y_i)-\sum_{j=1}^{M} h_j \log(z_j)
 \]</span></p>
 <p>监督学习部分的结构:</p>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200915-1.png"></p>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200915-1.png" /></p>
 <p>Grid cell agent整体结构：</p>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200915-2.png"></p>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200915-2.png" /></p>
 <h2 id="总结">总结</h2>
-<p>grid cells的相关生物学研究获得过<a href="https://link.zhihu.com/?target=https%3A//www.nobelprize.org/nobel_prizes/medicine/laureates/2014/">2014年诺贝尔生理学奖</a>for
+<p>grid cells的相关生物学研究获得过<a
+href="https://link.zhihu.com/?target=https%3A//www.nobelprize.org/nobel_prizes/medicine/laureates/2014/">2014年诺贝尔生理学奖</a>for
 their discoveries of cells that constitute a positioning system in the
-brain。Deepmind甚至请了这个诺贝尔奖获得者来为本文写<a href="https://link.zhihu.com/?target=https%3A//f1000.com/prime/733198068%3Fkey%3DnvlnlWetE8dlZTy">序言</a>。</p>
+brain。Deepmind甚至请了这个诺贝尔奖获得者来为本文写<a
+href="https://link.zhihu.com/?target=https%3A//f1000.com/prime/733198068%3Fkey%3DnvlnlWetE8dlZTy">序言</a>。</p>
 <p>这项工作如果用在导航上是比较有意义的，利用grid
 cells的空间信息处理机制，agent可以自动寻路，还可以做路径整合，得到更优化的路径。</p>
 <p>当用在机器人运动轨迹的优化上时，由于机器人本体（基坐标）位置并没有发生变动，所以并不能像导航任务中那样自由自在地探索，可以仔细考虑一下其中的差别，制定一个新的实验范式。</p>

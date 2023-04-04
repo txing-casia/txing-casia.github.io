@@ -223,7 +223,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="combination-sum-iii"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/combination-sum-iii/">Combination
+          <h1 id="combination-sum-iii"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/combination-sum-iii/">Combination
 Sum III</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -249,6 +250,197 @@ should be a unique set of numbers.</p>
 I-III三道题后，对回溯法寻找合适解的问题逐渐熟悉了起来。dfs函数里面需要用if判断所得解是否合适，合适了就使用append方法，把暂存器temp到答案ans里面并return结束此分支的迭代。如果不合适，即未满足终止条件，继续搜索过程。</p>
 <p>这里需要注意的是，如果搜索范围有改变（存在不选重复数字之类的条件），记得用一个for循环在新的范围内执行dfs。如果搜索范围没有改变，就可以不用for循环，减小复杂度。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">combinationSum3</span>(<span class="params">self, k: <span class="built_in">int</span>, n: <span class="built_in">int</span></span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">temp,S,k,n</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(temp)==k <span class="keyword">and</span> n==<span class="number">0</span>:</span><br><span class="line">                ans.append(temp[:])</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(S)):</span><br><span class="line">                temp.append(S[i])</span><br><span class="line">                <span class="comment"># S[i + 1:]实现了剪枝和防止逆序选数，这是关键点</span></span><br><span class="line">                dfs(temp, S[i+<span class="number">1</span>:], k, n-S[i])</span><br><span class="line">                temp.pop()</span><br><span class="line">        ans=[]</span><br><span class="line">        S=[i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">10</span>)]</span><br><span class="line">        <span class="comment"># 暂存数组，可选项，需要k个数，需要和为n</span></span><br><span class="line">        dfs([], S, k, n)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    k = <span class="number">3</span></span><br><span class="line">    n = <span class="number">9</span></span><br><span class="line">    solution=Solution().combinationSum3(k,n)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/10/2020-09-10-Q40%20Combination%20Sum%20II-%E4%B8%AD%E7%AD%89-%E9%80%92%E5%BD%92%20%E5%9B%9E%E6%BA%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用类人决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/10/2020-09-10-Q40%20Combination%20Sum%20II-%E4%B8%AD%E7%AD%89-%E9%80%92%E5%BD%92%20%E5%9B%9E%E6%BA%AF/" class="post-title-link" itemprop="url">Q40 Combination Sum II-中等-递归 回溯</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-09-10 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-10T00:00:00+08:00">2020-09-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-03-25 09:54:14" itemprop="dateModified" datetime="2023-03-25T09:54:14+08:00">2023-03-25</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="combination-sum-ii"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/combination-sum-ii/">Combination
+Sum II</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>Given a collection of candidate numbers (candidates) and a target
+number (target), find all unique combinations in candidates where the
+candidate numbers sums to target.</p>
+<p>Each number in candidates may only be used once in the
+combination.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>All numbers (including target) will be positive integers.</li>
+<li>The solution set must not contain duplicate combinations.</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>Input: candidates = [10,1,2,7,6,1,5], target = 8, A solution set is:
+[ [1, 7], [1, 2, 5], [2, 6], [1, 1, 6]]</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>Input: candidates = [2,5,2,1,2], target = 5, A solution set is: [
+[1,2,2], [5] ]</p>
+</blockquote>
+<h3 id="approach-1-递归回溯">Approach 1: 递归回溯</h3>
+<h4 id="思路与算法">思路与算法</h4>
+<p>由于我们需要求出所有和为 <span
+class="math display">\[\textit{target}\]</span>
+的组合，并且每个数只能使用一次，因此我们可以使用递归 +
+回溯的方法来解决这个问题：</p>
+<ul>
+<li><p>我们用 <span class="math display">\[\text{dfs}(\textit{pos},
+\textit{rest})\]</span> 表示递归的函数，其中 <span
+class="math display">\[\textit{pos}\]</span> 表示我们当前递归到了数组
+<span class="math display">\[\textit{candidates}\]</span> 中的第 <span
+class="math display">\[\textit{pos}\]</span> 个数，而 <span
+class="math display">\[\textit{rest}\]</span> 表示我们还需要选择和为
+<span class="math display">\[\textit{rest}\]</span>
+的数放入列表作为一个组合；</p></li>
+<li><p>对于当前的第 <span class="math display">\[\textit{pos}\]</span>
+个数，我们有两种方法：选或者不选。如果我们选了这个数，那么我们调用 <span
+class="math display">\[\text{dfs}(\textit{pos}+1, \textit{rest} -
+\textit{candidates}[\textit{pos}])\]</span> 进行递归，注意这里必须满足
+<span class="math display">\[\textit{rest} \geq
+\textit{candidates}[\textit{pos}]\]</span>。如果我们不选这个数，那么我们调用
+<span class="math display">\[\text{dfs}(\textit{pos}+1,
+\textit{rest})\]</span> 进行递归；</p></li>
+<li><p>在某次递归开始前，如果 <span
+class="math display">\[\textit{rest}\]</span> 的值为
+0，说明我们找到了一个和为 <span
+class="math display">\[\textit{target}\]</span>
+的组合，将其放入答案中。每次调用递归函数前，如果我们选了那个数，就需要将其放入列表的末尾，该列表中存储了我们选的所有数。在回溯时，如果我们选了那个数，就要将其从列表的末尾删除。</p></li>
+</ul>
+<p>上述算法就是一个标准的递归 +
+回溯算法，但是它并不适用于本题。这是因为题目描述中规定了解集不能包含重复的组合，而上述的算法中并没有去除重复的组合。</p>
+<p>例如当 <span class="math display">\[\textit{candidates} = [2,
+2]\]</span>，<span class="math display">\[\textit{target} = 2\]</span>
+时，上述算法会将列表 [2] 放入答案两次。</p>
+<p>因此，我们需要改进上述算法，在求出组合的过程中就进行去重的操作。我们可以考虑将相同的数放在一起进行处理，也就是说，如果数
+<span class="math display">\[\textit{x}\]</span> 出现了 y
+次，那么在递归时一次性地处理它们，即分别调用选择 <span
+class="math display">\[0, 1, \cdots, y\]</span> 次 <span
+class="math display">\[x\]</span>
+的递归函数。这样我们就不会得到重复的组合。具体地：</p>
+<p>我们使用一个哈希映射（HashMap）统计数组 <span
+class="math display">\[\textit{candidates}\]</span>
+中每个数出现的次数。在统计完成之后，我们将结果放入一个列表 <span
+class="math display">\[\textit{freq}\]</span>
+中，方便后续的递归使用。</p>
+<p>列表 <span class="math display">\[\textit{freq}\]</span>
+的长度即为数组 <span class="math display">\[\textit{candidates}\]</span>
+中不同数的个数。其中的每一项对应着哈希映射中的一个键值对，即某个数以及它出现的次数。
+在递归时，对于当前的第 <span
+class="math display">\[\textit{pos}\]</span> 个数，它的值为 <span
+class="math display">\[\textit{freq}[\textit{pos}][0]\]</span>，出现的次数为
+<span
+class="math display">\[\textit{freq}[\textit{pos}][1]\]</span>，那么我们可以调用</p>
+<p><span class="math display">\[\text{dfs}(\textit{pos}+1, \textit{rest}
+- i \times \textit{freq}[\textit{pos}][0])\]</span></p>
+<p>即我们选择了这个数 i 次。这里 i 不能大于这个数出现的次数，并且 <span
+class="math display">\[i \times \textit{freq}[\textit{pos}][0]\]</span>
+也不能大于 <span
+class="math display">\[\textit{rest}\]</span>。同时，我们需要将 i 个
+<span class="math display">\[\textit{freq}[\textit{pos}][0]\]</span>
+放入列表中。</p>
+<p>这样一来，我们就可以不重复地枚举所有的组合了。</p>
+<p>我们还可以进行什么优化（剪枝）呢？一种比较常用的优化方法是，我们将
+<span class="math display">\[\textit{freq}\]</span>
+根据数从小到大排序，这样我们在递归时会先选择小的数，再选择大的数。这样做的好处是，当我们递归到
+<span class="math display">\[\text{dfs}(\textit{pos},
+\textit{rest})\]</span> 时，如果 <span
+class="math display">\[\textit{freq}[\textit{pos}][0]\]</span> 已经大于
+<span
+class="math display">\[\textit{rest}\]</span>，那么后面还没有递归到的数也都大于
+<span
+class="math display">\[\textit{rest}\]</span>，这就说明不可能再选择若干个和为
+<span class="math display">\[\textit{rest}\]</span>
+的数放入列表了。此时，我们就可以直接回溯。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">combinationSum2</span>(<span class="params">self, candidates, target</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">pos: <span class="built_in">int</span>, rest: <span class="built_in">int</span></span>):</span><br><span class="line">            <span class="comment"># nonlocal声明的变量不是局部变量,也不是全局变量,而是外部嵌套函数内的变量</span></span><br><span class="line">            <span class="comment"># sequence 用来暂存序列</span></span><br><span class="line">            <span class="keyword">nonlocal</span> sequence</span><br><span class="line">            <span class="keyword">if</span> rest == <span class="number">0</span>:</span><br><span class="line">                ans.append(sequence[:]) <span class="comment"># 添加答案</span></span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">if</span> pos == <span class="built_in">len</span>(freq) <span class="keyword">or</span> rest &lt; freq[pos][<span class="number">0</span>]: <span class="comment"># sequence不行，停止</span></span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">            dfs(pos + <span class="number">1</span>, rest)</span><br><span class="line"></span><br><span class="line">            most = <span class="built_in">min</span>(rest // freq[pos][<span class="number">0</span>], freq[pos][<span class="number">1</span>])</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, most + <span class="number">1</span>):</span><br><span class="line">                sequence.append(freq[pos][<span class="number">0</span>])</span><br><span class="line">                dfs(pos + <span class="number">1</span>, rest - i * freq[pos][<span class="number">0</span>])</span><br><span class="line">            sequence = sequence[:-most]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 为数据出现次数计数[(数据1，出现次数),(数据2，出现次数)]</span></span><br><span class="line">        freq = <span class="built_in">sorted</span>(collections.Counter(candidates).items())</span><br><span class="line">        ans = <span class="built_in">list</span>()</span><br><span class="line">        sequence = <span class="built_in">list</span>()</span><br><span class="line">        <span class="comment"># inputs: 序号，剩余的target</span></span><br><span class="line">        dfs(<span class="number">0</span>, target)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    candidates = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">7</span>]</span><br><span class="line">    target = <span class="number">7</span></span><br><span class="line">    solution=Solution().combinationSum2(candidates,target)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="复杂度分析">复杂度分析</h3>
+<ul>
+<li><p>时间复杂度：<span class="math display">\[O(2^n \times
+n)\]</span>，其中 n 是数组 <span
+class="math display">\[\textit{candidates}\]</span> 的长度。在大部分递归
++
+回溯的题目中，我们无法给出一个严格的渐进紧界，故这里只分析一个较为宽松的渐进上界。在最坏的情况下，数组中的每个数都不相同，那么列表
+<span class="math display">\[\textit{freq}\]</span> 的长度同样为
+n。在递归时，每个位置可以选或不选，如果数组中所有数的和不超过 <span
+class="math display">\[\textit{target}\]</span>，那么 <span
+class="math display">\[2^n\]</span> 种组合都会被枚举到；在 <span
+class="math display">\[\textit{target}\]</span>
+小于数组中所有数的和时，我们并不能解析地算出满足题目要求的组合的数量，但我们知道每得到一个满足要求的组合，需要
+<span class="math display">\[O(n)\]</span>
+的时间将其放入答案中，因此我们将 <span
+class="math display">\[O(2^n)\]</span> 与 <span
+class="math display">\[O(n)\]</span>
+相乘，即可估算出一个宽松的时间复杂度上界。</p>
+<p>由于 <span class="math display">\[O(2^n \times n)\]</span>
+在渐进意义下大于排序的时间复杂度 <span class="math display">\[O(n \log
+n)\]</span>，因此后者可以忽略不计。</p></li>
+<li><p>空间复杂度：<span
+class="math display">\[O(n)\]</span>。除了存储答案的数组外，我们需要
+<span class="math display">\[O(n)\]</span> 的空间存储列表 <span
+class="math display">\[\textit{freq}\]</span>、递归中存储当前选择的数的列表、以及递归需要的栈。</p></li>
+</ul>
 
       
     </div>
@@ -322,177 +514,29 @@ Networks for Hierarchical Reinforcement learning</h1>
 <p>FuN是在feudal reinforcement
 learning基础上的延展性工作，利用Manger学习子状态空间，设定子目标，将任务进行拆分；然后Worker处理子任务，完成Manger设置的子目标。</p>
 <p>其主体框架如下：</p>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200910-1.png"></p>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200910-1.png" /></p>
 <p>其中，Manger和Worker都是RNN，只不过处理问题的时间分辨率不一样。Worker的c步被看做Manger的一步。网络动力学关系如下：</p>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200910-2.png"></p>
-<p><span class="math display">\[x_t\]</span>是图像输入，<span class="math display">\[z_t\]</span>是提取的特征，<span class="math display">\[s_t\]</span>是输入给Manger RNN的状态。<span class="math display">\[h^M\]</span>是Manger网络的内部状态。通过<span class="math display">\[f^{Mrnn}\]</span>获得子目标<span class="math display">\[\hat{g}_t\]</span>、归一化子目标<span class="math display">\[g_t\]</span>。</p>
-<p>通过一个线性映射<span class="math display">\[\phi\]</span>将<span class="math display">\[c\]</span>步的目标映射到嵌入向量<span class="math display">\[w_t\]</span>中。对于Work RNN，输入是状态<span class="math display">\[z_t\]</span>和网络内部状态<span class="math display">\[h^W\]</span>，<span class="math display">\[U_t\]</span>是输出矩阵。最后通过SoftMax选择最能满足子目标<span class="math display">\[g_t\]</span>的<span class="math display">\[U_t\]</span>。</p>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200910-2.png" /></p>
+<p><span class="math display">\[x_t\]</span>是图像输入，<span
+class="math display">\[z_t\]</span>是提取的特征，<span
+class="math display">\[s_t\]</span>是输入给Manger RNN的状态。<span
+class="math display">\[h^M\]</span>是Manger网络的内部状态。通过<span
+class="math display">\[f^{Mrnn}\]</span>获得子目标<span
+class="math display">\[\hat{g}_t\]</span>、归一化子目标<span
+class="math display">\[g_t\]</span>。</p>
+<p>通过一个线性映射<span class="math display">\[\phi\]</span>将<span
+class="math display">\[c\]</span>步的目标映射到嵌入向量<span
+class="math display">\[w_t\]</span>中。对于Work RNN，输入是状态<span
+class="math display">\[z_t\]</span>和网络内部状态<span
+class="math display">\[h^W\]</span>，<span
+class="math display">\[U_t\]</span>是输出矩阵。最后通过SoftMax选择最能满足子目标<span
+class="math display">\[g_t\]</span>的<span
+class="math display">\[U_t\]</span>。</p>
 <p>（文章的主体思路就是以上内容，后续部分主要讨论网络更新，reward设定等细节，我打算看了代码之后在做分析）</p>
 <h2 id="总结">总结</h2>
 <p>文章种在多个游戏中进行了实验对比，均取得了良好的实验效果。但遗憾的是，几乎所有的复现都说性能达不到文章中的水平。可能是实验中还有一些优化并未在文章中说明。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/10/2020-09-10-Q40%20Combination%20Sum%20II-%E4%B8%AD%E7%AD%89-%E9%80%92%E5%BD%92%20%E5%9B%9E%E6%BA%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用类人决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/10/2020-09-10-Q40%20Combination%20Sum%20II-%E4%B8%AD%E7%AD%89-%E9%80%92%E5%BD%92%20%E5%9B%9E%E6%BA%AF/" class="post-title-link" itemprop="url">Q40 Combination Sum II-中等-递归 回溯</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-09-10 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-10T00:00:00+08:00">2020-09-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-25 09:54:14" itemprop="dateModified" datetime="2023-03-25T09:54:14+08:00">2023-03-25</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="combination-sum-ii"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/combination-sum-ii/">Combination
-Sum II</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given a collection of candidate numbers (candidates) and a target
-number (target), find all unique combinations in candidates where the
-candidate numbers sums to target.</p>
-<p>Each number in candidates may only be used once in the
-combination.</p>
-<p><strong>Note:</strong></p>
-<ul>
-<li>All numbers (including target) will be positive integers.</li>
-<li>The solution set must not contain duplicate combinations.</li>
-</ul>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input: candidates = [10,1,2,7,6,1,5], target = 8, A solution set is:
-[ [1, 7], [1, 2, 5], [2, 6], [1, 1, 6]]</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>Input: candidates = [2,5,2,1,2], target = 5, A solution set is: [
-[1,2,2], [5] ]</p>
-</blockquote>
-<h3 id="approach-1-递归回溯">Approach 1: 递归回溯</h3>
-<h4 id="思路与算法">思路与算法</h4>
-<p>由于我们需要求出所有和为 <span class="math display">\[\textit{target}\]</span>
-的组合，并且每个数只能使用一次，因此我们可以使用递归 +
-回溯的方法来解决这个问题：</p>
-<ul>
-<li><p>我们用 <span class="math display">\[\text{dfs}(\textit{pos},
-\textit{rest})\]</span> 表示递归的函数，其中 <span class="math display">\[\textit{pos}\]</span> 表示我们当前递归到了数组
-<span class="math display">\[\textit{candidates}\]</span> 中的第 <span class="math display">\[\textit{pos}\]</span> 个数，而 <span class="math display">\[\textit{rest}\]</span> 表示我们还需要选择和为
-<span class="math display">\[\textit{rest}\]</span>
-的数放入列表作为一个组合；</p></li>
-<li><p>对于当前的第 <span class="math display">\[\textit{pos}\]</span>
-个数，我们有两种方法：选或者不选。如果我们选了这个数，那么我们调用 <span class="math display">\[\text{dfs}(\textit{pos}+1, \textit{rest} -
-\textit{candidates}[\textit{pos}])\]</span> 进行递归，注意这里必须满足
-<span class="math display">\[\textit{rest} \geq
-\textit{candidates}[\textit{pos}]\]</span>。如果我们不选这个数，那么我们调用
-<span class="math display">\[\text{dfs}(\textit{pos}+1,
-\textit{rest})\]</span> 进行递归；</p></li>
-<li><p>在某次递归开始前，如果 <span class="math display">\[\textit{rest}\]</span> 的值为
-0，说明我们找到了一个和为 <span class="math display">\[\textit{target}\]</span>
-的组合，将其放入答案中。每次调用递归函数前，如果我们选了那个数，就需要将其放入列表的末尾，该列表中存储了我们选的所有数。在回溯时，如果我们选了那个数，就要将其从列表的末尾删除。</p></li>
-</ul>
-<p>上述算法就是一个标准的递归 +
-回溯算法，但是它并不适用于本题。这是因为题目描述中规定了解集不能包含重复的组合，而上述的算法中并没有去除重复的组合。</p>
-<p>例如当 <span class="math display">\[\textit{candidates} = [2,
-2]\]</span>，<span class="math display">\[\textit{target} = 2\]</span>
-时，上述算法会将列表 [2] 放入答案两次。</p>
-<p>因此，我们需要改进上述算法，在求出组合的过程中就进行去重的操作。我们可以考虑将相同的数放在一起进行处理，也就是说，如果数
-<span class="math display">\[\textit{x}\]</span> 出现了 y
-次，那么在递归时一次性地处理它们，即分别调用选择 <span class="math display">\[0, 1, \cdots, y\]</span> 次 <span class="math display">\[x\]</span>
-的递归函数。这样我们就不会得到重复的组合。具体地：</p>
-<p>我们使用一个哈希映射（HashMap）统计数组 <span class="math display">\[\textit{candidates}\]</span>
-中每个数出现的次数。在统计完成之后，我们将结果放入一个列表 <span class="math display">\[\textit{freq}\]</span>
-中，方便后续的递归使用。</p>
-<p>列表 <span class="math display">\[\textit{freq}\]</span>
-的长度即为数组 <span class="math display">\[\textit{candidates}\]</span>
-中不同数的个数。其中的每一项对应着哈希映射中的一个键值对，即某个数以及它出现的次数。
-在递归时，对于当前的第 <span class="math display">\[\textit{pos}\]</span> 个数，它的值为 <span class="math display">\[\textit{freq}[\textit{pos}][0]\]</span>，出现的次数为
-<span class="math display">\[\textit{freq}[\textit{pos}][1]\]</span>，那么我们可以调用</p>
-<p><span class="math display">\[\text{dfs}(\textit{pos}+1, \textit{rest}
-- i \times \textit{freq}[\textit{pos}][0])\]</span></p>
-<p>即我们选择了这个数 i 次。这里 i 不能大于这个数出现的次数，并且 <span class="math display">\[i \times \textit{freq}[\textit{pos}][0]\]</span>
-也不能大于 <span class="math display">\[\textit{rest}\]</span>。同时，我们需要将 i 个
-<span class="math display">\[\textit{freq}[\textit{pos}][0]\]</span>
-放入列表中。</p>
-<p>这样一来，我们就可以不重复地枚举所有的组合了。</p>
-<p>我们还可以进行什么优化（剪枝）呢？一种比较常用的优化方法是，我们将
-<span class="math display">\[\textit{freq}\]</span>
-根据数从小到大排序，这样我们在递归时会先选择小的数，再选择大的数。这样做的好处是，当我们递归到
-<span class="math display">\[\text{dfs}(\textit{pos},
-\textit{rest})\]</span> 时，如果 <span class="math display">\[\textit{freq}[\textit{pos}][0]\]</span> 已经大于
-<span class="math display">\[\textit{rest}\]</span>，那么后面还没有递归到的数也都大于
-<span class="math display">\[\textit{rest}\]</span>，这就说明不可能再选择若干个和为
-<span class="math display">\[\textit{rest}\]</span>
-的数放入列表了。此时，我们就可以直接回溯。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">combinationSum2</span>(<span class="params">self, candidates, target</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">pos: <span class="built_in">int</span>, rest: <span class="built_in">int</span></span>):</span><br><span class="line">            <span class="comment"># nonlocal声明的变量不是局部变量,也不是全局变量,而是外部嵌套函数内的变量</span></span><br><span class="line">            <span class="comment"># sequence 用来暂存序列</span></span><br><span class="line">            <span class="keyword">nonlocal</span> sequence</span><br><span class="line">            <span class="keyword">if</span> rest == <span class="number">0</span>:</span><br><span class="line">                ans.append(sequence[:]) <span class="comment"># 添加答案</span></span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">if</span> pos == <span class="built_in">len</span>(freq) <span class="keyword">or</span> rest &lt; freq[pos][<span class="number">0</span>]: <span class="comment"># sequence不行，停止</span></span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">            dfs(pos + <span class="number">1</span>, rest)</span><br><span class="line"></span><br><span class="line">            most = <span class="built_in">min</span>(rest // freq[pos][<span class="number">0</span>], freq[pos][<span class="number">1</span>])</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, most + <span class="number">1</span>):</span><br><span class="line">                sequence.append(freq[pos][<span class="number">0</span>])</span><br><span class="line">                dfs(pos + <span class="number">1</span>, rest - i * freq[pos][<span class="number">0</span>])</span><br><span class="line">            sequence = sequence[:-most]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 为数据出现次数计数[(数据1，出现次数),(数据2，出现次数)]</span></span><br><span class="line">        freq = <span class="built_in">sorted</span>(collections.Counter(candidates).items())</span><br><span class="line">        ans = <span class="built_in">list</span>()</span><br><span class="line">        sequence = <span class="built_in">list</span>()</span><br><span class="line">        <span class="comment"># inputs: 序号，剩余的target</span></span><br><span class="line">        dfs(<span class="number">0</span>, target)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    candidates = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">7</span>]</span><br><span class="line">    target = <span class="number">7</span></span><br><span class="line">    solution=Solution().combinationSum2(candidates,target)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="复杂度分析">复杂度分析</h3>
-<ul>
-<li><p>时间复杂度：<span class="math display">\[O(2^n \times
-n)\]</span>，其中 n 是数组 <span class="math display">\[\textit{candidates}\]</span> 的长度。在大部分递归
-+
-回溯的题目中，我们无法给出一个严格的渐进紧界，故这里只分析一个较为宽松的渐进上界。在最坏的情况下，数组中的每个数都不相同，那么列表
-<span class="math display">\[\textit{freq}\]</span> 的长度同样为
-n。在递归时，每个位置可以选或不选，如果数组中所有数的和不超过 <span class="math display">\[\textit{target}\]</span>，那么 <span class="math display">\[2^n\]</span> 种组合都会被枚举到；在 <span class="math display">\[\textit{target}\]</span>
-小于数组中所有数的和时，我们并不能解析地算出满足题目要求的组合的数量，但我们知道每得到一个满足要求的组合，需要
-<span class="math display">\[O(n)\]</span>
-的时间将其放入答案中，因此我们将 <span class="math display">\[O(2^n)\]</span> 与 <span class="math display">\[O(n)\]</span>
-相乘，即可估算出一个宽松的时间复杂度上界。</p>
-<p>由于 <span class="math display">\[O(2^n \times n)\]</span>
-在渐进意义下大于排序的时间复杂度 <span class="math display">\[O(n \log
-n)\]</span>，因此后者可以忽略不计。</p></li>
-<li><p>空间复杂度：<span class="math display">\[O(n)\]</span>。除了存储答案的数组外，我们需要
-<span class="math display">\[O(n)\]</span> 的空间存储列表 <span class="math display">\[\textit{freq}\]</span>、递归中存储当前选择的数的列表、以及递归需要的栈。</p></li>
-</ul>
 
       
     </div>
@@ -557,7 +601,8 @@ n)\]</span>，因此后者可以忽略不计。</p></li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="combination-sum"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/combination-sum/">Combination
+          <h1 id="combination-sum"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/combination-sum/">Combination
 Sum</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -608,7 +653,8 @@ idx)，注意到每个数字可以被无限制重复选取，因此搜索的下�
 个位置每次考虑选或者不选，如果符合条件，就加入答案的时间代价。但是实际运行的时候，因为不可能所有的解都满足条件，递归的时候我们还会用
 <span class="math display">\[target - candidates[idx] &gt;= 0\]</span>
 进行剪枝，所以实际运行情况是远远小于这个上界的。</li>
-<li>空间复杂度：<span class="math display">\[O(\textit{target})\]</span>。除答案数组外，空间复杂度取决于递归的栈深度，在最差情况下需要递归
+<li>空间复杂度：<span
+class="math display">\[O(\textit{target})\]</span>。除答案数组外，空间复杂度取决于递归的栈深度，在最差情况下需要递归
 <span class="math display">\[O(\textit{target})\]</span> 层。</li>
 </ul>
 
@@ -675,7 +721,8 @@ idx)，注意到每个数字可以被无限制重复选取，因此搜索的下�
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="exploring-neural-substrates-underlying-the-execution-of-behavior-across-the-whole-brain">Exploring
+          <h1
+id="exploring-neural-substrates-underlying-the-execution-of-behavior-across-the-whole-brain">Exploring
 Neural Substrates Underlying the Execution of Behavior Across the Whole
 Brain</h1>
 <p>论文链接：https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5563763/</p>
@@ -700,104 +747,6 @@ with the widely-applied spatial or genetic targeting strategies.</p>
 <p>他们发现zebrafish的前菱脑转向区（anterior rhombencephalic turning
 region,
 ARTR）与转向运动有关，通过光遗传学手段增强ARTA活性之后，zebrafish的转向获得了加强。</p>
-<p>Txing</p>
-<p>2020-09-08</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/08/2020-09-08-Neuroscience-Spontaneous%20Thought%20Processes%20(STPs)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用类人决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/08/2020-09-08-Neuroscience-Spontaneous%20Thought%20Processes%20(STPs)/" class="post-title-link" itemprop="url">Neuroscience | Spontaneous Thought Processes (STPs)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-09-08 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-08T00:00:00+08:00">2020-09-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-25 09:54:14" itemprop="dateModified" datetime="2023-03-25T09:54:14+08:00">2023-03-25</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="offline-memory-reprocessing-involvement-of-the-brains-default-network-in-spontaneous-thought-processes">Offline
-Memory Reprocessing: Involvement of the Brain's Default Network in
-Spontaneous Thought Processes</h1>
-<p>论文链接：https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2653727/</p>
-<h2 id="背景">背景</h2>
-<p>人脑的自发思维活动一直是个谜。比如白日梦（daydream）和心不在焉（mind-wandering）的状态。其特点是切断了外部输入，例如闭眼、冥想，大脑依靠过去的记忆回忆过去或者是期待未来，这种依靠内部记忆的联想机制也叫作离线记忆再处理（Offline
-Memory
-Reprocessing）。但是这些自发过程的神经机制一直不清楚，本文首次尝试寻找这一过程作用的脑区。</p>
-<h2 id="主要工作">主要工作</h2>
-<p>利用功能核磁共振成像（functional magnetic resonance imaging,
-fMRI）获得全脑的活动状态。结合区域一致性方法（regional homogeneity,
-ReHo）评估各个脑区的活跃程度。根据静息状态和记忆再处理状态的活跃程度对比，得到自发思维网络涉及的相应脑区（STPs-network）。</p>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200908-1.png"></p>
-<p>STPs-network 主要涉及的脑区为：</p>
-<ul>
-<li>the posterior cingulate cortex</li>
-<li>the precuneus</li>
-<li>the medial prefrontal cortex</li>
-<li>bilateral inferior parietal cortex</li>
-<li>bilateral dorsal lateral prefrontal cortex</li>
-</ul>
-<p>文章后面测试了一下自发思维的强度和STPs-network活性的相关性。比较了几个脑区间的连通性。</p>
-<h2 id="method">Method</h2>
-<ul>
-<li>Regional homogeneity (ReHo) Analysis</li>
-</ul>
-<p><span class="math display">\[
-W=\frac{\sum (R_i)^2-n(\overline{R})^2}{\frac{1}{12}k^2(n^3-n)}
-\]</span></p>
-<p>可以理解为求一个立体区域的平均活跃度，这里不再赘述。</p>
-<h2 id="总结">总结</h2>
-<p>这篇工作来自昆明动物所徐林老师，研究还是具有一定的启发性的，尤其是提到的大脑外部驱动和内部驱动的切换，挺有意思的。另外自发活动这一点确实还需要继续探索，在神经科学领域也是核心问题。</p>
 <p>Txing</p>
 <p>2020-09-08</p>
 
@@ -864,7 +813,8 @@ W=\frac{\sum (R_i)^2-n(\overline{R})^2}{\frac{1}{12}k^2(n^3-n)}
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="combinations"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/combinations/">Combinations</a></h1>
+          <h1 id="combinations"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/combinations/">Combinations</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
 <p>Given two integers n and k, return all possible combinations of k
@@ -888,7 +838,8 @@ numbers out of 1 ... n.</p>
 <h3 id="approach-1-递归调用">Approach 1: 递归调用</h3>
 <p>把选k个数的任务拆解为选2个数的任务，直到选完了k个数</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">combine</span>(<span class="params">self, n, k</span>):</span><br><span class="line">        <span class="keyword">if</span> k&gt;n <span class="keyword">or</span> k==<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        <span class="keyword">if</span> k==<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> [[i] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,n+<span class="number">1</span>)]</span><br><span class="line">        <span class="keyword">if</span> k==n:</span><br><span class="line">            <span class="keyword">return</span> [[i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,n+<span class="number">1</span>)]]</span><br><span class="line">        </span><br><span class="line">        answer=self.combine(n-<span class="number">1</span>,k)</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> self.combine(n-<span class="number">1</span>,k-<span class="number">1</span>):</span><br><span class="line">            item.append(n)</span><br><span class="line">            answer.append(item)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> answer</span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    n = <span class="number">4</span></span><br><span class="line">    k = <span class="number">2</span></span><br><span class="line">    solution=Solution().combine(n,k)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="approach-2-回溯算法">Approach 2: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/combinations/solution/hui-su-suan-fa-jian-zhi-python-dai-ma-java-dai-ma-/">回溯算法</a></h3>
+<h3 id="approach-2-回溯算法">Approach 2: <a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/combinations/solution/hui-su-suan-fa-jian-zhi-python-dai-ma-java-dai-ma-/">回溯算法</a></h3>
 <h4 id="重点概括">重点概括：</h4>
 <ul>
 <li><p>如果解决一个问题有多个步骤，每一个步骤有多种方法，题目又要我们找出所有的方法，可以使用回溯算法；</p></li>
@@ -966,6 +917,106 @@ path 的长度相关。我们举几个例子分析：</p>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/08/2020-09-08-Neuroscience-Spontaneous%20Thought%20Processes%20(STPs)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用类人决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/08/2020-09-08-Neuroscience-Spontaneous%20Thought%20Processes%20(STPs)/" class="post-title-link" itemprop="url">Neuroscience | Spontaneous Thought Processes (STPs)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-09-08 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-08T00:00:00+08:00">2020-09-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-03-25 09:54:14" itemprop="dateModified" datetime="2023-03-25T09:54:14+08:00">2023-03-25</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1
+id="offline-memory-reprocessing-involvement-of-the-brains-default-network-in-spontaneous-thought-processes">Offline
+Memory Reprocessing: Involvement of the Brain's Default Network in
+Spontaneous Thought Processes</h1>
+<p>论文链接：https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2653727/</p>
+<h2 id="背景">背景</h2>
+<p>人脑的自发思维活动一直是个谜。比如白日梦（daydream）和心不在焉（mind-wandering）的状态。其特点是切断了外部输入，例如闭眼、冥想，大脑依靠过去的记忆回忆过去或者是期待未来，这种依靠内部记忆的联想机制也叫作离线记忆再处理（Offline
+Memory
+Reprocessing）。但是这些自发过程的神经机制一直不清楚，本文首次尝试寻找这一过程作用的脑区。</p>
+<h2 id="主要工作">主要工作</h2>
+<p>利用功能核磁共振成像（functional magnetic resonance imaging,
+fMRI）获得全脑的活动状态。结合区域一致性方法（regional homogeneity,
+ReHo）评估各个脑区的活跃程度。根据静息状态和记忆再处理状态的活跃程度对比，得到自发思维网络涉及的相应脑区（STPs-network）。</p>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200908-1.png" /></p>
+<p>STPs-network 主要涉及的脑区为：</p>
+<ul>
+<li>the posterior cingulate cortex</li>
+<li>the precuneus</li>
+<li>the medial prefrontal cortex</li>
+<li>bilateral inferior parietal cortex</li>
+<li>bilateral dorsal lateral prefrontal cortex</li>
+</ul>
+<p>文章后面测试了一下自发思维的强度和STPs-network活性的相关性。比较了几个脑区间的连通性。</p>
+<h2 id="method">Method</h2>
+<ul>
+<li>Regional homogeneity (ReHo) Analysis</li>
+</ul>
+<p><span class="math display">\[
+W=\frac{\sum (R_i)^2-n(\overline{R})^2}{\frac{1}{12}k^2(n^3-n)}
+\]</span></p>
+<p>可以理解为求一个立体区域的平均活跃度，这里不再赘述。</p>
+<h2 id="总结">总结</h2>
+<p>这篇工作来自昆明动物所徐林老师，研究还是具有一定的启发性的，尤其是提到的大脑外部驱动和内部驱动的切换，挺有意思的。另外自发活动这一点确实还需要继续探索，在神经科学领域也是核心问题。</p>
+<p>Txing</p>
+<p>2020-09-08</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/07/2020-09-07-ImportError%20cannot%20import%20name%20'Optional'/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1014,12 +1065,13 @@ path 的长度相关。我们举几个例子分析：</p>
           <h1 id="importerror-cannot-import-name-optional">ImportError: cannot
 import name 'Optional'</h1>
 <p>遇到报错：ImportError: cannot import name 'Optional'</p>
-<p>已安装所需的库，经查是由于torchvision和pytorch版本不对应导致的。具体对应版本号见<a target="_blank" rel="noopener" href="https://github.com/pytorch/vision">下图</a></p>
+<p>已安装所需的库，经查是由于torchvision和pytorch版本不对应导致的。具体对应版本号见<a
+target="_blank" rel="noopener" href="https://github.com/pytorch/vision">下图</a></p>
 <table>
 <colgroup>
-<col style="width: 30%">
-<col style="width: 30%">
-<col style="width: 38%">
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 38%" />
 </colgroup>
 <thead>
 <tr class="header">

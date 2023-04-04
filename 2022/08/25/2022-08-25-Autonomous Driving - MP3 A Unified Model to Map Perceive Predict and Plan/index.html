@@ -27,25 +27,12 @@
 <meta property="og:site_name" content="Txing">
 <meta property="og:description" content="MP3: A Unified Model to Map, Perceive, Predict and Plan (Uber ATG, 2021)  HD map具有的语义和几何信息使其成为自动驾驶系统的关键部件。但HD map的成本很高，难扩展，尤其是厘米级精度（centimeter-level accuracy）的情况下。因此能摆脱HD Map（地图加载失败、地图老旧等）的算法值得研">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220826-1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220826-2.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220826-3.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220826-4.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220829-1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220830-1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-2.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-3.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-4.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-5.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-6.png">
 <meta property="article:published_time" content="2022-08-24T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-03-25T01:54:15.019Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Imitation Learning">
 <meta property="article:tag" content="Autonomous Driving">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220826-1.png">
 
 <link rel="canonical" href="https://txing-casia.github.io/2022/08/25/2022-08-25-Autonomous%20Driving%20-%20MP3%20A%20Unified%20Model%20to%20Map%20Perceive%20Predict%20and%20Plan/">
 
@@ -239,7 +226,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="mp3-a-unified-model-to-map-perceive-predict-and-plan-uber-atg-2021">MP3:
+        <h2
+id="mp3-a-unified-model-to-map-perceive-predict-and-plan-uber-atg-2021">MP3:
 A Unified Model to Map, Perceive, Predict and Plan (Uber ATG, 2021)</h2>
 <ul>
 <li>HD map具有的语义和几何信息使其成为自动驾驶系统的关键部件。但HD
@@ -263,7 +251,9 @@ intersection)</li>
 </ul></li>
 </ul>
 <figure>
-<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220826-1.png" alt="有地图和无地图对比">
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220826-1.png"
+alt="有地图和无地图对比" />
 <figcaption aria-hidden="true">有地图和无地图对比</figcaption>
 </figure>
 <ul>
@@ -376,7 +366,9 @@ Vision, pages 9329–9338, 2019.）</li>
 <h3 id="interpretable-mapless-driving">3 Interpretable Mapless
 Driving</h3>
 <figure>
-<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220826-2.png" alt="MP3 predicts probabilistic scene representations that are leveraged in motion planning as interpretable cost functions">
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220826-2.png"
+alt="MP3 predicts probabilistic scene representations that are leveraged in motion planning as interpretable cost functions" />
 <figcaption aria-hidden="true">MP3 predicts probabilistic scene
 representations that are leveraged in motion planning as interpretable
 cost functions</figcaption>
@@ -384,7 +376,8 @@ cost functions</figcaption>
 <h4 id="extracting-geometric-and-semantic-features">3.1 Extracting
 Geometric and Semantic Features</h4>
 <ul>
-<li>The result is a 3D tensor of size <span class="math display">\[(\frac{H}{a},\frac{W}{a},\frac{Z}{a}\cdot T_p
+<li>The result is a 3D tensor of size <span
+class="math display">\[(\frac{H}{a},\frac{W}{a},\frac{Z}{a}\cdot T_p
 )\]</span>,which is the input to our backbone network.</li>
 <li>This network combines ideas from [9, 53] to extract geometric,
 semantic and motion information about the scene.</li>
@@ -399,7 +392,9 @@ Representations</h4>
 captured in our dynamic occupancy field）</li>
 </ul>
 <figure>
-<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220826-3.png" alt="Interpretable Scene representations">
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220826-3.png"
+alt="Interpretable Scene representations" />
 <figcaption aria-hidden="true">Interpretable Scene
 representations</figcaption>
 </figure>
@@ -417,7 +412,9 @@ lanes：可用车道是SDV在不违反任何交通规则的情况下可以到达
 <p>现有的行为预测算法包括不安全的离散决策unsafe discrete decisions such
 as confidence thresholding and non-maximum suppression (NMS)</p>
 <figure>
-<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220826-4.png" alt="The motion field warps the occupancy over time">
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220826-4.png"
+alt="The motion field warps the occupancy over time" />
 <figcaption aria-hidden="true">The motion field warps the occupancy over
 time</figcaption>
 </figure>
@@ -432,20 +429,32 @@ time</figcaption>
 <li><p>可到达区域<span class="math display">\[M^A_i\]</span></p></li>
 <li><p>路口<span class="math display">\[M^I_i\]</span></p></li>
 <li><p>到最近车道线的距离。the direction of the closest lane centerline
-in the reachable lanes <span class="math display">\[M^{\theta}_i\]</span> as a Von Mises distribution
-since it has support between <span class="math display">\[[\pi,\pi]\]</span>.</p></li>
+in the reachable lanes <span
+class="math display">\[M^{\theta}_i\]</span> as a Von Mises distribution
+since it has support between <span
+class="math display">\[[\pi,\pi]\]</span>.</p></li>
 <li><p>可到达车道中线的截断距离变换为拉普拉斯算子。We model the
-truncated distance transform to the reachable lanes centerline <span class="math display">\[M^D_i\]</span>​ as a Laplacian, which we
+truncated distance transform to the reachable lanes centerline <span
+class="math display">\[M^D_i\]</span>​ as a Laplacian, which we
 empirically found to yield more accurate results than a
 Gaussian</p></li>
 </ul>
-<p>建模动态物体的occupancy <span class="math display">\[O^c\]</span>,为伯努利随机分布<span class="math display">\[O^c_{t,i}\]</span>，<span class="math display">\[c\in
-\{行人，车辆，自行车\}\]</span>（考虑这些物体未来行为的多模态（直走或左转）和不确定性），用<span class="math display">\[K_{t,i}\]</span>建模基于K个BEV运动向量<span class="math display">\[V^c_{t,i,k}\]</span>的行为分类分布</p>
+<p>建模动态物体的occupancy <span
+class="math display">\[O^c\]</span>,为伯努利随机分布<span
+class="math display">\[O^c_{t,i}\]</span>，<span
+class="math display">\[c\in
+\{行人，车辆，自行车\}\]</span>（考虑这些物体未来行为的多模态（直走或左转）和不确定性），用<span
+class="math display">\[K_{t,i}\]</span>建模基于K个BEV运动向量<span
+class="math display">\[V^c_{t,i,k}\]</span>的行为分类分布</p>
 <p>the probability of future occupancy under our probabilistic model, we
-first define the probability of occupancy flowing from location <span class="math display">\[i_1\]</span> to location <span class="math display">\[i_2\]</span> between two consecutive time steps t
+first define the probability of occupancy flowing from location <span
+class="math display">\[i_1\]</span> to location <span
+class="math display">\[i_2\]</span> between two consecutive time steps t
 and t + 1 as follows:</p>
 <figure>
-<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220829-1.png" alt="the probability of occupancy flowing">
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220829-1.png"
+alt="the probability of occupancy flowing" />
 <figcaption aria-hidden="true">the probability of occupancy
 flowing</figcaption>
 </figure>
@@ -453,14 +462,19 @@ flowing</figcaption>
 <p>设计了一个基于采样的轨迹规划器，其根据运动学灵活的生成多种轨迹，然后使用一个learned
 scoring function选择轨迹。</p>
 <figure>
-<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220830-1.png" alt="规划器的轨迹选择方式">
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220830-1.png"
+alt="规划器的轨迹选择方式" />
 <figcaption aria-hidden="true">规划器的轨迹选择方式</figcaption>
 </figure>
 <h5 id="trajectory-sampling">3.3.1 Trajectory Sampling</h5>
 <p>Search-based optimal motion planning for automated driving. In IROS,
 2018</p>
 <ul>
-<li>根据<span class="math display">\[(v_x,a_x,k_x)\]</span>在专家轨迹数据集中检索专家轨迹，<span class="math display">\[x\]</span>表示当前自车状态，检索出的轨迹有不同的初始速度和朝向。因此使用加速度和转向角来描述轨迹<span class="math display">\[(a,\dot k)_t,t=0,...,T\]</span>，输入到a bicycle
+<li>根据<span
+class="math display">\[(v_x,a_x,k_x)\]</span>在专家轨迹数据集中检索专家轨迹，<span
+class="math display">\[x\]</span>表示当前自车状态，检索出的轨迹有不同的初始速度和朝向。因此使用加速度和转向角来描述轨迹<span
+class="math display">\[(a,\dot k)_t,t=0,...,T\]</span>，输入到a bicycle
 model [38]生成具有连续速度和转向角的轨迹。
 <ul>
 <li>[38]. The kinematic bicycle model: A consistent model for planning
@@ -476,8 +490,11 @@ Conference on Computer Vision, 2020.</li>
 </ul>
 <h5 id="route-prediction">3.3.2 Route Prediction</h5>
 <ul>
-<li>由于无地图驾驶没有车道线follow，本文假设遵循command来行驶，指令<span class="math display">\[c = (a, d)\]</span>, where <span class="math display">\[a \in \{keep lane, turn left, turn
-right\}\]</span> is a discrete high-level action, and <span class="math display">\[d\]</span> an approximate longitudinal distance
+<li>由于无地图驾驶没有车道线follow，本文假设遵循command来行驶，指令<span
+class="math display">\[c = (a, d)\]</span>, where <span
+class="math display">\[a \in \{keep lane, turn left, turn
+right\}\]</span> is a discrete high-level action, and <span
+class="math display">\[d\]</span> an approximate longitudinal distance
 to the
 action（行为的纵向距离）（d经过”rasterize”处理），输入给CoordConv[29]
 <ul>
@@ -494,8 +511,11 @@ Systems, pages 9605–9616, 2018.</li>
 <p><span class="math display">\[
 f_r(\tau,R)=-m(\tau)\min_{i \in m(\tau)} R_i
 \]</span></p>
-<p>其中<span class="math display">\[m(\tau)\]</span>是BEV图中和自车轨迹<span class="math display">\[\tau\]</span>重合的格子单元（grid-cells that
-overlap with SDV polygon in trajectory <span class="math display">\[\tau\]</span>)</p>
+<p>其中<span
+class="math display">\[m(\tau)\]</span>是BEV图中和自车轨迹<span
+class="math display">\[\tau\]</span>重合的格子单元（grid-cells that
+overlap with SDV polygon in trajectory <span
+class="math display">\[\tau\]</span>)</p>
 <p>离开车道损失： <span class="math display">\[
 f_a(x,M)=\max_{i \in m(x)}[1-P(M_i^A)]
 \]</span></p>
@@ -515,7 +535,9 @@ for the linear combination of scoring functions. We found this 2-stage
 training empirically more stable than training end-to-end.）</p>
 <h3 id="experimental-evaluation">4. Experimental Evaluation</h3>
 <figure>
-<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-1.png" alt="性能指标">
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-1.png"
+alt="性能指标" />
 <figcaption aria-hidden="true">性能指标</figcaption>
 </figure>
 <ul>
@@ -546,24 +568,34 @@ learning a separate costing network for each discrete action
 (CNMP).</li>
 </ul>
 <figure>
-<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-2.png" alt="Backbone Network">
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-2.png"
+alt="Backbone Network" />
 <figcaption aria-hidden="true">Backbone Network</figcaption>
 </figure>
 <figure>
-<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-3.png" alt="Mapping Network">
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-3.png"
+alt="Mapping Network" />
 <figcaption aria-hidden="true">Mapping Network</figcaption>
 </figure>
 <figure>
-<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-4.png" alt="Perception and Prediction Network">
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-4.png"
+alt="Perception and Prediction Network" />
 <figcaption aria-hidden="true">Perception and Prediction
 Network</figcaption>
 </figure>
 <figure>
-<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-5.png" alt="Routing Network">
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-5.png"
+alt="Routing Network" />
 <figcaption aria-hidden="true">Routing Network</figcaption>
 </figure>
 <figure>
-<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-6.png" alt="Sets of trajectories retrieved from the expert demonstrations.">
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220901-6.png"
+alt="Sets of trajectories retrieved from the expert demonstrations." />
 <figcaption aria-hidden="true">Sets of trajectories retrieved from the
 expert demonstrations.</figcaption>
 </figure>

@@ -27,14 +27,11 @@
 <meta property="og:site_name" content="Txing">
 <meta property="og:description" content="Mastering the game of Go without human knowledge AlphaGo和AlphaGo Master之后的又一力作，不同于AlphaGo学习人类棋谱，利用人类先验知识，AlphaGo Zero完全自学，并在学习三天后超越了AlphaGo，40天超越了AlphaGo Master。 1 Introduction Reinforcement le">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221019-1.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221019-2.jpg">
 <meta property="article:published_time" content="2022-10-18T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-03-18T17:30:34.138Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Reinforcement Learning">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221019-1.jpg">
 
 <link rel="canonical" href="https://txing-casia.github.io/2022/10/19/2022-10-19-Autonomous%20Driving%20-%20Mastering%20the%20game%20of%20Go%20without%20human%20knowledge/">
 
@@ -245,11 +242,19 @@ in AlphaGo Zero</h4>
 及其历史信息</li>
 <li>输出：下一步的落子概率 <span class="math display">\[p\]</span>
 ，当前局面获胜概率 <span class="math display">\[v\]</span></li>
-<li>训练目标是去拟合自我对弈里面产生的真实胜率 <span class="math display">\[z\]</span> 和下面提到的 MCTS 产生的落子概率 <span class="math display">\[π\]</span>，即 <span class="math display">\[(p,v)\rightarrow(π,z)\]</span>。</li>
+<li>训练目标是去拟合自我对弈里面产生的真实胜率 <span
+class="math display">\[z\]</span> 和下面提到的 MCTS 产生的落子概率 <span
+class="math display">\[π\]</span>，即 <span
+class="math display">\[(p,v)\rightarrow(π,z)\]</span>。</li>
 </ul></li>
-<li><p>MCTS（蒙特卡洛树搜索）使用 <span class="math display">\[f_{\theta}\]</span> 进行自博弈，搜索策略 <span class="math display">\[\pi\]</span> 一般优于网络估计的 <span class="math display">\[p\]</span></p>
+<li><p>MCTS（蒙特卡洛树搜索）使用 <span
+class="math display">\[f_{\theta}\]</span> 进行自博弈，搜索策略 <span
+class="math display">\[\pi\]</span> 一般优于网络估计的 <span
+class="math display">\[p\]</span></p>
 <figure>
-<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221019-1.jpg" alt="Self-play reinforcement learning in AlphaGo Zero">
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221019-1.jpg"
+alt="Self-play reinforcement learning in AlphaGo Zero" />
 <figcaption aria-hidden="true">Self-play reinforcement learning in
 AlphaGo Zero</figcaption>
 </figure></li>
@@ -263,16 +268,30 @@ AlphaGo Zero</figcaption>
 <li><p>MCTS:</p>
 <ul>
 <li><p>搜索树使用神经网络策略引导仿真（自博弈）</p></li>
-<li><p>搜索树的每一条边有一个先验概率 <span class="math display">\[P(s,a)\]</span>，一个访问数（visit count） <span class="math display">\[N(s,a)\]</span>，一个行为价值 <span class="math display">\[Q(s,a)\]</span></p></li>
-<li><p>每次仿真从根节点开始迭代进行，最大化置信上界 <span class="math display">\[Q(s,a)+U(s,a)\]</span>，直到达到访问过的叶子节点。<span class="math display">\[U(s,a)\propto P(s,a)/(1+N(s,a))\]</span></p></li>
-<li><p>每个叶子节点位置仅被网络扩展和评估一次，以生成先验概率和评估值；<span class="math display">\[(P(s&#39;,\cdot),V(s&#39;))=f_{\theta}(s&#39;)\]</span></p></li>
-<li><p>每条边<span class="math display">\[(s,a)\]</span>每使用一次就增加访问数<span class="math display">\[N(s,a)\]</span>，并更新行为价值为仿真中的平均估计值，<span class="math display">\[Q(s,a)=1/N(s,a)\sum_{s&#39;\mid s,a\rightarrow
+<li><p>搜索树的每一条边有一个先验概率 <span
+class="math display">\[P(s,a)\]</span>，一个访问数（visit count） <span
+class="math display">\[N(s,a)\]</span>，一个行为价值 <span
+class="math display">\[Q(s,a)\]</span></p></li>
+<li><p>每次仿真从根节点开始迭代进行，最大化置信上界 <span
+class="math display">\[Q(s,a)+U(s,a)\]</span>，直到达到访问过的叶子节点。<span
+class="math display">\[U(s,a)\propto P(s,a)/(1+N(s,a))\]</span></p></li>
+<li><p>每个叶子节点位置仅被网络扩展和评估一次，以生成先验概率和评估值；<span
+class="math display">\[(P(s&#39;,\cdot),V(s&#39;))=f_{\theta}(s&#39;)\]</span></p></li>
+<li><p>每条边<span
+class="math display">\[(s,a)\]</span>每使用一次就增加访问数<span
+class="math display">\[N(s,a)\]</span>，并更新行为价值为仿真中的平均估计值，<span
+class="math display">\[Q(s,a)=1/N(s,a)\sum_{s&#39;\mid s,a\rightarrow
 s&#39;} V(s&#39;)\]</span></p></li>
-<li><p>MCTS 使用的节点选择策略正比与节点访问数 <span class="math display">\[\pi_{\alpha} \propto
+<li><p>MCTS 使用的节点选择策略正比与节点访问数 <span
+class="math display">\[\pi_{\alpha} \propto
 N(s,a)^{1/\tau}\]</span>，<span class="math display">\[\tau\]</span>
 是温度系数；</p></li>
-<li><p>仿真直到搜索的价值低于阈值或者到达最大次数，此时给出最终奖励<span class="math display">\[r_T\in \{-1,+1\}\]</span></p></li>
-<li><p>每一时间步的数据存为<span class="math display">\[(s_t,\pi_t,z_t)\]</span>，<span class="math display">\[z_t=\pm r_T\]</span>是当前玩家在第<span class="math display">\[t\]</span>步成为赢家获得的奖励</p></li>
+<li><p>仿真直到搜索的价值低于阈值或者到达最大次数，此时给出最终奖励<span
+class="math display">\[r_T\in \{-1,+1\}\]</span></p></li>
+<li><p>每一时间步的数据存为<span
+class="math display">\[(s_t,\pi_t,z_t)\]</span>，<span
+class="math display">\[z_t=\pm r_T\]</span>是当前玩家在第<span
+class="math display">\[t\]</span>步成为赢家获得的奖励</p></li>
 <li><p>网络优化：<span class="math display">\[v\rightarrow
 z,p\rightarrow \pi\]</span></p></li>
 <li><p>损失函数为均方误差+交叉熵损失+网络权重的平方：</p>
@@ -283,7 +302,9 @@ z,p\rightarrow \pi\]</span></p></li>
 <h4 id="empirical-analysis-of-alphago-zero-training">Empirical analysis
 of AlphaGo Zero training</h4>
 <figure>
-<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221019-2.jpg" alt="MCTS">
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20221019-2.jpg"
+alt="MCTS" />
 <figcaption aria-hidden="true">MCTS</figcaption>
 </figure>
 <ul>
@@ -294,7 +315,10 @@ of AlphaGo Zero training</h4>
 <li><p>b.扩展 扩展叶子节点，并用神经网络评估相应的棋局状态s</p></li>
 <li><p>c.更新
 行为价值Q被更新以跟踪该动作下的子树中所有评估值V的平均值</p></li>
-<li><p>d.仿真 搜索完成后，将返回概率<span class="math display">\[\pi\]</span>，其与<span class="math display">\[N^{1/\tau}\]</span>成比例，N是从根状态开始的节点访问计数，<span class="math display">\[\tau\]</span>是温度参数。</p></li>
+<li><p>d.仿真 搜索完成后，将返回概率<span
+class="math display">\[\pi\]</span>，其与<span
+class="math display">\[N^{1/\tau}\]</span>成比例，N是从根状态开始的节点访问计数，<span
+class="math display">\[\tau\]</span>是温度参数。</p></li>
 <li><p>附录有详细的MCTS计算方法！</p></li>
 <li><p>后续性能展示过于知名，不再赘述</p></li>
 </ul>

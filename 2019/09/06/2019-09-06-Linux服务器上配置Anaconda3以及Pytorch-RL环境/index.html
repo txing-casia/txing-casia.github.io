@@ -227,7 +227,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="linux服务器上配置anaconda3以pytorch-rl环境">Linux服务器上配置Anaconda3以Pytorch-RL环境</h1>
+        <h1
+id="linux服务器上配置anaconda3以pytorch-rl环境">Linux服务器上配置Anaconda3以Pytorch-RL环境</h1>
 <p>通过上传安装包的方式在服务器安装Anaconda3只需要在<strong>相应的目录下</strong>执行一句命令：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash Anaconda3-2019.07-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
 <p>安装途中会提示安装位置为默认路径：</p>
@@ -240,12 +241,13 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python --version</span><br><span class="line">&gt; Python 3.6.9 :: Anaconda, Inc.</span><br></pre></td></tr></table></figure>
 <p>接下来激活新建的环境并进行配置：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source activate opensim-rl</span><br></pre></td></tr></table></figure>
-<p>参考我之前的一篇经验（<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/30636305">Anaconda新环境下快速安装多个Python软件包</a>）可以快速在新环境中批量安装软件包：</p>
+<p>参考我之前的一篇经验（<a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/30636305">Anaconda新环境下快速安装多个Python软件包</a>）可以快速在新环境中批量安装软件包：</p>
 <p><strong>在新环境中</strong>输入：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install anaconda </span><br></pre></td></tr></table></figure>
 <p>等待安装完成。</p>
 <p>这里就基本把会调用的包都装上了，接下来开始安装PyTorch。</p>
-<hr>
+<hr />
 <p>继续呆在<strong>激活的opensim-rl环境</strong>里</p>
 <p>由于PyTorch版本的选择和cuda版本有关，虽然因此先检查服务器上的cuda版本号：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat /usr/local/cuda/version.txt</span><br><span class="line">&gt; CUDA Version 9.0.103</span><br></pre></td></tr></table></figure>
@@ -258,8 +260,9 @@
 <li><p><strong>（科学方法1）开VPN下载，会很稳定。</strong></p></li>
 <li><p>（科学方法2）添加国内清华、中科大的镜像源，多一些链接路径会增加成功的概率。</p></li>
 </ol>
-<p>这里我们用了<a target="_blank" rel="noopener" href="http://www.landeng26.info/">Lantern</a>每个月500M的免费流量帮助下载，速度比较快</p>
-<hr>
+<p>这里我们用了<a
+target="_blank" rel="noopener" href="http://www.landeng26.info/">Lantern</a>每个月500M的免费流量帮助下载，速度比较快</p>
+<hr />
 <p>最后开始安装gym</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install gym</span><br></pre></td></tr></table></figure>
 <p>搞定！</p>
@@ -283,12 +286,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/08/19/2019-08-19-Q744-Find%20Smallest%20Letter%20Greater%20Than%20Target/" rel="prev" title="Q744 Find Smallest Letter Greater Than Target">
-      <i class="fa fa-chevron-left"></i> Q744 Find Smallest Letter Greater Than Target
+    <a href="/2019/09/06/2019-09-06-Windows%E9%80%9A%E8%BF%87SSH%E5%90%91Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/" rel="prev" title="Windows通过SSH向Linux服务器上传文件">
+      <i class="fa fa-chevron-left"></i> Windows通过SSH向Linux服务器上传文件
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/09/06/2019-09-06-Windows%E9%80%9A%E8%BF%87SSH%E5%90%91Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/" rel="next" title="Windows通过SSH向Linux服务器上传文件">
-      Windows通过SSH向Linux服务器上传文件 <i class="fa fa-chevron-right"></i>
+    <a href="/2019/09/07/2019-09-07-%E5%88%A9%E7%94%A8syncthing%E5%BB%BA%E7%AB%8BLinux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E6%9C%AC%E5%9C%B0Win10%E7%9A%84%E5%90%8C%E6%AD%A5%E6%96%87%E4%BB%B6%E5%A4%B9/" rel="next" title="利用syncthing建立Linux服务器与本地Win10的同步文件夹">
+      利用syncthing建立Linux服务器与本地Win10的同步文件夹 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
