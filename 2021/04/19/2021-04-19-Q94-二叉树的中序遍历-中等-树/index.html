@@ -228,8 +228,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="二叉树的中序遍历"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/">94.
+        <h4 id="二叉树的中序遍历"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/">94.
 二叉树的中序遍历</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -258,13 +257,9 @@ target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tre
 <h3 id="approach-1-递归">Approach 1: 递归</h3>
 <p>思路与算法</p>
 <p>首先我们需要了解什么是二叉树的中序遍历：按照访问左子树——根节点——右子树的方式遍历这棵树，而在访问左子树或者右子树的时候我们按照同样的方式遍历，直到遍历完整棵树。因此整个遍历过程天然具有递归的性质，我们可以直接用递归函数来模拟这一过程。</p>
-<p>定义 inorder(root) 表示当前遍历到 <span
-class="math display">\[\textit{root}\]</span>节点的答案，那么按照定义，我们只要递归调用
-inorder(root.left) 来遍历 <span
-class="math display">\[\textit{root}\]</span> 节点的左子树，然后将 <span
-class="math display">\[\textit{root}\]</span>
-节点的值加入答案，再递归调用inorder(root.right) 来遍历 <span
-class="math display">\[\textit{root}\]</span>
+<p>定义 inorder(root) 表示当前遍历到 <span class="math display">\[\textit{root}\]</span>节点的答案，那么按照定义，我们只要递归调用
+inorder(root.left) 来遍历 <span class="math display">\[\textit{root}\]</span> 节点的左子树，然后将 <span class="math display">\[\textit{root}\]</span>
+节点的值加入答案，再递归调用inorder(root.right) 来遍历 <span class="math display">\[\textit{root}\]</span>
 节点的右子树即可，递归终止的条件为碰到空节点。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">inorder</span>(<span class="params">root: TreeNode</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span> </span><br><span class="line">            inorder(root.left)</span><br><span class="line">            res.append(root.val)</span><br><span class="line">            inorder(root.right)</span><br><span class="line">        res=<span class="built_in">list</span>()</span><br><span class="line">        inorder(root)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
@@ -297,19 +292,15 @@ O(1)。</p>
 <span class="math display">\[x = x.\textit{right}\]</span>。</li>
 <li>如果 x 有左孩子，则找到 x
 左子树上最右的节点（即左子树中序遍历的最后一个节点，x
-在中序遍历中的前驱节点），我们记为 <span
-class="math display">\[p2\]</span>。根据 <span
-class="math display">\[\textit{p2}\]</span>
+在中序遍历中的前驱节点），我们记为 <span class="math display">\[p2\]</span>。根据 <span class="math display">\[\textit{p2}\]</span>
 的右孩子是否为空，进行如下操作。
 <ul>
 <li>如果 <span class="math display">\[\textit{p2}\]</span>
-的右孩子为空，则将其右孩子指向 x，然后访问 x 的左孩子，即 <span
-class="math display">\[x = x.\textit{left}\]</span></li>
+的右孩子为空，则将其右孩子指向 x，然后访问 x 的左孩子，即 <span class="math display">\[x = x.\textit{left}\]</span></li>
 <li>如果 <span class="math display">\[\textit{p2}\]</span>
 的右孩子不为空，则此时其右孩子指向 x，说明我们已经遍历完 x
 的左子树，我们将 <span class="math display">\[\textit{p2}\]</span>
-的右孩子置空，将 x 的值加入答案数组，然后访问 x 的右孩子，即 <span
-class="math display">\[x = x.\textit{right}\]</span>。</li>
+的右孩子置空，将 x 的值加入答案数组，然后访问 x 的右孩子，即 <span class="math display">\[x = x.\textit{right}\]</span>。</li>
 </ul></li>
 <li>重复上述操作，直至访问完整棵树。</li>
 </ul>
@@ -321,8 +312,7 @@ x，且能通过这个指向知晓我们已经遍历完成了左子树，而不�
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：O(n)，其中 nn 为二叉搜索树的节点个数。Morris
-遍历中每个节点会被访问两次，因此总时间复杂度为 <span
-class="math display">\[O(2n)=O(n)\]</span>。</li>
+遍历中每个节点会被访问两次，因此总时间复杂度为 <span class="math display">\[O(2n)=O(n)\]</span>。</li>
 <li>空间复杂度：O(1)。</li>
 </ul>
 

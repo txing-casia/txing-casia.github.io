@@ -227,8 +227,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="minimum-absolute-difference-in-bst"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-absolute-difference-in-bst/">Minimum
+        <h1 id="minimum-absolute-difference-in-bst"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-absolute-difference-in-bst/">Minimum
 Absolute Difference in BST</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -242,7 +241,7 @@ https://leetcode.com/problems/minimum-distance-between-bst-nodes/</p>
 <blockquote>
 <p><strong>Example 1:</strong></p>
 <p>Input:</p>
-<p>1<br />
+<p>1<br>
 3 / 2</p>
 <p>Output: 1</p>
 <p>Explanation: The minimum absolute difference is 1, which is the
@@ -251,8 +250,7 @@ difference between 2 and 1 (or between 2 and 3).</p>
 <h3 id="approach-1-中序遍历">Approach 1: 中序遍历</h3>
 <p>考虑对升序数组 a
 求任意两个元素之差的绝对值的最小值，答案一定为相邻两个元素之差的最小值，即</p>
-<p><span
-class="math display">\[\textit{ans}=\min_{i=0}^{n-2}\left\{a[i+1]-a[i]\right\}\]</span></p>
+<p><span class="math display">\[\textit{ans}=\min_{i=0}^{n-2}\left\{a[i+1]-a[i]\right\}\]</span></p>
 <p>其中 n 为数组 a 的长度。其他任意间隔距离大于等于 2 的下标对 (i,j)
 的元素之差一定大于下标对 (i,i+1) 的元素之差，故不需要再被考虑。</p>
 <p>回到本题，本题要求二叉搜索树任意两节点差的绝对值的最小值，而我们知道二叉搜索树有个性质为<strong>二叉搜索树中序遍历得到的值序列是递增有序的</strong>，因此我们只要得到中序遍历后的值序列即能用上文提及的方法来解决。</p>
@@ -262,8 +260,7 @@ class="math display">\[\textit{ans}=\min_{i=0}^{n-2}\left\{a[i+1]-a[i]\right\}\]
 <span class="math display">\[\textit{pre}\]</span>
 的初始值需要设置成任意负数标记开头，下文代码中设置为 -1。</p>
 <p>二叉树的中序遍历有多种方式，包括递归、栈、Morris
-遍历等，读者可选择自己最擅长的来实现。下文代码提供最普遍的递归方法来实现，其他遍历方法的介绍可以详细看<a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/">「94.
+遍历等，读者可选择自己最擅长的来实现。下文代码提供最普遍的递归方法来实现，其他遍历方法的介绍可以详细看<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/">「94.
 二叉树的中序遍历」</a>的题解，这里不再赘述。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getMinimumDifference</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">root</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            dfs(root.left)</span><br><span class="line">            nums.append(root.val)</span><br><span class="line">            dfs(root.right)</span><br><span class="line"></span><br><span class="line">        nums = []</span><br><span class="line">        dfs(root)</span><br><span class="line">        res = <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(nums)):</span><br><span class="line">            res = <span class="built_in">min</span>(res, nums[i] - nums[i - <span class="number">1</span>])</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>

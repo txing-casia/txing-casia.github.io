@@ -223,8 +223,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="sort-array-by-parity"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/sort-array-by-parity/">Sort Array By
+          <h1 id="sort-array-by-parity"><a target="_blank" rel="noopener" href="https://leetcode.com/problems/sort-array-by-parity/">Sort Array By
 Parity</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -240,17 +239,10 @@ and [4,2,1,3] would also be accepted.</p>
 </blockquote>
 <h2 id="solution">Solution</h2>
 <h3 id="approach-1-sort">Approach 1: Sort</h3>
-<p>Since the array is already sorted, we can keep two pointers <span
-class="math inline">\(i\)</span> and <span
-class="math inline">\(j\)</span>, where <span
-class="math inline">\(i\)</span> is the slow-runner while <span
-class="math inline">\(j\)</span> is the fast-runner. As long as <span
-class="math display">\[nums[i] = nums[j]\]</span>, we increment <span
-class="math inline">\(j\)</span> to skip the duplicate.</p>
+<p>Since the array is already sorted, we can keep two pointers <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>, where <span class="math inline">\(i\)</span> is the slow-runner while <span class="math inline">\(j\)</span> is the fast-runner. As long as <span class="math display">\[nums[i] = nums[j]\]</span>, we increment <span class="math inline">\(j\)</span> to skip the duplicate.</p>
 <p>When we encounter <span class="math inline">\(nums[j]\neq
 nums[i]\)</span>, the duplicate run has ended so we must copy its value
-to <span class="math inline">\(nums[i + 1]\)</span>. <span
-class="math inline">\(i\)</span> is then incremented and we repeat the
+to <span class="math inline">\(nums[i + 1]\)</span>. <span class="math inline">\(i\)</span> is then incremented and we repeat the
 same process again <span class="math inline">\(j\)</span> reaches the
 end of array.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sortArrayByParity</span>(<span class="params">self, A</span>):</span><br><span class="line">        even=[]</span><br><span class="line">        odd=[]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(A)):</span><br><span class="line">            <span class="keyword">if</span> A[i]%<span class="number">2</span>==<span class="number">0</span>:</span><br><span class="line">                even.append(A[i])</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                odd.append(A[i])</span><br><span class="line">        <span class="keyword">return</span> even+odd</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    nums = [<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>]</span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.sortArrayByParity(nums)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br></pre></td></tr></table></figure>
@@ -376,8 +368,7 @@ elements.)</li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="remove-duplicates-from-sorted-array"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/remove-duplicates-from-sorted-array/">Remove
+          <h1 id="remove-duplicates-from-sorted-array"><a target="_blank" rel="noopener" href="https://leetcode.com/problems/remove-duplicates-from-sorted-array/">Remove
 Duplicates from Sorted Array</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -414,17 +405,10 @@ as well.</p>
 </blockquote>
 <h2 id="solution">Solution</h2>
 <h3 id="approach-1-two-pointers">Approach 1: Two Pointers</h3>
-<p>Since the array is already sorted, we can keep two pointers <span
-class="math inline">\(i\)</span> and <span
-class="math inline">\(j\)</span>, where <span
-class="math inline">\(i\)</span> is the slow-runner while <span
-class="math inline">\(j\)</span> is the fast-runner. As long as <span
-class="math display">\[nums[i] = nums[j]\]</span>, we increment <span
-class="math inline">\(j\)</span> to skip the duplicate.</p>
+<p>Since the array is already sorted, we can keep two pointers <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>, where <span class="math inline">\(i\)</span> is the slow-runner while <span class="math inline">\(j\)</span> is the fast-runner. As long as <span class="math display">\[nums[i] = nums[j]\]</span>, we increment <span class="math inline">\(j\)</span> to skip the duplicate.</p>
 <p>When we encounter <span class="math inline">\(nums[j]\neq
 nums[i]\)</span>, the duplicate run has ended so we must copy its value
-to <span class="math inline">\(nums[i + 1]\)</span>. <span
-class="math inline">\(i\)</span> is then incremented and we repeat the
+to <span class="math inline">\(nums[i + 1]\)</span>. <span class="math inline">\(i\)</span> is then incremented and we repeat the
 same process again <span class="math inline">\(j​\)</span> reaches the
 end of array.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">removeDuplicates</span>(<span class="params">self, nums: <span class="string">&#x27;List[int]&#x27;</span></span>) -&gt; <span class="string">&#x27;int&#x27;</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(nums)==<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            index=<span class="number">0</span></span><br><span class="line">            <span class="keyword">while</span>(index+<span class="number">1</span>&lt;<span class="built_in">len</span>(nums)):</span><br><span class="line">                <span class="keyword">if</span> nums[index]==nums[index+<span class="number">1</span>]:</span><br><span class="line">                    nums.remove(nums[index])</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    index+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(nums)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    nums = [<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.removeDuplicates(nums)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br><span class="line">   </span><br></pre></td></tr></table></figure>
@@ -500,28 +484,18 @@ most n<em>n</em>steps.</li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="container-with-most-water"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/container-with-most-water/">Container
+          <h1 id="container-with-most-water"><a target="_blank" rel="noopener" href="https://leetcode.com/problems/container-with-most-water/">Container
 With Most Water</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
-<p>Given <em>n</em> non-negative integers <span
-class="math inline">\(a_1, a_2, ..., a_n\)</span> , where each
-represents a point at coordinate (<span
-class="math inline">\(i\)</span>, <span
-class="math inline">\(a_i\)</span>). <span
-class="math inline">\(n\)</span> vertical lines are drawn such that the
+<p>Given <em>n</em> non-negative integers <span class="math inline">\(a_1, a_2, ..., a_n\)</span> , where each
+represents a point at coordinate (<span class="math inline">\(i\)</span>, <span class="math inline">\(a_i\)</span>). <span class="math inline">\(n\)</span> vertical lines are drawn such that the
 two endpoints of line <span class="math inline">\(i\)</span> is at
-(<span class="math inline">\(i\)</span>, <span
-class="math inline">\(a_i\)</span>) and (<span
-class="math inline">\(i\)</span>, <span
-class="math inline">\(0\)</span>). Find two lines, which together with
+(<span class="math inline">\(i\)</span>, <span class="math inline">\(a_i\)</span>) and (<span class="math inline">\(i\)</span>, <span class="math inline">\(0\)</span>). Find two lines, which together with
 x-axis forms a container, such that the container contains the most
 water.</p>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/question_11.jpg"
-alt="question_11.jpg" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/question_11.jpg" alt="question_11.jpg">
 <figcaption aria-hidden="true">question_11.jpg</figcaption>
 </figure>
 <p>The above vertical lines are represented by array
@@ -539,11 +513,10 @@ pair of the lines and find out the maximum area out of those.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxArea</span>(<span class="params">self, height</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        maxarea=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(height)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>,<span class="built_in">len</span>(height)):</span><br><span class="line">                maxarea=<span class="built_in">max</span>(maxarea,<span class="built_in">min</span>(height[i],height[j])*(j-i))</span><br><span class="line">        <span class="keyword">return</span> maxarea</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    height = [<span class="number">1</span>,<span class="number">8</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">8</span>,<span class="number">3</span>,<span class="number">7</span>]</span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.maxArea(height)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br><span class="line">   </span><br></pre></td></tr></table></figure>
 <ul>
 <li>Time complexity : <span class="math inline">\(O(n^2)\)</span>.
-Calculating area for all <span
-class="math inline">\(\frac{n(n-1)}{2}\)</span> height pairs.</li>
+Calculating area for all <span class="math inline">\(\frac{n(n-1)}{2}\)</span> height pairs.</li>
 <li>Space complexity : $ O(1)$ Constant extra space is used.</li>
 </ul>
-<hr />
+<hr>
 <h3 id="approach-2-two-pointer-approach">Approach 2: Two Pointer
 Approach</h3>
 <p>The intuition behind this approach is that the area formed between
@@ -565,10 +538,8 @@ to be beneficial, as per the same argument, despite the reduction in the
 width. This is done since a relatively longer line obtained by moving
 the shorter line's pointer might overcome the reduction in area caused
 by the width reduction.</p>
-<p>For further clarification click <a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/container-with-most-water/discuss/6099/yet-another-way-to-see-what-happens-in-the-on-algorithm">here</a>
-and for the proof click <a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/container-with-most-water/discuss/6089/Anyone-who-has-a-O(N)-algorithm/7268">here</a>.</p>
+<p>For further clarification click <a target="_blank" rel="noopener" href="https://leetcode.com/problems/container-with-most-water/discuss/6099/yet-another-way-to-see-what-happens-in-the-on-algorithm">here</a>
+and for the proof click <a target="_blank" rel="noopener" href="https://leetcode.com/problems/container-with-most-water/discuss/6089/Anyone-who-has-a-O(N)-algorithm/7268">here</a>.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxArea</span>(<span class="params">self, height</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        maxarea=<span class="number">0</span></span><br><span class="line">        x=<span class="built_in">len</span>(height)-<span class="number">1</span> <span class="comment"># 最远端的指针</span></span><br><span class="line">        y=<span class="number">0</span> <span class="comment"># 最近端的指针</span></span><br><span class="line">        <span class="keyword">while</span>(y&lt;x):</span><br><span class="line">            maxarea = <span class="built_in">max</span>(maxarea, <span class="built_in">min</span>(height[x], height[y]) * (x - y))</span><br><span class="line">            <span class="keyword">if</span> (height[y] &lt; height[x]):</span><br><span class="line">                y=y+<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                x=x-<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> maxarea</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    height = [<span class="number">1</span>,<span class="number">8</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">8</span>,<span class="number">3</span>,<span class="number">7</span>]</span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.maxArea(height)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br></pre></td></tr></table></figure>
 <p><strong>Complexity Analysis</strong></p>
 <ul>
@@ -661,7 +632,7 @@ you may not use the <em>same</em> element twice.</p>
 x<em>x</em> and find if there is another value that equals to
 target.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">twoSum</span>(<span class="params">self, nums, target</span>):</span><br><span class="line">        results = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i + <span class="number">1</span>, <span class="built_in">len</span>(nums)):</span><br><span class="line">                <span class="keyword">if</span> nums[i] + nums[j] == target:</span><br><span class="line">                    <span class="comment"># if nums[i] not in results:</span></span><br><span class="line">                        results.append(i)</span><br><span class="line">                    <span class="comment"># if nums[j] not in results:</span></span><br><span class="line">                        results.append(j)</span><br><span class="line">        <span class="keyword">return</span> results</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    nums = [<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>]</span><br><span class="line">    target = <span class="number">9</span></span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.twoSum(nums, target)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br></pre></td></tr></table></figure>
-<hr />
+<hr>
 <h3 id="approach-2-two-pass-hash-table">Approach 2: Two-pass Hash
 Table</h3>
 <p>To improve our run time complexity, we need a more efficient way to
@@ -687,7 +658,7 @@ Python code:</p>
 submissions for Two Sum.</strong></p>
 <p><strong>Memory Usage: 13.4 MB, less than 5.02% of Python online
 submissions for Two Sum.</strong></p>
-<hr />
+<hr>
 <h3 id="approach-3-one-pass-hash-table">Approach 3: One-pass Hash
 Table</h3>
 <p>It turns out we can do it in one-pass. While we iterate and inserting
@@ -766,8 +737,7 @@ exists.</strong></p>
 <h2 id="step-1-install-matlab-engine-api-for-python">Step 1: install
 MATLAB Engine API for Python</h2>
 <p>官网给出的方案：</p>
-<p><a
-target="_blank" rel="noopener" href="http://ww2.mathworks.cn/help/matlab/matlab_external/install-the-matlab-engine-for-python.html?ue">install
+<p><a target="_blank" rel="noopener" href="http://ww2.mathworks.cn/help/matlab/matlab_external/install-the-matlab-engine-for-python.html?ue">install
 MATLAB Engine API for Python</a></p>
 <p>在MATLAB中输入：</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">matlabroot</span><br></pre></td></tr></table></figure>
@@ -778,8 +748,7 @@ MATLAB Engine API for Python</a></p>
 <h2 id="step-2-call-user-script-and-function-from-python">Step 2: Call
 User Script and Function from Python</h2>
 <p>官网给出的方案：</p>
-<p><a
-target="_blank" rel="noopener" href="http://cn.mathworks.com/help/matlab/matlab_external/call-user-script-and-function-from-python.html">Call
+<p><a target="_blank" rel="noopener" href="http://cn.mathworks.com/help/matlab/matlab_external/call-user-script-and-function-from-python.html">Call
 User Script and Function from Python</a></p>
 <p>###.m脚本的调用</p>
 <p>.m文件与.py文件需要放在同一目录下。在test.m文件中输入：</p>

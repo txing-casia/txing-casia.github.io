@@ -226,8 +226,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="机器人能否返回原点"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/robot-return-to-origin/">机器人能否返回原点</a></h1>
+        <h1 id="机器人能否返回原点"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/robot-return-to-origin/">机器人能否返回原点</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
 <p>在二维平面上，有一个机器人从原点 (0, 0)
@@ -259,12 +258,9 @@ true。</p>
 Solution</h3>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">judgeCircle</span>(<span class="params">self, moves</span>):</span><br><span class="line">        x=y=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> move <span class="keyword">in</span> moves:</span><br><span class="line">            <span class="keyword">if</span> move == <span class="string">&quot;U&quot;</span>: y+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> move == <span class="string">&quot;D&quot;</span>: y-=<span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> move == <span class="string">&quot;L&quot;</span>: x-=<span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> move == <span class="string">&quot;R&quot;</span>: x+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> (x==y==<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    moves = <span class="string">&quot;LL&quot;</span></span><br><span class="line">    solution=Solution().judgeCircle(moves)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <ul>
-<li>时间复杂度： <span class="math display">\[O(N)\]</span>，其中 <span
-class="math display">\[N\]</span> 表示 <span
-class="math display">\[moves\]</span>
+<li>时间复杂度： <span class="math display">\[O(N)\]</span>，其中 <span class="math display">\[N\]</span> 表示 <span class="math display">\[moves\]</span>
 指令串的长度。我们只需要遍历一遍字符串即可。</li>
-<li>空间复杂度： <span
-class="math display">\[O(1)\]</span>，我们只需要常数的空间来存放若干变量。</li>
+<li>空间复杂度： <span class="math display">\[O(1)\]</span>，我们只需要常数的空间来存放若干变量。</li>
 </ul>
 <h2 id="approach-2-compact-solution">Approach 2: Compact Solution</h2>
 <p>更简洁的实现：判断相对方向的步数是否一致。</p>

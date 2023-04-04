@@ -228,8 +228,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="移掉k位数字"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-k-digits/">402.
+        <h4 id="移掉k位数字"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-k-digits/">402.
 移掉K位数字</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -269,11 +268,8 @@ A = 1axxx，B = 1bxxx，如果 a &gt; b 则 A &gt; B。</p>
 的组合。因此我们应该移掉数字 4。如果不移掉数字
 4，则之后无论移掉什么数字，都不会得到最小数。</p>
 <p>基于上述分析，我们可以得出「删除一个数字」的贪心策略：</p>
-<p>给定一个长度为 n 的数字序列 <span
-class="math display">\[[D_0D_1D_2D_3\ldots
-D_{n-1}]\]</span>，从左往右找到第一个位置 i（i&gt;0）使得 <span
-class="math display">\[D_i&lt;D_{i-1}\]</span>，并删去 <span
-class="math display">\[D_{i-1}\]</span>；如果不存在，说明整个数字序列单调不降，删去最后一个数字即可。</p>
+<p>给定一个长度为 n 的数字序列 <span class="math display">\[[D_0D_1D_2D_3\ldots
+D_{n-1}]\]</span>，从左往右找到第一个位置 i（i&gt;0）使得 <span class="math display">\[D_i&lt;D_{i-1}\]</span>，并删去 <span class="math display">\[D_{i-1}\]</span>；如果不存在，说明整个数字序列单调不降，删去最后一个数字即可。</p>
 <p>基于此，我们可以每次对整个数字序列执行一次这个策略；删去一个字符后，剩下的
 n−1 长度的数字序列就形成了新的子问题，可以继续使用同样的策略，直至删除 k
 次。</p>
@@ -306,8 +302,7 @@ m&lt;k，这种情况下我们需要从序列尾部删除额外的 k-m 个数字
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：O(n)，其中 n
-为字符串的长度。尽管存在嵌套循环，但内部循环最多运行 k 次。由于 <span
-class="math display">\[0 &lt; k \le
+为字符串的长度。尽管存在嵌套循环，但内部循环最多运行 k 次。由于 <span class="math display">\[0 &lt; k \le
 n\]</span>，主循环的时间复杂度被限制在 2n
 以内。对于主循环之外的逻辑，它们的时间复杂度是 O(n)，因此总时间复杂度为
 O(n)。</li>

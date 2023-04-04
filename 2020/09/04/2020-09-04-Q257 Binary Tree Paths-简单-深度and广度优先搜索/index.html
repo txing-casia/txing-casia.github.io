@@ -229,8 +229,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="binary-tree-paths"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-paths/">Binary Tree
+        <h1 id="binary-tree-paths"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-paths/">Binary Tree
 Paths</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -241,8 +240,8 @@ Paths</a></h1>
 <p><strong>Example 1:</strong></p>
 <p>Input:</p>
 <pre><code>1</code></pre>
-<p>/<br />
-2 3<br />
+<p>/<br>
+2 3<br>
 5</p>
 <p>Output: ["1-&gt;2-&gt;5", "1-&gt;3"]</p>
 <p>Explanation: All root-to-leaf paths are: 1-&gt;2-&gt;5, 1-&gt;3</p>
@@ -257,16 +256,12 @@ Paths</a></h1>
 <ul>
 <li><p>时间复杂度：<span class="math display">\[O(N^2)\]</span>，其中 N
 表示节点数目。在深度优先搜索中每个节点会被访问一次且只会被访问一次，每一次会对
-path 变量进行拷贝构造，时间代价为 O(N)，故时间复杂度为 <span
-class="math display">\[ O(N^2)\]</span>。</p></li>
+path 变量进行拷贝构造，时间代价为 O(N)，故时间复杂度为 <span class="math display">\[ O(N^2)\]</span>。</p></li>
 <li><p>空间复杂度：<span class="math display">\[O(N^2)\]</span>，其中 N
 表示节点数目。除答案数组外我们需要考虑递归调用的栈空间。在最坏情况下，当二叉树中每个节点只有一个孩子节点时，即整棵二叉树呈一个链状，此时递归的层数为
-N，此时每一层的 path 变量的空间代价的总和为 <span
-class="math display">\[O(\sum_{i = 1}^{N} i) = O(N^2)\]</span>
-空间复杂度为 <span
-class="math display">\[O(N^2)\]</span>。最好情况下，当二叉树为平衡二叉树时，它的高度为
-<span class="math display">\[\log N\]</span>，此时空间复杂度为 <span
-class="math display">\[O((\log {N})^2)\]</span>。</p></li>
+N，此时每一层的 path 变量的空间代价的总和为 <span class="math display">\[O(\sum_{i = 1}^{N} i) = O(N^2)\]</span>
+空间复杂度为 <span class="math display">\[O(N^2)\]</span>。最好情况下，当二叉树为平衡二叉树时，它的高度为
+<span class="math display">\[\log N\]</span>，此时空间复杂度为 <span class="math display">\[O((\log {N})^2)\]</span>。</p></li>
 <li><p><strong>平衡二叉树</strong>（Balanced Binary
 Tree）又被称为AVL树（有别于AVL算法），且具有以下性质：它是一
 棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树。</p></li>
@@ -280,8 +275,7 @@ Tree）又被称为AVL树（有别于AVL算法），且具有以下性质：它�
 表示节点数目。分析同方法一。</li>
 <li>空间复杂度：<span class="math display">\[O(N^2)\]</span>，其中 N
 表示节点数目。在最坏情况下，队列中会存在 N
-个节点，保存字符串的队列中每个节点的最大长度为 N，故空间复杂度为 <span
-class="math display">\[O(N^2)\]</span></li>
+个节点，保存字符串的队列中每个节点的最大长度为 N，故空间复杂度为 <span class="math display">\[O(N^2)\]</span></li>
 </ul>
 <h3 id="section"></h3>
 

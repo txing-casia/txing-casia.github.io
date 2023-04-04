@@ -223,8 +223,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="相同的树"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/same-tree/">100.
+          <h4 id="相同的树"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/same-tree/">100.
 相同的树</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -344,8 +343,7 @@ m 和 n
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="最小高度树"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-height-tree-lcci/">最小高度树</a></h4>
+          <h4 id="最小高度树"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-height-tree-lcci/">最小高度树</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
 <p>给定一个有序整数数组，元素各不相同且按升序排列，编写一个算法，创建一棵高度最小的二叉搜索树。</p>
@@ -438,8 +436,7 @@ target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-he
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="剑指-offer-29.-顺时针打印矩阵"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/">剑指
+          <h4 id="剑指-offer-29.-顺时针打印矩阵"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/">剑指
 Offer 29. 顺时针打印矩阵</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -460,8 +457,7 @@ Offer 29. 顺时针打印矩阵</a></h4>
 <h3 id="approach-1-模拟">Approach 1: 模拟</h3>
 <p>可以模拟打印矩阵的路径。初始位置是矩阵的左上角，初始方向是向右，当路径超出界限或者进入之前访问过的位置时，顺时针旋转，进入下一个方向。</p>
 <p>判断路径是否进入之前访问过的位置需要使用一个与输入矩阵大小相同的辅助矩阵
-<span
-class="math display">\[\textit{visited}\]</span>，其中的每个元素表示该位置是否被访问过。当一个元素被访问时，将
+<span class="math display">\[\textit{visited}\]</span>，其中的每个元素表示该位置是否被访问过。当一个元素被访问时，将
 <span class="math display">\[\textit{visited}\]</span>
 中的对应位置的元素设为已访问。</p>
 <p>如何判断路径是否结束？由于矩阵中的每个元素都被访问一次，因此路径的长度即为矩阵中的元素数量，当路径的长度达到矩阵中的元素数量时即为完整路径，将该路径返回。</p>
@@ -471,10 +467,7 @@ class="math display">\[\textit{visited}\]</span>，其中的每个元素表示�
 <li><p>时间复杂度：<span class="math display">\[O(mn)\]</span>，其中 m
 和 n
 分别是输入矩阵的行数和列数。矩阵中的每个元素都要被访问一次。</p></li>
-<li><p>空间复杂度：<span
-class="math display">\[O(mn)\]</span>。需要创建一个大小为 <span
-class="math display">\[m \times n\]</span> 的矩阵 <span
-class="math display">\[\textit{visited}\]</span>
+<li><p>空间复杂度：<span class="math display">\[O(mn)\]</span>。需要创建一个大小为 <span class="math display">\[m \times n\]</span> 的矩阵 <span class="math display">\[\textit{visited}\]</span>
 记录每个位置是否被访问过。</p></li>
 </ul>
 <h3 id="approach-2-按层模拟">Approach 2: 按层模拟</h3>
@@ -484,29 +477,22 @@ class="math display">\[\textit{visited}\]</span>
 层，剩下的元素都是第 3 层。</p>
 <p>对于每层，从左上方开始以顺时针的顺序遍历所有元素。假设当前层的左上角位于
 (<span class="math display">\[\textit{top},
-\textit{left})\]</span>，右下角位于 <span
-class="math display">\[(\textit{bottom},
+\textit{left})\]</span>，右下角位于 <span class="math display">\[(\textit{bottom},
 \textit{right})\]</span>，按照如下顺序遍历当前层的元素。</p>
-<p>从左到右遍历上侧元素，依次为 <span
-class="math display">\[(\textit{top}, \textit{left})\]</span> 到 <span
-class="math display">\[(\textit{top}, \textit{right})\]</span>.</p>
-<p>从上到下遍历右侧元素，依次为 <span
-class="math display">\[(\textit{top} + 1, \textit{right}) \]</span>到
+<p>从左到右遍历上侧元素，依次为 <span class="math display">\[(\textit{top}, \textit{left})\]</span> 到 <span class="math display">\[(\textit{top}, \textit{right})\]</span>.</p>
+<p>从上到下遍历右侧元素，依次为 <span class="math display">\[(\textit{top} + 1, \textit{right}) \]</span>到
 <span class="math display">\[(\textit{bottom},
 \textit{right})\]</span>。</p>
 <p>如果 <span class="math display">\[\textit{left} &lt;
 \textit{right}\]</span> 且 <span class="math display">\[\textit{top}
-&lt; \textit{bottom}\]</span>，则从右到左遍历下侧元素，依次为 <span
-class="math display">\[(\textit{bottom}, \textit{right} - 1)\]</span> 到
+&lt; \textit{bottom}\]</span>，则从右到左遍历下侧元素，依次为 <span class="math display">\[(\textit{bottom}, \textit{right} - 1)\]</span> 到
 <span class="math display">\[(\textit{bottom}, \textit{left} +
-1)\]</span> ，以及从下到上遍历左侧元素，依次为 <span
-class="math display">\[(\textit{bottom}, \textit{left})\]</span> 到
+1)\]</span> ，以及从下到上遍历左侧元素，依次为 <span class="math display">\[(\textit{bottom}, \textit{left})\]</span> 到
 <span class="math display">\[(\textit{top} + 1,
 \textit{left})\]</span>。</p>
 <p>遍历完当前层的元素之后，将 <span class="math display">\[\textit{left}
 \]</span>和 <span class="math display">\[\textit{top}\]</span> 分别增加
-1，将 <span class="math display">\[\textit{right}\]</span> 和 <span
-class="math display">\[\textit{bottom}\]</span> 分别减少
+1，将 <span class="math display">\[\textit{right}\]</span> 和 <span class="math display">\[\textit{bottom}\]</span> 分别减少
 1，进入下一层继续遍历，直到遍历完所有元素为止。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">spiralOrder</span>(<span class="params">self, matrix: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> matrix <span class="keyword">or</span> <span class="keyword">not</span> matrix[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">list</span>()</span><br><span class="line">        </span><br><span class="line">        rows, columns = <span class="built_in">len</span>(matrix), <span class="built_in">len</span>(matrix[<span class="number">0</span>])</span><br><span class="line">        order = <span class="built_in">list</span>()</span><br><span class="line">        left, right, top, bottom = <span class="number">0</span>, columns - <span class="number">1</span>, <span class="number">0</span>, rows - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> left &lt;= right <span class="keyword">and</span> top &lt;= bottom:</span><br><span class="line">            <span class="keyword">for</span> column <span class="keyword">in</span> <span class="built_in">range</span>(left, right + <span class="number">1</span>):</span><br><span class="line">                order.append(matrix[top][column])</span><br><span class="line">            <span class="keyword">for</span> row <span class="keyword">in</span> <span class="built_in">range</span>(top + <span class="number">1</span>, bottom + <span class="number">1</span>):</span><br><span class="line">                order.append(matrix[row][right])</span><br><span class="line">            <span class="keyword">if</span> left &lt; right <span class="keyword">and</span> top &lt; bottom:</span><br><span class="line">                <span class="keyword">for</span> column <span class="keyword">in</span> <span class="built_in">range</span>(right - <span class="number">1</span>, left, -<span class="number">1</span>):</span><br><span class="line">                    order.append(matrix[bottom][column])</span><br><span class="line">                <span class="keyword">for</span> row <span class="keyword">in</span> <span class="built_in">range</span>(bottom, top, -<span class="number">1</span>):</span><br><span class="line">                    order.append(matrix[row][left])</span><br><span class="line">            left, right, top, bottom = left + <span class="number">1</span>, right - <span class="number">1</span>, top + <span class="number">1</span>, bottom - <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> order</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析：</strong></p>
@@ -514,8 +500,7 @@ class="math display">\[\textit{bottom}\]</span> 分别减少
 <li><p>时间复杂度：<span class="math display">\[O(mn)\]</span>，其中 m
 和 n
 分别是输入矩阵的行数和列数。矩阵中的每个元素都要被访问一次。</p></li>
-<li><p>空间复杂度：<span
-class="math display">\[O(1)\]</span>。除了输出数组以外，空间复杂度是常数。</p></li>
+<li><p>空间复杂度：<span class="math display">\[O(1)\]</span>。除了输出数组以外，空间复杂度是常数。</p></li>
 </ul>
 
       
@@ -581,8 +566,7 @@ class="math display">\[O(1)\]</span>。除了输出数组以外，空间复杂�
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="矩阵中的最长递增路径"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-increasing-path-in-a-matrix/">329.
+          <h4 id="矩阵中的最长递增路径"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-increasing-path-in-a-matrix/">329.
 矩阵中的最长递增路径</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -613,23 +597,17 @@ target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-in
 <p>朴素深度优先搜索的时间复杂度过高的原因是进行了大量的重复计算，同一个单元格会被访问多次，每次访问都要重新计算。由于同一个单元格对应的最长递增路径的长度是固定不变的，因此可以使用记忆化的方法进行优化。用矩阵
 <span class="math display">\[\textit{memo}\]</span>
 作为缓存矩阵，已经计算过的单元格的结果存储到缓存矩阵中。</p>
-<p>使用记忆化深度优先搜索，当访问到一个单元格 <span
-class="math display">\[(i,j)\]</span> 时，如果 <span
-class="math display">\[\textit{memo}[i][j] \neq
+<p>使用记忆化深度优先搜索，当访问到一个单元格 <span class="math display">\[(i,j)\]</span> 时，如果 <span class="math display">\[\textit{memo}[i][j] \neq
 0\]</span>，说明该单元格的结果已经计算过，则直接从缓存中读取结果，如果
-<span
-class="math display">\[\textit{memo}[i][j]=0\]</span>，说明该单元格的结果尚未被计算过，则进行搜索，并将计算得到的结果存入缓存中。</p>
+<span class="math display">\[\textit{memo}[i][j]=0\]</span>，说明该单元格的结果尚未被计算过，则进行搜索，并将计算得到的结果存入缓存中。</p>
 <p>遍历完矩阵中的所有单元格之后，即可得到矩阵中的最长递增路径的长度。</p>
 <p>python中使用@lru_cache(None)可以缓存之前的计算结果，避免重复计算，提高计算效率（参考：https://www.cnblogs.com/sfencs-hcy/p/10171457.html）</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    </span><br><span class="line">    DIRS = [(-<span class="number">1</span>, <span class="number">0</span>), (<span class="number">1</span>, <span class="number">0</span>), (<span class="number">0</span>, -<span class="number">1</span>), (<span class="number">0</span>, <span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">longestIncreasingPath</span>(<span class="params">self, matrix: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> matrix:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line"><span class="meta">        @lru_cache(<span class="params"><span class="literal">None</span></span>)</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">row: <span class="built_in">int</span>, column: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">            best = <span class="number">1</span></span><br><span class="line">            <span class="keyword">for</span> dx, dy <span class="keyword">in</span> Solution.DIRS:</span><br><span class="line">                newRow, newColumn = row + dx, column + dy</span><br><span class="line">                <span class="keyword">if</span> <span class="number">0</span> &lt;= newRow &lt; rows <span class="keyword">and</span> <span class="number">0</span> &lt;= newColumn &lt; columns <span class="keyword">and</span> matrix[newRow][newColumn] &gt; matrix[row][column]:</span><br><span class="line">                    best = <span class="built_in">max</span>(best, dfs(newRow, newColumn) + <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> best</span><br><span class="line"></span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        rows, columns = <span class="built_in">len</span>(matrix), <span class="built_in">len</span>(matrix[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(rows):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(columns):</span><br><span class="line">                ans = <span class="built_in">max</span>(ans, dfs(i, j))</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：<span class="math display">\[O(mn)\]</span>，其中 m 和 n
-分别是矩阵的行数和列数。深度优先搜索的时间复杂度是 <span
-class="math display">\[O(V+E)\]</span>，其中 V 是节点数，E
-是边数。在矩阵中，<span
-class="math display">\[O(V)=O(mn)\]</span>，<span
-class="math display">\[O(E)\approx O(4mn) = O(mn)\]</span></li>
+分别是矩阵的行数和列数。深度优先搜索的时间复杂度是 <span class="math display">\[O(V+E)\]</span>，其中 V 是节点数，E
+是边数。在矩阵中，<span class="math display">\[O(V)=O(mn)\]</span>，<span class="math display">\[O(E)\approx O(4mn) = O(mn)\]</span></li>
 <li>空间复杂度：<span class="math display">\[O(mn)\]</span>，其中 m 和 n
 分别是矩阵的行数和列数。空间复杂度主要取决于缓存和递归调用深度，缓存的空间复杂度是
 <span class="math display">\[O(mn)\]</span>，递归调用深度不会超过
@@ -699,8 +677,7 @@ mn。</li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1
-id="integration-of-reinforcement-learning-and-optimal-decision-making-theories-of-the-basal-ganglia">Integration
+          <h1 id="integration-of-reinforcement-learning-and-optimal-decision-making-theories-of-the-basal-ganglia">Integration
 of Reinforcement Learning and Optimal Decision-Making Theories of the
 Basal Ganglia</h1>
 <p>论文链接：https://direct.mit.edu/neco/article/23/4/817/7637/Integration-of-Reinforcement-Learning-and-Optimal</p>
@@ -774,8 +751,7 @@ Basal Ganglia</h1>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="括号生成"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/generate-parentheses/">22.
+          <h4 id="括号生成"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/generate-parentheses/">22.
 括号生成</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -816,8 +792,7 @@ target，请你寻找在这一有序列表里比目标字母大的最小字母�
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">nextGreatestLetter2</span>(<span class="params">self, letters, target: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        L = <span class="number">0</span></span><br><span class="line">        R = <span class="built_in">len</span>(letters) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> L &lt;= R:</span><br><span class="line">            M = L + (R - L) // <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> letters[M] &lt;= target:</span><br><span class="line">                L = M + <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> letters[M] &gt; target:</span><br><span class="line">                R = M - <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> letters[L % <span class="built_in">len</span>(letters)]</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li>时间复杂度：<span class="math display">\[O(\log N)\]</span>。<span
-class="math display">\[N\]</span> 指的是 letters
+<li>时间复杂度：<span class="math display">\[O(\log N)\]</span>。<span class="math display">\[N\]</span> 指的是 letters
 的长度，我们只查看数组中的 <span class="math display">\[\log n\]</span>
 个元素。</li>
 <li>空间复杂度：<span class="math display">\[O(1)\]</span>。</li>
@@ -886,8 +861,7 @@ class="math display">\[N\]</span> 指的是 letters
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="括号生成"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/generate-parentheses/">22.
+          <h4 id="括号生成"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/generate-parentheses/">22.
 括号生成</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -924,16 +898,10 @@ target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/generate-p
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">generateParenthesis</span>(<span class="params">self, n: <span class="built_in">int</span></span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">generate</span>(<span class="params">A</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(A) == <span class="number">2</span>*n:</span><br><span class="line">                <span class="keyword">if</span> valid(A):</span><br><span class="line">                    ans.append(<span class="string">&quot;&quot;</span>.join(A))</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                A.append(<span class="string">&#x27;(&#x27;</span>)</span><br><span class="line">                generate(A)</span><br><span class="line">                A.pop()</span><br><span class="line">                A.append(<span class="string">&#x27;)&#x27;</span>)</span><br><span class="line">                generate(A)</span><br><span class="line">                A.pop()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">valid</span>(<span class="params">A</span>):</span><br><span class="line">            bal = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> A:</span><br><span class="line">                <span class="keyword">if</span> c == <span class="string">&#x27;(&#x27;</span>: bal += <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>: bal -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> bal &lt; <span class="number">0</span>: <span class="comment"># 合法字符串只可能出现差右括号的情况，不会差左括号 </span></span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">return</span> bal == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        ans = []</span><br><span class="line">        generate([])</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li><p>时间复杂度：<span
-class="math display">\[O(2^{2n}n)\]</span>，对于 <span
-class="math display">\[2^{2n}\]</span>
-个序列中的每一个，我们用于建立和验证该序列的复杂度为 <span
-class="math display">\[O(n)\]</span>。</p></li>
-<li><p>空间复杂度：<span
-class="math display">\[O(n)\]</span>，除了答案数组之外，我们所需要的空间取决于递归栈的深度，每一层递归函数需要
-<span class="math display">\[O(1)\]</span> 的空间，最多递归 <span
-class="math display">\[2n\]</span> 层，因此空间复杂度为 <span
-class="math display">\[O(n)\]</span>。</p></li>
+<li><p>时间复杂度：<span class="math display">\[O(2^{2n}n)\]</span>，对于 <span class="math display">\[2^{2n}\]</span>
+个序列中的每一个，我们用于建立和验证该序列的复杂度为 <span class="math display">\[O(n)\]</span>。</p></li>
+<li><p>空间复杂度：<span class="math display">\[O(n)\]</span>，除了答案数组之外，我们所需要的空间取决于递归栈的深度，每一层递归函数需要
+<span class="math display">\[O(1)\]</span> 的空间，最多递归 <span class="math display">\[2n\]</span> 层，因此空间复杂度为 <span class="math display">\[O(n)\]</span>。</p></li>
 </ul>
 <h3 id="approach-2-回溯法">Approach 2: 回溯法</h3>
 <p>方法一还有改进的余地：我们可以只在序列仍然保持有效时才添加 '(' or
@@ -946,18 +914,14 @@ n，我们可以放一个左括号。如果右括号数量小于左括号的数�
 <p>我们的复杂度分析依赖于理解 generateParenthesis(n)
 中有多少个元素。这个分析超出了本文的范畴，但事实证明这是第 n 个卡特兰数
 <span class="math display">\[\dfrac{1}{n+1}\dbinom{2n}{n}
-\]</span>，这是由 <span
-class="math display">\[\dfrac{4^n}{n\sqrt{n}}\]</span> 渐近界定的。</p>
+\]</span>，这是由 <span class="math display">\[\dfrac{4^n}{n\sqrt{n}}\]</span> 渐近界定的。</p>
 <ul>
-<li><p>时间复杂度：<span
-class="math display">\[O(\dfrac{4^n}{\sqrt{n}})\]</span>，在回溯过程中，每个答案需要
+<li><p>时间复杂度：<span class="math display">\[O(\dfrac{4^n}{\sqrt{n}})\]</span>，在回溯过程中，每个答案需要
 <span class="math display">\[O(n)\]</span>
 的时间复制到答案数组中。</p></li>
-<li><p>空间复杂度：<span
-class="math display">\[O(n)\]</span>，除了答案数组之外，我们所需要的空间取决于递归栈的深度，每一层递归函数需要
+<li><p>空间复杂度：<span class="math display">\[O(n)\]</span>，除了答案数组之外，我们所需要的空间取决于递归栈的深度，每一层递归函数需要
 <span class="math display">\[O(1)\]</span> 的空间，最多递归 2n
-层，因此空间复杂度为 <span
-class="math display">\[O(n)\]</span>。</p></li>
+层，因此空间复杂度为 <span class="math display">\[O(n)\]</span>。</p></li>
 </ul>
 <h3 id="approach-3-按括号序列的长度递归">Approach 3:
 按括号序列的长度递归</h3>
@@ -980,8 +944,7 @@ class="math display">\[O(n)\]</span>。</p></li>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">generateParenthesis3</span>(<span class="params">self, n: <span class="built_in">int</span></span>):</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> [<span class="string">&#x27;&#x27;</span>]</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">for</span> left <span class="keyword">in</span> self.generateParenthesis(c):</span><br><span class="line">                <span class="keyword">for</span> right <span class="keyword">in</span> self.generateParenthesis(n-<span class="number">1</span>-c):</span><br><span class="line">                    ans.append(<span class="string">&#x27;(&#123;&#125;)&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(left, right))</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li><p>时间复杂度：<span
-class="math display">\[O(\dfrac{4^n}{\sqrt{n}})\]</span>，该分析与
+<li><p>时间复杂度：<span class="math display">\[O(\dfrac{4^n}{\sqrt{n}})\]</span>，该分析与
 方法二 类似。</p></li>
 <li><p>空间复杂度：<span class="math display">\[
 O(\dfrac{4^n}{\sqrt{n}})\]</span>，此方法除答案数组外，中间过程中会存储与答案数组同样数量级的临时数组，是我们所需要的空间复杂度。</p></li>
@@ -1050,8 +1013,7 @@ O(\dfrac{4^n}{\sqrt{n}})\]</span>，此方法除答案数组外，中间过程�
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="最小路径和"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-path-sum/">64.
+          <h4 id="最小路径和"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-path-sum/">64.
 最小路径和</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -1080,23 +1042,12 @@ target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-pa
 <h3 id="approach-1-动态规划">Approach 1: 动态规划</h3>
 <p>由于路径的方向只能是向下或向右，因此网格的第一行的每个元素只能从左上角元素开始向右移动到达，网格的第一列的每个元素只能从左上角元素开始向下移动到达，此时的路径是唯一的，因此每个元素对应的最小路径和即为对应的路径上的数字总和。</p>
 <p>对于不在第一行和第一列的元素，可以从其上方相邻元素向下移动一步到达，或者从其左方相邻元素向右移动一步到达，元素对应的最小路径和等于其上方相邻元素与其左方相邻元素两者对应的最小路径和中的最小值加上当前元素的值。由于每个元素对应的最小路径和与其相邻元素对应的最小路径和有关，因此可以使用动态规划求解。</p>
-<p>创建二维数组 <span
-class="math display">\[dp\]</span>，与原始网格的大小相同，<span
-class="math display">\[dp[i][j]\]</span> 表示从左上角出发到 <span
-class="math display">\[(i,j)\]</span> 位置的最小路径和。显然，<span
-class="math display">\[dp[0][0]=grid[0][0]\]</span>。对于 <span
-class="math display">\[dp\]</span>
+<p>创建二维数组 <span class="math display">\[dp\]</span>，与原始网格的大小相同，<span class="math display">\[dp[i][j]\]</span> 表示从左上角出发到 <span class="math display">\[(i,j)\]</span> 位置的最小路径和。显然，<span class="math display">\[dp[0][0]=grid[0][0]\]</span>。对于 <span class="math display">\[dp\]</span>
 中的其余元素，通过以下状态转移方程计算元素值。</p>
 <ul>
-<li>当 <span class="math display">\[i&gt;0\]</span> 且 <span
-class="math display">\[j=0\]</span> 时，<span
-class="math display">\[\textit{dp}[i][0]=\textit{dp}[i-1][0]+\textit{grid}[i][0]\]</span>。</li>
-<li>当 <span class="math display">\[i=0\]</span> 且 <span
-class="math display">\[j&gt;0\]</span> 时，<span
-class="math display">\[\textit{dp}[0][j]=\textit{dp}[0][j-1]+\textit{grid}[0][j]\]</span>。</li>
-<li>当 <span class="math display">\[i&gt;0\]</span> 且 <span
-class="math display">\[j&gt;0\]</span> 时，<span
-class="math display">\[\textit{dp}[i][j]=\min(\textit{dp}[i-1][j],\textit{dp}[i][j-1])+\textit{grid}[i][j]\]</span>。</li>
+<li>当 <span class="math display">\[i&gt;0\]</span> 且 <span class="math display">\[j=0\]</span> 时，<span class="math display">\[\textit{dp}[i][0]=\textit{dp}[i-1][0]+\textit{grid}[i][0]\]</span>。</li>
+<li>当 <span class="math display">\[i=0\]</span> 且 <span class="math display">\[j&gt;0\]</span> 时，<span class="math display">\[\textit{dp}[0][j]=\textit{dp}[0][j-1]+\textit{grid}[0][j]\]</span>。</li>
+<li>当 <span class="math display">\[i&gt;0\]</span> 且 <span class="math display">\[j&gt;0\]</span> 时，<span class="math display">\[\textit{dp}[i][j]=\min(\textit{dp}[i-1][j],\textit{dp}[i][j-1])+\textit{grid}[i][j]\]</span>。</li>
 </ul>
 <p>最后得到 <span class="math display">\[\textit{dp}[m-1][n-1]\]</span>
 的值即为从网格左上角到网格右下角的最小路径和。</p>
@@ -1104,14 +1055,10 @@ class="math display">\[\textit{dp}[i][j]=\min(\textit{dp}[i-1][j],\textit{dp}[i]
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：<span class="math display">\[O(mn)\]</span>，其中 m 和 n
-分别是网格的行数和列数。需要对整个网格遍历一次，计算 <span
-class="math display">\[\textit{dp}\]</span> 的每个元素的值。</li>
+分别是网格的行数和列数。需要对整个网格遍历一次，计算 <span class="math display">\[\textit{dp}\]</span> 的每个元素的值。</li>
 <li>空间复杂度：<span class="math display">\[O(mn)\]</span>，其中 m 和 n
-分别是网格的行数和列数。创建一个二维数组 <span
-class="math display">\[dp\]</span>，和网格大小相同。
-空间复杂度可以优化，例如每次只存储上一行的 <span
-class="math display">\[dp\]</span> 值，则可以将空间复杂度优化到 <span
-class="math display">\[O(n)\]</span>。</li>
+分别是网格的行数和列数。创建一个二维数组 <span class="math display">\[dp\]</span>，和网格大小相同。
+空间复杂度可以优化，例如每次只存储上一行的 <span class="math display">\[dp\]</span> 值，则可以将空间复杂度优化到 <span class="math display">\[O(n)\]</span>。</li>
 </ul>
 
       

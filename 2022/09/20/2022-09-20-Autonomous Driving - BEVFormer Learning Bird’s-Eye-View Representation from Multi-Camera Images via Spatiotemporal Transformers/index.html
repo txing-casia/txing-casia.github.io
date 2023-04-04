@@ -27,11 +27,15 @@
 <meta property="og:site_name" content="Txing">
 <meta property="og:description" content="BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers 多相机3D检测的工作。提出了spatial cross-attention整合空间信息；提出了temporal self- attention整合历史BEV信息。 代码开源">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220920-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220922-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220922-2.png">
 <meta property="article:published_time" content="2022-09-19T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-03-25T01:54:15.019Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Autonomous Driving">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220920-1.png">
 
 <link rel="canonical" href="https://txing-casia.github.io/2022/09/20/2022-09-20-Autonomous%20Driving%20-%20BEVFormer%20Learning%20Bird%E2%80%99s-Eye-View%20Representation%20from%20Multi-Camera%20Images%20via%20Spatiotemporal%20Transformers/">
 
@@ -225,8 +229,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2
-id="bevformer-learning-birds-eye-view-representation-from-multi-camera-images-via-spatiotemporal-transformers">BEVFormer:
+        <h2 id="bevformer-learning-birds-eye-view-representation-from-multi-camera-images-via-spatiotemporal-transformers">BEVFormer:
 Learning Bird’s-Eye-View Representation from Multi-Camera Images via
 Spatiotemporal Transformers</h2>
 <p>多相机3D检测的工作。提出了spatial
@@ -236,9 +239,7 @@ attention整合历史BEV信息。</p>
 <h3 id="related-work">Related Work</h3>
 <p><strong>deformable attention mechanism:</strong></p>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220920-1.png"
-alt="deformable attention mechanism" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220920-1.png" alt="deformable attention mechanism">
 <figcaption aria-hidden="true">deformable attention
 mechanism</figcaption>
 </figure>
@@ -271,8 +272,7 @@ from history BEV, according to the BEV query.</p></li>
 </ul></li>
 </ul>
 <h4 id="bev-queries">BEV Queries</h4>
-<p>We predefine a group of grid-shaped learnable parameters <span
-class="math display">\[Q\in R^{H\times W \times C}\]</span> as the
+<p>We predefine a group of grid-shaped learnable parameters <span class="math display">\[Q\in R^{H\times W \times C}\]</span> as the
 queries of BEVFormer, where H, W are the spatial shape of the BEV plane.
 To be specific, the query <span class="math display">\[Q_p \in
 R^{1\times C}\]</span> located at <span class="math display">\[p = (x,
@@ -281,21 +281,16 @@ for the corresponding grid cell region in the BEV plane.</p>
 <h4 id="spatial-cross-attention">Spatial Cross-Attention</h4>
 <p>未来降低高昂的computational cost of vanilla multi-head attention
 [42]，本文采用了deformable attention
-[56]模型，这是一个资源高效的注意力层，其中每个BEV查询<span
-class="math display">\[Q^p\]</span>只与它在摄像机视图上感兴趣的区域交互。</p>
+[56]模型，这是一个资源高效的注意力层，其中每个BEV查询<span class="math display">\[Q^p\]</span>只与它在摄像机视图上感兴趣的区域交互。</p>
 <p>spatial cross-attention (SCA)</p>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220922-1.png"
-alt="spatial cross-attention" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220922-1.png" alt="spatial cross-attention">
 <figcaption aria-hidden="true">spatial cross-attention</figcaption>
 </figure>
 <h4 id="temporal-self-attention">Temporal Self-Attention</h4>
 <p>temporal self-attention (TSA) layer</p>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220922-2.png"
-alt="temporal self-attention" />
+<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220922-2.png" alt="temporal self-attention">
 <figcaption aria-hidden="true">temporal self-attention</figcaption>
 </figure>
 <h3 id="总结">总结</h3>

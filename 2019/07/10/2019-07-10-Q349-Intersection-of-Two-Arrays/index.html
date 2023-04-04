@@ -228,8 +228,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="intersection-of-two-arrays"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/peak-index-in-a-mountain-array/">Intersection
+        <h1 id="intersection-of-two-arrays"><a target="_blank" rel="noopener" href="https://leetcode.com/problems/peak-index-in-a-mountain-array/">Intersection
 of Two Arrays</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -275,16 +274,13 @@ or more boolean <code>True</code>s, followed by 1 or more boolean
 <code>True, True, True, False</code>.</p>
 <p>We can binary search over this array of comparisons, to find the
 largest index <code>i</code> such that <code>A[i] &lt; A[i+1]</code>.
-For more on <em>binary search</em>, see the <a
-target="_blank" rel="noopener" href="https://leetcode.com/explore/learn/card/binary-search/">LeetCode
+For more on <em>binary search</em>, see the <a target="_blank" rel="noopener" href="https://leetcode.com/explore/learn/card/binary-search/">LeetCode
 explore topic here.</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">intersection</span>(<span class="params">self, nums1, nums2</span>):</span><br><span class="line">        set1 = <span class="built_in">set</span>(nums1)</span><br><span class="line">        set2 = <span class="built_in">set</span>(nums2)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">list</span>(set2 &amp; set1)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums1 = [<span class="number">4</span>, <span class="number">9</span>, <span class="number">5</span>]</span><br><span class="line">    nums2 = [<span class="number">9</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">8</span>, <span class="number">4</span>]</span><br><span class="line">    solution=Solution().intersection(nums1,nums2)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <p><strong>Complexity Analysis</strong></p>
 <ul>
 <li>Time complexity : <span class="math display">\[\mathcal{O}(n +
-m)\]</span> in the average case and <span
-class="math display">\[\mathcal{O}(n \times m)\]</span> <a
-target="_blank" rel="noopener" href="https://wiki.python.org/moin/TimeComplexity#set">in the worst case
+m)\]</span> in the average case and <span class="math display">\[\mathcal{O}(n \times m)\]</span> <a target="_blank" rel="noopener" href="https://wiki.python.org/moin/TimeComplexity#set">in the worst case
 when load factor is high enough</a>.</li>
 <li>Space complexity : <span class="math display">\[\mathcal{O}(n +
 m)\]</span> in the worst case when all elements in the arrays are

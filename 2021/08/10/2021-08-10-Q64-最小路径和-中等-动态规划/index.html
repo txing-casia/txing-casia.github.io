@@ -228,8 +228,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="最小路径和"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-path-sum/">64.
+        <h4 id="最小路径和"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-path-sum/">64.
 最小路径和</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -258,23 +257,12 @@ target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-pa
 <h3 id="approach-1-动态规划">Approach 1: 动态规划</h3>
 <p>由于路径的方向只能是向下或向右，因此网格的第一行的每个元素只能从左上角元素开始向右移动到达，网格的第一列的每个元素只能从左上角元素开始向下移动到达，此时的路径是唯一的，因此每个元素对应的最小路径和即为对应的路径上的数字总和。</p>
 <p>对于不在第一行和第一列的元素，可以从其上方相邻元素向下移动一步到达，或者从其左方相邻元素向右移动一步到达，元素对应的最小路径和等于其上方相邻元素与其左方相邻元素两者对应的最小路径和中的最小值加上当前元素的值。由于每个元素对应的最小路径和与其相邻元素对应的最小路径和有关，因此可以使用动态规划求解。</p>
-<p>创建二维数组 <span
-class="math display">\[dp\]</span>，与原始网格的大小相同，<span
-class="math display">\[dp[i][j]\]</span> 表示从左上角出发到 <span
-class="math display">\[(i,j)\]</span> 位置的最小路径和。显然，<span
-class="math display">\[dp[0][0]=grid[0][0]\]</span>。对于 <span
-class="math display">\[dp\]</span>
+<p>创建二维数组 <span class="math display">\[dp\]</span>，与原始网格的大小相同，<span class="math display">\[dp[i][j]\]</span> 表示从左上角出发到 <span class="math display">\[(i,j)\]</span> 位置的最小路径和。显然，<span class="math display">\[dp[0][0]=grid[0][0]\]</span>。对于 <span class="math display">\[dp\]</span>
 中的其余元素，通过以下状态转移方程计算元素值。</p>
 <ul>
-<li>当 <span class="math display">\[i&gt;0\]</span> 且 <span
-class="math display">\[j=0\]</span> 时，<span
-class="math display">\[\textit{dp}[i][0]=\textit{dp}[i-1][0]+\textit{grid}[i][0]\]</span>。</li>
-<li>当 <span class="math display">\[i=0\]</span> 且 <span
-class="math display">\[j&gt;0\]</span> 时，<span
-class="math display">\[\textit{dp}[0][j]=\textit{dp}[0][j-1]+\textit{grid}[0][j]\]</span>。</li>
-<li>当 <span class="math display">\[i&gt;0\]</span> 且 <span
-class="math display">\[j&gt;0\]</span> 时，<span
-class="math display">\[\textit{dp}[i][j]=\min(\textit{dp}[i-1][j],\textit{dp}[i][j-1])+\textit{grid}[i][j]\]</span>。</li>
+<li>当 <span class="math display">\[i&gt;0\]</span> 且 <span class="math display">\[j=0\]</span> 时，<span class="math display">\[\textit{dp}[i][0]=\textit{dp}[i-1][0]+\textit{grid}[i][0]\]</span>。</li>
+<li>当 <span class="math display">\[i=0\]</span> 且 <span class="math display">\[j&gt;0\]</span> 时，<span class="math display">\[\textit{dp}[0][j]=\textit{dp}[0][j-1]+\textit{grid}[0][j]\]</span>。</li>
+<li>当 <span class="math display">\[i&gt;0\]</span> 且 <span class="math display">\[j&gt;0\]</span> 时，<span class="math display">\[\textit{dp}[i][j]=\min(\textit{dp}[i-1][j],\textit{dp}[i][j-1])+\textit{grid}[i][j]\]</span>。</li>
 </ul>
 <p>最后得到 <span class="math display">\[\textit{dp}[m-1][n-1]\]</span>
 的值即为从网格左上角到网格右下角的最小路径和。</p>
@@ -282,14 +270,10 @@ class="math display">\[\textit{dp}[i][j]=\min(\textit{dp}[i-1][j],\textit{dp}[i]
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：<span class="math display">\[O(mn)\]</span>，其中 m 和 n
-分别是网格的行数和列数。需要对整个网格遍历一次，计算 <span
-class="math display">\[\textit{dp}\]</span> 的每个元素的值。</li>
+分别是网格的行数和列数。需要对整个网格遍历一次，计算 <span class="math display">\[\textit{dp}\]</span> 的每个元素的值。</li>
 <li>空间复杂度：<span class="math display">\[O(mn)\]</span>，其中 m 和 n
-分别是网格的行数和列数。创建一个二维数组 <span
-class="math display">\[dp\]</span>，和网格大小相同。
-空间复杂度可以优化，例如每次只存储上一行的 <span
-class="math display">\[dp\]</span> 值，则可以将空间复杂度优化到 <span
-class="math display">\[O(n)\]</span>。</li>
+分别是网格的行数和列数。创建一个二维数组 <span class="math display">\[dp\]</span>，和网格大小相同。
+空间复杂度可以优化，例如每次只存储上一行的 <span class="math display">\[dp\]</span> 值，则可以将空间复杂度优化到 <span class="math display">\[O(n)\]</span>。</li>
 </ul>
 
     </div>

@@ -228,8 +228,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="统计全为-1-的正方形子矩阵"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/count-square-submatrices-with-all-ones/">1277.
+        <h4 id="统计全为-1-的正方形子矩阵"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/count-square-submatrices-with-all-ones/">1277.
 统计全为 1 的正方形子矩阵</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -257,8 +256,7 @@ target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/count-squa
 </ul>
 </blockquote>
 <h3 id="approach-1-动态规划">Approach 1: 动态规划</h3>
-<p>本题和 <a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximal-square/">221.
+<p>本题和 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximal-square/">221.
 最大正方形</a>非常类似，使用的方法也几乎相同。</p>
 <p>我们用 <code>f[i][j]</code> 表示以 <code>(i, j)</code>
 为右下角的正方形的最大边长，那么除此定义之外，<code>f[i][j] = x</code>
@@ -294,8 +292,7 @@ f[i - 1][j - 1] &gt;= f[i][j] - 1
 4，即：</p>
 <p><span class="math display">\[
 f[i][j] \geq \min(f[i][j−1],f[i−1][j],f[i−1][j−1])+1
-\]</span> 将其与上一个不等式联立，可以得到： <span
-class="math display">\[
+\]</span> 将其与上一个不等式联立，可以得到： <span class="math display">\[
 f[i][j]=\min(f[i][j−1],f[i−1][j],f[i−1][j−1])+1
 \]</span> 这样我们就得到了 <code>f[i][j]</code>
 的递推式。此外还要考虑边界（i = 0 或 j = 0）以及位置 <code>(i, j)</code>

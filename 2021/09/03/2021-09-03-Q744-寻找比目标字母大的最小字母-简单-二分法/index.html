@@ -228,8 +228,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="括号生成"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/generate-parentheses/">22.
+        <h4 id="括号生成"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/generate-parentheses/">22.
 括号生成</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -270,8 +269,7 @@ target，请你寻找在这一有序列表里比目标字母大的最小字母�
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">nextGreatestLetter2</span>(<span class="params">self, letters, target: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        L = <span class="number">0</span></span><br><span class="line">        R = <span class="built_in">len</span>(letters) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> L &lt;= R:</span><br><span class="line">            M = L + (R - L) // <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> letters[M] &lt;= target:</span><br><span class="line">                L = M + <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> letters[M] &gt; target:</span><br><span class="line">                R = M - <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> letters[L % <span class="built_in">len</span>(letters)]</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li>时间复杂度：<span class="math display">\[O(\log N)\]</span>。<span
-class="math display">\[N\]</span> 指的是 letters
+<li>时间复杂度：<span class="math display">\[O(\log N)\]</span>。<span class="math display">\[N\]</span> 指的是 letters
 的长度，我们只查看数组中的 <span class="math display">\[\log n\]</span>
 个元素。</li>
 <li>空间复杂度：<span class="math display">\[O(1)\]</span>。</li>

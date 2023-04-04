@@ -259,7 +259,7 @@ goals.</p></li>
 multifaceted categories</h4>
 <ul>
 <li>对环境刺激分类的能力是天生的或者是依赖经验学习到的experience-dependent
-learning<br />
+learning<br>
 </li>
 <li>Multifaceted
 categories不取决于单个例子和传感特征，而是使用集成的刺激特征（形状、颜色、声音）。与抽象规则类似，能用于处理新的情况，指导复杂的目标导向的行为</li>
@@ -294,7 +294,7 @@ rules</h5>
 <h5 id="abstract-response-strategies">4.4 Abstract response
 strategies</h5>
 <ul>
-<li>abstract response strategies<br />
+<li>abstract response strategies<br>
 </li>
 <li>working memory task（Sakai, K. &amp; Passingham, R. E. Prefrontal
 interactions reflect future task operations. Nat. Neurosci. 6, 75–81
@@ -311,25 +311,24 @@ recordings</h5>
 interventional studies</h5>
 <h5 id="stages-of-abstract-rule-development">4.8 Stages of abstract rule
 development</h5>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200924-1.png" /></p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200924-1.png"></p>
 <ul>
 <li><p><strong>Rule formation</strong></p>
 <ul>
 <li><p>纹状体调制：</p>
 <ul>
 <li>Bunge, S. A. &amp; Wallis, J. D. Neuroscience of RuleGuided Behavior
-(Oxford Univ. Press, 2008).<br />
+(Oxford Univ. Press, 2008).<br>
 </li>
 <li>Nieder, A. &amp; Dehaene, S. Representation of number in the brain.
-Annu. Rev. Neurosci. 32, 185–208 (2009).<br />
+Annu. Rev. Neurosci. 32, 185–208 (2009).<br>
 </li>
 <li>Sleezer, B. J., Castagno, M. D. &amp; Hayden, B. Y. Rule encoding in
 orbitofrontal cortex and striatum guides selection. J. Neurosci. 36,
 11223–11237 (2016).</li>
 <li>Sleezer, B. J. &amp; Hayden, B. Y. Differential contributions of
 ventral and dorsal striatum to early and late phases of cognitive set
-reconfiguration. J. Cogn. Neurosci. 28, 1849–1864 (2016).<br />
+reconfiguration. J. Cogn. Neurosci. 28, 1849–1864 (2016).<br>
 </li>
 <li>Cools, R., Clark, L. &amp; Robbins, T. W. Differential responses in
 human striatum and prefrontal cortex to changes in object and rule
@@ -430,8 +429,7 @@ Rev. Neurosci. 33, 203–219 (2010) ）</p></li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="merge-two-binary-trees"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-two-binary-trees/">Merge
+          <h1 id="merge-two-binary-trees"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-two-binary-trees/">Merge
 Two Binary Trees</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -453,11 +451,9 @@ nodes of both trees.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">mergeTrees</span>(<span class="params">self, t1: TreeNode, t2: TreeNode</span>) -&gt; TreeNode:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> t1:</span><br><span class="line">            <span class="keyword">return</span> t2</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> t2:</span><br><span class="line">            <span class="keyword">return</span> t1</span><br><span class="line"></span><br><span class="line">        merged = TreeNode(t1.val + t2.val)</span><br><span class="line">        merged.left = self.mergeTrees(t1.left, t2.left)</span><br><span class="line">        merged.right = self.mergeTrees(t1.right, t2.right)</span><br><span class="line">        <span class="keyword">return</span> merged</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li><p>时间复杂度：<span
-class="math display">\[O(\min(m,n))\]</span>，其中 m 和 n
+<li><p>时间复杂度：<span class="math display">\[O(\min(m,n))\]</span>，其中 m 和 n
 分别是两个二叉树的节点个数。对两个二叉树同时进行深度优先搜索，只有当两个二叉树中的对应节点都不为空时才会对该节点进行显性合并操作，因此被访问到的节点数不会超过较小的二叉树的节点数。</p></li>
-<li><p>空间复杂度：<span
-class="math display">\[O(\min(m,n))\]</span>，其中 m 和 n
+<li><p>空间复杂度：<span class="math display">\[O(\min(m,n))\]</span>，其中 m 和 n
 分别是两个二叉树的节点个数。空间复杂度取决于递归调用的层数，递归调用的层数不会超过较小的二叉树的最大高度，最坏情况下，二叉树的高度等于节点数。</p></li>
 </ul>
 <h2 id="approach-2-bfs">Approach 2: BFS</h2>
@@ -473,11 +469,9 @@ class="math display">\[O(\min(m,n))\]</span>，其中 m 和 n
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">mergeTrees</span>(<span class="params">self, t1: TreeNode, t2: TreeNode</span>) -&gt; TreeNode:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> t1:</span><br><span class="line">            <span class="keyword">return</span> t2</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> t2:</span><br><span class="line">            <span class="keyword">return</span> t1</span><br><span class="line">        </span><br><span class="line">        merged = TreeNode(t1.val + t2.val)</span><br><span class="line">        queue = collections.deque([merged])</span><br><span class="line">        queue1 = collections.deque([t1])</span><br><span class="line">        queue2 = collections.deque([t2])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> queue1 <span class="keyword">and</span> queue2:</span><br><span class="line">            node = queue.popleft()</span><br><span class="line">            node1 = queue1.popleft()</span><br><span class="line">            node2 = queue2.popleft()</span><br><span class="line">            left1, right1 = node1.left, node1.right</span><br><span class="line">            left2, right2 = node2.left, node2.right</span><br><span class="line">            <span class="keyword">if</span> left1 <span class="keyword">or</span> left2:</span><br><span class="line">                <span class="keyword">if</span> left1 <span class="keyword">and</span> left2:</span><br><span class="line">                    left = TreeNode(left1.val + left2.val)</span><br><span class="line">                    node.left = left</span><br><span class="line">                    queue.append(left)</span><br><span class="line">                    queue1.append(left1)</span><br><span class="line">                    queue2.append(left2)</span><br><span class="line">                <span class="keyword">elif</span> left1:</span><br><span class="line">                    node.left = left1</span><br><span class="line">                <span class="keyword">elif</span> left2:</span><br><span class="line">                    node.left = left2</span><br><span class="line">            <span class="keyword">if</span> right1 <span class="keyword">or</span> right2:</span><br><span class="line">                <span class="keyword">if</span> right1 <span class="keyword">and</span> right2:</span><br><span class="line">                    right = TreeNode(right1.val + right2.val)</span><br><span class="line">                    node.right = right</span><br><span class="line">                    queue.append(right)</span><br><span class="line">                    queue1.append(right1)</span><br><span class="line">                    queue2.append(right2)</span><br><span class="line">                <span class="keyword">elif</span> right1:</span><br><span class="line">                    node.right = right1</span><br><span class="line">                <span class="keyword">elif</span> right2:</span><br><span class="line">                    node.right = right2</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> merged</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li><p>时间复杂度：<span
-class="math display">\[O(\min(m,n))\]</span>，其中 m 和 n
+<li><p>时间复杂度：<span class="math display">\[O(\min(m,n))\]</span>，其中 m 和 n
 分别是两个二叉树的节点个数。对两个二叉树同时进行广度优先搜索，只有当两个二叉树中的对应节点都不为空时才会访问到该节点，因此被访问到的节点数不会超过较小的二叉树的节点数。</p></li>
-<li><p>空间复杂度：<span
-class="math display">\[O(\min(m,n))\]</span>，其中 m 和 n
+<li><p>空间复杂度：<span class="math display">\[O(\min(m,n))\]</span>，其中 m 和 n
 分别是两个二叉树的节点个数。空间复杂度取决于队列中的元素个数，队列中的元素个数不会超过较小的二叉树的节点数。</p></li>
 </ul>
 
@@ -544,8 +538,7 @@ class="math display">\[O(\min(m,n))\]</span>，其中 m 和 n
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1
-id="v-rep中设置完全可控的球状关节">V-rep中设置完全可控的球状关节</h1>
+          <h1 id="v-rep中设置完全可控的球状关节">V-rep中设置完全可控的球状关节</h1>
 <h2 id="背景">背景</h2>
 <p>V-rep这软件好是好，就是功能太单一，一切都是对照现有工业机器人的功能进行设计的。因此，软件中无法实现可控的球状关节。</p>
 <blockquote>
@@ -556,19 +549,16 @@ id="v-rep中设置完全可控的球状关节">V-rep中设置完全可控的球�
 <p>但真的就没有办法了吗？</p>
 <h3 id="plan-a-用小中介物体衔接">PLAN A: 用小中介物体衔接</h3>
 <p>该方法是利用三个分别平行于空间坐标轴的正交转动关节来构成球关节。尽管关节和关节之间不能直接连接，但我们可以设置比较小的中间介质来衔接不同的关节。</p>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200922-1.png" /></p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200922-1.png"></p>
 <p>关节的层级结构如下：</p>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200922-2.png" /></p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200922-2.png"></p>
 <p>下图中则是用两个球体衔接了3个关节，基本上实现了球关节的效果。准确地说是实现了一种“椭球”关节。</p>
 <p>但次方法还是存在缺点的。如果设置关节匀速转动会发现关节转动的角度和子物体转动的角度不一致（关节角度&gt;物体角度）。还容易造成关节中轴线的偏移等奇怪的情况。因此这个球关节只是“半可控”状态。</p>
 <h3 id="plan-b-修改中介物体属性">PLAN B: 修改中介物体属性</h3>
 <p>在后续的学习过程中逐渐接触到了关于物体属性的设置，其中有两项吸引力我的注意力。</p>
 <p>新建一个object，点开动力学设置，可以看到两个关键属性：Respondable 和
 Dynamic。</p>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200922-3.png" /></p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200922-3.png"></p>
 <p>其中：</p>
 <ul>
 <li>Respondable:
@@ -579,12 +569,10 @@ src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/
 <p>注意上面标黑的关键字，你是否想到了我想到的东西？</p>
 <p><strong>Step 1:</strong>
 首先依然是搭建三个正交的转动关节，只不过这一次不用留出中介物体的空隙了。</p>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200922-4.png" /></p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200922-4.png"></p>
 <p><strong>Step 2:</strong>
 可是这三个关节在功能上并没有连接上，现在我们添加中介物体。</p>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200922-5.png" /></p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200922-5.png"></p>
 <p>在分层视图中，将中介物体拖到平行于z轴的关节下，设置物体的动力学为<strong>is
 not Respondable</strong>, <strong>Body is Dynamic</strong></p>
 <p>这样物体就通过平行于z轴的关节实现了与父物体的连接，并可以实现水平旋转，接下来设置第二个中介物体。</p>
@@ -599,8 +587,7 @@ not Respondable</strong>, <strong>Body is Dynamic</strong>。</p>
 <p>第一个关节本质上是带动中介物1转动，由于中介物2挂在中介物1下方，尽管中介物2是不可响应的静态物体，但也会受到父物体转动的影响，这相当于基坐标发生了改变。所以中介物2会受到关节1的控制。</p>
 <p>但此时中介物2已经不能再被其它关节控制了。我们在介物2所在的空间位置建立中介物3，并用关节2连接中介物2和3，中介物3是直接受到关节2控制的，但也会受中介物2运动的影响。</p>
 <p>这样一来，我们就实现了一个复合关节，接下来重复step3，建立好第三个关节，并把连杆放在第三个关节下。</p>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200922-6.png" /></p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200922-6.png"></p>
 <p>这个关节中有4个中介物，并且是完全重合的，但由于设置了is not
 Respondable，因此不会受到碰撞的影响，而且还可以将这个关节放置在物体内部，也不会被排挤。</p>
 <p>至此，我们就完成了一个真正意义上的完全可控的球形关节！</p>
@@ -669,8 +656,7 @@ Respondable，因此不会受到碰撞的影响，而且还可以将这个关节
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="number-of-good-pairs"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-good-pairs/">Number of
+          <h1 id="number-of-good-pairs"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-good-pairs/">Number of
 Good Pairs</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -702,8 +688,7 @@ are good.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numIdenticalPairs</span>(<span class="params">self, nums</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        n=<span class="built_in">len</span>(nums)</span><br><span class="line">        ans=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>,n):</span><br><span class="line">                <span class="keyword">if</span> nums[i]==nums[j]:</span><br><span class="line">                    ans+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums =[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>]</span><br><span class="line">    solution=Solution().numIdenticalPairs(nums)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li><p>时间复杂度：<span
-class="math display">\[O(\frac{N(N+1)}{2})\]</span></p></li>
+<li><p>时间复杂度：<span class="math display">\[O(\frac{N(N+1)}{2})\]</span></p></li>
 <li><p>空间复杂度：O(1)</p></li>
 </ul>
 <h2 id="approach-2-组合计数">Approach 2: 组合计数</h2>
@@ -711,8 +696,7 @@ class="math display">\[O(\frac{N(N+1)}{2})\]</span></p></li>
 v，那么满足题目中所说的 <span class="math display">\[{\rm nums}[i] =
 {\rm nums}[j] = k(i &lt; j)\]</span> 的 <span class="math display">\[(i,
 j)\]</span> 的数量就是 <span class="math display">\[\frac{v(v - 1)}{2}
-\]</span>，即 k 这个数值对答案的贡献是 <span
-class="math display">\[\frac{v(v -
+\]</span>，即 k 这个数值对答案的贡献是 <span class="math display">\[\frac{v(v -
 1)}{2}\]</span>。我们只需要把所有数值的贡献相加，即可得到答案。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numIdenticalPairs</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        m = collections.Counter(nums)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(v * (v - <span class="number">1</span>) // <span class="number">2</span> <span class="keyword">for</span> k, v <span class="keyword">in</span> m.items())</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
@@ -784,8 +768,7 @@ class="math display">\[\frac{v(v -
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1
-id="principles-of-temporal-processing-across-the-cortical-hierarchy">Principles
+          <h1 id="principles-of-temporal-processing-across-the-cortical-hierarchy">Principles
 of Temporal Processing Across the Cortical Hierarchy</h1>
 <p>论文链接：https://www.sciencedirect.com/science/article/pii/S0306452218302951?via%3Dihub</p>
 <h2 id="背景">背景</h2>
@@ -816,8 +799,7 @@ representations</p></li>
 <li><p>方法：</p>
 <ul>
 <li>定义窗口宽度<span class="math display">\[\tau\]</span></li>
-<li>在<span
-class="math display">\[[t-\tau,t]\]</span>的时间内发生了激活，则输出激活信号。</li>
+<li>在<span class="math display">\[[t-\tau,t]\]</span>的时间内发生了激活，则输出激活信号。</li>
 </ul></li>
 <li><p>允许了精确的输入时间</p></li>
 <li><p>生物证据：神经元的兴奋通过突出调节，在数秒至数小时内累积并持续（Kukushkin
@@ -833,12 +815,7 @@ Acad Sci 104 (15):6424–642）</li>
 </ul>
 <p><span class="math display">\[
 R_j=\gamma \bigg(\frac{D^n_i}{\sigma^n+\sum_k D^n_k}\bigg)
-\]</span> 神经元<span class="math display">\[j\]</span>的响应 <span
-class="math display">\[R_j\]</span> ，<span
-class="math display">\[D_i\]</span> 是输入信号<span
-class="math display">\[\gamma\]</span>是乘法尺度系数，<span
-class="math display">\[\sigma\]</span>是形状系数，<span
-class="math display">\[n\]</span>决定了非线性的程度。这个公式是“winner-take-all”
+\]</span> 神经元<span class="math display">\[j\]</span>的响应 <span class="math display">\[R_j\]</span> ，<span class="math display">\[D_i\]</span> 是输入信号<span class="math display">\[\gamma\]</span>是乘法尺度系数，<span class="math display">\[\sigma\]</span>是形状系数，<span class="math display">\[n\]</span>决定了非线性的程度。这个公式是“winner-take-all”
 mechanism: all neuralu units will be normalized to zero, except the unit
 thatr eceives the largest input drive.</p>
 <ul>
@@ -946,8 +923,7 @@ approaches to motor control</h3>
 <li>控制通过一个controller或者policy</li>
 <li>图1提供了三种控制结构，</li>
 </ul>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200917-1.png" /></p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200917-1.png"></p>
 <ul>
 <li><p>生物：内部前向模型Internal forward models are used to predict the
 future consequences of
@@ -1027,11 +1003,11 @@ course。高层口农资器处理更全局的任务。代表工作：（前两�
 <li>Nachum, O., Gu, S., Lee, H. &amp; Levine, S. <strong>Near-optimal
 representation learning for hierarchical reinforcement
 learning</strong>. In International Conference on Learning
-Representations, 2019.<br />
+Representations, 2019.<br>
 </li>
 <li>Wayne, G. &amp; Abbott, L. F. Hierarchical control using networks
 trained with higher-level forward models. Neural Comput. 26, 2163–2193
-(2014)<br />
+(2014)<br>
 </li>
 <li>Vezhnevets, A. S. et al. Feudal networks for hierarchical
 reinforcement learning. In Proceedings of the 34th International
@@ -1063,7 +1039,7 @@ sensorimotor primitives in order to produce a learned low-level
 controller</p>
 <ul>
 <li>Todorov, E. <strong>Optimality principles in sensorimotor
-control</strong>. Nat. Neurosci. 7, 907 (2004).<br />
+control</strong>. Nat. Neurosci. 7, 907 (2004).<br>
 </li>
 <li>Todorov E. &amp; Ghahramani., Z. Unsupervised learning of
 sensory-motor primitives. In Proceedings of the 25th Annual
@@ -1084,8 +1060,7 @@ hierarchical motor control</h3>
 <li>神经系统在结构和功能和功能上都有分层（both anatomically and
 functionally hierarchical）</li>
 </ul>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200918-1.png" /></p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200918-1.png"></p>
 <h4 id="lower-level-movement-centers">4.1 “Lower-level” movement
 centers</h4>
 <ul>
@@ -1223,8 +1198,7 @@ Neurosci. 19, 758–770 (2018)</li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="permutations-ii"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/permutations-ii/">Permutations
+          <h1 id="permutations-ii"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/permutations-ii/">Permutations
 II</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -1253,13 +1227,9 @@ n!)\]</span></p>
 <span class="math display">\[\sum_{k = 1}^{n}{P(n, k)}\]</span>次，其中
 <span class="math display">\[P(n, k) = \frac{n!}{(n - k)!} = n (n - 1)
 ... (n - k + 1)\]</span>，该式被称作 n 的 k - 排列，或者部分排列</p>
-<p>这说明 backtrack 的调用次数是 <span
-class="math display">\[O(n!)\]</span>的。</p>
-<p>而对于 backtrack 调用的每个叶结点（最坏情况下没有重复数字共 <span
-class="math display">\[n!\]</span> 个），我们需要将当前答案使用 <span
-class="math display">\[O(n)\]</span>
-的时间复制到答案数组中，相乘得时间复杂度为 <span
-class="math display">\[O(n \times n!)\]</span>。</p></li>
+<p>这说明 backtrack 的调用次数是 <span class="math display">\[O(n!)\]</span>的。</p>
+<p>而对于 backtrack 调用的每个叶结点（最坏情况下没有重复数字共 <span class="math display">\[n!\]</span> 个），我们需要将当前答案使用 <span class="math display">\[O(n)\]</span>
+的时间复制到答案数组中，相乘得时间复杂度为 <span class="math display">\[O(n \times n!)\]</span>。</p></li>
 <li><p>空间复杂度：<span class="math display">\[O(n
 )\]</span>。递归的时候栈深度会达到
 O(n)<em>O</em>(<em>n</em>)，因此总空间复杂度为 O(n +
@@ -1329,8 +1299,7 @@ n)=O(2n)=O(n)<em>O</em>(<em>n</em>+<em>n</em>)=<em>O</em>(2<em>n</em>)=<em>O</em
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="shuffle-the-array"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shuffle-the-array/">Shuffle the
+          <h1 id="shuffle-the-array"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shuffle-the-array/">Shuffle the
 Array</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>

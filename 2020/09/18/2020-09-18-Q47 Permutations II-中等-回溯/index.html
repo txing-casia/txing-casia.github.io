@@ -228,8 +228,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="permutations-ii"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/permutations-ii/">Permutations
+        <h1 id="permutations-ii"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/permutations-ii/">Permutations
 II</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -258,13 +257,9 @@ n!)\]</span></p>
 <span class="math display">\[\sum_{k = 1}^{n}{P(n, k)}\]</span>次，其中
 <span class="math display">\[P(n, k) = \frac{n!}{(n - k)!} = n (n - 1)
 ... (n - k + 1)\]</span>，该式被称作 n 的 k - 排列，或者部分排列</p>
-<p>这说明 backtrack 的调用次数是 <span
-class="math display">\[O(n!)\]</span>的。</p>
-<p>而对于 backtrack 调用的每个叶结点（最坏情况下没有重复数字共 <span
-class="math display">\[n!\]</span> 个），我们需要将当前答案使用 <span
-class="math display">\[O(n)\]</span>
-的时间复制到答案数组中，相乘得时间复杂度为 <span
-class="math display">\[O(n \times n!)\]</span>。</p></li>
+<p>这说明 backtrack 的调用次数是 <span class="math display">\[O(n!)\]</span>的。</p>
+<p>而对于 backtrack 调用的每个叶结点（最坏情况下没有重复数字共 <span class="math display">\[n!\]</span> 个），我们需要将当前答案使用 <span class="math display">\[O(n)\]</span>
+的时间复制到答案数组中，相乘得时间复杂度为 <span class="math display">\[O(n \times n!)\]</span>。</p></li>
 <li><p>空间复杂度：<span class="math display">\[O(n
 )\]</span>。递归的时候栈深度会达到
 O(n)<em>O</em>(<em>n</em>)，因此总空间复杂度为 O(n +

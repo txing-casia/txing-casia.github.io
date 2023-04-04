@@ -228,8 +228,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="摆动序列"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/wiggle-subsequence/">376.
+        <h4 id="摆动序列"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/wiggle-subsequence/">376.
 摆动序列</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -267,18 +266,14 @@ target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/wiggle-sub
 </blockquote>
 <h3 id="approach-1-贪心">Approach 1: 贪心</h3>
 <p>一开始没看到可以删减元素，打算使用双循环，遍历每个元素作为开头的子序列，计算最长的摇摆子序列。但是跑例子2的时候处了问题。</p>
-<p>后来发现可以删除元素，所以考虑第二层循环里面不同加break了，可以继续计数，同时考虑了几个特殊情况，例如<span
-class="math display">\[[0,0,0]\]</span> 输出 1, <span
-class="math display">\[[1,2,3,4,5]\]</span> 输出 2 等。代码如下：</p>
+<p>后来发现可以删除元素，所以考虑第二层循环里面不同加break了，可以继续计数，同时考虑了几个特殊情况，例如<span class="math display">\[[0,0,0]\]</span> 输出 1, <span class="math display">\[[1,2,3,4,5]\]</span> 输出 2 等。代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wiggleMaxLength</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        N = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> N == <span class="number">1</span> <span class="keyword">or</span> (N == <span class="number">2</span> <span class="keyword">and</span> nums[<span class="number">0</span>] == nums[<span class="number">1</span>]):</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        ans = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,N-<span class="number">1</span>):</span><br><span class="line">            dif_old = nums[i] - nums[i-<span class="number">1</span>]</span><br><span class="line">            length = <span class="number">2</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>,N):</span><br><span class="line">                dif_new = nums[j] - nums[j-<span class="number">1</span>]</span><br><span class="line">                <span class="keyword">if</span> dif_old * dif_new &lt; <span class="number">0</span>:</span><br><span class="line">                    length += <span class="number">1</span></span><br><span class="line">                    ans = <span class="built_in">max</span>(length,ans) </span><br><span class="line">                    dif_old = dif_new</span><br><span class="line">                <span class="keyword">elif</span> dif_new != <span class="number">0</span>:</span><br><span class="line">                    ans = <span class="built_in">max</span>(length,ans) </span><br><span class="line">                    dif_old = dif_new</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
 <p>进一步补考虑，实际上由于删除机制，最长的子序列一定是从头开始计数的，所以可以去掉第一层循环，减小时间复杂度从O(n^2)到O(n)</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wiggleMaxLength</span>(<span class="params">self, nums</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        N = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> N == <span class="number">1</span> <span class="keyword">or</span> (N == <span class="number">2</span> <span class="keyword">and</span> nums[<span class="number">0</span>] == nums[<span class="number">1</span>]):</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        ans = <span class="number">1</span></span><br><span class="line">       </span><br><span class="line">        dif_old = nums[<span class="number">1</span>] - nums[<span class="number">0</span>]</span><br><span class="line">        length = <span class="number">2</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,N):</span><br><span class="line">            dif_new = nums[j] - nums[j-<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">if</span> dif_old * dif_new &lt; <span class="number">0</span>:</span><br><span class="line">                length += <span class="number">1</span></span><br><span class="line">                ans = <span class="built_in">max</span>(length,ans) </span><br><span class="line">                dif_old = dif_new</span><br><span class="line">            <span class="keyword">elif</span> dif_new != <span class="number">0</span>:</span><br><span class="line">                ans = <span class="built_in">max</span>(length,ans) </span><br><span class="line">                dif_old = dif_new</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li>时间复杂度：<span
-class="math display">\[O(N)\]</span>，N是序列长度。</li>
-<li>空间复杂度：<span
-class="math display">\[O(1)\]</span>。常数个变量。</li>
+<li>时间复杂度：<span class="math display">\[O(N)\]</span>，N是序列长度。</li>
+<li>空间复杂度：<span class="math display">\[O(1)\]</span>。常数个变量。</li>
 </ul>
 <h3 id="approach-2-动态规划">Approach 2: 动态规划</h3>
 <p>每当我们选择一个元素作为摆动序列的一部分时，这个元素要么是上升的，要么是下降的，这取决于前一个元素的大小。那么列出状态表达式为：</p>
@@ -292,22 +287,14 @@ class="math display">\[O(1)\]</span>。常数个变量。</li>
 <ul>
 <li>当 <span class="math display">\[\textit{nums}[i] \leq
 \textit{nums}[i - 1]\]</span>
-时，我们无法选出更长的「上升摆动序列」的方案。因为对于任何以 <span
-class="math display">\[\textit{nums}[i]\]</span>
-结尾的「上升摆动序列」，我们都可以将 <span
-class="math display">\[\textit{nums}[i]\]</span> 替换为 <span
-class="math display">\[\textit{nums}[i - 1]\]</span>，使其成为以 <span
-class="math display">\[\textit{nums}[i - 1]\]</span>
+时，我们无法选出更长的「上升摆动序列」的方案。因为对于任何以 <span class="math display">\[\textit{nums}[i]\]</span>
+结尾的「上升摆动序列」，我们都可以将 <span class="math display">\[\textit{nums}[i]\]</span> 替换为 <span class="math display">\[\textit{nums}[i - 1]\]</span>，使其成为以 <span class="math display">\[\textit{nums}[i - 1]\]</span>
 结尾的「上升摆动序列」。</li>
 <li>当 <span class="math display">\[\textit{nums}[i] &gt;
-\textit{nums}[i - 1]\]</span> 时，我们既可以从 <span
-class="math display">\[up[i - 1]\]</span> 进行转移，也可以从 <span
-class="math display">\[\textit{down}[i - 1]\]</span>
+\textit{nums}[i - 1]\]</span> 时，我们既可以从 <span class="math display">\[up[i - 1]\]</span> 进行转移，也可以从 <span class="math display">\[\textit{down}[i - 1]\]</span>
 进行转移。下面我们证明从 <span class="math display">\[\textit{down}[i -
-1]\]</span> 转移是必然合法的，即必然存在一个 <span
-class="math display">\[\textit{down}[i - 1]\]</span>
-对应的最长的「下降摆动序列」的末尾元素小于 <span
-class="math display">\[\textit{nums}[i]\]</span>。
+1]\]</span> 转移是必然合法的，即必然存在一个 <span class="math display">\[\textit{down}[i - 1]\]</span>
+对应的最长的「下降摆动序列」的末尾元素小于 <span class="math display">\[\textit{nums}[i]\]</span>。
 <ul>
 <li>我们记这个末尾元素在原序列中的下标为 j，假设从 j
 往前的第一个「谷」为 nums[k]，我们总可以让 j 移动到
@@ -351,17 +338,12 @@ max(up[i-1]+1,down[i-1]) &amp; nums[i]&lt;nums[i−1]
 <p><strong>思路及解法</strong></p>
 <p>注意到方法一中，我们仅需要前一个状态来进行转移，所以我们维护两个变量即可。这样我们可以写出如下的代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wiggleMaxLength</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> n</span><br><span class="line">        </span><br><span class="line">        up = down = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">if</span> nums[i] &gt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                up = <span class="built_in">max</span>(up, down + <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">elif</span> nums[i] &lt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                down = <span class="built_in">max</span>(up + <span class="number">1</span>, down)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(up, down)</span><br></pre></td></tr></table></figure>
-<p>注意到每有一个「峰」到「谷」的下降趋势，<span
-class="math display">\[\textit{down}\]</span>
-值才会增加，每有一个「谷」到「峰」的上升趋势，<span
-class="math display">\[\textit{up}\]</span> 值才会增加。且过程中 <span
-class="math display">\[\textit{down}\]</span> 与 <span
-class="math display">\[\textit{up}\]</span> 的差的绝对值值恒不大于 1，即
+<p>注意到每有一个「峰」到「谷」的下降趋势，<span class="math display">\[\textit{down}\]</span>
+值才会增加，每有一个「谷」到「峰」的上升趋势，<span class="math display">\[\textit{up}\]</span> 值才会增加。且过程中 <span class="math display">\[\textit{down}\]</span> 与 <span class="math display">\[\textit{up}\]</span> 的差的绝对值值恒不大于 1，即
 <span class="math display">\[\textit{up} \leq \textit{down} + 1\]</span>
 且 <span class="math display">\[\textit{down} \leq \textit{up} +
 1\]</span>，于是有 <span class="math display">\[\max(\textit{up},
-\textit{down} + 1) = \textit{down} + 1\]</span> 且 <span
-class="math display">\[\max(\textit{up} + 1, \textit{down}) =
+\textit{down} + 1) = \textit{down} + 1\]</span> 且 <span class="math display">\[\max(\textit{up} + 1, \textit{down}) =
 \textit{up} + 1\]</span>。这样我们可以省去不必要的比较大小的过程。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wiggleMaxLength</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> n</span><br><span class="line">        </span><br><span class="line">        up = down = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">if</span> nums[i] &gt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                up = down + <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> nums[i] &lt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                down = up + <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(up, down)</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>

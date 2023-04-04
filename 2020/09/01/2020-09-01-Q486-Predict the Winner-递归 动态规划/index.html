@@ -228,8 +228,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="predict-the-winner"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/predict-the-winner/">Predict the
+        <h1 id="predict-the-winner"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/predict-the-winner/">Predict the
 Winner</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -269,16 +268,11 @@ of both players are equal, then player 1 is still the winner.</p>
 <p>为了判断哪个玩家可以获胜，需要计算一个总分，为先手得分与后手得分之差。当数组中的所有数字都被拿取时，如果总分大于或等于
 0，则先手获胜，反之则后手获胜。</p>
 <p>由于每次只能从数组的任意一端拿取数字，因此可以保证数组中剩下的部分一定是连续的。假设数组当前剩下的部分为下标
-<span class="math display">\[\textit{start}\]</span> 到下标 <span
-class="math display">\[\textit{end}\]</span>，其中<span
-class="math display">\[ 0 \le \textit{start} \le \textit{end} &lt;
-\textit{nums}.\text{length}\]</span>。如果 <span
-class="math display">\[\textit{start}=\textit{end}\]</span>，则只剩一个数字，当前玩家只能拿取这个数字。如果
-<span
-class="math display">\[\textit{start}&lt;\textit{end}\]</span>，则当前玩家可以选择
+<span class="math display">\[\textit{start}\]</span> 到下标 <span class="math display">\[\textit{end}\]</span>，其中<span class="math display">\[ 0 \le \textit{start} \le \textit{end} &lt;
+\textit{nums}.\text{length}\]</span>。如果 <span class="math display">\[\textit{start}=\textit{end}\]</span>，则只剩一个数字，当前玩家只能拿取这个数字。如果
+<span class="math display">\[\textit{start}&lt;\textit{end}\]</span>，则当前玩家可以选择
 <span class="math display">\[\textit{nums}[\textit{start}]\]</span>或
-<span
-class="math display">\[\textit{nums}[\textit{end}]\]</span>，然后轮到另一个玩家在数组剩下的部分选取数字。这是一个递归的过程。</p>
+<span class="math display">\[\textit{nums}[\textit{end}]\]</span>，然后轮到另一个玩家在数组剩下的部分选取数字。这是一个递归的过程。</p>
 <p>计算总分时，需要记录当前玩家是先手还是后手，判断当前玩家的得分应该记为正还是负。当数组中剩下的数字多于
 1
 个时，当前玩家会选择最优的方案，使得自己的分数最大化，因此对两种方案分别计算当前玩家可以得到的分数，其中的最大值为当前玩家最多可以得到的分数。</p>
@@ -291,36 +285,24 @@ class="math display">\[\textit{nums}[\textit{end}]\]</span>，然后轮到另一
 </ul>
 <h2 id="approach-2-动态规划">Approach 2: 动态规划</h2>
 <p>方法一使用递归，存在大量重复计算，因此时间复杂度很高。由于存在重复子问题，因此可以使用动态规划降低时间复杂度。</p>
-<p>定义二维数组 <span
-class="math display">\[\textit{dp}\]</span>，其行数和列数都等于数组的长度，<span
-class="math display">\[\textit{dp}[i][j]\]</span>表示当数组剩下的部分为下标
+<p>定义二维数组 <span class="math display">\[\textit{dp}\]</span>，其行数和列数都等于数组的长度，<span class="math display">\[\textit{dp}[i][j]\]</span>表示当数组剩下的部分为下标
 i 到下标 j
 时，当前玩家与另一个玩家的分数之差的最大值，注意当前玩家不一定是先手。</p>
 <p>只有当 <span class="math display">\[i \le j\]</span>
-时，数组剩下的部分才有意义，因此当 <span
-class="math display">\[i&gt;j\]</span> 时，<span
-class="math display">\[\textit{dp}[i][j]=0\]</span>。</p>
+时，数组剩下的部分才有意义，因此当 <span class="math display">\[i&gt;j\]</span> 时，<span class="math display">\[\textit{dp}[i][j]=0\]</span>。</p>
 <p>当 <span class="math display">\[i=j\]</span>
-时，只剩一个数字，当前玩家只能拿取这个数字，因此对于所有 <span
-class="math display">\[0 \le i &lt;
-\textit{nums}.\text{length}\]</span>，都有 <span
-class="math display">\[\textit{dp}[i][i]=\textit{nums}[i]\]</span>。</p>
+时，只剩一个数字，当前玩家只能拿取这个数字，因此对于所有 <span class="math display">\[0 \le i &lt;
+\textit{nums}.\text{length}\]</span>，都有 <span class="math display">\[\textit{dp}[i][i]=\textit{nums}[i]\]</span>。</p>
 <p>当 <span class="math display">\[i&lt;j\]</span> 时，当前玩家可以选择
-<span class="math display">\[\textit{nums}[i]\]</span> 或 <span
-class="math display">\[\textit{nums}[j]\]</span>，然后轮到另一个玩家在数组剩下的部分选取数字。在两种方案中，当前玩家会选择最优的方案，使得自己的分数最大化。因此可以得到如下状态转移方程：</p>
+<span class="math display">\[\textit{nums}[i]\]</span> 或 <span class="math display">\[\textit{nums}[j]\]</span>，然后轮到另一个玩家在数组剩下的部分选取数字。在两种方案中，当前玩家会选择最优的方案，使得自己的分数最大化。因此可以得到如下状态转移方程：</p>
 <p><span class="math display">\[\textit{dp}[i][j]=\max(\textit{nums}[i]
 - \textit{dp}[i + 1][j], \textit{nums}[j] - \textit{dp}[i][j -
 1])\]</span></p>
-<p>最后判断 <span
-class="math display">\[\textit{dp}[0][\textit{nums}.\text{length}-1]\]</span>
+<p>最后判断 <span class="math display">\[\textit{dp}[0][\textit{nums}.\text{length}-1]\]</span>
 的值，如果大于或等于
 0，则先手得分大于或等于后手得分，因此先手成为赢家，否则后手成为赢家。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">PredictTheWinner_solution_2</span>(<span class="params">self, nums</span>):</span><br><span class="line">	length = <span class="built_in">len</span>(nums)</span><br><span class="line">    dp = [[<span class="number">0</span>] * length <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(length)]</span><br><span class="line">    <span class="keyword">for</span> i, num <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums):</span><br><span class="line">        dp[i][i] = num</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(length - <span class="number">2</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i + <span class="number">1</span>, length):</span><br><span class="line">        	dp[i][j] = <span class="built_in">max</span>(nums[i] - dp[i + <span class="number">1</span>][j], nums[j] - dp[i][j - <span class="number">1</span>])</span><br><span class="line">    <span class="keyword">return</span> dp[<span class="number">0</span>][length - <span class="number">1</span>] &gt;= <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<p>上述代码中使用了二维数组 <span
-class="math display">\[\textit{dp}\]</span>。分析状态转移方程可以看到，<span
-class="math display">\[\textit{dp}[i][j]\]</span> 的值只和 <span
-class="math display">\[\textit{dp}[i + 1][j]\]</span> 与 <span
-class="math display">\[\textit{dp}[i][j - 1]\]</span> 有关，即在计算
+<p>上述代码中使用了二维数组 <span class="math display">\[\textit{dp}\]</span>。分析状态转移方程可以看到，<span class="math display">\[\textit{dp}[i][j]\]</span> 的值只和 <span class="math display">\[\textit{dp}[i + 1][j]\]</span> 与 <span class="math display">\[\textit{dp}[i][j - 1]\]</span> 有关，即在计算
 <span class="math display">\[\textit{dp}\]</span> 的第 i
 行的值时，只需要使用到 <span class="math display">\[\textit{dp}\]</span>
 的第 i 行和第 i+1
@@ -328,22 +310,17 @@ class="math display">\[\textit{dp}[i][j - 1]\]</span> 有关，即在计算
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">PredictTheWinner_solution_2_1</span>(<span class="params">self, nums</span>):</span><br><span class="line">    length = <span class="built_in">len</span>(nums)</span><br><span class="line">    dp = [<span class="number">0</span>] * length</span><br><span class="line">    <span class="keyword">for</span> i, num <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums):</span><br><span class="line">        dp[i] = num</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(length - <span class="number">2</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i + <span class="number">1</span>, length):</span><br><span class="line">            dp[j] = <span class="built_in">max</span>(nums[i] - dp[j], nums[j] - dp[j - <span class="number">1</span>])</span><br><span class="line">    <span class="keyword">return</span> dp[length - <span class="number">1</span>] &gt;= <span class="number">0</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>时间复杂度：<span class="math display">\[O(n^2)\]</span>，其中 n
-是数组的长度。需要计算每个子数组对应的 <span
-class="math display">\[\textit{dp}\]</span> 的值，共有 <span
-class="math display">\[\frac{n(n+1)}{2} \]</span>个子数组。</p></li>
+是数组的长度。需要计算每个子数组对应的 <span class="math display">\[\textit{dp}\]</span> 的值，共有 <span class="math display">\[\frac{n(n+1)}{2} \]</span>个子数组。</p></li>
 <li><p>空间复杂度：<span class="math display">\[O(n)\]</span>，其中 n
-是数组的长度。空间复杂度取决于额外创建的数组 <span
-class="math display">\[\textit{dp}\]</span>，如果不优化空间，则空间复杂度是
-<span
-class="math display">\[O(n^2)\]</span>，使用一维数组优化之后空间复杂度可以降至
+是数组的长度。空间复杂度取决于额外创建的数组 <span class="math display">\[\textit{dp}\]</span>，如果不优化空间，则空间复杂度是
+<span class="math display">\[O(n^2)\]</span>，使用一维数组优化之后空间复杂度可以降至
 <span class="math display">\[O(n)\]</span>。</p></li>
 </ul>
 <p>for 循环使用 enumerate：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>seq = [<span class="string">&#x27;one&#x27;</span>, <span class="string">&#x27;two&#x27;</span>, <span class="string">&#x27;three&#x27;</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i, element <span class="keyword">in</span> <span class="built_in">enumerate</span>(seq):</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>    <span class="built_in">print</span> i, element</span><br><span class="line"></span><br><span class="line">output:</span><br><span class="line"><span class="number">0</span> one</span><br><span class="line"><span class="number">1</span> two</span><br><span class="line"><span class="number">2</span> three</span><br></pre></td></tr></table></figure>
 <h2 id="拓展练习">拓展练习</h2>
 <p>读者在做完这道题之后，可以做另一道类似的题：「877.
-石子游戏」。和这道题相比，<a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/stone-game/">第 877
+石子游戏」。和这道题相比，<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/stone-game/">第 877
 题</a>增加了两个限制条件：</p>
 <ul>
 <li><p>数组的长度是偶数；</p></li>

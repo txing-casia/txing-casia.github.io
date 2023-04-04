@@ -27,11 +27,13 @@
 <meta property="og:site_name" content="Txing">
 <meta property="og:description" content="Reservoir computing model of prefrontal cortex creates novel combinations of previous navigation sequences from hippocampal place-cell replay with spatial reward propagation 论文链接：https:&#x2F;&#x2F;journals.">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200925-1.png">
 <meta property="article:published_time" content="2020-09-27T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-03-25T01:54:14.975Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Neuroscience">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200925-1.png">
 
 <link rel="canonical" href="https://txing-casia.github.io/2020/09/28/2020-09-28-Neuroscience%20-%20Reservoir%20computing%20model%20of%20prefrontal%20cortex/">
 
@@ -225,8 +227,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1
-id="reservoir-computing-model-of-prefrontal-cortex-creates-novel-combinations-of-previous-navigation-sequences-from-hippocampal-place-cell-replay-with-spatial-reward-propagation">Reservoir
+        <h1 id="reservoir-computing-model-of-prefrontal-cortex-creates-novel-combinations-of-previous-navigation-sequences-from-hippocampal-place-cell-replay-with-spatial-reward-propagation">Reservoir
 computing model of prefrontal cortex creates novel combinations of
 previous navigation sequences from hippocampal place-cell replay with
 spatial reward propagation</h1>
@@ -242,7 +243,7 @@ credit assignment）</p>
 <li>Gupta AS, van der Meer MA, Touretzky DS, Redish AD. Hippocampal
 replay is not a simple function of experience. Neuron. 2010;
 65(5):695–705. https://doi.org/10.1016/j.neuron.2010.01.034 PMID:
-20223204.<br />
+20223204.<br>
 </li>
 <li>Liu K, Sibille J, Dragoi G. Generative Predictive Codes by
 Multiplexed Hippocampal Neuronal Tuplets. Neuron. 2018; 99(6):1329–41.
@@ -279,19 +280,12 @@ https://doi.org/10.1016/j.conb.2016.07.015 PMID: 27543753</li>
 <li>轨迹<span class="math display">\[L(t_1\rightarrow t_N)\]</span></li>
 <li>位置<span class="math display">\[S=(x,y)\]</span></li>
 <li>2D高斯位置场：<span class="math display">\[f_k(s)=e^{-\frac{\Vert
-s-c_k\Vert^2}{w_k}}\]</span> ，<span
-class="math display">\[k\]</span>是位置细胞序号，<span
-class="math display">\[f_k(s)\]</span>是第k个位置细胞的平均发放率，<span
-class="math display">\[w_k=\frac{r_k^2}{-\log(\Theta)}\]</span>是常数，用来约束位置神经元的最高激活大部分包含在以
-<span class="math display">\[$c_k\]</span>为中心，<span
-class="math display">\[r_k\]</span>为半径的圆中</li>
-<li><span class="math display">\[r_k\]</span>是第<span
-class="math display">\[k\]</span>个位置场的半径</li>
-<li><span
-class="math display">\[\Theta\]</span>是控制位置细胞空间选择半径阈值</li>
+s-c_k\Vert^2}{w_k}}\]</span> ，<span class="math display">\[k\]</span>是位置细胞序号，<span class="math display">\[f_k(s)\]</span>是第k个位置细胞的平均发放率，<span class="math display">\[w_k=\frac{r_k^2}{-\log(\Theta)}\]</span>是常数，用来约束位置神经元的最高激活大部分包含在以
+<span class="math display">\[$c_k\]</span>为中心，<span class="math display">\[r_k\]</span>为半径的圆中</li>
+<li><span class="math display">\[r_k\]</span>是第<span class="math display">\[k\]</span>个位置场的半径</li>
+<li><span class="math display">\[\Theta\]</span>是控制位置细胞空间选择半径阈值</li>
 </ul></li>
-<li>通过K个径向基函数来实现定位：<span
-class="math display">\[X_{in}(t_n)=\{f_k(L(t_n))\}_{k\in 1
+<li>通过K个径向基函数来实现定位：<span class="math display">\[X_{in}(t_n)=\{f_k(L(t_n))\}_{k\in 1
 \cdot\cdot\cdot K}\]</span></li>
 <li>place cell可以进一步调研，这个跟脑内GPS有关（还有grid cell, head
 direction cell）</li>
@@ -302,15 +296,14 @@ direction cell）</li>
 awake state: a potential substrate for memory consolidation and
 retrieval. Nature neuroscience. 2011; 14(2):147–53.
 https://doi.org/10.1038/nn. 2732 PMID: 21270783</p></li>
-<li><p>random replay generative model<br />
+<li><p>random replay generative model<br>
 </p></li>
 <li><p>a snippet <span class="math display">\[S(n;s)=X_{in}(t_n
 \rightarrow t_{n+s})\]</span></p></li>
 </ul>
 <h3 id="reward-propagation">Reward propagation</h3>
 <ul>
-<li>使用TD-<span
-class="math display">\[\lambda\]</span>算法更新预测奖励V</li>
+<li>使用TD-<span class="math display">\[\lambda\]</span>算法更新预测奖励V</li>
 </ul>
 <h3 id="snippet-generation-during-replay">Snippet generation during
 replay</h3>
@@ -324,8 +317,7 @@ t}=-P_{res}(t_{n-1})+U_{res}(t_n)\\
 P_{res}(t_n)=h*U_{res}(t_n)+(1-h)*P_{res}(t_{n-1})\\
 X_{res}(t_n)=\sigma_{res}(P_{res}(t_n);\Theta_{res}),\Theta_{res}=0,\sigma_{res}=\tanh
 \]</span></p>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200925-1.png" /></p>
+<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200925-1.png"></p>
 <h2 id="结论">结论</h2>
 <p>上丘脑到丘脑底部回路superior colliculus–subthalamus (SC–S) pathway
 是决定hunting的神经基础</p>
