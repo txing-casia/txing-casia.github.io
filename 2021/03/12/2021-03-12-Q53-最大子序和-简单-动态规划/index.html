@@ -228,7 +228,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="最大子序和"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-subarray/">53.
+        <h4 id="最大子序和"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-subarray/">53.
 最大子序和</a></h4>
 <p>本题和Q16是一样的</p>
 <h2 id="question">Question</h2>
@@ -252,7 +253,8 @@
 <li><code>-105 &lt;= nums[i] &lt;= 105</code></li>
 </ul>
 </blockquote>
-<p><strong>进阶：</strong>如果你已经实现复杂度为 <span class="math display">\[O(n)\]</span> 的解法，尝试使用更为精妙的
+<p><strong>进阶：</strong>如果你已经实现复杂度为 <span
+class="math display">\[O(n)\]</span> 的解法，尝试使用更为精妙的
 <strong>分治法</strong> 求解。</p>
 <h3 id="approach-1-动态规划">Approach 1: 动态规划</h3>
 <p>老规矩，动态规划问题第一步思考两个问题</p>
@@ -261,10 +263,14 @@
 <li><span class="math display">\[dp[i]\]</span>状态方程怎么更新；</li>
 </ul>
 <p>这里假设<span class="math display">\[dp[i]\]</span>表示以 i
-个元素结尾的子数组的最大和；<span class="math display">\[dp[i]\]</span>更新方式为： <span class="math display">\[
+个元素结尾的子数组的最大和；<span
+class="math display">\[dp[i]\]</span>更新方式为： <span
+class="math display">\[
 dp[i]=\max(dp[i-1]+A[i],A[i])\\
-\]</span> <span class="math display">\[dp[i-1]+A[i]\]</span>表示继续沿用上一次的子数组并更新为第
-i 处的子数组最大和。<span class="math display">\[A[i]\]</span>表示另起一个新组数组作为第 i
+\]</span> <span
+class="math display">\[dp[i-1]+A[i]\]</span>表示继续沿用上一次的子数组并更新为第
+i 处的子数组最大和。<span
+class="math display">\[A[i]\]</span>表示另起一个新组数组作为第 i
 处的子数组最大和。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">maxSubArray</span>(<span class="params">self, nums</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    n = <span class="built_in">len</span>(nums)</span><br><span class="line">    dp = [<span class="number">0</span>]*n</span><br><span class="line">    dp[<span class="number">0</span>] = nums[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,n):</span><br><span class="line">        dp[i] = <span class="built_in">max</span>(dp[i-<span class="number">1</span>] + nums[i], nums[i])</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">max</span>(dp)</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
@@ -281,7 +287,9 @@ i 个元素组成的子数组最大值，每一步都和新的dp比较大小并�
 <li>时间复杂度 O(N)： 线性遍历数组 nums</li>
 <li>空间复杂度 O(1)： 需要建立常数个变量</li>
 </ul>
-<p>方法1中需要建立一个长度为n的dp数组，使得空间复杂度为<span class="math display">\[O(n)\]</span>，实际上可以使用一个滚动数组的概念把空间复杂度降低到<span class="math display">\[O(1)\]</span>。即把dp[0 :
+<p>方法1中需要建立一个长度为n的dp数组，使得空间复杂度为<span
+class="math display">\[O(n)\]</span>，实际上可以使用一个滚动数组的概念把空间复杂度降低到<span
+class="math display">\[O(1)\]</span>。即把dp[0 :
 i-1]中最大的值赋值给一个变量，每次迭代都更新它，最后用这个变量输出结果。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">maxSubArray1</span>(<span class="params">self, nums</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    dp = <span class="number">0</span></span><br><span class="line">    maxA = nums[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">        dp = <span class="built_in">max</span>( nums[i], dp + nums[i])</span><br><span class="line">        maxA = <span class="built_in">max</span>( dp, maxA )</span><br><span class="line">    <span class="keyword">return</span> maxA</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>

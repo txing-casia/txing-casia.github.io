@@ -227,7 +227,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="toeplitz-matrix"><a target="_blank" rel="noopener" href="https://leetcode.com/problems/toeplitz-matrix/">Toeplitz
+        <h1 id="toeplitz-matrix"><a
+target="_blank" rel="noopener" href="https://leetcode.com/problems/toeplitz-matrix/">Toeplitz
 Matrix</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -258,7 +259,7 @@ diagonal "[1, 2]" has different elements.</p>
 <code>[0, 99]</code>.</li>
 </ul>
 </blockquote>
-<hr>
+<hr />
 <h3 id="approach-1-group-by-category">Approach 1: Group by Category</h3>
 <p><strong>Intuition and Algorithm</strong></p>
 <p>We ask what feature makes two coordinates <code>(r1, c1)</code> and
@@ -269,11 +270,12 @@ diagonal "[1, 2]" has different elements.</p>
 as <code>groups[r-c]</code>. If we see a mismatch, the matrix is not
 Toeplitz; otherwise it is.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isToeplitzMatrix</span>(<span class="params">self, matrix</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        groups = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> r, row <span class="keyword">in</span> <span class="built_in">enumerate</span>(matrix):</span><br><span class="line">            <span class="keyword">for</span> c, val <span class="keyword">in</span> <span class="built_in">enumerate</span>(row):</span><br><span class="line">                <span class="keyword">if</span> (r - c) <span class="keyword">not</span> <span class="keyword">in</span> groups: <span class="comment"># 行与列的差不在groups</span></span><br><span class="line">                    groups[r - c] = val</span><br><span class="line">                <span class="keyword">elif</span> groups[r - c] != val:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
-<hr>
+<hr />
 <h3 id="approach-2-compare-with-top-left-neighbor">Approach 2: Compare
 With Top-Left Neighbor</h3>
 <p><strong>Intuition and Algorithm</strong></p>
-<p>For each diagonal with elements in order <span class="math inline">\(a_1, a_2, a_3, \dots, a_k\)</span>, we can check
+<p>For each diagonal with elements in order <span
+class="math inline">\(a_1, a_2, a_3, \dots, a_k\)</span>, we can check
 <span class="math inline">\(a_1 = a_2, a_2 = a_3, \dots, a_{k-1} =
 a_k\)</span>. The matrix is <em>Toeplitz</em> if and only if all of
 these conditions are true for all (top-left to bottom-right)

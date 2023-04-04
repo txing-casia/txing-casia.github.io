@@ -228,7 +228,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="goat-latin"><a target="_blank" rel="noopener" href="https://leetcode.com/problems/goat-latin/">Goat Latin</a></h1>
+        <h1 id="goat-latin"><a
+target="_blank" rel="noopener" href="https://leetcode.com/problems/goat-latin/">Goat Latin</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
 <p>A sentence <code>S</code> is given, composed of words separated by
@@ -299,10 +300,12 @@ consider the word, otherwise we consider the rotation of the word
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">toGoatLatin</span>(<span class="params">self, S</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">convert</span>(<span class="params">word</span>):</span><br><span class="line">            <span class="keyword">if</span> word[<span class="number">0</span>] <span class="keyword">not</span> <span class="keyword">in</span> <span class="string">&#x27;aeiouAEIOU&#x27;</span>:</span><br><span class="line">                word = word[<span class="number">1</span>:] + word[:<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">return</span> word + <span class="string">&#x27;ma&#x27;</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot; &quot;</span>.join(convert(word) + <span class="string">&#x27;a&#x27;</span> * i</span><br><span class="line">                        <span class="keyword">for</span> i, word <span class="keyword">in</span> <span class="built_in">enumerate</span>(S.split(), <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
 <p><strong>Complexity Analysis</strong></p>
 <ul>
-<li><p>Time Complexity: <em>O</em>(<span class="math display">\[N^2​\]</span>), where <em>N</em> is the length of
+<li><p>Time Complexity: <em>O</em>(<span
+class="math display">\[N^2​\]</span>), where <em>N</em> is the length of
 <code>S</code>. This represents the complexity of rotating the word and
 adding extra <code>"a"</code> characters.</p></li>
-<li><p>Space Complexity: <em>O</em>(<span class="math display">\[N^2\]</span>), the space added to the answer by
+<li><p>Space Complexity: <em>O</em>(<span
+class="math display">\[N^2\]</span>), the space added to the answer by
 adding extra <code>"a"</code> characters.</p></li>
 <li><p>Runtime: 20 ms, faster than 71.17% of Python online submissions
 for Goat Latin.</p></li>

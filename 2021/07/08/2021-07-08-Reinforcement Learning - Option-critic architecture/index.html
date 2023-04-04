@@ -27,15 +27,12 @@
 <meta property="og:site_name" content="Txing">
 <meta property="og:description" content="Option-critic Architecture 论文链接：www.aaai.org&#x2F;ocs&#x2F;index.php&#x2F;AAAI&#x2F;AAAI17&#x2F;paper&#x2F;download&#x2F;14858&#x2F;14328 主要内容  分层强化学习自动学习时间抽象是很重要的 设计了基于策略梯度理论的option-critic方法来学习内部策略和option的终点约束。We derive policy gradie">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210709-1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210709-2.png">
 <meta property="article:published_time" content="2021-07-07T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-03-25T01:54:14.998Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Reinforcement Learning">
 <meta property="article:tag" content="HRL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210709-1.png">
 
 <link rel="canonical" href="https://txing-casia.github.io/2021/07/08/2021-07-08-Reinforcement%20Learning%20-%20Option-critic%20architecture/">
 
@@ -272,7 +269,8 @@ pseudo-reward functions if desired)</p></li>
 <h3 id="option-framework">Option Framework</h3>
 <ul>
 <li>option框架假设对于option <span class="math display">\[\omega\in
-\Omega\]</span> 由三元组 <span class="math display">\[(I_{\omega},\pi_{\omega},\beta_{\omega})\]</span>
+\Omega\]</span> 由三元组 <span
+class="math display">\[(I_{\omega},\pi_{\omega},\beta_{\omega})\]</span>
 组成。
 <ul>
 <li><span class="math display">\[I_{\omega} \subseteq S\]</span>
@@ -282,14 +280,18 @@ pseudo-reward functions if desired)</p></li>
 <li><span class="math display">\[\beta_{\omega}: S \rightarrow
 [0,1]\]</span> 是终止函数</li>
 </ul></li>
-<li>当使用option框架时， MDP就变成了Semi-MDP，它有相应的最优值函数<span class="math display">\[V_{\Omega}(s)\]</span> 和option-value函数 <span class="math display">\[Q_{\Omega}(s,\omega)\]</span>
-。所谓的Semi-MDP就是指从状态s到下一个状态s‘要经过 <span class="math display">\[\tau\]</span>
+<li>当使用option框架时， MDP就变成了Semi-MDP，它有相应的最优值函数<span
+class="math display">\[V_{\Omega}(s)\]</span> 和option-value函数 <span
+class="math display">\[Q_{\Omega}(s,\omega)\]</span>
+。所谓的Semi-MDP就是指从状态s到下一个状态s‘要经过 <span
+class="math display">\[\tau\]</span>
 步的MDP，大致就是状态之间存在时间上的不连续。</li>
 <li>通过一些针对MDP的算法实现多个option并行地学习，这就是
 <strong>intra-option learning</strong> 的主要思路</li>
 <li>接下来就是要实现两个关键任务：learning <strong>option
 policies</strong> and <strong>termination functions</strong></li>
-<li>算法流程：一个外部的策略 <span class="math display">\[\pi_{\Omega}\]</span> 选择option来执行控制，
+<li>算法流程：一个外部的策略 <span
+class="math display">\[\pi_{\Omega}\]</span> 选择option来执行控制，
 intra-option policy <span class="math display">\[\pi_{\omega}\]</span>
 开始执行，直到终点（用终点函数来判断停止执行）</li>
 <li>定义option-value function can be written as:</li>
@@ -316,7 +318,8 @@ U(\omega,s&#39;)=(1-\beta_{\omega,\vartheta}(s&#39;))Q_{\Omega}(s&#39;,\omega)+\
 \]</span></p>
 <p>如果option <span class="math display">\[\omega_t\]</span> 在时刻 t
 被初始化并被执行，此时状态为 <span class="math display">\[s_t\]</span>
-，然后在1步之后，状态转移到 <span class="math display">\[(s_{t+1},\omega_{t+1})\]</span> 的概率是：</p>
+，然后在1步之后，状态转移到 <span
+class="math display">\[(s_{t+1},\omega_{t+1})\]</span> 的概率是：</p>
 <p><span class="math display">\[
 P(s_{t+1},\omega_{t+1} \mid s_t,\omega_t)=\sum_a
 \pi_{\omega_t,\theta}(a|s_t)P(s_{t+1} \mid s_t,a)\\
@@ -325,7 +328,8 @@ P(s_{t+1},\omega_{t+1} \mid s_t,\omega_t)=\sum_a
 \]</span></p>
 <p>显然，给出计算过程是均匀的。在温和的条件下，由于选项到处可用，它实际上是遍历的，并且在
 state-option 对上存在唯一的平稳分布。</p>
-<p>接下来计算期望累积回报关于intra-option策略的参数 <span class="math display">\[\theta\]</span>
+<p>接下来计算期望累积回报关于intra-option策略的参数 <span
+class="math display">\[\theta\]</span>
 的梯度，假设它是随机的可微分的，我们得到</p>
 <p><span class="math display">\[
 \frac{\partial Q_{\Omega}(s,\omega)}{\partial \theta}=\Bigg(\sum_a
@@ -336,8 +340,11 @@ P(s&#39;|s,a)\frac{\partial U(\omega,s&#39;)}{\partial \theta}
 \]</span></p>
 <p><strong>Theorem 1</strong> (<strong>Intra-Option Policy Gradient
 Theorem</strong>). Given a set of Markov options with stochastic
-intra-option policies differentiable in their parameters <span class="math display">\[\theta\]</span>, the gradient of the expected
-discounted return with respect to <span class="math display">\[\theta\]</span> and initial condition <span class="math display">\[(s_0,\omega_0)\]</span> is:</p>
+intra-option policies differentiable in their parameters <span
+class="math display">\[\theta\]</span>, the gradient of the expected
+discounted return with respect to <span
+class="math display">\[\theta\]</span> and initial condition <span
+class="math display">\[(s_0,\omega_0)\]</span> is:</p>
 <p><span class="math display">\[
 \sum_{s,\omega} \mu_{\Omega}(s,\omega \mid s_0,\omega_0)\sum_a
 \frac{\partial \pi_{\omega,\theta}(a \mid s)}{\partial \theta}
@@ -349,7 +356,8 @@ Q_U(s,\omega,a)
 \mu_{\Omega}(s,\omega \mid s_0,\omega_0)=\sum_{t=0}^{\infty}\gamma^t
 P(s_t=s,\omega_t=\omega \mid s_0,\omega_0)
 \]</span></p>
-<p>下面计算终点函数的梯度，假设时间是随机化的并且可微的关于参数 <span class="math display">\[\vartheta\]</span></p>
+<p>下面计算终点函数的梯度，假设时间是随机化的并且可微的关于参数 <span
+class="math display">\[\vartheta\]</span></p>
 <p><span class="math display">\[
 \frac{\partial Q_{\Omega}(s,\omega)}{\partial \vartheta} = \sum_a
 \pi_{\omega,\theta}(a \mid s)\sum_{s&#39;}\gamma P(s&#39; \mid s,a)
@@ -371,8 +379,10 @@ U(\omega&#39;,s&#39;&#39;)}{\partial \vartheta}
 = Q_{\Omega}(s&#39;,\omega)-V_{\Omega}(s&#39;)\]</span> .</p>
 <p><strong>Theorem 2</strong> (<strong>Termination Gradient
 Theorem</strong>). Given a set of Markov options with stochastic
-termination functions differentiable in their parameters <span class="math display">\[\vartheta\]</span>, the gradient of the expected
-discounted return objective with respect to <span class="math display">\[\vartheta\]</span> and the initial condition
+termination functions differentiable in their parameters <span
+class="math display">\[\vartheta\]</span>, the gradient of the expected
+discounted return objective with respect to <span
+class="math display">\[\vartheta\]</span> and the initial condition
 <span class="math display">\[(s_1, \omega_0)\]</span> is:</p>
 <p><span class="math display">\[
 -\sum_{s&#39;,\omega}\mu_{\Omega}(s&#39;,\omega \mid
@@ -380,7 +390,8 @@ s_1,\omega_0)\frac{\partial \beta_{\omega,\vartheta}(s&#39;)}{\partial
 \vartheta}A_{\Omega}(s&#39;,\omega)
 \]</span></p>
 <p>其中 <span class="math display">\[\mu_{\Omega}(s&#39;,\omega \mid
-s_1,\omega_0)\]</span> 是状态-选项对 <span class="math display">\[(s_1,\omega_0)\]</span> 的折扣权重</p>
+s_1,\omega_0)\]</span> 是状态-选项对 <span
+class="math display">\[(s_1,\omega_0)\]</span> 的折扣权重</p>
 <p><span class="math display">\[
 \mu_{\Omega}(s,\omega \mid s_1,\omega_0)=\sum_{t=0}^{\infty} \gamma^t
 P(s_{t+1}=s,\omega_t=\omega|s_1,\omega_0)
@@ -389,14 +400,18 @@ P(s_{t+1}=s,\omega_t=\omega|s_1,\omega_0)
 <li>算法结构：</li>
 </ul>
 <figure>
-<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210709-1.png" alt="算法结构">
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210709-1.png"
+alt="算法结构" />
 <figcaption aria-hidden="true">算法结构</figcaption>
 </figure>
 <ul>
 <li>算法伪代码：</li>
 </ul>
 <figure>
-<img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210709-2.png" alt="算法伪代码">
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210709-2.png"
+alt="算法伪代码" />
 <figcaption aria-hidden="true">算法伪代码</figcaption>
 </figure>
 <ul>

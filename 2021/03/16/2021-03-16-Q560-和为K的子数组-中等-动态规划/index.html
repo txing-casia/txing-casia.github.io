@@ -228,7 +228,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="和为k的子数组"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/subarray-sum-equals-k/">560.
+        <h4 id="和为k的子数组"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/subarray-sum-equals-k/">560.
 和为K的子数组</a></h4>
 <p>类似题目：Q1546-和为目标值的最大数目不重叠非空子数组数目</p>
 <h2 id="question">Question</h2>
@@ -258,17 +259,26 @@
 里所有的下标 j
 来判断是否符合条件，可能有读者会认为假定我们确定了子数组的开头和结尾，还需要
 <span class="math display">\[O(n)\]</span>
-的时间复杂度遍历子数组来求和，那样复杂度就将达到 <span class="math display">\[O(n^3)\]</span>
-从而无法通过所有测试用例。但是如果我们知道 <span class="math display">\[[j,i]\]</span> 子数组的和，就能 <span class="math display">\[O(1)\]</span> 推出 <span class="math display">\[[j-1,i]\]</span>
+的时间复杂度遍历子数组来求和，那样复杂度就将达到 <span
+class="math display">\[O(n^3)\]</span>
+从而无法通过所有测试用例。但是如果我们知道 <span
+class="math display">\[[j,i]\]</span> 子数组的和，就能 <span
+class="math display">\[O(1)\]</span> 推出 <span
+class="math display">\[[j-1,i]\]</span>
 的和，因此这部分的遍历求和是不需要的，我们在枚举下标 j 的时候已经能
-<span class="math display">\[O(1)\]</span> 求出 <span class="math display">\[[j,i]\]</span> 的子数组之和。</p>
+<span class="math display">\[O(1)\]</span> 求出 <span
+class="math display">\[[j,i]\]</span> 的子数组之和。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">subarraySum</span>(<span class="params">self, nums, k</span>):</span><br><span class="line">        count=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> start <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">            <span class="built_in">sum</span>=<span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> end <span class="keyword">in</span> <span class="built_in">range</span>(start,-<span class="number">1</span>,-<span class="number">1</span>):</span><br><span class="line">                <span class="built_in">sum</span>+=nums[end]</span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">sum</span> == k:</span><br><span class="line">                    count+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> count</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums = [-<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">2</span>,-<span class="number">9</span>]</span><br><span class="line">    target = <span class="number">6</span></span><br><span class="line">    solution=Solution().subarraySum(nums,target)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li><p><strong>时间复杂度</strong>：<span class="math display">\[O(n^2)\]</span>，其中 n
-为数组的长度。枚举子数组开头和结尾需要 <span class="math display">\[O(n^2)\]</span>的时间，其中求和需要 <span class="math display">\[O(1)\]</span> 的时间复杂度，因此总时间复杂度为
+<li><p><strong>时间复杂度</strong>：<span
+class="math display">\[O(n^2)\]</span>，其中 n
+为数组的长度。枚举子数组开头和结尾需要 <span
+class="math display">\[O(n^2)\]</span>的时间，其中求和需要 <span
+class="math display">\[O(1)\]</span> 的时间复杂度，因此总时间复杂度为
 <span class="math display">\[O(n^2)\]</span>。</p></li>
-<li><p><strong>空间复杂度</strong>：<span class="math display">\[O(1)\]</span>。只需要常数空间存放若干变量。</p></li>
+<li><p><strong>空间复杂度</strong>：<span
+class="math display">\[O(1)\]</span>。只需要常数空间存放若干变量。</p></li>
 </ul>
 <h3 id="approach-2-前缀和-哈希表优化">Approach 2: 前缀和 +
 哈希表优化</h3>
@@ -276,33 +286,50 @@
 i，我们需要枚举所有的 j
 来判断是否符合条件，这一步是否可以优化呢？答案是可以的。</p>
 <p>我们定义 <span class="math display">\[\textit{pre}[i]\]</span> 为
-<span class="math display">\[[0..i]\]</span> 里所有数的和，则 <span class="math display">\[\textit{pre}[i]\]</span> 可以由 <span class="math display">\[\textit{pre}[i-1]\]</span> 递推而来，即：</p>
+<span class="math display">\[[0..i]\]</span> 里所有数的和，则 <span
+class="math display">\[\textit{pre}[i]\]</span> 可以由 <span
+class="math display">\[\textit{pre}[i-1]\]</span> 递推而来，即：</p>
 <p><span class="math display">\[
 pre[i]=pre[i-1]+nums[i]
 \]</span> 那么「<span class="math display">\[[j..i]\]</span>
-这个子数组和为 <em>k</em> 」这个条件我们可以转化为 <span class="math display">\[
+这个子数组和为 <em>k</em> 」这个条件我们可以转化为 <span
+class="math display">\[
 pre[j-1]==pre[i]-k
 \]</span> 所以我们考虑以 i 结尾的和为 k
-的连续子数组个数时只要统计有多少个前缀和为 <span class="math display">\[\textit{pre}[i]-k\]</span> 的 <span class="math display">\[\textit{pre}[j]\]</span> 即可。我们建立哈希表
-<span class="math display">\[\textit{mp}\]</span>，以和为键，出现次数为对应的值，记录
+的连续子数组个数时只要统计有多少个前缀和为 <span
+class="math display">\[\textit{pre}[i]-k\]</span> 的 <span
+class="math display">\[\textit{pre}[j]\]</span> 即可。我们建立哈希表
+<span
+class="math display">\[\textit{mp}\]</span>，以和为键，出现次数为对应的值，记录
 <span class="math display">\[\textit{pre}[i]\]</span>
-出现的次数，从左往右边更新 <span class="math display">\[\textit{mp}\]</span> 边计算答案，那么以 i
-结尾的答案 <span class="math display">\[\textit{mp}[\textit{pre}[i]-k]\]</span> 即可在
+出现的次数，从左往右边更新 <span
+class="math display">\[\textit{mp}\]</span> 边计算答案，那么以 i
+结尾的答案 <span
+class="math display">\[\textit{mp}[\textit{pre}[i]-k]\]</span> 即可在
 <span class="math display">\[O(1)\]</span>
 时间内得到。最后的答案即为所有下标结尾的和为 k 的子数组个数之和。</p>
-<p>需要注意的是，从左往右边更新边计算的时候已经保证了<span class="math display">\[\textit{mp}[\textit{pre}[i]-k]\]</span>
+<p>需要注意的是，从左往右边更新边计算的时候已经保证了<span
+class="math display">\[\textit{mp}[\textit{pre}[i]-k]\]</span>
 里记录的<span class="math display">\[ \textit{pre}[j]\]</span>
 的下标范围是 <span class="math display">\[0\leq j\leq i\]</span>
 。同时，由于<span class="math display">\[\textit{pre}[i]\]</span>
-的计算只与前一项的答案有关，因此我们可以不用建立 <span class="math display">\[\textit{pre}\]</span> 数组，直接用 <span class="math display">\[\textit{pre}\]</span> 变量来记录 <span class="math display">\[pre[i-1]\]</span> 的答案即可。</p>
+的计算只与前一项的答案有关，因此我们可以不用建立 <span
+class="math display">\[\textit{pre}\]</span> 数组，直接用 <span
+class="math display">\[\textit{pre}\]</span> 变量来记录 <span
+class="math display">\[pre[i-1]\]</span> 的答案即可。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">subarraySum1</span>(<span class="params">self, nums, k</span>):</span><br><span class="line">        mp = &#123;<span class="number">0</span>: <span class="number">1</span>&#125;</span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        pre = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> nums:</span><br><span class="line">            pre+=x</span><br><span class="line">            <span class="keyword">if</span> (pre - k) <span class="keyword">in</span> mp:</span><br><span class="line">                count += mp[pre - k]</span><br><span class="line">            <span class="keyword">if</span> pre <span class="keyword">in</span> mp:</span><br><span class="line">                mp[pre] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                mp[pre] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> count</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums = [-<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">2</span>,-<span class="number">9</span>]</span><br><span class="line">    target = <span class="number">6</span></span><br><span class="line">    solution=Solution().subarraySum1(nums,target)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li><p><strong>时间复杂度</strong>：<span class="math display">\[O(n)\]</span>，其中 n
-为数组的长度。我们遍历数组的时间复杂度为 <span class="math display">\[O(n)\]</span>，中间利用哈希表查询删除的复杂度均为
-<span class="math display">\[O(1)\]</span>，因此总时间复杂度为 <span class="math display">\[O(n)\]</span>。</p></li>
-<li><p><strong>空间复杂度</strong>：<span class="math display">\[O(n)\]</span>，其中 n
-为数组的长度。哈希表在最坏情况下可能有 n 个不同的键值，因此需要 <span class="math display">\[O(n)\]</span> 的空间复杂度。</p></li>
+<li><p><strong>时间复杂度</strong>：<span
+class="math display">\[O(n)\]</span>，其中 n
+为数组的长度。我们遍历数组的时间复杂度为 <span
+class="math display">\[O(n)\]</span>，中间利用哈希表查询删除的复杂度均为
+<span class="math display">\[O(1)\]</span>，因此总时间复杂度为 <span
+class="math display">\[O(n)\]</span>。</p></li>
+<li><p><strong>空间复杂度</strong>：<span
+class="math display">\[O(n)\]</span>，其中 n
+为数组的长度。哈希表在最坏情况下可能有 n 个不同的键值，因此需要 <span
+class="math display">\[O(n)\]</span> 的空间复杂度。</p></li>
 </ul>
 
     </div>

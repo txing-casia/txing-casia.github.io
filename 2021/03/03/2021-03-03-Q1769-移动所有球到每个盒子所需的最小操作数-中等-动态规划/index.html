@@ -228,7 +228,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="移动所有球到每个盒子所需的最小操作数"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-number-of-operations-to-move-all-balls-to-each-box/">1769.
+        <h4 id="移动所有球到每个盒子所需的最小操作数"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-number-of-operations-to-move-all-balls-to-each-box/">1769.
 移动所有球到每个盒子所需的最小操作数</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -271,8 +272,10 @@ i 个盒子所需的 最小 操作数。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minOperations</span>(<span class="params">self, boxes: <span class="built_in">str</span></span>):</span><br><span class="line">            stepnum = <span class="built_in">len</span>(boxes)</span><br><span class="line">            <span class="comment"># 浅拷贝创建二维数组，在赋值的时候，内存都指向同一位置，在赋值时会有问题</span></span><br><span class="line">            <span class="comment"># steps = [[0]*stepnum]*stepnum </span></span><br><span class="line">            <span class="comment"># 创建二维数组的正确方式</span></span><br><span class="line">            steps = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(stepnum)] <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(stepnum)]</span><br><span class="line">            ans=[]</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(stepnum): </span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(stepnum):</span><br><span class="line">                    <span class="keyword">if</span> boxes[j] == <span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">                        steps[i][j] = <span class="built_in">abs</span>(j-i)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(stepnum):</span><br><span class="line">                ans.append( <span class="built_in">sum</span>(steps[i][:]) ) </span><br><span class="line">            <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">        s = <span class="string">&quot;codeleet&quot;</span></span><br><span class="line">        boxes = <span class="string">&quot;110&quot;</span></span><br><span class="line">        solution=Solution().minOperations(boxes)</span><br><span class="line">        <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">        main()</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li>时间复杂度：<span class="math display">\[O(n^2)\]</span>，n是盒子个数，需要有两重循环，在每个盒子都有球的情况下，计算量最大达到这个复杂度。空盒子可以减少复杂度。</li>
-<li>空间复杂度：<span class="math display">\[O(n^2)\]</span>，申请一个长度为nxn的数组。</li>
+<li>时间复杂度：<span
+class="math display">\[O(n^2)\]</span>，n是盒子个数，需要有两重循环，在每个盒子都有球的情况下，计算量最大达到这个复杂度。空盒子可以减少复杂度。</li>
+<li>空间复杂度：<span
+class="math display">\[O(n^2)\]</span>，申请一个长度为nxn的数组。</li>
 </ul>
 <h2 id="approach-2-动态规划">Approach 2: 动态规划</h2>
 <p>方法2很取巧，利用一个for循环先统计第一个box右边有球盒子的个数。并且计算出所有球移动到第一个有球的盒子的移动次数dp[0]；</p>
@@ -284,8 +287,10 @@ dp[j]=dp[j-1]-right+left
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minOperations1</span>(<span class="params">self, boxes: <span class="built_in">str</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        dp = [<span class="number">0</span>] * <span class="built_in">len</span>(boxes)</span><br><span class="line">        right = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(boxes)): </span><br><span class="line">            <span class="keyword">if</span> boxes[i] == <span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">                dp[<span class="number">0</span>] += i</span><br><span class="line">                right += <span class="number">1</span>   <span class="comment"># 当前及其右边的 1 的数量</span></span><br><span class="line">        </span><br><span class="line">        left = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(boxes)):</span><br><span class="line">            <span class="keyword">if</span> boxes[j-<span class="number">1</span>] == <span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">                right -= <span class="number">1</span></span><br><span class="line">            dp[j] = dp[j-<span class="number">1</span>] - right + left</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> dp</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li>时间复杂度：<span class="math display">\[O(n)\]</span>，n是盒子个数，在只有两个单层循环</li>
-<li>空间复杂度：<span class="math display">\[O(n)\]</span>，dp数组。</li>
+<li>时间复杂度：<span
+class="math display">\[O(n)\]</span>，n是盒子个数，在只有两个单层循环</li>
+<li>空间复杂度：<span
+class="math display">\[O(n)\]</span>，dp数组。</li>
 </ul>
 
     </div>
@@ -308,12 +313,12 @@ dp[j]=dp[j-1]-right+left
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/03/02/2021-03-02-Q1221-%E5%88%86%E5%89%B2%E5%B9%B3%E8%A1%A1%E5%AD%97%E7%AC%A6%E4%B8%B2-%E7%AE%80%E5%8D%95-%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D/" rel="prev" title="Q1221 分割平衡字符串-简单-括号匹配">
-      <i class="fa fa-chevron-left"></i> Q1221 分割平衡字符串-简单-括号匹配
+    <a href="/2021/03/03/2021-03-03-Q1528-%E9%87%8D%E6%96%B0%E6%8E%92%E5%88%97%E5%AD%97%E7%AC%A6%E4%B8%B2-%E7%AE%80%E5%8D%95-%E7%BC%96%E7%A0%81%E6%8E%92%E5%BA%8F/" rel="prev" title="Q1528 重新排列字符串-简单-编码排序">
+      <i class="fa fa-chevron-left"></i> Q1528 重新排列字符串-简单-编码排序
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/03/03/2021-03-03-Q1528-%E9%87%8D%E6%96%B0%E6%8E%92%E5%88%97%E5%AD%97%E7%AC%A6%E4%B8%B2-%E7%AE%80%E5%8D%95-%E7%BC%96%E7%A0%81%E6%8E%92%E5%BA%8F/" rel="next" title="Q1528 重新排列字符串-简单-编码排序">
-      Q1528 重新排列字符串-简单-编码排序 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/03/04/2021-03-04-Q978-%E6%9C%80%E9%95%BF%E6%B9%8D%E6%B5%81%E5%AD%90%E6%95%B0%E7%BB%84-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="next" title="Q978 最长湍流子数组-中等-动态规划">
+      Q978 最长湍流子数组-中等-动态规划 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>

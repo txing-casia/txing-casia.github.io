@@ -223,7 +223,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="机器人能否返回原点"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/robot-return-to-origin/">机器人能否返回原点</a></h1>
+          <h1 id="机器人能否返回原点"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/robot-return-to-origin/">机器人能否返回原点</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
 <p>在二维平面上，有一个机器人从原点 (0, 0)
@@ -255,9 +256,12 @@ true。</p>
 Solution</h3>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">judgeCircle</span>(<span class="params">self, moves</span>):</span><br><span class="line">        x=y=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> move <span class="keyword">in</span> moves:</span><br><span class="line">            <span class="keyword">if</span> move == <span class="string">&quot;U&quot;</span>: y+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> move == <span class="string">&quot;D&quot;</span>: y-=<span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> move == <span class="string">&quot;L&quot;</span>: x-=<span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> move == <span class="string">&quot;R&quot;</span>: x+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> (x==y==<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    moves = <span class="string">&quot;LL&quot;</span></span><br><span class="line">    solution=Solution().judgeCircle(moves)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <ul>
-<li>时间复杂度： <span class="math display">\[O(N)\]</span>，其中 <span class="math display">\[N\]</span> 表示 <span class="math display">\[moves\]</span>
+<li>时间复杂度： <span class="math display">\[O(N)\]</span>，其中 <span
+class="math display">\[N\]</span> 表示 <span
+class="math display">\[moves\]</span>
 指令串的长度。我们只需要遍历一遍字符串即可。</li>
-<li>空间复杂度： <span class="math display">\[O(1)\]</span>，我们只需要常数的空间来存放若干变量。</li>
+<li>空间复杂度： <span
+class="math display">\[O(1)\]</span>，我们只需要常数的空间来存放若干变量。</li>
 </ul>
 <h2 id="approach-2-compact-solution">Approach 2: Compact Solution</h2>
 <p>更简洁的实现：判断相对方向的步数是否一致。</p>
@@ -496,7 +500,8 @@ init。此时可以对文件进行修改，之后是上传步骤。</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="latex的pdf预览中无法通过光标正向反向定位">LaTeX的PDF预览中，无法通过光标正向/反向定位</h1>
+          <h1
+id="latex的pdf预览中无法通过光标正向反向定位">LaTeX的PDF预览中，无法通过光标正向/反向定位</h1>
 <p>我一直是在Atom上编辑LaTeX的，觉得正/反向定位这个功能无伤大雅就没去填坑。现在又挺想用这个功能，趁着这个超长假期，打算补上这个坑。</p>
 <h3 id="软件环境">软件环境</h3>
 <ul>
@@ -513,12 +518,15 @@ error ”。</p>
 <p>继续挖掘，发现SyncTeX一般是作为TeXLive的一部分，和它捆绑安装的，如果当初安装的是TeXLive，那么一般也就安装了SyncTeX。</p>
 <p>进一步挖掘，认识到实际情况还要复杂一些，按层次来说，bug应该出在缺失了MiKTeX下的SyncTeX。</p>
 <p>CTeX安装自带了MiKTeX，但是所安装的MiKTeX却没有包含SyncTeX（其它途径安装会包含）。</p>
-<p><a target="_blank" rel="noopener" href="https://tex.stackexchange.com/questions/338078/how-to-get-synctex-for-windows-to-allow-atom-pdf-view-to-synch#">Stack
+<p><a
+target="_blank" rel="noopener" href="https://tex.stackexchange.com/questions/338078/how-to-get-synctex-for-windows-to-allow-atom-pdf-view-to-synch#">Stack
 Exchange</a>提供了SyncTeX的链接方便下载，同时还需要下载一个kpathseaXXX.dll文件，因为在执行SyncTeX的时候会调用它。</p>
-<hr>
+<hr />
 <p>因此，处理办法分为两步：</p>
 <ul>
-<li><strong>Step 1</strong>：下载<a target="_blank" rel="noopener" href="https://github.com/aminophen/w32tex-build/blob/master/synctex.exe">SyncTeX.exe</a>和<a target="_blank" rel="noopener" href="https://github.com/aminophen/w32tex-build/blob/master/kpathsea623.dll">kpathsea623.dll</a></li>
+<li><strong>Step 1</strong>：下载<a
+target="_blank" rel="noopener" href="https://github.com/aminophen/w32tex-build/blob/master/synctex.exe">SyncTeX.exe</a>和<a
+target="_blank" rel="noopener" href="https://github.com/aminophen/w32tex-build/blob/master/kpathsea623.dll">kpathsea623.dll</a></li>
 <li><strong>Step
 2</strong>：把两个文件放到MiKTeX的bin文件夹下（eg：C:Files (x86))</li>
 </ul>
@@ -590,7 +598,8 @@ Exchange</a>提供了SyncTeX的链接方便下载，同时还需要下载一个k
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="pycharm连接linux服务器配置方法">Pycharm连接Linux服务器配置方法</h1>
+          <h1
+id="pycharm连接linux服务器配置方法">Pycharm连接Linux服务器配置方法</h1>
 <p>今天手贱在pycharm删除不用的解释器时把几个月前配置的远程解释器删了，查了下资料重新恢复，顺便留个笔记以防万一。</p>
 <ul>
 <li>Step
@@ -705,7 +714,8 @@ control tasks, have continuous (real valued) and high dimensional action
 spaces.</p></li>
 <li><p>如果想把DQN用在连续的action
 space中，有一种办法是把action离散化。但是这样会大大增加action的维度，从而带来决策上的困难。例如一个3自由度的机器人，把每个关节角离散为10个角度，那么action
-space维度就会变为<span class="math display">\[10^{3}\]</span>。在需要精确控制的时候，这个问题会更加严重。（the
+space维度就会变为<span
+class="math display">\[10^{3}\]</span>。在需要精确控制的时候，这个问题会更加严重。（the
 number of actions increases exponentially with the number of degrees of
 freedom）。此外，这种粗略的离散化丢失了action的结构信息，可能会影响到问题的求解。</p></li>
 <li><p>DDPG本质：In this work we present a model-free, off-policy
@@ -724,34 +734,51 @@ give consistent targets during temporal difference backups</li>
 coordinates or joint angles
 笛卡尔坐标或者关节角），将其作为observation。using both low-dimensional
 observations (e.g. joint angles) and directly from pixels.</p></li>
-<li><p>Here, we assumed the environment is fully-observed so <span class="math display">\[s_t = x_t\]</span>.</p></li>
+<li><p>Here, we assumed the environment is fully-observed so <span
+class="math display">\[s_t = x_t\]</span>.</p></li>
 <li><p>replay buffer + soft updates</p></li>
 </ul>
 <p><strong>DDPG algorithm</strong></p>
 <blockquote>
-<hr>
-<p>Randomly initialize critic network <span class="math display">\[Q(s,a\mid \theta^Q)\]</span> and actor <span class="math display">\[\mu(s\mid\theta^{\,u})\]</span> with weights
-<span class="math display">\[\theta^Q\]</span> and <span class="math display">\[\theta^{\mu}\]</span></p>
-<p>Initialize target network <span class="math display">\[Q&#39;\]</span> and <span class="math display">\[\mu&#39;\]</span> with weights <span class="math display">\[\theta^{Q&#39;}\leftarrow \theta^{Q}\]</span>,
+<hr />
+<p>Randomly initialize critic network <span
+class="math display">\[Q(s,a\mid \theta^Q)\]</span> and actor <span
+class="math display">\[\mu(s\mid\theta^{\,u})\]</span> with weights
+<span class="math display">\[\theta^Q\]</span> and <span
+class="math display">\[\theta^{\mu}\]</span></p>
+<p>Initialize target network <span
+class="math display">\[Q&#39;\]</span> and <span
+class="math display">\[\mu&#39;\]</span> with weights <span
+class="math display">\[\theta^{Q&#39;}\leftarrow \theta^{Q}\]</span>,
 <span class="math display">\[\theta^{\mu&#39;}\leftarrow
 \theta^{\mu}\]</span></p>
 <p>Initialize replay buffer <span class="math display">\[R\]</span>
 <strong>For</strong> <span class="math display">\[episode = 1\]</span>,
 <span class="math display">\[M\]</span> <strong>do</strong></p>
-<p>---- Initialize a random process <span class="math display">\[\mathscr{N}\]</span> for action exploration ----
-Receive initial observation state <span class="math display">\[s_1\]</span></p>
+<p>---- Initialize a random process <span
+class="math display">\[\mathscr{N}\]</span> for action exploration ----
+Receive initial observation state <span
+class="math display">\[s_1\]</span></p>
 <p>---- <strong>For</strong> <span class="math display">\[t = 1,
 T\]</span> <strong>do</strong></p>
 <p>---- ---- Select action <span class="math display">\[a_t =
 \mu(s_t\mid\theta^{\mu}) + \mathscr{N}_t\]</span> according to the
 current policy and exploration noise</p>
-<p>---- ---- Execute action at and observe reward <span class="math display">\[r_t\]</span> and observe new state <span class="math display">\[s_{t+1}\]</span></p>
-<p>---- ---- Store transition <span class="math display">\[(s_t,a_t,r_t,s_{t+1})\]</span> in <span class="math display">\[R\]</span></p>
-<p>---- ---- Sample a random minibatch of <span class="math display">\[N\]</span> transitions <span class="math display">\[(s_t,a_t,r_t,s_{t+1})\]</span> from <span class="math display">\[R\]</span></p>
+<p>---- ---- Execute action at and observe reward <span
+class="math display">\[r_t\]</span> and observe new state <span
+class="math display">\[s_{t+1}\]</span></p>
+<p>---- ---- Store transition <span
+class="math display">\[(s_t,a_t,r_t,s_{t+1})\]</span> in <span
+class="math display">\[R\]</span></p>
+<p>---- ---- Sample a random minibatch of <span
+class="math display">\[N\]</span> transitions <span
+class="math display">\[(s_t,a_t,r_t,s_{t+1})\]</span> from <span
+class="math display">\[R\]</span></p>
 <p>---- ---- Set <span class="math display">\[y_i = r_i + \gamma
 Q&#39;(s_{i+1},\mu&#39;(s_{i+1}\midθ^{\mu&#39;})\mid \theta
 ^{Q&#39;})\]</span></p>
-<p>---- ---- Update critic by minimizing the loss: <span class="math display">\[L = \frac{1}{N} \sum_i(y_i - Q(s_i,a_i \mid
+<p>---- ---- Update critic by minimizing the loss: <span
+class="math display">\[L = \frac{1}{N} \sum_i(y_i - Q(s_i,a_i \mid
 \theta^Q))^2\]</span></p>
 <p>---- ---- Update the actor policy using the sampled policy
 gradient:</p>
@@ -760,12 +787,14 @@ _{\theta^{\mu}}J \approx \frac{1}{N}\sum\triangledown_a Q(s,a\mid
 \theta^Q) \mid _{s=s_i,a=\mu(s_i)}\triangledown_{\theta^{\mu}}\mu(s \mid
 \theta^{\mu})\mid_{s_i}\]</span></p>
 <p>---- ---- Update the target networks:</p>
-<p>---- ---- ---- <span class="math display">\[\theta^{Q&#39;}\leftarrow\tau\theta^Q+(1-\tau)\theta^{Q&#39;}\]</span>,</p>
-<p>---- ---- ---- <span class="math display">\[\theta^{\mu&#39;}\leftarrow\tau\theta^{\mu}+(1-\tau)\theta^{\mu&#39;}\]</span></p>
+<p>---- ---- ---- <span
+class="math display">\[\theta^{Q&#39;}\leftarrow\tau\theta^Q+(1-\tau)\theta^{Q&#39;}\]</span>,</p>
+<p>---- ---- ---- <span
+class="math display">\[\theta^{\mu&#39;}\leftarrow\tau\theta^{\mu}+(1-\tau)\theta^{\mu&#39;}\]</span></p>
 <p>---- <strong>end For</strong></p>
 <p><strong>end For</strong></p>
 </blockquote>
-<hr>
+<hr />
 <h2 id="总结">总结</h2>
 <p>不知道为什么看完之后觉得DDPG并没有想象中的复杂，也没有什么推导过程，架构也比较简单清晰，文章中大量的实验验证了算法的普适性。可能这些点正是一个RL算法的可贵之处吧。</p>
 
@@ -832,12 +861,16 @@ _{\theta^{\mu}}J \approx \frac{1}{N}\sum\triangledown_a Q(s,a\mid
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="利用syncthing建立linux服务器与本地win10的同步文件夹">利用syncthing建立Linux服务器与本地Win10的同步文件夹</h1>
+          <h1
+id="利用syncthing建立linux服务器与本地win10的同步文件夹">利用syncthing建立Linux服务器与本地Win10的同步文件夹</h1>
 <h2 id="background">Background</h2>
-<p>由于最近把本地的试验程序搬到了服务器上（<a target="_blank" rel="noopener" href="https://txing.tk/2019/09/06/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E9%85%8D%E7%BD%AEAnaconda3%E4%BB%A5Pytorch-RL%E7%8E%AF%E5%A2%83/">Linux服务器上配置Anaconda3以Pytorch-RL环境</a>），现在的试验结果就自然地在运行后保存在了服务器上（图片、数据）。</p>
-<p>由于没有配置服务器端的可视化界面，就没法查看结果了。如果利用pscp进行Linux<span class="math display">\[\to\]</span>windows的文件传输，等结果到了本地再查看，这样每跑一次实验就要单独传输一次，势必非常麻烦。</p>
-<p>于是这里就迫切需求一种<strong>及时</strong>、<strong>高效</strong>、<strong>自动</strong>的linux<span class="math display">\[\to\]</span>windows10的文件传输方案。</p>
-<hr>
+<p>由于最近把本地的试验程序搬到了服务器上（<a
+target="_blank" rel="noopener" href="https://txing.tk/2019/09/06/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E9%85%8D%E7%BD%AEAnaconda3%E4%BB%A5Pytorch-RL%E7%8E%AF%E5%A2%83/">Linux服务器上配置Anaconda3以Pytorch-RL环境</a>），现在的试验结果就自然地在运行后保存在了服务器上（图片、数据）。</p>
+<p>由于没有配置服务器端的可视化界面，就没法查看结果了。如果利用pscp进行Linux<span
+class="math display">\[\to\]</span>windows的文件传输，等结果到了本地再查看，这样每跑一次实验就要单独传输一次，势必非常麻烦。</p>
+<p>于是这里就迫切需求一种<strong>及时</strong>、<strong>高效</strong>、<strong>自动</strong>的linux<span
+class="math display">\[\to\]</span>windows10的文件传输方案。</p>
+<hr />
 <p>经过一番调研，目前有这样几种方案备选：</p>
 <p><strong>1、在linux服务器端查看图片。</strong>这个方案需要使用到类似SimpleHTTPServer的服务，简单地说就是在通过浏览器在ip:8000口查看图片。这个方案仍然需要在运行完成之后单独再操作一步，虽然实现了查看图片的功能，但如果需要保存图片到本地，还是绕不开pscp的操作。</p>
 <p><strong>2、利用VNCserver将服务器端界面图形化。</strong>这是一个非常有吸引力的方案，因为图形化服务器端的意义不仅仅在于查看图片，跟在于今后其它文件操作都可以变得更加具体明确。但初尝试的过程中发现提供VNC服务的第三方软件很多，具体操作和配置看得眼花缭乱，莫衷一是。</p>
@@ -848,17 +881,21 @@ _{\theta^{\mu}}J \approx \frac{1}{N}\sum\triangledown_a Q(s,a\mid
 <li><strong>syncthing</strong>：syncthing是个类似rsync的开运啊同步工具，支持windows,
 linux, Mac等不同的平台看来是个不错的选择。</li>
 </ul>
-<hr>
+<hr />
 <h2 id="syncthing-a-wise-choice">syncthing: a wise choice</h2>
 <p>接下来我们选择syncthing，并尝试安装并配置</p>
 <h3 id="windows-10端">windows 10端：</h3>
 <ul>
-<li>直接在<a target="_blank" rel="noopener" href="https://syncthing.net/">syncthing官网</a>可以下载到windows版本的安装包，直接解压点开exe即可完成安装。</li>
+<li>直接在<a
+target="_blank" rel="noopener" href="https://syncthing.net/">syncthing官网</a>可以下载到windows版本的安装包，直接解压点开exe即可完成安装。</li>
 </ul>
 <h3 id="linux服务器端">Linux服务器端：</h3>
 <ul>
-<li><p>第一步：在windows上下载好最新的<a target="_blank" rel="noopener" href="https://github.com/syncthing/syncthing/releases/tag/v1.2.2">安装包</a>（我这里选择的是<a target="_blank" rel="noopener" href="https://github.com/syncthing/syncthing/releases/download/v1.2.2/syncthing-linux-amd64-v1.2.2.tar.gz">syncthing-linux-amd64-v1.2.2.tar.gz</a>）</p></li>
-<li><p>第二步：将安装包上传至服务器，具体操作参考<a target="_blank" rel="noopener" href="https://txing.tk/2019/09/06/Windows%E9%80%9A%E8%BF%87SSH%E5%90%91Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/">Windows通过SSH向Linux服务器上传文件</a></p></li>
+<li><p>第一步：在windows上下载好最新的<a
+target="_blank" rel="noopener" href="https://github.com/syncthing/syncthing/releases/tag/v1.2.2">安装包</a>（我这里选择的是<a
+target="_blank" rel="noopener" href="https://github.com/syncthing/syncthing/releases/download/v1.2.2/syncthing-linux-amd64-v1.2.2.tar.gz">syncthing-linux-amd64-v1.2.2.tar.gz</a>）</p></li>
+<li><p>第二步：将安装包上传至服务器，具体操作参考<a
+target="_blank" rel="noopener" href="https://txing.tk/2019/09/06/Windows%E9%80%9A%E8%BF%87SSH%E5%90%91Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/">Windows通过SSH向Linux服务器上传文件</a></p></li>
 <li><p>第三步：解压文件并安装。</p>
 <p>在新建的安装包所在目录中执行解压命令，并打开文件夹</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf syncthing-linux-amd64-v1.2.2.tar.gz</span><br><span class="line">cd syncthing-linux-amd64-v1.2.2</span><br></pre></td></tr></table></figure>
@@ -866,7 +903,8 @@ linux, Mac等不同的平台看来是个不错的选择。</li>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./syncthing</span><br></pre></td></tr></table></figure>
 <p>等到看见类似如下字样的时候，表示启动完成，按Ctrl+c关闭</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[QQAFC] 16:59:18 INFO: Detected 1 NAT service</span><br></pre></td></tr></table></figure></li>
-<li><p>第四步：配置syncthing。由于syncthing默认是只允许本机访问，这里需要进行设置。大多数教程这里都会使用vim进行编辑，但是我的环境里没有vim，也有有sudo权限安装，因此参考这里的<a target="_blank" rel="noopener" href="https://www.youcl.com/info/10588">某教程</a>里的方法，通过nano进行编辑</p>
+<li><p>第四步：配置syncthing。由于syncthing默认是只允许本机访问，这里需要进行设置。大多数教程这里都会使用vim进行编辑，但是我的环境里没有vim，也有有sudo权限安装，因此参考这里的<a
+target="_blank" rel="noopener" href="https://www.youcl.com/info/10588">某教程</a>里的方法，通过nano进行编辑</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano ~/.config/syncthing/config.xml</span><br></pre></td></tr></table></figure>
 <p>这时会弹出一大片文本，但我们只需要找到下面这一段</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;gui enabled=&quot;true&quot; tls=&quot;false&quot;&gt;</span><br><span class="line">    &lt;address&gt;127.0.0.1:46554&lt;/address&gt;</span><br><span class="line">&lt;/gui&gt;</span><br></pre></td></tr></table></figure>
@@ -883,7 +921,8 @@ linux, Mac等不同的平台看来是个不错的选择。</li>
 <li>另一台机器打开syncthing，自动打开桌面端配置页面，配置要共享的文件夹和路径。添加设备，粘贴服务器端ID，在服务器端点击同意，完成连接。</li>
 </ul></li>
 </ul>
-<p>之后的设置比较简单这里给出参考不过多介绍：<a target="_blank" rel="noopener" href="https://blog.curlc.com/archives/333.html">Syncthing同步设置教程</a></p>
+<p>之后的设置比较简单这里给出参考不过多介绍：<a
+target="_blank" rel="noopener" href="https://blog.curlc.com/archives/333.html">Syncthing同步设置教程</a></p>
 
       
     </div>
@@ -948,7 +987,8 @@ linux, Mac等不同的平台看来是个不错的选择。</li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="linux服务器上配置anaconda3以pytorch-rl环境">Linux服务器上配置Anaconda3以Pytorch-RL环境</h1>
+          <h1
+id="linux服务器上配置anaconda3以pytorch-rl环境">Linux服务器上配置Anaconda3以Pytorch-RL环境</h1>
 <p>通过上传安装包的方式在服务器安装Anaconda3只需要在<strong>相应的目录下</strong>执行一句命令：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash Anaconda3-2019.07-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
 <p>安装途中会提示安装位置为默认路径：</p>
@@ -961,12 +1001,13 @@ linux, Mac等不同的平台看来是个不错的选择。</li>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python --version</span><br><span class="line">&gt; Python 3.6.9 :: Anaconda, Inc.</span><br></pre></td></tr></table></figure>
 <p>接下来激活新建的环境并进行配置：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source activate opensim-rl</span><br></pre></td></tr></table></figure>
-<p>参考我之前的一篇经验（<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/30636305">Anaconda新环境下快速安装多个Python软件包</a>）可以快速在新环境中批量安装软件包：</p>
+<p>参考我之前的一篇经验（<a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/30636305">Anaconda新环境下快速安装多个Python软件包</a>）可以快速在新环境中批量安装软件包：</p>
 <p><strong>在新环境中</strong>输入：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install anaconda </span><br></pre></td></tr></table></figure>
 <p>等待安装完成。</p>
 <p>这里就基本把会调用的包都装上了，接下来开始安装PyTorch。</p>
-<hr>
+<hr />
 <p>继续呆在<strong>激活的opensim-rl环境</strong>里</p>
 <p>由于PyTorch版本的选择和cuda版本有关，虽然因此先检查服务器上的cuda版本号：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat /usr/local/cuda/version.txt</span><br><span class="line">&gt; CUDA Version 9.0.103</span><br></pre></td></tr></table></figure>
@@ -979,8 +1020,9 @@ linux, Mac等不同的平台看来是个不错的选择。</li>
 <li><p><strong>（科学方法1）开VPN下载，会很稳定。</strong></p></li>
 <li><p>（科学方法2）添加国内清华、中科大的镜像源，多一些链接路径会增加成功的概率。</p></li>
 </ol>
-<p>这里我们用了<a target="_blank" rel="noopener" href="http://www.landeng26.info/">Lantern</a>每个月500M的免费流量帮助下载，速度比较快</p>
-<hr>
+<p>这里我们用了<a
+target="_blank" rel="noopener" href="http://www.landeng26.info/">Lantern</a>每个月500M的免费流量帮助下载，速度比较快</p>
+<hr />
 <p>最后开始安装gym</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install gym</span><br></pre></td></tr></table></figure>
 <p>搞定！</p>

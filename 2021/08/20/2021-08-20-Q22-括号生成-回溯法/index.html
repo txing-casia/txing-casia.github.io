@@ -228,7 +228,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="括号生成"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/generate-parentheses/">22.
+        <h4 id="括号生成"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/generate-parentheses/">22.
 括号生成</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -265,10 +266,16 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">generateParenthesis</span>(<span class="params">self, n: <span class="built_in">int</span></span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">generate</span>(<span class="params">A</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(A) == <span class="number">2</span>*n:</span><br><span class="line">                <span class="keyword">if</span> valid(A):</span><br><span class="line">                    ans.append(<span class="string">&quot;&quot;</span>.join(A))</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                A.append(<span class="string">&#x27;(&#x27;</span>)</span><br><span class="line">                generate(A)</span><br><span class="line">                A.pop()</span><br><span class="line">                A.append(<span class="string">&#x27;)&#x27;</span>)</span><br><span class="line">                generate(A)</span><br><span class="line">                A.pop()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">valid</span>(<span class="params">A</span>):</span><br><span class="line">            bal = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> A:</span><br><span class="line">                <span class="keyword">if</span> c == <span class="string">&#x27;(&#x27;</span>: bal += <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>: bal -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> bal &lt; <span class="number">0</span>: <span class="comment"># 合法字符串只可能出现差右括号的情况，不会差左括号 </span></span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">return</span> bal == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        ans = []</span><br><span class="line">        generate([])</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li><p>时间复杂度：<span class="math display">\[O(2^{2n}n)\]</span>，对于 <span class="math display">\[2^{2n}\]</span>
-个序列中的每一个，我们用于建立和验证该序列的复杂度为 <span class="math display">\[O(n)\]</span>。</p></li>
-<li><p>空间复杂度：<span class="math display">\[O(n)\]</span>，除了答案数组之外，我们所需要的空间取决于递归栈的深度，每一层递归函数需要
-<span class="math display">\[O(1)\]</span> 的空间，最多递归 <span class="math display">\[2n\]</span> 层，因此空间复杂度为 <span class="math display">\[O(n)\]</span>。</p></li>
+<li><p>时间复杂度：<span
+class="math display">\[O(2^{2n}n)\]</span>，对于 <span
+class="math display">\[2^{2n}\]</span>
+个序列中的每一个，我们用于建立和验证该序列的复杂度为 <span
+class="math display">\[O(n)\]</span>。</p></li>
+<li><p>空间复杂度：<span
+class="math display">\[O(n)\]</span>，除了答案数组之外，我们所需要的空间取决于递归栈的深度，每一层递归函数需要
+<span class="math display">\[O(1)\]</span> 的空间，最多递归 <span
+class="math display">\[2n\]</span> 层，因此空间复杂度为 <span
+class="math display">\[O(n)\]</span>。</p></li>
 </ul>
 <h3 id="approach-2-回溯法">Approach 2: 回溯法</h3>
 <p>方法一还有改进的余地：我们可以只在序列仍然保持有效时才添加 '(' or
@@ -281,14 +288,18 @@ n，我们可以放一个左括号。如果右括号数量小于左括号的数�
 <p>我们的复杂度分析依赖于理解 generateParenthesis(n)
 中有多少个元素。这个分析超出了本文的范畴，但事实证明这是第 n 个卡特兰数
 <span class="math display">\[\dfrac{1}{n+1}\dbinom{2n}{n}
-\]</span>，这是由 <span class="math display">\[\dfrac{4^n}{n\sqrt{n}}\]</span> 渐近界定的。</p>
+\]</span>，这是由 <span
+class="math display">\[\dfrac{4^n}{n\sqrt{n}}\]</span> 渐近界定的。</p>
 <ul>
-<li><p>时间复杂度：<span class="math display">\[O(\dfrac{4^n}{\sqrt{n}})\]</span>，在回溯过程中，每个答案需要
+<li><p>时间复杂度：<span
+class="math display">\[O(\dfrac{4^n}{\sqrt{n}})\]</span>，在回溯过程中，每个答案需要
 <span class="math display">\[O(n)\]</span>
 的时间复制到答案数组中。</p></li>
-<li><p>空间复杂度：<span class="math display">\[O(n)\]</span>，除了答案数组之外，我们所需要的空间取决于递归栈的深度，每一层递归函数需要
+<li><p>空间复杂度：<span
+class="math display">\[O(n)\]</span>，除了答案数组之外，我们所需要的空间取决于递归栈的深度，每一层递归函数需要
 <span class="math display">\[O(1)\]</span> 的空间，最多递归 2n
-层，因此空间复杂度为 <span class="math display">\[O(n)\]</span>。</p></li>
+层，因此空间复杂度为 <span
+class="math display">\[O(n)\]</span>。</p></li>
 </ul>
 <h3 id="approach-3-按括号序列的长度递归">Approach 3:
 按括号序列的长度递归</h3>
@@ -311,7 +322,8 @@ n，我们可以放一个左括号。如果右括号数量小于左括号的数�
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">generateParenthesis3</span>(<span class="params">self, n: <span class="built_in">int</span></span>):</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> [<span class="string">&#x27;&#x27;</span>]</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">for</span> left <span class="keyword">in</span> self.generateParenthesis(c):</span><br><span class="line">                <span class="keyword">for</span> right <span class="keyword">in</span> self.generateParenthesis(n-<span class="number">1</span>-c):</span><br><span class="line">                    ans.append(<span class="string">&#x27;(&#123;&#125;)&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(left, right))</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li><p>时间复杂度：<span class="math display">\[O(\dfrac{4^n}{\sqrt{n}})\]</span>，该分析与
+<li><p>时间复杂度：<span
+class="math display">\[O(\dfrac{4^n}{\sqrt{n}})\]</span>，该分析与
 方法二 类似。</p></li>
 <li><p>空间复杂度：<span class="math display">\[
 O(\dfrac{4^n}{\sqrt{n}})\]</span>，此方法除答案数组外，中间过程中会存储与答案数组同样数量级的临时数组，是我们所需要的空间复杂度。</p></li>

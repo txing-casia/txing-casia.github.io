@@ -229,7 +229,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="average-of-levels-in-binary-tree"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/average-of-levels-in-binary-tree/">Average
+        <h1 id="average-of-levels-in-binary-tree"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/average-of-levels-in-binary-tree/">Average
 of Levels in Binary Tree</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
@@ -244,12 +245,16 @@ level 0 is 3, on level 1 is 14.5, and on level 2 is 11. Hence return [3,
 integer.</p>
 </blockquote>
 <h2 id="approach-1-深度优先搜索">Approach 1: 深度优先搜索</h2>
-<p>使用深度优先搜索计算二叉树的层平均值，需要维护两个数组，<span class="math display">\[\textit{counts}\]</span>
-用于存储二叉树的每一层的节点数，<span class="math display">\[\textit{sums}\]</span>
+<p>使用深度优先搜索计算二叉树的层平均值，需要维护两个数组，<span
+class="math display">\[\textit{counts}\]</span>
+用于存储二叉树的每一层的节点数，<span
+class="math display">\[\textit{sums}\]</span>
 用于存储二叉树的每一层的节点值之和。搜索过程中需要记录当前节点所在层，如果访问到的节点在第
 i 层，则将 <span class="math display">\[\textit{counts}[i]\]</span>
-的值加 1，并将该节点的值加到 <span class="math display">\[\textit{sums}[i]\]</span>。</p>
-<p>遍历结束之后，第 i 层的平均值即为 <span class="math display">\[\textit{sums}[i] /
+的值加 1，并将该节点的值加到 <span
+class="math display">\[\textit{sums}[i]\]</span>。</p>
+<p>遍历结束之后，第 i 层的平均值即为 <span
+class="math display">\[\textit{sums}[i] /
 \textit{counts}[i]\]</span>。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">averageOfLevels_dfs</span>(<span class="params">self, root</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">root:TreeNode, level</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">if</span> level &lt; <span class="built_in">len</span>(totals):</span><br><span class="line">                totals[level] += root.val</span><br><span class="line">                counts[level] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                totals.append(root.val)</span><br><span class="line">                counts.append(<span class="number">1</span>)</span><br><span class="line">            dfs(root.left, level + <span class="number">1</span>)</span><br><span class="line">            dfs(root.right, level + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        counts = <span class="built_in">list</span>()</span><br><span class="line">        totals = <span class="built_in">list</span>()</span><br><span class="line">        dfs(root, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> [total / count <span class="keyword">for</span> total, count <span class="keyword">in</span> <span class="built_in">zip</span>(totals, counts)]</span><br></pre></td></tr></table></figure>
 <h3 id="复杂度分析">复杂度分析</h3>
@@ -257,9 +262,13 @@ i 层，则将 <span class="math display">\[\textit{counts}[i]\]</span>
 <li><p>时间复杂度：<span class="math display">\[O(n)\]</span>，其中 n
 是二叉树中的节点个数。
 深度优先搜索需要对每个节点访问一次，对于每个节点，维护两个数组的时间复杂度都是
-<span class="math display">\[O(1)\]</span>，因此深度优先搜索的时间复杂度是
-<span class="math display">\[O(n)\]</span>。遍历结束之后计算每层的平均值的时间复杂度是
-O(h)O(h)，其中 hh 是二叉树的高度，任何情况下都满足 <span class="math display">\[h \le n\]</span>。因此总时间复杂度是 <span class="math display">\[O(n)\]</span>。</p></li>
+<span
+class="math display">\[O(1)\]</span>，因此深度优先搜索的时间复杂度是
+<span
+class="math display">\[O(n)\]</span>。遍历结束之后计算每层的平均值的时间复杂度是
+O(h)O(h)，其中 hh 是二叉树的高度，任何情况下都满足 <span
+class="math display">\[h \le n\]</span>。因此总时间复杂度是 <span
+class="math display">\[O(n)\]</span>。</p></li>
 <li><p>空间复杂度：<span class="math display">\[O(n)\]</span>，其中 n
 是二叉树中的节点个数。空间复杂度取决于两个数组的大小和递归调用的层数，两个数组的大小都等于二叉树的高度，递归调用的层数不会超过二叉树的高度，最坏情况下，二叉树的高度等于节点个数。</p></li>
 </ul>
@@ -271,7 +280,9 @@ O(h)O(h)，其中 hh 是二叉树的高度，任何情况下都满足 <span clas
 <li><p>每一轮遍历时，将队列中的节点全部取出，计算这些节点的数量以及它们的节点值之和，并计算这些节点的平均值，然后将这些节点的全部非空子节点加入队列，重复上述操作直到队列为空，遍历结束。</p></li>
 </ul>
 <p>由于初始时队列中只有根节点，满足队列中的节点是同一层的全部节点，每一轮遍历时都会将队列中的当前层节点全部取出，并将下一层的全部节点加入队列，因此可以确保每一轮遍历的是同一层的全部节点。</p>
-<p>具体实现方面，可以在每一轮遍历之前获得队列中的节点数量 <span class="math display">\[\textit{size}\]</span>，遍历时只遍历 <span class="math display">\[size\]</span>
+<p>具体实现方面，可以在每一轮遍历之前获得队列中的节点数量 <span
+class="math display">\[\textit{size}\]</span>，遍历时只遍历 <span
+class="math display">\[size\]</span>
 个节点，即可满足每一轮遍历的是同一层的全部节点。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">averageOfLevels_dfs</span>(<span class="params">self, root</span>):        </span><br><span class="line">        averages = <span class="built_in">list</span>()</span><br><span class="line">        queue = collections.deque([root])</span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            total = <span class="number">0</span></span><br><span class="line">            size = <span class="built_in">len</span>(queue)</span><br><span class="line">            <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(size):</span><br><span class="line">                node = queue.popleft()</span><br><span class="line">                total += node.val</span><br><span class="line">                left, right = node.left, node.right</span><br><span class="line">                <span class="keyword">if</span> left:</span><br><span class="line">                    queue.append(left)</span><br><span class="line">                <span class="keyword">if</span> right:</span><br><span class="line">                    queue.append(right)</span><br><span class="line">            averages.append(total / size)</span><br><span class="line">        <span class="keyword">return</span> averages</span><br></pre></td></tr></table></figure>
 <h3 id="复杂度分析-1">复杂度分析</h3>
@@ -279,9 +290,11 @@ O(h)O(h)，其中 hh 是二叉树的高度，任何情况下都满足 <span clas
 <li><p>时间复杂度：<span class="math display">\[O(n)\]</span>，其中 n
 是二叉树中的节点个数。广度优先搜索需要对每个节点访问一次，时间复杂度是
 <span class="math display">\[O(n)\]</span>。
-需要对二叉树的每一层计算平均值，时间复杂度是 <span class="math display">\[O(h)\]</span>，其中 h
+需要对二叉树的每一层计算平均值，时间复杂度是 <span
+class="math display">\[O(h)\]</span>，其中 h
 是二叉树的高度，任何情况下都满足 <span class="math display">\[h \le
-n\]</span>。因此总时间复杂度是 <span class="math display">\[O(n)\]</span>。</p></li>
+n\]</span>。因此总时间复杂度是 <span
+class="math display">\[O(n)\]</span>。</p></li>
 <li><p>空间复杂度：<span class="math display">\[O(n)\]</span>，其中 n
 是二叉树中的节点个数。空间复杂度取决于队列开销，队列中的节点个数不会超过
 n。</p></li>

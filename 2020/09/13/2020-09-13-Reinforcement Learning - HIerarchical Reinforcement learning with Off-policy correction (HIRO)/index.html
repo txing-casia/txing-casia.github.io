@@ -27,14 +27,12 @@
 <meta property="og:site_name" content="Txing">
 <meta property="og:description" content="Data-Efficient Hierarchical Reinforcement Learning 论文链接：http:&#x2F;&#x2F;papers.nips.cc&#x2F;paper&#x2F;7591-data-efficient-hierarchical-reinforcement-learning.pdf 背景 HRL是处理复杂任务的有效方式，之前的方法大多需要针对具体任务进行特殊设计，并使用on-polic">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200912-1.png">
 <meta property="article:published_time" content="2020-09-12T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-03-25T01:54:14.970Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Reinforcement Learning">
 <meta property="article:tag" content="HRL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200912-1.png">
 
 <link rel="canonical" href="https://txing-casia.github.io/2020/09/13/2020-09-13-Reinforcement%20Learning%20-%20HIerarchical%20Reinforcement%20learning%20with%20Off-policy%20correction%20(HIRO)/">
 
@@ -228,7 +226,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="data-efficient-hierarchical-reinforcement-learning">Data-Efficient
+        <h1
+id="data-efficient-hierarchical-reinforcement-learning">Data-Efficient
 Hierarchical Reinforcement Learning</h1>
 <p>论文链接：http://papers.nips.cc/paper/7591-data-efficient-hierarchical-reinforcement-learning.pdf</p>
 <h2 id="背景">背景</h2>
@@ -247,7 +246,8 @@ non-HRL，主要是因为奖励稀疏，完成任务需要多个步骤；</p></l
 <li><p>低级/高级策略如何定义并训练？之前的方法用人工设计来解决，因此方法没有一般性。</p></li>
 <li><p>Note that 本文只用的是state
 observation而不是高维图像输入，这个与FuN是不同的</p></li>
-<li><p>本文使用的是off-policy的学习方法（TD3, [<a href="https://link.zhihu.com/?target=http%3A//proceedings.mlr.press/v80/fujimoto18a/fujimoto18a.pdf">Addressing
+<li><p>本文使用的是off-policy的学习方法（TD3, [<a
+href="https://link.zhihu.com/?target=http%3A//proceedings.mlr.press/v80/fujimoto18a/fujimoto18a.pdf">Addressing
 Function Approximation Error in Actor-Critic
 Methods</a>，它是DDPG的一种变体，同样针对连续的控制），试图提高sample的利用效率，但是这会带来两个问题：</p>
 <ul>
@@ -258,18 +258,32 @@ experience for training</li>
 <p>针对这两个问题，本文建立了<strong>off-policy修正模型</strong>，re-label过去的经验，并用高级策略选择可能获得最大奖励的行为。</p></li>
 </ul>
 <h2 id="方法">方法</h2>
-<p><img src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200912-1.png"></p>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200912-1.png" /></p>
 <ul>
-<li><p>两层策略：a lower-level policy <span class="math display">\[\mu^{lo}\]</span> and a higher-level policy <span class="math display">\[\mu^{hi}\]</span></p></li>
-<li><p><span class="math display">\[\mu^{hi}\]</span>以从环境获取的obs为输入，获得high-level
+<li><p>两层策略：a lower-level policy <span
+class="math display">\[\mu^{lo}\]</span> and a higher-level policy <span
+class="math display">\[\mu^{hi}\]</span></p></li>
+<li><p><span
+class="math display">\[\mu^{hi}\]</span>以从环境获取的obs为输入，获得high-level
 action (goal) <span class="math display">\[g_t\in
-\mathbb{R}^d\]</span>。<span class="math display">\[g_t\]</span>要么用<span class="math display">\[\mu^{hi}\]</span>以<span class="math display">\[c\]</span>步为间隔进行采样<span class="math display">\[g_t\sim \mu^{hi}\  (when\ t\equiv
-0)\]</span>，要么使用一个固定目标的转换函数<span class="math display">\[g_t=h(s_{t-1},g_{t-1},s_t)\]</span>，获得的奖励为<span class="math display">\[R(s_t,a_t)\]</span>。</p></li>
-<li><p><span class="math display">\[\mu^{lo}\]</span>观测状态<span class="math display">\[s_t\]</span>和目标<span class="math display">\[
+\mathbb{R}^d\]</span>。<span
+class="math display">\[g_t\]</span>要么用<span
+class="math display">\[\mu^{hi}\]</span>以<span
+class="math display">\[c\]</span>步为间隔进行采样<span
+class="math display">\[g_t\sim \mu^{hi}\  (when\ t\equiv
+0)\]</span>，要么使用一个固定目标的转换函数<span
+class="math display">\[g_t=h(s_{t-1},g_{t-1},s_t)\]</span>，获得的奖励为<span
+class="math display">\[R(s_t,a_t)\]</span>。</p></li>
+<li><p><span class="math display">\[\mu^{lo}\]</span>观测状态<span
+class="math display">\[s_t\]</span>和目标<span class="math display">\[
 g_t\]</span>，并产生低维的行为<span class="math display">\[a_t\sim
-\mu^{lo}(s_t, g_t)\]</span>，获得奖励<span class="math display">\[r_t=r(s_t,g_t,a_t,s_{t+1})\]</span></p></li>
-<li><p>低级策略储存经验<span class="math display">\[(s_t,g_t,a_t,r_t,s_{t+1},h(s_t,g_t,s_{s+1}))\]</span></p></li>
-<li><p>高级策略储存经验<span class="math display">\[(s_{t:t+c-1},g_{t:t+c-1},a_{t:t+c-1},R_{t:t+c-1},s_{t+c})\]</span></p></li>
+\mu^{lo}(s_t, g_t)\]</span>，获得奖励<span
+class="math display">\[r_t=r(s_t,g_t,a_t,s_{t+1})\]</span></p></li>
+<li><p>低级策略储存经验<span
+class="math display">\[(s_t,g_t,a_t,r_t,s_{t+1},h(s_t,g_t,s_{s+1}))\]</span></p></li>
+<li><p>高级策略储存经验<span
+class="math display">\[(s_{t:t+c-1},g_{t:t+c-1},a_{t:t+c-1},R_{t:t+c-1},s_{t+c})\]</span></p></li>
 </ul>
 <h3 id="参数化rewards">参数化Rewards</h3>
 <ul>
@@ -278,14 +292,20 @@ defined as: <span class="math display">\[h(s_t,g_t,s_{t+1}) = s_t + g_t
 - s_{t+1}\]</span></p></li>
 <li><p>intrinsic reward: <span class="math display">\[
 r(s_t,g_t,a_t,s_{t+1}) = -\parallel s_t + g_t - s_{t+1}\parallel _2
-\]</span> ，这里<span class="math display">\[g_t\]</span>相当于是一个状态增量，学习目标是使得
+\]</span> ，这里<span
+class="math display">\[g_t\]</span>相当于是一个状态增量，学习目标是使得
 <span class="math display">\[ s_t + g_t = s_{t+1} \]</span></p></li>
-<li><p>实验中<span class="math display">\[g_t\]</span>是期望的坐标<span class="math display">\[(x,y,z)\]</span>，obs也仅仅包含位置的观测</p></li>
-<li><p>高级策略state-action-reward transition <span class="math display">\[(s_t,g_t,\sum
+<li><p>实验中<span class="math display">\[g_t\]</span>是期望的坐标<span
+class="math display">\[(x,y,z)\]</span>，obs也仅仅包含位置的观测</p></li>
+<li><p>高级策略state-action-reward transition <span
+class="math display">\[(s_t,g_t,\sum
 R_{t:t+c-1},s_{t+c})\]</span></p></li>
-<li><p>对于旧的经验，给定<span class="math display">\[\widetilde{g}_t\]</span>最大化<span class="math display">\[\mu^{lo}(a_{t:t+c-1}\mid
+<li><p>对于旧的经验，给定<span
+class="math display">\[\widetilde{g}_t\]</span>最大化<span
+class="math display">\[\mu^{lo}(a_{t:t+c-1}\mid
 s_{t:t+c-1},\widetilde{g}_{t:t+c-1})\]</span></p></li>
-<li><p>中间目标 <span class="math display">\[\widetilde{g}_{t+1:t+c-1}\]</span>
+<li><p>中间目标 <span
+class="math display">\[\widetilde{g}_{t+1:t+c-1}\]</span>
 用固定目标转移函数<span class="math display">\[h\]</span>生成</p></li>
 <li><p>log probability <span class="math display">\[ \log
 \mu^{lo}(a_{t:t+c-1}\mid s_{t:t+c-1},\widetilde{g}_{t:t+c-1}) \]</span>
@@ -300,7 +320,9 @@ a_i-\mu^{lo}(s_i,\widetilde{g}_i)\parallel^2_2+\text{const}
 <h2 id="总结">总结</h2>
 <p>HIRO整体节奏还是很明快的，整体结构基于DDPG和TD3经验修正的地方稍微有些含糊。文中的目标
 <span class="math display">\[ g_t \]</span>
-就相当于是一个状态增量，修正就是用10个高斯分布在 <span class="math display">\[ [0,\mid s_{t+1}-s_t\mid] \]</span> 或者 <span class="math display">\[ [-\mid s_{t+1}-s_t\mid ,0] \]</span>
+就相当于是一个状态增量，修正就是用10个高斯分布在 <span
+class="math display">\[ [0,\mid s_{t+1}-s_t\mid] \]</span> 或者 <span
+class="math display">\[ [-\mid s_{t+1}-s_t\mid ,0] \]</span>
 之间取值目标 <span class="math display">\[ \widetilde{g}_t \]</span>
 。至于为什么是10个高斯，怎么取值，这些正文中没有说明，附录里面应该有，细看的时候可以找一找。</p>
 
