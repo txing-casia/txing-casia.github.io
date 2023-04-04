@@ -75,7 +75,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -174,7 +178,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/07/2020-09-07-ImportError%20cannot%20import%20name%20'Optional'/">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/07/2020-09-07-Q104%20Maximum%20Depth%20of%20Binary-%E7%AE%80%E5%8D%95-%E6%B7%B1%E5%BA%A6and%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%20Tree/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -188,7 +192,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/09/07/2020-09-07-ImportError%20cannot%20import%20name%20'Optional'/" class="post-title-link" itemprop="url">ImportError: cannot import name 'Optional'</a>
+            <a href="/2020/09/07/2020-09-07-Q104%20Maximum%20Depth%20of%20Binary-%E7%AE%80%E5%8D%95-%E6%B7%B1%E5%BA%A6and%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%20Tree/" class="post-title-link" itemprop="url">Q104 Maximum Depth of Binary Tree-简单-深度/广度优先搜索</a>
         </h2>
 
         <div class="post-meta">
@@ -219,90 +223,64 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="importerror-cannot-import-name-optional">ImportError: cannot
-import name 'Optional'</h1>
-<p>遇到报错：ImportError: cannot import name 'Optional'</p>
-<p>已安装所需的库，经查是由于torchvision和pytorch版本不对应导致的。具体对应版本号见<a
-target="_blank" rel="noopener" href="https://github.com/pytorch/vision">下图</a></p>
-<table>
-<colgroup>
-<col style="width: 30%" />
-<col style="width: 30%" />
-<col style="width: 38%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;"><code>torch</code></th>
-<th style="text-align: center;"><code>torchvision</code></th>
-<th style="text-align: center;"><code>python</code></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><code>master</code> /
-<code>nightly</code></td>
-<td style="text-align: center;"><code>master</code> /
-<code>nightly</code></td>
-<td style="text-align: center;"><code>&gt;=3.6</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><code>1.6.0</code></td>
-<td style="text-align: center;"><code>0.7.0</code></td>
-<td style="text-align: center;"><code>&gt;=3.6</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><code>1.5.1</code></td>
-<td style="text-align: center;"><code>0.6.1</code></td>
-<td style="text-align: center;"><code>&gt;=3.5</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><code>1.5.0</code></td>
-<td style="text-align: center;"><code>0.6.0</code></td>
-<td style="text-align: center;"><code>&gt;=3.5</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><code>1.4.0</code></td>
-<td style="text-align: center;"><code>0.5.0</code></td>
-<td style="text-align: center;"><code>==2.7</code>,
-<code>&gt;=3.5</code>, <code>&lt;=3.8</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><code>1.3.1</code></td>
-<td style="text-align: center;"><code>0.4.2</code></td>
-<td style="text-align: center;"><code>==2.7</code>,
-<code>&gt;=3.5</code>, <code>&lt;=3.7</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><code>1.3.0</code></td>
-<td style="text-align: center;"><code>0.4.1</code></td>
-<td style="text-align: center;"><code>==2.7</code>,
-<code>&gt;=3.5</code>, <code>&lt;=3.7</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><code>1.2.0</code></td>
-<td style="text-align: center;"><code>0.4.0</code></td>
-<td style="text-align: center;"><code>==2.7</code>,
-<code>&gt;=3.5</code>, <code>&lt;=3.7</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><code>1.1.0</code></td>
-<td style="text-align: center;"><code>0.3.0</code></td>
-<td style="text-align: center;"><code>==2.7</code>,
-<code>&gt;=3.5</code>, <code>&lt;=3.7</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><code>&lt;=1.0.1</code></td>
-<td style="text-align: center;"><code>0.2.2</code></td>
-<td style="text-align: center;"><code>==2.7</code>,
-<code>&gt;=3.5</code>, <code>&lt;=3.7</code></td>
-</tr>
-</tbody>
-</table>
-<p>更改anaconda中的库的版本也很简单：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install pytorch = version</span><br></pre></td></tr></table></figure>
-<p>将version改为对应的版本号即可（例如1.4）</p>
-<p>Txing</p>
-<p>2020-09-07</p>
+          <h1 id="maximum-depth-of-binary-tree"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/">Maximum
+Depth of Binary Tree</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>Given a binary tree, find its maximum depth.</p>
+<p>The maximum depth is the number of nodes along the longest path from
+the root node down to the farthest leaf node.</p>
+<p><strong>Note:</strong> A leaf is a node with no children.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>Given binary tree [3,9,20,null,null,15,7],</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  3</span><br><span class="line"> / \</span><br><span class="line">9  20</span><br><span class="line">  /  \</span><br><span class="line"> 15   7</span><br></pre></td></tr></table></figure>
+<p>return its depth = 3.</p>
+</blockquote>
+<h3 id="approach-1-深度优先搜索">Approach 1: 深度优先搜索</h3>
+<p>如果我们知道了左子树和右子树的最大深度 l 和
+r，那么该二叉树的最大深度即为<span class="math display">\[\max(l,r) +
+1\]</span></p>
+<p>而左子树和右子树的最大深度又可以以同样的方式进行计算。因此我们在计算当前二叉树的最大深度时，可以先递归计算出其左子树和右子树的最大深度，然后在
+O(1)O(1)
+时间内计算出当前二叉树的最大深度。递归在访问到空节点时退出。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxDepth</span>(<span class="params">self, root</span>):</span><br><span class="line">        <span class="keyword">if</span> root <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            left_height = self.maxDepth(root.left)</span><br><span class="line">            right_height = self.maxDepth(root.right)</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">max</span>(left_height, right_height) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h3 id="复杂度分析">复杂度分析</h3>
+<ul>
+<li>时间复杂度：<span class="math display">\[O(n)\]</span>，其中 n
+为二叉树节点的个数。每个节点在递归中只被遍历一次。</li>
+<li>空间复杂度：<span
+class="math display">\[O(\textit{height})\]</span>，其中 <span
+class="math display">\[\textit{height}\]</span>
+表示二叉树的高度。递归函数需要栈空间，而栈空间取决于递归的深度，因此空间复杂度等价于二叉树的高度。</li>
+</ul>
+<h3 id="approach-1-广度优先搜索">Approach 1: 广度优先搜索</h3>
+<p>我们也可以用「广度优先搜索」的方法来解决这道题目，但我们需要对其进行一些修改，此时我们广度优先搜索的队列里存放的是「当前层的所有节点」。每次拓展下一层的时候，不同于广度优先搜索的每次只从队列里拿出一个节点，我们需要将队列里的所有节点都拿出来进行拓展，这样能保证每次拓展完的时候队列里存放的是当前层的所有节点，即我们是一层一层地进行拓展，最后我们用一个变量
+<span class="math display">\[\textit{ans}\]</span>
+来维护拓展的次数，该二叉树的最大深度即为 <span
+class="math display">\[\textit{ans}\]</span>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">maxDepth2</span>(<span class="params">self, root</span>):</span><br><span class="line">        <span class="keyword">if</span> root <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        queue = [(root, <span class="number">1</span>)]</span><br><span class="line">        max_dep = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            node, depth = queue.pop()</span><br><span class="line">            max_dep = <span class="built_in">max</span>(max_dep, depth)</span><br><span class="line">            <span class="keyword">if</span> node.left:</span><br><span class="line">                queue.append((node.left, depth +<span class="number">1</span>))</span><br><span class="line">            <span class="keyword">if</span> node.right:</span><br><span class="line">                queue.append((node.right, depth + <span class="number">1</span>))</span><br><span class="line">        <span class="keyword">return</span> max_dep</span><br></pre></td></tr></table></figure>
+<h3 id="复杂度分析-1">复杂度分析</h3>
+<p>时间复杂度：<span class="math display">\[O(n)\]</span>，其中 n
+为二叉树的节点个数。与方法一同样的分析，每个节点只会被访问一次。
+空间复杂度：此方法空间的消耗取决于队列存储的元素数量，其在最坏情况下会达到
+<span class="math display">\[O(n)\]</span>。</p>
+<ul>
+<li></li>
+</ul>
+<h3 id="思考题">思考题</h3>
+<p>对于给定的排列 <span class="math display">\[a_1, a_2, \cdots,
+a_n\]</span> ，你能求出 k 吗？</p>
+<p>解答： <span class="math display">\[
+k = \left( \sum_{i=1}^n \textit{order}(a_i) \cdot (n-i)! \right) + 1
+\]</span> 其中 <span
+class="math display">\[\textit{order}(a_i)\]</span>表示 <span
+class="math display">\[a_{i+1}, \cdots, a_n\]</span>中小于 <span
+class="math display">\[a_i\]</span>的元素个数。</p>
+<h3 id="反思">反思</h3>
+<p>我在分析这个问题的时候只考虑到了第一项怎么确定，然后就用递归来求解问题，中间忽略了n和k的取值特例。分析不够完备，代码看着比较乱，可读性不强。今后分析的时候还是要把问题分析完整了再编代码，比如推出这道题的通项公式后再写代码。</p>
 
       
     </div>

@@ -75,7 +75,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -900,125 +904,6 @@ matrix[i][j], &amp;i==0 or j==0\\
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/04/08/2022-04-08-Q63-%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84II-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用类人决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/08/2022-04-08-Q63-%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84II-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="post-title-link" itemprop="url">Q63-不同路径II-中等-动态规划</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-04-08 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-08T00:00:00+08:00">2022-04-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-25 09:54:15" itemprop="dateModified" datetime="2023-03-25T09:54:15+08:00">2023-03-25</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="不同路径-ii"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/unique-paths-ii/">63. 不同路径
-II</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为 “Start”
-）。</p>
-<p>机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为
-“Finish”）。</p>
-<p>现在考虑网格中有障碍物。那么从左上角到右下角将会有多少条不同的路径？</p>
-<p>网格中的障碍物和空位置分别用 1 和 0 来表示。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入：obstacleGrid = [[0,0,0],[0,1,0],[0,0,0]] 输出：2 解释：3x3
-网格的正中间有一个障碍物。 从左上角到右下角一共有 2 条不同的路径： 1.
-向右 -&gt; 向右 -&gt; 向下 -&gt; 向下 2. 向下 -&gt; 向下 -&gt; 向右
--&gt; 向右</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>输入：obstacleGrid = [[0,1],[0,0]] 输出：1</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li>m == obstacleGrid.length</li>
-<li>n == obstacleGrid[i].length</li>
-<li>1 &lt;= m, n &lt;= 100</li>
-<li>obstacleGrid[i][j] 为 0 或 1</li>
-</ul>
-</blockquote>
-<h3 id="approach-1-动态规划">Approach 1: 动态规划</h3>
-<p>这道题在Q62的基础上设置了障碍物，思路比较简单，只需在动态规划迭代之前先判断知否存在障碍物即可。本题目是典型的动态规划问题，因为我们计算到每个格子的路线数目可以通过，之前格子的可到达路线数目计算。具体计算迭代方式如下：</p>
-<p>用<code>dp[m][n]</code>记录到达每个位置的路径数目（注意，agent只能右移或者下移）。
-<span class="math display">\[
-dp[i][j] =
-\begin{cases}
-dp[i-1][j]+dp[i][j-1] ,&amp;obstacleGrid[i][j] = 1\\
-0,&amp; obstacleGrid[i][j] = 0
-\end{cases}
-\]</span>
-考虑边界条件，将<code>dp[0][j]</code>和<code>dp[i][0]</code>单独赋值为<code>1</code>。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">uniquePathsWithObstacles</span>(<span class="params">self, obstacleGrid</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        </span><br><span class="line">        m,n = <span class="built_in">len</span>(obstacleGrid),<span class="built_in">len</span>(obstacleGrid[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">if</span> obstacleGrid[m-<span class="number">1</span>][n-<span class="number">1</span>] == <span class="number">1</span> <span class="keyword">or</span> obstacleGrid[<span class="number">0</span>][<span class="number">0</span>] == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        dp = [[<span class="number">0</span>]*n <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(m)]</span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">            <span class="keyword">if</span> obstacleGrid[i][<span class="number">0</span>] != <span class="number">1</span>:</span><br><span class="line">                dp[i][<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">if</span> obstacleGrid[<span class="number">0</span>][j] != <span class="number">1</span>:</span><br><span class="line">                dp[<span class="number">0</span>][j] = <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,m):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,n):</span><br><span class="line">                <span class="keyword">if</span> obstacleGrid[i][j] != <span class="number">1</span>:</span><br><span class="line">                    dp[i][j] = dp[i-<span class="number">1</span>][j] + dp[i][j-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[m-<span class="number">1</span>][n-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    mat = [[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>],[<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>],[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>]]</span><br><span class="line">    solution=Solution().uniquePathsWithObstacles(mat)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：<span
-class="math display">\[O(mn)\]</span>。</p></li>
-<li><p>空间复杂度：<span
-class="math inline">\(O(mn)\)</span>，即为存储所有状态需要的空间。注意到<code>dp[i][j]</code>仅与第<code>i</code>行和第<code>i-1</code>行的状态有关，因此我们可以使用滚动数组代替代码中的二维数组，使空间复杂度降低为
-<code>O(n)</code>。此外，由于我们交换行列的值并不会对答案产生影响，因此我们总可以通过交换<code>m</code>和<code>n</code>使得
-<code>m</code> <span class="math inline">\(\leq\)</span>
-<code>n</code>，这样空间复杂度降低至 <span
-class="math inline">\(O(\min(m, n))\)</span>。</p></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/04/08/2022-04-08-Q62-%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1112,6 +997,125 @@ dp[i][j] = dp[i-1][j]+dp[i][j-1]
 \]</span>
 考虑边界条件，将<code>dp[0][j]</code>和<code>dp[i][0]</code>单独赋值为<code>1</code>。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">uniquePaths</span>(<span class="params">self, m: <span class="built_in">int</span>, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        dp = [[<span class="number">0</span>]*n <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(m)]</span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">            dp[i][<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            dp[<span class="number">0</span>][j] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,m):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,n):</span><br><span class="line">                dp[i][j] = dp[i-<span class="number">1</span>][j] + dp[i][j-<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">return</span> dp[m-<span class="number">1</span>][n-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    m = <span class="number">7</span></span><br><span class="line">    n = <span class="number">3</span></span><br><span class="line">    solution=Solution().uniquePaths(m,n)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：<span
+class="math display">\[O(mn)\]</span>。</p></li>
+<li><p>空间复杂度：<span
+class="math inline">\(O(mn)\)</span>，即为存储所有状态需要的空间。注意到<code>dp[i][j]</code>仅与第<code>i</code>行和第<code>i-1</code>行的状态有关，因此我们可以使用滚动数组代替代码中的二维数组，使空间复杂度降低为
+<code>O(n)</code>。此外，由于我们交换行列的值并不会对答案产生影响，因此我们总可以通过交换<code>m</code>和<code>n</code>使得
+<code>m</code> <span class="math inline">\(\leq\)</span>
+<code>n</code>，这样空间复杂度降低至 <span
+class="math inline">\(O(\min(m, n))\)</span>。</p></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/04/08/2022-04-08-Q63-%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84II-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用类人决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/08/2022-04-08-Q63-%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84II-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="post-title-link" itemprop="url">Q63-不同路径II-中等-动态规划</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-04-08 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-08T00:00:00+08:00">2022-04-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-03-25 09:54:15" itemprop="dateModified" datetime="2023-03-25T09:54:15+08:00">2023-03-25</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="不同路径-ii"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/unique-paths-ii/">63. 不同路径
+II</a></h4>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为 “Start”
+）。</p>
+<p>机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为
+“Finish”）。</p>
+<p>现在考虑网格中有障碍物。那么从左上角到右下角将会有多少条不同的路径？</p>
+<p>网格中的障碍物和空位置分别用 1 和 0 来表示。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>输入：obstacleGrid = [[0,0,0],[0,1,0],[0,0,0]] 输出：2 解释：3x3
+网格的正中间有一个障碍物。 从左上角到右下角一共有 2 条不同的路径： 1.
+向右 -&gt; 向右 -&gt; 向下 -&gt; 向下 2. 向下 -&gt; 向下 -&gt; 向右
+-&gt; 向右</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>输入：obstacleGrid = [[0,1],[0,0]] 输出：1</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ul>
+<li>m == obstacleGrid.length</li>
+<li>n == obstacleGrid[i].length</li>
+<li>1 &lt;= m, n &lt;= 100</li>
+<li>obstacleGrid[i][j] 为 0 或 1</li>
+</ul>
+</blockquote>
+<h3 id="approach-1-动态规划">Approach 1: 动态规划</h3>
+<p>这道题在Q62的基础上设置了障碍物，思路比较简单，只需在动态规划迭代之前先判断知否存在障碍物即可。本题目是典型的动态规划问题，因为我们计算到每个格子的路线数目可以通过，之前格子的可到达路线数目计算。具体计算迭代方式如下：</p>
+<p>用<code>dp[m][n]</code>记录到达每个位置的路径数目（注意，agent只能右移或者下移）。
+<span class="math display">\[
+dp[i][j] =
+\begin{cases}
+dp[i-1][j]+dp[i][j-1] ,&amp;obstacleGrid[i][j] = 1\\
+0,&amp; obstacleGrid[i][j] = 0
+\end{cases}
+\]</span>
+考虑边界条件，将<code>dp[0][j]</code>和<code>dp[i][0]</code>单独赋值为<code>1</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">uniquePathsWithObstacles</span>(<span class="params">self, obstacleGrid</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        </span><br><span class="line">        m,n = <span class="built_in">len</span>(obstacleGrid),<span class="built_in">len</span>(obstacleGrid[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">if</span> obstacleGrid[m-<span class="number">1</span>][n-<span class="number">1</span>] == <span class="number">1</span> <span class="keyword">or</span> obstacleGrid[<span class="number">0</span>][<span class="number">0</span>] == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        dp = [[<span class="number">0</span>]*n <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(m)]</span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">            <span class="keyword">if</span> obstacleGrid[i][<span class="number">0</span>] != <span class="number">1</span>:</span><br><span class="line">                dp[i][<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">if</span> obstacleGrid[<span class="number">0</span>][j] != <span class="number">1</span>:</span><br><span class="line">                dp[<span class="number">0</span>][j] = <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,m):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,n):</span><br><span class="line">                <span class="keyword">if</span> obstacleGrid[i][j] != <span class="number">1</span>:</span><br><span class="line">                    dp[i][j] = dp[i-<span class="number">1</span>][j] + dp[i][j-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[m-<span class="number">1</span>][n-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    mat = [[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>],[<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>],[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>]]</span><br><span class="line">    solution=Solution().uniquePathsWithObstacles(mat)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li><p>时间复杂度：<span
