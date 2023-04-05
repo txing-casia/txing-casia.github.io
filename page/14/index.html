@@ -178,7 +178,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/25/2021-03-25-Neuroscience%20-%20A%20Gain-Field%20Encoding%20of%20Limb%20Position%20and%20Velocity%20in%20the%20Internal%20Model%20of%20Arm%20Dynamics/">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/25/2021-03-25-Q1669-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8-%E4%B8%AD%E7%AD%89-%E9%93%BE%E8%A1%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/my_photo.jpg">
@@ -192,7 +192,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/03/25/2021-03-25-Neuroscience%20-%20A%20Gain-Field%20Encoding%20of%20Limb%20Position%20and%20Velocity%20in%20the%20Internal%20Model%20of%20Arm%20Dynamics/" class="post-title-link" itemprop="url">Neuroscience | A Gain-Field Encoding of Limb Position and Velocity in the Internal Model of Arm Dynamics</a>
+            <a href="/2021/03/25/2021-03-25-Q1669-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8-%E4%B8%AD%E7%AD%89-%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">Q1669-合并两个链表-中等-链表</a>
         </h2>
 
         <div class="post-meta">
@@ -204,15 +204,22 @@
 
               <time title="Created: 2021-03-25 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-25T00:00:00+08:00">2021-03-25</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-25 09:54:14" itemprop="dateModified" datetime="2023-03-25T09:54:14+08:00">2023-03-25</time>
-              </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.8k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
 
         </div>
       </header>
@@ -223,158 +230,52 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1
-id="a-gain-field-encoding-of-limb-position-and-velocity-in-the-internal-model-of-arm-dynamics">A
-Gain-Field Encoding of Limb Position and Velocity in the Internal Model
-of Arm Dynamics</h1>
-<p>论文链接：https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025</p>
-<h2 id="背景">背景</h2>
-<p>reaching任务的适应性取决于大脑中的计算，这种计算将手臂的位置和速度的感觉线索转换为运动指令。</p>
-<p>本文提出一种位置-速度增益场来进行这种转换。</p>
-<p>增益场中的运动基元由线性的位置编码基元和高斯形的速度编码基元乘法调制。</p>
-<p>文章得出两个结论：</p>
-<ol type="1">
-<li><p>在被训练的空间之外，增益场依然能帮助泛化</p></li>
-<li><p>非单调的力模式（nonmonotonic force
-patterns）比单调的力模式（monotonic force patterns）更难学习</p></li>
-</ol>
-<h2 id="主要工作">主要工作</h2>
+          <h4 id="合并两个链表"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-in-between-linked-lists/">1669.
+合并两个链表</a></h4>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>给你两个链表 list1 和 list2 ，它们包含的元素分别为 n 个和 m
+个。请你将 list1 中第 a 个节点到第 b 个节点删除，并将list2
+接在被删除节点的位置。请你返回结果链表的头指针。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>输入：list1 = [0,1,2,3,4,5], a = 3, b = 4, list2 =
+[1000000,1000001,1000002] 输出：[0,1,2,1000000,1000001,1000002,5]
+解释：我们删除 list1 中第三和第四个节点，并将 list2
+接在该位置。上图中蓝色的边和节点为答案链表。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>输入：list1 = [0,1,2,3,4,5,6], a = 2, b = 5, list2 =
+[1000000,1000001,1000002,1000003,1000004]
+输出：[0,1,1000000,1000001,1000002,1000003,1000004,6]
+解释：上图中蓝色的边和节点为答案链表。</p>
+</blockquote>
+<blockquote>
+<p><strong>提示：</strong></p>
 <ul>
-<li><p>行为（<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Shadmehr2">Shadmehr和Mussa-Ivaldi，1994</a>；<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Conditt1">Conditt和Mussa-Ivaldi，1999</a>）和神经生理学（<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Li1">Li等，2001</a>；<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Gribble1">Gribble和Scott，2002）</a>）证据表明，大脑通过高度适应性强的内部模型控制肢体运动，</p></li>
-<li><p>神经生理学实验表明运动皮层可能是学习肢体动力学内部模型的神经系统的重要组成部分之一（<a
-target="_blank" rel="noopener" href="https://www.cell.com/neuron/fulltext/S0896-6273(01)00301-4">Li et
-al.
-2001</a>）。现在有关于各种运动参数如何变化的重要信息，例如肢体速度（<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Moran1">Moran和Schwartz，1999年</a>），手臂方向（<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Scott1">Scott和Kalaska，1997年</a>；<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Scott2">Scott等，1997年</a>）以及手部姿势（<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Caminiti1">Caminiti等，1990年</a>；<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Sergio1">Sergio和Kalaska</a>，<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Scott2">1997年</a>）<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Sergio1">1997</a>）由运动皮层中的神经元编码。</p></li>
-<li><p>具有反映在神经生理学实验中发现的某些细胞特性的元素的计算模型已尝试解释适应过程中泛化的模式如何与神经表征相关。这些计算模型假设内部模型由“元素”或碱基组成，每个仅编码感觉空间的一部分，并且人口代码在计算感觉运动转换时会结合这些元素（<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Georgopoulos2">Georgopoulos等人1986</a>；<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Levi1">Levi和Camhi
-2000</a>；<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Pouget2">Pouget等人2000</a>；<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Thoroughman1">Thoroughman和Shadmehr
-2000</a>；<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Donchin1">Donchin和Shadmehr
-2002</a>；<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Steinberg1">Steinberg等人2002。</a>）。该图将期望的感觉状态转换为即将到来的力的预测。在这些假设下，错误概括的模式应揭示基本元素的形状。</p></li>
-<li><p>我们进行了一组实验，检查了神经元如何同时编码肢体位置和速度。我们表明，运动误差一般用一种模式暗示，该模式表明肢体位置空间的线性或单调编码，并且该编码是通过运动方向的编码进行乘法调制的。我们从泛化模式中得出的肢体位置和速度的增益场编码与运动皮层中这些参数的神经编码非常相似（<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Georgopoulos1">Georgopoulos等，1984</a>）</p></li>
-<li><p>实验部分：</p>
-<ul>
-<li><p>每个运动的关节转动角度相同，运动时间相同，因此保证探索相同的关节速度-位置空间</p></li>
-<li><p>力场为 <strong>viscous
-curl-field</strong>（粘性卷曲力场）</p></li>
-<li><p><strong>catch trial</strong> 是不加力场的运动；<strong>field
-trial</strong> 是加力场的运动</p></li>
-<li><p>左边的轨迹，力场向左推手；</p></li>
-<li><p>右边的轨迹，力场向右推手</p></li>
-<li><p>中间的轨迹，力场输出为0</p></li>
-</ul></li>
-<li><p>运动相隔越远，力越能联系它们</p></li>
-<li><p>以上结果表明，当不同的力与相同方向但在不同空间位置的两个运动相关联时，泛化会随着它们之间距离的增加而降低。另一方面，较早的结果发现，当在单个位置学习到不同方向的运动时，学习会推广到很远的其他手臂位置（<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Ghez1">Ghez等，2000</a>；<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Shadmehr1">Shadmehr和Moussavi，2000</a>；<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Malfait1">Malfait等，2002</a>）。</p>
-<p>The above results demonstrate that when different forces are to be
-associated with two movements that are in the same direction but at
-different spatial locations, generalization decreases with increased
-distance between them. On the other hand, earlier results had found that
-when movements to various directions are learned at a single location,
-learning generalizes to other arm locations very far away (<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Ghez1">Ghez
-et al. 2000</a>; <a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Shadmehr1">Shadmehr
-and Moussavi 2000</a>; <a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Malfait1">Malfait
-et al. 2002</a>).</p></li>
-<li><p>我们同时考虑了位置空间的高斯编码和线性编码。我们首先假设肢体位置空间为高斯编码，并评估基础元素的最佳宽度以适合数据。我们惊讶地发现，每个元素的半峰处最佳全宽约为80厘米（高斯函数的标准偏差，σ=
-34厘米）。通过高斯基础元素对位置空间进行非常广泛的调整，在工作空间宽度的三倍的工作空间上形成了一个基本上线性的位置相关的接收场。由于此模型在我们的整个训练空间以及以后的范围内都产生了基本上单调的位置编码，因此我们决定详细研究具有简单线性位置编码的模型。的确，<strong>运动皮层</strong>的研究（<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Georgopoulos1">Georgopoulos等人，1984年</a>；<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Sergio1">Sergio和Kalaska（1997</a>），<strong>体感皮质</strong>（<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Prudahomme1">Prud'homme和Kalaska
-1994</a> ; <a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Tillery1">Tillery等人1996</a>）和<strong>脊髓小脑束</strong>（<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Bosco1">Bosco等人1996</a>）发现，这些区域的细胞在全局范围内通常是<strong>线性地编码肢体静态位置</strong>。</p></li>
-<li><p><strong>加性编码不能适应作为位置和速度的非线性函数的场</strong>，例如<em>f</em>（<em>x</em>，<em>ẋ</em>）=（<em>x
-/ d</em>）·
-<em>Bẋ</em>。这是描述我们在上一节中考虑的任务的力场。理论研究表明，要适应这样的非线性场，必须以乘法而不是加法形成组合空间的基函数（<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Pouget1">Pouget和Sejnowski
-1997</a>）。我们选择使用位置和速度的乘法组合。</p></li>
-<li><p><strong>假设位置和速度通过增益场机制联合编码。</strong>We
-hypothesized that position and velocity encoding are combined via a
-gain-field mechanism</p></li>
-<li><p>图3B是两个基元，线性力场的情况下的基元权重学习过程，曲线越与中间斜率为-1的虚线对齐，表示学习越快越高效。（1/2kd,-1/2kd）是最佳权重。k越大、d越大、b越小，越能出尽快速学习。</p></li>
-<li><p>图3B中的简单线性基元示意：</p>
-<ul>
-<li><span class="math display">\[
-f(x)=\frac{x}{d}\\
-g_1=kx+b\\
-g_2=-kx+b
-\]</span></li>
-</ul></li>
-<li><p>Importantly, when the trained position <em>d</em> is close to the
-zero of the coordinate axis, the slope is also close to zero, making the
-generalization function flat (i.e., global generalization).</p></li>
-<li><p>适应力场并不只是单纯地增加刚度。This was not simply a result of
-<strong>increased stiffness</strong> because, when the force field was
-removed unexpectedly, the trajectories and endpoint errors were on the
-opposite side of those in the early force field, indicating <strong>a
-proper internal model</strong>. <a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio-0000025-g004">Figure
-4</a>C shows a position-dependent field in this category, and <a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio-0000025-g004">Figure
-4</a>D–<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio-0000025-g004">4</a>F
-shows movements made by the simulation as it adapts to this field. This
-pattern of adaptation is similar to reported values in human data (<a
-target="_blank" rel="noopener" href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0000025#pbio.0000025-Flash1">Flash
-and Gurevich 1997</a>).</p></li>
-<li><p>图4AB，在L区域训练，然后再R区域测试，在新力场中学习速度变快</p></li>
-<li><p>两个模型的预测：</p>
-<ol type="1">
-<li><p>a change to the pattern of forces can substantially increase the
-difficulty of a task; 力场中变化的力模式会大大增加任务难度</p></li>
-<li><p>there should be hypergeneralization; i.e., forces expected in an
-untrained part of the workspace may be larger than the ones experienced
-at a trained
-location.超泛化性，在工作空间的未训练部分预期的力可能比在训练位置经历的力大</p></li>
-</ol></li>
-<li><p>尽管在训练空间上学得很少，但我们在测试空间中发现了明显更大的后效应，即过度概括。我们的模拟表明，这种过度概括不能归因于<strong>肢体惯性</strong>和/或<strong>刚度</strong>随肢体位置的变化而变化。More
-importantly, despite this small learning in the training space, we found
-significantly bigger aftereffects in the test space, i.e.,
-hypergeneralization. Our simulations suggest that this
-hypergeneralization could not be due to varying limb inertia and/or
-stiffness as a function of limb position.</p></li>
-<li><p><strong>增益场定义</strong>：细胞编码中两个独立变量的乘法相互作用称为增益场编码。Multiplicative
-interaction of two independent variables in cell encoding is called
-gain-field coding.</p></li>
-<li><p>位置-速度运动基元：</p></li>
+<li>3 &lt;= list1.length &lt;= 10^4</li>
+<li>1 &lt;= a &lt;= b &lt; list1.length - 1</li>
+<li>1 &lt;= list2.length &lt;= 10^4</li>
 </ul>
-<p><span class="math display">\[
-\tau=\sum Wg_z\\
-g_z(q,\dot{q})=g_p(q)*g_v(\dot{q})\\
-g_{p,i}(q)=k_i^T\cdot q+b\\
-g_{v,i}(\dot{q})=\exp\bigg(\frac{\parallel\dot{q}-c_i\parallel^2}{2\sigma^2}\bigg)\\
-k_i=|k| \cdot
-\begin{bmatrix}
-\cos(\theta_i)\\
-\sin(\theta_i)\\
-\end{bmatrix}
-\\
-b=1.3\\
-k=1
-\]</span></p>
-<h2 id="总结">总结</h2>
-<p>很有趣的文章，值得进一步考虑。但是提出的模型比较简单，可以进一步讨论。</p>
+</blockquote>
+<h3 id="approach-1-链表合并">Approach 1: 链表合并</h3>
+<p>本题目思路很明确，主要需要注意以下几点：</p>
+<ul>
+<li>合并过程中只用考虑指针，地址中的值不用转换。</li>
+<li>链表不像数组，赋值只管头尾指针，不用每个位置都重新赋值</li>
+<li>链表的遍历（计算长度），没有什么好方法</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">from</span> enum <span class="keyword">import</span> Enum</span><br><span class="line"><span class="keyword">import</span> bisect</span><br><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">mergeInBetween</span>(<span class="params">self, list1, a: <span class="built_in">int</span>, b: <span class="built_in">int</span>, list2</span>):</span><br><span class="line">        res = list1 <span class="comment"># 存放答案头指针，在list1基础上合并</span></span><br><span class="line">        num = <span class="number">0</span> <span class="comment"># 计数器</span></span><br><span class="line">        <span class="keyword">while</span> list1:</span><br><span class="line">            <span class="comment"># 找到 list1 的 a 处指针放入 start1</span></span><br><span class="line">            <span class="keyword">if</span> num == a-<span class="number">1</span>: </span><br><span class="line">                start1 = list1</span><br><span class="line">            <span class="comment"># 找到 list1 的 b 处指针放入 end1</span></span><br><span class="line">            <span class="keyword">if</span> num == b+<span class="number">1</span>:</span><br><span class="line">                end1 = list1</span><br><span class="line">                <span class="keyword">break</span> <span class="comment"># 之后的长度不用管了</span></span><br><span class="line">            list1 = list1.<span class="built_in">next</span></span><br><span class="line">            num += <span class="number">1</span></span><br><span class="line">        <span class="comment"># 找到 list2 的 尾部指针放入 end2</span></span><br><span class="line">        start1.<span class="built_in">next</span> = list2</span><br><span class="line">        <span class="keyword">while</span> list2.<span class="built_in">next</span>: </span><br><span class="line">            list2 = list2.<span class="built_in">next</span></span><br><span class="line">        list2.<span class="built_in">next</span> = end1</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    list1 = stringToListNode([<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line">    list2 = stringToListNode([<span class="number">1000000</span>,<span class="number">1000001</span>,<span class="number">1000002</span>])</span><br><span class="line">    a = <span class="number">3</span></span><br><span class="line">    b = <span class="number">4</span></span><br><span class="line">    solution=Solution().mergeInBetween(list1,a,b,list2)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：<em>O(n)</em>。其中<code>n</code>为 <span
+class="math display">\[\max(\text{链表1长度}, \text{链表2长度},
+b)\]</span>。</p></li>
+<li><p>空间复杂度：<em>O(1)</em>。解决问题需要常数大小的辅助空间。</p></li>
+</ul>
 
       
     </div>
@@ -420,15 +321,22 @@ k=1
 
               <time title="Created: 2021-03-24 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-24T00:00:00+08:00">2021-03-24</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-25 09:54:14" itemprop="dateModified" datetime="2023-03-25T09:54:14+08:00">2023-03-25</time>
-              </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
 
         </div>
       </header>
@@ -526,15 +434,22 @@ Offer 06. 从尾到头打印链表</a></h4>
 
               <time title="Created: 2021-03-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-23T00:00:00+08:00">2021-03-23</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-25 09:54:14" itemprop="dateModified" datetime="2023-03-25T09:54:14+08:00">2023-03-25</time>
-              </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>902</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
 
         </div>
       </header>
@@ -619,15 +534,22 @@ MIT ( 1998).</p></li>
 
               <time title="Created: 2021-03-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-23T00:00:00+08:00">2021-03-23</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-25 09:54:14" itemprop="dateModified" datetime="2023-03-25T09:54:14+08:00">2023-03-25</time>
-              </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.1k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
 
         </div>
       </header>
@@ -768,15 +690,22 @@ O(n)。</li>
 
               <time title="Created: 2021-03-22 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-22T00:00:00+08:00">2021-03-22</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-25 09:54:14" itemprop="dateModified" datetime="2023-03-25T09:54:14+08:00">2023-03-25</time>
-              </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.5k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
 
         </div>
       </header>
@@ -908,15 +837,22 @@ class="math display">\[O(1)\]</span>，我们只需要常数的空间保存若�
 
               <time title="Created: 2021-03-19 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-19T00:00:00+08:00">2021-03-19</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-25 09:54:14" itemprop="dateModified" datetime="2023-03-25T09:54:14+08:00">2023-03-25</time>
-              </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>3.5k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>3 mins.</span>
+            </span>
 
         </div>
       </header>
@@ -1079,15 +1015,22 @@ class="math display">\[O(mn)\]</span>。除了输出数组以外，空间复杂�
 
               <time title="Created: 2021-03-18 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-18T00:00:00+08:00">2021-03-18</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-25 09:54:14" itemprop="dateModified" datetime="2023-03-25T09:54:14+08:00">2023-03-25</time>
-              </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>3.4k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>3 mins.</span>
+            </span>
 
         </div>
       </header>
@@ -1265,15 +1208,22 @@ class="math display">\[O(N)\]</span>。分析同方法一。</li>
 
               <time title="Created: 2021-03-17 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-17T00:00:00+08:00">2021-03-17</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-25 09:54:14" itemprop="dateModified" datetime="2023-03-25T09:54:14+08:00">2023-03-25</time>
-              </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.5k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
 
         </div>
       </header>
@@ -1438,14 +1388,24 @@ class="math display">\[O(N)\]</span>，建立roots数组</li>
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://weibo.com/yourname" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+        <a href="https://github.com/txing-casia" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;txing-casia" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
   </div>
 
 
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.uomi.moe/" title="https:&#x2F;&#x2F;blog.uomi.moe" rel="noopener" target="_blank">驱逐舰患者</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://m.mepai.me/photographyer/u_5a68085ba15aa.html?tdsourcetag=s_pctim_aiomsg" title="https:&#x2F;&#x2F;m.mepai.me&#x2F;photographyer&#x2F;u_5a68085ba15aa.html?tdsourcetag&#x3D;s_pctim_aiomsg" rel="noopener" target="_blank">隐之-INF</a>
+        </li>
+    </ul>
+  </div>
 
       </div>
 
@@ -1471,6 +1431,16 @@ class="math display">\[O(N)\]</span>，建立roots数组</li>
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Txing</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">538k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">8:09</span>
 </div>
 
         
