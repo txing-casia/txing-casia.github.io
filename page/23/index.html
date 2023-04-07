@@ -19,7 +19,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="泛用类人决战型机器人博士">
@@ -142,16 +142,6 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
-
-  </li>
-        <li class="menu-item menu-item-schedule">
-
-    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
-
-  </li>
-        <li class="menu-item menu-item-sitemap">
-
-    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -1021,7 +1011,7 @@ target="_blank" rel="noopener" href="https://blog.curlc.com/archives/333.html">S
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/09/06/2019-09-06-Windows%E9%80%9A%E8%BF%87SSH%E5%90%91Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/09/06/2019-09-06-Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E9%85%8D%E7%BD%AEAnaconda3%E4%BB%A5%E5%8F%8APytorch-RL%E7%8E%AF%E5%A2%83/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/my_photo.jpg">
@@ -1035,7 +1025,7 @@ target="_blank" rel="noopener" href="https://blog.curlc.com/archives/333.html">S
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/09/06/2019-09-06-Windows%E9%80%9A%E8%BF%87SSH%E5%90%91Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/" class="post-title-link" itemprop="url">Windows通过SSH向Linux服务器上传文件</a>
+            <a href="/2019/09/06/2019-09-06-Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E9%85%8D%E7%BD%AEAnaconda3%E4%BB%A5%E5%8F%8APytorch-RL%E7%8E%AF%E5%A2%83/" class="post-title-link" itemprop="url">Linux服务器上配置Anaconda3以及Pytorch-RL环境</a>
         </h2>
 
         <div class="post-meta">
@@ -1054,7 +1044,7 @@ target="_blank" rel="noopener" href="https://blog.curlc.com/archives/333.html">S
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>303</span>
+              <span>1.1k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -1074,18 +1064,44 @@ target="_blank" rel="noopener" href="https://blog.curlc.com/archives/333.html">S
 
       
           <h1
-id="windows通过ssh向linux服务器上传文件">Windows通过SSH向Linux服务器上传文件</h1>
-<p>这里需要使用到PuTTY的pscp工具，因此需要在<a
-target="_blank" rel="noopener" href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">PuTTY官网</a>下载并安装。</p>
-<ul>
-<li><p><strong>Step 1</strong>: Install PuTTY.</p></li>
-<li><p><strong>Step 2</strong>: Open cmd window, and <strong>enter the
-path of your PuTTY files</strong>.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">d:</span><br><span class="line">cd ./Program Files (x86)/Putty</span><br></pre></td></tr></table></figure></li>
-<li><p><strong>Step 3</strong>: Use 'pscp' order, and wait for
-transmission.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pscp D:\download\Anaconda3-2019.07-Linux-x86_64.sh Txing@***.**.**.**.**:/home/Txing/anaconda3/</span><br></pre></td></tr></table></figure></li>
-</ul>
+id="linux服务器上配置anaconda3以pytorch-rl环境">Linux服务器上配置Anaconda3以Pytorch-RL环境</h1>
+<p>通过上传安装包的方式在服务器安装Anaconda3只需要在<strong>相应的目录下</strong>执行一句命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash Anaconda3-2019.07-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
+<p>安装途中会提示安装位置为默认路径：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/home/userNAME/anaconda3</span><br></pre></td></tr></table></figure>
+<p>等待安装完成后，切换到Anaconda所在目录，打开Anaconda创建新环境：</p>
+<p>这里由于我之前进行的配置都是基于Python
+3.6.1的，所以这里要求新环境的Python也为3.6.1，但是在安装过程中出现了路径失效的情况（可能老版本的下载通道少一些），新建失败。这里就只要求版本为3.6即可。输入以下指令，新建环境成功。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda create --name opensim-rl python=3.6</span><br><span class="line">source activate opensim-rl</span><br></pre></td></tr></table></figure>
+<p>环境建好后可以通过以下指令进行版本检查：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python --version</span><br><span class="line">&gt; Python 3.6.9 :: Anaconda, Inc.</span><br></pre></td></tr></table></figure>
+<p>接下来激活新建的环境并进行配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source activate opensim-rl</span><br></pre></td></tr></table></figure>
+<p>参考我之前的一篇经验（<a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/30636305">Anaconda新环境下快速安装多个Python软件包</a>）可以快速在新环境中批量安装软件包：</p>
+<p><strong>在新环境中</strong>输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install anaconda </span><br></pre></td></tr></table></figure>
+<p>等待安装完成。</p>
+<p>这里就基本把会调用的包都装上了，接下来开始安装PyTorch。</p>
+<hr />
+<p>继续呆在<strong>激活的opensim-rl环境</strong>里</p>
+<p>由于PyTorch版本的选择和cuda版本有关，虽然因此先检查服务器上的cuda版本号：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat /usr/local/cuda/version.txt</span><br><span class="line">&gt; CUDA Version 9.0.103</span><br></pre></td></tr></table></figure>
+<p>虽然PyTorch目前支持的最低版本是9.2，先选9.2，找到安装指令格式，再把9.2改成9.0（这个升级只有一两个月，自觉上应该是可以这样操作的），尝试安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install pytorch torchvision cudatoolkit=9.0 -c pytorch</span><br></pre></td></tr></table></figure>
+<p>这里有一点需要注意：anaconda提供的pytorch的url国内不少很稳定，在下载的时候链接经常挂掉。</p>
+<p>这里给出几个策略：</p>
+<ol type="1">
+<li><p>（玄学方法）在早晚下载低谷的时候下，速度会比较快。</p></li>
+<li><p><strong>（科学方法1）开VPN下载，会很稳定。</strong></p></li>
+<li><p>（科学方法2）添加国内清华、中科大的镜像源，多一些链接路径会增加成功的概率。</p></li>
+</ol>
+<p>这里我们用了<a
+target="_blank" rel="noopener" href="http://www.landeng26.info/">Lantern</a>每个月500M的免费流量帮助下载，速度比较快</p>
+<hr />
+<p>最后开始安装gym</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install gym</span><br></pre></td></tr></table></figure>
+<p>搞定！</p>
 
       
     </div>
@@ -1177,8 +1193,10 @@ transmission.</p>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
         <span class="site-state-item-count">57</span>
-        <span class="site-state-item-name">tags</span>
+        <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>
@@ -1221,7 +1239,7 @@ transmission.</p>
 
 <div class="copyright">
   
-  &copy; 
+  &copy; 2018 – 
   <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
