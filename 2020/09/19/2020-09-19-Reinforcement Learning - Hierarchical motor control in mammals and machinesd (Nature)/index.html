@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Hierarchical motor control in mammals and machines 论文链接：https:&#x2F;&#x2F;www.nature.com&#x2F;articles&#x2F;s41467-019-13239-6 背景 很多人工智能领域的进展启发了神经科学的研究。多数神经科学的研究都致力于探索单个任务空间的离散任务，而AI研究主要在agent玩复杂的游戏上。近期生物上的“synthetic">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reinforcement Learning | Hierarchical motor control in mammals and machinesd (Nature)">
+<meta property="og:url" content="https://txing-casia.github.io/2020/09/19/2020-09-19-Reinforcement%20Learning%20-%20Hierarchical%20motor%20control%20in%20mammals%20and%20machinesd%20(Nature)/index.html">
+<meta property="og:site_name" content="Txing">
+<meta property="og:description" content="Hierarchical motor control in mammals and machines 论文链接：https:&#x2F;&#x2F;www.nature.com&#x2F;articles&#x2F;s41467-019-13239-6 背景 很多人工智能领域的进展启发了神经科学的研究。多数神经科学的研究都致力于探索单个任务空间的离散任务，而AI研究主要在agent玩复杂的游戏上。近期生物上的“synthetic">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-25T01:54:14.972Z">
+<meta property="article:author" content="Txing">
+<meta property="article:tag" content="Reinforcement Learning">
+<meta property="article:tag" content="HRL">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://txing-casia.github.io/2020/09/19/2020-09-19-Reinforcement%20Learning%20-%20Hierarchical%20motor%20control%20in%20mammals%20and%20machinesd%20(Nature)/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Reinforcement Learning | Hierarchical motor control in mammals and machinesd (Nature) | Txing</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Txing</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到 | 伽蓝之堂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/txing-casia" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/19/2020-09-19-Reinforcement%20Learning%20-%20Hierarchical%20motor%20control%20in%20mammals%20and%20machinesd%20(Nature)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用类人决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Reinforcement Learning | Hierarchical motor control in mammals and machinesd (Nature)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-09-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-19T00:00:00+08:00">2020-09-19</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>6.2k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>6 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="hierarchical-motor-control-in-mammals-and-machines">Hierarchical
+motor control in mammals and machines</h1>
+<p>论文链接：https://www.nature.com/articles/s41467-019-13239-6</p>
+<h2 id="背景">背景</h2>
+<p>很多人工智能领域的进展启发了神经科学的研究。多数神经科学的研究都致力于探索单个任务空间的离散任务，而AI研究主要在agent玩复杂的游戏上。近期生物上的“synthetic
+motor control”却很少有人讨论。</p>
+<p>本文是一篇讨论AI和神经科学关于HRL以及H
+control的综述，角度比较好，介绍了大量细分方向的工作，非常值得一读。</p>
+<h2 id="主要工作">主要工作</h2>
+<ul>
+<li>神经科学启发了机器人中的subsumption
+architecture，简单搜了一下类似于层级机构的雏形（1986）。</li>
+<li>Optimal feedback control
+(OFC)研究如何优化运动，降低优化函数的值，取得最优性能；神经科学研究的是如何理解通过神经系统生成不同的行为动作。</li>
+</ul>
+<p>下面介绍几个重叠领域的重要工作：</p>
+<h3 id="computational-approaches-to-motor-control">1. computational
+approaches to motor control</h3>
+<ul>
+<li>运动控制在animal and artificial system中都是值得关注的问题；</li>
+<li>控制通过一个controller或者policy</li>
+<li>图1提供了三种控制结构，</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200917-1.png" /></p>
+<ul>
+<li><p>生物：内部前向模型Internal forward models are used to predict the
+future consequences of
+actions。该模型是允许虚拟行为的，可以预测行为后果。</p></li>
+<li><p>OFC被用于解释volitional control意志控制</p>
+<ul>
+<li>Diedrichsen, J., Shadmehr, R. &amp; Ivry, R. B. The coordination of
+movement: optimal feedback control and beyond. Trends Cogn. Sci. 14,
+31–39 (2010).</li>
+<li>Scott, S. H. The computational and neural basis of voluntary motor
+control and planning. Trends Cogn, Sci, 16, 541–549 (2012).</li>
+</ul></li>
+<li><p>OFC几乎可以概括所有的闭环控制算法，一些扩展的OFC主要是考虑了以下三点：</p>
+<ul>
+<li><p>运动控制目标是最大化一个优化函数；</p></li>
+<li><p>利用传感反馈来进行行为选择；</p></li>
+<li><p>内部模型帮助弥补传感延迟和执行状态估计；</p></li>
+</ul></li>
+<li><p>OFC对目标函数的组成结构非常包容，甚至不需要一个直接的目标，但在快速求解上有一点缺陷</p></li>
+</ul>
+<h3 id="motor-control-of-synthetic-systems">2. Motor control of
+synthetic systems</h3>
+<ul>
+<li><p>这部分内容主要涉及DRL，没提到什么新鲜的内容。</p></li>
+<li><p>planning methods:</p>
+<ul>
+<li>Mordatch, I., Todorov, E. &amp; Popović, Z. Discovery of complex
+behaviors through contact-invariant optimization. ACM T, Graphics (TOG)
+31, 43 (2012).</li>
+<li>Mordatch, I., Wang, J. M., Todorov, E. &amp; Koltun, V. Animating
+human lower limbs using contact-invariant optimization. ACM T. Graphic.
+32, 203 (2013)</li>
+</ul></li>
+<li><p>导航任务：Jaderberg, M. et al. Reinforcement learning with
+unsupervised auxiliary tasks. In International Conference on Learning
+Representations, 2017.</p></li>
+<li><p><strong>挑战1：</strong>DRL的优化目标比较狭窄比如走路faster，保持平衡稳定，运动到某个位置等等，很难设计有泛化能力的目标。</p></li>
+<li><p><strong>挑战2：</strong>
+<strong>处理变化的目标</strong>。通过其他任务的经验生成运动，适应变化的目标。</p></li>
+</ul>
+<h3 id="core-principles-of-hierarchical-motor-control">3. Core
+principles of hierarchical motor control</h3>
+<h4 id="information-factorization">3.1 Information factorization</h4>
+<ul>
+<li>Information factorization
+（信息因子分解）：分层系统提供局部或者预处理的信息给其它系统的过程</li>
+<li>运动中有一部分模式的通用的，要么high-level behavior是invariant
+，要么low-level behavior是invariant</li>
+<li>That some goals or tasks can be solved by a multiplicity of
+execution details (“motor equivalence”) has long been recognized as
+important in movement science and has also been identified as relevant
+for robot control.
+有些任务可以用等效的运动去完成，这也是机器人控制上的一个问题</li>
+</ul>
+<h4 id="partial-autonomy">3.2 Partial autonomy</h4>
+<ul>
+<li>完整的优化一个动作成本很高，但是只要产生出了一次动作，可以训练一个“reactive”
+subsystem重复地长生这个运动而不用冗余的规划过程。这个过程涉及到局部自主（partial
+autonomy）以及半自主系统（semi-autonomous
+subsystem），在算法层面主要是加载之前算出来的解。</li>
+<li>self-supervised learning ，生成的轨迹永续训练另外的系统in an
+amortized fashion（用分期的方式）</li>
+</ul>
+<h4 id="modular-objectives">3.3 Modular objectives</h4>
+<ul>
+<li>很多ANN在用于控制问题时使用end2end的优化，这样就只能设置一个优化目标，并最大化它</li>
+<li>使用模块化的子系统需要制定独特的模块化子目标</li>
+<li>一种流行的方法是训练控制器解决任务的同事也训练一组内部状态表征（internal
+state
+representations）来预测未来的传感数据，某种程度上来讲，这也是一种分层的控制系统。</li>
+<li>另一个景点的方法同样保持了层级的目标结构，divideand-conquer
+strategy。例如高层控制器决定运动的方向，低层控制器去实施，高层控制器的信号也可以作为
+a dense teaching signal that the low-level controller learns from as it
+assesses how well it stays on the instructed
+course。高层口农资器处理更全局的任务。代表工作：（前两篇低层系统优化目标固定，最有一批FuN是学习抽象目标空间）
+<ul>
+<li>Nachum, O., Gu, S., Lee, H. &amp; Levine, S. <strong>Near-optimal
+representation learning for hierarchical reinforcement
+learning</strong>. In International Conference on Learning
+Representations, 2019.<br />
+</li>
+<li>Wayne, G. &amp; Abbott, L. F. Hierarchical control using networks
+trained with higher-level forward models. Neural Comput. 26, 2163–2193
+(2014)<br />
+</li>
+<li>Vezhnevets, A. S. et al. Feudal networks for hierarchical
+reinforcement learning. In Proceedings of the 34th International
+Conference on achine Learning, 3540–3549. JMLR. org, 2017.</li>
+</ul></li>
+</ul>
+<h4 id="multi-joint-coordination">3.4 Multi-joint coordination</h4>
+<ul>
+<li><p>motor synergy concept （Synergies in coordination: a
+comprehensive overview of neural, computational, and behavioral
+approaches. J. Neurophysiol. 120, 2761–2774 (2018). ）</p></li>
+<li><p>在肌肉驱动的系统上，从高层面设计任务显然会更容易，例如reaching
+and grasping. This is perhaps most readily apparent in a setting like
+reaching and grasping, where random movement of all degrees of freedom
+independently will be ineffective, but random movements in the subspace
+of hand configurations encountered during grasping will lead to more
+effective interactions.</p></li>
+<li><p>几个机器人学方面的工作:</p></li>
+<li><p>Vukobratović, M. &amp; Borovac, B. Zero-moment point—thirty five
+years of its life. Int. J. Hum. Robot. 1, 157–173 (2004).</p></li>
+<li><p>Todorov, E., Li, W. &amp; Pan, X. From task parameters to motor
+synergies: a hierarchical framework for approximately optimal control of
+redundant manipulators. J. Robot. Syst. 22, 691–710 (2005).</p></li>
+<li><p>Mordatch, I., De Lasa, M. &amp; Hertzmann, A. Robust
+physics-based locomotion using low-dimensional planning. ACM T. Graphic.
+29, 71 (2010).</p></li>
+<li><p>unsupervised learning (or self-supervised learning) of
+sensorimotor primitives in order to produce a learned low-level
+controller</p>
+<ul>
+<li>Todorov, E. <strong>Optimality principles in sensorimotor
+control</strong>. Nat. Neurosci. 7, 907 (2004).<br />
+</li>
+<li>Todorov E. &amp; Ghahramani., Z. Unsupervised learning of
+sensory-motor primitives. In Proceedings of the 25th Annual
+International Conference of the IEEE Engineering in Medicine and Biology
+Society, Vol. 2, 1750–1753. IEEE, 2003.</li>
+</ul></li>
+</ul>
+<h4 id="temporal-abstraction">3.5 Temporal abstraction</h4>
+<ul>
+<li>通过设置时间间隔简化使得高层控制器更宏观，但会损失控制精度，这需要低层的控制器去完成。</li>
+<li>对于机器人操作任务，离散情况下只有时间维度是最好抽象的，在连续控制的问题上，多关节的协同比时间抽象更有决定性的作用。当然长期的行动规划和行为选择是需要时间抽象（Temporal
+abstraction）的。</li>
+</ul>
+<h3 id="neurobiological-hierarchical-motor-control">4. Neurobiological
+hierarchical motor control</h3>
+<ul>
+<li>这部分主要就少神经科学上关于分层控制的研究工作。</li>
+<li>神经系统在结构和功能和功能上都有分层（both anatomically and
+functionally hierarchical）</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200918-1.png" /></p>
+<h4 id="lower-level-movement-centers">4.1 “Lower-level” movement
+centers</h4>
+<ul>
+<li>脊髓（spine）在没有高层输入的情况下也可以控制躯体运动；脊髓环路能生成多关节的时空协同模式
+(spatiotemporal coordination patterns)，通过中心模式生成器（central
+pattern generators (CPGs) ）产生虚构的动作（ “fictive”
+locomotion）；也可以通过传感信息局部调制关节活动。（CPG）</li>
+<li>多关节协同通常需要：cerebellum-derived signals，somatic
+feedback（躯体反馈）以及inputs from other sensory
+systemts（传感输入）</li>
+<li>CPG主要产生节律的运动，比如走路，鱼摆尾等等</li>
+</ul>
+<h4 id="subcortical-mid-level-movement-regulation">4.2 Subcortical
+“mid-level” movement regulation</h4>
+<ul>
+<li>1）皮层对于运动来说并不是必要的。因为去除了皮层的cat在恢复一段时间后，可以具备避障能力（刚切除时没有）。这反映出层次化控制和局部自治。</li>
+<li>2）皮层下的结构可以选择运动协调模式</li>
+<li>3）没了皮层后，传感受到损伤。但还可以通过non-cortical的通路接收传感信息。这里体现了信息因子分解。</li>
+<li>4）小脑负责运动协调，基底神经节负责行为选择；</li>
+</ul>
+<h4 id="cortical-high-level-control-of-movement">4.3 Cortical
+“high-level” control of movement</h4>
+<ul>
+<li>具备一些分层结构特征</li>
+</ul>
+<h3 id="shared-challenges-for-biological-and-synthetic-motor-control">5.
+Shared challenges for biological and synthetic motor control</h3>
+<ul>
+<li>despite significant progress in artificial intelligence research
+over the past years, there remain meaningful challenges in dealing with
+rich sensation, a broader range of tasks, rapid adaptation or
+improvisation, as well as object interaction and tool use.
+<ul>
+<li>处理多传感融合</li>
+<li>处理更普遍的任务</li>
+<li>快速适应、即兴创作</li>
+<li>物体交互</li>
+<li>使用工具</li>
+</ul></li>
+</ul>
+<h4 id="towards-full-scale-body-control">5.1 Towards full-scale body
+control</h4>
+<ul>
+<li>对生物力学、肌肉系统、肌肉骨骼系统的研究</li>
+<li>针对这类系统有两个控制思路：
+<ul>
+<li>训练该系统解决不同的任务</li>
+<li>对观测到的行为生成数据驱动的模型</li>
+</ul></li>
+</ul>
+<h4 id="the-structure-of-inter-region-communication">5.2 The structure
+of inter-region communication</h4>
+<ul>
+<li>脑区之间的编码方案(coding
+schemes)仍然未知，我们同样不确定分层控制系统中的信息流的形式。</li>
+<li>三个问题：
+<ul>
+<li>一个问题是分层的学习系统层级间的通信不一定需要有明确的可解释性，除非可解释的结构能带来明确的好处</li>
+<li>一个系统的输出如何调制另一个系统，对目标的调制应该是线性的还是非线性的？</li>
+<li>关于分辨率问题，表示具体行为的抽象目标之间的通讯和对下级系统丰富的指令怎么保持平衡</li>
+</ul></li>
+<li>生物的角度来看，层次化的系统间一定要有一种语言或者编码，这种上下层级之间的通讯方案是AI和神经科学应该共同讨论的问题。</li>
+</ul>
+<h4 id="ethological-行为学的-motor-learning-and-imitation">5.3
+Ethological （行为学的） motor learning and imitation</h4>
+<ul>
+<li>self-directed rehearsal: songbird在雏鸟阶段学习唱歌</li>
+<li>主动采样策略：Gottlieb J. &amp; Oudeyer, P. Y. <strong>Towards a
+neuroscience of active sampling and curiosity</strong>. Nat. Rev.
+Neurosci. 19, 758–770 (2018)</li>
+</ul>
+<h2 id="总结">总结</h2>
+<p>这篇综述很好地概括并梳理了在AI和生物神经科学中的零散的工作，总结出了很多子领域和本质问题，这是一篇很好的综述，可以帮助对领域的快速了解。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Reinforcement-Learning/" rel="tag"># Reinforcement Learning</a>
+              <a href="/tags/HRL/" rel="tag"># HRL</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/18/2020-09-18-Q47%20Permutations%20II-%E4%B8%AD%E7%AD%89-%E5%9B%9E%E6%BA%AF/" rel="prev" title="Q47 Permutations II-中等-回溯">
+      <i class="fa fa-chevron-left"></i> Q47 Permutations II-中等-回溯
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/21/2020-09-21-Neuroscience%20-%20Principles%20of%20Temporal%20Processing%20Across%20the%20Cortical%20Hierarchy/" rel="next" title="Neuroscience | Principles of Temporal Processing Across the Cortical Hierarchy">
+      Neuroscience | Principles of Temporal Processing Across the Cortical Hierarchy <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hierarchical-motor-control-in-mammals-and-machines"><span class="nav-number">1.</span> <span class="nav-text">Hierarchical
+motor control in mammals and machines</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.2.</span> <span class="nav-text">主要工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#computational-approaches-to-motor-control"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. computational
+approaches to motor control</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#motor-control-of-synthetic-systems"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. Motor control of
+synthetic systems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#core-principles-of-hierarchical-motor-control"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. Core
+principles of hierarchical motor control</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#information-factorization"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">3.1 Information factorization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#partial-autonomy"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">3.2 Partial autonomy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#modular-objectives"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">3.3 Modular objectives</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#multi-joint-coordination"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">3.4 Multi-joint coordination</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#temporal-abstraction"><span class="nav-number">1.2.3.5.</span> <span class="nav-text">3.5 Temporal abstraction</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#neurobiological-hierarchical-motor-control"><span class="nav-number">1.2.4.</span> <span class="nav-text">4. Neurobiological
+hierarchical motor control</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lower-level-movement-centers"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">4.1 “Lower-level” movement
+centers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#subcortical-mid-level-movement-regulation"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">4.2 Subcortical
+“mid-level” movement regulation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cortical-high-level-control-of-movement"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">4.3 Cortical
+“high-level” control of movement</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shared-challenges-for-biological-and-synthetic-motor-control"><span class="nav-number">1.2.5.</span> <span class="nav-text">5.
+Shared challenges for biological and synthetic motor control</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#towards-full-scale-body-control"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">5.1 Towards full-scale body
+control</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#the-structure-of-inter-region-communication"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">5.2 The structure
+of inter-region communication</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ethological-%E8%A1%8C%E4%B8%BA%E5%AD%A6%E7%9A%84-motor-learning-and-imitation"><span class="nav-number">1.2.5.3.</span> <span class="nav-text">5.3
+Ethological （行为学的） motor learning and imitation</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Txing"
+      src="/images/my_photo.jpg">
+  <p class="site-author-name" itemprop="name">Txing</p>
+  <div class="site-description" itemprop="description">泛用类人决战型机器人博士</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/txing-casia" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;txing-casia" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.uomi.moe/" title="https:&#x2F;&#x2F;blog.uomi.moe" rel="noopener" target="_blank">驱逐舰患者</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://m.mepai.me/photographyer/u_5a68085ba15aa.html?tdsourcetag=s_pctim_aiomsg" title="https:&#x2F;&#x2F;m.mepai.me&#x2F;photographyer&#x2F;u_5a68085ba15aa.html?tdsourcetag&#x3D;s_pctim_aiomsg" rel="noopener" target="_blank">隐之-INF</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Txing</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">538k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">8:09</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Exploring Imitation Learning for Autonomous Driving with Feedback Synthesizer and Differentiable Rasterization (2021, Apollo 6.0) Introduction  our work adopts a mid-to-mid approach (mid2mid允许便利">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Autonomous Driving | Exploring Imitation Learning for Autonomous Driving with Feedback Synthesizer and Differentiable Rasterization (2021, Apollo 6.0)">
+<meta property="og:url" content="https://txing-casia.github.io/2022/07/14/2022-07-14-Autonomous%20Driving%20-%20Exploring%20Imitation%20Learning%20for%20Autonomous%20Driving%20with%20Feedback%20Synthesizer%20and%20Differentiable%20Rasterization%20(2021%20Apollo%206.0)/index.html">
+<meta property="og:site_name" content="Txing">
+<meta property="og:description" content="Exploring Imitation Learning for Autonomous Driving with Feedback Synthesizer and Differentiable Rasterization (2021, Apollo 6.0) Introduction  our work adopts a mid-to-mid approach (mid2mid允许便利">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-07-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-25T01:54:15.012Z">
+<meta property="article:author" content="Txing">
+<meta property="article:tag" content="Imitation Learning">
+<meta property="article:tag" content="Autonomous Driving">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://txing-casia.github.io/2022/07/14/2022-07-14-Autonomous%20Driving%20-%20Exploring%20Imitation%20Learning%20for%20Autonomous%20Driving%20with%20Feedback%20Synthesizer%20and%20Differentiable%20Rasterization%20(2021%20Apollo%206.0)/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Autonomous Driving | Exploring Imitation Learning for Autonomous Driving with Feedback Synthesizer and Differentiable Rasterization (2021, Apollo 6.0) | Txing</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Txing</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到 | 伽蓝之堂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/txing-casia" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/07/14/2022-07-14-Autonomous%20Driving%20-%20Exploring%20Imitation%20Learning%20for%20Autonomous%20Driving%20with%20Feedback%20Synthesizer%20and%20Differentiable%20Rasterization%20(2021%20Apollo%206.0)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用类人决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Autonomous Driving | Exploring Imitation Learning for Autonomous Driving with Feedback Synthesizer and Differentiable Rasterization (2021, Apollo 6.0)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-07-14 00:00:00" itemprop="dateCreated datePublished" datetime="2022-07-14T00:00:00+08:00">2022-07-14</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>9.7k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>9 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2
+id="exploring-imitation-learning-for-autonomous-driving-with-feedback-synthesizer-and-differentiable-rasterization-2021-apollo-6.0">Exploring
+Imitation Learning for Autonomous Driving with Feedback Synthesizer and
+Differentiable Rasterization (2021, Apollo 6.0)</h2>
+<h3 id="introduction">Introduction</h3>
+<ul>
+<li><p>our work adopts a <strong>mid-to-mid approach</strong>
+(mid2mid允许便利地增加数据，并且通过任务依赖的loss超过单纯地模仿。allows
+us to augment data handily and go beyond pure imitation by having
+task-specific losses) where our system’s input is constructed by
+building a top-down image representation of the environment that
+incorporates both static and dynamic information from our <strong>HD
+Map</strong> and <strong>perception system</strong>.<br />
+</p></li>
+<li><p>Following the philosophy of <strong>DAgger</strong> [2], we
+introduce a <strong>feedback synthesizer</strong>（反馈合成器）that
+generates and perturbs on-policy data based on the current policy. Then
+we train the next policy on the aggregate of collected datasets. The
+feedback synthesizer addresses the <strong>distributional shift
+issue</strong>, thus improving the overall performance shown in Section
+IV.</p>
+<ul>
+<li>[2]. S. Ross, G. Gordon, and D. Bagnell, “A reduction of imitation
+learning and structured prediction to no-regret online learning,” in
+AISTATS, 2011, pp. 627–635.<br />
+</li>
+</ul></li>
+<li><p>启发本文的文章：</p>
+<ul>
+<li>V. Blukis, N. Brukhim, A. Bennett, R. Knepper, and Y. Artzi,
+“Following high-level navigation instructions on a simulated quadcopter
+with imitation learning,” in RSS, June 2018.</li>
+<li>M. Bansal, A. Krizhevsky, and A. Ogale, “ChauffeurNet: Learning to
+drive by imitating the best and synthesizing the worst,” in RSS,
+2019.</li>
+<li>A. Buhler, A. Gaidon, A. Cramariuc, R. Ambrus, G. Rosman, and W.
+Burgard, “Driving through ghosts: Behavioral cloning with false
+positives,” in IROS, 2020.</li>
+<li>D. Chen, B. Zhou, V. Koltun, and P. Krahenbuhl, “Learning by
+cheating,” in CoRL, 2020, pp. 66–75.<br />
+</li>
+</ul></li>
+<li><p>单纯的模仿学习没有关于任务的明确的重要目标和约束，因此难免会学习到非期望的行为。通过引入task
+losses可以控制这些非期望的行为。</p></li>
+<li><p>task losses直接映射到输出轨迹到车辆光栅图像中。The task losses
+are implemented by directly projecting the output trajectories into
+top-down images using a differentiable vehicle rasterizer.</p></li>
+<li><p>They（task losses） effectively penalize behaviors, such as
+<strong>obstacle collision</strong>（障碍碰撞）, <strong>traffic rule
+violation</strong>（违反交规）, and so on, by building losses between
+<strong>rasterized images</strong> and <strong>specific object
+masks</strong>.</p></li>
+<li><p>Inspired by recent works [9], our output trajectories are
+produced by a <strong>trajectory decoding module</strong> that includes
+an <strong>LSTM</strong> [10] and a <strong>kinematic layer</strong>
+that assures our output trajectories’ feasibility. On the whole, these
+designs help us avoid using the heavy AgentRNN network in Chauffeurnet
+[5], which functions similarly to a Convolutional-LSTM network [11].</p>
+<ul>
+<li><p>[5]. M. Bansal, A. Krizhevsky, and A. Ogale, “ChauffeurNet:
+Learning to drive by imitating the best and synthesizing the worst,” in
+RSS, 2019.</p></li>
+<li><p>[9]. H. Cui, T. Nguyen, F.-C. Chou, T.-H. Lin, J. Schneider, D.
+Bradley, and N. Djuric, “Deep kinematic models for kinematically
+feasible vehicle trajectory predictions,” in ICRA, 2020, pp. 10 563–10
+569.</p></li>
+<li><p>[11]. X. Shi, Z. Chen, H. Wang, D.-Y. Yeung, W.-k. Wong, and
+W.-c. Woo, “Convolutional LSTM network: A machine learning approach for
+precipitation nowcasting,” in NeurIPS, vol. 28, 2015, pp.
+802–810.</p></li>
+</ul></li>
+<li><p>Moreover, to further improve the performance, similar to recent
+works [12], [13], we introduce a <strong>spatial attention
+module</strong>（空间注意力机制） in our network design.</p>
+<ul>
+<li>[12]. S. Hecker, D. Dai, A. Liniger, and L. Van Gool, “Learning
+accurate and human-like driving using semantic maps and attention,” in
+IROS, 2020, pp. 2346–2353.</li>
+<li>[13]. J. Kim and M. Bansal, “Attentional bottleneck: Towards an
+interpretable deep driving network,” in CVPR Workshops, 2020.<br />
+</li>
+</ul></li>
+<li><p>为了提高舒适度，提出了可选择的后处理规划器作为看门人，进行高级别的决策引导和组成新的轨迹。we
+propose to add an <strong>optional post-processing planner</strong> as a
+gatekeeper which manages to interpret them as high-level decision
+guidance and composes a new trajectory that offers better
+comfort.</p></li>
+<li><p>Our models are trained with <strong>400 hours of human driving
+data</strong>. We evaluated our system using <strong>70 autonomous
+driving test scenarios (ADS)</strong> that are specifically created for
+evaluating the fundamental driving capabilities of a self-driving
+vehicle.</p></li>
+<li><p>We show that our <strong>learning-based planner (M2)</strong>
+trained via imitation learning achieves <strong>70.0% ADS</strong>
+<strong>pass rate</strong> and can intelligently handle different
+challenging scenarios, including <strong>overtaking a dynamic
+vehicle</strong>, <strong>stopping for a red traffic light</strong>, and
+so on, as shown in Figure 1.</p></li>
+</ul>
+<h3 id="related-works">Related works</h3>
+<ul>
+<li><p><strong>Imitation Learning</strong>：</p>
+<p>一般遵循end-to-end philosophy，本文采取mid-to-mid
+approach提高数据增强便利性和任务依赖的loss</p></li>
+<li><p><strong>Loss and Differentiable Rasterization</strong>：</p>
+<p>Imitation learning for motion planning typically applies a loss
+between <strong>inferred</strong> and <strong>ground truth
+trajectories</strong>. Therefore, the ideas of avoiding collisions or
+off-road situations are implicit and don’t generalize well.</p>
+<p>Wang et al. [8] leverage a differentiable rasterizer, and it allows
+gradients to flow from a discriminator to a generator, enhancing a
+trajectory prediction network powered by GANs [21].</p>
+<p><strong>General-purpose differentiable mesh renderers</strong> [23],
+[24] have also been employed to solve other computer vision
+tasks.</p></li>
+<li><p><strong>Attention</strong>：</p>
+<p>by providing spatial attention heatmaps highlighting image areas that
+the network attends to in their tasks. In this work, we introduce the
+Atrous Spatial Attentional Bottleneck from [13], providing easily
+interpretable attention heatmaps while also enhancing the network’s
+performance.</p>
+<ul>
+<li>[13]. J. Kim and M. Bansal, “Attentional bottleneck: Towards an
+interpretable deep driving network,” in CVPR Workshops, 2020.</li>
+</ul></li>
+<li><p><strong>Data Augmentation</strong>：</p>
+<p>DAgger及其变体提出通过拥有更多关于代理可能遇到的状态的数据来解决分布转移问题。特别是，他们基于从当前策略推断的动作在每次迭代中采样新状态，让专家代理演示他们在这些新状态下将采取的动作，并在收集的数据集的集合上训练下一个策略。DAgger
+[2] and its variants [32], [4], [3] propose to address the
+distributional shift issue by having more data with states that the
+agent is likely to encounter. In particular, they sample new states at
+each iteration based on the actions inferred from the current policy,
+let expert agents demonstrate the actions they would take under these
+new states, and train the next policy on the aggregate of collected
+datasets.</p>
+<ul>
+<li>S. Ross, G. Gordon, and D. Bagnell, “A reduction of imitation
+learning and structured prediction to no-regret online learning,” in
+AISTATS, 2011, pp. 627–635.</li>
+</ul>
+<p>ChauffeurNet引入了一个随机合成器，通过合成轨迹的扰动来增加演示数据。ChauffeurNet
+[5] introduces a random synthesizer that augments the demonstration data
+by synthesizing perturbations to the trajectories. In this work, we
+explore both ideas and propose a feedback synthesizer improving the
+overall performance.</p></li>
+</ul>
+<h3 id="model-architecture">Model Architecture</h3>
+<p>B-CNN（branched CNN）</p>
+<ul>
+<li><p>refence：Zhu X , Bain M . B-CNN: Branch Convolutional Neural
+Network for Hierarchical Classification[J]. 2017.</p></li>
+<li><p><strong>Model Input</strong>：</p>
+<ul>
+<li>使用栅格化的多通道鸟瞰图。bird‘s eye view (BEV) representation with
+multiple channels by scene rasterization</li>
+<li>The image size is W × H with ρ meters per pixel in resolution.</li>
+<li>agent汽车的位置永远在图像的中心位置 <span class="math display">\[p_0
+= [i_0,j_0]^T\]</span> ，这种图片模式称为ego-centered</li>
+<li>模型输入<span
+class="math display">\[\mathcal{I}\]</span>是多通道图像，不仅包括ego-vehicle、路况信息、还有车辆速度信息<span
+class="math display">\[v_0\]</span></li>
+</ul></li>
+<li><p><strong>Model Design</strong>：</p>
+<ul>
+<li><p>整个模型分为三个部分：</p>
+<ul>
+<li>A. 一个带空间注意力分支的CNN模型</li>
+<li>B. 一个LSTM decoder</li>
+<li>C. 一个可微分的光栅化模块（加在LSTM decoder上）</li>
+</ul></li>
+<li><p><strong>A.</strong> CNN骨架模型使用MobileNetV2
+[37]以平衡输出精度和推断速度。输出特征是<span
+class="math display">\[F_h\]</span>，经过一个MLP（multilayer
+perceptron）层之后，输出扁平的特征<span
+class="math display">\[h_0\]</span>。该特征作为同时作为LSTM
+decoder的初始隐藏状态被使用。</p>
+<p>为了减轻计算量，主干CNN的中间特征<span
+class="math display">\[F_I\]</span>传递给空间注意力模块。注意力使用的是Atrous
+Spatial Attentional Bottleneck from [13] （J. Kim and M. Bansal,
+“Attentional bottleneck: Towards an interpretable deep driving network,”
+in CVPR Workshops, 2020）</p></li>
+<li><p><strong>B.</strong> LSTM的 cell state <span
+class="math display">\[c_0\]</span> is initialized by the Glorot
+initialization [38]</p>
+<p>模型输出是汽车的转向角序列（steering angle）和加速度序列，记为<span
+class="math display">\[(\delta_{t-1},a_{t-1})\]</span>。</p>
+<p>动力学层： <span class="math display">\[
+\begin{align}
+\begin{cases}
+    x_t=v_{t-1}\sin (\phi_{t-1})\Delta t + y_{t-1}\\
+    y_t=v_{t-1}\cos (\phi_{t-1})\Delta t + x_{t-1}\\
+    \phi_t=v_{t-1}\frac{\tan (\delta_{t-1})}{L} \Delta t + \phi_{t-1}\\
+    v_t=a_{t-1}\Delta t + v_{t-1}
+\end{cases}
+\end{align}
+\]</span></p></li>
+<li><p><strong>C.</strong> Differentiable
+Rasterizer使用三个高斯基函数来描述汽车的形状。</p>
+<p>光栅化函数：<span class="math display">\[g_{i,j}(s_t)=\max_{k=1,2,3}
+(N(\mu^k,\Sigma^k))\]</span> <span class="math display">\[
+\begin{align}
+\begin{cases}
+\mu^k=\frac{1}{\rho}(x_t^k-x_0)+P_0\\
+\Sigma^k=R(\phi_t)^T \text{diag}(\sigma_l,\sigma_{\omega})R(\phi_t)
+\end{cases}
+\end{align}
+\]</span> 其中，<span
+class="math display">\[(\sigma_l,sigma_{\omega})=(\frac{1}{3}\alpha
+l,\alpha \omega)\]</span>，<span
+class="math display">\[\alpha\]</span>是固定的比例系数，<span
+class="math display">\[l\]</span>和<span
+class="math display">\[\omega\]</span>是车辆的长度和宽度。<span
+class="math display">\[R(\phi_t)\]</span>表示旋转矩阵。</p></li>
+</ul></li>
+<li><p><strong>Loss：</strong></p>
+<p>trajectory imitation loss：<span
+class="math display">\[L_{imit}=\sum^{N-1}_{t=0}\lambda\mid\mid s_t -
+\hat{s}_t\mid\mid_2\]</span></p>
+<p>four task losses：</p>
+<ul>
+<li><p>obstacle collision：<span
+class="math display">\[L_{obs}=\sum^{N-1}_{t=0}\frac{1}{WH}\sum_i\sum_j
+g_{i,j} \tau_{i,j}^{obs}\]</span></p></li>
+<li><p>off-route：<span
+class="math display">\[L_{route}=\sum^{N-1}_{t=0}\frac{1}{WH}\sum_i\sum_j
+g_{i,j} \tau_{i,j}^{route}\]</span></p></li>
+<li><p>off-road：<span
+class="math display">\[L_{road}=\sum^{N-1}_{t=0}\frac{1}{WH}\sum_i\sum_j
+g_{i,j} \tau_{i,j}^{road}\]</span></p></li>
+<li><p>traffic signal violation：<span
+class="math display">\[L_{signal}=\sum^{N-1}_{t=0}\frac{1}{WH}\sum_i\sum_j
+g_{i,j} \tau_{i,j}^{signal}\]</span> 其中，<span
+class="math display">\[\tau^{obs}\]</span>, <span
+class="math display">\[\tau^{route}\]</span>, <span
+class="math display">\[\tau^{road}\]</span>, and <span
+class="math display">\[\tau^{signal}\]</span> 是响应的二值掩码（binary
+masks）</p></li>
+<li><p>总的损失函数：</p>
+<p><span
+class="math display">\[L=L_{imit}+\lambda_{task}(L_{obs}+L_{route}+L_{road}+L_{signal})\]</span></p></li>
+</ul></li>
+</ul>
+<h3 id="data-augmentation">Data Augmentation</h3>
+<ul>
+<li><p><strong>Random
+Synthesizer</strong>：随机扰动轨迹，产生off-road和碰撞的场景。起始点和终止点保持不变，扰动中间过程的<strong>一个</strong>点，并平滑路径轨迹，通过对最大曲率进行阈值处理，仅保留真实的扰动轨迹。</p></li>
+<li><p><strong>Feedback
+Synthesizer</strong>：学习一个驾驶策略帮助生成新的轨迹数据。用上一次迭代的策略<span
+class="math display">\[\pi_{t-1}\]</span>生成轨迹数据，用于训练策略<span
+class="math display">\[\pi_t\]</span>。具体算法如下：</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220714-1.png"
+alt="Feedback Synthesizer" />
+<figcaption aria-hidden="true">Feedback Synthesizer</figcaption>
+</figure></li>
+<li><p><strong>Post-processing
+Planner</strong>：保证舒适和安全。相关实现在 Apollo 6.0
+中（https://github.com/ApolloAuto/apollo/tree/master/modules/planning）
+<span class="math display">\[
+\text{Quadratic Optimization} \leftarrow
+\begin{cases}
+\text{Safety Bounds}\\
+\text{Learning-based Objective}\\
+\text{Comfort Constrains}
+\end{cases}
+\]</span></p></li>
+</ul>
+<h3 id="experiments">Experiments</h3>
+<ul>
+<li><p><strong>Implementation Details</strong></p>
+<p>方形的BEV图（俯瞰图）宽度<span class="math display">\[W\times
+H=200\times200\]</span>，<span
+class="math display">\[\rho=0.2m/pixel\]</span>。ego-vehicle位于图片的<span
+class="math display">\[i_0=100,j_0=160\]</span>的位置。使用Apollo的感知模块（“Baidu
+Apollo open platform,”
+http://apollo.auto/）光栅化2秒的历史数据或者预测数据。使用Adam
+optimizer，且初始学习率为<span
+class="math display">\[0.0003\]</span>。</p></li>
+<li><p><strong>Dataset and Augmented Data</strong></p>
+<ul>
+<li><p>400 hours’ driving data demonstrated by human-drivers in southern
+San Francisco bay area。</p></li>
+<li><p>经过数据预处理后，保留了250k帧作为原始的训练数据<span
+class="math display">\[D_0\]</span></p></li>
+<li><p>利用random synthesizer生成400k帧数据，记为<span
+class="math display">\[D_r\]</span></p></li>
+<li><p>设置feedback steps T = 5，feedback
+synthesizer生成465k帧数据，记为<span
+class="math display">\[D_f\]</span></p></li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220714-2.png"
+alt="不同模型配置的性能对比" />
+<figcaption aria-hidden="true">不同模型配置的性能对比</figcaption>
+</figure>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220714-3.png"
+alt="offroad,speeding,collision,and failed to arrive性能对比" />
+<figcaption aria-hidden="true">offroad,speeding,collision,and failed to
+arrive性能对比</figcaption>
+</figure></li>
+<li><p><strong>Evaluation Scenarios</strong></p>
+<p>使用Apollo Dreamland simulator。主要包括4类场景：</p>
+<ul>
+<li><strong>巡航 Cruising</strong>: normal cruising in straight or
+curved roads without other traffic participants.</li>
+<li><strong>岔道口 Junction</strong>: junction related scenarios
+including left or right turns, U-turns, stop before a traffic signal,
+etc.</li>
+<li><strong>静态交互 Static Interaction</strong>: interaction with
+static obstacles, such as overtaking a stopped car.</li>
+<li><strong>动态交互 Dynamic Interaction</strong>: interaction with
+dynamic obstacles, for example, overtaking a slow vehicle.</li>
+</ul></li>
+<li><p><strong>Evaluation Metrics</strong></p>
+<p>除了通过率和成功率以外，还使用了舒适度评分。舒适度评分是根据自动驾驶状态和人类驾驶状态的相识度计算得到的。</p>
+<p>在人驾数据集<span
+class="math display">\[D_0\]</span>中还包括了角速度和角加加速度<span
+class="math display">\[(\omega,j)\]</span>，使用这两个数据，可得舒适度评分为：<span
+class="math display">\[c=\frac{\sum_{i=1}^N P(\omega,j\mid
+D_0)}{n}\]</span>。其中，<span class="math display">\[P(\omega,j\mid
+D_0)\]</span>表示状态<span
+class="math display">\[(\omega,j)\]</span>在人驾数据<span
+class="math display">\[D_0\]</span>中出现的概率，<span
+class="math display">\[n\]</span>表示帧数。<span
+class="math display">\[\omega\]</span>和<span
+class="math display">\[j\]</span>都经过离散化处理（0.1 and
+1.0），直接查表读取响应的概率。</p>
+<p>agent被要求在时间限制之内到达目的地，同时避免碰撞等事故（出现则判定失败）。</p></li>
+<li><p><strong>Runtime Analysis</strong></p>
+<p>an Nvidia Titan-V GPU, Intel Core i7-9700K CPU, and 16GB Memory.</p>
+<p>The online inference time per frame is <strong>10ms</strong> in
+rendering, <strong>22 ms</strong> in model inference, and <strong>15
+ms</strong> (optional) in the post-processing planner. Note that our
+model inference time is much shorter than the prior work [5]</p></li>
+</ul>
+<p>模型出现的主要问题是超速、不能到达和碰撞。超速可以通过添加速度损失来解决，不能到达是由于速度过慢，碰撞多是出现了追尾，因此发生被动碰撞。值得注意的是，实验中其它的车辆都是按照既定轨迹运动的，不会避让ego车辆，因此容易出现追尾风险。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Imitation-Learning/" rel="tag"># Imitation Learning</a>
+              <a href="/tags/Autonomous-Driving/" rel="tag"># Autonomous Driving</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/05/31/2022-05-30-Reinforcement%20Learning%20-%20a%20survey%20of%20deep%20RL%20and%20IL%20for%20autonomous%20driving%20policy%20learning/" rel="prev" title="Reinforcement Learning | A survey of deep RL and IL for autonomous driving policy learning">
+      <i class="fa fa-chevron-left"></i> Reinforcement Learning | A survey of deep RL and IL for autonomous driving policy learning
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/07/16/2022-07-16-Autonomous%20Driving%20-%20ChauffeurNet%20Learning%20to%20Drive%20by%20Imitating%20the%20Best%20and%20Synthesizing%20the%20Worst/" rel="next" title="Autonomous Driving | ChauffeurNet: Learning to Drive by Imitating the Best and Synthesizing the Worst (Waymo, 2018)">
+      Autonomous Driving | ChauffeurNet: Learning to Drive by Imitating the Best and Synthesizing the Worst (Waymo, 2018) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#exploring-imitation-learning-for-autonomous-driving-with-feedback-synthesizer-and-differentiable-rasterization-2021-apollo-6.0"><span class="nav-number">1.</span> <span class="nav-text">Exploring
+Imitation Learning for Autonomous Driving with Feedback Synthesizer and
+Differentiable Rasterization (2021, Apollo 6.0)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#related-works"><span class="nav-number">1.2.</span> <span class="nav-text">Related works</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#model-architecture"><span class="nav-number">1.3.</span> <span class="nav-text">Model Architecture</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#data-augmentation"><span class="nav-number">1.4.</span> <span class="nav-text">Data Augmentation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#experiments"><span class="nav-number">1.5.</span> <span class="nav-text">Experiments</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Txing"
+      src="/images/my_photo.jpg">
+  <p class="site-author-name" itemprop="name">Txing</p>
+  <div class="site-description" itemprop="description">泛用类人决战型机器人博士</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/txing-casia" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;txing-casia" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.uomi.moe/" title="https:&#x2F;&#x2F;blog.uomi.moe" rel="noopener" target="_blank">驱逐舰患者</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://m.mepai.me/photographyer/u_5a68085ba15aa.html?tdsourcetag=s_pctim_aiomsg" title="https:&#x2F;&#x2F;m.mepai.me&#x2F;photographyer&#x2F;u_5a68085ba15aa.html?tdsourcetag&#x3D;s_pctim_aiomsg" rel="noopener" target="_blank">隐之-INF</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Txing</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">538k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">8:09</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

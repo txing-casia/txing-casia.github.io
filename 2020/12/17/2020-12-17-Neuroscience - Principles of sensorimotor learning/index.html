@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Principles of sensorimotor learning 论文链接：https:&#x2F;&#x2F;www.nature.com&#x2F;articles&#x2F;nrn3112 背景 运动的多样性和适应性给人留下深刻的印象。这篇综述回顾了运动学习的相关研究，集中讨论了其中涉及的计算机制。 运动学习涉及三个方面：  涉及任务相关的传感信息、决策、策略选择、预测以及反应控制机制（predictive">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Neuroscience| Principles of sensorimotor learning">
+<meta property="og:url" content="https://txing-casia.github.io/2020/12/17/2020-12-17-Neuroscience%20-%20Principles%20of%20sensorimotor%20learning/index.html">
+<meta property="og:site_name" content="Txing">
+<meta property="og:description" content="Principles of sensorimotor learning 论文链接：https:&#x2F;&#x2F;www.nature.com&#x2F;articles&#x2F;nrn3112 背景 运动的多样性和适应性给人留下深刻的印象。这篇综述回顾了运动学习的相关研究，集中讨论了其中涉及的计算机制。 运动学习涉及三个方面：  涉及任务相关的传感信息、决策、策略选择、预测以及反应控制机制（predictive">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-12-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-25T01:54:14.977Z">
+<meta property="article:author" content="Txing">
+<meta property="article:tag" content="Neuroscience">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://txing-casia.github.io/2020/12/17/2020-12-17-Neuroscience%20-%20Principles%20of%20sensorimotor%20learning/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Neuroscience| Principles of sensorimotor learning | Txing</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Txing</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到 | 伽蓝之堂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/txing-casia" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/12/17/2020-12-17-Neuroscience%20-%20Principles%20of%20sensorimotor%20learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用类人决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Neuroscience| Principles of sensorimotor learning
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-12-17 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-17T00:00:00+08:00">2020-12-17</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>7.3k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>7 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="principles-of-sensorimotor-learning">Principles of sensorimotor
+learning</h1>
+<p>论文链接：https://www.nature.com/articles/nrn3112</p>
+<h2 id="背景">背景</h2>
+<p>运动的多样性和适应性给人留下深刻的印象。这篇综述回顾了运动学习的相关研究，集中讨论了其中涉及的计算机制。</p>
+<p>运动学习涉及三个方面：</p>
+<ul>
+<li>涉及任务相关的传感信息、决策、策略选择、预测以及反应控制机制（predictive
+and reactive control mechanisms）；</li>
+<li>Decisions and
+strategies：涉及不同的学习过程，例如误差和奖励如何驱动学习；</li>
+<li>运动学习记忆的神经表征，以及信度分配，新状态（situations）的生成</li>
+</ul>
+<p>近年来在上述三点的计算过程理解上有了本质的进步</p>
+<h2 id="主要工作">主要工作</h2>
+<h3 id="components-of-motor-learning">1. Components of motor
+learning</h3>
+<h4 id="information-extraction">1.1 Information extraction</h4>
+<ul>
+<li><p>Skilled performance requires the effective and efficient
+(有效和高效的) gathering and processing of sensory information relevant
+to an action.</p></li>
+<li><p>眼动可由自下而上和自上而下两种方式驱动。Studies have shown that
+eye movements can be driven both in a bottom-up, task-independent manner
+based on low-level features of the visual scene<span
+class="math display">\[^1\]</span> (for example, towards moving
+high-contrast objects) as well as in a top-down, task-dependent
+manner<span class="math display">\[^2\]</span>.</p></li>
+<li><ol type="1">
+<li>多模态的传感信息流，2. Bayesian inference中对世界的先验知识，3.
+结合上述过程与身体内部模型的运动指令到期望的传感输出</li>
+</ol></li>
+</ul>
+<h4 id="decisions-and-strategies">1.2 Decisions and strategies</h4>
+<ul>
+<li><p>多数的运动任务都涉及了一个序列决策过程。</p></li>
+<li><p>决策变量（decision variable）的积累，支持候选的行为决策</p></li>
+<li><p>有边界的飘移扩散模型。Choice accuracy and reaction time are then
+explained by <strong>a bounded drift-diffusion model</strong> in which
+the decision variable reaches a positive or negative bound</p></li>
+<li><p>这个漂移扩散模型存在着大量的延时，但实际上收集的传感信息可用来影响运动中的想法<span
+class="math display">\[^{20}\]</span></p>
+<p>[20]. Resulaj A , Kiani R , Wolpert D M , et al. Changes of mind in
+decision-making[J]. Nature, 2009, 461(7261):263-266.</p></li>
+<li><p>人在不同的实验条件下都能趋向最优的决策，适应可变性</p>
+<p>Trommershäuser, J., Maloney, L. T. &amp; Landy, M. S. Decision
+making, movement planning and statistical decision theory. Trends Cogn.
+Sci. 12, 291–297 (2008).</p></li>
+<li><p>决策是趋向<strong>规避风险</strong>还是<strong>冒风险</strong>（risk
+averse or risk seeking），偏好奖励的方差大的还是小的<span
+class="math display">\[^{23-25}\]</span></p></li>
+</ul>
+<p>[23]. Nagengast, A. J., Braun, D. A. &amp; Wolpert, D. M.
+Risk-sensitive optimal feedback control accounts for sensorimotor
+behavior under uncertainty. PLoS Comput. Biol. 6, e1000857 (2010).</p>
+<p>[24]. Braun, D. A., Nagengast, A. J. &amp; Wolpert, D. M.
+Risk-sensitivity in sensorimotor control. <em>Front. Hum.
+Neurosci.</em>5, 1 (2011).</p>
+<p>[25]. Nagengast, A. J., Braun, D. A. &amp; Wolpert, D. M.
+Risk-sensitivity and the mean-variance trade-off: decision making in
+sensorimotor control. <em>Proc. Biol. Sci.</em> 278, 2325–2332
+(2011).</p>
+<h4 id="classes-of-control">1.3 Classes of control</h4>
+<ul>
+<li><p>三类控制都是适应性的并且贡献于运动学习：</p>
+<ul>
+<li><strong>predictive or feedforward control</strong>, which is
+critical given the feedback delays in the sensorimotor system;</li>
+<li><strong>reactive control</strong>, which involves the use of sensory
+inputs to update ongoing motor commands;</li>
+<li><strong>biomechanical control</strong>, which involves modulating
+the compliance of the limb.</li>
+</ul></li>
+<li><p>人在拿东西的时候有预测东西的重量（预测控制），这一点对 smooth and
+dexterous manipulation是必要的</p></li>
+<li><p>预测控制和反应控制的亲密关系：for example, the tactile afferents.
+If a mismatch between predicted and actual sensory information is
+detected, the system can launch appropriate, task-protective corrective
+actions and can also update the knowledge of object weight to improve
+future actions. Thus, through the prediction of sensory consequences,
+there is an intimate relationship between predictive and reactive
+control mechanisms<span class="math display">\[^{28}\]</span>.</p></li>
+<li><p>快速反应反馈回路，快速驱动运动响应，但是很难被修改（有点类似于我的底层控制的意思）。Fast
+reactive feedback loops, such as the monosynaptic stretch reflex, can
+rapidly drive motor responses but cannot be easily modified even by
+extended experience.</p></li>
+<li><p>最小干预原则：An important feature of the optimal feedback
+control model is the concept of minimum intervention.</p>
+<p>分割任务相关空间和任务不相关空间，不相关空间中可以体现运动的可变性</p>
+<p>Todorov, E. &amp; Jordan, M. I. Optimal feedback control as a theory
+of motor coordination. Nature Neurosci. 5, 1226–1235 (2002)</p></li>
+<li><p>生物力学控制：A third form of control can be exerted by
+specifying the biomechanical properties of the body and tools with which
+we interact. 例如手臂刚度的控制。</p></li>
+<li><p>学习初期，误差比较大手臂刚度增加，同时预测模型开始学习；当误差减小了，刚度也降低</p>
+<p>Franklin, D. W. et al. CNS learns stable, accurate, and efficient
+movements using a simple algorithm. J. Neurosci. 28, 11165–11173
+(2008).</p></li>
+<li><p>阻抗控制（impedance control ）结合最优控制框架</p></li>
+</ul>
+<p>Mitrovic, D., Klanke, S., Osu, R., Kawato, M. &amp; Vijayakumar, S. A
+computational model of limb impedance control based on principles of
+internal model uncertainty. PLoS ONE 5, e13601 (2010).</p>
+<h3 id="processes-of-motor-learning">2. Processes of motor learning</h3>
+<h4 id="error-based-learning">2.1 Error-based learning</h4>
+<ul>
+<li>reaching in force fields</li>
+</ul>
+<p>Shadmehr, R. &amp; Mussa-Ivaldi, F. A. Adaptive representation of
+dynamics during learning of a motor task. J. Neurosci. 14, 3208–3224
+(1994).</p>
+<p>Thoroughman, K. A. &amp; Shadmehr, R. Learning of action through
+adaptive combination of motor primitives. Nature 407, 742–747
+(2000).</p>
+<ul>
+<li><p>A common feature across these different task domains is that the
+system can — and will — <strong>learn from an error on a single
+trial</strong></p></li>
+<li><p>把冗余关节空间映射到二维的光标上：</p>
+<p>Mosier, K. M., Scheidt, R. A., Acosta, S. &amp; Mussa-Ivaldi, F. A.
+Remapping hand movements in a novel geometrical environment. J.
+Neurophysiol. 94, 4362–4372 (2005).</p>
+<p>Liu, X., Mosier, K. M., Mussa-Ivaldi, F. A., Casadio, M. &amp;
+Scheidt, R. A. Reorganization of finger coordination patterns during
+adaptation to rotation and scaling of a newly learned sensorimotor
+transformation. J. Neurophysiol. 105, 454–473 (2011).</p></li>
+</ul>
+<h4 id="reinforcement-learning">2.2 Reinforcement learning</h4>
+<ul>
+<li>多关节手臂的多解问题，可以建立一个解的流形（solution manifold）</li>
+</ul>
+<p>Vetter, P., Flash, T. &amp; Wolpert, D. M. Planning movements in a
+simple redundant task. Curr. Biol. 12, 488–491 (2002).</p>
+<ul>
+<li><p>skill learning的速度精度权衡函数：A reduction in the variability
+for a given movement speed can be considered the hallmark of skill
+learning：</p>
+<p>Reis, J. et al. Noninvasive cortical stimulation enhances motor skill
+acquisition over multiple days through an effect on consolidation. Proc.
+Natl Acad. Sci. USA 106, 1590–1595 (2009).</p></li>
+<li><p>skillful movement：熟练的运动</p></li>
+</ul>
+<h4 id="use-dependent-learning">2.3 Use-dependent learning</h4>
+<ul>
+<li>Use-dependent
+learning指的是通过不断重复，即使没有结果信息，就能改变运动效果的现象。</li>
+</ul>
+<h3 id="representations-in-motor-learning">3. Representations in motor
+learning</h3>
+<ul>
+<li><p>传感运动学习涉及了建立运动与传感变量之间的新映射。这种转换也被称为内部模型。</p>
+<p>Such transformations are termed internal models, as they represent
+features of the body or the environment, such as the way in which a
+hand-held racquet responds to force and torques, or the way in which
+prism glasses change the visuomotor alignment.</p></li>
+<li><p>但是很多因素会影响这个映射，例如肌肉疲劳或者改变的目标权重。一个成功的运动表现应该是可以适应这些变化的。</p></li>
+<li><p>Mechanistic models使用运动基元（ motor primitives）</p></li>
+<li><p>Normative models讲究神经系统的最优适应性。它需要两个参数：</p>
+<ol type="1">
+<li>how different factors, such as tools or levels of fatigue, influence
+the motor system — the so-called <strong>generative model</strong>.</li>
+<li>how these factors are likely to vary over both space and time — that
+is the <strong>prior distribution</strong>.</li>
+</ol></li>
+</ul>
+<h4 id="motor-primitives">3.1 Motor primitives</h4>
+<ul>
+<li><p>对手臂运动的研究，使用运动基元表征速度和位置，对运动进行近似</p>
+<p>Sing, G. C., Joiner, W. M., Nanayakkara, T., Brayanov, J. B. &amp;
+Smith, M. A. Primitives for motor adaptation reflect correlated neural
+tuning to position and velocity. Neuron 64, 575–589 (2009).</p></li>
+</ul>
+<h4 id="credit-assignment">3.2 Credit assignment</h4>
+<ul>
+<li><p>两种信度分配：contextual and temporal credit assignment</p></li>
+<li><p>空间信度分配设计两只手或者其他一些特殊情况，似乎与神经科学和行为科学更加相关，这里暂时不详细参考</p></li>
+<li><p>误差的时间信度分配中，有个考虑了多时间尺度的学习模型。解释reaching
+movement适应不同的扰动。一个快速和一个慢速的系统并行地学习</p>
+<p>Smith, M. A., Ghazizadeh, A. &amp; Shadmehr, R. Interacting adaptive
+processes with different timescales underlie short-term motor learning.
+PLoS Biol. 4, e179 (2006).</p>
+<ul>
+<li>dual-rate model解释了重学习以及自发回复之前的运动记忆</li>
+</ul></li>
+<li><p>多时间尺度学习系统：</p>
+<p>Lee, J.-Y. &amp; Schweighofer, N. Dual adaptation supports a parallel
+architecture of motor memory. J. Neurosci. 29, 10396–10404 (2009).</p>
+<p>Kording, K. P., Tenenbaum, J. B. &amp; Shadmehr, R. The dynamics of
+memory as a consequence of optimal adaptation to a changing body. Nature
+Neurosci. 10, 779–786 (2007).</p>
+<p>Huang, V. S. &amp; Shadmehr, R. Persistence of motor memories
+reflects statistics of the learning event. J. Neurophysiol. 102, 931–940
+(2009).</p></li>
+</ul>
+<h4 id="structural-learning">3.3 Structural learning</h4>
+<ul>
+<li><p>通过学习工具、肢体的动力学关系，可以在其他的使用类似工具的任务中再次使用这个动力学结构。已知的结构帮助快速学习。</p></li>
+<li><p>对机器人自身结构的学习，帮助在面对意外受损后的运动维持</p>
+<p>Bongard, J., Zykov, V. &amp; Lipson, H. Resilient machines through
+continuous self-modeling. Science 314, 1118–1121 (2006).</p></li>
+<li><p>结构学习，挺有意思的工作：</p>
+<p>Braun, D. A., Aertsen, A., Wolpert, D. M. &amp; Mehring, C. Motor
+task variation induces structural learning. Curr. Biol. 19, 352–357
+(2009).</p>
+<p>Braun, D. A., Aertsen, A., Wolpert, D. M. &amp; Mehring, C. Learning
+optimal adaptation strategies in unpredictable motor tasks. J. Neurosci.
+29, 6472–6478 (2009).</p>
+<p>Braun, D. A., Mehring, C. &amp; Wolpert, D. M. Structure learning in
+action. Behav. Brain Res. 206, 157–165 (2010).</p>
+<p>Braun, D. A., Waldert, S., Aertsen, A., Wolpert, D. M. &amp; Mehring,
+C. Structure learning in a sensorimotor association task. PLoS ONE 5,
+e8973 (2010)</p></li>
+<li><p>有一些通过设置力场来扰乱手臂运动促进结构学习得工作</p></li>
+</ul>
+<h3 id="conclusions-and-future-directions">4. Conclusions and future
+directions</h3>
+<ul>
+<li><p>From laboratory learning to real-world
+learning.虽然简单的任务方便建立模型，但是和实际中的任务有巨大的差别</p></li>
+<li><p>From sensorimotor control to robotics and brain–machine
+interfaces.</p></li>
+<li><p>From models to neuronal implementations</p></li>
+</ul>
+<h2 id="总结">总结</h2>
+<p>又是一篇很好的综述，其中的很多点都可以深挖一下</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Neuroscience/" rel="tag"># Neuroscience</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/11/19/2020-11-19-Neuroscience%20-%20Generative%20Predictive%20Codes%20by%20Multiplexed%20Hippocampal%20Neuronal%20Tuplets/" rel="prev" title="Neuroscience | Generative Predictive Codes by Multiplexed Hippocampal Neuronal Tuplets">
+      <i class="fa fa-chevron-left"></i> Neuroscience | Generative Predictive Codes by Multiplexed Hippocampal Neuronal Tuplets
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/12/23/2020-12-23-Collective%20Intelligence%20-%20A%20Constructive%20Model%20for%20Collective%20Intelligence/" rel="next" title="Collective Intelligence |  A Constructive Model for Collective Intelligence">
+      Collective Intelligence |  A Constructive Model for Collective Intelligence <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#principles-of-sensorimotor-learning"><span class="nav-number">1.</span> <span class="nav-text">Principles of sensorimotor
+learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.2.</span> <span class="nav-text">主要工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#components-of-motor-learning"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. Components of motor
+learning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#information-extraction"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">1.1 Information extraction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#decisions-and-strategies"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">1.2 Decisions and strategies</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#classes-of-control"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">1.3 Classes of control</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#processes-of-motor-learning"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. Processes of motor learning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#error-based-learning"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">2.1 Error-based learning</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#reinforcement-learning"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">2.2 Reinforcement learning</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#use-dependent-learning"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">2.3 Use-dependent learning</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#representations-in-motor-learning"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. Representations in motor
+learning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#motor-primitives"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">3.1 Motor primitives</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#credit-assignment"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">3.2 Credit assignment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#structural-learning"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">3.3 Structural learning</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#conclusions-and-future-directions"><span class="nav-number">1.2.4.</span> <span class="nav-text">4. Conclusions and future
+directions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Txing"
+      src="/images/my_photo.jpg">
+  <p class="site-author-name" itemprop="name">Txing</p>
+  <div class="site-description" itemprop="description">泛用类人决战型机器人博士</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/txing-casia" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;txing-casia" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.uomi.moe/" title="https:&#x2F;&#x2F;blog.uomi.moe" rel="noopener" target="_blank">驱逐舰患者</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://m.mepai.me/photographyer/u_5a68085ba15aa.html?tdsourcetag=s_pctim_aiomsg" title="https:&#x2F;&#x2F;m.mepai.me&#x2F;photographyer&#x2F;u_5a68085ba15aa.html?tdsourcetag&#x3D;s_pctim_aiomsg" rel="noopener" target="_blank">隐之-INF</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Txing</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">538k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">8:09</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

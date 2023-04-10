@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="N皇后 Question  n 皇后问题研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。 给定一个整数 n，返回所有不同的 n 皇后问题的解决方案。 每一种解法包含一个明确的 n 皇后问题的棋子放置方案，该方案中 &#39;Q&#39; 和 &#39;.&#39; 分别代表了皇后和空位。   Example 1: 输入：4 输出：[ [&quot;.Q..&quot;, &#x2F;&#x2F; 解法 1 &quot;.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Q51 N皇后-困难-排列枚举">
+<meta property="og:url" content="https://txing-casia.github.io/2020/09/03/2020-09-03-Q51-N%E7%9A%87%E5%90%8E-%E5%9B%B0%E9%9A%BE-%E6%8E%92%E5%88%97%E6%9E%9A%E4%B8%BE/index.html">
+<meta property="og:site_name" content="Txing">
+<meta property="og:description" content="N皇后 Question  n 皇后问题研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。 给定一个整数 n，返回所有不同的 n 皇后问题的解决方案。 每一种解法包含一个明确的 n 皇后问题的棋子放置方案，该方案中 &#39;Q&#39; 和 &#39;.&#39; 分别代表了皇后和空位。   Example 1: 输入：4 输出：[ [&quot;.Q..&quot;, &#x2F;&#x2F; 解法 1 &quot;.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-25T01:54:14.965Z">
+<meta property="article:author" content="Txing">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Hard">
+<meta property="article:tag" content="Enumeration">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://txing-casia.github.io/2020/09/03/2020-09-03-Q51-N%E7%9A%87%E5%90%8E-%E5%9B%B0%E9%9A%BE-%E6%8E%92%E5%88%97%E6%9E%9A%E4%B8%BE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Q51 N皇后-困难-排列枚举 | Txing</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Txing</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到 | 伽蓝之堂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/txing-casia" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/03/2020-09-03-Q51-N%E7%9A%87%E5%90%8E-%E5%9B%B0%E9%9A%BE-%E6%8E%92%E5%88%97%E6%9E%9A%E4%B8%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用类人决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Q51 N皇后-困难-排列枚举
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-03T00:00:00+08:00">2020-09-03</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>5.4k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>5 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="n皇后"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/n-queens/">N皇后</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p><em>n</em> 皇后问题研究的是如何将 <em>n</em> 个皇后放置在
+<em>n</em>×<em>n</em> 的棋盘上，并且使皇后彼此之间不能相互攻击。</p>
+<p>给定一个整数 n，返回所有不同的 n 皇后问题的解决方案。</p>
+<p>每一种解法包含一个明确的 n 皇后问题的棋子放置方案，该方案中 'Q' 和
+'.' 分别代表了皇后和空位。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>输入：4 输出：[ [".Q..", // 解法 1 "...Q", "Q...", "..Q."],</p>
+<p>["..Q.", // 解法 2 "Q...", "...Q", ".Q.."] ] 解释: 4
+皇后问题存在两个不同的解法。</p>
+</blockquote>
+<blockquote>
+<p><strong>提示：</strong></p>
+<p>皇后彼此不能相互攻击，也就是说：任何两个皇后都不能处于同一条横行、纵行或斜线上。</p>
+</blockquote>
+<h3 id="前言">前言</h3>
+<p>「N 皇后问题」研究的是如何将 N 个皇后放置在 N×N
+的棋盘上，并且使皇后彼此之间不能相互攻击。</p>
+<p>皇后的走法是：可以横直斜走，格数不限。因此要求皇后彼此之间不能相互攻击，等价于要求任何两个皇后都不能在同一行、同一列以及同一条斜线上。</p>
+<p>直观的做法是暴力枚举将 NN 个皇后放置在 N NN×N
+的棋盘上的所有可能的情况，并对每一种情况判断是否满足皇后彼此之间不相互攻击。暴力枚举的时间复杂度是非常高的，因此必须利用限制条件加以优化。</p>
+<p>显然，每个皇后必须位于不同行和不同列，因此将 N 个皇后放置在 N×N
+的棋盘上，一定是每一行有且仅有一个皇后，每一列有且仅有一个皇后，且任何两个皇后都不能在同一条斜线上。基于上述发现，可以通过回溯的方式寻找可能的解。</p>
+<p>回溯的具体做法是：使用一个数组记录每行放置的皇后的列下标，依次在每一行放置一个皇后。每次新放置的皇后都不能和已经放置的皇后之间有攻击：即新放置的皇后不能和任何一个已经放置的皇后在同一列以及同一条斜线上，并更新数组中的当前行的皇后列下标。当
+NN
+个皇后都放置完毕，则找到一个可能的解。当找到一个可能的解之后，将数组转换成表示棋盘状态的列表，并将该棋盘状态的列表加入返回列表。</p>
+<p>由于每个皇后必须位于不同列，因此已经放置的皇后所在的列不能放置别的皇后。第一个皇后有
+N 列可以选择，第二个皇后最多有 N−1 列可以选择，第三个皇后最多有 N−2
+列可以选择（如果考虑到不能在同一条斜线上，可能的选择数量更少），因此所有可能的情况不会超过
+N! 种，遍历这些情况的时间复杂度是 O(N!)。</p>
+<p>为了降低总时间复杂度，每次放置皇后时需要快速判断每个位置是否可以放置皇后，显然，最理想的情况是在
+O(1) 的时间内判断该位置所在的列和两条斜线上是否已经有皇后。</p>
+<p>以下两种方法分别使用集合和位运算对皇后的放置位置进行判断，都可以在
+O(1) 的时间内判断一个位置是否可以放置皇后，算法的总时间复杂度都是
+O(N!)。</p>
+<h3 id="approach-1-基于集合的回溯">Approach 1: 基于集合的回溯</h3>
+<p>为了判断一个位置所在的列和两条斜线上是否已经有皇后，使用三个集合
+<span class="math display">\[columns\]</span>、<span
+class="math display">\[\textit{diagonals}_1\]</span>和 <span
+class="math display">\[\textit{diagonals}_2
+\]</span>分别记录每一列以及两个方向的每条斜线上是否有皇后。</p>
+<p>列的表示法很直观，一共有 N 列，每一列的下标范围从 0 到
+N−1，使用列的下标即可明确表示每一列。</p>
+<p>如何表示两个方向的斜线呢？对于每个方向的斜线，需要找到斜线上的每个位置的行下标与列下标之间的关系。</p>
+<p>方向一的斜线为从左上到右下方向，同一条斜线上的每个位置满足<strong>行下标与列下标之差相等</strong>，例如
+(0,0)和(3,3)
+在同一条方向一的斜线上。因此使用行下标与列下标之差即可明确表示每一条方向一的斜线。</p>
+<p>方向二的斜线为从右上到左下方向，同一条斜线上的每个位置满足<strong>行下标与列下标之和相等</strong>，例如
+(3,0) 和 (1,2)
+在同一条方向二的斜线上。因此使用行下标与列下标之和即可明确表示每一条方向二的斜线。</p>
+<p>每次放置皇后时，对于每个位置判断其是否在三个集合中，如果三个集合都不包含当前位置，则当前位置是可以放置皇后的位置。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">solveNQueens1</span>(<span class="params">self, n</span>) :</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">generateBoard</span>():</span><br><span class="line">            board = <span class="built_in">list</span>()</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">                row[queens[i]] = <span class="string">&quot;Q&quot;</span></span><br><span class="line">                board.append(<span class="string">&quot;&quot;</span>.join(row)) <span class="comment"># join 连接字符串</span></span><br><span class="line">                row[queens[i]] = <span class="string">&quot;.&quot;</span></span><br><span class="line">            <span class="keyword">return</span> board</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">backtrack</span>(<span class="params">row: <span class="built_in">int</span></span>):</span><br><span class="line">            <span class="keyword">if</span> row == n:</span><br><span class="line">                board = generateBoard()</span><br><span class="line">                solutions.append(board)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">                    <span class="keyword">if</span> i <span class="keyword">in</span> columns <span class="keyword">or</span> row - i <span class="keyword">in</span> diagonal1 <span class="keyword">or</span> row + i <span class="keyword">in</span> diagonal2:</span><br><span class="line">                        <span class="keyword">continue</span></span><br><span class="line">                    queens[row] = i</span><br><span class="line">                    columns.add(i)</span><br><span class="line">                    diagonal1.add(row - i)</span><br><span class="line">                    diagonal2.add(row + i)</span><br><span class="line">                    backtrack(row + <span class="number">1</span>)</span><br><span class="line">                    columns.remove(i)</span><br><span class="line">                    diagonal1.remove(row - i)</span><br><span class="line">                    diagonal2.remove(row + i)</span><br><span class="line">                    </span><br><span class="line">        solutions = <span class="built_in">list</span>()</span><br><span class="line">        queens = [-<span class="number">1</span>] * n</span><br><span class="line">        columns = <span class="built_in">set</span>()</span><br><span class="line">        diagonal1 = <span class="built_in">set</span>()</span><br><span class="line">        diagonal2 = <span class="built_in">set</span>()</span><br><span class="line">        row = [<span class="string">&quot;.&quot;</span>] * n</span><br><span class="line">        backtrack(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> solutions</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    s = <span class="number">6</span></span><br><span class="line">    solution=Solution().solveNQueens1(s)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<h3 id="复杂度分析">复杂度分析</h3>
+<ul>
+<li><p>时间复杂度：O(N!)，其中 N 是皇后数量</p></li>
+<li><p>空间复杂度：O(N)，其中 N
+是皇后数量。空间复杂度主要取决于递归调用层数、记录每行放置的皇后的列下标的数组以及三个集合，递归调用层数不会超过
+N，数组的长度为 N，每个集合的元素个数都不会超过 N。</p></li>
+</ul>
+<h3 id="approach-2-基于位运算的回溯">Approach 2: 基于位运算的回溯</h3>
+<p>方法一使用三个集合记录分别记录每一列以及两个方向的每条斜线上是否有皇后，每个集合最多包含
+N 个元素，因此集合的空间复杂度是
+O(N)。如果利用位运算记录皇后的信息，就可以将记录皇后信息的空间复杂度从
+O(N) 降到 O(1)。</p>
+<p>具体做法是，使用三个整数 <span
+class="math display">\[\textit{columns}\]</span>、<span
+class="math display">\[\textit{diagonals}_1\]</span> 和 <span
+class="math display">\[\textit{diagonals}_2\]</span>分别记录每一列以及两个方向的每条斜线上是否有皇后，每个整数有
+N
+个二进制位。棋盘的每一列对应每个整数的二进制表示中的一个数位，其中棋盘的最左列对应每个整数的最低二进制位，最右列对应每个整数的最高二进制位。</p>
+<p>那么如何根据每次放置的皇后更新三个整数的值呢？在说具体的计算方法之前，首先说一个例子。</p>
+<p>棋盘的边长和皇后的数量
+N=8。如果棋盘的前两行分别在（0,2）和（1,4）放置了皇后（下标从 0
+开始），则棋盘的前两行如下图所示。</p>
+<p>如果要在下一行放置皇后，哪些位置不能放置呢？我们用 0
+代表可以放置皇后的位置，1 代表不能放置皇后的位置。</p>
+<p>新放置的皇后不能和任何一个已经放置的皇后在同一列，因此不能放置在第 2
+列和第 4 列，对应 <span
+class="math display">\[\textit{columns}=00010100_{(2)}\]</span> 。</p>
+<p>新放置的皇后不能和任何一个已经放置的皇后在同一条方向一（从左上到右下方向）的斜线上，因此不能放置在第
+4 列和第 5 列，对应 <span
+class="math display">\[\textit{diagonals}_1=00110000_{(2)}\]</span>。其中，第
+4 列为其前两行的第 2 列的皇后往右下移动两步的位置，第 5 列为其前一行的第
+4 列的皇后往右下移动一步的位置。</p>
+<p>新放置的皇后不能和任何一个已经放置的皇后在同一条方向二（从右上到左下方向）的斜线上，因此不能放置在第
+0 列和第 3 列，对应 <span
+class="math display">\[\textit{diagonals}_2=00001001_{(2)}\]</span>。其中，第
+0 列为其前两行的第 2 列的皇后往左下移动两步的位置，第 3 列为其前一行的第
+4 列的皇后往左下移动一步的位置。</p>
+<p>由此可以得到三个整数的计算方法：</p>
+<ul>
+<li>初始时，三个整数的值都等于 0，表示没有放置任何皇后；</li>
+<li>在当前行放置皇后，如果皇后放置在第 i 列，则将三个整数的第 i
+个二进制位（指从低到高的第 i 个二进制位）的值设为 1;</li>
+<li>进入下一行时，<span class="math display">\[\textit{columns}\]</span>
+的值保持不变，<span class="math display">\[\textit{diagonals}_1\]</span>
+左移一位，<span class="math display">\[\textit{diagonals}_2\]</span>
+右移一位，由于棋盘的最左列对应每个整数的最低二进制位，即每个整数的最右二进制位，因此对整数的移位操作方向和对棋盘的移位操作方向相反（对棋盘的移位操作方向是
+<span
+class="math display">\[\textit{diagonals}_1\]</span>右移一位，<span
+class="math display">\[\textit{diagonals}_2\]</span>左移一位）。</li>
+</ul>
+<p>每次放置皇后时，三个整数的按位或运算的结果即为不能放置皇后的位置，其余位置即为可以放置皇后的位置。可以通过
+<span class="math display">\[(2^n-1)~\&amp;~(\sim(\textit{columns} |
+\textit{diagonals}_1 |
+\textit{diagonals}_2))\]</span>得到可以放置皇后的位置（该结果的值为 1
+的位置表示可以放置皇后的位置），然后遍历这些位置，尝试放置皇后并得到可能的解。</p>
+<p>遍历可以放置皇后的位置时，可以利用以下两个按位与运算的性质：</p>
+<ul>
+<li><p><span class="math display">\[x~\&amp;~(-x)\]</span>可以获得 x
+的二进制表示中的最低位的 1 的位置；</p></li>
+<li><p><span class="math display">\[x~\&amp;~(x-1)\]</span> 可以将 x
+的二进制表示中的最低位的 1 置成 0。</p></li>
+</ul>
+<p>具体做法是，每次获得可以放置皇后的位置中的最低位，并将该位的值置成
+0，尝试在该位置放置皇后。这样即可遍历每个可以放置皇后的位置。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">solveNQueens2</span>(<span class="params">self, n</span>) :</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">generateBoard</span>():</span><br><span class="line">            board = <span class="built_in">list</span>()</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">                row[queens[i]] = <span class="string">&quot;Q&quot;</span></span><br><span class="line">                board.append(<span class="string">&quot;&quot;</span>.join(row))</span><br><span class="line">                row[queens[i]] = <span class="string">&quot;.&quot;</span></span><br><span class="line">            <span class="keyword">return</span> board</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">solve</span>(<span class="params">row: <span class="built_in">int</span>, columns: <span class="built_in">int</span>, diagonals1: <span class="built_in">int</span>, diagonals2: <span class="built_in">int</span></span>):</span><br><span class="line">            <span class="keyword">if</span> row == n:</span><br><span class="line">                board = generateBoard()</span><br><span class="line">                solutions.append(board)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                availablePositions = ((<span class="number">1</span> &lt;&lt; n) - <span class="number">1</span>) &amp; (~(columns | diagonals1 | diagonals2))</span><br><span class="line">                <span class="keyword">while</span> availablePositions:</span><br><span class="line">                    position = availablePositions &amp; (-availablePositions)</span><br><span class="line">                    availablePositions = availablePositions &amp; (availablePositions - <span class="number">1</span>)</span><br><span class="line">                    column = <span class="built_in">bin</span>(position - <span class="number">1</span>).count(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">                    queens[row] = column</span><br><span class="line">                    solve(row + <span class="number">1</span>, columns | position, (diagonals1 | position) &lt;&lt; <span class="number">1</span>, (diagonals2 | position) &gt;&gt; <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        solutions = <span class="built_in">list</span>()</span><br><span class="line">        queens = [-<span class="number">1</span>] * n</span><br><span class="line">        row = [<span class="string">&quot;.&quot;</span>] * n</span><br><span class="line">        solve(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> solutions</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    s = <span class="number">6</span></span><br><span class="line">    solution=Solution().solveNQueens2(s)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<h3 id="复杂度分析-1">复杂度分析</h3>
+<ul>
+<li><p>时间复杂度：O(N!)，其中 N 是皇后数量。</p></li>
+<li><p>空间复杂度：O(N)，其中 N
+是皇后数量。由于使用位运算表示，因此存储皇后信息的空间复杂度是
+O(1)，空间复杂度主要取决于递归调用层数和记录每行放置的皇后的列下标的数组，递归调用层数不会超过
+N，数组的长度为 N。</p></li>
+</ul>
+<h3 id="小结">小结</h3>
+<p>回顾这道题，拿到这道题的时候，其实我们很容易看出需要使用枚举的方法来求解这个问题，当我们不知道用什么办法来枚举是最优的时候，可以从下面三个方向考虑：</p>
+<ul>
+<li><p>子集枚举：可以把问题转化成「从 <span
+class="math display">\[n^2\]</span>个格子中选一个子集，使得子集中恰好有
+n 个格子，且任意选出两个都不在同行、同列或者同对角线」，这里枚举的规模是
+<span class="math display">\[2^{n^2}\]</span>;</p></li>
+<li><p>组合枚举：可以把问题转化成「从 <span
+class="math display">\[n^2\]</span> 个格子中选择 n
+个，且任意选出两个都不在同行、同列或者同对角线」，这里的枚举规模是 <span
+class="math display">\[{n^2} \choose {n}\]</span>;</p></li>
+<li><p>排列枚举：因为这里每行只能放置一个皇后，而所有行中皇后的列号正好构成一个
+1 到 n 的排列，所以我们可以把问题转化为一个排列枚举，规模是
+n!。</p></li>
+</ul>
+<p>带入一些 n
+进这三种方法验证，就可以知道哪种方法的枚举规模是最小的，这里我们发现第三种方法的枚举规模最小。这道题给出的两个方法其实和排列枚举的本质是类似的。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/Hard/" rel="tag"># Hard</a>
+              <a href="/tags/Enumeration/" rel="tag"># Enumeration</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/02/2020-09-02-JZOffer20-%E8%A1%A8%E7%A4%BA%E6%95%B0%E5%80%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2-%E7%A1%AE%E5%AE%9A%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA/" rel="prev" title="JZOffer20 表示数值的字符串-确定有限状态自动机">
+      <i class="fa fa-chevron-left"></i> JZOffer20 表示数值的字符串-确定有限状态自动机
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/04/2020-09-04-Q257%20Binary%20Tree%20Paths-%E7%AE%80%E5%8D%95-%E6%B7%B1%E5%BA%A6and%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" rel="next" title="Q257 Binary Tree Paths-简单-深度/广度优先搜索">
+      Q257 Binary Tree Paths-简单-深度/广度优先搜索 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#n%E7%9A%87%E5%90%8E"><span class="nav-number">1.</span> <span class="nav-text">N皇后</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#question"><span class="nav-number">1.1.</span> <span class="nav-text">Question</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#approach-1-%E5%9F%BA%E4%BA%8E%E9%9B%86%E5%90%88%E7%9A%84%E5%9B%9E%E6%BA%AF"><span class="nav-number">1.1.2.</span> <span class="nav-text">Approach 1: 基于集合的回溯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">1.1.3.</span> <span class="nav-text">复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#approach-2-%E5%9F%BA%E4%BA%8E%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E5%9B%9E%E6%BA%AF"><span class="nav-number">1.1.4.</span> <span class="nav-text">Approach 2: 基于位运算的回溯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90-1"><span class="nav-number">1.1.5.</span> <span class="nav-text">复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">1.1.6.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Txing"
+      src="/images/my_photo.jpg">
+  <p class="site-author-name" itemprop="name">Txing</p>
+  <div class="site-description" itemprop="description">泛用类人决战型机器人博士</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/txing-casia" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;txing-casia" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.uomi.moe/" title="https:&#x2F;&#x2F;blog.uomi.moe" rel="noopener" target="_blank">驱逐舰患者</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://m.mepai.me/photographyer/u_5a68085ba15aa.html?tdsourcetag=s_pctim_aiomsg" title="https:&#x2F;&#x2F;m.mepai.me&#x2F;photographyer&#x2F;u_5a68085ba15aa.html?tdsourcetag&#x3D;s_pctim_aiomsg" rel="noopener" target="_blank">隐之-INF</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Txing</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">538k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">8:09</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

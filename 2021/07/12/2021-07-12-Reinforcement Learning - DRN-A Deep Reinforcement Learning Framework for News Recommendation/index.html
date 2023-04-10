@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="DRN: A Deep Reinforcement Learning Framework for News Recommendation 论文链接：http:&#x2F;&#x2F;www.personal.psu.edu&#x2F;~gjz5038&#x2F;paper&#x2F;www2018_reinforceRec&#x2F;www2018_reinforceRec.pdf 主要内容  针对新闻和用户动态特征的问题，目前的方法主要存在三个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reinforcement Learning | DRN: A Deep Reinforcement Learning Framework for News Recommendation">
+<meta property="og:url" content="https://txing-casia.github.io/2021/07/12/2021-07-12-Reinforcement%20Learning%20-%20DRN-A%20Deep%20Reinforcement%20Learning%20Framework%20for%20News%20Recommendation/index.html">
+<meta property="og:site_name" content="Txing">
+<meta property="og:description" content="DRN: A Deep Reinforcement Learning Framework for News Recommendation 论文链接：http:&#x2F;&#x2F;www.personal.psu.edu&#x2F;~gjz5038&#x2F;paper&#x2F;www2018_reinforceRec&#x2F;www2018_reinforceRec.pdf 主要内容  针对新闻和用户动态特征的问题，目前的方法主要存在三个">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-07-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-25T01:54:14.999Z">
+<meta property="article:author" content="Txing">
+<meta property="article:tag" content="Reinforcement Learning">
+<meta property="article:tag" content="Recommendation">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://txing-casia.github.io/2021/07/12/2021-07-12-Reinforcement%20Learning%20-%20DRN-A%20Deep%20Reinforcement%20Learning%20Framework%20for%20News%20Recommendation/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Reinforcement Learning | DRN: A Deep Reinforcement Learning Framework for News Recommendation | Txing</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Txing</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到 | 伽蓝之堂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/txing-casia" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/12/2021-07-12-Reinforcement%20Learning%20-%20DRN-A%20Deep%20Reinforcement%20Learning%20Framework%20for%20News%20Recommendation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用类人决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Reinforcement Learning | DRN: A Deep Reinforcement Learning Framework for News Recommendation
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-07-12 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-12T00:00:00+08:00">2021-07-12</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>4.6k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>4 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1
+id="drn-a-deep-reinforcement-learning-framework-for-news-recommendation">DRN:
+A Deep Reinforcement Learning Framework for News Recommendation</h1>
+<p>论文链接：http://www.personal.psu.edu/~gjz5038/paper/www2018_reinforceRec/www2018_reinforceRec.pdf</p>
+<h2 id="主要内容">主要内容</h2>
+<ul>
+<li><p>针对新闻和用户动态特征的问题，目前的方法主要存在三个问题：</p>
+<ul>
+<li>模型<strong>只考虑当前奖励</strong>（例如CTR，点击转化率）</li>
+<li>很少有模型考虑<strong>使用用户的反馈</strong>而不是点击/不点击的标签（例如用户反馈频率）</li>
+<li>模型总是<strong>推荐相似的东西</strong>，会使得用户感到无聊</li>
+</ul></li>
+<li><p>一些典型方法：</p>
+<ul>
+<li>content based methods [19, 22, 33],</li>
+<li>collaborative filtering based methods [11, 28, 34]</li>
+<li>hybrid methods [12, 24, 25].</li>
+<li>deep learning models [8, 45, 52]</li>
+</ul></li>
+<li><p>三个挑战：</p>
+<ul>
+<li>First, the dynamic changes in news recommendations are difficult to
+handle.
+<ul>
+<li>First, news become outdated very fast.</li>
+<li>Second, users’ interest on different news might evolve during
+time.</li>
+</ul></li>
+<li>Second, current recommendation methods [23, 35, 36, 43] usually only
+consider the click / no click labels or ratings as users’ feedback.</li>
+<li>The third major issue of current recommendation methods is its
+tendency to keep recommending similar items to users, which might
+decrease users’ interest in similar topics.</li>
+</ul></li>
+<li><p>一般的强化学习推荐方法使用 <span
+class="math display">\[\epsilon-greedy\]</span> 或者 Upper Confidence
+Bound (UCB) 方法增加推荐的探索能力。</p>
+<p>但是 <span class="math display">\[\epsilon-greedy\]</span>
+会损害当前推荐的性能，而UCB在一件物品尝试了几次之后才能得到相对准确的奖励评估。因此需要更高效的探索方式。</p></li>
+<li><p>通过使用 Dueling Bandit Gradient Descent (DBGD)
+算法作为探索策略，它会随机从候选项的邻域或者候选项中选择推荐对象。这个探索策略可以避免推荐完全无关的信息，因此可以保持当前策略的精度。</p></li>
+<li><p>模型框图：</p>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-1.png" /></p></li>
+<li><p>算法每1小时更新一次。Every one hour, the agent will use the log
+in the memory to update its recommendation algorithm.</p></li>
+<li><p>主要贡献：</p>
+<ul>
+<li>我们认为用户的活跃性有助于提高推荐的准确性，这可以提供额外的信息，而不是简单地使用用户点击标签。</li>
+<li>应用了更有效的探索方法，避免了由经典探索方法(例如，<span
+class="math display">\[\epsilon\]</span>-greedy和置信上限)引起的推荐准确度下降。</li>
+<li>我们的系统已经在线部署在商业新闻推荐应用程序中。大量的离线和在线实验显示了我们方法的优越性能。</li>
+</ul></li>
+<li><p>一些推荐方法的特点：</p>
+<ul>
+<li>Content-based methods：统计内容的频率，推荐相似的内容；</li>
+<li>Collaborative filtering
+methods：使用过去的转化率或者其他类似用户的转化率，或者结合两者来预测；</li>
+<li>Hybrid methods：提升用户画像模型；</li>
+<li>deep learning models：建模复杂的用户-物品关系</li>
+</ul></li>
+</ul>
+<h3 id="算法模型">算法模型：</h3>
+<ul>
+<li><p>算法步骤：</p>
+<ol type="1">
+<li><strong>PUSH</strong>: In each timestamp (t1, t2, t3, t4, t5, ...),
+when a user sends a news request to the system, the recommendation agent
+G will take the feature representation of the current user and news
+candidates as input, and generate a top-k list of news to recommend L. L
+is generated by combining the exploitation of current model (will be
+discussed in Section 4.3) and exploration of novel items (will be
+discussed in Section 4.5).</li>
+<li><strong>FEEDBACK</strong>: User u who has received recommended news
+L will give their feedback B by his clicks on this set of news.</li>
+<li><strong>MINOR UPDATE</strong>: After each timestamp (e.g., after
+timestamp t1), with the feature representation of the previous user u
+and news list L, and the feedback B, agent G will update the model by
+comparing the recommendation performance of exploitation network Q and
+exploration network Q˜ (will be discussed in Section 4.5). If Q˜ gives
+better recommendation result, the current network will be updated
+towards Q˜ . Otherwise, Q will be kept unchanged. Minor update can
+happen after every recommendation impression happens.</li>
+<li><strong>MAJOR UPDATE</strong>: After certain period of timeTR(e.g.,
+after timestamp t3), agent G will use the user feedback B and user
+activeness stored in the memory to update the network Q. Here, we use
+the experience replay technique [31] to update the network.
+Specifically, agent G maintains a memory with recent historical click
+and user activeness records. When each update happens, agent G will
+sample a batch of records to update the model. Major update usually
+happens after a certain time interval, like one hour, during which
+thousands of recommendation impressions are conducted and their
+feedbacks are collected.</li>
+<li>Repeat step (1)-(4).</li>
+</ol></li>
+<li><p>特征设计：</p>
+<ul>
+<li><p><strong>News features</strong> includes 417 dimension one hot
+features that describe whether certain property appears in this piece of
+news, including headline, provider, ranking, entity name, category,
+topic category, and click counts in last 1 hour, 6 hours, 24 hours, 1
+week, and 1 year respectively.</p></li>
+<li><p><strong>User features</strong> mainly describes the features
+(i.e., headline, provider, ranking, entity name, category, and topic
+category) of the news that the user clicked in 1 hour, 6 hours, 24
+hours, 1 week, and 1 year respectively. There is also a total click
+count for each time granularity. Therefore, there will be totally 413 ×
+5 = 2065 dimensions.</p></li>
+<li><p><strong>User news features</strong>. These 25-dimensional
+features describe the interaction between user and one certain piece of
+news, i.e., the frequency for the entity (also category, topic category
+and provider) to appear in the history of the user’s readings.</p></li>
+<li><p><strong>Context features</strong>. These 32-dimensional features
+describe the context when a news request happens, including time,
+weekday, and the freshness of the news (the gap between request time and
+news publish time).</p></li>
+</ul></li>
+<li><p>模型框架，包含离线和在线部分</p></li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-3.png"
+alt="Model framework" />
+<figcaption aria-hidden="true">Model framework</figcaption>
+</figure>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-4.png"
+alt="Q network" /> <span class="math display">\[
+y_{s,a}=Q(s,a)=r_{immediate}+\gamma r_{future}\\
+y_{s,a,t}=r_{a,t+1}+\gamma Q\big(s_{a,t+1},\arg \max_{a&#39;}
+Q(s_{a,t+1},a&#39;;W_t);W_t&#39;\big)
+\]</span></p>
+<h3 id="user-activeness">User Activeness</h3>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-3.png"
+alt="User activeness estimation" /> <span class="math display">\[
+\lambda(t)=\lim_{dt\rightarrow 0} \frac{\Pr\{t \leq T&lt;t+dt\mid T\geq
+t \}}{d t}\\
+S(t)=e^{-\int_0^\infty \lambda(x)dx}\\
+T_0=\int_0^{\infty}S(t)dt
+\]</span> the maximum user activeness is truncated to 1.</p>
+<p>The click / no click label <span
+class="math display">\[r_{click}\]</span> and the user activeness <span
+class="math display">\[r_{active}\]</span> are combined as: <span
+class="math display">\[
+r_{total}=r_{click}+\beta r_{active}
+\]</span></p>
+<ul>
+<li>网络框架</li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-2.png"
+alt="Exploration by Dueling Bandit Gradient Descent" />
+<figcaption aria-hidden="true">Exploration by Dueling Bandit Gradient
+Descent</figcaption>
+</figure>
+<p><span class="math display">\[\hat{L}\]</span> 首先使用概率交错方法从
+<span class="math display">\[L\]</span> 和 <span
+class="math display">\[\tilde{L}\]</span> 。大致就是首先随机从 <span
+class="math display">\[L\]</span> 和 <span
+class="math display">\[\tilde{L}\]</span>
+选择推荐项，之后按照概率值更新网络 <span
+class="math display">\[\tilde{Q}\]</span></p>
+<p><span class="math display">\[
+\Delta W=\alpha \cdot rand(-1,1)\cdot W\\
+W&#39;=W+\eta \tilde{W}
+\]</span></p>
+<h2 id="总结">总结</h2>
+<p>感觉整体框架还是很好理解的，针对任务的改进比较多，对强化学习框架的改动比较小。</p>
+<p>两个网络的构造也类似于DQN中的target
+network，输入的高维特征类比于输入的图像信息。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Reinforcement-Learning/" rel="tag"># Reinforcement Learning</a>
+              <a href="/tags/Recommendation/" rel="tag"># Recommendation</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/07/08/2021-07-08-Reinforcement%20Learning%20-%20Option-critic%20architecture/" rel="prev" title="Reinforcement Learning | Option-critic Architecture">
+      <i class="fa fa-chevron-left"></i> Reinforcement Learning | Option-critic Architecture
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/07/13/2021-07-13-Q130-%E8%A2%AB%E5%9B%B4%E7%BB%95%E7%9A%84%E5%8C%BA%E5%9F%9F-%E4%B8%AD%E7%AD%89-%E6%B7%B1%E5%BA%A6and%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" rel="next" title="Q130-被围绕的区域-中等-DFS/BFS">
+      Q130-被围绕的区域-中等-DFS/BFS <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#drn-a-deep-reinforcement-learning-framework-for-news-recommendation"><span class="nav-number">1.</span> <span class="nav-text">DRN:
+A Deep Reinforcement Learning Framework for News Recommendation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9"><span class="nav-number">1.1.</span> <span class="nav-text">主要内容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.1.1.</span> <span class="nav-text">算法模型：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#user-activeness"><span class="nav-number">1.1.2.</span> <span class="nav-text">User Activeness</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.2.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Txing"
+      src="/images/my_photo.jpg">
+  <p class="site-author-name" itemprop="name">Txing</p>
+  <div class="site-description" itemprop="description">泛用类人决战型机器人博士</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/txing-casia" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;txing-casia" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.uomi.moe/" title="https:&#x2F;&#x2F;blog.uomi.moe" rel="noopener" target="_blank">驱逐舰患者</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://m.mepai.me/photographyer/u_5a68085ba15aa.html?tdsourcetag=s_pctim_aiomsg" title="https:&#x2F;&#x2F;m.mepai.me&#x2F;photographyer&#x2F;u_5a68085ba15aa.html?tdsourcetag&#x3D;s_pctim_aiomsg" rel="noopener" target="_blank">隐之-INF</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Txing</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">538k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">8:09</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

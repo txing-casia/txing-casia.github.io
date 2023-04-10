@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1300. 转变数组后最接近目标值的数组和 Question  给你一个整数数组 arr 和一个目标值 target ，请你返回一个整数 value ，使得将数组中所有大于 value 的值变成 value 后，数组的和最接近 target （最接近表示两者之差的绝对值最小）。 如果有多种使得和最接近 target 的方案，请你返回这些整数中的最小值。 请注意，答案不一定是 ar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Q1300-转变数组后最接近目标值的数组和-中等-数组">
+<meta property="og:url" content="https://txing-casia.github.io/2021/03/18/2021-03-18-Q1300-%E8%BD%AC%E5%8F%98%E6%95%B0%E7%BB%84%E5%90%8E%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9B%AE%E6%A0%87%E5%80%BC%E7%9A%84%E6%95%B0%E7%BB%84%E5%92%8C-%E4%B8%AD%E7%AD%89-%E6%95%B0%E7%BB%84/index.html">
+<meta property="og:site_name" content="Txing">
+<meta property="og:description" content="1300. 转变数组后最接近目标值的数组和 Question  给你一个整数数组 arr 和一个目标值 target ，请你返回一个整数 value ，使得将数组中所有大于 value 的值变成 value 后，数组的和最接近 target （最接近表示两者之差的绝对值最小）。 如果有多种使得和最接近 target 的方案，请你返回这些整数中的最小值。 请注意，答案不一定是 ar">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-03-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-25T01:54:14.985Z">
+<meta property="article:author" content="Txing">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Medium">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://txing-casia.github.io/2021/03/18/2021-03-18-Q1300-%E8%BD%AC%E5%8F%98%E6%95%B0%E7%BB%84%E5%90%8E%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9B%AE%E6%A0%87%E5%80%BC%E7%9A%84%E6%95%B0%E7%BB%84%E5%92%8C-%E4%B8%AD%E7%AD%89-%E6%95%B0%E7%BB%84/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Q1300-转变数组后最接近目标值的数组和-中等-数组 | Txing</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Txing</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到 | 伽蓝之堂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/txing-casia" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/18/2021-03-18-Q1300-%E8%BD%AC%E5%8F%98%E6%95%B0%E7%BB%84%E5%90%8E%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9B%AE%E6%A0%87%E5%80%BC%E7%9A%84%E6%95%B0%E7%BB%84%E5%92%8C-%E4%B8%AD%E7%AD%89-%E6%95%B0%E7%BB%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用类人决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Q1300-转变数组后最接近目标值的数组和-中等-数组
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-03-18 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-18T00:00:00+08:00">2021-03-18</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>3.4k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>3 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="转变数组后最接近目标值的数组和"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sum-of-mutated-array-closest-to-target/">1300.
+转变数组后最接近目标值的数组和</a></h4>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>给你一个整数数组 arr 和一个目标值 target ，请你返回一个整数 value
+，使得将数组中所有大于 value 的值变成 value 后，数组的和最接近 target
+（最接近表示两者之差的绝对值最小）。</p>
+<p>如果有多种使得和最接近 target
+的方案，请你返回这些整数中的最小值。</p>
+<p>请注意，答案不一定是 arr 中的数字。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>输入：arr = [4,9,3], target = 10 输出：3 解释：当选择 value 为 3
+时，数组会变成 [3, 3, 3]，和为 9 ，这是最接近 target 的方案。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2：</strong></p>
+<p>输入：arr = [2,3,5], target = 10 输出：5</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 3：</strong></p>
+<p>输入：arr = [60864,25176,27249,21296,20204], target = 56803
+输出：11361</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ul>
+<li>1 &lt;= arr.length &lt;= 10^4</li>
+<li>1 &lt;= arr[i], target &lt;= 10^5</li>
+</ul>
+</blockquote>
+<h3 id="approach-1-排序文件夹">Approach 1: 排序文件夹</h3>
+<p>由于数组 arr 中每个元素值的范围是 [1,<span
+class="math display">\[10^5\]</span>]，在可以直接枚举的范围内，因此我们可以对所有可能作为
+value 的值进行枚举。</p>
+<p>那么 value 值的上下界是多少呢？我们需要进行一些分析：</p>
+<ul>
+<li><p>value 的下界为 0。这是因为当 value = 0 时，数组的和为 0。由于
+target 是正整数，因此当 value
+继续减小时，数组的和也会随之减小，且变为负数（这个和等于 value * n，其中
+n 是数组 arr 的长度），并不会比 value = 0 时更接近 target。</p></li>
+<li><p>value 的上界为数组 arr 中的最大值。这是因为当 value &gt;= arr
+时，数组中所有的元素都不变，因为它们均不大于
+value。由于我们需要找到最接近 target 的最小 value 值，因此我们只需将数组
+arr 中的最大值作为上界即可。</p></li>
+</ul>
+<p>当我们确定了 value 值的上下界之后，就可以进行枚举了。当枚举到 value =
+x 时，我们需要将数组 arr 中所有小于等于 x 的值保持不变，所有大于 x
+的值变为 x。要实现这个操作，我们可以将数组 arr
+先进行排序，随后进行二分查找，找出数组 arr 中最小的比 x 大的元素
+arr[i]。由于将数组 arr 中的等于 x 的值变为 x
+并没有改变原来的值，因此上述操作可以改为：</p>
+<p><span class="math display">\[
+arr[0] + ... + arr[i - 1] + x \times (n - i)
+\]</span>
+使用该操作是因为很多编程语言自带的二分查找只能返回目标值第一次出现的位置。在此鼓励读者自己实现返回目标值最后一次出现的位置的二分查找。</p>
+<p>为了加速求和操作，我们可以预处理出数组 arr
+的前缀和，这样数组求和的时间复杂度即能降为 O(1)。我们将和与 target
+进行比较，同时更新答案即可。</p>
+<p>这里会使用到二分查找的库bisect，几个相关的函数需要熟悉：</p>
+<p>bisect.bisect_left(L,x)</p>
+<p>bisect.bisect_right(L,x)</p>
+<p>bisect.insort_left(L,x)</p>
+<p>bisect.insort_right(L,x)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">findBestValue</span>(<span class="params">self, arr, target</span>):</span><br><span class="line">        arr.sort()</span><br><span class="line">        n = <span class="built_in">len</span>(arr)</span><br><span class="line">        prefix = [<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> arr:</span><br><span class="line">            prefix.append(prefix[-<span class="number">1</span>] + num)</span><br><span class="line">        </span><br><span class="line">        r, ans, diff = <span class="built_in">max</span>(arr), <span class="number">0</span>, target</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, r + <span class="number">1</span>):</span><br><span class="line">            it = bisect.bisect_left(arr, i)</span><br><span class="line">            cur = prefix[it] + (n - it) * i</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">abs</span>(cur - target) &lt; diff:</span><br><span class="line">                ans, diff = i, <span class="built_in">abs</span>(cur - target)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    arr = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>]</span><br><span class="line">    target = <span class="number">10</span></span><br><span class="line">    solution=Solution().findBestValue(arr, target)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：<span class="math display">\[O((N + C)\log
+N)\]</span>，其中 N 是数组 arr 的长度，C 是一个常数，为数组 arr
+中的最大值，不会超过 10^5 。排序需要的时间复杂度为 <span
+class="math display">\[O(N \log N)\]</span>，二分查找的单次时间复杂度为
+<span class="math display">\[O(\log N)\]</span>，需要进行 C 次。</li>
+<li>空间复杂度：<span class="math display">\[O(N)\]</span>，我们需要
+O(N)O(N) 的空间用来存储数组 arr 的前缀和，排序需要 <span
+class="math display">\[O(\log N)\]</span>
+的栈空间，因此最后总空间复杂度为 <span
+class="math display">\[O(N)\]</span>。</li>
+</ul>
+<h3 id="approach-2-双重二分查找">Approach 2: 双重二分查找</h3>
+<p>方法一的枚举策略建立在数组 arr 的元素范围不大的条件之上。如果数组 arr
+中的元素范围是
+[1,10^9]，那么我们将无法直接枚举，有没有更好的解决方法呢？</p>
+<p>我们首先考虑题目的一个简化版本：我们需要找到
+value，使得数组的和最接近 target 且不大于 target。可以发现，在
+[0,(arr)]（即方法一中确定的上下界）的范围之内，随着 value
+的增大，数组的和是严格单调递增的。这里「严格」的意思是，不存在两个不同的
+value 值，它们对应的数组的和相等。这样一来，一定存在唯一的一个 value
+值，使得数组的和最接近且不大于
+target。并且由于严格单调递增的性质，我们可以通过二分查找的方法，找到这个
+value 值，记为 value_lower。</p>
+<p>同样地，我们考虑题目的另一个简化版本：我们需要找到一个
+value，使得数组的和最接近 target 且大于
+target。我们也可以通过二分查找的方法，找到这个 value 值，记为
+value_upper。</p>
+<p>显然 value 值就是 value_lower 和 value_upper
+中的一个，我们只需要比较这两个值对应的数组的和与 target
+的差，就能确定最终的答案。这样一来，我们通过两次二分查找，就可以找出
+value
+值，在每一次二分查找中，我们使用和方法一中相同的查找方法，快速地求出每个
+value
+值对应的数组的和。算法从整体上来看，是外层二分查找中嵌套了一个内层二分查找。</p>
+<p>那么这个方法还有进一步优化的余地吗？仔细思考一下 value_lower 与
+value_upper 的定义，前者最接近且不大于 target，后者最接近且大于
+target。由于数组的和随着 value 的增大是严格单调递增的，所以 value_upper
+的值一定就是 value_lower + 1。因此我们只需要进行一次外层二分查找得到
+value_lower，并直接通过 value_lower + 1 计算出 value_upper
+的值就行了。这样我们就减少了一次外层二分查找，虽然时间复杂度没有变化，但降低了常数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">findBestValue</span>(<span class="params">self, arr: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        arr.sort()</span><br><span class="line">        n = <span class="built_in">len</span>(arr)</span><br><span class="line">        prefix = [<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> arr:</span><br><span class="line">            prefix.append(prefix[-<span class="number">1</span>] + num)</span><br><span class="line">        </span><br><span class="line">        l, r, ans = <span class="number">0</span>, <span class="built_in">max</span>(arr), -<span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">            mid = (l + r) // <span class="number">2</span></span><br><span class="line">            it = bisect.bisect_left(arr, mid)</span><br><span class="line">            cur = prefix[it] + (n - it) * mid</span><br><span class="line">            <span class="keyword">if</span> cur &lt;= target:</span><br><span class="line">                ans = mid</span><br><span class="line">                l = mid + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                r = mid - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">check</span>(<span class="params">x</span>):</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">sum</span>(x <span class="keyword">if</span> num &gt;= x <span class="keyword">else</span> num <span class="keyword">for</span> num <span class="keyword">in</span> arr)</span><br><span class="line">        </span><br><span class="line">        choose_small = check(ans)</span><br><span class="line">        choose_big = check(ans + <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> ans <span class="keyword">if</span> <span class="built_in">abs</span>(choose_small - target) &lt;= <span class="built_in">abs</span>(choose_big - target) <span class="keyword">else</span> ans + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：<span class="math display">\[O(N\log N)\]</span>，其中 N
+是数组 arr 的长度。排序需要的时间复杂度为 <span
+class="math display">\[O(N \log N)\]</span>，外层二分查找的时间复杂度为
+<span class="math display">\[O(\log
+C)\]</span>，内层二分查找的时间复杂度为 <span
+class="math display">\[O(\log N)\]</span>，它们的乘积在数量级上小于
+<span class="math display">\[O(N \log N)\]</span>。</li>
+<li>空间复杂度：<span
+class="math display">\[O(N)\]</span>。分析同方法一。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/Medium/" rel="tag"># Medium</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/03/17/2021-03-17-Q1233-%E5%88%A0%E9%99%A4%E5%AD%90%E6%96%87%E4%BB%B6%E5%A4%B9-%E4%B8%AD%E7%AD%89-%E6%95%B0%E7%BB%84/" rel="prev" title="Q1233-删除子文件夹-中等-数组">
+      <i class="fa fa-chevron-left"></i> Q1233-删除子文件夹-中等-数组
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/03/19/2021-03-19-Q54-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5-%E4%B8%AD%E7%AD%89-%E6%95%B0%E7%BB%84/" rel="next" title="Q54-螺旋矩阵-中等-数组">
+      Q54-螺旋矩阵-中等-数组 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC%E5%8F%98%E6%95%B0%E7%BB%84%E5%90%8E%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9B%AE%E6%A0%87%E5%80%BC%E7%9A%84%E6%95%B0%E7%BB%84%E5%92%8C"><span class="nav-number">1.</span> <span class="nav-text">1300.
+转变数组后最接近目标值的数组和</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#question"><span class="nav-number"></span> <span class="nav-text">Question</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#approach-1-%E6%8E%92%E5%BA%8F%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number"></span> <span class="nav-text">Approach 1: 排序文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#approach-2-%E5%8F%8C%E9%87%8D%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="nav-number"></span> <span class="nav-text">Approach 2: 双重二分查找</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Txing"
+      src="/images/my_photo.jpg">
+  <p class="site-author-name" itemprop="name">Txing</p>
+  <div class="site-description" itemprop="description">泛用类人决战型机器人博士</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/txing-casia" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;txing-casia" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.uomi.moe/" title="https:&#x2F;&#x2F;blog.uomi.moe" rel="noopener" target="_blank">驱逐舰患者</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://m.mepai.me/photographyer/u_5a68085ba15aa.html?tdsourcetag=s_pctim_aiomsg" title="https:&#x2F;&#x2F;m.mepai.me&#x2F;photographyer&#x2F;u_5a68085ba15aa.html?tdsourcetag&#x3D;s_pctim_aiomsg" rel="noopener" target="_blank">隐之-INF</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Txing</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">538k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">8:09</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
