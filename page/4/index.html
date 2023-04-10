@@ -186,8 +186,6 @@
     <span>0%</span>
   </div>
 
-  <a href="https://github.com/txing-casia" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
-
 
     <main class="main">
       <div class="main-inner">
@@ -1368,6 +1366,120 @@ State显示为LISTEN即为未占用，记该端口号为xxxx</p>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/07/22/2022-07-22-Network%20Structure%20-%20A%20ConvNet%20for%20the%202020s/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用类人决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/22/2022-07-22-Network%20Structure%20-%20A%20ConvNet%20for%20the%202020s/" class="post-title-link" itemprop="url">Network Structure | A ConvNet for the 2020s (Facebook, 2022)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-07-22 00:00:00" itemprop="dateCreated datePublished" datetime="2022-07-22T00:00:00+08:00">2022-07-22</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="a-convnet-for-the-2020s">A ConvNet for the 2020s</h2>
+<ul>
+<li>纯卷积的网络堪比transformer。</li>
+</ul>
+<p>Vision Transformers (ViTs)
+的引入迅速取代了ConvNets，成为最先进的图像分类模型。另一方面，普通的 ViT
+在应用于目标检测和语义分割等一般计算机视觉任务时面临困难。分层
+Transformers（例如，Swin Transformers）重新引入了几个 ConvNet 先验，使
+Transformers
+作为通用视觉骨干实际上可行，并在各种视觉任务上表现出卓越的性能。然而，这种混合方法的有效性在很大程度上仍归功于
+Transformer
+的内在优势，而不是卷积固有的归纳偏差。在这项工作中，我们重新检查了设计空间并测试了纯
+ConvNet 所能达到的极限。</p>
+<p>我们逐渐将标准 ResNet “现代化”为视觉 Transformer
+的设计，并在此过程中发现了导致性能差异的几个关键组件。这一探索的结果是一系列纯
+ConvNet 模型，称为 ConvNeXt。ConvNeXts 完全由标准 ConvNet
+模块构建，在准确性和可扩展性方面与 Transformer 竞争，实现 87.8% ImageNet
+top-1 准确率，在 COCO 检测和 ADE20K 分割方面优于 Swin
+Transformers，同时保持标准 ConvNet 的简单性和效率。</p>
+<h3 id="introduction">1. Introduction</h3>
+<ul>
+<li><p>过去的十年视觉认知领域的研究从特征工程转移到了网络结构设计。</p></li>
+<li><p>solutions to numerous computer vision tasks in the past decade
+depended significantly on a sliding-window, fully- convolutional
+paradigm</p></li>
+<li><p>The <strong>biggest challenge</strong> is ViT’s global attention
+design, which has a <strong>quadratic complexity</strong> with respect
+to the input size. This might be acceptable for ImageNet classification,
+but quickly becomes intractable with higher-resolution inputs.</p></li>
+<li><p><strong>Swin Transformer</strong> [45] is a milestone work in
+this direction, demonstrating for the first time that Transformers can
+be adopted as a generic vision backbone and achieve state-of-the-art
+performance across a range of computer vision tasks beyond image
+classification</p>
+<ul>
+<li>[45]. Ze Liu, Yutong Lin, Yue Cao, Han Hu, Yixuan Wei, Zheng Zhang,
+Stephen Lin, and Baining Guo. Swin transformer: Hierarchical vision
+transformer using shifted windows. 2021.</li>
+</ul></li>
+</ul>
+<h3 id="总结">总结</h3>
+<p>写作语言非常高级的一篇介绍网络结构的文章，介绍了如何构建超越transformer的纯卷积网络。并在计算机视觉多项任务中取得了成功，包括ImageNet
+top-1。文章值得一看，但由于这不是我重点关注方向，不详细介绍了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/07/22/2022-07-22-Autonomous%20Driving%20-%20MotionCNN%20A%20Strong%20Baseline%20for%20Motion%20Prediction%20in%20Autonomous%20Driving/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1593,120 +1705,6 @@ Motion Dataset</figcaption>
 <p>作者也承认整个模型在结构和设计上比较简单，但是结果上是取得了waymo比赛的第三名。这是否意味着他们做了更多的工程化调整才取得如此的成绩？</p>
 <p>如果follow这项工作，其他人是否也能实现这样的性能是一个问题。</p>
 <p>​</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/07/22/2022-07-22-Network%20Structure%20-%20A%20ConvNet%20for%20the%202020s/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用类人决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/07/22/2022-07-22-Network%20Structure%20-%20A%20ConvNet%20for%20the%202020s/" class="post-title-link" itemprop="url">Network Structure | A ConvNet for the 2020s (Facebook, 2022)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-07-22 00:00:00" itemprop="dateCreated datePublished" datetime="2022-07-22T00:00:00+08:00">2022-07-22</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.4k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="a-convnet-for-the-2020s">A ConvNet for the 2020s</h2>
-<ul>
-<li>纯卷积的网络堪比transformer。</li>
-</ul>
-<p>Vision Transformers (ViTs)
-的引入迅速取代了ConvNets，成为最先进的图像分类模型。另一方面，普通的 ViT
-在应用于目标检测和语义分割等一般计算机视觉任务时面临困难。分层
-Transformers（例如，Swin Transformers）重新引入了几个 ConvNet 先验，使
-Transformers
-作为通用视觉骨干实际上可行，并在各种视觉任务上表现出卓越的性能。然而，这种混合方法的有效性在很大程度上仍归功于
-Transformer
-的内在优势，而不是卷积固有的归纳偏差。在这项工作中，我们重新检查了设计空间并测试了纯
-ConvNet 所能达到的极限。</p>
-<p>我们逐渐将标准 ResNet “现代化”为视觉 Transformer
-的设计，并在此过程中发现了导致性能差异的几个关键组件。这一探索的结果是一系列纯
-ConvNet 模型，称为 ConvNeXt。ConvNeXts 完全由标准 ConvNet
-模块构建，在准确性和可扩展性方面与 Transformer 竞争，实现 87.8% ImageNet
-top-1 准确率，在 COCO 检测和 ADE20K 分割方面优于 Swin
-Transformers，同时保持标准 ConvNet 的简单性和效率。</p>
-<h3 id="introduction">1. Introduction</h3>
-<ul>
-<li><p>过去的十年视觉认知领域的研究从特征工程转移到了网络结构设计。</p></li>
-<li><p>solutions to numerous computer vision tasks in the past decade
-depended significantly on a sliding-window, fully- convolutional
-paradigm</p></li>
-<li><p>The <strong>biggest challenge</strong> is ViT’s global attention
-design, which has a <strong>quadratic complexity</strong> with respect
-to the input size. This might be acceptable for ImageNet classification,
-but quickly becomes intractable with higher-resolution inputs.</p></li>
-<li><p><strong>Swin Transformer</strong> [45] is a milestone work in
-this direction, demonstrating for the first time that Transformers can
-be adopted as a generic vision backbone and achieve state-of-the-art
-performance across a range of computer vision tasks beyond image
-classification</p>
-<ul>
-<li>[45]. Ze Liu, Yutong Lin, Yue Cao, Han Hu, Yixuan Wei, Zheng Zhang,
-Stephen Lin, and Baining Guo. Swin transformer: Hierarchical vision
-transformer using shifted windows. 2021.</li>
-</ul></li>
-</ul>
-<h3 id="总结">总结</h3>
-<p>写作语言非常高级的一篇介绍网络结构的文章，介绍了如何构建超越transformer的纯卷积网络。并在计算机视觉多项任务中取得了成功，包括ImageNet
-top-1。文章值得一看，但由于这不是我重点关注方向，不详细介绍了。</p>
 
       
     </div>
