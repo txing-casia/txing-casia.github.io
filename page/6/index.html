@@ -731,80 +731,6 @@ alt="main文件位置" />
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/01/06/2022-01-06-Pytorch-%E6%89%8B%E5%8A%A8%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%9A%84%E6%9B%B2%E7%BA%BF%E6%8B%9F%E5%90%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用类人决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/06/2022-01-06-Pytorch-%E6%89%8B%E5%8A%A8%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%9A%84%E6%9B%B2%E7%BA%BF%E6%8B%9F%E5%90%88/" class="post-title-link" itemprop="url">Pytorch-手动梯度下降的曲线拟合</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-01-06 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-06T00:00:00+08:00">2022-01-06</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="pytorch---手动梯度下降的曲线拟合">Pytorch -
-手动梯度下降的曲线拟合</h4>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create random input and output data</span></span><br><span class="line">x = np.linspace(-math.pi, math.pi, <span class="number">2000</span>)</span><br><span class="line">y = np.sin(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Randomly initialize weights</span></span><br><span class="line">a = np.random.randn()</span><br><span class="line">b = np.random.randn()</span><br><span class="line">c = np.random.randn()</span><br><span class="line">d = np.random.randn()</span><br><span class="line"></span><br><span class="line">learning_rate = <span class="number">1e-6</span></span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2000</span>):</span><br><span class="line">    <span class="comment"># Forward pass: compute predicted y</span></span><br><span class="line">    <span class="comment"># y = a + b x + c x^2 + d x^3</span></span><br><span class="line">    y_pred = a + b * x + c * x ** <span class="number">2</span> + d * x ** <span class="number">3</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Compute and print loss</span></span><br><span class="line">    loss = np.square(y_pred - y).<span class="built_in">sum</span>()</span><br><span class="line">    <span class="keyword">if</span> t % <span class="number">100</span> == <span class="number">99</span>:</span><br><span class="line">        <span class="built_in">print</span>(t, loss)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Backprop to compute gradients of a, b, c, d with respect to loss</span></span><br><span class="line">    grad_y_pred = <span class="number">2.0</span>*(y_pred - y)</span><br><span class="line">    grad_a = grad_y_pred.<span class="built_in">sum</span>()</span><br><span class="line">    grad_b = (grad_y_pred * x).<span class="built_in">sum</span>()</span><br><span class="line">    grad_c = (grad_y_pred * x ** <span class="number">2</span>).<span class="built_in">sum</span>()</span><br><span class="line">    grad_d = (grad_y_pred * x ** <span class="number">3</span>).<span class="built_in">sum</span>()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Update weights</span></span><br><span class="line">    a -= learning_rate * grad_a</span><br><span class="line">    b -= learning_rate * grad_b</span><br><span class="line">    c -= learning_rate * grad_c</span><br><span class="line">    d -= learning_rate * grad_d</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;Result: y = <span class="subst">&#123;a&#125;</span> + <span class="subst">&#123;b&#125;</span> x + <span class="subst">&#123;c&#125;</span> x^2 + <span class="subst">&#123;d&#125;</span> x^3&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">fig  = plt.figure()</span><br><span class="line">ax = fig.add_subplot(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">ax.plot(y)</span><br><span class="line">ax.plot(y_pred)</span><br><span class="line">plt.show()</span><br><span class="line"><span class="built_in">input</span>()</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/01/06/2022-01-06-pytorch-%E4%BD%BF%E7%94%A8%E4%BC%98%E5%8C%96%E5%99%A8%E7%9A%84%E6%9B%B2%E7%BA%BF%E6%8B%9F%E5%90%88%E7%A8%8B%E5%BA%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -860,6 +786,80 @@ alt="main文件位置" />
           <h4 id="pytorch---使用优化器的曲线拟合程序">Pytorch -
 使用优化器的曲线拟合程序</h4>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##############################</span></span><br><span class="line"><span class="comment"># pytorch-使用优化器的曲线拟合程序</span></span><br><span class="line"><span class="comment">##############################</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create Tensors to hold input and outputs.</span></span><br><span class="line">x = torch.linspace(-math.pi, math.pi, <span class="number">2000</span>)</span><br><span class="line">y = torch.sin(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Prepare the input tensor (x, x^2, x^3).</span></span><br><span class="line">p = torch.tensor([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">xx = x.unsqueeze(-<span class="number">1</span>).<span class="built_in">pow</span>(p)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Use the nn package to define our model and loss function.</span></span><br><span class="line">model = torch.nn.Sequential(</span><br><span class="line">    torch.nn.Linear(<span class="number">3</span>, <span class="number">1</span>),</span><br><span class="line">    torch.nn.Flatten(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">)</span><br><span class="line">loss_fn = torch.nn.MSELoss(reduction=<span class="string">&#x27;sum&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Use the optim package to define an Optimizer that will update the weights of</span></span><br><span class="line"><span class="comment"># the model for us. Here we will use RMSprop; the optim package contains many other</span></span><br><span class="line"><span class="comment"># optimization algorithms. The first argument to the RMSprop constructor tells the</span></span><br><span class="line"><span class="comment"># optimizer which Tensors it should update.</span></span><br><span class="line">learning_rate = <span class="number">1e-3</span></span><br><span class="line">optimizer = torch.optim.RMSprop(model.parameters(), lr=learning_rate)</span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2000</span>):</span><br><span class="line">    <span class="comment"># Forward pass: compute predicted y by passing x to the model.</span></span><br><span class="line">    y_pred = model(xx)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Compute and print loss.</span></span><br><span class="line">    loss = loss_fn(y_pred, y)</span><br><span class="line">    <span class="keyword">if</span> t % <span class="number">100</span> == <span class="number">99</span>:</span><br><span class="line">        <span class="built_in">print</span>(t, loss.item())</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Before the backward pass, use the optimizer object to zero all of the</span></span><br><span class="line">    <span class="comment"># gradients for the variables it will update (which are the learnable</span></span><br><span class="line">    <span class="comment"># weights of the model). This is because by default, gradients are</span></span><br><span class="line">    <span class="comment"># accumulated in buffers( i.e, not overwritten) whenever .backward()</span></span><br><span class="line">    <span class="comment"># is called. Checkout docs of torch.autograd.backward for more details.</span></span><br><span class="line">    optimizer.zero_grad()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Backward pass: compute gradient of the loss with respect to model</span></span><br><span class="line">    <span class="comment"># parameters</span></span><br><span class="line">    loss.backward()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Calling the step function on an Optimizer makes an update to its</span></span><br><span class="line">    <span class="comment"># parameters</span></span><br><span class="line">    optimizer.step()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">linear_layer = model[<span class="number">0</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;Result: y = <span class="subst">&#123;linear_layer.bias.item()&#125;</span> + <span class="subst">&#123;linear_layer.weight[:, <span class="number">0</span>].item()&#125;</span> x + <span class="subst">&#123;linear_layer.weight[:, <span class="number">1</span>].item()&#125;</span> x^2 + <span class="subst">&#123;linear_layer.weight[:, <span class="number">2</span>].item()&#125;</span> x^3&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/01/06/2022-01-06-Pytorch-%E6%89%8B%E5%8A%A8%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%9A%84%E6%9B%B2%E7%BA%BF%E6%8B%9F%E5%90%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用类人决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/06/2022-01-06-Pytorch-%E6%89%8B%E5%8A%A8%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%9A%84%E6%9B%B2%E7%BA%BF%E6%8B%9F%E5%90%88/" class="post-title-link" itemprop="url">Pytorch-手动梯度下降的曲线拟合</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-01-06 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-06T00:00:00+08:00">2022-01-06</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="pytorch---手动梯度下降的曲线拟合">Pytorch -
+手动梯度下降的曲线拟合</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create random input and output data</span></span><br><span class="line">x = np.linspace(-math.pi, math.pi, <span class="number">2000</span>)</span><br><span class="line">y = np.sin(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Randomly initialize weights</span></span><br><span class="line">a = np.random.randn()</span><br><span class="line">b = np.random.randn()</span><br><span class="line">c = np.random.randn()</span><br><span class="line">d = np.random.randn()</span><br><span class="line"></span><br><span class="line">learning_rate = <span class="number">1e-6</span></span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2000</span>):</span><br><span class="line">    <span class="comment"># Forward pass: compute predicted y</span></span><br><span class="line">    <span class="comment"># y = a + b x + c x^2 + d x^3</span></span><br><span class="line">    y_pred = a + b * x + c * x ** <span class="number">2</span> + d * x ** <span class="number">3</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Compute and print loss</span></span><br><span class="line">    loss = np.square(y_pred - y).<span class="built_in">sum</span>()</span><br><span class="line">    <span class="keyword">if</span> t % <span class="number">100</span> == <span class="number">99</span>:</span><br><span class="line">        <span class="built_in">print</span>(t, loss)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Backprop to compute gradients of a, b, c, d with respect to loss</span></span><br><span class="line">    grad_y_pred = <span class="number">2.0</span>*(y_pred - y)</span><br><span class="line">    grad_a = grad_y_pred.<span class="built_in">sum</span>()</span><br><span class="line">    grad_b = (grad_y_pred * x).<span class="built_in">sum</span>()</span><br><span class="line">    grad_c = (grad_y_pred * x ** <span class="number">2</span>).<span class="built_in">sum</span>()</span><br><span class="line">    grad_d = (grad_y_pred * x ** <span class="number">3</span>).<span class="built_in">sum</span>()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Update weights</span></span><br><span class="line">    a -= learning_rate * grad_a</span><br><span class="line">    b -= learning_rate * grad_b</span><br><span class="line">    c -= learning_rate * grad_c</span><br><span class="line">    d -= learning_rate * grad_d</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;Result: y = <span class="subst">&#123;a&#125;</span> + <span class="subst">&#123;b&#125;</span> x + <span class="subst">&#123;c&#125;</span> x^2 + <span class="subst">&#123;d&#125;</span> x^3&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">fig  = plt.figure()</span><br><span class="line">ax = fig.add_subplot(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">ax.plot(y)</span><br><span class="line">ax.plot(y_pred)</span><br><span class="line">plt.show()</span><br><span class="line"><span class="built_in">input</span>()</span><br></pre></td></tr></table></figure>
 
       
     </div>

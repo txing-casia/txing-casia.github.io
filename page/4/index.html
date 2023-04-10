@@ -198,6 +198,282 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/08/01/2022-08-01-Autonomous%20Driving%20-%20Model-based%20offline%20planning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用类人决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/08/01/2022-08-01-Autonomous%20Driving%20-%20Model-based%20offline%20planning/" class="post-title-link" itemprop="url">Autonomous Driving | Model-based offline planning</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-08-01 00:00:00" itemprop="dateCreated datePublished" datetime="2022-08-01T00:00:00+08:00">2022-08-01</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>4.5k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>4 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="model-based-offline-planning">Model-based offline planning</h2>
+<ul>
+<li>由于成本、安全性等因素，很多情况下不能够直接与系统交互来学习控制策略，因此，只能从记录的log数据中学习控制策略（offline
+reinforcement
+learning）。本文介绍了一种从log数据中学到超越成圣log数据的原策略的新策略的方法，命名为
+model-based ofline planning (MBOP)。</li>
+</ul>
+<h3 id="introduction">Introduction</h3>
+<ul>
+<li>Offline reinforcement learning包括：
+<ul>
+<li>model-free方法：
+<ul>
+<li>Yifan Wu, George Tucker, and Ofir Nachum. Behavior regularized
+offline reinforcement learning. CoRR, abs/1911.11361, 2019. URL
+http://arxiv.org/abs/1911.11361.<br />
+</li>
+<li>Xue Bin Peng, Aviral Kumar, Grace Zhang, and Sergey Levine.
+Advantage-weighted regression: Simple and scalable off-policy
+reinforcement learning. arXiv preprint arXiv:1910.00177, 2019.<br />
+</li>
+<li>Scott Fujimoto, David Meger, and Doina Precup. Off-policy deep
+reinforcement learning without exploration. In International Conference
+on Machine Learning, pp. 2052–2062, 2019.<br />
+</li>
+<li>Ziyu Wang, Alexander Novikov, Konrad Zolna, Josh S Merel, Jost
+Tobias Springenberg, Scott E Reed, Bobak Shahriari, Noah Siegel, Caglar
+Gulcehre, Nicolas Heess, et al. Critic regularized regression. Advances
+in Neural Information Processing Systems, 33, 2020.<br />
+</li>
+</ul></li>
+<li>model-based方法：MOPO,
+MoREL学习一个模型，然后用于训练一个无模型策略，这种模式和Dyna模式类似。
+<ul>
+<li><strong>MOPO</strong>: Tianhe Yu, Garrett Thomas, Lantao Yu, Stefano
+Ermon, James Zou, Sergey Levine, Chelsea Finn, and Tengyu Ma. Mopo:
+Model-based offline policy optimization. arXiv preprint
+arXiv:2005.13239, 2020.<br />
+</li>
+<li><strong>MoREL</strong>: Rahul Kidambi, Aravind Rajeswaran, Praneeth
+Netrapalli, and Thorsten Joachims. Morel: Modelbased offline
+reinforcement learning. arXiv preprint arXiv:2005.05951, 2020.<br />
+</li>
+<li><strong>Dyna</strong>: Richard S Sutton and Andrew G Barto.
+Reinforcement learning: An introduction. MIT press, 2018.</li>
+</ul></li>
+</ul></li>
+<li>本文的算法属于model-based，利用model-predictive control (MPC)
+，扩展MPPI轨迹规划器，并使用实时规划，产生目标或满足奖励条件的策略。
+<ul>
+<li>Grady Williams, Nolan Wagener, Brian Goldfain, Paul Drews, James M
+Rehg, Byron Boots, and Evangelos A Theodorou. Information theoretic mpc
+for model-based reinforcement learning. In 2017 IEEE International
+Conference on Robotics and Automation (ICRA), pp. 1714–1721. IEEE,
+2017b.</li>
+</ul></li>
+<li>本文模型MBOP包含三个要素：
+<ul>
+<li>a learnt <strong>world model</strong>,</li>
+<li>a learnt <strong>behavior-cloning policy</strong>,</li>
+<li>a learnt <strong>fixed-horizon value-function</strong>.<br />
+</li>
+</ul></li>
+<li>MBOP的核心优势是<strong>数据高效</strong>和<strong>自适应</strong>。只需仅100秒就可以训练出一个和奖励函数、目标状态、基于状态的约束相适应的策略。</li>
+<li>MBOP能够对非平稳目标和约束执行zero-shot自适应，但是没有处理非平稳动力学特性的机制。</li>
+</ul>
+<h3 id="model-based-offline-planning-1">Model-based offline
+planning</h3>
+<ul>
+<li>描述问题为Markov Decision Process (MDP)，<span
+class="math display">\[(S,A,p,r,\gamma)\]</span>
+<ul>
+<li><span class="math display">\[s\]</span>是系统状态</li>
+<li><span class="math display">\[a\]</span>是行为</li>
+<li><span class="math display">\[p(s_{t+1}\mid
+s_t,a_t)\]</span>是状态转移概率</li>
+<li><span class="math display">\[r(s_t,a_t,s_{t+1})\]</span>是奖励</li>
+<li><span class="math display">\[\gamma=1\]</span>是时间折扣系数</li>
+</ul></li>
+<li>MBOP包括三个函数近似器：
+<ul>
+<li><span
+class="math display">\[f_m\]</span>：环境动力学的单步模型，<span
+class="math display">\[(\hat{r}_t,\hat{s}_{t+1})=f_m(s_t,a_t)\]</span>，本文使用<span
+class="math display">\[f_m(s_t,a_t)_s\]</span>表示状态预测，使用<span
+class="math display">\[f_m(s_t,a_t)_r\]</span>表示奖励预测。</li>
+<li><span
+class="math display">\[f_b\]</span>：表示一个行为克隆网络，<span
+class="math display">\[a_t=f_b(s_t,a_{t-1})\]</span>，被规划算法用来引导轨迹采样的先验。</li>
+<li><span
+class="math display">\[f_R\]</span>：是一个阉割的值函数，提供在状态s中采取行为a后，在固定界限<span
+class="math display">\[R_H\]</span>上的收益。<span
+class="math display">\[\hat{R}_H = f_R(s_t,a_{t-1})\]</span></li>
+</ul></li>
+<li>MBOP-POLICY
+<ul>
+<li>使用MPC输出每个新状态下的行为（<span
+class="math display">\[a_t=\pi(s_t)\]</span>）。MPC在每一时间步执行一个固定长度的规划，返回长度为H的轨迹T。选择该轨迹的第一个行为<span
+class="math display">\[a_t\]</span>并返回。</li>
+</ul></li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-1.png"
+alt="High-Level MBOP-Policy" />
+<figcaption aria-hidden="true">High-Level MBOP-Policy</figcaption>
+</figure>
+<ul>
+<li>MBOP-TRAJOPT
+<ul>
+<li>在PDDM的基础上增加一个策略先验<span
+class="math display">\[f_b\]</span>和价值预测<span
+class="math display">\[f_R\]</span></li>
+</ul></li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-2.png"
+alt="MBOP-Trajopt" />
+<figcaption aria-hidden="true">MBOP-Trajopt</figcaption>
+</figure>
+<blockquote>
+<p>P.S.：第11行在<span
+class="math display">\[f_b\]</span>给出的行为上加权了采样轨迹的行为，其含义可能是希望在网络没有收敛时，记录下来的行为也不要偏差太大，都保持在采样轨迹附近，参数<span
+class="math display">\[\beta\]</span>可被视为学习率。第17行给出多条轨迹中奖励最大的作为输出（re-weighting）</p>
+</blockquote>
+<h3 id="experimental-results">Experimental results</h3>
+<ul>
+<li><p>首先，在非常少的数据中心训练，其次，再迁移到基于相同系统动力学的两种novel
+tasks中：</p>
+<ul>
+<li><strong>goal-conditioned tasks</strong> (that ignore the original
+reward function)<br />
+</li>
+<li><strong>constrained tasks</strong> (that require optimising for the
+original reward under some state constraint)</li>
+</ul></li>
+<li><p>使用的数据集RL Unplugged (RLU) 和 D4RL</p>
+<ul>
+<li><strong>RL Unplugged (RLU)</strong>：Caglar Gulcehre, Ziyu Wang,
+Alexander Novikov, Tom Le Paine, Sergio Gomez Colmenarejo, Kon- ´rad
+Zolna, Rishabh Agarwal, Josh Merel, Daniel Mankowitz, Cosmin Paduraru,
+et al. Rl unplugged: Benchmarks for offline reinforcement learning.
+arXiv preprint arXiv:2006.13888, 2020.
+<ul>
+<li>cartpole-swingup</li>
+<li>walker</li>
+<li>quadruped</li>
+</ul></li>
+<li><strong>D4RL</strong>：Justin Fu, Aviral Kumar, Ofir Nachum, George
+Tucker, and Sergey Levine. D4rl: Datasets for deep data-driven
+reinforcement learning. arXiv preprint arXiv:2004.07219, 2020.
+<ul>
+<li>halfcheetah</li>
+<li>hopper</li>
+<li>walker2d</li>
+<li>Adroit</li>
+</ul></li>
+</ul></li>
+<li><p>对于 RLU 中的 Quadruped 和 Walker
+任务，由于数据集中性能高方差，在训练 <span
+class="math display">\[f_b\]</span> 和 <span
+class="math display">\[f_R\]</span>
+的过程中，通过设定阈值，舍弃了性能不好的数据。 使用未过滤的数据来训练
+<span class="math display">\[f_s\]</span></p></li>
+<li><p>对于所有的数据集，90%用于训练，10%用于测试验证</p></li>
+<li><p>性能：For the RLU datasets (Fig. 1), we observe that MBOP is able
+to find a near-optimal policy on most dataset sizes in Cartpole and
+Quadruped with as little as <strong>5000 steps</strong>, which
+corresponds to <strong>5 episodes</strong>, or approximately 50 seconds
+on Cartpole and 100 seconds on Quadruped. On the Walker datasets MBOP
+requires 23 episodes (approx. 10 minutes) before it finds a reasonable
+policy, and with sufficient data converges to a score of 900 which is
+near optimal. On most tasks, MBOP is able to generate a policy
+significantly better than the behavior data as well as the the BC
+prior.</p></li>
+<li><p>MBOP模型容易适应新的目标函数，例如添加新的子目标函数<span
+class="math display">\[R&#39;_n\]</span>时， <span
+class="math display">\[
+R&#39;_n = \sum_t f_{obj}(s_t)
+\]</span> 其中，<span
+class="math display">\[f_{obj}\]</span>是用户自定义的目标函数。只需要将轨迹更新规则改为：
+<span class="math display">\[
+T_t=\frac{\sum_{n=1}^N e^{kR_n+k_{obj}R&#39;_n}A_{n,t}}{\sum_{n=1}^N
+e^{kR_n+k_{obj}R&#39;_n}}
+\]</span></p></li>
+<li><p>为了验证上述模型的适应能力，进行了两个实验：</p>
+<ul>
+<li><strong>goal-conditioned control</strong>（忽略原始奖励，<span
+class="math display">\[k=0\]</span>，学习新奖励）</li>
+<li><strong>constrained control</strong>（增加了state-based
+constraint，然后探索合适的 <span class="math display">\[k\]</span> 和
+<span class="math display">\[k_{obj}\]</span> ）</li>
+</ul></li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-3.png"
+alt="ZERO-SHOT TASK ADAPTATION" />
+<figcaption aria-hidden="true">ZERO-SHOT TASK ADAPTATION</figcaption>
+</figure>
+<h3 id="总结">总结</h3>
+<p>MBOP为策略生成提供了一种易于实施、数据高效、稳定且灵活的算法。</p>
+<p>由于使用了在线规划，使其能够应对变化的目标、成本和环境限制。</p>
+<p>但是算法没有在更复杂的场景和约束条件下测试，因此适用范围和效果还缺少验证。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/08/01/2022-08-01-Autonomous%20Driving%20-%20DriverGym%20Democratising%20Reinforcement%20Learning%20for%20Autonomous%20Driving/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -483,7 +759,7 @@ agent models，用于控制车辆行为</li>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/08/01/2022-08-01-Autonomous%20Driving%20-%20Model-based%20offline%20planning/">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/07/23/2022-07-23-%E4%BD%BF%E7%94%A8VSCode%E8%B0%83%E8%AF%95%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84Python%E8%84%9A%E6%9C%AC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/my_photo.jpg">
@@ -497,7 +773,7 @@ agent models，用于控制车辆行为</li>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/08/01/2022-08-01-Autonomous%20Driving%20-%20Model-based%20offline%20planning/" class="post-title-link" itemprop="url">Autonomous Driving | Model-based offline planning</a>
+            <a href="/2022/07/23/2022-07-23-%E4%BD%BF%E7%94%A8VSCode%E8%B0%83%E8%AF%95%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84Python%E8%84%9A%E6%9C%AC/" class="post-title-link" itemprop="url">使用VSCode调试带参数的Python脚本</a>
         </h2>
 
         <div class="post-meta">
@@ -507,7 +783,7 @@ agent models，用于控制车辆行为</li>
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2022-08-01 00:00:00" itemprop="dateCreated datePublished" datetime="2022-08-01T00:00:00+08:00">2022-08-01</time>
+              <time title="Created: 2022-07-23 00:00:00" itemprop="dateCreated datePublished" datetime="2022-07-23T00:00:00+08:00">2022-07-23</time>
             </span>
 
           <br>
@@ -516,14 +792,14 @@ agent models，用于控制车辆行为</li>
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>4.5k</span>
+              <span>3.3k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>4 mins.</span>
+              <span>3 mins.</span>
             </span>
 
         </div>
@@ -535,211 +811,52 @@ agent models，用于控制车辆行为</li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="model-based-offline-planning">Model-based offline planning</h2>
+          <h2
+id="使用vscode调试带参数的python脚本">使用VSCode调试带参数的Python脚本</h2>
+<h3 id="问题描述">1 问题描述</h3>
+<p>linux系统上执行带参数的python程序直接添加-arg
+xxx即可。但在VSCode调试模式（Debug）下该执行方式不可行。那么是否有办法在VSCode上调试带参数的python脚本呢？</p>
+<p>这里提供三种方案：</p>
 <ul>
-<li>由于成本、安全性等因素，很多情况下不能够直接与系统交互来学习控制策略，因此，只能从记录的log数据中学习控制策略（offline
-reinforcement
-learning）。本文介绍了一种从log数据中学到超越成圣log数据的原策略的新策略的方法，命名为
-model-based ofline planning (MBOP)。</li>
+<li>2.1 方案1 pbd命令的Debug</li>
+<li>2.2 方案2 在launch.json中设置参数的Debug</li>
+<li>2.3 方案3 终端命令行中写入参数的Debug</li>
 </ul>
-<h3 id="introduction">Introduction</h3>
-<ul>
-<li>Offline reinforcement learning包括：
-<ul>
-<li>model-free方法：
-<ul>
-<li>Yifan Wu, George Tucker, and Ofir Nachum. Behavior regularized
-offline reinforcement learning. CoRR, abs/1911.11361, 2019. URL
-http://arxiv.org/abs/1911.11361.<br />
-</li>
-<li>Xue Bin Peng, Aviral Kumar, Grace Zhang, and Sergey Levine.
-Advantage-weighted regression: Simple and scalable off-policy
-reinforcement learning. arXiv preprint arXiv:1910.00177, 2019.<br />
-</li>
-<li>Scott Fujimoto, David Meger, and Doina Precup. Off-policy deep
-reinforcement learning without exploration. In International Conference
-on Machine Learning, pp. 2052–2062, 2019.<br />
-</li>
-<li>Ziyu Wang, Alexander Novikov, Konrad Zolna, Josh S Merel, Jost
-Tobias Springenberg, Scott E Reed, Bobak Shahriari, Noah Siegel, Caglar
-Gulcehre, Nicolas Heess, et al. Critic regularized regression. Advances
-in Neural Information Processing Systems, 33, 2020.<br />
-</li>
-</ul></li>
-<li>model-based方法：MOPO,
-MoREL学习一个模型，然后用于训练一个无模型策略，这种模式和Dyna模式类似。
-<ul>
-<li><strong>MOPO</strong>: Tianhe Yu, Garrett Thomas, Lantao Yu, Stefano
-Ermon, James Zou, Sergey Levine, Chelsea Finn, and Tengyu Ma. Mopo:
-Model-based offline policy optimization. arXiv preprint
-arXiv:2005.13239, 2020.<br />
-</li>
-<li><strong>MoREL</strong>: Rahul Kidambi, Aravind Rajeswaran, Praneeth
-Netrapalli, and Thorsten Joachims. Morel: Modelbased offline
-reinforcement learning. arXiv preprint arXiv:2005.05951, 2020.<br />
-</li>
-<li><strong>Dyna</strong>: Richard S Sutton and Andrew G Barto.
-Reinforcement learning: An introduction. MIT press, 2018.</li>
-</ul></li>
-</ul></li>
-<li>本文的算法属于model-based，利用model-predictive control (MPC)
-，扩展MPPI轨迹规划器，并使用实时规划，产生目标或满足奖励条件的策略。
-<ul>
-<li>Grady Williams, Nolan Wagener, Brian Goldfain, Paul Drews, James M
-Rehg, Byron Boots, and Evangelos A Theodorou. Information theoretic mpc
-for model-based reinforcement learning. In 2017 IEEE International
-Conference on Robotics and Automation (ICRA), pp. 1714–1721. IEEE,
-2017b.</li>
-</ul></li>
-<li>本文模型MBOP包含三个要素：
-<ul>
-<li>a learnt <strong>world model</strong>,</li>
-<li>a learnt <strong>behavior-cloning policy</strong>,</li>
-<li>a learnt <strong>fixed-horizon value-function</strong>.<br />
-</li>
-</ul></li>
-<li>MBOP的核心优势是<strong>数据高效</strong>和<strong>自适应</strong>。只需仅100秒就可以训练出一个和奖励函数、目标状态、基于状态的约束相适应的策略。</li>
-<li>MBOP能够对非平稳目标和约束执行zero-shot自适应，但是没有处理非平稳动力学特性的机制。</li>
-</ul>
-<h3 id="model-based-offline-planning-1">Model-based offline
-planning</h3>
-<ul>
-<li>描述问题为Markov Decision Process (MDP)，<span
-class="math display">\[(S,A,p,r,\gamma)\]</span>
-<ul>
-<li><span class="math display">\[s\]</span>是系统状态</li>
-<li><span class="math display">\[a\]</span>是行为</li>
-<li><span class="math display">\[p(s_{t+1}\mid
-s_t,a_t)\]</span>是状态转移概率</li>
-<li><span class="math display">\[r(s_t,a_t,s_{t+1})\]</span>是奖励</li>
-<li><span class="math display">\[\gamma=1\]</span>是时间折扣系数</li>
-</ul></li>
-<li>MBOP包括三个函数近似器：
-<ul>
-<li><span
-class="math display">\[f_m\]</span>：环境动力学的单步模型，<span
-class="math display">\[(\hat{r}_t,\hat{s}_{t+1})=f_m(s_t,a_t)\]</span>，本文使用<span
-class="math display">\[f_m(s_t,a_t)_s\]</span>表示状态预测，使用<span
-class="math display">\[f_m(s_t,a_t)_r\]</span>表示奖励预测。</li>
-<li><span
-class="math display">\[f_b\]</span>：表示一个行为克隆网络，<span
-class="math display">\[a_t=f_b(s_t,a_{t-1})\]</span>，被规划算法用来引导轨迹采样的先验。</li>
-<li><span
-class="math display">\[f_R\]</span>：是一个阉割的值函数，提供在状态s中采取行为a后，在固定界限<span
-class="math display">\[R_H\]</span>上的收益。<span
-class="math display">\[\hat{R}_H = f_R(s_t,a_{t-1})\]</span></li>
-</ul></li>
-<li>MBOP-POLICY
-<ul>
-<li>使用MPC输出每个新状态下的行为（<span
-class="math display">\[a_t=\pi(s_t)\]</span>）。MPC在每一时间步执行一个固定长度的规划，返回长度为H的轨迹T。选择该轨迹的第一个行为<span
-class="math display">\[a_t\]</span>并返回。</li>
-</ul></li>
-</ul>
-<figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-1.png"
-alt="High-Level MBOP-Policy" />
-<figcaption aria-hidden="true">High-Level MBOP-Policy</figcaption>
-</figure>
-<ul>
-<li>MBOP-TRAJOPT
-<ul>
-<li>在PDDM的基础上增加一个策略先验<span
-class="math display">\[f_b\]</span>和价值预测<span
-class="math display">\[f_R\]</span></li>
-</ul></li>
-</ul>
-<figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-2.png"
-alt="MBOP-Trajopt" />
-<figcaption aria-hidden="true">MBOP-Trajopt</figcaption>
-</figure>
-<blockquote>
-<p>P.S.：第11行在<span
-class="math display">\[f_b\]</span>给出的行为上加权了采样轨迹的行为，其含义可能是希望在网络没有收敛时，记录下来的行为也不要偏差太大，都保持在采样轨迹附近，参数<span
-class="math display">\[\beta\]</span>可被视为学习率。第17行给出多条轨迹中奖励最大的作为输出（re-weighting）</p>
-</blockquote>
-<h3 id="experimental-results">Experimental results</h3>
-<ul>
-<li><p>首先，在非常少的数据中心训练，其次，再迁移到基于相同系统动力学的两种novel
-tasks中：</p>
-<ul>
-<li><strong>goal-conditioned tasks</strong> (that ignore the original
-reward function)<br />
-</li>
-<li><strong>constrained tasks</strong> (that require optimising for the
-original reward under some state constraint)</li>
-</ul></li>
-<li><p>使用的数据集RL Unplugged (RLU) 和 D4RL</p>
-<ul>
-<li><strong>RL Unplugged (RLU)</strong>：Caglar Gulcehre, Ziyu Wang,
-Alexander Novikov, Tom Le Paine, Sergio Gomez Colmenarejo, Kon- ´rad
-Zolna, Rishabh Agarwal, Josh Merel, Daniel Mankowitz, Cosmin Paduraru,
-et al. Rl unplugged: Benchmarks for offline reinforcement learning.
-arXiv preprint arXiv:2006.13888, 2020.
-<ul>
-<li>cartpole-swingup</li>
-<li>walker</li>
-<li>quadruped</li>
-</ul></li>
-<li><strong>D4RL</strong>：Justin Fu, Aviral Kumar, Ofir Nachum, George
-Tucker, and Sergey Levine. D4rl: Datasets for deep data-driven
-reinforcement learning. arXiv preprint arXiv:2004.07219, 2020.
-<ul>
-<li>halfcheetah</li>
-<li>hopper</li>
-<li>walker2d</li>
-<li>Adroit</li>
-</ul></li>
-</ul></li>
-<li><p>对于 RLU 中的 Quadruped 和 Walker
-任务，由于数据集中性能高方差，在训练 <span
-class="math display">\[f_b\]</span> 和 <span
-class="math display">\[f_R\]</span>
-的过程中，通过设定阈值，舍弃了性能不好的数据。 使用未过滤的数据来训练
-<span class="math display">\[f_s\]</span></p></li>
-<li><p>对于所有的数据集，90%用于训练，10%用于测试验证</p></li>
-<li><p>性能：For the RLU datasets (Fig. 1), we observe that MBOP is able
-to find a near-optimal policy on most dataset sizes in Cartpole and
-Quadruped with as little as <strong>5000 steps</strong>, which
-corresponds to <strong>5 episodes</strong>, or approximately 50 seconds
-on Cartpole and 100 seconds on Quadruped. On the Walker datasets MBOP
-requires 23 episodes (approx. 10 minutes) before it finds a reasonable
-policy, and with sufficient data converges to a score of 900 which is
-near optimal. On most tasks, MBOP is able to generate a policy
-significantly better than the behavior data as well as the the BC
-prior.</p></li>
-<li><p>MBOP模型容易适应新的目标函数，例如添加新的子目标函数<span
-class="math display">\[R&#39;_n\]</span>时， <span
-class="math display">\[
-R&#39;_n = \sum_t f_{obj}(s_t)
-\]</span> 其中，<span
-class="math display">\[f_{obj}\]</span>是用户自定义的目标函数。只需要将轨迹更新规则改为：
-<span class="math display">\[
-T_t=\frac{\sum_{n=1}^N e^{kR_n+k_{obj}R&#39;_n}A_{n,t}}{\sum_{n=1}^N
-e^{kR_n+k_{obj}R&#39;_n}}
-\]</span></p></li>
-<li><p>为了验证上述模型的适应能力，进行了两个实验：</p>
-<ul>
-<li><strong>goal-conditioned control</strong>（忽略原始奖励，<span
-class="math display">\[k=0\]</span>，学习新奖励）</li>
-<li><strong>constrained control</strong>（增加了state-based
-constraint，然后探索合适的 <span class="math display">\[k\]</span> 和
-<span class="math display">\[k_{obj}\]</span> ）</li>
-</ul></li>
-</ul>
-<figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-3.png"
-alt="ZERO-SHOT TASK ADAPTATION" />
-<figcaption aria-hidden="true">ZERO-SHOT TASK ADAPTATION</figcaption>
-</figure>
-<h3 id="总结">总结</h3>
-<p>MBOP为策略生成提供了一种易于实施、数据高效、稳定且灵活的算法。</p>
-<p>由于使用了在线规划，使其能够应对变化的目标、成本和环境限制。</p>
-<p>但是算法没有在更复杂的场景和约束条件下测试，因此适用范围和效果还缺少验证。</p>
+<h3 id="解决方案">2 解决方案</h3>
+<h4 id="方案1-pbd命令的debug">2.1 方案1 pbd命令的Debug</h4>
+<p>终端窗口执行命令</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pdb xxx.py</span><br></pre></td></tr></table></figure>
+<p>开启Debug模式，在断点处暂停，可输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">h：（<span class="built_in">help</span>）帮助</span><br><span class="line">w：（<span class="built_in">where</span>）打印当前执行堆栈</span><br><span class="line">d：（down）执行跳转到在当前堆栈的深一层（个人没觉得有什么用处）</span><br><span class="line">u：（up）执行跳转到当前堆栈的上一层</span><br><span class="line">b：（<span class="built_in">break</span>）添加断点</span><br><span class="line">	b 列出当前所有断点，和断点执行到统计次数</span><br><span class="line">	b line_no：当前脚本的line_no行添加断点</span><br><span class="line">	b filename:line_no：脚本filename的line_no行添加断点</span><br><span class="line">	b <span class="keyword">function</span>：在函数<span class="keyword">function</span>的第一条可执行语句处添加断点</span><br><span class="line">tbreak：（temporary <span class="built_in">break</span>）临时断点</span><br><span class="line">	在第一次执行到这个断点之后，就自动删除这个断点，用法和b一样</span><br><span class="line">cl：（clear）清除断点</span><br><span class="line">	cl 清除所有断点</span><br><span class="line">	cl bpnumber1 bpnumber2… 清除断点号为bpnumber1,bpnumber2…的断点</span><br><span class="line">	cl lineno 清除当前脚本lineno行的断点</span><br><span class="line">	cl filename:line_no 清除脚本filename的line_no行的断点</span><br><span class="line"><span class="built_in">disable</span>：停用断点，参数为bpnumber，和cl的区别是，断点依然存在，只是不启用</span><br><span class="line"><span class="built_in">enable</span>：激活断点，参数为bpnumber</span><br><span class="line">s：（step）执行下一条命令</span><br><span class="line">	如果本句是函数调用，则s会执行到函数的第一句</span><br><span class="line">n：（next）执行下一条语句</span><br><span class="line">	如果本句是函数调用，则执行函数，接着执行当前执行语句的下一条。</span><br><span class="line">r：（<span class="built_in">return</span>）执行当前运行函数到结束</span><br><span class="line">c：（<span class="built_in">continue</span>）继续执行，直到遇到下一条断点</span><br><span class="line">l：（list）列出源码</span><br><span class="line">	l 列出当前执行语句周围11条代码</span><br><span class="line">	l first 列出first行周围11条代码</span><br><span class="line">	l first second 列出first–second范围的代码，如果second&lt;first，second将被解析为行数</span><br><span class="line">a：（args）列出当前执行函数的函数</span><br><span class="line">p expression：（<span class="built_in">print</span>）输出expression的值</span><br><span class="line">pp expression：好看一点的p expression</span><br><span class="line">run：重新启动debug，相当于restart</span><br><span class="line">q：（quit）退出debug</span><br><span class="line">j lineno：（jump）设置下条执行的语句函数</span><br><span class="line">	只能在堆栈的最底层跳转，向后重新执行，向前可直接执行到行号</span><br><span class="line">unt：（until）执行到下一行（跳出循环），或者当前堆栈结束</span><br><span class="line">condition bpnumber conditon，给断点设置条件，当参数condition返回True的时候bpnumber断点有效，否则bpnumber断点无效</span><br></pre></td></tr></table></figure>
+<p><strong>Note：</strong>
+<code>1：直接输入Enter，会执行上一条命令；</code>
+<code>2：输入PDB不认识的命令，PDB会把他当做Python语句在当前环境下执行；</code></p>
+<p>但这种方式不依赖VSCode，并且是在命令行中调试，并不方便。</p>
+<h4 id="方案2-在launch.json中设置参数的debug">2.2 方案2
+在launch.json中设置参数的Debug</h4>
+<p><strong>Step1：</strong>VSCode菜单栏-运行-打开配置，出现launch.json文件。</p>
+<p><strong>Step2：</strong>在configurations中添加”args”参数形式如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">      <span class="string">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">      <span class="string">&quot;configurations&quot;</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                  <span class="string">&quot;name&quot;</span>: <span class="string">&quot;Python: Current File&quot;</span></span><br><span class="line">                  <span class="string">&quot;type&quot;</span>: <span class="string">&quot;python&quot;</span>,</span><br><span class="line">                  <span class="string">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">                  <span class="string">&quot;program&quot;</span>: <span class="string">&quot;<span class="variable">$&#123;file&#125;</span>&quot;</span>,</span><br><span class="line">                  <span class="string">&quot;console&quot;</span>: <span class="string">&quot;integratedTerminal&quot;</span>,</span><br><span class="line">                  <span class="string">&quot;args&quot;</span>: [</span><br><span class="line">                        <span class="string">&quot;arg1&quot;</span>, <span class="string">&quot;xxx&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;arg2&quot;</span>, <span class="string">&quot;xxx&quot;</span>,</span><br><span class="line">                   ]</span><br><span class="line">            &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Step3：</strong>添加完成后，设置断点，按F5执行即可开始调试。</p>
+<p>该方式需要预先写入参数，在实际项目中参数数量和名称可能常常发生变化，这种方式在调整时还不够灵活，效率不够高。</p>
+<h4 id="方案3-终端命令行中写入参数的debug">2.3 方案3
+终端命令行中写入参数的Debug</h4>
+<p><strong>Step1：</strong>安装debugpy库，<code>pip install debugpy</code></p>
+<p><strong>Step2：</strong>打开本地终端，找到一个未占用的端口号。输入<code>netstat -a</code>
+State显示为LISTEN即为未占用，记该端口号为xxxx</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">关于State的说明：</span><br><span class="line">- LISTEN: The socket is listening for incoming connections. Foreign address is not relevant for this line</span><br><span class="line">- ESTABLISHED: The socket has an established connection. Foreign address in the address of the remote end point of the socket.</span><br><span class="line">- CLOSE_WAIT: The remote end has shut down, waiting for the socket to close.</span><br></pre></td></tr></table></figure>
+<p><strong>Step3：</strong>修改launch.json中内容为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;version&quot;: &quot;0.2.0&quot;,</span><br><span class="line">	&quot;configurations&quot;: [</span><br><span class="line">		&#123;</span><br><span class="line">			&quot;name&quot;: &quot;Python: Attach&quot;,</span><br><span class="line">			&quot;type&quot;: &quot;python&quot;,</span><br><span class="line">			&quot;request&quot;: &quot;attach&quot;,</span><br><span class="line">			&quot;connect&quot;: &#123;</span><br><span class="line">				&quot;host&quot;: &quot;localhost&quot;,</span><br><span class="line">				&quot;port&quot;: xxxx</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中，xxxx表示使用的端口号。</p>
+<p><strong>Step4：</strong>假设run
+该Python脚本的命令为：<code>python xxx.py -arg1 ARG1 -arg2 ARG2</code>。即脚本有两个参数输入。在进行调试之前，在VSCode终端命令行中键入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m debugpy --listen xxxx --wait-for-client xxx.py -arg1 ARG1 -arg2 ARG2</span><br></pre></td></tr></table></figure>
+<p>注意这里监听的端口xxxx即为上一步找到的未占用端口（这里输入的端口号需要和launch.json中设置的端口号一致）</p>
+<p>执行上述命令，终端处于执行中，没有任何返回。接下来在程序中设置断点，按下F5键，即可进入VSCode的调试模式。调试方式与不带参数的情况相同。</p>
+<h3 id="ref">Ref:</h3>
+<p>https://blog.csdn.net/weixin_37251044/article/details/107471459</p>
+<p>https://www.cnblogs.com/JavicxhloWong/p/14356814.html（重要参考，感谢）</p>
+<p>https://blog.csdn.net/qq_37837061/article/details/124561317</p>
 
       
     </div>
@@ -1230,123 +1347,6 @@ Trans. on Control Systems Technology, vol. 26, no. 5, pp. 1782–1797,
 <h3 id="总结">总结</h3>
 <p>这篇文章介绍的范围太大，涵盖的研究方向和方法过多，受篇幅限制，讲的东西又很浅显，价值不大。</p>
 <p>​</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/07/23/2022-07-23-%E4%BD%BF%E7%94%A8VSCode%E8%B0%83%E8%AF%95%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84Python%E8%84%9A%E6%9C%AC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用类人决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/07/23/2022-07-23-%E4%BD%BF%E7%94%A8VSCode%E8%B0%83%E8%AF%95%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84Python%E8%84%9A%E6%9C%AC/" class="post-title-link" itemprop="url">使用VSCode调试带参数的Python脚本</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-07-23 00:00:00" itemprop="dateCreated datePublished" datetime="2022-07-23T00:00:00+08:00">2022-07-23</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>3.3k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>3 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2
-id="使用vscode调试带参数的python脚本">使用VSCode调试带参数的Python脚本</h2>
-<h3 id="问题描述">1 问题描述</h3>
-<p>linux系统上执行带参数的python程序直接添加-arg
-xxx即可。但在VSCode调试模式（Debug）下该执行方式不可行。那么是否有办法在VSCode上调试带参数的python脚本呢？</p>
-<p>这里提供三种方案：</p>
-<ul>
-<li>2.1 方案1 pbd命令的Debug</li>
-<li>2.2 方案2 在launch.json中设置参数的Debug</li>
-<li>2.3 方案3 终端命令行中写入参数的Debug</li>
-</ul>
-<h3 id="解决方案">2 解决方案</h3>
-<h4 id="方案1-pbd命令的debug">2.1 方案1 pbd命令的Debug</h4>
-<p>终端窗口执行命令</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pdb xxx.py</span><br></pre></td></tr></table></figure>
-<p>开启Debug模式，在断点处暂停，可输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">h：（<span class="built_in">help</span>）帮助</span><br><span class="line">w：（<span class="built_in">where</span>）打印当前执行堆栈</span><br><span class="line">d：（down）执行跳转到在当前堆栈的深一层（个人没觉得有什么用处）</span><br><span class="line">u：（up）执行跳转到当前堆栈的上一层</span><br><span class="line">b：（<span class="built_in">break</span>）添加断点</span><br><span class="line">	b 列出当前所有断点，和断点执行到统计次数</span><br><span class="line">	b line_no：当前脚本的line_no行添加断点</span><br><span class="line">	b filename:line_no：脚本filename的line_no行添加断点</span><br><span class="line">	b <span class="keyword">function</span>：在函数<span class="keyword">function</span>的第一条可执行语句处添加断点</span><br><span class="line">tbreak：（temporary <span class="built_in">break</span>）临时断点</span><br><span class="line">	在第一次执行到这个断点之后，就自动删除这个断点，用法和b一样</span><br><span class="line">cl：（clear）清除断点</span><br><span class="line">	cl 清除所有断点</span><br><span class="line">	cl bpnumber1 bpnumber2… 清除断点号为bpnumber1,bpnumber2…的断点</span><br><span class="line">	cl lineno 清除当前脚本lineno行的断点</span><br><span class="line">	cl filename:line_no 清除脚本filename的line_no行的断点</span><br><span class="line"><span class="built_in">disable</span>：停用断点，参数为bpnumber，和cl的区别是，断点依然存在，只是不启用</span><br><span class="line"><span class="built_in">enable</span>：激活断点，参数为bpnumber</span><br><span class="line">s：（step）执行下一条命令</span><br><span class="line">	如果本句是函数调用，则s会执行到函数的第一句</span><br><span class="line">n：（next）执行下一条语句</span><br><span class="line">	如果本句是函数调用，则执行函数，接着执行当前执行语句的下一条。</span><br><span class="line">r：（<span class="built_in">return</span>）执行当前运行函数到结束</span><br><span class="line">c：（<span class="built_in">continue</span>）继续执行，直到遇到下一条断点</span><br><span class="line">l：（list）列出源码</span><br><span class="line">	l 列出当前执行语句周围11条代码</span><br><span class="line">	l first 列出first行周围11条代码</span><br><span class="line">	l first second 列出first–second范围的代码，如果second&lt;first，second将被解析为行数</span><br><span class="line">a：（args）列出当前执行函数的函数</span><br><span class="line">p expression：（<span class="built_in">print</span>）输出expression的值</span><br><span class="line">pp expression：好看一点的p expression</span><br><span class="line">run：重新启动debug，相当于restart</span><br><span class="line">q：（quit）退出debug</span><br><span class="line">j lineno：（jump）设置下条执行的语句函数</span><br><span class="line">	只能在堆栈的最底层跳转，向后重新执行，向前可直接执行到行号</span><br><span class="line">unt：（until）执行到下一行（跳出循环），或者当前堆栈结束</span><br><span class="line">condition bpnumber conditon，给断点设置条件，当参数condition返回True的时候bpnumber断点有效，否则bpnumber断点无效</span><br></pre></td></tr></table></figure>
-<p><strong>Note：</strong>
-<code>1：直接输入Enter，会执行上一条命令；</code>
-<code>2：输入PDB不认识的命令，PDB会把他当做Python语句在当前环境下执行；</code></p>
-<p>但这种方式不依赖VSCode，并且是在命令行中调试，并不方便。</p>
-<h4 id="方案2-在launch.json中设置参数的debug">2.2 方案2
-在launch.json中设置参数的Debug</h4>
-<p><strong>Step1：</strong>VSCode菜单栏-运行-打开配置，出现launch.json文件。</p>
-<p><strong>Step2：</strong>在configurations中添加”args”参数形式如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">      <span class="string">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">      <span class="string">&quot;configurations&quot;</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                  <span class="string">&quot;name&quot;</span>: <span class="string">&quot;Python: Current File&quot;</span></span><br><span class="line">                  <span class="string">&quot;type&quot;</span>: <span class="string">&quot;python&quot;</span>,</span><br><span class="line">                  <span class="string">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">                  <span class="string">&quot;program&quot;</span>: <span class="string">&quot;<span class="variable">$&#123;file&#125;</span>&quot;</span>,</span><br><span class="line">                  <span class="string">&quot;console&quot;</span>: <span class="string">&quot;integratedTerminal&quot;</span>,</span><br><span class="line">                  <span class="string">&quot;args&quot;</span>: [</span><br><span class="line">                        <span class="string">&quot;arg1&quot;</span>, <span class="string">&quot;xxx&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;arg2&quot;</span>, <span class="string">&quot;xxx&quot;</span>,</span><br><span class="line">                   ]</span><br><span class="line">            &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>Step3：</strong>添加完成后，设置断点，按F5执行即可开始调试。</p>
-<p>该方式需要预先写入参数，在实际项目中参数数量和名称可能常常发生变化，这种方式在调整时还不够灵活，效率不够高。</p>
-<h4 id="方案3-终端命令行中写入参数的debug">2.3 方案3
-终端命令行中写入参数的Debug</h4>
-<p><strong>Step1：</strong>安装debugpy库，<code>pip install debugpy</code></p>
-<p><strong>Step2：</strong>打开本地终端，找到一个未占用的端口号。输入<code>netstat -a</code>
-State显示为LISTEN即为未占用，记该端口号为xxxx</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">关于State的说明：</span><br><span class="line">- LISTEN: The socket is listening for incoming connections. Foreign address is not relevant for this line</span><br><span class="line">- ESTABLISHED: The socket has an established connection. Foreign address in the address of the remote end point of the socket.</span><br><span class="line">- CLOSE_WAIT: The remote end has shut down, waiting for the socket to close.</span><br></pre></td></tr></table></figure>
-<p><strong>Step3：</strong>修改launch.json中内容为：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;version&quot;: &quot;0.2.0&quot;,</span><br><span class="line">	&quot;configurations&quot;: [</span><br><span class="line">		&#123;</span><br><span class="line">			&quot;name&quot;: &quot;Python: Attach&quot;,</span><br><span class="line">			&quot;type&quot;: &quot;python&quot;,</span><br><span class="line">			&quot;request&quot;: &quot;attach&quot;,</span><br><span class="line">			&quot;connect&quot;: &#123;</span><br><span class="line">				&quot;host&quot;: &quot;localhost&quot;,</span><br><span class="line">				&quot;port&quot;: xxxx</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中，xxxx表示使用的端口号。</p>
-<p><strong>Step4：</strong>假设run
-该Python脚本的命令为：<code>python xxx.py -arg1 ARG1 -arg2 ARG2</code>。即脚本有两个参数输入。在进行调试之前，在VSCode终端命令行中键入：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m debugpy --listen xxxx --wait-for-client xxx.py -arg1 ARG1 -arg2 ARG2</span><br></pre></td></tr></table></figure>
-<p>注意这里监听的端口xxxx即为上一步找到的未占用端口（这里输入的端口号需要和launch.json中设置的端口号一致）</p>
-<p>执行上述命令，终端处于执行中，没有任何返回。接下来在程序中设置断点，按下F5键，即可进入VSCode的调试模式。调试方式与不带参数的情况相同。</p>
-<h3 id="ref">Ref:</h3>
-<p>https://blog.csdn.net/weixin_37251044/article/details/107471459</p>
-<p>https://www.cnblogs.com/JavicxhloWong/p/14356814.html（重要参考，感谢）</p>
-<p>https://blog.csdn.net/qq_37837061/article/details/124561317</p>
 
       
     </div>
