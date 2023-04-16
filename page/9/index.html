@@ -198,7 +198,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/18/2021-07-18-Q688-%E9%A9%AC%E5%9C%A8%E6%A3%8B%E7%9B%98%E4%B8%8A%E7%9A%84%E6%A6%82%E7%8E%87-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/18/2021-07-18-Q200.%20%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F-%E4%B8%AD%E7%AD%89-%E6%B7%B1%E5%BA%A6and%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/my_photo.jpg">
@@ -212,7 +212,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/07/18/2021-07-18-Q688-%E9%A9%AC%E5%9C%A8%E6%A3%8B%E7%9B%98%E4%B8%8A%E7%9A%84%E6%A6%82%E7%8E%87-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="post-title-link" itemprop="url">Q688-马在棋盘上的概率-中等-动态规划</a>
+            <a href="/2021/07/18/2021-07-18-Q200.%20%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F-%E4%B8%AD%E7%AD%89-%E6%B7%B1%E5%BA%A6and%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" class="post-title-link" itemprop="url">Q200-岛屿数量-中等-深度and广度优先搜索</a>
         </h2>
 
         <div class="post-meta">
@@ -231,14 +231,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>3k</span>
+              <span>1.8k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>3 mins.</span>
+              <span>2 mins.</span>
             </span>
 
         </div>
@@ -250,95 +250,64 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="马在棋盘上的概率"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/knight-probability-in-chessboard/">688.
-“马”在棋盘上的概率</a></h4>
+          <h4 id="岛屿数量"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-islands/">200.
+岛屿数量</a></h4>
 <h2 id="question">Question</h2>
 <blockquote>
-<p>已知一个 NxN 的国际象棋棋盘，棋盘的行号和列号都是从 0
-开始。即最左上角的格子记为 (0, 0)，最右下角的记为 (N-1, N-1)。</p>
-<p>现有一个 “马”（也译作 “骑士”）位于 (r, c) ，并打算进行 K 次移动。</p>
-<p>如下图所示，国际象棋的 “马” 每一步先沿水平或垂直方向移动 2
-个格子，然后向与之相垂直的方向再移动 1 个格子，共有 8 个可选的位置。</p>
-<p>现在 “马”
-每一步都从可选的位置（包括棋盘外部的）中独立随机地选择一个进行移动，直到移动了
-K 次或跳到了棋盘外面。</p>
-<p>求移动结束后，“马” 仍留在棋盘上的概率。</p>
+<p>给你一个由 '1'（陆地）和
+'0'（水）组成的的二维网格，请你计算网格中岛屿的数量。</p>
+<p>岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。</p>
+<p>此外，你可以假设该网格的四条边均被水包围。</p>
 </blockquote>
 <blockquote>
 <p><strong>Example 1:</strong></p>
-<p>输入: 3, 2, 0, 0 输出: 0.0625 解释: 输入的数据依次为 N, K, r, c 第 1
-步时，有且只有 2 种走法令 “马”
-可以留在棋盘上（跳到（1,2）或（2,1））。对于以上的两种情况，各自在第2步均有且只有2种走法令
-“马” 仍然留在棋盘上。 所以 “马” 在结束后仍在棋盘上的概率为 0.0625。</p>
+<p>输入：grid = [ ["1","1","1","1","0"], ["1","1","0","1","0"],
+["1","1","0","0","0"], ["0","0","0","0","0"]] 输出：1</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>输入：grid = [ ["1","1","0","0","0"], ["1","1","0","0","0"],
+["0","0","1","0","0"], ["0","0","0","1","1"]] 输出：3</p>
 </blockquote>
 <blockquote>
 <p><strong>Note:</strong></p>
 <ul>
-<li><code>N</code> 的取值范围为 [1, 25]</li>
-<li><code>K</code> 的取值范围为 [0, 100]</li>
-<li>开始时，“马” 总是位于棋盘上</li>
+<li><code>m == grid.length</code></li>
+<li><code>n == grid[i].length</code></li>
+<li><code>1 &lt;= m, n &lt;= 300</code></li>
+<li><code>grid[i][j]</code> 的值为 <code>'0'</code> 或
+<code>'1'</code></li>
 </ul>
 </blockquote>
-<h3 id="approach-1-动态规划">Approach 1: 动态规划</h3>
-<ul>
-<li>令 <code>f[r][c][steps]</code> 代表马在位置 <code>(r, c)</code>
-移动了 <code>steps</code>
-次以后还留在棋盘上的概率，根据马的移动方式，我们有以下递归：</li>
-</ul>
-<p><span class="math display">\[
-f[r][c][steps]=\sum_{dr,dc} f[r+dr][c+dc][steps-1]\cdot \frac{1}{8}
-\]</span></p>
-<ul>
-<li>根据题目我们可以知道 (dr, dc) 的可能数据对是 (2, 1), (2, -1), (-2,
-1), (-2, -1), (1, 2), (1, -2), (-1, 2), (-1, -2)。</li>
-<li>我们将使用二维的 dp 和 dp2 来存储我们的数据，而不是使用三维数组 f。
-<ul>
-<li><code>dp2</code> 代表 <code>f[][][steps]</code>；</li>
-<li><code>dp</code> 代表 <code>f[][][steps-1]</code>；</li>
-</ul></li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">knightProbability</span>(<span class="params">self, N, K, r, c</span>):</span><br><span class="line">        dp = [[<span class="number">0</span>] * N <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(N)]</span><br><span class="line">        dp[r][c] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(K): <span class="comment"># 走k步还在棋盘内的概率</span></span><br><span class="line">            dp2 = [[<span class="number">0</span>] * N <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(N)]</span><br><span class="line">            <span class="keyword">for</span> r, row <span class="keyword">in</span> <span class="built_in">enumerate</span>(dp):</span><br><span class="line">                <span class="keyword">for</span> c, val <span class="keyword">in</span> <span class="built_in">enumerate</span>(row):</span><br><span class="line">                    <span class="keyword">for</span> dr, dc <span class="keyword">in</span> ((<span class="number">2</span>,<span class="number">1</span>),(<span class="number">2</span>,-<span class="number">1</span>),(-<span class="number">2</span>,<span class="number">1</span>),(-<span class="number">2</span>,-<span class="number">1</span>),</span><br><span class="line">                                   (<span class="number">1</span>,<span class="number">2</span>),(<span class="number">1</span>,-<span class="number">2</span>),(-<span class="number">1</span>,<span class="number">2</span>),(-<span class="number">1</span>,-<span class="number">2</span>)):</span><br><span class="line">                        <span class="comment"># 走了一步之后还在棋盘内</span></span><br><span class="line">                        <span class="keyword">if</span> <span class="number">0</span> &lt;= r + dr &lt; N <span class="keyword">and</span> <span class="number">0</span> &lt;= c + dc &lt; N:</span><br><span class="line">                            dp2[r+dr][c+dc] += val / <span class="number">8.0</span></span><br><span class="line">            dp = dp2</span><br><span class="line">        <span class="comment"># map()函数把sum依次作用在dp的每一项上，在map()外再使用sum()完成二维数组的求和</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(<span class="built_in">map</span>(<span class="built_in">sum</span>, dp))</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    N, K, r, c = <span class="number">3</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    solution=Solution().solve(N, K, r, c)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<h3 id="approach-1-深度优先搜索">Approach 1: 深度优先搜索</h3>
+<p>我们可以将二维网格看成一个无向图，竖直或水平相邻的 11
+之间有边相连。</p>
+<p>为了求出岛屿的数量，我们可以扫描整个二维网格。如果一个位置为
+11，则以其为起始节点开始进行深度优先搜索。在深度优先搜索的过程中，每个搜索到的
+11 都会被重新标记为 00。</p>
+<p>最终岛屿的数量就是我们进行深度优先搜索的次数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">self, grid, r, c</span>):</span><br><span class="line">        grid[r][c] = <span class="number">0</span></span><br><span class="line">        nr, nc = <span class="built_in">len</span>(grid), <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">for</span> x, y <span class="keyword">in</span> [(r - <span class="number">1</span>, c), (r + <span class="number">1</span>, c), (r, c - <span class="number">1</span>), (r, c + <span class="number">1</span>)]:</span><br><span class="line">            <span class="keyword">if</span> <span class="number">0</span> &lt;= x &lt; nr <span class="keyword">and</span> <span class="number">0</span> &lt;= y &lt; nc <span class="keyword">and</span> grid[x][y] == <span class="string">&quot;1&quot;</span>:</span><br><span class="line">                self.dfs(grid, x, y)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numIslands</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">str</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        nr = <span class="built_in">len</span>(grid)</span><br><span class="line">        <span class="keyword">if</span> nr == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        nc = <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">        num_islands = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> r <span class="keyword">in</span> <span class="built_in">range</span>(nr):</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">range</span>(nc):</span><br><span class="line">                <span class="keyword">if</span> grid[r][c] == <span class="string">&quot;1&quot;</span>:</span><br><span class="line">                    num_islands += <span class="number">1</span></span><br><span class="line">                    self.dfs(grid, r, c)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> num_islands</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li>时间复杂度：<span class="math display">\[O(N^2 K)\]</span>。其中 N,
-K 为题目中的定义。我们对 <span class="math display">\[N^2\]</span>
-元素的每一层 dp 进行 O(1) 工作，并且考虑了 K 层。</li>
-<li>空间复杂度：<span class="math display">\[O(N^2)\]</span>，dp 和 dp2
-的大小。</li>
+<li><p>时间复杂度：O(MN)，其中 M 和 N 分别为行数和列数。</p></li>
+<li><p>空间复杂度：O(MN)，在最坏情况下，整个网格均为陆地，深度优先搜索的深度达到
+MN。</p></li>
 </ul>
-<h3 id="approach-2-矩阵求幂">Approach 2: 矩阵求幂</h3>
-<p>方法 1 中表示的状态重复表达了过渡到其他的线性组合的状态。
-任何情况下，我们都可以将整个转换表示为这些线性组合的矩阵。然后，这个矩阵的第
-n 次方代表了 n 移动的转换，因此我们可以将问题简化为矩阵求幂问题。</p>
-<p><strong>算法：</strong></p>
-<ul>
-<li>首先，我们可以利用棋盘上的对称性。马可能有 n^2
-的状态（假设它在板上）。由于横轴、纵轴和对角线的对称性，我们可以假设骑士在棋盘的左上象限，并且列数等于或大于行数。对于任何一个位置，通过满足条件通过轴反射得到位置将是该位置的标准索引。</li>
-<li>这将使状态数从 <span class="math display">\[N^2\]</span> 减少到大约
-<span class="math display">\[\frac{N^2}{8}\]</span> ，这使得在这个 <span
-class="math display">\[O(\frac{N^2}{8}) \times O(\frac{N^2}{8})\]</span>
-矩阵上下求幂大约快 <span class="math display">\[8^3\]</span> 倍。</li>
-<li>现在，如果我们知道每一个状态在一次移动后都会变成某种状态的线性组合，那么让我们写一个过渡矩阵
-<span class="math display">\[\mathcal{T}\]</span>，其中 <span
-class="math display">\[\mathcal{T}\]</span> 的第 i 行代表了第 i
-个状态的线性组合。然后，<span
-class="math display">\[\mathcal{T}^n\]</span> 表示 n
-次移动的转换，我们需要第 i 行的总和，其中 i 是起始位置的索引。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">knightProbability2</span>(<span class="params">self, N, K, sr, sc</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">canonical</span>(<span class="params">r, c</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="number">2</span> * r &gt; N: r = N - <span class="number">1</span> - r</span><br><span class="line">            <span class="keyword">if</span> <span class="number">2</span> * c &gt; N: c = N - <span class="number">1</span> - c</span><br><span class="line">            <span class="keyword">if</span> r &gt; c: r, c = c, r</span><br><span class="line">            <span class="keyword">return</span> r*N + c</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">matrix_mult</span>(<span class="params">A, B</span>):</span><br><span class="line">            ZB = <span class="built_in">zip</span>(*B)</span><br><span class="line">            <span class="keyword">return</span> [[<span class="built_in">sum</span>(a * b <span class="keyword">for</span> a, b <span class="keyword">in</span> <span class="built_in">zip</span>(row, col))</span><br><span class="line">                    <span class="keyword">for</span> col <span class="keyword">in</span> ZB] <span class="keyword">for</span> row <span class="keyword">in</span> A]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">matrix_expo</span>(<span class="params">A, K</span>):</span><br><span class="line">            <span class="keyword">if</span> K == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span> [[+(i==j) <span class="keyword">for</span> j <span class="keyword">in</span> xrange(<span class="built_in">len</span>(A))]</span><br><span class="line">                        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="built_in">len</span>(A))]</span><br><span class="line">            <span class="keyword">if</span> K == <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> A</span><br><span class="line">            <span class="keyword">elif</span> K % <span class="number">2</span>:</span><br><span class="line">                <span class="keyword">return</span> matrix_mult(matrix_expo(A, K-<span class="number">1</span>), A)</span><br><span class="line">            B = matrix_expo(A, K/<span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> matrix_mult(B, B)</span><br><span class="line"></span><br><span class="line">        index = [<span class="number">0</span>] * (N*N)</span><br><span class="line">        t = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> r <span class="keyword">in</span> xrange(N):</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> xrange(N):</span><br><span class="line">                <span class="keyword">if</span> r*N + c == canonical(r, c):</span><br><span class="line">                    index[r*N + c] = t</span><br><span class="line">                    t += <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    index[r*N + c] = index[canonical(r, c)]</span><br><span class="line"></span><br><span class="line">        T = []</span><br><span class="line">        <span class="keyword">for</span> r <span class="keyword">in</span> xrange(N):</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> xrange(N):</span><br><span class="line">                <span class="keyword">if</span> r*N + c == canonical(r, c):</span><br><span class="line">                    row = [<span class="number">0</span>] * t</span><br><span class="line">                    <span class="keyword">for</span> dr, dc <span class="keyword">in</span> ((<span class="number">2</span>,<span class="number">1</span>),(<span class="number">2</span>,-<span class="number">1</span>),(-<span class="number">2</span>,<span class="number">1</span>),(-<span class="number">2</span>,-<span class="number">1</span>),</span><br><span class="line">                                    (<span class="number">1</span>,<span class="number">2</span>),(<span class="number">1</span>,-<span class="number">2</span>),(-<span class="number">1</span>,<span class="number">2</span>),(-<span class="number">1</span>,-<span class="number">2</span>)):</span><br><span class="line">                        <span class="keyword">if</span> <span class="number">0</span> &lt;= r+dr &lt; N <span class="keyword">and</span> <span class="number">0</span> &lt;= c+dc &lt; N:</span><br><span class="line">                            row[index[(r+dr)*N + c+dc]] += <span class="number">0.125</span></span><br><span class="line">                    T.append(row)</span><br><span class="line"></span><br><span class="line">        Tk = matrix_expo(T, K)</span><br><span class="line">        i = index[sr * N + sc]</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(Tk[i])</span><br></pre></td></tr></table></figure>
+<h3 id="approach-2-广度优先搜索">Approach 2: 广度优先搜索</h3>
+<p>同样地，我们也可以使用广度优先搜索代替深度优先搜索。</p>
+<p>为了求出岛屿的数量，我们可以扫描整个二维网格。如果一个位置为
+1，则将其加入队列，开始进行广度优先搜索。在广度优先搜索的过程中，每个搜索到的
+1 都会被重新标记为 0。直到队列为空，搜索结束。</p>
+<p>最终岛屿的数量就是我们进行广度优先搜索的次数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numIslands</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">str</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        nr = <span class="built_in">len</span>(grid)</span><br><span class="line">        <span class="keyword">if</span> nr == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        nc = <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">        num_islands = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> r <span class="keyword">in</span> <span class="built_in">range</span>(nr):</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">range</span>(nc):</span><br><span class="line">                <span class="keyword">if</span> grid[r][c] == <span class="string">&quot;1&quot;</span>:</span><br><span class="line">                    num_islands += <span class="number">1</span></span><br><span class="line">                    grid[r][c] = <span class="string">&quot;0&quot;</span></span><br><span class="line">                    neighbors = collections.deque([(r, c)])</span><br><span class="line">                    <span class="keyword">while</span> neighbors:</span><br><span class="line">                        row, col = neighbors.popleft()</span><br><span class="line">                        <span class="keyword">for</span> x, y <span class="keyword">in</span> [(row - <span class="number">1</span>, col), (row + <span class="number">1</span>, col), (row, col - <span class="number">1</span>), (row, col + <span class="number">1</span>)]:</span><br><span class="line">                            <span class="keyword">if</span> <span class="number">0</span> &lt;= x &lt; nr <span class="keyword">and</span> <span class="number">0</span> &lt;= y &lt; nc <span class="keyword">and</span> grid[x][y] == <span class="string">&quot;1&quot;</span>:</span><br><span class="line">                                neighbors.append((x, y))</span><br><span class="line">                                grid[x][y] = <span class="string">&quot;0&quot;</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> num_islands</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li><p>时间复杂度：<span class="math display">\[O(N^6
-\log(K))\]</span>。其中 N, K 为题目中的定义。大约有 <span
-class="math display">\[\frac{N^2}{8}\]</span>
-规范状态，这使得我们的矩阵乘法 <span
-class="math display">\[O(N^6)\]</span>。为了找到这个矩阵的第 K
-次幂，我们做了 <span class="math display">\[O(\log(K))\]</span>
-matrix乘法。</p></li>
-<li><p>空间复杂度：<span
-class="math display">\[O(N^4)\]</span>，矩阵有大约 <span
-class="math display">\[\frac{N^4}{64}\]</span> 个元素。</p></li>
+<li>时间复杂度：<span class="math display">\[O(MN)\]</span>，其中 M 和 N
+分别为行数和列数。</li>
+<li>空间复杂度：<span class="math display">\[O(\min(M,
+N))\]</span>，在最坏情况下，整个网格均为陆地，队列的大小可以达到<span
+class="math display">\[ \min(M, N)\]</span>。</li>
 </ul>
 
       
@@ -1574,7 +1543,7 @@ Q(s,o)\leftarrow Q(s,o)+\alpha[r+\gamma^k \max_{a\in O} Q(s,a)-Q(s,o)]
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/05/2021-07-05-HJ26%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8E%92%E5%BA%8F-%E4%B8%AD%E7%AD%89-%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/05/2021-07-05-ACM%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F%E5%A4%84%E7%90%86python%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/my_photo.jpg">
@@ -1588,7 +1557,7 @@ Q(s,o)\leftarrow Q(s,o)+\alpha[r+\gamma^k \max_{a\in O} Q(s,a)-Q(s,o)]
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/07/05/2021-07-05-HJ26%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8E%92%E5%BA%8F-%E4%B8%AD%E7%AD%89-%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-title-link" itemprop="url">HJ26 字符串排序-中等-字符串</a>
+            <a href="/2021/07/05/2021-07-05-ACM%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F%E5%A4%84%E7%90%86python%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">ACM数据格式处理python方法总结</a>
         </h2>
 
         <div class="post-meta">
@@ -1607,14 +1576,14 @@ Q(s,o)\leftarrow Q(s,o)+\alpha[r+\gamma^k \max_{a\in O} Q(s,a)-Q(s,o)]
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>700</span>
+              <span>4.4k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
+              <span>4 mins.</span>
             </span>
 
         </div>
@@ -1626,42 +1595,134 @@ Q(s,o)\leftarrow Q(s,o)+\alpha[r+\gamma^k \max_{a\in O} Q(s,a)-Q(s,o)]
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="hj26-字符串排序"><a
-target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/5190a1db6f4f4ddb92fd9c365c944584?tpId=37&amp;&amp;tqId=21249&amp;rp=1&amp;ru=/ta/huawei&amp;qru=/ta/huawei/question-ranking">HJ26
-字符串排序</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p><strong>规则 1</strong> ：英文字母从 A 到 Z 排列，不区分大小写。</p>
-<p>如，输入： Type 输出： epTy</p>
-<p><strong>规则 2</strong>
-：同一个英文字母的大小写同时存在时，按照输入顺序排列。</p>
-<p>如，输入： BabA 输出： aABb</p>
-<p><strong>规则 3</strong> ：非英文字母的其它字符保持原来的位置。</p>
-<p>如，输入： By?e 输出： Be?y</p>
-<p>注意有多组测试数据，即输入有多行，每一行单独处理（换行符隔开的表示不同行）</p>
-<p>输入描述： - 输入字符串</p>
-<p>输出描述： - 输出字符串</p>
-<p>示例1 输入：A Famous Saying: Much Ado About Nothing (2012/8). 输出：A
-aaAAbc dFgghh: iimM nNn oooos Sttuuuy (2012/8).</p>
-</blockquote>
-<h3 id="approach">Approach</h3>
+          <h1
+id="acm数据格式处理python方法总结">ACM数据格式处理python方法总结</h1>
+<h2 id="oj在线编程常见输入输出练习场">OJ在线编程常见输入输出练习场</h2>
+<p>在线测试网址：https://ac.nowcoder.com/acm/contest/5652#question</p>
+<p>华为机考模拟试题：https://www.nowcoder.com/ta/huawei</p>
+<h3 id="总结">总结：</h3>
 <ul>
-<li>sorted(iterable,str.upper)就可以实现：
+<li><p>数据行数具体是多少不重要，可通过while来解决，每行数据长度是否已知也无所谓。</p></li>
+<li><p>熟悉sys，map，try-except的具体使用框架和方式</p></li>
+<li><p>熟悉split()，strip()函数的使用方式</p></li>
+<li><p>一些字符相关的函数：</p>
 <ul>
-<li>1）字符由A到Z的排序</li>
-<li>2）能够实现同字母（A与a算同字母），由输入先后书序排列。</li>
+<li>字符转化为asc-ii码函数（ord('a')）可以用来判断是否大小写/数字</li>
 </ul></li>
-<li>str.isalpha实现的是如果字符串至少有一个字符并且所有字符都是字母则返回
-True，否则返回 False。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        s = <span class="built_in">input</span>()</span><br><span class="line">        a = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> s:</span><br><span class="line">            <span class="keyword">if</span> i.isalpha():</span><br><span class="line">                a += i</span><br><span class="line">        b = <span class="built_in">sorted</span>(a, key=<span class="built_in">str</span>.upper)</span><br><span class="line">        index = <span class="number">0</span></span><br><span class="line">        d = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(s)):</span><br><span class="line">            <span class="keyword">if</span> s[i].isalpha():</span><br><span class="line">                d += b[index]</span><br><span class="line">                index += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                d += s[i]</span><br><span class="line">        <span class="built_in">print</span>(d)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
+<li><p>字符串.isalnum() 所有字符都是数字或者字母，为真返回
+Ture，否则返回 False。</p>
 <ul>
-<li>时间复杂度：<span
-class="math display">\[O(N)\]</span>，N是序列长度。</li>
-<li>空间复杂度：<span
-class="math display">\[O(1)\]</span>。常数个变量。</li>
+<li>字符串.isalpha() 所有字符都是字母，为真返回 Ture，否则返回
+False。</li>
+<li>字符串.isdigit() 所有字符都是数字，为真返回 Ture，否则返回
+False。</li>
+<li>字符串.islower() 所有字符都是小写，为真返回 Ture，否则返回
+False。</li>
+<li>字符串.isupper() 所有字符都是大写，为真返回 Ture，否则返回
+False。</li>
+<li>字符串.istitle() 所有单词都是首字母大写，为真返回 Ture，否则返回
+False。</li>
+<li>字符串.isspace() 所有字符都是空白字符，为真返回 Ture，否则返回
+False。</li>
+</ul></li>
+<li><p>进制转换：</p>
+<ul>
+<li>16进制转为10进制：int(num,16)</li>
+<li>2进制转为10进制：int(num,2)</li>
+<li>8进制转为10进制：int(num,8)</li>
+<li>10进制转为16进制：hex(num)</li>
+<li>10进制转2进制：bin(num)</li>
+<li>10进制转8进制：oct(num)</li>
+</ul></li>
+<li><p>输出分割方式：</p>
+<ul>
+<li>按照空格分割：print(a, end=' ')</li>
+<li>按照行分割：print(a) or print(a, end='')</li>
+</ul></li>
 </ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入多行字符串转换为二维矩阵</span></span><br><span class="line">num=<span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line"><span class="comment"># 创建已知大小的二维矩阵</span></span><br><span class="line">T = [[<span class="number">0</span>]*num <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num)]</span><br><span class="line">i=<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">	<span class="comment"># 字符串分割！！！</span></span><br><span class="line">    T[i][:]=<span class="built_in">list</span>(<span class="string">&#x27;&#x27;</span>.join(line.strip().split()))</span><br><span class="line">    i+=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>读入一个二维矩阵：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 读取字符举证</span></span><br><span class="line">a = []</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin: </span><br><span class="line">    a.append(line.split())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取数字矩阵</span></span><br><span class="line">a = []</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin: </span><br><span class="line">    a.append(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>,line.split())))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">num = <span class="built_in">input</span>()</span><br><span class="line"><span class="comment"># print(&#x27; &#x27;.join(sorted(input().split())))</span></span><br><span class="line"><span class="comment"># 连续的数字不被拆开</span></span><br><span class="line"><span class="comment"># a= list(input().split()) # 可以不加list()</span></span><br><span class="line">a = <span class="built_in">input</span>().split()</span><br><span class="line"><span class="comment"># 去除字符串数组中多余的括号</span></span><br><span class="line">a[<span class="number">0</span>]=a[<span class="number">0</span>].replace(<span class="string">&#x27;[&#x27;</span>,<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">a[-<span class="number">1</span>]=a[-<span class="number">1</span>].replace(<span class="string">&#x27;]&#x27;</span>,<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">int</span>(a[<span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>已知数据行数，已知每行长度</strong>：外加循环或者判断条件</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a,b = <span class="built_in">map</span>(<span class="built_in">int</span>,<span class="built_in">input</span>().split(<span class="string">&#x27; &#x27;</span>))</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>未知数据行数，未知每行长度</strong>：使用sys库提取每行数据，结合strip()（去除
+）和split()（分割函数，方便提取元素）函数实现数组建立</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27; &#x27;</span>.join(<span class="built_in">sorted</span>(line.strip().split())))</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>已知行数，未知每行长度</strong>：行数可以不储存不使用，每行未知长度数据，可以用下面语句直接变成一个数组</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split())) <span class="comment"># a直接就是整数数组</span></span><br></pre></td></tr></table></figure>
+<p>下面给出了几个输入输出案例（包括<strong>数字</strong>和<strong>字符串</strong>部分）：</p>
+<h3 id="ab1">1. A+B(1)</h3>
+<p>输入包括两个正整数a,b(1 &lt;= a, b &lt;= 10^9),输入数据包括多组。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        a,b = <span class="built_in">map</span>(<span class="built_in">int</span>,<span class="built_in">input</span>().split(<span class="string">&#x27; &#x27;</span>))</span><br><span class="line">        <span class="comment"># a,b = map(int,input().split())</span></span><br><span class="line">        <span class="built_in">print</span>(a + b)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span> </span><br></pre></td></tr></table></figure>
+<h3 id="ab2">2. A+B(2)</h3>
+<p>输入第一行包括一个数据组数t(1 &lt;= t &lt;= 100)
+接下来每行包括两个正整数a,b(1 &lt;= a, b &lt;= 10^9)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    num = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line">    <span class="comment"># num = int(sys.stdin.readline().strip()) # 读取一整行输入，strip()去掉末尾空行或空格，int()转换为整数形式</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num):</span><br><span class="line">        a , b = <span class="built_in">map</span>(<span class="built_in">int</span>,<span class="built_in">input</span>().split(<span class="string">&#x27; &#x27;</span>))</span><br><span class="line">        <span class="built_in">print</span>(a + b)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="built_in">input</span>()</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">sum</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, line.split())))</span><br></pre></td></tr></table></figure>
+<h3 id="ab3">3. A+B(3)</h3>
+<p>输入包括两个正整数a,b(1 &lt;= a, b &lt;= 10^9),输入数据有多组,
+如果输入为0 0则结束输入</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        a , b = <span class="built_in">map</span>(<span class="built_in">int</span>,<span class="built_in">input</span>().split(<span class="string">&#x27; &#x27;</span>))</span><br><span class="line">        <span class="keyword">if</span> a != <span class="number">0</span> <span class="keyword">and</span> b != <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(a + b)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<h3 id="ab4">4. A+B(4)</h3>
+<p>输入数据包括多组。 每组数据一行,每行的第一个整数为整数的个数n(1 &lt;=
+n &lt;= 100), n为0的时候结束输入。
+接下来n个正整数,即需要求和的每个正整数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        a = <span class="built_in">input</span>().split(<span class="string">&#x27; &#x27;</span>) <span class="comment"># a是字符数组</span></span><br><span class="line">        <span class="comment"># a = sys.stdin.readline().split(&#x27; &#x27;)</span></span><br><span class="line">        <span class="built_in">sum</span> = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">int</span>(a[<span class="number">0</span>]) != <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(a)):</span><br><span class="line">                <span class="built_in">sum</span> += <span class="built_in">int</span>(a[i])</span><br><span class="line">            <span class="built_in">print</span>(<span class="built_in">sum</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        a = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split())) <span class="comment"># a直接就是整数数组</span></span><br><span class="line">        <span class="keyword">if</span> a[<span class="number">0</span>] != <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="built_in">sum</span>(a[<span class="number">1</span>:]))</span><br><span class="line">        <span class="keyword">else</span>: </span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>使用sys库</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, line.strip().split()))[<span class="number">0</span>]!=<span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">sum</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, line.strip().split()[<span class="number">1</span>:])))</span><br></pre></td></tr></table></figure>
+<h3 id="ab5">5. A+B(5)</h3>
+<p>输入的第一行包括一个正整数t(1 &lt;= t &lt;= 100), 表示数据组数。
+接下来t行, 每行一组数据。 每行的第一个整数为整数的个数n(1 &lt;= n &lt;=
+100)。 接下来n个正整数, 即需要求和的每个正整数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    nums = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(nums):</span><br><span class="line">        a = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>,<span class="built_in">input</span>().split()))</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">sum</span>(a[<span class="number">1</span>:]))</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>一个更简洁的代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        numlist = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().strip().split()))</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(numlist) == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="built_in">sum</span>(numlist[<span class="number">1</span>:]))</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<h3 id="ab6">6. A+B(6)</h3>
+<p>输入数据有多组, 每行表示一组输入数据。
+每行的第一个整数为整数的个数n(1 &lt;= n &lt;= 100)。 接下来n个正整数,
+即需要求和的每个正整数。 每组数据输出求和的结果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">sum</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, line.strip().split()[<span class="number">1</span>:])))</span><br></pre></td></tr></table></figure>
+<h3 id="ab7">7. A+B(7)</h3>
+<p>输入数据有多组, 每行表示一组输入数据。
+每行不定有n个整数，空格隔开。(1 &lt;= n &lt;= 100)。
+每组数据输出求和的结果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">sum</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, line.strip().split())))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">sum</span>(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().strip().split()))))</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<h3 id="字符串排序1">8. 字符串排序(1)</h3>
+<p>输入有两行，第一行n 第二行是n个空格隔开的字符串
+输出一行排序后的字符串，空格隔开，无结尾空格</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">num = <span class="built_in">input</span>()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27; &#x27;</span>.join(<span class="built_in">sorted</span>(<span class="built_in">input</span>().split())))</span><br><span class="line"><span class="comment"># sorted(num,reverse=Ture) # 逆序排序</span></span><br></pre></td></tr></table></figure>
+<h3 id="字符串排序2">9. 字符串排序(2)</h3>
+<p>多个测试用例，每个测试用例一行。 每行通过空格隔开，有n个字符，n＜100
+对于每组测试用例，输出一行排序过的字符串，每个字符串通过空格隔开</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27; &#x27;</span>.join(<span class="built_in">sorted</span>(line.strip().split())))</span><br></pre></td></tr></table></figure>
+<h3 id="字符串排序3">10. 字符串排序(3)</h3>
+<p>多个测试用例，每个测试用例一行。 每行通过,隔开，有n个字符，n＜100
+对于每组用例输出一行排序后的字符串，用','隔开，无结尾空格</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;,&#x27;</span>.join(<span class="built_in">sorted</span>(line.strip().split(<span class="string">&#x27;,&#x27;</span>))))</span><br></pre></td></tr></table></figure>
+<h3 id="自测本地通过但是提交为0">11. 自测本地通过，但是提交为0</h3>
+<p>每年前几场在线笔试编程题的时候，总有同学询问为什么我本地测试通过，自测也通过，提交代码系统却返回通过率0。
+打开以下链接可以查看正确的代码
+https://ac.nowcoder.com/acm/contest/5657#question
+这不是系统的错，可能是因为</p>
+<ol type="1">
+<li>你对题目理解错了，你的代码只过了样例或你自己的数据</li>
+<li>你的代码逻辑有问题，你的代码只过了样例或你自己的数据</li>
+</ol>
+<p>总之就是你的代码只是过了样例和自测数据，后台的测试数据你根本不可见，要多自己思考。</p>
+<p>这个题目如果你提交后通过率为0，又觉得自己代码是正确的，可以 点击查看
+通过的代码</p>
+<p>谨记：
+当你笔试的时候怀疑系统或者题目数据有问题的时候请务必先怀疑自己的代码!</p>
+<p>请帮忙把这个练习专题发给你的朋友同学吧，感谢感谢</p>
 
       
     </div>

@@ -3592,58 +3592,6 @@ State显示为LISTEN即为未占用，记该端口号为xxxx</p>
       </tags>
   </entry>
   <entry>
-    <title>Network Structure | A ConvNet for the 2020s (Facebook, 2022)</title>
-    <url>/2022/07/22/2022-07-22-Network%20Structure%20-%20A%20ConvNet%20for%20the%202020s/</url>
-    <content><![CDATA[<h2 id="a-convnet-for-the-2020s">A ConvNet for the 2020s</h2>
-<ul>
-<li>纯卷积的网络堪比transformer。</li>
-</ul>
-<p>Vision Transformers (ViTs)
-的引入迅速取代了ConvNets，成为最先进的图像分类模型。另一方面，普通的 ViT
-在应用于目标检测和语义分割等一般计算机视觉任务时面临困难。分层
-Transformers（例如，Swin Transformers）重新引入了几个 ConvNet 先验，使
-Transformers
-作为通用视觉骨干实际上可行，并在各种视觉任务上表现出卓越的性能。然而，这种混合方法的有效性在很大程度上仍归功于
-Transformer
-的内在优势，而不是卷积固有的归纳偏差。在这项工作中，我们重新检查了设计空间并测试了纯
-ConvNet 所能达到的极限。</p>
-<p>我们逐渐将标准 ResNet “现代化”为视觉 Transformer
-的设计，并在此过程中发现了导致性能差异的几个关键组件。这一探索的结果是一系列纯
-ConvNet 模型，称为 ConvNeXt。ConvNeXts 完全由标准 ConvNet
-模块构建，在准确性和可扩展性方面与 Transformer 竞争，实现 87.8% ImageNet
-top-1 准确率，在 COCO 检测和 ADE20K 分割方面优于 Swin
-Transformers，同时保持标准 ConvNet 的简单性和效率。</p>
-<h3 id="introduction">1. Introduction</h3>
-<ul>
-<li><p>过去的十年视觉认知领域的研究从特征工程转移到了网络结构设计。</p></li>
-<li><p>solutions to numerous computer vision tasks in the past decade
-depended significantly on a sliding-window, fully- convolutional
-paradigm</p></li>
-<li><p>The <strong>biggest challenge</strong> is ViT’s global attention
-design, which has a <strong>quadratic complexity</strong> with respect
-to the input size. This might be acceptable for ImageNet classification,
-but quickly becomes intractable with higher-resolution inputs.</p></li>
-<li><p><strong>Swin Transformer</strong> [45] is a milestone work in
-this direction, demonstrating for the first time that Transformers can
-be adopted as a generic vision backbone and achieve state-of-the-art
-performance across a range of computer vision tasks beyond image
-classification</p>
-<ul>
-<li>[45]. Ze Liu, Yutong Lin, Yue Cao, Han Hu, Yixuan Wei, Zheng Zhang,
-Stephen Lin, and Baining Guo. Swin transformer: Hierarchical vision
-transformer using shifted windows. 2021.</li>
-</ul></li>
-</ul>
-<h3 id="总结">总结</h3>
-<p>写作语言非常高级的一篇介绍网络结构的文章，介绍了如何构建超越transformer的纯卷积网络。并在计算机视觉多项任务中取得了成功，包括ImageNet
-top-1。文章值得一看，但由于这不是我重点关注方向，不详细介绍了。</p>
-]]></content>
-      <tags>
-        <tag>Autonomous Driving</tag>
-        <tag>Network Structure</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Autonomous Driving | MotionCNN: A Strong Baseline for Motion Prediction in Autonomous Driving (2022)</title>
     <url>/2022/07/22/2022-07-22-Autonomous%20Driving%20-%20MotionCNN%20A%20Strong%20Baseline%20for%20Motion%20Prediction%20in%20Autonomous%20Driving/</url>
     <content><![CDATA[<h2
@@ -3823,6 +3771,58 @@ Motion Dataset</figcaption>
       <tags>
         <tag>Imitation Learning</tag>
         <tag>Autonomous Driving</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Network Structure | A ConvNet for the 2020s (Facebook, 2022)</title>
+    <url>/2022/07/22/2022-07-22-Network%20Structure%20-%20A%20ConvNet%20for%20the%202020s/</url>
+    <content><![CDATA[<h2 id="a-convnet-for-the-2020s">A ConvNet for the 2020s</h2>
+<ul>
+<li>纯卷积的网络堪比transformer。</li>
+</ul>
+<p>Vision Transformers (ViTs)
+的引入迅速取代了ConvNets，成为最先进的图像分类模型。另一方面，普通的 ViT
+在应用于目标检测和语义分割等一般计算机视觉任务时面临困难。分层
+Transformers（例如，Swin Transformers）重新引入了几个 ConvNet 先验，使
+Transformers
+作为通用视觉骨干实际上可行，并在各种视觉任务上表现出卓越的性能。然而，这种混合方法的有效性在很大程度上仍归功于
+Transformer
+的内在优势，而不是卷积固有的归纳偏差。在这项工作中，我们重新检查了设计空间并测试了纯
+ConvNet 所能达到的极限。</p>
+<p>我们逐渐将标准 ResNet “现代化”为视觉 Transformer
+的设计，并在此过程中发现了导致性能差异的几个关键组件。这一探索的结果是一系列纯
+ConvNet 模型，称为 ConvNeXt。ConvNeXts 完全由标准 ConvNet
+模块构建，在准确性和可扩展性方面与 Transformer 竞争，实现 87.8% ImageNet
+top-1 准确率，在 COCO 检测和 ADE20K 分割方面优于 Swin
+Transformers，同时保持标准 ConvNet 的简单性和效率。</p>
+<h3 id="introduction">1. Introduction</h3>
+<ul>
+<li><p>过去的十年视觉认知领域的研究从特征工程转移到了网络结构设计。</p></li>
+<li><p>solutions to numerous computer vision tasks in the past decade
+depended significantly on a sliding-window, fully- convolutional
+paradigm</p></li>
+<li><p>The <strong>biggest challenge</strong> is ViT’s global attention
+design, which has a <strong>quadratic complexity</strong> with respect
+to the input size. This might be acceptable for ImageNet classification,
+but quickly becomes intractable with higher-resolution inputs.</p></li>
+<li><p><strong>Swin Transformer</strong> [45] is a milestone work in
+this direction, demonstrating for the first time that Transformers can
+be adopted as a generic vision backbone and achieve state-of-the-art
+performance across a range of computer vision tasks beyond image
+classification</p>
+<ul>
+<li>[45]. Ze Liu, Yutong Lin, Yue Cao, Han Hu, Yixuan Wei, Zheng Zhang,
+Stephen Lin, and Baining Guo. Swin transformer: Hierarchical vision
+transformer using shifted windows. 2021.</li>
+</ul></li>
+</ul>
+<h3 id="总结">总结</h3>
+<p>写作语言非常高级的一篇介绍网络结构的文章，介绍了如何构建超越transformer的纯卷积网络。并在计算机视觉多项任务中取得了成功，包括ImageNet
+top-1。文章值得一看，但由于这不是我重点关注方向，不详细介绍了。</p>
+]]></content>
+      <tags>
+        <tag>Autonomous Driving</tag>
+        <tag>Network Structure</tag>
       </tags>
   </entry>
   <entry>
@@ -6841,77 +6841,6 @@ class="math display">\[O(R \times C)\]</span>。</li>
       </tags>
   </entry>
   <entry>
-    <title>Q200-岛屿数量-中等-深度and广度优先搜索</title>
-    <url>/2021/07/18/2021-07-18-Q200.%20%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F-%E4%B8%AD%E7%AD%89-%E6%B7%B1%E5%BA%A6and%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/</url>
-    <content><![CDATA[<h4 id="岛屿数量"><a
-href="https://leetcode-cn.com/problems/number-of-islands/">200.
-岛屿数量</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>给你一个由 '1'（陆地）和
-'0'（水）组成的的二维网格，请你计算网格中岛屿的数量。</p>
-<p>岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。</p>
-<p>此外，你可以假设该网格的四条边均被水包围。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入：grid = [ ["1","1","1","1","0"], ["1","1","0","1","0"],
-["1","1","0","0","0"], ["0","0","0","0","0"]] 输出：1</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>输入：grid = [ ["1","1","0","0","0"], ["1","1","0","0","0"],
-["0","0","1","0","0"], ["0","0","0","1","1"]] 输出：3</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li><code>m == grid.length</code></li>
-<li><code>n == grid[i].length</code></li>
-<li><code>1 &lt;= m, n &lt;= 300</code></li>
-<li><code>grid[i][j]</code> 的值为 <code>'0'</code> 或
-<code>'1'</code></li>
-</ul>
-</blockquote>
-<h3 id="approach-1-深度优先搜索">Approach 1: 深度优先搜索</h3>
-<p>我们可以将二维网格看成一个无向图，竖直或水平相邻的 11
-之间有边相连。</p>
-<p>为了求出岛屿的数量，我们可以扫描整个二维网格。如果一个位置为
-11，则以其为起始节点开始进行深度优先搜索。在深度优先搜索的过程中，每个搜索到的
-11 都会被重新标记为 00。</p>
-<p>最终岛屿的数量就是我们进行深度优先搜索的次数。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">self, grid, r, c</span>):</span><br><span class="line">        grid[r][c] = <span class="number">0</span></span><br><span class="line">        nr, nc = <span class="built_in">len</span>(grid), <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">for</span> x, y <span class="keyword">in</span> [(r - <span class="number">1</span>, c), (r + <span class="number">1</span>, c), (r, c - <span class="number">1</span>), (r, c + <span class="number">1</span>)]:</span><br><span class="line">            <span class="keyword">if</span> <span class="number">0</span> &lt;= x &lt; nr <span class="keyword">and</span> <span class="number">0</span> &lt;= y &lt; nc <span class="keyword">and</span> grid[x][y] == <span class="string">&quot;1&quot;</span>:</span><br><span class="line">                self.dfs(grid, x, y)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numIslands</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">str</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        nr = <span class="built_in">len</span>(grid)</span><br><span class="line">        <span class="keyword">if</span> nr == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        nc = <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">        num_islands = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> r <span class="keyword">in</span> <span class="built_in">range</span>(nr):</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">range</span>(nc):</span><br><span class="line">                <span class="keyword">if</span> grid[r][c] == <span class="string">&quot;1&quot;</span>:</span><br><span class="line">                    num_islands += <span class="number">1</span></span><br><span class="line">                    self.dfs(grid, r, c)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> num_islands</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(MN)，其中 M 和 N 分别为行数和列数。</p></li>
-<li><p>空间复杂度：O(MN)，在最坏情况下，整个网格均为陆地，深度优先搜索的深度达到
-MN。</p></li>
-</ul>
-<h3 id="approach-2-广度优先搜索">Approach 2: 广度优先搜索</h3>
-<p>同样地，我们也可以使用广度优先搜索代替深度优先搜索。</p>
-<p>为了求出岛屿的数量，我们可以扫描整个二维网格。如果一个位置为
-1，则将其加入队列，开始进行广度优先搜索。在广度优先搜索的过程中，每个搜索到的
-1 都会被重新标记为 0。直到队列为空，搜索结束。</p>
-<p>最终岛屿的数量就是我们进行广度优先搜索的次数。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numIslands</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">str</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        nr = <span class="built_in">len</span>(grid)</span><br><span class="line">        <span class="keyword">if</span> nr == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        nc = <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">        num_islands = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> r <span class="keyword">in</span> <span class="built_in">range</span>(nr):</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">range</span>(nc):</span><br><span class="line">                <span class="keyword">if</span> grid[r][c] == <span class="string">&quot;1&quot;</span>:</span><br><span class="line">                    num_islands += <span class="number">1</span></span><br><span class="line">                    grid[r][c] = <span class="string">&quot;0&quot;</span></span><br><span class="line">                    neighbors = collections.deque([(r, c)])</span><br><span class="line">                    <span class="keyword">while</span> neighbors:</span><br><span class="line">                        row, col = neighbors.popleft()</span><br><span class="line">                        <span class="keyword">for</span> x, y <span class="keyword">in</span> [(row - <span class="number">1</span>, col), (row + <span class="number">1</span>, col), (row, col - <span class="number">1</span>), (row, col + <span class="number">1</span>)]:</span><br><span class="line">                            <span class="keyword">if</span> <span class="number">0</span> &lt;= x &lt; nr <span class="keyword">and</span> <span class="number">0</span> &lt;= y &lt; nc <span class="keyword">and</span> grid[x][y] == <span class="string">&quot;1&quot;</span>:</span><br><span class="line">                                neighbors.append((x, y))</span><br><span class="line">                                grid[x][y] = <span class="string">&quot;0&quot;</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> num_islands</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：<span class="math display">\[O(MN)\]</span>，其中 M 和 N
-分别为行数和列数。</li>
-<li>空间复杂度：<span class="math display">\[O(\min(M,
-N))\]</span>，在最坏情况下，整个网格均为陆地，队列的大小可以达到<span
-class="math display">\[ \min(M, N)\]</span>。</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Python</tag>
-        <tag>Algorithm</tag>
-        <tag>Medium</tag>
-        <tag>DFS</tag>
-        <tag>BFS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Q688-马在棋盘上的概率-中等-动态规划</title>
     <url>/2021/07/18/2021-07-18-Q688-%E9%A9%AC%E5%9C%A8%E6%A3%8B%E7%9B%98%E4%B8%8A%E7%9A%84%E6%A6%82%E7%8E%87-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</url>
     <content><![CDATA[<h4 id="马在棋盘上的概率"><a
@@ -7010,6 +6939,77 @@ class="math display">\[\frac{N^4}{64}\]</span> 个元素。</p></li>
         <tag>Algorithm</tag>
         <tag>Medium</tag>
         <tag>Dynamic Planning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Q200-岛屿数量-中等-深度and广度优先搜索</title>
+    <url>/2021/07/18/2021-07-18-Q200.%20%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F-%E4%B8%AD%E7%AD%89-%E6%B7%B1%E5%BA%A6and%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/</url>
+    <content><![CDATA[<h4 id="岛屿数量"><a
+href="https://leetcode-cn.com/problems/number-of-islands/">200.
+岛屿数量</a></h4>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>给你一个由 '1'（陆地）和
+'0'（水）组成的的二维网格，请你计算网格中岛屿的数量。</p>
+<p>岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。</p>
+<p>此外，你可以假设该网格的四条边均被水包围。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>输入：grid = [ ["1","1","1","1","0"], ["1","1","0","1","0"],
+["1","1","0","0","0"], ["0","0","0","0","0"]] 输出：1</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>输入：grid = [ ["1","1","0","0","0"], ["1","1","0","0","0"],
+["0","0","1","0","0"], ["0","0","0","1","1"]] 输出：3</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ul>
+<li><code>m == grid.length</code></li>
+<li><code>n == grid[i].length</code></li>
+<li><code>1 &lt;= m, n &lt;= 300</code></li>
+<li><code>grid[i][j]</code> 的值为 <code>'0'</code> 或
+<code>'1'</code></li>
+</ul>
+</blockquote>
+<h3 id="approach-1-深度优先搜索">Approach 1: 深度优先搜索</h3>
+<p>我们可以将二维网格看成一个无向图，竖直或水平相邻的 11
+之间有边相连。</p>
+<p>为了求出岛屿的数量，我们可以扫描整个二维网格。如果一个位置为
+11，则以其为起始节点开始进行深度优先搜索。在深度优先搜索的过程中，每个搜索到的
+11 都会被重新标记为 00。</p>
+<p>最终岛屿的数量就是我们进行深度优先搜索的次数。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">self, grid, r, c</span>):</span><br><span class="line">        grid[r][c] = <span class="number">0</span></span><br><span class="line">        nr, nc = <span class="built_in">len</span>(grid), <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">for</span> x, y <span class="keyword">in</span> [(r - <span class="number">1</span>, c), (r + <span class="number">1</span>, c), (r, c - <span class="number">1</span>), (r, c + <span class="number">1</span>)]:</span><br><span class="line">            <span class="keyword">if</span> <span class="number">0</span> &lt;= x &lt; nr <span class="keyword">and</span> <span class="number">0</span> &lt;= y &lt; nc <span class="keyword">and</span> grid[x][y] == <span class="string">&quot;1&quot;</span>:</span><br><span class="line">                self.dfs(grid, x, y)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numIslands</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">str</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        nr = <span class="built_in">len</span>(grid)</span><br><span class="line">        <span class="keyword">if</span> nr == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        nc = <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">        num_islands = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> r <span class="keyword">in</span> <span class="built_in">range</span>(nr):</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">range</span>(nc):</span><br><span class="line">                <span class="keyword">if</span> grid[r][c] == <span class="string">&quot;1&quot;</span>:</span><br><span class="line">                    num_islands += <span class="number">1</span></span><br><span class="line">                    self.dfs(grid, r, c)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> num_islands</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(MN)，其中 M 和 N 分别为行数和列数。</p></li>
+<li><p>空间复杂度：O(MN)，在最坏情况下，整个网格均为陆地，深度优先搜索的深度达到
+MN。</p></li>
+</ul>
+<h3 id="approach-2-广度优先搜索">Approach 2: 广度优先搜索</h3>
+<p>同样地，我们也可以使用广度优先搜索代替深度优先搜索。</p>
+<p>为了求出岛屿的数量，我们可以扫描整个二维网格。如果一个位置为
+1，则将其加入队列，开始进行广度优先搜索。在广度优先搜索的过程中，每个搜索到的
+1 都会被重新标记为 0。直到队列为空，搜索结束。</p>
+<p>最终岛屿的数量就是我们进行广度优先搜索的次数。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numIslands</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">str</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        nr = <span class="built_in">len</span>(grid)</span><br><span class="line">        <span class="keyword">if</span> nr == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        nc = <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">        num_islands = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> r <span class="keyword">in</span> <span class="built_in">range</span>(nr):</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">range</span>(nc):</span><br><span class="line">                <span class="keyword">if</span> grid[r][c] == <span class="string">&quot;1&quot;</span>:</span><br><span class="line">                    num_islands += <span class="number">1</span></span><br><span class="line">                    grid[r][c] = <span class="string">&quot;0&quot;</span></span><br><span class="line">                    neighbors = collections.deque([(r, c)])</span><br><span class="line">                    <span class="keyword">while</span> neighbors:</span><br><span class="line">                        row, col = neighbors.popleft()</span><br><span class="line">                        <span class="keyword">for</span> x, y <span class="keyword">in</span> [(row - <span class="number">1</span>, col), (row + <span class="number">1</span>, col), (row, col - <span class="number">1</span>), (row, col + <span class="number">1</span>)]:</span><br><span class="line">                            <span class="keyword">if</span> <span class="number">0</span> &lt;= x &lt; nr <span class="keyword">and</span> <span class="number">0</span> &lt;= y &lt; nc <span class="keyword">and</span> grid[x][y] == <span class="string">&quot;1&quot;</span>:</span><br><span class="line">                                neighbors.append((x, y))</span><br><span class="line">                                grid[x][y] = <span class="string">&quot;0&quot;</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> num_islands</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：<span class="math display">\[O(MN)\]</span>，其中 M 和 N
+分别为行数和列数。</li>
+<li>空间复杂度：<span class="math display">\[O(\min(M,
+N))\]</span>，在最坏情况下，整个网格均为陆地，队列的大小可以达到<span
+class="math display">\[ \min(M, N)\]</span>。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>Algorithm</tag>
+        <tag>Medium</tag>
+        <tag>DFS</tag>
+        <tag>BFS</tag>
       </tags>
   </entry>
   <entry>
@@ -7859,53 +7859,6 @@ Q(s,o)\leftarrow Q(s,o)+\alpha[r+\gamma^k \max_{a\in O} Q(s,a)-Q(s,o)]
       </tags>
   </entry>
   <entry>
-    <title>HJ26 字符串排序-中等-字符串</title>
-    <url>/2021/07/05/2021-07-05-HJ26%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8E%92%E5%BA%8F-%E4%B8%AD%E7%AD%89-%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
-    <content><![CDATA[<h4 id="hj26-字符串排序"><a
-href="https://www.nowcoder.com/practice/5190a1db6f4f4ddb92fd9c365c944584?tpId=37&amp;&amp;tqId=21249&amp;rp=1&amp;ru=/ta/huawei&amp;qru=/ta/huawei/question-ranking">HJ26
-字符串排序</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p><strong>规则 1</strong> ：英文字母从 A 到 Z 排列，不区分大小写。</p>
-<p>如，输入： Type 输出： epTy</p>
-<p><strong>规则 2</strong>
-：同一个英文字母的大小写同时存在时，按照输入顺序排列。</p>
-<p>如，输入： BabA 输出： aABb</p>
-<p><strong>规则 3</strong> ：非英文字母的其它字符保持原来的位置。</p>
-<p>如，输入： By?e 输出： Be?y</p>
-<p>注意有多组测试数据，即输入有多行，每一行单独处理（换行符隔开的表示不同行）</p>
-<p>输入描述： - 输入字符串</p>
-<p>输出描述： - 输出字符串</p>
-<p>示例1 输入：A Famous Saying: Much Ado About Nothing (2012/8). 输出：A
-aaAAbc dFgghh: iimM nNn oooos Sttuuuy (2012/8).</p>
-</blockquote>
-<h3 id="approach">Approach</h3>
-<ul>
-<li>sorted(iterable,str.upper)就可以实现：
-<ul>
-<li>1）字符由A到Z的排序</li>
-<li>2）能够实现同字母（A与a算同字母），由输入先后书序排列。</li>
-</ul></li>
-<li>str.isalpha实现的是如果字符串至少有一个字符并且所有字符都是字母则返回
-True，否则返回 False。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        s = <span class="built_in">input</span>()</span><br><span class="line">        a = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> s:</span><br><span class="line">            <span class="keyword">if</span> i.isalpha():</span><br><span class="line">                a += i</span><br><span class="line">        b = <span class="built_in">sorted</span>(a, key=<span class="built_in">str</span>.upper)</span><br><span class="line">        index = <span class="number">0</span></span><br><span class="line">        d = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(s)):</span><br><span class="line">            <span class="keyword">if</span> s[i].isalpha():</span><br><span class="line">                d += b[index]</span><br><span class="line">                index += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                d += s[i]</span><br><span class="line">        <span class="built_in">print</span>(d)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：<span
-class="math display">\[O(N)\]</span>，N是序列长度。</li>
-<li>空间复杂度：<span
-class="math display">\[O(1)\]</span>。常数个变量。</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Python</tag>
-        <tag>Algorithm</tag>
-        <tag>Medium</tag>
-        <tag>String</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ACM数据格式处理python方法总结</title>
     <url>/2021/07/05/2021-07-05-ACM%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F%E5%A4%84%E7%90%86python%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h1
@@ -8039,6 +7992,53 @@ https://ac.nowcoder.com/acm/contest/5657#question
 ]]></content>
       <tags>
         <tag>Code Tips</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HJ26 字符串排序-中等-字符串</title>
+    <url>/2021/07/05/2021-07-05-HJ26%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8E%92%E5%BA%8F-%E4%B8%AD%E7%AD%89-%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
+    <content><![CDATA[<h4 id="hj26-字符串排序"><a
+href="https://www.nowcoder.com/practice/5190a1db6f4f4ddb92fd9c365c944584?tpId=37&amp;&amp;tqId=21249&amp;rp=1&amp;ru=/ta/huawei&amp;qru=/ta/huawei/question-ranking">HJ26
+字符串排序</a></h4>
+<h2 id="question">Question</h2>
+<blockquote>
+<p><strong>规则 1</strong> ：英文字母从 A 到 Z 排列，不区分大小写。</p>
+<p>如，输入： Type 输出： epTy</p>
+<p><strong>规则 2</strong>
+：同一个英文字母的大小写同时存在时，按照输入顺序排列。</p>
+<p>如，输入： BabA 输出： aABb</p>
+<p><strong>规则 3</strong> ：非英文字母的其它字符保持原来的位置。</p>
+<p>如，输入： By?e 输出： Be?y</p>
+<p>注意有多组测试数据，即输入有多行，每一行单独处理（换行符隔开的表示不同行）</p>
+<p>输入描述： - 输入字符串</p>
+<p>输出描述： - 输出字符串</p>
+<p>示例1 输入：A Famous Saying: Much Ado About Nothing (2012/8). 输出：A
+aaAAbc dFgghh: iimM nNn oooos Sttuuuy (2012/8).</p>
+</blockquote>
+<h3 id="approach">Approach</h3>
+<ul>
+<li>sorted(iterable,str.upper)就可以实现：
+<ul>
+<li>1）字符由A到Z的排序</li>
+<li>2）能够实现同字母（A与a算同字母），由输入先后书序排列。</li>
+</ul></li>
+<li>str.isalpha实现的是如果字符串至少有一个字符并且所有字符都是字母则返回
+True，否则返回 False。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        s = <span class="built_in">input</span>()</span><br><span class="line">        a = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> s:</span><br><span class="line">            <span class="keyword">if</span> i.isalpha():</span><br><span class="line">                a += i</span><br><span class="line">        b = <span class="built_in">sorted</span>(a, key=<span class="built_in">str</span>.upper)</span><br><span class="line">        index = <span class="number">0</span></span><br><span class="line">        d = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(s)):</span><br><span class="line">            <span class="keyword">if</span> s[i].isalpha():</span><br><span class="line">                d += b[index]</span><br><span class="line">                index += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                d += s[i]</span><br><span class="line">        <span class="built_in">print</span>(d)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：<span
+class="math display">\[O(N)\]</span>，N是序列长度。</li>
+<li>空间复杂度：<span
+class="math display">\[O(1)\]</span>。常数个变量。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>Algorithm</tag>
+        <tag>String</tag>
+        <tag>Medium</tag>
       </tags>
   </entry>
   <entry>
@@ -9807,6 +9807,64 @@ behavior Experimental Brain Research, 67 (1987), pp. 316-322）</li>
       </tags>
   </entry>
   <entry>
+    <title>Q1721-交换链表中的节点-中等-链表</title>
+    <url>/2021/03/30/2021-03-30-Q1721-%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9-%E4%B8%AD%E7%AD%89-%E9%93%BE%E8%A1%A8/</url>
+    <content><![CDATA[<h4 id="交换链表中的节点"><a
+href="https://leetcode-cn.com/problems/swapping-nodes-in-a-linked-list/">1721.
+交换链表中的节点</a></h4>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>给你链表的头节点 head 和一个整数 k 。</p>
+<p>交换 链表正数第 k 个节点和倒数第 k
+个节点的值后，返回链表的头节点（链表 从 1 开始索引）。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>输入：head = [1,2,3,4,5], k = 2 输出：[1,4,3,2,5]</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>输入：head = [7,9,6,6,7,8,3,0,9,5], k = 5
+输出：[7,9,6,6,8,7,3,0,9,5]</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 3:</strong></p>
+<p>输入：head = [1], k = 1 输出：[1]</p>
+</blockquote>
+<blockquote>
+<p><strong>提示：</strong></p>
+<ul>
+<li>链表中节点的数目是 n</li>
+<li>1 &lt;= k &lt;= n &lt;= 105</li>
+<li>0 &lt;= Node.val &lt;= 100</li>
+</ul>
+</blockquote>
+<h3 id="approach-1-遍历搜索超时">Approach 1: 遍历搜索（超时）</h3>
+<p>自己思考没想出什么特别的计算手段，就想到遍历链表找到前k和后k个结点，然后进行交换</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">swapNodes</span>(<span class="params">self, head: ListNode, k: <span class="built_in">int</span></span>) -&gt; ListNode:</span><br><span class="line">        <span class="comment"># 找前k-1个点</span></span><br><span class="line">        L=head</span><br><span class="line">        num=<span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> L:</span><br><span class="line">            num+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> num == k-<span class="number">1</span>: <span class="comment"># 找到前k-1个结点</span></span><br><span class="line">                FK=L</span><br><span class="line">            L=L.<span class="built_in">next</span></span><br><span class="line">        <span class="comment"># 找后k+1个结点</span></span><br><span class="line">        k=num-k</span><br><span class="line">        num=<span class="number">0</span></span><br><span class="line">        ans=L=head <span class="comment"># 保证ans和L相同地址</span></span><br><span class="line">        <span class="keyword">while</span> L:</span><br><span class="line">            num+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> num == k:</span><br><span class="line">                LK=L</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            L=L.<span class="built_in">next</span> </span><br><span class="line">        <span class="comment"># 交换</span></span><br><span class="line">        FK2=FK.<span class="built_in">next</span></span><br><span class="line">        FK3=FK.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">        LK2=LK.<span class="built_in">next</span></span><br><span class="line">        LK3=LK.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">        </span><br><span class="line">        FK.<span class="built_in">next</span>=LK2</span><br><span class="line">        LK2.<span class="built_in">next</span>=FK3</span><br><span class="line">        LK.<span class="built_in">next</span>=FK2</span><br><span class="line">        FK2.<span class="built_in">next</span>=LK3</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> listNodeToString(ans)</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n+q)，其中 n
+是链表的节点数量，p是倒数第k个结点是链表的第p个结点。</li>
+<li>空间复杂度：O(1)，增加了常数个指针。</li>
+</ul>
+<h3 id="approach-2-快慢指针">Approach 2: 快慢指针</h3>
+<p>快慢指针用法挺多 1.n等分 2.检测有无环 3.从后数第几个</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">swapNodes1</span>(<span class="params">self, head: ListNode, k: <span class="built_in">int</span></span>) -&gt; ListNode:</span><br><span class="line">        fast = head</span><br><span class="line">        <span class="keyword">while</span> k - <span class="number">1</span> != <span class="number">0</span>: <span class="comment"># 1 2 3 4 5 6 7  k=3 往后移2步到3</span></span><br><span class="line">            fast = fast.<span class="built_in">next</span></span><br><span class="line">            k -= <span class="number">1</span></span><br><span class="line">        L = fast <span class="comment"># L = 3</span></span><br><span class="line">        slow = head</span><br><span class="line">        <span class="keyword">while</span> fast.<span class="built_in">next</span>: <span class="comment"># slow = 5, fast = 7</span></span><br><span class="line">            fast = fast.<span class="built_in">next</span></span><br><span class="line">            slow = slow.<span class="built_in">next</span></span><br><span class="line">        R = slow <span class="comment"># R = 5</span></span><br><span class="line">        </span><br><span class="line">        L.val,R.val = R.val,L.val <span class="comment">#3 和 5 的val 交换</span></span><br><span class="line">        <span class="keyword">return</span> head</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：<em>O(n)</em>。其中<code>n</code>为链表的长度。</li>
+<li>空间复杂度：<em>O(1)</em>。需要额外的常数大小的辅助空间。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>Algorithm</tag>
+        <tag>Linked List</tag>
+        <tag>Medium</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Reinforcement Learning | Sim-to-Real Transfer in Deep Reinforcement Learning for Robotics a Survey</title>
     <url>/2021/03/30/2021-03-30-Reinforcement%20Learning%20-%20Sim-to-Real%20Transfer%20in%20Deep%20Reinforcement%20Learning%20for%20Robotics%20a%20Survey/</url>
     <content><![CDATA[<h1
@@ -9940,130 +9998,6 @@ demonstrations [28].</li>
       </tags>
   </entry>
   <entry>
-    <title>Q1721-交换链表中的节点-中等-链表</title>
-    <url>/2021/03/30/2021-03-30-Q1721-%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9-%E4%B8%AD%E7%AD%89-%E9%93%BE%E8%A1%A8/</url>
-    <content><![CDATA[<h4 id="交换链表中的节点"><a
-href="https://leetcode-cn.com/problems/swapping-nodes-in-a-linked-list/">1721.
-交换链表中的节点</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>给你链表的头节点 head 和一个整数 k 。</p>
-<p>交换 链表正数第 k 个节点和倒数第 k
-个节点的值后，返回链表的头节点（链表 从 1 开始索引）。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入：head = [1,2,3,4,5], k = 2 输出：[1,4,3,2,5]</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>输入：head = [7,9,6,6,7,8,3,0,9,5], k = 5
-输出：[7,9,6,6,8,7,3,0,9,5]</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 3:</strong></p>
-<p>输入：head = [1], k = 1 输出：[1]</p>
-</blockquote>
-<blockquote>
-<p><strong>提示：</strong></p>
-<ul>
-<li>链表中节点的数目是 n</li>
-<li>1 &lt;= k &lt;= n &lt;= 105</li>
-<li>0 &lt;= Node.val &lt;= 100</li>
-</ul>
-</blockquote>
-<h3 id="approach-1-遍历搜索超时">Approach 1: 遍历搜索（超时）</h3>
-<p>自己思考没想出什么特别的计算手段，就想到遍历链表找到前k和后k个结点，然后进行交换</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">swapNodes</span>(<span class="params">self, head: ListNode, k: <span class="built_in">int</span></span>) -&gt; ListNode:</span><br><span class="line">        <span class="comment"># 找前k-1个点</span></span><br><span class="line">        L=head</span><br><span class="line">        num=<span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> L:</span><br><span class="line">            num+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> num == k-<span class="number">1</span>: <span class="comment"># 找到前k-1个结点</span></span><br><span class="line">                FK=L</span><br><span class="line">            L=L.<span class="built_in">next</span></span><br><span class="line">        <span class="comment"># 找后k+1个结点</span></span><br><span class="line">        k=num-k</span><br><span class="line">        num=<span class="number">0</span></span><br><span class="line">        ans=L=head <span class="comment"># 保证ans和L相同地址</span></span><br><span class="line">        <span class="keyword">while</span> L:</span><br><span class="line">            num+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> num == k:</span><br><span class="line">                LK=L</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            L=L.<span class="built_in">next</span> </span><br><span class="line">        <span class="comment"># 交换</span></span><br><span class="line">        FK2=FK.<span class="built_in">next</span></span><br><span class="line">        FK3=FK.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">        LK2=LK.<span class="built_in">next</span></span><br><span class="line">        LK3=LK.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">        </span><br><span class="line">        FK.<span class="built_in">next</span>=LK2</span><br><span class="line">        LK2.<span class="built_in">next</span>=FK3</span><br><span class="line">        LK.<span class="built_in">next</span>=FK2</span><br><span class="line">        FK2.<span class="built_in">next</span>=LK3</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> listNodeToString(ans)</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(n+q)，其中 n
-是链表的节点数量，p是倒数第k个结点是链表的第p个结点。</li>
-<li>空间复杂度：O(1)，增加了常数个指针。</li>
-</ul>
-<h3 id="approach-2-快慢指针">Approach 2: 快慢指针</h3>
-<p>快慢指针用法挺多 1.n等分 2.检测有无环 3.从后数第几个</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">swapNodes1</span>(<span class="params">self, head: ListNode, k: <span class="built_in">int</span></span>) -&gt; ListNode:</span><br><span class="line">        fast = head</span><br><span class="line">        <span class="keyword">while</span> k - <span class="number">1</span> != <span class="number">0</span>: <span class="comment"># 1 2 3 4 5 6 7  k=3 往后移2步到3</span></span><br><span class="line">            fast = fast.<span class="built_in">next</span></span><br><span class="line">            k -= <span class="number">1</span></span><br><span class="line">        L = fast <span class="comment"># L = 3</span></span><br><span class="line">        slow = head</span><br><span class="line">        <span class="keyword">while</span> fast.<span class="built_in">next</span>: <span class="comment"># slow = 5, fast = 7</span></span><br><span class="line">            fast = fast.<span class="built_in">next</span></span><br><span class="line">            slow = slow.<span class="built_in">next</span></span><br><span class="line">        R = slow <span class="comment"># R = 5</span></span><br><span class="line">        </span><br><span class="line">        L.val,R.val = R.val,L.val <span class="comment">#3 和 5 的val 交换</span></span><br><span class="line">        <span class="keyword">return</span> head</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：<em>O(n)</em>。其中<code>n</code>为链表的长度。</li>
-<li>空间复杂度：<em>O(1)</em>。需要额外的常数大小的辅助空间。</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Python</tag>
-        <tag>Algorithm</tag>
-        <tag>Linked List</tag>
-        <tag>Medium</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Memristor‐Based Biologically Plausible Memory Based on Discrete and Continuous Attractor Networks for Neuromorphic Systems</title>
-    <url>/2021/03/29/2021-03-29-Memristor%E2%80%90Based%20Biologically%20Plausible%20Memory%20Based%20on%20Discrete%20and%20Continuous%20Attractor%20Networks%20for%20Neuromorphic%20Systems/</url>
-    <content><![CDATA[<h1
-id="memristorbased-biologically-plausible-memory-based-on-discrete-and-continuous-attractor-networks-for-neuromorphic-systems">Memristor‐Based
-Biologically Plausible Memory Based on Discrete and Continuous Attractor
-Networks for Neuromorphic Systems</h1>
-<p>论文链接：https://onlinelibrary.wiley.com/doi/10.1002/aisy.202000001</p>
-<p>## 背景</p>
-<ul>
-<li><p>神经形态计算是1990年代提出的一个新概念，它表明未来的计算机系统可以通过直接在物理水平上并行处理模拟信号来模仿人脑的操作原理。</p></li>
-<li><p>s按个优势：</p>
-<ul>
-<li>高并行性 high parallelism</li>
-<li>低功耗 low power consumption</li>
-<li>内存计算 in‐memory computing</li>
-</ul></li>
-<li><p><strong>忆阻器</strong>可以根据内部状态和外部刺激（例如电压脉冲）来改变其电阻。基于忆阻器的纵横制结构可以通过依赖欧姆定律和基尔霍夫定律直接将向量矩阵乘法（VMM）（一种最密集的计算组件）映射到电参数来加速各种人工神经网络（ANN）</p></li>
-<li><p>VMM计算过程直接在原地发生，从而避免了从内存中获取数据而导致的内存墙（<strong>冯·诺伊曼·瓶颈</strong>）</p></li>
-<li><p>如果吸引子是离散的，则初始状态将落入最近的吸引子。这是联想记忆的模型，该记忆先前已在忆阻器交叉开关上执行</p></li>
-<li><p>然而，这些先前的研究使用称为Hebbian规则的离线学习，这意味着突触的权重已在软件中计算出来，并简单地映射到忆阻器交叉开关上。Hebbian
-rule的表现很差，无法支持大规模的吸引网络。</p></li>
-<li><p>通过引入平移不变的钟形连接模式，网络吸引子可以奇妙地形成一个平面。这称为<strong>连续吸引子神经网络（CANN）</strong></p></li>
-<li><p>在记忆方面，人们认为大脑可以在动态分配过程中暂时记住当前状态，并随后使用此信息进行计算。这称为工作存储器，可以由CANN自然实现。</p></li>
-<li><p>通过引入神经元之间的竞争与合作，一种名为<strong>Oja规则</strong>的有效的在线在线学习方法被应用到基于无监督学习的联想记忆中，表明该方法可以将性能提高至少10倍，这将大大减少芯片面积并增强硬件的健壮性。</p></li>
-</ul>
-<h2 id="工作内容">工作内容</h2>
-<h3 id="离散吸引子网络">1. 离散吸引子网络</h3>
-<ul>
-<li>离散吸引子神经网络，也称为Hopfield神经网络，是完全连接的网络，其中每个神经元与其他神经元都有连接，但没有自连接</li>
-</ul>
-<p><span class="math display">\[
-X_i^{i+1}=sgn\bigg(\sum_j W_{ij}X_i^t+b_i\bigg)
-\]</span></p>
-<h3 id="oja学习规则">2. Oja学习规则</h3>
-<p><span class="math display">\[
-Y=X&#39;\times W\\
-\Delta W&#39;=\alpha (X-W&#39;\times Y&#39;)\times Y
-\]</span></p>
-<ul>
-<li><p>其中<em>W</em>是权重矩阵，<em>α</em>是学习率</p></li>
-<li><p>与以前使用软件计算权重的工作不同，此规则可以在交叉开关中在线训练网络，因此可以显着提高性能。该规则的主要原理是利用神经元之间的竞争，这种竞争也用在局部竞争算法（LCA）中，<a
-href="https://onlinelibrary.wiley.com/doi/10.1002/aisy.202000001#aisy202000001-bib-0027">27</a>解释为Winner
-Takes All（WTA）。</p></li>
-<li><p>Oja规则的存储容量大约是Hebbian规则的10倍，并且由Oja规则训练的神经形态存储系统也具有更好的鲁棒性，这表现为更高的噪声容忍度，显示了整体上显着的性能提升。</p></li>
-</ul>
-<h3 id="连续吸引子网络">3. 连续吸引子网络</h3>
-<p><span class="math display">\[
-\tau\frac{\partial U(x,t)}{\partial t}=-U(x,t)+\rho \int_{x&#39;}
-J(x,x&#39;)r(x&#39;,t) dx&#39;+I^{ext}(x,t)\\
-r(x,t)=\frac{[U(x,t)]^2_+}{1+k\rho\int_{x&#39;}[U(x&#39;,t)]^2_+dx&#39;}
-\]</span></p>
-<h2 id="总结">总结</h2>
-<p>想看看吸引子网络的，但它是Hopfield Neural Networks，激活函数是<span
-class="math display">\[sgn()\]</span>，和运动基元、增益场还是不一样的。</p>
-<p>基于忆阻器的神经形态系统可以加速吸引子网络的计算效率，而这种计算方式在初级运动皮层和前额叶皮层的感觉-运动映射中都有使用。这为将忆阻器与类脑运动决策算法的结合提供了合理性和理论基础，两者的结合有望大幅提高类脑决策算法的计算效率，在行为层面使机器人表现出强大的动态环境适应能力和运动迁移能力。</p>
-<p>相关文章：Motor Memory Is Encoded as a Gain-Field Combination of
-Intrinsic and Extrinsic Action Representations</p>
-<p>论文链接：https://www.jneurosci.org/content/32/43/14951.long</p>
-<p>blog：https://txing-z.gitee.io/txing-casia.github.io/2021/03/26/Neuroscience-Motor-Memory-Is-Encoded-as-a-Gain-Field-Combination-of-Intrinsic-and-Extrinsic-Action-Representations/</p>
-]]></content>
-      <tags>
-        <tag>Neuroscience</tag>
-        <tag>Attractor Networks</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JZOffer 35 复杂链表的复制-中等-链表</title>
     <url>/2021/03/29/2021-03-29-JZOffer%2035-%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6-%E4%B8%AD%E7%AD%89-%E9%93%BE%E8%A1%A8/</url>
     <content><![CDATA[<h4 id="剑指-offer-35.-复杂链表的复制"><a
@@ -10157,6 +10091,72 @@ next 或 random 指针指向该结点即可。</p>
       </tags>
   </entry>
   <entry>
+    <title>Memristor‐Based Biologically Plausible Memory Based on Discrete and Continuous Attractor Networks for Neuromorphic Systems</title>
+    <url>/2021/03/29/2021-03-29-Memristor%E2%80%90Based%20Biologically%20Plausible%20Memory%20Based%20on%20Discrete%20and%20Continuous%20Attractor%20Networks%20for%20Neuromorphic%20Systems/</url>
+    <content><![CDATA[<h1
+id="memristorbased-biologically-plausible-memory-based-on-discrete-and-continuous-attractor-networks-for-neuromorphic-systems">Memristor‐Based
+Biologically Plausible Memory Based on Discrete and Continuous Attractor
+Networks for Neuromorphic Systems</h1>
+<p>论文链接：https://onlinelibrary.wiley.com/doi/10.1002/aisy.202000001</p>
+<p>## 背景</p>
+<ul>
+<li><p>神经形态计算是1990年代提出的一个新概念，它表明未来的计算机系统可以通过直接在物理水平上并行处理模拟信号来模仿人脑的操作原理。</p></li>
+<li><p>s按个优势：</p>
+<ul>
+<li>高并行性 high parallelism</li>
+<li>低功耗 low power consumption</li>
+<li>内存计算 in‐memory computing</li>
+</ul></li>
+<li><p><strong>忆阻器</strong>可以根据内部状态和外部刺激（例如电压脉冲）来改变其电阻。基于忆阻器的纵横制结构可以通过依赖欧姆定律和基尔霍夫定律直接将向量矩阵乘法（VMM）（一种最密集的计算组件）映射到电参数来加速各种人工神经网络（ANN）</p></li>
+<li><p>VMM计算过程直接在原地发生，从而避免了从内存中获取数据而导致的内存墙（<strong>冯·诺伊曼·瓶颈</strong>）</p></li>
+<li><p>如果吸引子是离散的，则初始状态将落入最近的吸引子。这是联想记忆的模型，该记忆先前已在忆阻器交叉开关上执行</p></li>
+<li><p>然而，这些先前的研究使用称为Hebbian规则的离线学习，这意味着突触的权重已在软件中计算出来，并简单地映射到忆阻器交叉开关上。Hebbian
+rule的表现很差，无法支持大规模的吸引网络。</p></li>
+<li><p>通过引入平移不变的钟形连接模式，网络吸引子可以奇妙地形成一个平面。这称为<strong>连续吸引子神经网络（CANN）</strong></p></li>
+<li><p>在记忆方面，人们认为大脑可以在动态分配过程中暂时记住当前状态，并随后使用此信息进行计算。这称为工作存储器，可以由CANN自然实现。</p></li>
+<li><p>通过引入神经元之间的竞争与合作，一种名为<strong>Oja规则</strong>的有效的在线在线学习方法被应用到基于无监督学习的联想记忆中，表明该方法可以将性能提高至少10倍，这将大大减少芯片面积并增强硬件的健壮性。</p></li>
+</ul>
+<h2 id="工作内容">工作内容</h2>
+<h3 id="离散吸引子网络">1. 离散吸引子网络</h3>
+<ul>
+<li>离散吸引子神经网络，也称为Hopfield神经网络，是完全连接的网络，其中每个神经元与其他神经元都有连接，但没有自连接</li>
+</ul>
+<p><span class="math display">\[
+X_i^{i+1}=sgn\bigg(\sum_j W_{ij}X_i^t+b_i\bigg)
+\]</span></p>
+<h3 id="oja学习规则">2. Oja学习规则</h3>
+<p><span class="math display">\[
+Y=X&#39;\times W\\
+\Delta W&#39;=\alpha (X-W&#39;\times Y&#39;)\times Y
+\]</span></p>
+<ul>
+<li><p>其中<em>W</em>是权重矩阵，<em>α</em>是学习率</p></li>
+<li><p>与以前使用软件计算权重的工作不同，此规则可以在交叉开关中在线训练网络，因此可以显着提高性能。该规则的主要原理是利用神经元之间的竞争，这种竞争也用在局部竞争算法（LCA）中，<a
+href="https://onlinelibrary.wiley.com/doi/10.1002/aisy.202000001#aisy202000001-bib-0027">27</a>解释为Winner
+Takes All（WTA）。</p></li>
+<li><p>Oja规则的存储容量大约是Hebbian规则的10倍，并且由Oja规则训练的神经形态存储系统也具有更好的鲁棒性，这表现为更高的噪声容忍度，显示了整体上显着的性能提升。</p></li>
+</ul>
+<h3 id="连续吸引子网络">3. 连续吸引子网络</h3>
+<p><span class="math display">\[
+\tau\frac{\partial U(x,t)}{\partial t}=-U(x,t)+\rho \int_{x&#39;}
+J(x,x&#39;)r(x&#39;,t) dx&#39;+I^{ext}(x,t)\\
+r(x,t)=\frac{[U(x,t)]^2_+}{1+k\rho\int_{x&#39;}[U(x&#39;,t)]^2_+dx&#39;}
+\]</span></p>
+<h2 id="总结">总结</h2>
+<p>想看看吸引子网络的，但它是Hopfield Neural Networks，激活函数是<span
+class="math display">\[sgn()\]</span>，和运动基元、增益场还是不一样的。</p>
+<p>基于忆阻器的神经形态系统可以加速吸引子网络的计算效率，而这种计算方式在初级运动皮层和前额叶皮层的感觉-运动映射中都有使用。这为将忆阻器与类脑运动决策算法的结合提供了合理性和理论基础，两者的结合有望大幅提高类脑决策算法的计算效率，在行为层面使机器人表现出强大的动态环境适应能力和运动迁移能力。</p>
+<p>相关文章：Motor Memory Is Encoded as a Gain-Field Combination of
+Intrinsic and Extrinsic Action Representations</p>
+<p>论文链接：https://www.jneurosci.org/content/32/43/14951.long</p>
+<p>blog：https://txing-z.gitee.io/txing-casia.github.io/2021/03/26/Neuroscience-Motor-Memory-Is-Encoded-as-a-Gain-Field-Combination-of-Intrinsic-and-Extrinsic-Action-Representations/</p>
+]]></content>
+      <tags>
+        <tag>Neuroscience</tag>
+        <tag>Attractor Networks</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Neuroscience | Neuronal Correlates of Motor Performance and Motor Learning in the Primary Motor Cortex of Monkeys Adapting to an External Force Field</title>
     <url>/2021/03/28/2021-03-28-Neuroscience%20-%20Neuronal%20Correlates%20of%20Motor%20Performance%20and%20Motor%20Learning%20in%20the%20Primary%20Motor%20Cortex%20of%20Monkeys%20Adapting%20to%20an%20External%20Force%20Field/</url>
     <content><![CDATA[<h1
@@ -10192,6 +10192,46 @@ to the movement for all eight directions</p></li>
 <h2 id="总结">总结</h2>
 <ul>
 <li>这篇文章可以作为证明皮层参与力场适应实验的生物证据，但实质上没有说明作用。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Neuroscience</tag>
+        <tag>Motor Primitives</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Neuroscience | Efficient computation and cue integration with noisy population codes (Nature)</title>
+    <url>/2021/03/26/2021-03-26-Neuroscience%20-%20Efficient%20computation%20and%20cue%20integration%20with%20noisy%20population%20codes/</url>
+    <content><![CDATA[<h1
+id="efficient-computation-and-cue-integration-with-noisy-population-codes-nature">Efficient
+computation and cue integration with noisy population codes
+(Nature)</h1>
+<p>论文链接：https://www.nature.com/articles/nn0801_826</p>
+<h2 id="背景">背景</h2>
+<ul>
+<li><p>单个的神经元活动包含噪声，因此不可靠。但是神经元的集群会体现出极大的可靠性。</p></li>
+<li><p>目前有两种关于神经元群体的计算方式：function approximation 和 cue
+integration</p></li>
+<li><p>多维吸引子的基函数网络可以将有噪声的神经元带入计算 basis function
+networks with multidimensional attractors</p></li>
+<li><p>Moreover, neurons in the intermediate layers of our model show
+response properties similar to those observed in several multimodal
+cortical areas (多峰皮层区域)</p></li>
+</ul>
+<h2 id="主要工作">主要工作</h2>
+<ul>
+<li><p>感觉运动转换时非线性的</p>
+<p>Pouget, A. &amp; Snyder, L. Computational approaches to sensorimotor
+transformations. <em>Nat. Neurosci.</em> 3, 1192–1198 (2000).</p></li>
+<li><p>皮层中的神经元主要负责编码这些非线性的感觉-运动转换过程。其中主要涉及钟形调制曲线的神经元。</p></li>
+<li><p>我们证明了一种特殊类型的神经网络，即具有<strong>多维吸引子的基函数网络</strong>，可以为有效地实现<strong>非线性变换</strong>和<strong>与噪声神经元的提示集成</strong>提供通用的体系结构。</p></li>
+<li><p>网络结构示意：</p></li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210326-1.png" /></p>
+<h2 id="总结">总结</h2>
+<ul>
+<li>文章比较早也比较简单，图片挺好，说明了编码的方式，可以使用</li>
 </ul>
 ]]></content>
       <tags>
@@ -10357,46 +10397,6 @@ href="https://leetcode-cn.com/problems/swap-nodes-in-pairs/">24.
         <tag>Algorithm</tag>
         <tag>Linked List</tag>
         <tag>Medium</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Neuroscience | Efficient computation and cue integration with noisy population codes (Nature)</title>
-    <url>/2021/03/26/2021-03-26-Neuroscience%20-%20Efficient%20computation%20and%20cue%20integration%20with%20noisy%20population%20codes/</url>
-    <content><![CDATA[<h1
-id="efficient-computation-and-cue-integration-with-noisy-population-codes-nature">Efficient
-computation and cue integration with noisy population codes
-(Nature)</h1>
-<p>论文链接：https://www.nature.com/articles/nn0801_826</p>
-<h2 id="背景">背景</h2>
-<ul>
-<li><p>单个的神经元活动包含噪声，因此不可靠。但是神经元的集群会体现出极大的可靠性。</p></li>
-<li><p>目前有两种关于神经元群体的计算方式：function approximation 和 cue
-integration</p></li>
-<li><p>多维吸引子的基函数网络可以将有噪声的神经元带入计算 basis function
-networks with multidimensional attractors</p></li>
-<li><p>Moreover, neurons in the intermediate layers of our model show
-response properties similar to those observed in several multimodal
-cortical areas (多峰皮层区域)</p></li>
-</ul>
-<h2 id="主要工作">主要工作</h2>
-<ul>
-<li><p>感觉运动转换时非线性的</p>
-<p>Pouget, A. &amp; Snyder, L. Computational approaches to sensorimotor
-transformations. <em>Nat. Neurosci.</em> 3, 1192–1198 (2000).</p></li>
-<li><p>皮层中的神经元主要负责编码这些非线性的感觉-运动转换过程。其中主要涉及钟形调制曲线的神经元。</p></li>
-<li><p>我们证明了一种特殊类型的神经网络，即具有<strong>多维吸引子的基函数网络</strong>，可以为有效地实现<strong>非线性变换</strong>和<strong>与噪声神经元的提示集成</strong>提供通用的体系结构。</p></li>
-<li><p>网络结构示意：</p></li>
-</ul>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210326-1.png" /></p>
-<h2 id="总结">总结</h2>
-<ul>
-<li>文章比较早也比较简单，图片挺好，说明了编码的方式，可以使用</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Neuroscience</tag>
-        <tag>Motor Primitives</tag>
       </tags>
   </entry>
   <entry>
@@ -10671,6 +10671,44 @@ Offer 06. 从尾到头打印链表</a></h4>
       </tags>
   </entry>
   <entry>
+    <title>Neuroscience | Learning of action through adaptive combination of motor primitives (Nature)</title>
+    <url>/2021/03/23/2021-03-23-Neuroscience%20-%20Learning%20of%20action%20through%20adaptive%20combination%20of%20motor%20primitives/</url>
+    <content><![CDATA[<h1
+id="learning-of-action-through-adaptive-combination-of-motor-primitives">Learning
+of action through adaptive combination of motor primitives</h1>
+<p>论文链接：https://www.nature.com/articles/35037588</p>
+<h2 id="背景">背景</h2>
+<p>理解大脑如何构造运动仍然是神经科学领域的一项基本挑战。</p>
+<p>大脑可以通过运动基元灵活组合来控制复杂的运动，其中每个基元都是感觉运动地图中的计算元素，它将所需的肢体轨迹转换为运动命令。</p>
+<h2 id="主要工作">主要工作</h2>
+<ul>
+<li><p>人在运动之前，通过预测力或者力矩，构建运动指令。然后不断调整预测，使得形成的轨迹近似期望的路径。</p></li>
+<li><p>训练区域外的运动会被训练区域内的训练影响，说明大脑构建了一个状态依赖的近似外部力的<strong>内部模型</strong>（internal
+model）</p></li>
+<li><p>内部模型的泛化性能通过“抓取实验”来量化验证</p>
+<p>Shadmehr, R. &amp; Mussa-Ivaldi, F. A. Adaptive representation of
+dynamics during learning of a motor task. J. Neurosci. 14, 3208–3224
+(1994).</p>
+<p>Ghez, C., Krakauer, J. W., Sainburg, R. L. &amp; Ghilardi, M. F. in
+The New Cognitive Neurosciences (ed. Gazzaniga, M. S.) 501–514 (MIT
+Press, Cambridge, Massachusetts, 2000).</p></li>
+<li><p><strong>本文主要介绍了如何通过灵活地组合运动基元构建内部模型，形成感觉-运动地图（sensorimotor
+map），构建从轨迹到运动指令的具有泛化能力的转换。</strong></p></li>
+<li><p>学习粘滞力场（viscous forces）<span
+class="math display">\[f=B\dot{x}\]</span></p></li>
+<li><p>随着场空间频率的增加，对于所有基函数宽度，内部模型的精度都会下降。但是，更广泛的基础的学习能力在较低的频率下崩溃了。这与最近的发现是一致的，即人类在较高的空间频率力场中表现出的适应能力较弱。</p>
+<p>Matsouka, Y. Models of generalization in motor control. PhD thesis,
+MIT ( 1998).</p></li>
+</ul>
+<h2 id="总结">总结</h2>
+<p>算是运动基元的比较早的也是比较权威的工作（Nature）</p>
+]]></content>
+      <tags>
+        <tag>Neuroscience</tag>
+        <tag>Motor Primitives</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Q402-移掉K位数字-中等-贪心算法</title>
     <url>/2021/03/23/2021-03-23-Q402-%E7%A7%BB%E6%8E%89k%E4%BD%8D%E6%95%B0%E5%AD%97-%E4%B8%AD%E7%AD%89-%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<h4 id="移掉k位数字"><a
@@ -10764,44 +10802,6 @@ O(n)。</li>
         <tag>Algorithm</tag>
         <tag>Medium</tag>
         <tag>Greedy</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Neuroscience | Learning of action through adaptive combination of motor primitives (Nature)</title>
-    <url>/2021/03/23/2021-03-23-Neuroscience%20-%20Learning%20of%20action%20through%20adaptive%20combination%20of%20motor%20primitives/</url>
-    <content><![CDATA[<h1
-id="learning-of-action-through-adaptive-combination-of-motor-primitives">Learning
-of action through adaptive combination of motor primitives</h1>
-<p>论文链接：https://www.nature.com/articles/35037588</p>
-<h2 id="背景">背景</h2>
-<p>理解大脑如何构造运动仍然是神经科学领域的一项基本挑战。</p>
-<p>大脑可以通过运动基元灵活组合来控制复杂的运动，其中每个基元都是感觉运动地图中的计算元素，它将所需的肢体轨迹转换为运动命令。</p>
-<h2 id="主要工作">主要工作</h2>
-<ul>
-<li><p>人在运动之前，通过预测力或者力矩，构建运动指令。然后不断调整预测，使得形成的轨迹近似期望的路径。</p></li>
-<li><p>训练区域外的运动会被训练区域内的训练影响，说明大脑构建了一个状态依赖的近似外部力的<strong>内部模型</strong>（internal
-model）</p></li>
-<li><p>内部模型的泛化性能通过“抓取实验”来量化验证</p>
-<p>Shadmehr, R. &amp; Mussa-Ivaldi, F. A. Adaptive representation of
-dynamics during learning of a motor task. J. Neurosci. 14, 3208–3224
-(1994).</p>
-<p>Ghez, C., Krakauer, J. W., Sainburg, R. L. &amp; Ghilardi, M. F. in
-The New Cognitive Neurosciences (ed. Gazzaniga, M. S.) 501–514 (MIT
-Press, Cambridge, Massachusetts, 2000).</p></li>
-<li><p><strong>本文主要介绍了如何通过灵活地组合运动基元构建内部模型，形成感觉-运动地图（sensorimotor
-map），构建从轨迹到运动指令的具有泛化能力的转换。</strong></p></li>
-<li><p>学习粘滞力场（viscous forces）<span
-class="math display">\[f=B\dot{x}\]</span></p></li>
-<li><p>随着场空间频率的增加，对于所有基函数宽度，内部模型的精度都会下降。但是，更广泛的基础的学习能力在较低的频率下崩溃了。这与最近的发现是一致的，即人类在较高的空间频率力场中表现出的适应能力较弱。</p>
-<p>Matsouka, Y. Models of generalization in motor control. PhD thesis,
-MIT ( 1998).</p></li>
-</ul>
-<h2 id="总结">总结</h2>
-<p>算是运动基元的比较早的也是比较权威的工作（Nature）</p>
-]]></content>
-      <tags>
-        <tag>Neuroscience</tag>
-        <tag>Motor Primitives</tag>
       </tags>
   </entry>
   <entry>
@@ -12568,31 +12568,6 @@ id="小鼠趋利-避害机制的神经基础-曹鹏教授">小鼠趋利-避害�
       </tags>
   </entry>
   <entry>
-    <title>ThirdWork reference</title>
-    <url>/2021/01/03/2021-01-04-ThirdWork%20Reference/</url>
-    <content><![CDATA[<h1 id="运动基元文章相关参考文献">运动基元文章相关参考文献</h1>
-<p>2020-01-03进度暂停</p>
-<h2 id="实施步骤">实施步骤</h2>
-<ul>
-<li>Primitives for Motor Adaptation Reflect Correlated Neural Tuning to
-Position and Velocity</li>
-<li>Spatial Generalization from Learning Dynamics of Reaching
-Movements</li>
-<li>Learning of action through adaptive combination of motor
-primitives</li>
-<li>Motor Memory Is Encoded as a Gain-Field Combination of Intrinsic and
-Extrinsic Action Representations</li>
-<li>The Binding of Learning to Action in Motor Adaptation</li>
-<li>A Gain-Field Encoding of Limb Position and Velocity in the Internal
-Model of Arm Dynamics</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>HRL</tag>
-        <tag>Motor Primitives</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>在VS Code配置编译LaTeX环境</title>
     <url>/2021/01/03/2021-01-03-%E5%9C%A8VS%20Code%E9%85%8D%E7%BD%AELaTeX%E7%8E%AF%E5%A2%83/</url>
     <content><![CDATA[<h1 id="在vs-code配置编译latex环境">在VS Code配置编译LaTeX环境</h1>
@@ -12624,6 +12599,31 @@ href="https://zhuanlan.zhihu.com/p/38178015">使用VSCode编写LaTeX</a></li>
       <tags>
         <tag>LaTeX</tag>
         <tag>VS Code</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ThirdWork reference</title>
+    <url>/2021/01/03/2021-01-04-ThirdWork%20Reference/</url>
+    <content><![CDATA[<h1 id="运动基元文章相关参考文献">运动基元文章相关参考文献</h1>
+<p>2020-01-03进度暂停</p>
+<h2 id="实施步骤">实施步骤</h2>
+<ul>
+<li>Primitives for Motor Adaptation Reflect Correlated Neural Tuning to
+Position and Velocity</li>
+<li>Spatial Generalization from Learning Dynamics of Reaching
+Movements</li>
+<li>Learning of action through adaptive combination of motor
+primitives</li>
+<li>Motor Memory Is Encoded as a Gain-Field Combination of Intrinsic and
+Extrinsic Action Representations</li>
+<li>The Binding of Learning to Action in Motor Adaptation</li>
+<li>A Gain-Field Encoding of Limb Position and Velocity in the Internal
+Model of Arm Dynamics</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>HRL</tag>
+        <tag>Motor Primitives</tag>
       </tags>
   </entry>
   <entry>
@@ -14963,6 +14963,47 @@ I-III三道题后，对回溯法寻找合适解的问题逐渐熟悉了起来。
       </tags>
   </entry>
   <entry>
+    <title>Reinforcement Learning | FeUdal Networks (FuN)</title>
+    <url>/2020/09/10/2020-09-10-Reinforcement%20Learning-FeUdal%20Networks/</url>
+    <content><![CDATA[<h1 id="feudal-networks-for-hierarchical-reinforcement-learning">FeUdal
+Networks for Hierarchical Reinforcement learning</h1>
+<p>论文链接：https://arxiv.org/abs/1703.01161</p>
+<h2 id="背景">背景</h2>
+<p>利用分层强化学习将一个复杂任务拆分为不同维度的问题被认为是一种更自然、更类人的模式。例如人在吃饭的时候，人在宏观的维度作出决策要吃哪个菜，然后身体处于低维的层次，调动肌肉产生运动，完成夹菜和吃菜的动作。在这一过程中，高维的我们没有直接考虑调用哪条肌肉，而是做什么事。这一点正是目前的RL所缺乏的能力。</p>
+<h2 id="主要工作">主要工作</h2>
+<p>FuN是在feudal reinforcement
+learning基础上的延展性工作，利用Manger学习子状态空间，设定子目标，将任务进行拆分；然后Worker处理子任务，完成Manger设置的子目标。</p>
+<p>其主体框架如下：</p>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200910-1.png" /></p>
+<p>其中，Manger和Worker都是RNN，只不过处理问题的时间分辨率不一样。Worker的c步被看做Manger的一步。网络动力学关系如下：</p>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200910-2.png" /></p>
+<p><span class="math display">\[x_t\]</span>是图像输入，<span
+class="math display">\[z_t\]</span>是提取的特征，<span
+class="math display">\[s_t\]</span>是输入给Manger RNN的状态。<span
+class="math display">\[h^M\]</span>是Manger网络的内部状态。通过<span
+class="math display">\[f^{Mrnn}\]</span>获得子目标<span
+class="math display">\[\hat{g}_t\]</span>、归一化子目标<span
+class="math display">\[g_t\]</span>。</p>
+<p>通过一个线性映射<span class="math display">\[\phi\]</span>将<span
+class="math display">\[c\]</span>步的目标映射到嵌入向量<span
+class="math display">\[w_t\]</span>中。对于Work RNN，输入是状态<span
+class="math display">\[z_t\]</span>和网络内部状态<span
+class="math display">\[h^W\]</span>，<span
+class="math display">\[U_t\]</span>是输出矩阵。最后通过SoftMax选择最能满足子目标<span
+class="math display">\[g_t\]</span>的<span
+class="math display">\[U_t\]</span>。</p>
+<p>（文章的主体思路就是以上内容，后续部分主要讨论网络更新，reward设定等细节，我打算看了代码之后在做分析）</p>
+<h2 id="总结">总结</h2>
+<p>文章种在多个游戏中进行了实验对比，均取得了良好的实验效果。但遗憾的是，几乎所有的复现都说性能达不到文章中的水平。可能是实验中还有一些优化并未在文章中说明。</p>
+]]></content>
+      <tags>
+        <tag>Reinforcement Learning</tag>
+        <tag>HRL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Q40 Combination Sum II-中等-递归 回溯</title>
     <url>/2020/09/10/2020-09-10-Q40%20Combination%20Sum%20II-%E4%B8%AD%E7%AD%89-%E9%80%92%E5%BD%92%20%E5%9B%9E%E6%BA%AF/</url>
     <content><![CDATA[<h1 id="combination-sum-ii"><a
@@ -15099,47 +15140,6 @@ class="math display">\[\textit{freq}\]</span>、递归中存储当前选择的�
         <tag>Medium</tag>
         <tag>Backtracking</tag>
         <tag>Recursion</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Reinforcement Learning | FeUdal Networks (FuN)</title>
-    <url>/2020/09/10/2020-09-10-Reinforcement%20Learning-FeUdal%20Networks/</url>
-    <content><![CDATA[<h1 id="feudal-networks-for-hierarchical-reinforcement-learning">FeUdal
-Networks for Hierarchical Reinforcement learning</h1>
-<p>论文链接：https://arxiv.org/abs/1703.01161</p>
-<h2 id="背景">背景</h2>
-<p>利用分层强化学习将一个复杂任务拆分为不同维度的问题被认为是一种更自然、更类人的模式。例如人在吃饭的时候，人在宏观的维度作出决策要吃哪个菜，然后身体处于低维的层次，调动肌肉产生运动，完成夹菜和吃菜的动作。在这一过程中，高维的我们没有直接考虑调用哪条肌肉，而是做什么事。这一点正是目前的RL所缺乏的能力。</p>
-<h2 id="主要工作">主要工作</h2>
-<p>FuN是在feudal reinforcement
-learning基础上的延展性工作，利用Manger学习子状态空间，设定子目标，将任务进行拆分；然后Worker处理子任务，完成Manger设置的子目标。</p>
-<p>其主体框架如下：</p>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200910-1.png" /></p>
-<p>其中，Manger和Worker都是RNN，只不过处理问题的时间分辨率不一样。Worker的c步被看做Manger的一步。网络动力学关系如下：</p>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200910-2.png" /></p>
-<p><span class="math display">\[x_t\]</span>是图像输入，<span
-class="math display">\[z_t\]</span>是提取的特征，<span
-class="math display">\[s_t\]</span>是输入给Manger RNN的状态。<span
-class="math display">\[h^M\]</span>是Manger网络的内部状态。通过<span
-class="math display">\[f^{Mrnn}\]</span>获得子目标<span
-class="math display">\[\hat{g}_t\]</span>、归一化子目标<span
-class="math display">\[g_t\]</span>。</p>
-<p>通过一个线性映射<span class="math display">\[\phi\]</span>将<span
-class="math display">\[c\]</span>步的目标映射到嵌入向量<span
-class="math display">\[w_t\]</span>中。对于Work RNN，输入是状态<span
-class="math display">\[z_t\]</span>和网络内部状态<span
-class="math display">\[h^W\]</span>，<span
-class="math display">\[U_t\]</span>是输出矩阵。最后通过SoftMax选择最能满足子目标<span
-class="math display">\[g_t\]</span>的<span
-class="math display">\[U_t\]</span>。</p>
-<p>（文章的主体思路就是以上内容，后续部分主要讨论网络更新，reward设定等细节，我打算看了代码之后在做分析）</p>
-<h2 id="总结">总结</h2>
-<p>文章种在多个游戏中进行了实验对比，均取得了良好的实验效果。但遗憾的是，几乎所有的复现都说性能达不到文章中的水平。可能是实验中还有一些优化并未在文章中说明。</p>
-]]></content>
-      <tags>
-        <tag>Reinforcement Learning</tag>
-        <tag>HRL</tag>
       </tags>
   </entry>
   <entry>
@@ -19020,6 +19020,66 @@ for N-Repeated Element in Size 2N Array.</li>
       </tags>
   </entry>
   <entry>
+    <title>Q771 Jewels and Stones</title>
+    <url>/2019/05/06/2019-05-06-Q771-Jewels-and-Stones/</url>
+    <content><![CDATA[<h1 id="jewels-and-stones"><a
+href="https://leetcode.com/problems/jewels-and-stones/">Jewels and
+Stones</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>You're given strings <code>J</code> representing the types of stones
+that are jewels, and <code>S</code> representing the stones you have.
+Each character in <code>S</code> is a type of stone you have. You want
+to know how many of the stones you have are also jewels.</p>
+<p>The letters in <code>J</code> are guaranteed distinct, and all
+characters in <code>J</code> and <code>S</code> are letters. Letters are
+case sensitive, so <code>"a"</code> is considered a different type of
+stone from <code>"A"</code>.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1</strong>:</p>
+<p>Input: J = "aA", S = "aAAbbbb" Output: 3</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1</strong>:</p>
+<p>Input: J = "z", S = "ZZ" Output: 0</p>
+</blockquote>
+<blockquote>
+<p><strong>Note</strong>:</p>
+<p>S and J will consist of letters and have length at most 50. The
+characters in J are distinct.</p>
+</blockquote>
+<h3 id="approach-1-brute-force">Approach 1: Brute Force</h3>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>The brute force approach is simple. Loop through each element <em>i
+,j</em> and find if they are equal.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numJewelsInStones</span>(<span class="params">self, J: <span class="built_in">str</span>, S: <span class="built_in">str</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        num=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> J:</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> S:</span><br><span class="line">                <span class="keyword">if</span> i==j:</span><br><span class="line">                    num+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> num</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    J = <span class="string">&quot;aA&quot;</span></span><br><span class="line">    S=<span class="string">&quot;aAAbbbbb&quot;</span></span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.numJewelsInStones(J,S)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Runtime: 40 ms, faster than 68.64% of Python3 online submissions for
+Jewels and Stones.</li>
+<li>Memory Usage: 13.3 MB, less than 5.25% of Python3 online submissions
+for Jewels and Stones.</li>
+</ul>
+<hr />
+<h3 id="approach-2-hash-table">Approach 2: Hash Table</h3>
+<p>In my opinion, the second approach cancels the nested loop which
+should be much faster than the first approach. However, it has no effect
+at all. :worried:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numJewelsInStones</span>(<span class="params">self, J: <span class="built_in">str</span>, S: <span class="built_in">str</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        Hashmap=<span class="built_in">dict</span>()</span><br><span class="line">        num=<span class="number">0</span></span><br><span class="line">        <span class="comment"># 建立Hash Table</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(J)):</span><br><span class="line">            Hashmap[J[i]] = i <span class="comment">#键是数值，值是序号</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> S:</span><br><span class="line">            <span class="keyword">if</span> j <span class="keyword">in</span> Hashmap:</span><br><span class="line">                num+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> num</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Runtime: 40 ms, faster than 68.64% of Python3 online submissions for
+Jewels and Stones.</li>
+<li>Memory Usage: 13 MB, less than 5.25% of Python3 online submissions
+for Jewels and Stones.</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>Algorithm</tag>
+        <tag>Hash Table</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Using Emoji in MD</title>
     <url>/2019/05/06/2019-05-06-Markdown-Emoji/</url>
     <content><![CDATA[<h1 id="markdown-emoji"><a
@@ -21512,66 +21572,6 @@ style="text-align: center;"><code>:small_red_triangle_down:</code></td>
       <tags>
         <tag>Emoji</tag>
         <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Q771 Jewels and Stones</title>
-    <url>/2019/05/06/2019-05-06-Q771-Jewels-and-Stones/</url>
-    <content><![CDATA[<h1 id="jewels-and-stones"><a
-href="https://leetcode.com/problems/jewels-and-stones/">Jewels and
-Stones</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>You're given strings <code>J</code> representing the types of stones
-that are jewels, and <code>S</code> representing the stones you have.
-Each character in <code>S</code> is a type of stone you have. You want
-to know how many of the stones you have are also jewels.</p>
-<p>The letters in <code>J</code> are guaranteed distinct, and all
-characters in <code>J</code> and <code>S</code> are letters. Letters are
-case sensitive, so <code>"a"</code> is considered a different type of
-stone from <code>"A"</code>.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1</strong>:</p>
-<p>Input: J = "aA", S = "aAAbbbb" Output: 3</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1</strong>:</p>
-<p>Input: J = "z", S = "ZZ" Output: 0</p>
-</blockquote>
-<blockquote>
-<p><strong>Note</strong>:</p>
-<p>S and J will consist of letters and have length at most 50. The
-characters in J are distinct.</p>
-</blockquote>
-<h3 id="approach-1-brute-force">Approach 1: Brute Force</h3>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>The brute force approach is simple. Loop through each element <em>i
-,j</em> and find if they are equal.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numJewelsInStones</span>(<span class="params">self, J: <span class="built_in">str</span>, S: <span class="built_in">str</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        num=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> J:</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> S:</span><br><span class="line">                <span class="keyword">if</span> i==j:</span><br><span class="line">                    num+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> num</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    J = <span class="string">&quot;aA&quot;</span></span><br><span class="line">    S=<span class="string">&quot;aAAbbbbb&quot;</span></span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.numJewelsInStones(J,S)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Runtime: 40 ms, faster than 68.64% of Python3 online submissions for
-Jewels and Stones.</li>
-<li>Memory Usage: 13.3 MB, less than 5.25% of Python3 online submissions
-for Jewels and Stones.</li>
-</ul>
-<hr />
-<h3 id="approach-2-hash-table">Approach 2: Hash Table</h3>
-<p>In my opinion, the second approach cancels the nested loop which
-should be much faster than the first approach. However, it has no effect
-at all. :worried:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numJewelsInStones</span>(<span class="params">self, J: <span class="built_in">str</span>, S: <span class="built_in">str</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        Hashmap=<span class="built_in">dict</span>()</span><br><span class="line">        num=<span class="number">0</span></span><br><span class="line">        <span class="comment"># 建立Hash Table</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(J)):</span><br><span class="line">            Hashmap[J[i]] = i <span class="comment">#键是数值，值是序号</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> S:</span><br><span class="line">            <span class="keyword">if</span> j <span class="keyword">in</span> Hashmap:</span><br><span class="line">                num+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> num</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Runtime: 40 ms, faster than 68.64% of Python3 online submissions for
-Jewels and Stones.</li>
-<li>Memory Usage: 13 MB, less than 5.25% of Python3 online submissions
-for Jewels and Stones.</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Python</tag>
-        <tag>Algorithm</tag>
-        <tag>Hash Table</tag>
       </tags>
   </entry>
   <entry>

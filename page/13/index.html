@@ -198,7 +198,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/30/2021-03-30-Q1721-%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9-%E4%B8%AD%E7%AD%89-%E9%93%BE%E8%A1%A8/">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/30/2021-03-30-Reinforcement%20Learning%20-%20Sim-to-Real%20Transfer%20in%20Deep%20Reinforcement%20Learning%20for%20Robotics%20a%20Survey/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/my_photo.jpg">
@@ -212,7 +212,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/03/30/2021-03-30-Q1721-%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9-%E4%B8%AD%E7%AD%89-%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">Q1721-交换链表中的节点-中等-链表</a>
+            <a href="/2021/03/30/2021-03-30-Reinforcement%20Learning%20-%20Sim-to-Real%20Transfer%20in%20Deep%20Reinforcement%20Learning%20for%20Robotics%20a%20Survey/" class="post-title-link" itemprop="url">Reinforcement Learning | Sim-to-Real Transfer in Deep Reinforcement Learning for Robotics a Survey</a>
         </h2>
 
         <div class="post-meta">
@@ -231,132 +231,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.2k</span>
+              <span>3.3k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="交换链表中的节点"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/swapping-nodes-in-a-linked-list/">1721.
-交换链表中的节点</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>给你链表的头节点 head 和一个整数 k 。</p>
-<p>交换 链表正数第 k 个节点和倒数第 k
-个节点的值后，返回链表的头节点（链表 从 1 开始索引）。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入：head = [1,2,3,4,5], k = 2 输出：[1,4,3,2,5]</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>输入：head = [7,9,6,6,7,8,3,0,9,5], k = 5
-输出：[7,9,6,6,8,7,3,0,9,5]</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 3:</strong></p>
-<p>输入：head = [1], k = 1 输出：[1]</p>
-</blockquote>
-<blockquote>
-<p><strong>提示：</strong></p>
-<ul>
-<li>链表中节点的数目是 n</li>
-<li>1 &lt;= k &lt;= n &lt;= 105</li>
-<li>0 &lt;= Node.val &lt;= 100</li>
-</ul>
-</blockquote>
-<h3 id="approach-1-遍历搜索超时">Approach 1: 遍历搜索（超时）</h3>
-<p>自己思考没想出什么特别的计算手段，就想到遍历链表找到前k和后k个结点，然后进行交换</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">swapNodes</span>(<span class="params">self, head: ListNode, k: <span class="built_in">int</span></span>) -&gt; ListNode:</span><br><span class="line">        <span class="comment"># 找前k-1个点</span></span><br><span class="line">        L=head</span><br><span class="line">        num=<span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> L:</span><br><span class="line">            num+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> num == k-<span class="number">1</span>: <span class="comment"># 找到前k-1个结点</span></span><br><span class="line">                FK=L</span><br><span class="line">            L=L.<span class="built_in">next</span></span><br><span class="line">        <span class="comment"># 找后k+1个结点</span></span><br><span class="line">        k=num-k</span><br><span class="line">        num=<span class="number">0</span></span><br><span class="line">        ans=L=head <span class="comment"># 保证ans和L相同地址</span></span><br><span class="line">        <span class="keyword">while</span> L:</span><br><span class="line">            num+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> num == k:</span><br><span class="line">                LK=L</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            L=L.<span class="built_in">next</span> </span><br><span class="line">        <span class="comment"># 交换</span></span><br><span class="line">        FK2=FK.<span class="built_in">next</span></span><br><span class="line">        FK3=FK.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">        LK2=LK.<span class="built_in">next</span></span><br><span class="line">        LK3=LK.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">        </span><br><span class="line">        FK.<span class="built_in">next</span>=LK2</span><br><span class="line">        LK2.<span class="built_in">next</span>=FK3</span><br><span class="line">        LK.<span class="built_in">next</span>=FK2</span><br><span class="line">        FK2.<span class="built_in">next</span>=LK3</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> listNodeToString(ans)</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(n+q)，其中 n
-是链表的节点数量，p是倒数第k个结点是链表的第p个结点。</li>
-<li>空间复杂度：O(1)，增加了常数个指针。</li>
-</ul>
-<h3 id="approach-2-快慢指针">Approach 2: 快慢指针</h3>
-<p>快慢指针用法挺多 1.n等分 2.检测有无环 3.从后数第几个</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">swapNodes1</span>(<span class="params">self, head: ListNode, k: <span class="built_in">int</span></span>) -&gt; ListNode:</span><br><span class="line">        fast = head</span><br><span class="line">        <span class="keyword">while</span> k - <span class="number">1</span> != <span class="number">0</span>: <span class="comment"># 1 2 3 4 5 6 7  k=3 往后移2步到3</span></span><br><span class="line">            fast = fast.<span class="built_in">next</span></span><br><span class="line">            k -= <span class="number">1</span></span><br><span class="line">        L = fast <span class="comment"># L = 3</span></span><br><span class="line">        slow = head</span><br><span class="line">        <span class="keyword">while</span> fast.<span class="built_in">next</span>: <span class="comment"># slow = 5, fast = 7</span></span><br><span class="line">            fast = fast.<span class="built_in">next</span></span><br><span class="line">            slow = slow.<span class="built_in">next</span></span><br><span class="line">        R = slow <span class="comment"># R = 5</span></span><br><span class="line">        </span><br><span class="line">        L.val,R.val = R.val,L.val <span class="comment">#3 和 5 的val 交换</span></span><br><span class="line">        <span class="keyword">return</span> head</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：<em>O(n)</em>。其中<code>n</code>为链表的长度。</li>
-<li>空间复杂度：<em>O(1)</em>。需要额外的常数大小的辅助空间。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/29/2021-03-29-Memristor%E2%80%90Based%20Biologically%20Plausible%20Memory%20Based%20on%20Discrete%20and%20Continuous%20Attractor%20Networks%20for%20Neuromorphic%20Systems/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="中国科学院自动化研究所 | 泛用类人决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/29/2021-03-29-Memristor%E2%80%90Based%20Biologically%20Plausible%20Memory%20Based%20on%20Discrete%20and%20Continuous%20Attractor%20Networks%20for%20Neuromorphic%20Systems/" class="post-title-link" itemprop="url">Memristor‐Based Biologically Plausible Memory Based on Discrete and Continuous Attractor Networks for Neuromorphic Systems</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-03-29 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-29T00:00:00+08:00">2021-03-29</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
+              <span>3 mins.</span>
             </span>
 
         </div>
@@ -369,62 +251,129 @@ target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/swapping-n
 
       
           <h1
-id="memristorbased-biologically-plausible-memory-based-on-discrete-and-continuous-attractor-networks-for-neuromorphic-systems">Memristor‐Based
-Biologically Plausible Memory Based on Discrete and Continuous Attractor
-Networks for Neuromorphic Systems</h1>
-<p>论文链接：https://onlinelibrary.wiley.com/doi/10.1002/aisy.202000001</p>
-<p>## 背景</p>
+id="sim-to-real-transfer-in-deep-reinforcement-learning-for-robotics-a-survey">Sim-to-Real
+Transfer in Deep Reinforcement Learning for Robotics: a Survey</h1>
+<p>论文链接：https://ieeexplore.ieee.org/document/9308468</p>
+<h2 id="背景">背景</h2>
 <ul>
-<li><p>神经形态计算是1990年代提出的一个新概念，它表明未来的计算机系统可以通过直接在物理水平上并行处理模拟信号来模仿人脑的操作原理。</p></li>
-<li><p>s按个优势：</p>
+<li><p>真实的机器人数据难以获得，或者成本代价高，因此需要用仿真环境模拟，降低成本，保证安全性。Owing
+to the limitations of gathering real-world data, i.e., sample
+inefficiency and the cost of collecting it, simulation environments are
+utilized for training the different agents</p></li>
+<li><p>问题是仿真和真实之间存在差距。Nonetheless, <strong>the gap
+between the simulated and real worlds</strong> degrades the performance
+of the policies once the models are transferred into real
+robots</p></li>
+<li><p>主要研究方向：</p>
 <ul>
-<li>高并行性 high parallelism</li>
-<li>低功耗 low power consumption</li>
-<li>内存计算 in‐memory computing</li>
+<li>域随机化 domain randomization</li>
+<li>域适应 domain adaptation</li>
+<li>模仿学习 imitation learning</li>
+<li>元学习 meta-learning</li>
+<li>知识蒸馏 knowledge distillation</li>
 </ul></li>
-<li><p><strong>忆阻器</strong>可以根据内部状态和外部刺激（例如电压脉冲）来改变其电阻。基于忆阻器的纵横制结构可以通过依赖欧姆定律和基尔霍夫定律直接将向量矩阵乘法（VMM）（一种最密集的计算组件）映射到电参数来加速各种人工神经网络（ANN）</p></li>
-<li><p>VMM计算过程直接在原地发生，从而避免了从内存中获取数据而导致的内存墙（<strong>冯·诺伊曼·瓶颈</strong>）</p></li>
-<li><p>如果吸引子是离散的，则初始状态将落入最近的吸引子。这是联想记忆的模型，该记忆先前已在忆阻器交叉开关上执行</p></li>
-<li><p>然而，这些先前的研究使用称为Hebbian规则的离线学习，这意味着突触的权重已在软件中计算出来，并简单地映射到忆阻器交叉开关上。Hebbian
-rule的表现很差，无法支持大规模的吸引网络。</p></li>
-<li><p>通过引入平移不变的钟形连接模式，网络吸引子可以奇妙地形成一个平面。这称为<strong>连续吸引子神经网络（CANN）</strong></p></li>
-<li><p>在记忆方面，人们认为大脑可以在动态分配过程中暂时记住当前状态，并随后使用此信息进行计算。这称为工作存储器，可以由CANN自然实现。</p></li>
-<li><p>通过引入神经元之间的竞争与合作，一种名为<strong>Oja规则</strong>的有效的在线在线学习方法被应用到基于无监督学习的联想记忆中，表明该方法可以将性能提高至少10倍，这将大大减少芯片面积并增强硬件的健壮性。</p></li>
-</ul>
-<h2 id="工作内容">工作内容</h2>
-<h3 id="离散吸引子网络">1. 离散吸引子网络</h3>
+<li><p>Moreover, learning with real robots requires the consideration of
+<strong>potentially dangerous</strong> or <strong>unexpected behaviors
+in safety-critical applications</strong> [4]</p></li>
+<li><p><strong>关键问题</strong>：如何通过<strong>转移知识</strong>并相应地<strong>调整策略</strong>，在真实环境中利用基于模拟的训练。how
+to exploit simulation-based training in real-world settings by
+transferring the knowledge and adapting the policies
+accordingly</p></li>
+<li><p>仿真的设置与真实设置之间有着固有的不匹配。Simulation-based
+training provides data at low-cost, but involves <strong>inherent
+mismatches</strong> with real-world settings</p></li>
+<li><p>一些基于深度学习的相关算法：</p>
 <ul>
-<li>离散吸引子神经网络，也称为Hopfield神经网络，是完全连接的网络，其中每个神经元与其他神经元都有连接，但没有自连接</li>
+<li>adversarial attacks on computer vision algorithms [7].</li>
+<li>introduce perturbances in the environment [8]</li>
+<li>domain randomization [9]</li>
+<li>Another key aspect to take into account is that an agent deployed in
+the real world will potentially be exposed to novel experiences that
+were not present in the simulations [10]</li>
+<li>meta learning [11]</li>
+<li>continual learning [12]</li>
+<li>更好的仿真引擎 physics engines: Airsim [13], CARLA [14], RotorS
+[15], [16], and others [17]</li>
+</ul></li>
+<li><p>安全的强化学习这也是一个方向 safe reinforcement learning
+[4]</p></li>
+<li><p>几个方向的关系如下图所示：</p></li>
 </ul>
-<p><span class="math display">\[
-X_i^{i+1}=sgn\bigg(\sum_j W_{ij}X_i^t+b_i\bigg)
-\]</span></p>
-<h3 id="oja学习规则">2. Oja学习规则</h3>
-<p><span class="math display">\[
-Y=X&#39;\times W\\
-\Delta W&#39;=\alpha (X-W&#39;\times Y&#39;)\times Y
-\]</span></p>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210330-1.png" /></p>
+<h3 id="a.-deep-reinforcement-learning">A. Deep Reinforcement
+Learning</h3>
 <ul>
-<li><p>其中<em>W</em>是权重矩阵，<em>α</em>是学习率</p></li>
-<li><p>与以前使用软件计算权重的工作不同，此规则可以在交叉开关中在线训练网络，因此可以显着提高性能。该规则的主要原理是利用神经元之间的竞争，这种竞争也用在局部竞争算法（LCA）中，<a
-target="_blank" rel="noopener" href="https://onlinelibrary.wiley.com/doi/10.1002/aisy.202000001#aisy202000001-bib-0027">27</a>解释为Winner
-Takes All（WTA）。</p></li>
-<li><p>Oja规则的存储容量大约是Hebbian规则的10倍，并且由Oja规则训练的神经形态存储系统也具有更好的鲁棒性，这表现为更高的噪声容忍度，显示了整体上显着的性能提升。</p></li>
+<li>略</li>
 </ul>
-<h3 id="连续吸引子网络">3. 连续吸引子网络</h3>
-<p><span class="math display">\[
-\tau\frac{\partial U(x,t)}{\partial t}=-U(x,t)+\rho \int_{x&#39;}
-J(x,x&#39;)r(x&#39;,t) dx&#39;+I^{ext}(x,t)\\
-r(x,t)=\frac{[U(x,t)]^2_+}{1+k\rho\int_{x&#39;}[U(x&#39;,t)]^2_+dx&#39;}
-\]</span></p>
+<h3 id="b.-sim-to-real-transfer">B. Sim-to-Real Transfer</h3>
+<ul>
+<li>Transferring DRL policies form simulation environments to reality is
+a necessary step towards more complex robotic systems that have
+DL-defined controllers.</li>
+</ul>
+<h3 id="c.-transfer-learning-and-domain-adaptation">C. Transfer Learning
+and Domain Adaptation</h3>
+<ul>
+<li><strong>迁移学习</strong>：Transfer learning aims at improving the
+performance of target learners on <strong>target domains</strong> by
+transferring the knowledge contained in different but related
+<strong>source domains</strong> [18]. In this way, transfer learning can
+reduce the dependence of target domain data when constructing target
+learners.</li>
+<li><strong>域适应</strong>：它指定了当我们有足够的源域标记数据和与目标任务相同的单个任务，但没有或很少目标域数据时的情况。It
+specifies the situation when we have sufficient source domain labeled
+data and the same single task as the target task, but without or very
+few target domain data. In sim-to-real robotics, researchers tend to
+employ a simulator to train the RL model and then deploy it in the
+realistic environment, where we should take advantage of the domain
+adaptation techniques in order to transfer the simulation based model
+well</li>
+</ul>
+<h3 id="d.-knowledge-distillation">D. Knowledge Distillation</h3>
+<ul>
+<li>一般用于大型网络，例如使用视觉图像输入的深层网络</li>
+<li>使用网络教另一个网络，这样使得两个网络性能差不多，但是学得更快。In
+these set-ups, the two networks are typically called teacher and
+student.</li>
+</ul>
+<h3 id="e.-meta-reinforcement-learning">E. Meta Reinforcement
+Learning</h3>
+<ul>
+<li>通常采用LSTM。MetaRL usually implements an LSTM policy and
+incorporates the last reward <span
+class="math display">\[r_{t−1}\]</span> and last action <span
+class="math display">\[a_{t−1}\]</span> into the current policy
+observation</li>
+</ul>
+<h3 id="f.-robust-rl-and-imitation-learning">F. Robust RL and Imitation
+Learning</h3>
+<ul>
+<li><p>Robust RL [23] was proposed quite early as a new RL paradigm that
+explicitly takes into account input disturbances as well as modeling
+errors</p></li>
+<li><p>It considers a bad, or even adversarial model and tries to
+maximize the reward as a optimization problem [24], [25].</p></li>
+<li><p><strong>Imitation learning</strong> proposes to employ expert
+demonstration or trajectories instead of manually constructing a fixed
+reward function to train RL agents.</p>
+<ul>
+<li><strong>behaviour cloning</strong> where an agent learns a mapping
+from observations to actions given demonstrations [26], [27]</li>
+<li><strong>inverse reinforcement learning</strong> where an agent
+attempts to estimate a reward function that describes the given
+demonstrations [28].</li>
+</ul></li>
+<li><p>机器人导航任务的方法：</p>
+<ul>
+<li>curriculum learning [37]</li>
+<li>incremental environment complexity [39]</li>
+<li>continual learning and policy distillation for multiple tasks
+[12]</li>
+</ul></li>
+</ul>
 <h2 id="总结">总结</h2>
-<p>想看看吸引子网络的，但它是Hopfield Neural Networks，激活函数是<span
-class="math display">\[sgn()\]</span>，和运动基元、增益场还是不一样的。</p>
-<p>基于忆阻器的神经形态系统可以加速吸引子网络的计算效率，而这种计算方式在初级运动皮层和前额叶皮层的感觉-运动映射中都有使用。这为将忆阻器与类脑运动决策算法的结合提供了合理性和理论基础，两者的结合有望大幅提高类脑决策算法的计算效率，在行为层面使机器人表现出强大的动态环境适应能力和运动迁移能力。</p>
-<p>相关文章：Motor Memory Is Encoded as a Gain-Field Combination of
-Intrinsic and Extrinsic Action Representations</p>
-<p>论文链接：https://www.jneurosci.org/content/32/43/14951.long</p>
-<p>blog：https://txing-z.gitee.io/txing-casia.github.io/2021/03/26/Neuroscience-Motor-Memory-Is-Encoded-as-a-Gain-Field-Combination-of-Intrinsic-and-Extrinsic-Action-Representations/</p>
+<p>即时限定在机器人领域，迁移学习也不是一个很具体的范畴。</p>
 
       
     </div>
@@ -597,6 +546,134 @@ next 或 random 指针指向该结点即可。</p>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/29/2021-03-29-Memristor%E2%80%90Based%20Biologically%20Plausible%20Memory%20Based%20on%20Discrete%20and%20Continuous%20Attractor%20Networks%20for%20Neuromorphic%20Systems/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="中国科学院自动化研究所 | 泛用类人决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/29/2021-03-29-Memristor%E2%80%90Based%20Biologically%20Plausible%20Memory%20Based%20on%20Discrete%20and%20Continuous%20Attractor%20Networks%20for%20Neuromorphic%20Systems/" class="post-title-link" itemprop="url">Memristor‐Based Biologically Plausible Memory Based on Discrete and Continuous Attractor Networks for Neuromorphic Systems</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-03-29 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-29T00:00:00+08:00">2021-03-29</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1
+id="memristorbased-biologically-plausible-memory-based-on-discrete-and-continuous-attractor-networks-for-neuromorphic-systems">Memristor‐Based
+Biologically Plausible Memory Based on Discrete and Continuous Attractor
+Networks for Neuromorphic Systems</h1>
+<p>论文链接：https://onlinelibrary.wiley.com/doi/10.1002/aisy.202000001</p>
+<p>## 背景</p>
+<ul>
+<li><p>神经形态计算是1990年代提出的一个新概念，它表明未来的计算机系统可以通过直接在物理水平上并行处理模拟信号来模仿人脑的操作原理。</p></li>
+<li><p>s按个优势：</p>
+<ul>
+<li>高并行性 high parallelism</li>
+<li>低功耗 low power consumption</li>
+<li>内存计算 in‐memory computing</li>
+</ul></li>
+<li><p><strong>忆阻器</strong>可以根据内部状态和外部刺激（例如电压脉冲）来改变其电阻。基于忆阻器的纵横制结构可以通过依赖欧姆定律和基尔霍夫定律直接将向量矩阵乘法（VMM）（一种最密集的计算组件）映射到电参数来加速各种人工神经网络（ANN）</p></li>
+<li><p>VMM计算过程直接在原地发生，从而避免了从内存中获取数据而导致的内存墙（<strong>冯·诺伊曼·瓶颈</strong>）</p></li>
+<li><p>如果吸引子是离散的，则初始状态将落入最近的吸引子。这是联想记忆的模型，该记忆先前已在忆阻器交叉开关上执行</p></li>
+<li><p>然而，这些先前的研究使用称为Hebbian规则的离线学习，这意味着突触的权重已在软件中计算出来，并简单地映射到忆阻器交叉开关上。Hebbian
+rule的表现很差，无法支持大规模的吸引网络。</p></li>
+<li><p>通过引入平移不变的钟形连接模式，网络吸引子可以奇妙地形成一个平面。这称为<strong>连续吸引子神经网络（CANN）</strong></p></li>
+<li><p>在记忆方面，人们认为大脑可以在动态分配过程中暂时记住当前状态，并随后使用此信息进行计算。这称为工作存储器，可以由CANN自然实现。</p></li>
+<li><p>通过引入神经元之间的竞争与合作，一种名为<strong>Oja规则</strong>的有效的在线在线学习方法被应用到基于无监督学习的联想记忆中，表明该方法可以将性能提高至少10倍，这将大大减少芯片面积并增强硬件的健壮性。</p></li>
+</ul>
+<h2 id="工作内容">工作内容</h2>
+<h3 id="离散吸引子网络">1. 离散吸引子网络</h3>
+<ul>
+<li>离散吸引子神经网络，也称为Hopfield神经网络，是完全连接的网络，其中每个神经元与其他神经元都有连接，但没有自连接</li>
+</ul>
+<p><span class="math display">\[
+X_i^{i+1}=sgn\bigg(\sum_j W_{ij}X_i^t+b_i\bigg)
+\]</span></p>
+<h3 id="oja学习规则">2. Oja学习规则</h3>
+<p><span class="math display">\[
+Y=X&#39;\times W\\
+\Delta W&#39;=\alpha (X-W&#39;\times Y&#39;)\times Y
+\]</span></p>
+<ul>
+<li><p>其中<em>W</em>是权重矩阵，<em>α</em>是学习率</p></li>
+<li><p>与以前使用软件计算权重的工作不同，此规则可以在交叉开关中在线训练网络，因此可以显着提高性能。该规则的主要原理是利用神经元之间的竞争，这种竞争也用在局部竞争算法（LCA）中，<a
+target="_blank" rel="noopener" href="https://onlinelibrary.wiley.com/doi/10.1002/aisy.202000001#aisy202000001-bib-0027">27</a>解释为Winner
+Takes All（WTA）。</p></li>
+<li><p>Oja规则的存储容量大约是Hebbian规则的10倍，并且由Oja规则训练的神经形态存储系统也具有更好的鲁棒性，这表现为更高的噪声容忍度，显示了整体上显着的性能提升。</p></li>
+</ul>
+<h3 id="连续吸引子网络">3. 连续吸引子网络</h3>
+<p><span class="math display">\[
+\tau\frac{\partial U(x,t)}{\partial t}=-U(x,t)+\rho \int_{x&#39;}
+J(x,x&#39;)r(x&#39;,t) dx&#39;+I^{ext}(x,t)\\
+r(x,t)=\frac{[U(x,t)]^2_+}{1+k\rho\int_{x&#39;}[U(x&#39;,t)]^2_+dx&#39;}
+\]</span></p>
+<h2 id="总结">总结</h2>
+<p>想看看吸引子网络的，但它是Hopfield Neural Networks，激活函数是<span
+class="math display">\[sgn()\]</span>，和运动基元、增益场还是不一样的。</p>
+<p>基于忆阻器的神经形态系统可以加速吸引子网络的计算效率，而这种计算方式在初级运动皮层和前额叶皮层的感觉-运动映射中都有使用。这为将忆阻器与类脑运动决策算法的结合提供了合理性和理论基础，两者的结合有望大幅提高类脑决策算法的计算效率，在行为层面使机器人表现出强大的动态环境适应能力和运动迁移能力。</p>
+<p>相关文章：Motor Memory Is Encoded as a Gain-Field Combination of
+Intrinsic and Extrinsic Action Representations</p>
+<p>论文链接：https://www.jneurosci.org/content/32/43/14951.long</p>
+<p>blog：https://txing-z.gitee.io/txing-casia.github.io/2021/03/26/Neuroscience-Motor-Memory-Is-Encoded-as-a-Gain-Field-Combination-of-Intrinsic-and-Extrinsic-Action-Representations/</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/28/2021-03-28-Neuroscience%20-%20Neuronal%20Correlates%20of%20Motor%20Performance%20and%20Motor%20Learning%20in%20the%20Primary%20Motor%20Cortex%20of%20Monkeys%20Adapting%20to%20an%20External%20Force%20Field/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -682,6 +759,108 @@ to the movement for all eight directions</p></li>
 <h2 id="总结">总结</h2>
 <ul>
 <li>这篇文章可以作为证明皮层参与力场适应实验的生物证据，但实质上没有说明作用。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/26/2021-03-26-Neuroscience%20-%20Efficient%20computation%20and%20cue%20integration%20with%20noisy%20population%20codes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="中国科学院自动化研究所 | 泛用类人决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/26/2021-03-26-Neuroscience%20-%20Efficient%20computation%20and%20cue%20integration%20with%20noisy%20population%20codes/" class="post-title-link" itemprop="url">Neuroscience | Efficient computation and cue integration with noisy population codes (Nature)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-03-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-26T00:00:00+08:00">2021-03-26</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>692</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1
+id="efficient-computation-and-cue-integration-with-noisy-population-codes-nature">Efficient
+computation and cue integration with noisy population codes
+(Nature)</h1>
+<p>论文链接：https://www.nature.com/articles/nn0801_826</p>
+<h2 id="背景">背景</h2>
+<ul>
+<li><p>单个的神经元活动包含噪声，因此不可靠。但是神经元的集群会体现出极大的可靠性。</p></li>
+<li><p>目前有两种关于神经元群体的计算方式：function approximation 和 cue
+integration</p></li>
+<li><p>多维吸引子的基函数网络可以将有噪声的神经元带入计算 basis function
+networks with multidimensional attractors</p></li>
+<li><p>Moreover, neurons in the intermediate layers of our model show
+response properties similar to those observed in several multimodal
+cortical areas (多峰皮层区域)</p></li>
+</ul>
+<h2 id="主要工作">主要工作</h2>
+<ul>
+<li><p>感觉运动转换时非线性的</p>
+<p>Pouget, A. &amp; Snyder, L. Computational approaches to sensorimotor
+transformations. <em>Nat. Neurosci.</em> 3, 1192–1198 (2000).</p></li>
+<li><p>皮层中的神经元主要负责编码这些非线性的感觉-运动转换过程。其中主要涉及钟形调制曲线的神经元。</p></li>
+<li><p>我们证明了一种特殊类型的神经网络，即具有<strong>多维吸引子的基函数网络</strong>，可以为有效地实现<strong>非线性变换</strong>和<strong>与噪声神经元的提示集成</strong>提供通用的体系结构。</p></li>
+<li><p>网络结构示意：</p></li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210326-1.png" /></p>
+<h2 id="总结">总结</h2>
+<ul>
+<li>文章比较早也比较简单，图片挺好，说明了编码的方式，可以使用</li>
 </ul>
 
       
@@ -964,108 +1143,6 @@ target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/swap-nodes
 是链表的节点数量。需要对每个节点进行更新指针的操作。</li>
 <li>空间复杂度：O(n)，其中 n
 是链表的节点数量。空间复杂度主要取决于递归调用的栈空间。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/26/2021-03-26-Neuroscience%20-%20Efficient%20computation%20and%20cue%20integration%20with%20noisy%20population%20codes/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="中国科学院自动化研究所 | 泛用类人决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/26/2021-03-26-Neuroscience%20-%20Efficient%20computation%20and%20cue%20integration%20with%20noisy%20population%20codes/" class="post-title-link" itemprop="url">Neuroscience | Efficient computation and cue integration with noisy population codes (Nature)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-03-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-26T00:00:00+08:00">2021-03-26</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>692</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1
-id="efficient-computation-and-cue-integration-with-noisy-population-codes-nature">Efficient
-computation and cue integration with noisy population codes
-(Nature)</h1>
-<p>论文链接：https://www.nature.com/articles/nn0801_826</p>
-<h2 id="背景">背景</h2>
-<ul>
-<li><p>单个的神经元活动包含噪声，因此不可靠。但是神经元的集群会体现出极大的可靠性。</p></li>
-<li><p>目前有两种关于神经元群体的计算方式：function approximation 和 cue
-integration</p></li>
-<li><p>多维吸引子的基函数网络可以将有噪声的神经元带入计算 basis function
-networks with multidimensional attractors</p></li>
-<li><p>Moreover, neurons in the intermediate layers of our model show
-response properties similar to those observed in several multimodal
-cortical areas (多峰皮层区域)</p></li>
-</ul>
-<h2 id="主要工作">主要工作</h2>
-<ul>
-<li><p>感觉运动转换时非线性的</p>
-<p>Pouget, A. &amp; Snyder, L. Computational approaches to sensorimotor
-transformations. <em>Nat. Neurosci.</em> 3, 1192–1198 (2000).</p></li>
-<li><p>皮层中的神经元主要负责编码这些非线性的感觉-运动转换过程。其中主要涉及钟形调制曲线的神经元。</p></li>
-<li><p>我们证明了一种特殊类型的神经网络，即具有<strong>多维吸引子的基函数网络</strong>，可以为有效地实现<strong>非线性变换</strong>和<strong>与噪声神经元的提示集成</strong>提供通用的体系结构。</p></li>
-<li><p>网络结构示意：</p></li>
-</ul>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210326-1.png" /></p>
-<h2 id="总结">总结</h2>
-<ul>
-<li>文章比较早也比较简单，图片挺好，说明了编码的方式，可以使用</li>
 </ul>
 
       
