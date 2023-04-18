@@ -198,6 +198,120 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/06/18/2019-06-18-Q521-Longest-Uncommon-Subsequence-I/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/18/2019-06-18-Q521-Longest-Uncommon-Subsequence-I/" class="post-title-link" itemprop="url">Q521 Longest Uncommon Subsequence I</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-18 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-18T00:00:00+08:00">2019-06-18</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="longest-uncommon-subsequence-i"><a
+target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-uncommon-subsequence-i/">Longest
+Uncommon Subsequence I</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>Given a group of two strings, you need to find the longest uncommon
+subsequence of this group of two strings. The longest uncommon
+subsequence is defined as the longest subsequence of one of these
+strings and this subsequence should not be <strong>any</strong>
+subsequence of the other strings.</p>
+<p>A <strong>subsequence</strong> is a sequence that can be derived from
+one sequence by deleting some characters without changing the order of
+the remaining elements. Trivially, any string is a subsequence of itself
+and an empty string is a subsequence of any string.</p>
+<p>The input will be two strings, and the output needs to be the length
+of the longest uncommon subsequence. If the longest uncommon subsequence
+doesn't exist, return -1.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>Input: "aba", "cdc" Output: 3 Explanation: The longest uncommon
+subsequence is "aba" (or "cdc"), because "aba" is a subsequence of
+"aba", but not a subsequence of any other strings in the group of two
+strings.</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ul>
+<li>Both strings' lengths will not exceed 100.</li>
+<li>Only letters from a ~ z will appear in input strings.</li>
+</ul>
+</blockquote>
+<h2 id="approach-1-python-code">Approach 1: Python code</h2>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>“若两字符串不相等，选择较长的字符串返回长度即可。否则返回-1。”</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">findLUSlength</span>(<span class="params">self, a, b</span>):</span><br><span class="line">        <span class="keyword">return</span> a!=b <span class="keyword">and</span> <span class="built_in">max</span>(<span class="built_in">len</span>(a), <span class="built_in">len</span>(b)) <span class="keyword">or</span> -<span class="number">1</span></span><br><span class="line">        <span class="comment"># there must something wrong</span></span><br><span class="line">        </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    a=<span class="string">&quot;aba&quot;</span></span><br><span class="line">    b=<span class="string">&quot;cdc&quot;</span></span><br><span class="line">    solution=Solution().findLUSlength(a,b)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Runtime: 12 ms, faster than 95.02% of Python online submissions for
+Longest Uncommon Subsequence I .</li>
+<li>Memory Usage: 11.7 MB, less than 47.06% of Python online submissions
+for Longest Uncommon Subsequence I .</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/06/14/2019-06-14-Q937-Reorder-Log-Files/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1078,120 +1192,6 @@ submissions for Squares of a Sorted Array.</p></li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/05/30/2019-05-30-Q1019-Next-Greater-Node-In-Linked-List/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/30/2019-05-30-Q1019-Next-Greater-Node-In-Linked-List/" class="post-title-link" itemprop="url">Q1019 Next Greater Node In Linked List</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-05-30 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-30T00:00:00+08:00">2019-05-30</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.9k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="next-greater-node-in-linked-list"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/next-greater-node-in-linked-list/">Next
-Greater Node In Linked List</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>We are given a linked list with <code>head</code> as the first node.
-Let's number the nodes in the list:
-<code>node_1, node_2, node_3, ...</code> etc.</p>
-<p>Each node may have a <em>next larger</em> <strong>value</strong>: for
-<code>node_i</code>, <code>next_larger(node_i)</code> is the
-<code>node_j.val</code> such that <code>j &gt; i</code>,
-<code>node_j.val &gt; node_i.val</code>, and <code>j</code> is the
-smallest possible choice. If such a <code>j</code> does not exist, the
-next larger value is <code>0</code>.</p>
-<p>Return an array of integers <code>answer</code>, where
-<code>answer[i] = next_larger(node_&#123;i+1&#125;)</code>.</p>
-<p>Note that in the example <strong>inputs</strong> (not outputs) below,
-arrays such as <code>[2,1,5]</code> represent the serialization of a
-linked list with a head node value of 2, second node value of 1, and
-third node value of 5.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong> Input: [2,1,5] Output: [5,5,0]</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong> Input: [2,7,4,3,5] Output:
-[7,0,5,5,0]</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 3:</strong></p>
-<p>Input: [1,7,5,1,9,2,5,1] Output: [7,9,9,9,0,5,0,0]</p>
-</blockquote>
-<h3 id="approach-1-stack">Approach 1: Stack</h3>
-<p>Save &lt;index, value&gt; pair to the stack.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">nextLargerNodes</span>(<span class="params">self, head</span>):</span><br><span class="line">        res, stack = [], [] <span class="comment"># 建立两个元组</span></span><br><span class="line">        <span class="keyword">while</span> head:</span><br><span class="line">            <span class="keyword">while</span> stack <span class="keyword">and</span> stack[-<span class="number">1</span>][<span class="number">1</span>] &lt; head.val: <span class="comment"># 遍历链表每个元素</span></span><br><span class="line">                res[stack.pop()[<span class="number">0</span>]] = head.val</span><br><span class="line">            stack.append([<span class="built_in">len</span>(res), head.val])</span><br><span class="line">            res.append(<span class="number">0</span>)</span><br><span class="line">            head = head.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    head=stringToListNode([<span class="number">2</span>,<span class="number">7</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">5</span>])<span class="comment"># 将输入的元组转换为链表</span></span><br><span class="line">    solution=Solution().nextLargerNodes(head)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li><p>O(N) Time, O(N) Space</p></li>
-<li><p>Runtime: 356 ms, faster than 76.36% of Python online submissions
-for Next Greater Node In Linked List.</p></li>
-<li><p>Memory Usage: 21 MB, less than 17.81% of Python online
-submissions for Next Greater Node In Linked List.</p></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1263,7 +1263,7 @@ submissions for Next Greater Node In Linked List.</p></li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-count">230</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1330,12 +1330,12 @@ submissions for Next Greater Node In Linked List.</p></li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">538k</span>
+    <span title="Symbols count total">552k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:09</span>
+    <span title="Reading time total">8:22</span>
 </div>
 
         

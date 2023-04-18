@@ -198,6 +198,275 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/12/01/2021-12-01-Word%E5%A4%9A%E8%A1%8C%E5%85%AC%E5%BC%8F%E7%9A%84%E6%8D%A2%E8%A1%8C%E3%80%81%E5%AF%B9%E9%BD%90%E4%B8%8E%E7%BC%96%E5%8F%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/01/2021-12-01-Word%E5%A4%9A%E8%A1%8C%E5%85%AC%E5%BC%8F%E7%9A%84%E6%8D%A2%E8%A1%8C%E3%80%81%E5%AF%B9%E9%BD%90%E4%B8%8E%E7%BC%96%E5%8F%B7/" class="post-title-link" itemprop="url">Word多行公式的换行、对齐与编号</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-12-01 00:00:00" itemprop="dateCreated datePublished" datetime="2021-12-01T00:00:00+08:00">2021-12-01</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.5k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1
+id="word多行公式的换行对齐与编号">Word多行公式的换行、对齐与编号</h1>
+<h3 id="需求描述">1 需求描述</h3>
+<p>使用Word进行公式编辑的过程中有以下需求：</p>
+<ul>
+<li>需求1：单行公式的编号并调用；</li>
+<li>额外需求：编号修改；</li>
+<li>需求2：多行公式的编辑与对齐；</li>
+<li>需求3：多行公式，自定义某一行编号并调用；</li>
+<li>需求4：长多公式的换行与对齐；</li>
+</ul>
+<p>后面小节对这些问题进行拆解，并逐一提供解决办法。</p>
+<hr />
+<h3 id="解决方法">2 解决方法</h3>
+<h4 id="需求1单行公式的编号并调用">2.1 需求1：单行公式的编号并调用</h4>
+<ul>
+<li><strong>Step
+1</strong>：输入单行公式，在文档中单独成行并居中，鼠标停留于公式框最右端（图1）；</li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20211201-1.png"
+alt="1" />
+<figcaption aria-hidden="true">1</figcaption>
+</figure>
+<ul>
+<li><strong>Step
+2</strong>：公式框内最右端输入“#()”并按回车，获得如下效果（图2）；</li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20211201-2.png"
+alt="2" />
+<figcaption aria-hidden="true">2</figcaption>
+</figure>
+<ul>
+<li><strong>Step
+3</strong>：方框中需要编写公式序号，这里不直接书写，选中方框后按下 Ctrl
++ Fn + F9，在大括号中输入“seq equation”设置标签（图3），输入完成后按下
+Fn + F9，自动获得序号；</li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20211201-3.png"
+alt="3" />
+<figcaption aria-hidden="true">3</figcaption>
+</figure>
+<ul>
+<li><strong>Step
+4</strong>：为了调用，需要在序号处设置书签。选中生成的序号（序号背景色变深灰），点击窗口栏的“插入
+- 书签”根据个人习惯设置一个书签名（图4），之后点击确定；</li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20211201-4.png"
+alt="4" />
+<figcaption aria-hidden="true">4</figcaption>
+</figure>
+<ul>
+<li><strong>Step
+5</strong>：下面将在正文中对公式进行引用；引用位置如图5光标处所示。在窗口栏选择“插入
+-
+交叉引用”。“引用类型”选择“书签”，“引用内容”选择“书签文字”；“引用哪一个书签”选择在
+Step 4
+中定义的书签名（图6），单击“插入”。此时就完成了对公式的引用。</li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20211201-5.png"
+alt="5" />
+<figcaption aria-hidden="true">5</figcaption>
+</figure>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20211201-6.png"
+alt="6" />
+<figcaption aria-hidden="true">6</figcaption>
+</figure>
+<h4 id="额外需求编号修改">2.2 额外需求：编号修改</h4>
+<ul>
+<li><strong>Extra Step
+6</strong>：如果要对公式序号进行修改，这里假设要从“1”更改为“7”。光标移动到公式框中编号数字的左边（<strong>注意必须是左边，右边不行！</strong>）（图7）。输入需要的编号，这里输入“7”，然后单击Delete删除旧编号（图8）。</li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20211201-7.png"
+alt="7" />
+<figcaption aria-hidden="true">7</figcaption>
+</figure>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20211201-8.png"
+alt="8" />
+<figcaption aria-hidden="true">8</figcaption>
+</figure>
+<ul>
+<li><strong>Extra Step
+7</strong>：此时正文中的公式编号仍然为“1”，需要框选中正文中的编号“1”，右键，点击“更新域”（图9），即可获得正确编号“7”。</li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20211201-9.png"
+alt="9" />
+<figcaption aria-hidden="true">9</figcaption>
+</figure>
+<hr />
+<h4 id="需求2多行公式的编辑与对齐">2.3 需求2：多行公式的编辑与对齐</h4>
+<ul>
+<li><strong>Step
+1</strong>：首先输入多行公式的第一行，在首行末尾输入“#()”并按回车，这一步的目的是拉长公式框（公式框长队对比：图1和图10），方便后续操作（注意：这一步很重要，不可省略！）</li>
+<li><strong>Step
+2</strong>：光标移动到公式框右端位置，并且该位置恰好使得整行公式呈灰色（图10）。此时单击回车，可生成第二行的小方框（图11），在小方框中输入第二行公式（图12）。</li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20211201-10.png"
+alt="10" />
+<figcaption aria-hidden="true">10</figcaption>
+</figure>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20211201-11.png"
+alt="11" />
+<figcaption aria-hidden="true">11</figcaption>
+</figure>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20211201-12.png"
+alt="12" />
+<figcaption aria-hidden="true">12</figcaption>
+</figure>
+<ul>
+<li><strong>Step
+3</strong>：此时的两行公式都是居中，没实现在等号处对齐，只需在每行公式想要设置对齐点的位置输入“&amp;”符号即可对齐（图13）（注意：输入“&amp;”是不可见的，但会在输入位置出现短竖线位置标记）</li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20211201-13.png"
+alt="13" />
+<figcaption aria-hidden="true">13</figcaption>
+</figure>
+<hr />
+<h4 id="需求3多行公式自定义某一行编号并调用">2.4
+需求3：多行公式，自定义某一行编号并调用</h4>
+<ul>
+<li><strong>Step
+1</strong>：在已经完成了多行公式输入和对齐的情况下（图13），想要对某一个行进行编号。操作方法同需求1的Step
+1和Step 2，但是Step
+2中不是按回车，而是按空格（注意此时输入的“#“是不可见的）。之后的步骤继续参考需求1的解决办法即可（图14）。</li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20211201-13.png"
+alt="13" />
+<figcaption aria-hidden="true">13</figcaption>
+</figure>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20211201-14.png"
+alt="14" />
+<figcaption aria-hidden="true">14</figcaption>
+</figure>
+<hr />
+<h4 id="需求4长多公式的换行与对齐">2.5
+需求4：长多公式的换行与对齐；</h4>
+<ul>
+<li><strong>Step
+1</strong>：遇到某行公式过于长，需要换行对齐的情况。首先输入长公式（图15）（可先输入一部分），在换行处回车（图16）；</li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20211201-15.png"
+alt="15" />
+<figcaption aria-hidden="true">15</figcaption>
+</figure>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20211201-16.png"
+alt="16" />
+<figcaption aria-hidden="true">16</figcaption>
+</figure>
+<ul>
+<li><strong>Step
+2</strong>：在每一行想设置对齐点的位置输入“&amp;”符号实现对齐，这里是在等号后和新行最前端设置“&amp;”的（图17）；</li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20211201-17.png"
+alt="17" />
+<figcaption aria-hidden="true">17</figcaption>
+</figure>
+<h3 id="ref">3 Ref：</h3>
+<p>[1]. Word 公式编号以及引用
+https://www.bilibili.com/read/cv6527614/</p>
+<p>[2]. word多行公式编号对齐
+https://www.bilibili.com/read/cv6680157/</p>
+<p>Pcon</p>
+<p>2021年12月01日</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/09/29/2021-09-29-Q100-100.%20%E7%9B%B8%E5%90%8C%E7%9A%84%E6%A0%91-%E7%AE%80%E5%8D%95-%E4%BA%8C%E5%8F%89%E6%A0%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1070,140 +1339,6 @@ O(\dfrac{4^n}{\sqrt{n}})\]</span>，此方法除答案数组外，中间过程�
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/08/10/2021-08-10-Q64-%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/10/2021-08-10-Q64-%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="post-title-link" itemprop="url">Q64-最小路径和-中等-动态规划</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-08-10 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-10T00:00:00+08:00">2021-08-10</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.6k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="最小路径和"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-path-sum/">64.
-最小路径和</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>给定一个包含非负整数的 m x n 网格 <code>grid</code>
-，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。</p>
-<p><strong>说明：</strong>每次只能向下或者向右移动一步。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入：grid = [[1,3,1],[1,5,1],[4,2,1]] 输出：7 解释：因为路径
-1→3→1→1→1 的总和最小。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>输入：grid = [[1,2,3],[4,5,6]] 输出：12</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li>m == grid.length</li>
-<li>n == grid[i].length</li>
-<li>1 &lt;= m, n &lt;= 200</li>
-<li>0 &lt;= grid[i][j] &lt;= 100</li>
-</ul>
-</blockquote>
-<h3 id="approach-1-动态规划">Approach 1: 动态规划</h3>
-<p>由于路径的方向只能是向下或向右，因此网格的第一行的每个元素只能从左上角元素开始向右移动到达，网格的第一列的每个元素只能从左上角元素开始向下移动到达，此时的路径是唯一的，因此每个元素对应的最小路径和即为对应的路径上的数字总和。</p>
-<p>对于不在第一行和第一列的元素，可以从其上方相邻元素向下移动一步到达，或者从其左方相邻元素向右移动一步到达，元素对应的最小路径和等于其上方相邻元素与其左方相邻元素两者对应的最小路径和中的最小值加上当前元素的值。由于每个元素对应的最小路径和与其相邻元素对应的最小路径和有关，因此可以使用动态规划求解。</p>
-<p>创建二维数组 <span
-class="math display">\[dp\]</span>，与原始网格的大小相同，<span
-class="math display">\[dp[i][j]\]</span> 表示从左上角出发到 <span
-class="math display">\[(i,j)\]</span> 位置的最小路径和。显然，<span
-class="math display">\[dp[0][0]=grid[0][0]\]</span>。对于 <span
-class="math display">\[dp\]</span>
-中的其余元素，通过以下状态转移方程计算元素值。</p>
-<ul>
-<li>当 <span class="math display">\[i&gt;0\]</span> 且 <span
-class="math display">\[j=0\]</span> 时，<span
-class="math display">\[\textit{dp}[i][0]=\textit{dp}[i-1][0]+\textit{grid}[i][0]\]</span>。</li>
-<li>当 <span class="math display">\[i=0\]</span> 且 <span
-class="math display">\[j&gt;0\]</span> 时，<span
-class="math display">\[\textit{dp}[0][j]=\textit{dp}[0][j-1]+\textit{grid}[0][j]\]</span>。</li>
-<li>当 <span class="math display">\[i&gt;0\]</span> 且 <span
-class="math display">\[j&gt;0\]</span> 时，<span
-class="math display">\[\textit{dp}[i][j]=\min(\textit{dp}[i-1][j],\textit{dp}[i][j-1])+\textit{grid}[i][j]\]</span>。</li>
-</ul>
-<p>最后得到 <span class="math display">\[\textit{dp}[m-1][n-1]\]</span>
-的值即为从网格左上角到网格右下角的最小路径和。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minPathSum</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> grid <span class="keyword">or</span> <span class="keyword">not</span> grid[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        rows, columns = <span class="built_in">len</span>(grid), <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line">        dp = [[<span class="number">0</span>] * columns <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(rows)]</span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">0</span>] = grid[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, rows):</span><br><span class="line">            dp[i][<span class="number">0</span>] = dp[i - <span class="number">1</span>][<span class="number">0</span>] + grid[i][<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, columns):</span><br><span class="line">            dp[<span class="number">0</span>][j] = dp[<span class="number">0</span>][j - <span class="number">1</span>] + grid[<span class="number">0</span>][j]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, rows):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, columns):</span><br><span class="line">                dp[i][j] = <span class="built_in">min</span>(dp[i - <span class="number">1</span>][j], dp[i][j - <span class="number">1</span>]) + grid[i][j]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> dp[rows - <span class="number">1</span>][columns - <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：<span class="math display">\[O(mn)\]</span>，其中 m 和 n
-分别是网格的行数和列数。需要对整个网格遍历一次，计算 <span
-class="math display">\[\textit{dp}\]</span> 的每个元素的值。</li>
-<li>空间复杂度：<span class="math display">\[O(mn)\]</span>，其中 m 和 n
-分别是网格的行数和列数。创建一个二维数组 <span
-class="math display">\[dp\]</span>，和网格大小相同。
-空间复杂度可以优化，例如每次只存储上一行的 <span
-class="math display">\[dp\]</span> 值，则可以将空间复杂度优化到 <span
-class="math display">\[O(n)\]</span>。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1275,7 +1410,7 @@ class="math display">\[O(n)\]</span>。</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-count">230</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1342,12 +1477,12 @@ class="math display">\[O(n)\]</span>。</li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">538k</span>
+    <span title="Symbols count total">552k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:09</span>
+    <span title="Reading time total">8:22</span>
 </div>
 
         

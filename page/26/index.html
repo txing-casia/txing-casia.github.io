@@ -198,6 +198,120 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/05/30/2019-05-30-Q1019-Next-Greater-Node-In-Linked-List/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/05/30/2019-05-30-Q1019-Next-Greater-Node-In-Linked-List/" class="post-title-link" itemprop="url">Q1019 Next Greater Node In Linked List</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-05-30 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-30T00:00:00+08:00">2019-05-30</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="next-greater-node-in-linked-list"><a
+target="_blank" rel="noopener" href="https://leetcode.com/problems/next-greater-node-in-linked-list/">Next
+Greater Node In Linked List</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>We are given a linked list with <code>head</code> as the first node.
+Let's number the nodes in the list:
+<code>node_1, node_2, node_3, ...</code> etc.</p>
+<p>Each node may have a <em>next larger</em> <strong>value</strong>: for
+<code>node_i</code>, <code>next_larger(node_i)</code> is the
+<code>node_j.val</code> such that <code>j &gt; i</code>,
+<code>node_j.val &gt; node_i.val</code>, and <code>j</code> is the
+smallest possible choice. If such a <code>j</code> does not exist, the
+next larger value is <code>0</code>.</p>
+<p>Return an array of integers <code>answer</code>, where
+<code>answer[i] = next_larger(node_&#123;i+1&#125;)</code>.</p>
+<p>Note that in the example <strong>inputs</strong> (not outputs) below,
+arrays such as <code>[2,1,5]</code> represent the serialization of a
+linked list with a head node value of 2, second node value of 1, and
+third node value of 5.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong> Input: [2,1,5] Output: [5,5,0]</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong> Input: [2,7,4,3,5] Output:
+[7,0,5,5,0]</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 3:</strong></p>
+<p>Input: [1,7,5,1,9,2,5,1] Output: [7,9,9,9,0,5,0,0]</p>
+</blockquote>
+<h3 id="approach-1-stack">Approach 1: Stack</h3>
+<p>Save &lt;index, value&gt; pair to the stack.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">nextLargerNodes</span>(<span class="params">self, head</span>):</span><br><span class="line">        res, stack = [], [] <span class="comment"># 建立两个元组</span></span><br><span class="line">        <span class="keyword">while</span> head:</span><br><span class="line">            <span class="keyword">while</span> stack <span class="keyword">and</span> stack[-<span class="number">1</span>][<span class="number">1</span>] &lt; head.val: <span class="comment"># 遍历链表每个元素</span></span><br><span class="line">                res[stack.pop()[<span class="number">0</span>]] = head.val</span><br><span class="line">            stack.append([<span class="built_in">len</span>(res), head.val])</span><br><span class="line">            res.append(<span class="number">0</span>)</span><br><span class="line">            head = head.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    head=stringToListNode([<span class="number">2</span>,<span class="number">7</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">5</span>])<span class="comment"># 将输入的元组转换为链表</span></span><br><span class="line">    solution=Solution().nextLargerNodes(head)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li><p>O(N) Time, O(N) Space</p></li>
+<li><p>Runtime: 356 ms, faster than 76.36% of Python online submissions
+for Next Greater Node In Linked List.</p></li>
+<li><p>Memory Usage: 21 MB, less than 17.81% of Python online
+submissions for Next Greater Node In Linked List.</p></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/05/29/2019-05-29-Q141-Linked-List-Cycle/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1001,130 +1115,6 @@ submissions for Reverse Linked List.</p></li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/05/20/2019-05-20-Q876-Middle-of-the-Linked-List/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/20/2019-05-20-Q876-Middle-of-the-Linked-List/" class="post-title-link" itemprop="url">Q876 Middle of the Linked List</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-05-20 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-20T00:00:00+08:00">2019-05-20</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.2k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="middle-of-the-linked-list"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/middle-of-the-linked-list/">Middle
-of the Linked List</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given a non-empty, singly linked list with head node
-<code>head</code>, return a middle node of linked list.</p>
-<p>If there are two middle nodes, return the second middle node.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong> Input: [1,2,3,4,5] Output: Node 3 from
-this list (Serialization: [3,4,5]) The returned node has value 3. (The
-judge's serialization of this node is [3,4,5]). Note that we returned a
-ListNode object ans, such that: ans.val = 3, ans.next.val = 4,
-ans.next.next.val = 5, and ans.next.next.next = NULL.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong> Input: [1,2,3,4,5,6] Output: Node 4 from
-this list (Serialization: [4,5,6]) Since the list has two middle nodes
-with values 3 and 4, we return the second one.</p>
-</blockquote>
-<h3 id="approach-1-output-to-array">Approach 1: Output to Array</h3>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>Put every node into an array <code>A</code> in order. Then the middle
-node is just <code>A[A.length // 2]</code>, since we can retrieve each
-node by index.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">middleNode</span>(<span class="params">self, head</span>):</span><br><span class="line">        A = [head]</span><br><span class="line">        <span class="keyword">while</span> A[-<span class="number">1</span>].<span class="built_in">next</span>:</span><br><span class="line">            A.append(A[-<span class="number">1</span>].<span class="built_in">next</span>)</span><br><span class="line">        <span class="keyword">return</span> A[<span class="built_in">len</span>(A) // <span class="number">2</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    head=stringToListNode([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])<span class="comment"># 将输入的元组转换为链表</span></span><br><span class="line">    <span class="built_in">print</span>(listNodeToString(Solution().middleNode(head))) <span class="comment"># 输出为[3,4,5]是因为list转换为string自动把后面的[4,5]带出来了，实际上只传了3的地址</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li>Time Complexity: <em>O</em>(<em>N</em>), where <em>N</em> is the
-number of nodes in the given list.</li>
-<li>Space Complexity: <em>O</em>(<em>N</em>), the space used by
-<code>A</code>.</li>
-</ul>
-<hr />
-<h3 id="approach-2-fast-and-slow-pointer">Approach 2: Fast and Slow
-Pointer</h3>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>When traversing the list with a pointer <code>slow</code>, make
-another pointer <code>fast</code> that traverses twice as fast. When
-<code>fast</code> reaches the end of the list, <code>slow</code> must be
-in the middle.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">middleNode</span>(<span class="params">self, head</span>):</span><br><span class="line">        slow = fast = head</span><br><span class="line">        <span class="keyword">while</span> fast <span class="keyword">and</span> fast.<span class="built_in">next</span>:</span><br><span class="line">            slow = slow.<span class="built_in">next</span></span><br><span class="line">            fast = fast.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">return</span> slow</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>Time Complexity: <em>O</em>(<em>N</em>), where <em>N</em> is the
-number of nodes in the given list.</p></li>
-<li><p>Space Complexity: <em>O</em>(1), the space used by
-<code>slow</code> and <code>fast</code>.</p></li>
-<li><p>Runtime: 32 ms, faster than 96.73% of Python3 online submissions
-forMiddle of the Linked List.</p></li>
-<li><p>Memory Usage: 13.2 MB, less than 23.44% of Python3 online
-submissions for Middle of the Linked List.</p></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1196,7 +1186,7 @@ submissions for Middle of the Linked List.</p></li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-count">230</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1263,12 +1253,12 @@ submissions for Middle of the Linked List.</p></li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">538k</span>
+    <span title="Symbols count total">552k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:09</span>
+    <span title="Reading time total">8:22</span>
 </div>
 
         

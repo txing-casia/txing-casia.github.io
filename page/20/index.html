@@ -198,6 +198,124 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/17/2020-09-17-Q1470%20Shuffle%20the%20Array-%E7%AE%80%E5%8D%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/17/2020-09-17-Q1470%20Shuffle%20the%20Array-%E7%AE%80%E5%8D%95/" class="post-title-link" itemprop="url">Q1470 Shuffle the Array-简单</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-09-17 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-17T00:00:00+08:00">2020-09-17</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="shuffle-the-array"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shuffle-the-array/">Shuffle the
+Array</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>Given the array nums consisting of 2n elements in the form
+[x1,x2,...,xn,y1,y2,...,yn].</p>
+<p>Return the array in the form [x1,y1,x2,y2,...,xn,yn].</p>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>1 &lt;= n &lt;= 500</code></li>
+<li><code>nums.length == 2n</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 10^3</code></li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>Input: nums = [2,5,1,3,4,7], n = 3 Output: [2,3,5,4,1,7] Explanation:
+Since x1=2, x2=5, x3=1, y1=3, y2=4, y3=7 then the answer is
+[2,3,5,4,1,7].</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>Input: nums = [1,2,3,4,4,3,2,1], n = 4 Output: [1,4,2,3,3,2,4,1]</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 3:</strong></p>
+<p>Input: nums = [1,1,2,2], n = 2 Output: [1,2,1,2]</p>
+</blockquote>
+<h3 id="approach-1-循环">Approach 1: 循环</h3>
+<p>本来打算使用单行FOR循环漂亮地完成这道题目：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> [[nums[i],nums[n+i]] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br></pre></td></tr></table></figure>
+<p>不幸的是这个写法导致结果变成了一个嵌套的两层的列表，为了消除嵌套的括号，尝试了利用zip(*)解压，.replace("[",'')等操作</p>
+<ul>
+<li>zip(a,b)是合并/压缩，zip(*c)是拆分/解压，并返回一个地址，使用*
+zip()和*
+zip(*)则返回数据。如果想连续解压两次写成嵌套形式，就有点问题，比如解压a，写为：*zip(**zip(*a))会造成混乱。因此不能实现效果。</li>
+<li>replace则会多出引号</li>
+</ul>
+<p>没办法，常规写法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">shuffle</span>(<span class="params">self, nums, n</span>):</span><br><span class="line">        ans=nums[:]</span><br><span class="line">        j=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            ans[j],ans[j+<span class="number">1</span>]=nums[i],nums[n+i]</span><br><span class="line">            j=j+<span class="number">2</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums =[<span class="number">2</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">7</span>]</span><br><span class="line">    n = <span class="number">3</span></span><br><span class="line">    solution=Solution().shuffle(nums,n)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong>列表<strong>赋值的时候是地址传递</strong>，例如ans=nums，修改ans会改变nums</p>
+<h3 id="复杂度分析">复杂度分析</h3>
+<ul>
+<li><p>时间复杂度：O(N)</p></li>
+<li><p>空间复杂度：O(N)</p></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/16/2020-09-16-Q226%20Invert%20Binary%20Tree-%E7%AE%80%E5%8D%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1104,147 +1222,6 @@ class="math display">\[ [-\mid s_{t+1}-s_t\mid ,0] \]</span>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/12/2020-09-12-Q637%20Average%20of%20Levels%20in%20Binary%20Tree-%E7%AE%80%E5%8D%95-%E6%B7%B1%E5%BA%A6and%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/12/2020-09-12-Q637%20Average%20of%20Levels%20in%20Binary%20Tree-%E7%AE%80%E5%8D%95-%E6%B7%B1%E5%BA%A6and%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" class="post-title-link" itemprop="url">Q637 Average of Levels in Binary Tree-简单-深度/广度优先搜索</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-09-12 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-12T00:00:00+08:00">2020-09-12</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.2k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="average-of-levels-in-binary-tree"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/average-of-levels-in-binary-tree/">Average
-of Levels in Binary Tree</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given a non-empty binary tree, return the average value of the nodes
-on each level in the form of an array. Example 1: Input:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  3</span><br><span class="line"> / \</span><br><span class="line">9  20</span><br><span class="line">  /  \</span><br><span class="line"> 15   7</span><br></pre></td></tr></table></figure>
-<p>Output: [3, 14.5, 11] Explanation: The average value of nodes on
-level 0 is 3, on level 1 is 14.5, and on level 2 is 11. Hence return [3,
-14.5, 11].</p>
-<p><strong>Note:</strong></p>
-<p>The range of node's value is in the range of 32-bit signed
-integer.</p>
-</blockquote>
-<h2 id="approach-1-深度优先搜索">Approach 1: 深度优先搜索</h2>
-<p>使用深度优先搜索计算二叉树的层平均值，需要维护两个数组，<span
-class="math display">\[\textit{counts}\]</span>
-用于存储二叉树的每一层的节点数，<span
-class="math display">\[\textit{sums}\]</span>
-用于存储二叉树的每一层的节点值之和。搜索过程中需要记录当前节点所在层，如果访问到的节点在第
-i 层，则将 <span class="math display">\[\textit{counts}[i]\]</span>
-的值加 1，并将该节点的值加到 <span
-class="math display">\[\textit{sums}[i]\]</span>。</p>
-<p>遍历结束之后，第 i 层的平均值即为 <span
-class="math display">\[\textit{sums}[i] /
-\textit{counts}[i]\]</span>。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">averageOfLevels_dfs</span>(<span class="params">self, root</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">root:TreeNode, level</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">if</span> level &lt; <span class="built_in">len</span>(totals):</span><br><span class="line">                totals[level] += root.val</span><br><span class="line">                counts[level] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                totals.append(root.val)</span><br><span class="line">                counts.append(<span class="number">1</span>)</span><br><span class="line">            dfs(root.left, level + <span class="number">1</span>)</span><br><span class="line">            dfs(root.right, level + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        counts = <span class="built_in">list</span>()</span><br><span class="line">        totals = <span class="built_in">list</span>()</span><br><span class="line">        dfs(root, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> [total / count <span class="keyword">for</span> total, count <span class="keyword">in</span> <span class="built_in">zip</span>(totals, counts)]</span><br></pre></td></tr></table></figure>
-<h3 id="复杂度分析">复杂度分析</h3>
-<ul>
-<li><p>时间复杂度：<span class="math display">\[O(n)\]</span>，其中 n
-是二叉树中的节点个数。
-深度优先搜索需要对每个节点访问一次，对于每个节点，维护两个数组的时间复杂度都是
-<span
-class="math display">\[O(1)\]</span>，因此深度优先搜索的时间复杂度是
-<span
-class="math display">\[O(n)\]</span>。遍历结束之后计算每层的平均值的时间复杂度是
-O(h)O(h)，其中 hh 是二叉树的高度，任何情况下都满足 <span
-class="math display">\[h \le n\]</span>。因此总时间复杂度是 <span
-class="math display">\[O(n)\]</span>。</p></li>
-<li><p>空间复杂度：<span class="math display">\[O(n)\]</span>，其中 n
-是二叉树中的节点个数。空间复杂度取决于两个数组的大小和递归调用的层数，两个数组的大小都等于二叉树的高度，递归调用的层数不会超过二叉树的高度，最坏情况下，二叉树的高度等于节点个数。</p></li>
-</ul>
-<h2 id="approach-2-广度优先搜索">Approach 2: 广度优先搜索</h2>
-<p>也可以使用广度优先搜索计算二叉树的层平均值。从根节点开始搜索，每一轮遍历同一层的全部节点，计算该层的节点数以及该层的节点值之和，然后计算该层的平均值。</p>
-<p>如何确保每一轮遍历的是同一层的全部节点呢？我们可以借鉴层次遍历的做法，广度优先搜索使用队列存储待访问节点，只要确保在每一轮遍历时，队列中的节点是同一层的全部节点即可。具体做法如下：</p>
-<ul>
-<li><p>初始时，将根节点加入队列；</p></li>
-<li><p>每一轮遍历时，将队列中的节点全部取出，计算这些节点的数量以及它们的节点值之和，并计算这些节点的平均值，然后将这些节点的全部非空子节点加入队列，重复上述操作直到队列为空，遍历结束。</p></li>
-</ul>
-<p>由于初始时队列中只有根节点，满足队列中的节点是同一层的全部节点，每一轮遍历时都会将队列中的当前层节点全部取出，并将下一层的全部节点加入队列，因此可以确保每一轮遍历的是同一层的全部节点。</p>
-<p>具体实现方面，可以在每一轮遍历之前获得队列中的节点数量 <span
-class="math display">\[\textit{size}\]</span>，遍历时只遍历 <span
-class="math display">\[size\]</span>
-个节点，即可满足每一轮遍历的是同一层的全部节点。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">averageOfLevels_dfs</span>(<span class="params">self, root</span>):        </span><br><span class="line">        averages = <span class="built_in">list</span>()</span><br><span class="line">        queue = collections.deque([root])</span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            total = <span class="number">0</span></span><br><span class="line">            size = <span class="built_in">len</span>(queue)</span><br><span class="line">            <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(size):</span><br><span class="line">                node = queue.popleft()</span><br><span class="line">                total += node.val</span><br><span class="line">                left, right = node.left, node.right</span><br><span class="line">                <span class="keyword">if</span> left:</span><br><span class="line">                    queue.append(left)</span><br><span class="line">                <span class="keyword">if</span> right:</span><br><span class="line">                    queue.append(right)</span><br><span class="line">            averages.append(total / size)</span><br><span class="line">        <span class="keyword">return</span> averages</span><br></pre></td></tr></table></figure>
-<h3 id="复杂度分析-1">复杂度分析</h3>
-<ul>
-<li><p>时间复杂度：<span class="math display">\[O(n)\]</span>，其中 n
-是二叉树中的节点个数。广度优先搜索需要对每个节点访问一次，时间复杂度是
-<span class="math display">\[O(n)\]</span>。
-需要对二叉树的每一层计算平均值，时间复杂度是 <span
-class="math display">\[O(h)\]</span>，其中 h
-是二叉树的高度，任何情况下都满足 <span class="math display">\[h \le
-n\]</span>。因此总时间复杂度是 <span
-class="math display">\[O(n)\]</span>。</p></li>
-<li><p>空间复杂度：<span class="math display">\[O(n)\]</span>，其中 n
-是二叉树中的节点个数。空间复杂度取决于队列开销，队列中的节点个数不会超过
-n。</p></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1316,7 +1293,7 @@ n。</p></li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-count">230</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1383,12 +1360,12 @@ n。</p></li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">538k</span>
+    <span title="Symbols count total">552k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:09</span>
+    <span title="Reading time total">8:22</span>
 </div>
 
         

@@ -198,6 +198,116 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/09/06/2019-09-06-Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E9%85%8D%E7%BD%AEAnaconda3%E4%BB%A5%E5%8F%8APytorch-RL%E7%8E%AF%E5%A2%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/06/2019-09-06-Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E9%85%8D%E7%BD%AEAnaconda3%E4%BB%A5%E5%8F%8APytorch-RL%E7%8E%AF%E5%A2%83/" class="post-title-link" itemprop="url">Linux服务器上配置Anaconda3以及Pytorch-RL环境</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-09-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-09-06T00:00:00+08:00">2019-09-06</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1
+id="linux服务器上配置anaconda3以pytorch-rl环境">Linux服务器上配置Anaconda3以Pytorch-RL环境</h1>
+<p>通过上传安装包的方式在服务器安装Anaconda3只需要在<strong>相应的目录下</strong>执行一句命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash Anaconda3-2019.07-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
+<p>安装途中会提示安装位置为默认路径：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/home/userNAME/anaconda3</span><br></pre></td></tr></table></figure>
+<p>等待安装完成后，切换到Anaconda所在目录，打开Anaconda创建新环境：</p>
+<p>这里由于我之前进行的配置都是基于Python
+3.6.1的，所以这里要求新环境的Python也为3.6.1，但是在安装过程中出现了路径失效的情况（可能老版本的下载通道少一些），新建失败。这里就只要求版本为3.6即可。输入以下指令，新建环境成功。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda create --name opensim-rl python=3.6</span><br><span class="line">source activate opensim-rl</span><br></pre></td></tr></table></figure>
+<p>环境建好后可以通过以下指令进行版本检查：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python --version</span><br><span class="line">&gt; Python 3.6.9 :: Anaconda, Inc.</span><br></pre></td></tr></table></figure>
+<p>接下来激活新建的环境并进行配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source activate opensim-rl</span><br></pre></td></tr></table></figure>
+<p>参考我之前的一篇经验（<a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/30636305">Anaconda新环境下快速安装多个Python软件包</a>）可以快速在新环境中批量安装软件包：</p>
+<p><strong>在新环境中</strong>输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install anaconda </span><br></pre></td></tr></table></figure>
+<p>等待安装完成。</p>
+<p>这里就基本把会调用的包都装上了，接下来开始安装PyTorch。</p>
+<hr />
+<p>继续呆在<strong>激活的opensim-rl环境</strong>里</p>
+<p>由于PyTorch版本的选择和cuda版本有关，虽然因此先检查服务器上的cuda版本号：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat /usr/local/cuda/version.txt</span><br><span class="line">&gt; CUDA Version 9.0.103</span><br></pre></td></tr></table></figure>
+<p>虽然PyTorch目前支持的最低版本是9.2，先选9.2，找到安装指令格式，再把9.2改成9.0（这个升级只有一两个月，自觉上应该是可以这样操作的），尝试安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install pytorch torchvision cudatoolkit=9.0 -c pytorch</span><br></pre></td></tr></table></figure>
+<p>这里有一点需要注意：anaconda提供的pytorch的url国内不少很稳定，在下载的时候链接经常挂掉。</p>
+<p>这里给出几个策略：</p>
+<ol type="1">
+<li><p>（玄学方法）在早晚下载低谷的时候下，速度会比较快。</p></li>
+<li><p><strong>（科学方法1）开VPN下载，会很稳定。</strong></p></li>
+<li><p>（科学方法2）添加国内清华、中科大的镜像源，多一些链接路径会增加成功的概率。</p></li>
+</ol>
+<p>这里我们用了<a
+target="_blank" rel="noopener" href="http://www.landeng26.info/">Lantern</a>每个月500M的免费流量帮助下载，速度比较快</p>
+<hr />
+<p>最后开始安装gym</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install gym</span><br></pre></td></tr></table></figure>
+<p>搞定！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/09/06/2019-09-06-Windows%E9%80%9A%E8%BF%87SSH%E5%90%91Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1039,120 +1149,6 @@ for Reverse Only Letters.</li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/06/18/2019-06-18-Q521-Longest-Uncommon-Subsequence-I/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/18/2019-06-18-Q521-Longest-Uncommon-Subsequence-I/" class="post-title-link" itemprop="url">Q521 Longest Uncommon Subsequence I</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-06-18 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-18T00:00:00+08:00">2019-06-18</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.4k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="longest-uncommon-subsequence-i"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-uncommon-subsequence-i/">Longest
-Uncommon Subsequence I</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given a group of two strings, you need to find the longest uncommon
-subsequence of this group of two strings. The longest uncommon
-subsequence is defined as the longest subsequence of one of these
-strings and this subsequence should not be <strong>any</strong>
-subsequence of the other strings.</p>
-<p>A <strong>subsequence</strong> is a sequence that can be derived from
-one sequence by deleting some characters without changing the order of
-the remaining elements. Trivially, any string is a subsequence of itself
-and an empty string is a subsequence of any string.</p>
-<p>The input will be two strings, and the output needs to be the length
-of the longest uncommon subsequence. If the longest uncommon subsequence
-doesn't exist, return -1.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input: "aba", "cdc" Output: 3 Explanation: The longest uncommon
-subsequence is "aba" (or "cdc"), because "aba" is a subsequence of
-"aba", but not a subsequence of any other strings in the group of two
-strings.</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li>Both strings' lengths will not exceed 100.</li>
-<li>Only letters from a ~ z will appear in input strings.</li>
-</ul>
-</blockquote>
-<h2 id="approach-1-python-code">Approach 1: Python code</h2>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>“若两字符串不相等，选择较长的字符串返回长度即可。否则返回-1。”</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">findLUSlength</span>(<span class="params">self, a, b</span>):</span><br><span class="line">        <span class="keyword">return</span> a!=b <span class="keyword">and</span> <span class="built_in">max</span>(<span class="built_in">len</span>(a), <span class="built_in">len</span>(b)) <span class="keyword">or</span> -<span class="number">1</span></span><br><span class="line">        <span class="comment"># there must something wrong</span></span><br><span class="line">        </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    a=<span class="string">&quot;aba&quot;</span></span><br><span class="line">    b=<span class="string">&quot;cdc&quot;</span></span><br><span class="line">    solution=Solution().findLUSlength(a,b)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li>Runtime: 12 ms, faster than 95.02% of Python online submissions for
-Longest Uncommon Subsequence I .</li>
-<li>Memory Usage: 11.7 MB, less than 47.06% of Python online submissions
-for Longest Uncommon Subsequence I .</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1224,7 +1220,7 @@ for Longest Uncommon Subsequence I .</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-count">230</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1291,12 +1287,12 @@ for Longest Uncommon Subsequence I .</li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">538k</span>
+    <span title="Symbols count total">552k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:09</span>
+    <span title="Reading time total">8:22</span>
 </div>
 
         
