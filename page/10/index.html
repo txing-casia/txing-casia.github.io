@@ -198,6 +198,650 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/12/2021-07-12-Reinforcement%20Learning%20-%20DRN-A%20Deep%20Reinforcement%20Learning%20Framework%20for%20News%20Recommendation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/12/2021-07-12-Reinforcement%20Learning%20-%20DRN-A%20Deep%20Reinforcement%20Learning%20Framework%20for%20News%20Recommendation/" class="post-title-link" itemprop="url">Reinforcement Learning | DRN: A Deep Reinforcement Learning Framework for News Recommendation</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-07-12 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-12T00:00:00+08:00">2021-07-12</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>4.6k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>4 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1
+id="drn-a-deep-reinforcement-learning-framework-for-news-recommendation">DRN:
+A Deep Reinforcement Learning Framework for News Recommendation</h1>
+<p>论文链接：http://www.personal.psu.edu/~gjz5038/paper/www2018_reinforceRec/www2018_reinforceRec.pdf</p>
+<h2 id="主要内容">主要内容</h2>
+<ul>
+<li><p>针对新闻和用户动态特征的问题，目前的方法主要存在三个问题：</p>
+<ul>
+<li>模型<strong>只考虑当前奖励</strong>（例如CTR，点击转化率）</li>
+<li>很少有模型考虑<strong>使用用户的反馈</strong>而不是点击/不点击的标签（例如用户反馈频率）</li>
+<li>模型总是<strong>推荐相似的东西</strong>，会使得用户感到无聊</li>
+</ul></li>
+<li><p>一些典型方法：</p>
+<ul>
+<li>content based methods [19, 22, 33],</li>
+<li>collaborative filtering based methods [11, 28, 34]</li>
+<li>hybrid methods [12, 24, 25].</li>
+<li>deep learning models [8, 45, 52]</li>
+</ul></li>
+<li><p>三个挑战：</p>
+<ul>
+<li>First, the dynamic changes in news recommendations are difficult to
+handle.
+<ul>
+<li>First, news become outdated very fast.</li>
+<li>Second, users’ interest on different news might evolve during
+time.</li>
+</ul></li>
+<li>Second, current recommendation methods [23, 35, 36, 43] usually only
+consider the click / no click labels or ratings as users’ feedback.</li>
+<li>The third major issue of current recommendation methods is its
+tendency to keep recommending similar items to users, which might
+decrease users’ interest in similar topics.</li>
+</ul></li>
+<li><p>一般的强化学习推荐方法使用 <span
+class="math display">\[\epsilon-greedy\]</span> 或者 Upper Confidence
+Bound (UCB) 方法增加推荐的探索能力。</p>
+<p>但是 <span class="math display">\[\epsilon-greedy\]</span>
+会损害当前推荐的性能，而UCB在一件物品尝试了几次之后才能得到相对准确的奖励评估。因此需要更高效的探索方式。</p></li>
+<li><p>通过使用 Dueling Bandit Gradient Descent (DBGD)
+算法作为探索策略，它会随机从候选项的邻域或者候选项中选择推荐对象。这个探索策略可以避免推荐完全无关的信息，因此可以保持当前策略的精度。</p></li>
+<li><p>模型框图：</p>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-1.png" /></p></li>
+<li><p>算法每1小时更新一次。Every one hour, the agent will use the log
+in the memory to update its recommendation algorithm.</p></li>
+<li><p>主要贡献：</p>
+<ul>
+<li>我们认为用户的活跃性有助于提高推荐的准确性，这可以提供额外的信息，而不是简单地使用用户点击标签。</li>
+<li>应用了更有效的探索方法，避免了由经典探索方法(例如，<span
+class="math display">\[\epsilon\]</span>-greedy和置信上限)引起的推荐准确度下降。</li>
+<li>我们的系统已经在线部署在商业新闻推荐应用程序中。大量的离线和在线实验显示了我们方法的优越性能。</li>
+</ul></li>
+<li><p>一些推荐方法的特点：</p>
+<ul>
+<li>Content-based methods：统计内容的频率，推荐相似的内容；</li>
+<li>Collaborative filtering
+methods：使用过去的转化率或者其他类似用户的转化率，或者结合两者来预测；</li>
+<li>Hybrid methods：提升用户画像模型；</li>
+<li>deep learning models：建模复杂的用户-物品关系</li>
+</ul></li>
+</ul>
+<h3 id="算法模型">算法模型：</h3>
+<ul>
+<li><p>算法步骤：</p>
+<ol type="1">
+<li><strong>PUSH</strong>: In each timestamp (t1, t2, t3, t4, t5, ...),
+when a user sends a news request to the system, the recommendation agent
+G will take the feature representation of the current user and news
+candidates as input, and generate a top-k list of news to recommend L. L
+is generated by combining the exploitation of current model (will be
+discussed in Section 4.3) and exploration of novel items (will be
+discussed in Section 4.5).</li>
+<li><strong>FEEDBACK</strong>: User u who has received recommended news
+L will give their feedback B by his clicks on this set of news.</li>
+<li><strong>MINOR UPDATE</strong>: After each timestamp (e.g., after
+timestamp t1), with the feature representation of the previous user u
+and news list L, and the feedback B, agent G will update the model by
+comparing the recommendation performance of exploitation network Q and
+exploration network Q˜ (will be discussed in Section 4.5). If Q˜ gives
+better recommendation result, the current network will be updated
+towards Q˜ . Otherwise, Q will be kept unchanged. Minor update can
+happen after every recommendation impression happens.</li>
+<li><strong>MAJOR UPDATE</strong>: After certain period of timeTR(e.g.,
+after timestamp t3), agent G will use the user feedback B and user
+activeness stored in the memory to update the network Q. Here, we use
+the experience replay technique [31] to update the network.
+Specifically, agent G maintains a memory with recent historical click
+and user activeness records. When each update happens, agent G will
+sample a batch of records to update the model. Major update usually
+happens after a certain time interval, like one hour, during which
+thousands of recommendation impressions are conducted and their
+feedbacks are collected.</li>
+<li>Repeat step (1)-(4).</li>
+</ol></li>
+<li><p>特征设计：</p>
+<ul>
+<li><p><strong>News features</strong> includes 417 dimension one hot
+features that describe whether certain property appears in this piece of
+news, including headline, provider, ranking, entity name, category,
+topic category, and click counts in last 1 hour, 6 hours, 24 hours, 1
+week, and 1 year respectively.</p></li>
+<li><p><strong>User features</strong> mainly describes the features
+(i.e., headline, provider, ranking, entity name, category, and topic
+category) of the news that the user clicked in 1 hour, 6 hours, 24
+hours, 1 week, and 1 year respectively. There is also a total click
+count for each time granularity. Therefore, there will be totally 413 ×
+5 = 2065 dimensions.</p></li>
+<li><p><strong>User news features</strong>. These 25-dimensional
+features describe the interaction between user and one certain piece of
+news, i.e., the frequency for the entity (also category, topic category
+and provider) to appear in the history of the user’s readings.</p></li>
+<li><p><strong>Context features</strong>. These 32-dimensional features
+describe the context when a news request happens, including time,
+weekday, and the freshness of the news (the gap between request time and
+news publish time).</p></li>
+</ul></li>
+<li><p>模型框架，包含离线和在线部分</p></li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-3.png"
+alt="Model framework" />
+<figcaption aria-hidden="true">Model framework</figcaption>
+</figure>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-4.png"
+alt="Q network" /> <span class="math display">\[
+y_{s,a}=Q(s,a)=r_{immediate}+\gamma r_{future}\\
+y_{s,a,t}=r_{a,t+1}+\gamma Q\big(s_{a,t+1},\arg \max_{a&#39;}
+Q(s_{a,t+1},a&#39;;W_t);W_t&#39;\big)
+\]</span></p>
+<h3 id="user-activeness">User Activeness</h3>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-3.png"
+alt="User activeness estimation" /> <span class="math display">\[
+\lambda(t)=\lim_{dt\rightarrow 0} \frac{\Pr\{t \leq T&lt;t+dt\mid T\geq
+t \}}{d t}\\
+S(t)=e^{-\int_0^\infty \lambda(x)dx}\\
+T_0=\int_0^{\infty}S(t)dt
+\]</span> the maximum user activeness is truncated to 1.</p>
+<p>The click / no click label <span
+class="math display">\[r_{click}\]</span> and the user activeness <span
+class="math display">\[r_{active}\]</span> are combined as: <span
+class="math display">\[
+r_{total}=r_{click}+\beta r_{active}
+\]</span></p>
+<ul>
+<li>网络框架</li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-2.png"
+alt="Exploration by Dueling Bandit Gradient Descent" />
+<figcaption aria-hidden="true">Exploration by Dueling Bandit Gradient
+Descent</figcaption>
+</figure>
+<p><span class="math display">\[\hat{L}\]</span> 首先使用概率交错方法从
+<span class="math display">\[L\]</span> 和 <span
+class="math display">\[\tilde{L}\]</span> 。大致就是首先随机从 <span
+class="math display">\[L\]</span> 和 <span
+class="math display">\[\tilde{L}\]</span>
+选择推荐项，之后按照概率值更新网络 <span
+class="math display">\[\tilde{Q}\]</span></p>
+<p><span class="math display">\[
+\Delta W=\alpha \cdot rand(-1,1)\cdot W\\
+W&#39;=W+\eta \tilde{W}
+\]</span></p>
+<h2 id="总结">总结</h2>
+<p>感觉整体框架还是很好理解的，针对任务的改进比较多，对强化学习框架的改动比较小。</p>
+<p>两个网络的构造也类似于DQN中的target
+network，输入的高维特征类比于输入的图像信息。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/08/2021-07-08-Reinforcement%20Learning%20-%20Option-critic%20architecture/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/08/2021-07-08-Reinforcement%20Learning%20-%20Option-critic%20architecture/" class="post-title-link" itemprop="url">Reinforcement Learning | Option-critic Architecture</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-07-08 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-08T00:00:00+08:00">2021-07-08</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>5.5k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>5 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="option-critic-architecture">Option-critic Architecture</h1>
+<p>论文链接：www.aaai.org/ocs/index.php/AAAI/AAAI17/paper/download/14858/14328</p>
+<h2 id="主要内容">主要内容</h2>
+<ul>
+<li><p>分层强化学习自动学习时间抽象是很重要的</p></li>
+<li><p>设计了基于策略梯度理论的option-critic方法来学习内部策略和option的终点约束。We
+derive policy gradient theorems for options and propose a new
+option-critic architecture capable of learning both the internal
+policies and the termination conditions of options</p></li>
+<li><p>在离散和连续的任务中都取得了好的表现。 discrete and continuous
+environments</p></li>
+<li><p>时间抽象允许表示关于发生在不同时间尺度上的行动过程的知识。Temporal
+abstraction allows representing knowledge about courses of action that
+take place at different time scales.</p></li>
+<li><p>Discovering temporal abstractions autonomously
+成为了一个持续了15年的研究主题</p></li>
+<li><p>大部分的工作致力于发现子目标，并在后续的策略学习中实现它们。这个其实就是分层结构，并且和肌肉骨骼的运动控制很像。The
+majority of the existing work has focused on finding subgoals (useful
+states that an agent should reach) and subsequently learning policies to
+achieve them</p></li>
+<li><p>问题在于求解子目标时的探索时间和计算开销非常大。Additionally,
+learning policies associated with subgoals can be expensive in terms of
+data and computation time; in the worst case, it can be as expensive as
+solving the entire task.</p></li>
+<li><p>本文的方法模糊了发现option和学习option的界限，</p></li>
+<li><p>In contrast, we show that our approach is capable of successfully
+learning options within a single task without incurring any slowdown and
+while still providing benefits for <strong>transfer
+learning</strong>.（看着有点像我的Speed-accuracy
+Trade-off那篇文章，但它的是直接说在抢一学习上有好处的）</p></li>
+<li><p>core ideas：the <strong>intra-option policy</strong> and
+<strong>termination gradient theorems</strong></p></li>
+<li><p>方法需要的特殊条件少。As opposed to other methods, we only need
+to specify <strong>the number of desired options</strong>; it is
+<strong>not</strong> necessary to have <strong>subgoals</strong>,
+<strong>extra rewards</strong>, <strong>demonstrations</strong>,
+<strong>multiple problems</strong> or any other <strong>special
+accommodations</strong> (however, the approach can take advantage of
+pseudo-reward functions if desired)</p></li>
+</ul>
+<h3 id="option-framework">Option Framework</h3>
+<ul>
+<li>option框架假设对于option <span class="math display">\[\omega\in
+\Omega\]</span> 由三元组 <span
+class="math display">\[(I_{\omega},\pi_{\omega},\beta_{\omega})\]</span>
+组成。
+<ul>
+<li><span class="math display">\[I_{\omega} \subseteq S\]</span>
+是初始的状态集合</li>
+<li><span class="math display">\[\pi_{\omega}\]</span>
+是intra-option策略</li>
+<li><span class="math display">\[\beta_{\omega}: S \rightarrow
+[0,1]\]</span> 是终止函数</li>
+</ul></li>
+<li>当使用option框架时， MDP就变成了Semi-MDP，它有相应的最优值函数<span
+class="math display">\[V_{\Omega}(s)\]</span> 和option-value函数 <span
+class="math display">\[Q_{\Omega}(s,\omega)\]</span>
+。所谓的Semi-MDP就是指从状态s到下一个状态s‘要经过 <span
+class="math display">\[\tau\]</span>
+步的MDP，大致就是状态之间存在时间上的不连续。</li>
+<li>通过一些针对MDP的算法实现多个option并行地学习，这就是
+<strong>intra-option learning</strong> 的主要思路</li>
+<li>接下来就是要实现两个关键任务：learning <strong>option
+policies</strong> and <strong>termination functions</strong></li>
+<li>算法流程：一个外部的策略 <span
+class="math display">\[\pi_{\Omega}\]</span> 选择option来执行控制，
+intra-option policy <span class="math display">\[\pi_{\omega}\]</span>
+开始执行，直到终点（用终点函数来判断停止执行）</li>
+<li>定义option-value function can be written as:</li>
+</ul>
+<p><span class="math display">\[
+Q_{\Omega}(s,\omega)=\sum_a \pi_{\omega,\theta}(a \mid
+s)Q_{U}(s,\omega,a)
+\]</span></p>
+<p>其中 <span class="math display">\[Q_{U}(s,\omega,a)\]</span>
+是在state-option对下执行行为的评估值。</p>
+<p><span class="math display">\[
+Q_{U}(s,\omega,a)=r(s,a)+\gamma\sum_{s&#39;}P(s&#39; \mid
+s,a)U(\omega,s&#39;)
+\]</span></p>
+<p>注意 <span class="math display">\[(s,\omega)\]</span>
+组导致了一个扩张的状态空间 an augmented state space, cf. (Levy and
+Shimkin 2011)</p>
+<p><span class="math display">\[U: \Omega \times S\rightarrow
+\mathbb{R}\]</span> 是 the option-value function upon arrival，The value
+of executing <span class="math display">\[\omega\]</span> upon entering
+a state <span class="math display">\[s&#39;\]</span> is given by:</p>
+<p><span class="math display">\[
+U(\omega,s&#39;)=(1-\beta_{\omega,\vartheta}(s&#39;))Q_{\Omega}(s&#39;,\omega)+\beta_{\omega,\vartheta}(s&#39;)V_{\Omega}(s&#39;)
+\]</span></p>
+<p>如果option <span class="math display">\[\omega_t\]</span> 在时刻 t
+被初始化并被执行，此时状态为 <span class="math display">\[s_t\]</span>
+，然后在1步之后，状态转移到 <span
+class="math display">\[(s_{t+1},\omega_{t+1})\]</span> 的概率是：</p>
+<p><span class="math display">\[
+P(s_{t+1},\omega_{t+1} \mid s_t,\omega_t)=\sum_a
+\pi_{\omega_t,\theta}(a|s_t)P(s_{t+1} \mid s_t,a)\\
+\big((1-\beta_{\omega_t,\vartheta}(s_{t+1}))1_{\omega_t=\omega_{t+1}}+\beta_{\omega_t,\vartheta}(s_{t+1})\pi_{\Omega}(\omega_{t+1}
+\mid s_{t+1})\big)
+\]</span></p>
+<p>显然，给出计算过程是均匀的。在温和的条件下，由于选项到处可用，它实际上是遍历的，并且在
+state-option 对上存在唯一的平稳分布。</p>
+<p>接下来计算期望累积回报关于intra-option策略的参数 <span
+class="math display">\[\theta\]</span>
+的梯度，假设它是随机的可微分的，我们得到</p>
+<p><span class="math display">\[
+\frac{\partial Q_{\Omega}(s,\omega)}{\partial \theta}=\Bigg(\sum_a
+\frac{\partial \pi_{\omega,\theta}(a \mid s)}{\partial
+\theta}Q_{U}(s,\omega,a)\Bigg)\\
++\sum_a\pi_{\omega,\theta}(a \mid s)\sum_{s&#39;} \gamma
+P(s&#39;|s,a)\frac{\partial U(\omega,s&#39;)}{\partial \theta}
+\]</span></p>
+<p><strong>Theorem 1</strong> (<strong>Intra-Option Policy Gradient
+Theorem</strong>). Given a set of Markov options with stochastic
+intra-option policies differentiable in their parameters <span
+class="math display">\[\theta\]</span>, the gradient of the expected
+discounted return with respect to <span
+class="math display">\[\theta\]</span> and initial condition <span
+class="math display">\[(s_0,\omega_0)\]</span> is:</p>
+<p><span class="math display">\[
+\sum_{s,\omega} \mu_{\Omega}(s,\omega \mid s_0,\omega_0)\sum_a
+\frac{\partial \pi_{\omega,\theta}(a \mid s)}{\partial \theta}
+Q_U(s,\omega,a)
+\]</span></p>
+<p>其中 <span class="math display">\[\mu_{\Omega}\]</span>
+是状态-选项对的折扣权重</p>
+<p><span class="math display">\[
+\mu_{\Omega}(s,\omega \mid s_0,\omega_0)=\sum_{t=0}^{\infty}\gamma^t
+P(s_t=s,\omega_t=\omega \mid s_0,\omega_0)
+\]</span></p>
+<p>下面计算终点函数的梯度，假设时间是随机化的并且可微的关于参数 <span
+class="math display">\[\vartheta\]</span></p>
+<p><span class="math display">\[
+\frac{\partial Q_{\Omega}(s,\omega)}{\partial \vartheta} = \sum_a
+\pi_{\omega,\theta}(a \mid s)\sum_{s&#39;}\gamma P(s&#39; \mid s,a)
+\frac{\partial U(\omega,s&#39;)}{\partial \vartheta}
+\]</span></p>
+<p>关于 <span class="math display">\[U\]</span> 的梯度，可以结合又是函数
+<span class="math display">\[A_{\Omega}\]</span> 来计算：</p>
+<p><span class="math display">\[
+\begin{align}
+\frac{\partial U(\omega,s&#39;)}{\partial \vartheta} =&amp;
+-\frac{\partial \beta_{\omega,\vartheta}(s&#39;)}{\partial \vartheta}
+A_{\Omega}(s&#39;,\omega) \\
+&amp;+ \gamma\sum_{\omega&#39;} \sum_{s&#39;&#39;}
+P(s&#39;&#39;,\omega&#39; \mid s&#39;,\omega)\frac{\partial
+U(\omega&#39;,s&#39;&#39;)}{\partial \vartheta}
+\end{align}
+\]</span></p>
+<p>其中，优势函数 <span class="math display">\[A_{\Omega}(s&#39;,\omega)
+= Q_{\Omega}(s&#39;,\omega)-V_{\Omega}(s&#39;)\]</span> .</p>
+<p><strong>Theorem 2</strong> (<strong>Termination Gradient
+Theorem</strong>). Given a set of Markov options with stochastic
+termination functions differentiable in their parameters <span
+class="math display">\[\vartheta\]</span>, the gradient of the expected
+discounted return objective with respect to <span
+class="math display">\[\vartheta\]</span> and the initial condition
+<span class="math display">\[(s_1, \omega_0)\]</span> is:</p>
+<p><span class="math display">\[
+-\sum_{s&#39;,\omega}\mu_{\Omega}(s&#39;,\omega \mid
+s_1,\omega_0)\frac{\partial \beta_{\omega,\vartheta}(s&#39;)}{\partial
+\vartheta}A_{\Omega}(s&#39;,\omega)
+\]</span></p>
+<p>其中 <span class="math display">\[\mu_{\Omega}(s&#39;,\omega \mid
+s_1,\omega_0)\]</span> 是状态-选项对 <span
+class="math display">\[(s_1,\omega_0)\]</span> 的折扣权重</p>
+<p><span class="math display">\[
+\mu_{\Omega}(s,\omega \mid s_1,\omega_0)=\sum_{t=0}^{\infty} \gamma^t
+P(s_{t+1}=s,\omega_t=\omega|s_1,\omega_0)
+\]</span></p>
+<ul>
+<li>算法结构：</li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210709-1.png"
+alt="算法结构" />
+<figcaption aria-hidden="true">算法结构</figcaption>
+</figure>
+<ul>
+<li>算法伪代码：</li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210709-2.png"
+alt="算法伪代码" />
+<figcaption aria-hidden="true">算法伪代码</figcaption>
+</figure>
+<ul>
+<li>算法的问题：假设了所有的options适用于所有的地方。Perhaps the biggest
+remaining limitation of our work is the assumption that all options
+apply everywhere.</li>
+</ul>
+<h2 id="总结">总结</h2>
+<p>option-critic算法框架是典型的HRL实现方式之一，上下两层都使用策略梯度优化的证明过程看着还是很不错的。具体公式和推导可以参考原文以及附件。相关代码可以在paper
+with code找出来看看，估计会比FuN的结构的HRL更容易复现吧。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/06/2021-07-06-Reinforcement%20Learning%20-%20Option%20Discovery%20in%20Hierarchical%20Reinforcement%20Learning%20using%20Spatio-Temporal%20Clustering%20-%20%E5%89%AF%E6%9C%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/06/2021-07-06-Reinforcement%20Learning%20-%20Option%20Discovery%20in%20Hierarchical%20Reinforcement%20Learning%20using%20Spatio-Temporal%20Clustering%20-%20%E5%89%AF%E6%9C%AC/" class="post-title-link" itemprop="url">Reinforcement Learning | Option Discovery in Hierarchical Reinforcement Learning using Spatio-Temporal Clustering</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-07-06 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-06T00:00:00+08:00">2021-07-06</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.8k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1
+id="option-discovery-in-hierarchical-reinforcement-learning-using-spatio-temporal-clustering">Option
+Discovery in Hierarchical Reinforcement Learning using Spatio-Temporal
+Clustering</h1>
+<p>论文链接：https://arxiv.org/pdf/1605.05359v3.pdf</p>
+<h2 id="主要内容">主要内容</h2>
+<ul>
+<li><p>本文旨在提出一个自动的技能获取框架，可以分层描述任务，对状态抽象以及在抽象状态之间拓展行为。这样的分层结构可以加速学习过程</p></li>
+<li><p>使用动态系统中寻找状态空间中亚稳态区域和抽象状态的思想。We use
+ideas from dynamical systems to find metastable regions in the state
+space and associate them with abstract states</p></li>
+<li><p>使用空间聚类算法PCCA+，做状态抽象，形成抽象的状态量</p></li>
+<li><p>These skills are independent of the learning task and can be
+efficiently reused across a variety of tasks defined over the same
+model</p></li>
+<li><p>The core idea of hierarchical reinforcement learning is to break
+down the reinforcement learning problem into subtasks through a
+hierarchy of abstractions.</p></li>
+<li><p>自动发现不同的技能，这是一个小领域。Our focus in this paper is to
+present our framework on automated discovery of skills</p>
+<ul>
+<li>定义状态空间中的瓶颈状态，这些状态被划分为集合，两组罕见状态之间的转换会在这种转换的相应点引入瓶颈状态。达到这种瓶颈状态的策略被缓存为选项
+(McGovern and Barto 2001).</li>
+<li>使用因式分解来表示状态空间中存在的结构，识别很少变化的动作序列，并把这些序列作为选项被缓存起来
+(Hengst 2004)</li>
+<li>使用智能体与环境交互的图表征，并使用中间中心性度量来识别子任务</li>
+<li>使用聚类方法(光谱或其他方法)分离出MDP的不同强关联成分，并识别连接不同聚类的瓶颈
+(Menache, Mannor, and Shimkin 2002).</li>
+</ul></li>
+<li><p>文章的目标是在没有任何先验知识的情况下获得技能和发现抽象</p></li>
+<li><p>使用SMDP Q-Learning，Intra Option Q-Learning</p></li>
+<li><p>主要贡献：</p>
+<ul>
+<li>使用PCCA+抽象MDP的state</li>
+<li>设计一种组合option的方式</li>
+<li>大状态空间下，不好使用，设计一种聚合的状态空间</li>
+</ul></li>
+<li><p>Option框架：The option framework is one of the formalisations
+used to represent hierarchies in RL (Sutton, Precup, and Singh 1999).
+Formally, an option is a tuple <span class="math inline">\(O = (I, \mu,
+\beta)\)</span> here:</p>
+<ul>
+<li><span class="math inline">\(I\)</span> is the initiation set: a set
+of states from which the action can be activated</li>
+<li><span class="math inline">\(\mu\)</span> is a policy function where
+µ(s, a) represents the preference value given to action a in state s
+following option O.</li>
+<li><span class="math inline">\(\beta\)</span> is the termination
+function: When an agent enters a state s while following option O, the
+option could be terminated with a probability <span
+class="math inline">\(\beta(s)\)</span>.</li>
+</ul></li>
+<li><p>Semi-Markov Decision Process (SMDP)</p></li>
+</ul>
+<p><span class="math display">\[
+Q(s,o)\leftarrow Q(s,o)+\alpha[r+\gamma^k \max_{a\in O} Q(s,a)-Q(s,o)]
+\]</span></p>
+<ul>
+<li><p>SMDP学习方法的一个主要缺点是，在了解其结果之前，选项需要完全执行到终止。</p></li>
+<li><p>Perron Cluster Analysis (PCCA+)</p></li>
+</ul>
+<h2 id="总结">总结</h2>
+<p>主要工作是利用一个谱聚类算法自动地寻找option，算是options类算法的变体。option可以赋予策略语义特征，可以看看原始文章。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/05/2021-07-05-ACM%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F%E5%A4%84%E7%90%86python%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -846,460 +1490,10 @@ path can be different).</p>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/05/07/2021-05-07-Q1685-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E5%B7%AE%E7%BB%9D%E5%AF%B9%E5%80%BC%E4%B9%8B%E5%92%8C-%E4%B8%AD%E7%AD%89-%E8%B4%AA%E5%BF%83/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/07/2021-05-07-Q1685-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E5%B7%AE%E7%BB%9D%E5%AF%B9%E5%80%BC%E4%B9%8B%E5%92%8C-%E4%B8%AD%E7%AD%89-%E8%B4%AA%E5%BF%83/" class="post-title-link" itemprop="url">Q1685-有序数组中差绝对值之和-中等-贪心</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-05-07 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-07T00:00:00+08:00">2021-05-07</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.3k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="有序数组中差绝对值之和"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sum-of-absolute-differences-in-a-sorted-array/">1685.
-有序数组中差绝对值之和</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>给你一个 非递减 有序整数数组 nums 。</p>
-<p>请你建立并返回一个整数数组 result，它跟 nums 长度相同，且result[i]
-等于 nums[i] 与数组中所有其他元素差的绝对值之和。</p>
-<p>换句话说， result[i] 等于 sum(|nums[i]-nums[j]|) ，其中 0 &lt;= j
-&lt; nums.length 且 j != i （下标从 0 开始）。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入：nums = [2,3,5] 输出：[4,3,5] 解释：假设数组下标从 0 开始，那么
-result[0] = |2-2| + |2-3| + |2-5| = 0 + 1 + 3 = 4， result[1] = |3-2| +
-|3-3| + |3-5| = 1 + 0 + 2 = 3， result[2] = |5-2| + |5-3| + |5-5| = 3 +
-2 + 0 = 5。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>输入：nums = [1,4,6,8,10] 输出：[24,15,13,15,21]</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li><code>2 &lt;= nums.length &lt;= 10^5</code></li>
-<li><code>1 &lt;= nums[i] &lt;= nums[i + 1] &lt;= 10^4</code></li>
-</ul>
-</blockquote>
-<h3 id="approach-1-贪心">Approach 1: 贪心</h3>
-<p>直接思路是在一层循环中遍历每个元素sum[i]，第二层循环计算它与其他元素差值的绝对值，并且求和。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getSumAbsoluteDifferences</span>(<span class="params">self, nums</span>):</span><br><span class="line">        N = <span class="built_in">len</span>(nums)</span><br><span class="line">        ans=[]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">            dif = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">                <span class="keyword">if</span> i != j:</span><br><span class="line">                    dif += <span class="built_in">abs</span>(nums[i] - nums[j])</span><br><span class="line">            ans.append(dif)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-<p>这样做的时间复杂度是O(n^2)，提示超出了时间限制，于是我们摄像能不能减少时间复杂度。</p>
-<p>利用非递减数组的性质，可以提前计算前i项和 prefixSum[i]
-，将后续的计算简化为：</p>
-<p>对 sums[i] 左边的元素，单项差值为 <span
-class="math display">\[sums[i]-sums[j], (N \geq i&gt;j)\]</span>，前 i
-项求和为 <span
-class="math display">\[i*sums[i]-sum(sums[j])\]</span></p>
-<p>对 sums[i] 右边的元素，单项差值为 <span
-class="math display">\[sums[j]-sums[i],(N\geq j&gt;i)\]</span>，前 i
-项求和为 <span
-class="math display">\[sum(sums[j])-(N-i-1)*sums[i]\]</span></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getSumAbsoluteDifferences</span>(<span class="params">self, nums</span>):</span><br><span class="line">        N = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="built_in">sum</span> = <span class="number">0</span></span><br><span class="line">        output = []</span><br><span class="line">        prefixSum =[]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">            <span class="built_in">sum</span> += nums[i]</span><br><span class="line">            prefixSum.append(<span class="built_in">sum</span>) <span class="comment"># 前i项和</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">            output.append((i+<span class="number">1</span>)*nums[i]-prefixSum[i] + prefixSum[N-<span class="number">1</span>]-prefixSum[i]-nums[i]*(N-<span class="number">1</span>-i))</span><br><span class="line">        <span class="keyword">return</span> output</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：<span
-class="math display">\[O(N)\]</span>，N是序列长度。</li>
-<li>空间复杂度：<span
-class="math display">\[O(1)\]</span>。常数个变量。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/05/06/2021-05-06-Q376-%E6%91%86%E5%8A%A8%E5%BA%8F%E5%88%97-%E4%B8%AD%E7%AD%89-%E8%B4%AA%E5%BF%83%20-%20%E5%89%AF%E6%9C%AC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/06/2021-05-06-Q376-%E6%91%86%E5%8A%A8%E5%BA%8F%E5%88%97-%E4%B8%AD%E7%AD%89-%E8%B4%AA%E5%BF%83%20-%20%E5%89%AF%E6%9C%AC/" class="post-title-link" itemprop="url">Q376-摆动序列-中等-贪心</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-05-06 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-06T00:00:00+08:00">2021-05-06</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>4.1k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>4 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="摆动序列"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/wiggle-subsequence/">376.
-摆动序列</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>如果连续数字之间的差严格地在正数和负数之间交替，则数字序列称为
-<strong>摆动序列</strong>
-。第一个差（如果存在的话）可能是正数或负数。仅有一个元素或者含两个不等元素的序列也视作摆动序列。</p>
-<ul>
-<li><p>例如， [1, 7, 4, 9, 2, 5] 是一个 摆动序列 ，因为差值 (6, -3, 5,
--7, 3) 是正负交替出现的。</p></li>
-<li><p>相反，[1, 4, 7, 2, 5] 和 [1, 7, 4, 5, 5]
-不是摆动序列，第一个序列是因为它的前两个差值都是正数，第二个序列是因为它的最后一个差值为零。</p></li>
-</ul>
-<p>子序列
-可以通过从原始序列中删除一些（也可以不删除）元素来获得，剩下的元素保持其原始顺序。</p>
-<p>给你一个整数数组 nums ，返回 nums 中作为 摆动序列 的 最长子序列的长度
-。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入：nums = [1,7,4,9,2,5] 输出：6
-解释：整个序列均为摆动序列，各元素之间的差值为 (6, -3, 5, -7, 3) 。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>输入：nums = [1,17,5,10,13,15,10,5,16,8] 输出：7
-解释：这个序列包含几个长度为 7 摆动序列。 其中一个是 [1, 17, 10, 13, 10,
-16, 8] ，各元素之间的差值为 (16, -7, 3, -3, 6, -8) 。</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li><code>1 &lt;= nums.length &lt;= 1000</code></li>
-<li><code>0 &lt;= nums[i] &lt;= 1000</code></li>
-</ul>
-</blockquote>
-<h3 id="approach-1-贪心">Approach 1: 贪心</h3>
-<p>一开始没看到可以删减元素，打算使用双循环，遍历每个元素作为开头的子序列，计算最长的摇摆子序列。但是跑例子2的时候处了问题。</p>
-<p>后来发现可以删除元素，所以考虑第二层循环里面不同加break了，可以继续计数，同时考虑了几个特殊情况，例如<span
-class="math display">\[[0,0,0]\]</span> 输出 1, <span
-class="math display">\[[1,2,3,4,5]\]</span> 输出 2 等。代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wiggleMaxLength</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        N = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> N == <span class="number">1</span> <span class="keyword">or</span> (N == <span class="number">2</span> <span class="keyword">and</span> nums[<span class="number">0</span>] == nums[<span class="number">1</span>]):</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        ans = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,N-<span class="number">1</span>):</span><br><span class="line">            dif_old = nums[i] - nums[i-<span class="number">1</span>]</span><br><span class="line">            length = <span class="number">2</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>,N):</span><br><span class="line">                dif_new = nums[j] - nums[j-<span class="number">1</span>]</span><br><span class="line">                <span class="keyword">if</span> dif_old * dif_new &lt; <span class="number">0</span>:</span><br><span class="line">                    length += <span class="number">1</span></span><br><span class="line">                    ans = <span class="built_in">max</span>(length,ans) </span><br><span class="line">                    dif_old = dif_new</span><br><span class="line">                <span class="keyword">elif</span> dif_new != <span class="number">0</span>:</span><br><span class="line">                    ans = <span class="built_in">max</span>(length,ans) </span><br><span class="line">                    dif_old = dif_new</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-<p>进一步补考虑，实际上由于删除机制，最长的子序列一定是从头开始计数的，所以可以去掉第一层循环，减小时间复杂度从O(n^2)到O(n)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wiggleMaxLength</span>(<span class="params">self, nums</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        N = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> N == <span class="number">1</span> <span class="keyword">or</span> (N == <span class="number">2</span> <span class="keyword">and</span> nums[<span class="number">0</span>] == nums[<span class="number">1</span>]):</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        ans = <span class="number">1</span></span><br><span class="line">       </span><br><span class="line">        dif_old = nums[<span class="number">1</span>] - nums[<span class="number">0</span>]</span><br><span class="line">        length = <span class="number">2</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,N):</span><br><span class="line">            dif_new = nums[j] - nums[j-<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">if</span> dif_old * dif_new &lt; <span class="number">0</span>:</span><br><span class="line">                length += <span class="number">1</span></span><br><span class="line">                ans = <span class="built_in">max</span>(length,ans) </span><br><span class="line">                dif_old = dif_new</span><br><span class="line">            <span class="keyword">elif</span> dif_new != <span class="number">0</span>:</span><br><span class="line">                ans = <span class="built_in">max</span>(length,ans) </span><br><span class="line">                dif_old = dif_new</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：<span
-class="math display">\[O(N)\]</span>，N是序列长度。</li>
-<li>空间复杂度：<span
-class="math display">\[O(1)\]</span>。常数个变量。</li>
-</ul>
-<h3 id="approach-2-动态规划">Approach 2: 动态规划</h3>
-<p>每当我们选择一个元素作为摆动序列的一部分时，这个元素要么是上升的，要么是下降的，这取决于前一个元素的大小。那么列出状态表达式为：</p>
-<ul>
-<li><p><span class="math display">\[up[i]\]</span> 表示以前 i
-个元素中的某一个为结尾的最长的「上升摆动序列」的长度。</p></li>
-<li><p><span class="math display">\[\textit{down}[i]\]</span> 表示以前 i
-个元素中的某一个为结尾的最长的「下降摆动序列」的长度。</p></li>
-</ul>
-<p>下面以 up[i] 为例，说明其状态转移规则：</p>
-<ul>
-<li>当 <span class="math display">\[\textit{nums}[i] \leq
-\textit{nums}[i - 1]\]</span>
-时，我们无法选出更长的「上升摆动序列」的方案。因为对于任何以 <span
-class="math display">\[\textit{nums}[i]\]</span>
-结尾的「上升摆动序列」，我们都可以将 <span
-class="math display">\[\textit{nums}[i]\]</span> 替换为 <span
-class="math display">\[\textit{nums}[i - 1]\]</span>，使其成为以 <span
-class="math display">\[\textit{nums}[i - 1]\]</span>
-结尾的「上升摆动序列」。</li>
-<li>当 <span class="math display">\[\textit{nums}[i] &gt;
-\textit{nums}[i - 1]\]</span> 时，我们既可以从 <span
-class="math display">\[up[i - 1]\]</span> 进行转移，也可以从 <span
-class="math display">\[\textit{down}[i - 1]\]</span>
-进行转移。下面我们证明从 <span class="math display">\[\textit{down}[i -
-1]\]</span> 转移是必然合法的，即必然存在一个 <span
-class="math display">\[\textit{down}[i - 1]\]</span>
-对应的最长的「下降摆动序列」的末尾元素小于 <span
-class="math display">\[\textit{nums}[i]\]</span>。
-<ul>
-<li>我们记这个末尾元素在原序列中的下标为 j，假设从 j
-往前的第一个「谷」为 nums[k]，我们总可以让 j 移动到
-k，使得这个最长的「下降摆动序列」的末尾元素为「谷」。</li>
-<li>然后我们可以证明在这个末尾元素为「谷」的情况下，这个末尾元素必然是从
-nums[i]
-往前的第一个「谷」。证明非常简单，我们使用反证法，如果这个末尾元素不是从
-nums[i] 往前的第一个「谷」，那么我们总可以在末尾元素和 nums[i]
-之间取得一对「峰」与「谷」，接在这个「下降摆动序列」后，使其更长。</li>
-<li>这样我们知道必然存在一个 down[i−1]
-对应的最长的「下降摆动序列」的末尾元素为 nums[i]
-往前的第一个「谷」。这个「谷」必然小于 nums[i]。证毕。</li>
-</ul></li>
-</ul>
-<p>这样我们可以用同样的方法说明 down[i]
-的状态转移规则，最终的状态转移方程为： <span class="math display">\[
-up[i]=
-\begin{cases}
-up[i-1] &amp; nums[i]≤nums[i−1]\\
-max(up[i-1],down[i-1]+1) &amp; nums[i]&gt;nums[i−1]
-\end{cases}
-\]</span></p>
-<p><span class="math display">\[
-down[i]=
-\begin{cases}
-down[i-1] &amp; nums[i] \geq nums[i−1]\\
-max(up[i-1]+1,down[i-1]) &amp; nums[i]&lt;nums[i−1]
-\end{cases}
-\]</span></p>
-<p>最终的答案即为 up[n−1] 和 down[n−1] 中的较大值，其中 n
-是序列的长度。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wiggleMaxLength</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> n</span><br><span class="line">        </span><br><span class="line">        up = [<span class="number">1</span>] + [<span class="number">0</span>] * (n - <span class="number">1</span>)</span><br><span class="line">        down = [<span class="number">1</span>] + [<span class="number">0</span>] * (n - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">if</span> nums[i] &gt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                up[i] = <span class="built_in">max</span>(up[i - <span class="number">1</span>], down[i - <span class="number">1</span>] + <span class="number">1</span>)</span><br><span class="line">                down[i] = down[i - <span class="number">1</span>]</span><br><span class="line">            <span class="keyword">elif</span> nums[i] &lt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                up[i] = up[i - <span class="number">1</span>]</span><br><span class="line">                down[i] = <span class="built_in">max</span>(up[i - <span class="number">1</span>] + <span class="number">1</span>, down[i - <span class="number">1</span>])</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                up[i] = up[i - <span class="number">1</span>]</span><br><span class="line">                down[i] = down[i - <span class="number">1</span>]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(up[n - <span class="number">1</span>], down[n - <span class="number">1</span>])</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n
-是序列的长度。我们只需要遍历该序列一次。</p></li>
-<li><p>空间复杂度：O(n)，其中 n 是序列的长度。我们需要开辟两个长度为 n
-的数组。</p></li>
-</ul>
-<h4 id="approach-3-优化的动态规划">Approach 3: 优化的动态规划</h4>
-<p><strong>思路及解法</strong></p>
-<p>注意到方法一中，我们仅需要前一个状态来进行转移，所以我们维护两个变量即可。这样我们可以写出如下的代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wiggleMaxLength</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> n</span><br><span class="line">        </span><br><span class="line">        up = down = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">if</span> nums[i] &gt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                up = <span class="built_in">max</span>(up, down + <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">elif</span> nums[i] &lt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                down = <span class="built_in">max</span>(up + <span class="number">1</span>, down)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(up, down)</span><br></pre></td></tr></table></figure>
-<p>注意到每有一个「峰」到「谷」的下降趋势，<span
-class="math display">\[\textit{down}\]</span>
-值才会增加，每有一个「谷」到「峰」的上升趋势，<span
-class="math display">\[\textit{up}\]</span> 值才会增加。且过程中 <span
-class="math display">\[\textit{down}\]</span> 与 <span
-class="math display">\[\textit{up}\]</span> 的差的绝对值值恒不大于 1，即
-<span class="math display">\[\textit{up} \leq \textit{down} + 1\]</span>
-且 <span class="math display">\[\textit{down} \leq \textit{up} +
-1\]</span>，于是有 <span class="math display">\[\max(\textit{up},
-\textit{down} + 1) = \textit{down} + 1\]</span> 且 <span
-class="math display">\[\max(\textit{up} + 1, \textit{down}) =
-\textit{up} + 1\]</span>。这样我们可以省去不必要的比较大小的过程。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wiggleMaxLength</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> n</span><br><span class="line">        </span><br><span class="line">        up = down = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">if</span> nums[i] &gt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                up = down + <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> nums[i] &lt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                down = up + <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(up, down)</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<p>时间复杂度：O(n)，其中 n 是序列的长度。我们只需要遍历该序列一次。</p>
-<p>空间复杂度：O(1)。我们只需要常数空间来存放若干变量。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/04/29/2021-04-29-Q1029.%20%E4%B8%A4%E5%9C%B0%E8%B0%83%E5%BA%A6-%E4%B8%AD%E7%AD%89-%E8%B4%AA%E5%BF%83/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/29/2021-04-29-Q1029.%20%E4%B8%A4%E5%9C%B0%E8%B0%83%E5%BA%A6-%E4%B8%AD%E7%AD%89-%E8%B4%AA%E5%BF%83/" class="post-title-link" itemprop="url">Q1029-两地调度-中等-贪心</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-04-29 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-29T00:00:00+08:00">2021-04-29</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.3k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="两地调度"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/two-city-scheduling/">1029.
-两地调度</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>公司计划面试 2N 人。第 i 人飞往 A 市的费用为 <span
-class="math display">\[costs[i][0]\]</span>，飞往 B 市的费用为 <span
-class="math display">\[costs[i][1]\]</span>。</p>
-<p>返回将每个人都飞到某座城市的最低费用，要求每个城市都有 N 人抵达。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入：[[10,20],[30,200],[400,50],[30,20]] 输出：110 解释： 第一个人去
-A 市，费用为 10。 第二个人去 A 市，费用为 30。 第三个人去 B 市，费用为
-50。 第四个人去 B 市，费用为 20。</p>
-<p>最低总费用为 10 + 30 + 50 + 20 =
-110，每个城市都有一半的人在面试。</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li><code>1 &lt;= costs.length &lt;= 100</code></li>
-<li><code>costs.length</code> 为偶数</li>
-<li><code>1 &lt;= costs[i][0], costs[i][1] &lt;= 1000</code></li>
-</ul>
-</blockquote>
-<h3 id="apporach-1-贪心">Apporach 1: 贪心</h3>
-<p>我们这样来看这个问题，公司首先将这 2N 个人全都安排飞往 B 市，再选出 N
-个人改变它们的行程，让他们飞往 A
-市。如果选择改变一个人的行程，那么公司将会额外付出 price_A - price_B
-的费用，这个费用可正可负。</p>
-<p>因此最优的方案是，选出 price_A - price_B 最小的 N 个人，让他们飞往 A
-市，其余人飞往 B 市。</p>
-<p>算法</p>
-<ul>
-<li>按照 price_A - price_B 从小到大排序；</li>
-<li>将前 N 个人飞往 A 市，其余人飞往 B 市，并计算出总费用。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">twoCitySchedCost</span>(<span class="params">self, costs: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="comment"># Sort by a gain which company has </span></span><br><span class="line">        <span class="comment"># by sending a person to city A and not to city B</span></span><br><span class="line">        costs.sort(key = <span class="keyword">lambda</span> x : x[<span class="number">0</span>] - x[<span class="number">1</span>])</span><br><span class="line">        </span><br><span class="line">        total = <span class="number">0</span></span><br><span class="line">        n = <span class="built_in">len</span>(costs) // <span class="number">2</span></span><br><span class="line">        <span class="comment"># To optimize the company expenses,</span></span><br><span class="line">        <span class="comment"># send the first n persons to the city A</span></span><br><span class="line">        <span class="comment"># and the others to the city B</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            total += costs[i][<span class="number">0</span>] + costs[i + n][<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">return</span> total</span><br></pre></td></tr></table></figure>
-<p>Or</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">twoCitySchedCost</span>(<span class="params">self, costs</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        N=<span class="built_in">len</span>(costs)</span><br><span class="line">        deltacost=[]</span><br><span class="line">        COSTAB=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):<span class="comment"># 改派i去A城，花费变动deltacost[i]</span></span><br><span class="line">            deltacost.append(costs[i][<span class="number">0</span>]-costs[i][<span class="number">1</span>])</span><br><span class="line">            COSTAB=COSTAB+costs[i][<span class="number">1</span>]</span><br><span class="line">        deltacost=<span class="built_in">sorted</span>(deltacost)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">round</span>(N/<span class="number">2</span>)):</span><br><span class="line">            COSTAB=COSTAB+deltacost[i]</span><br><span class="line">        <span class="keyword">return</span> COSTAB</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：<span class="math display">\[O(NlogN)\]</span>，需要对
-<code>price_A - price_B</code> 进行排序。</li>
-<li>空间复杂度：<span class="math display">\[O(1)\]</span>。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1367,7 +1561,7 @@ A 市，费用为 10。 第二个人去 A 市，费用为 30。 第三个人去 
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">230</span>
+          <span class="site-state-item-count">233</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1434,12 +1628,12 @@ A 市，费用为 10。 第二个人去 A 市，费用为 30。 第三个人去 
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">552k</span>
+    <span title="Symbols count total">568k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:22</span>
+    <span title="Reading time total">8:36</span>
 </div>
 
         

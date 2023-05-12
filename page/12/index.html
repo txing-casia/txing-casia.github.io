@@ -198,6 +198,507 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/04/15/2021-04-15-JZOffer%2028-%E5%AF%B9%E7%A7%B0%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91-%E7%AE%80%E5%8D%95-%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/15/2021-04-15-JZOffer%2028-%E5%AF%B9%E7%A7%B0%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91-%E7%AE%80%E5%8D%95-%E6%A0%91/" class="post-title-link" itemprop="url">JZOffer 28-对称的二叉树-简单-树</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-04-15 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-15T00:00:00+08:00">2021-04-15</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.2k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="剑指-offer-28.-对称的二叉树"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof/">剑指
+Offer 28. 对称的二叉树</a></h4>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>请实现一个函数，用来判断一棵二叉树是不是对称的。如果一棵二叉树和它的镜像一样，那么它是对称的。</p>
+</blockquote>
+<blockquote>
+<p>例如，二叉树 [1,2,2,3,4,4,3] 是对称的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    1</span><br><span class="line">   / \</span><br><span class="line">  2   2</span><br><span class="line"> / \ / \</span><br><span class="line">3  4 4  3</span><br></pre></td></tr></table></figure>
+<p>但是下面这个 [1,2,2,null,3,null,3] 则不是镜像对称的:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  1</span><br><span class="line"> / \</span><br><span class="line">2   2</span><br><span class="line"> \   \</span><br><span class="line"> 3    3</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>输入：root = [1,2,2,3,4,4,3] 输出：true</p>
+</blockquote>
+<blockquote>
+<p>Example 2:</p>
+<p>输入：root = [1,2,2,null,3,null,3] 输出：false</p>
+</blockquote>
+<blockquote>
+<p><strong>提示：</strong></p>
+<ul>
+<li>0 &lt;= 节点个数 &lt;= 1000</li>
+</ul>
+</blockquote>
+<p>注意：本题与主站 101
+题相同：https://leetcode-cn.com/problems/symmetric-tree/</p>
+<h2 id="approach-1-遍历">Approach 1: 遍历</h2>
+<ul>
+<li><p>对称二叉树定义： 对于树中 任意两个对称节点 LL 和 RR
+，一定有：</p>
+<ul>
+<li>L.val = R.val：即此两对称节点值相等。</li>
+<li>L.left.val = R.right.val ：即 LL 的 左子节点 和 RR 的 右子节点
+对称；</li>
+<li>L.right.val = R.left.val ：即 LL 的 右子节点 和 RR 的 左子节点
+对称。</li>
+</ul></li>
+<li><p>根据以上规律，考虑从顶至底递归，判断每对节点是否对称，从而判断树是否为对称二叉树。</p></li>
+<li><p>算法流程： isSymmetric(root) ：</p>
+<ul>
+<li><strong>特例处理</strong>： 若根节点 root 为空，则直接返回 true
+。</li>
+<li><strong>返回值</strong>： 即 recur(root.left, root.right) ;</li>
+</ul></li>
+</ul>
+<p>recur(L, R) ：</p>
+<ul>
+<li><strong>终止条件</strong>：
+<ul>
+<li>当 L 和 R 同时越过叶节点： 此树从顶至底的节点都对称，因此返回 true
+；</li>
+<li>当 L 或 R 中只有一个越过叶节点： 此树不对称，因此返回 false ；</li>
+<li>当节点 L 值 <span class="math display">\[\ne \]</span> 节点 R 值：
+此树不对称，因此返回 false ；</li>
+</ul></li>
+<li><strong>递推工作</strong>：
+<ul>
+<li>判断两节点 L.left 和 R.right 是否对称，即 recur(L.left, R.right)
+；</li>
+<li>判断两节点 L.right 和 R.left 是否对称，即 recur(L.right, R.left)
+；</li>
+</ul></li>
+<li><strong>返回值</strong>：
+两对节点都对称时，才是对称树，因此用与逻辑符 &amp;&amp; 连接。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isSymmetric</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">recur</span>(<span class="params">L, R</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> L <span class="keyword">and</span> <span class="keyword">not</span> R: <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> L <span class="keyword">or</span> <span class="keyword">not</span> R <span class="keyword">or</span> L.val != R.val: <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">return</span> recur(L.left, R.right) <span class="keyword">and</span> recur(L.right, R.left)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> recur(root.left, root.right) <span class="keyword">if</span> root <span class="keyword">else</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度 O(N)： 其中 N 为二叉树的节点数量，每次执行 recur()
+可以判断一对节点是否对称，因此最多调用 N/2次 recur() 方法。</li>
+<li>空间复杂度 O(N) ： 最差情况下（见下图），二叉树退化为链表，系统使用
+O(N)大小的栈空间。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/04/14/2021-04-14-JZOffer%2055-II-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91-%E7%AE%80%E5%8D%95-%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/14/2021-04-14-JZOffer%2055-II-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91-%E7%AE%80%E5%8D%95-%E6%A0%91/" class="post-title-link" itemprop="url">JZOffer 55-平衡二叉树-II-简单-树</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-04-14 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-14T00:00:00+08:00">2021-04-14</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.5k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="剑指-offer-55---ii.-平衡二叉树"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/">剑指
+Offer 55 - II. 平衡二叉树</a></h4>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>输入一棵二叉树的根节点，判断该树是不是平衡二叉树。如果某二叉树中任意节点的左右子树的深度相差不超过1，那么它就是一棵平衡二叉树。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>给定二叉树 <code>[3,9,20,null,null,15,7]</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">/ \</span><br><span class="line">9  20</span><br><span class="line"> /  \</span><br><span class="line">15   7</span><br></pre></td></tr></table></figure>
+<p>返回 <code>true</code> 。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>给定二叉树 <code>[1,2,2,3,3,null,null,4,4]</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">      1</span><br><span class="line">     / \</span><br><span class="line">    2   2</span><br><span class="line">   / \</span><br><span class="line">  3   3</span><br><span class="line"> / \</span><br><span class="line">4   4</span><br></pre></td></tr></table></figure>
+<p>返回 <code>false</code> 。</p>
+</blockquote>
+<blockquote>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>0 &lt;= 树的结点个数 &lt;= 10000</code></li>
+</ul>
+</blockquote>
+<p>注意：本题与主站 110
+题相同：https://leetcode-cn.com/problems/balanced-binary-tree/</p>
+<p>以下两种方法均基于以下性质推出： <strong>此树的深度</strong> 等于
+<strong>左子树的深度</strong> 与 <strong>右子树的深度</strong> 中的
+<strong>最大值</strong> +1+1 。</p>
+<h2 id="approach-1-后序遍历-剪枝-从底至顶">Approach 1: 后序遍历 + 剪枝
+（从底至顶）</h2>
+<blockquote>
+<p>此方法为本题的最优解法，但剪枝的方法不易第一时间想到。</p>
+</blockquote>
+<p>思路是对二叉树做后序遍历，从底至顶返回子树深度，若判定某子树不是平衡树则
+“剪枝” ，直接向上返回。</p>
+<p><strong>算法流程：</strong> recur(root) 函数：</p>
+<ul>
+<li><p><strong>返回值：</strong></p>
+<ul>
+<li>当节点root 左 / 右子树的深度差 <span class="math display">\[\leq
+1\]</span> ：则返回当前子树的深度，即节点 root 的左 / 右子树的深度最大值
++1 （ max(left, right) + 1 ）；</li>
+<li>当节点root 左 / 右子树的深度差 &gt; 2 ：则返回 -1 ，代表
+此子树不是平衡树 。</li>
+</ul></li>
+<li><p><strong>终止条件：</strong></p>
+<ul>
+<li><p>当 root 为空：说明越过叶节点，因此返回高度 0 ；</p></li>
+<li><p>当左（右）子树深度为 -1 ：代表此树的
+左（右）子树不是平衡树，因此剪枝，直接返回 -1 ；</p></li>
+</ul></li>
+</ul>
+<p>isBalanced(root) 函数：</p>
+<ul>
+<li><strong>返回值</strong>： 若 recur(root) != -1
+，则说明此树平衡，返回 true ； 否则返回 false 。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isBalanced</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">recur</span>(<span class="params">root</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            left = recur(root.left)</span><br><span class="line">            <span class="keyword">if</span> left == -<span class="number">1</span>: <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">            right = recur(root.right)</span><br><span class="line">            <span class="keyword">if</span> right == -<span class="number">1</span>: <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">max</span>(left, right) + <span class="number">1</span> <span class="keyword">if</span> <span class="built_in">abs</span>(left - right) &lt;= <span class="number">1</span> <span class="keyword">else</span> -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> recur(root) != -<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度 O(N)： N
+为树的节点数；最差情况下，需要递归遍历树的所有节点。</li>
+<li>空间复杂度 O(N)： 最差情况下（树退化为链表时），系统递归需要使用
+O(N) 的栈空间。</li>
+</ul>
+<h2 id="方法二先序遍历-判断深度-从顶至底">方法二：先序遍历 + 判断深度
+（从顶至底）</h2>
+<blockquote>
+<p>此方法容易想到，但会产生大量重复计算，时间复杂度较高。</p>
+</blockquote>
+<p>思路是构造一个获取当前子树的深度的函数 depth(root) （即 <a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/solution/mian-shi-ti-55-i-er-cha-shu-de-shen-du-xian-xu-bia/">面试题55
+- I. 二叉树的深度</a>），通过比较某子树的左右子树的深度差
+abs(depth(root.left) - depth(root.right)) &lt;= 1
+是否成立，来判断某子树是否是二叉平衡树。若所有子树都平衡，则此树平衡。</p>
+<p><strong>算法流程</strong>： isBalanced(root) 函数： 判断树 root
+是否平衡</p>
+<ul>
+<li><strong>特例处理</strong>： 若树根节点 root 为空，则直接返回
+truetrue ；</li>
+<li><strong>返回值</strong>：
+所有子树都需要满足平衡树性质，因此以下三者使用与逻辑
+&amp;&amp;&amp;&amp; 连接;
+<ul>
+<li>abs(self.depth(root.left) - self.depth(root.right)) &lt;= 1 ：判断
+当前子树 是否是平衡树；</li>
+<li>self.isBalanced(root.left) ： 先序遍历递归，判断 当前子树的左子树
+是否是平衡树；</li>
+<li>self.isBalanced(root.right) ： 先序遍历递归，判断 当前子树的右子树
+是否是平衡树；</li>
+</ul></li>
+</ul>
+<p>depth(root) 函数： 计算树 root 的深度</p>
+<ul>
+<li><strong>终止条件</strong>： 当 root 为空，即越过叶子节点，则返回高度
+0 ；</li>
+<li><strong>返回值</strong>： 返回左 / 右子树的深度的最大值 +1 。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isBalanced</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root: <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">abs</span>(self.depth(root.left) - self.depth(root.right)) &lt;= <span class="number">1</span> <span class="keyword">and</span> \</span><br><span class="line">            self.isBalanced(root.left) <span class="keyword">and</span> self.isBalanced(root.right)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">depth</span>(<span class="params">self, root</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(self.depth(root.left), self.depth(root.right)) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度 O(N) ：O(NlogN)： 最差情况下（为 “满二叉树” 时），
+isBalanced(root) 遍历树所有节点，判断每个节点的深度 depth(root) 需要遍历
+各子树的所有节点 。</p>
+<ul>
+<li><p>满二叉树高度的复杂度 O(log N) ，将满二叉树按层分为 log (N+1) 层；
+通过调用 depth(root)
+，判断二叉树各层的节点的对应子树的深度，需遍历节点数量为 <span
+class="math display">\[N \times 1, \frac{N-1}{2} \times 2, \frac{N-3}{4}
+\times 4, \frac{N-7}{8} \times 8, ..., 1 \times
+\frac{N+1}{2}\]</span>。因此各层执行 depth(root) 的时间复杂度为
+O(N)（每层开始，最多遍历 N 个节点，最少遍历 ￥￥<span
+class="math display">\[\frac{N+1}{2} \]</span> 个节点）。</p></li>
+<li><blockquote>
+<p>其中，<span class="math display">\[\frac{N-3}{4} \times 4 \]</span>
+代表从此层开始总共需遍历 N-3 个节点，此层共有 44
+个节点，因此每个子树需遍历 <span class="math display">\[\frac{N-3}{4}
+\]</span>个节点。</p>
+</blockquote>
+<p>因此，总体时间复杂度 = 每层执行复杂度 <span
+class="math display">\[\times\]</span> 层数复杂度 = <span
+class="math display">\[O(N \times log N)\]</span>。</p></li>
+</ul></li>
+<li><p>空间复杂度 O(N)：最差情况下（树退化为链表时），系统递归需要使用
+O<em>(</em>N*) 的栈空间。</p></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/04/09/2021-04-09-JZOffer%2055-I-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6-%E7%AE%80%E5%8D%95-%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/09/2021-04-09-JZOffer%2055-I-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6-%E7%AE%80%E5%8D%95-%E6%A0%91/" class="post-title-link" itemprop="url">JZOffer 55-二叉树的深度-I-简单-树</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-04-09 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-09T00:00:00+08:00">2021-04-09</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.5k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="剑指-offer-55---i.-二叉树的深度"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/">剑指
+Offer 55 - I. 二叉树的深度</a></h4>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>输入一棵二叉树的根节点，求该树的深度。从根节点到叶节点依次经过的节点（含根、叶节点）形成树的一条路径，最长路径的长度为树的深度。</p>
+<p>例如：</p>
+<p>给定二叉树 [3,9,20,null,null,15,7]，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> 3</span><br><span class="line">/ \</span><br><span class="line">9  20</span><br><span class="line"> /  \</span><br><span class="line">15   7</span><br></pre></td></tr></table></figure>
+<p>返回它的最大深度 3 。</p>
+</blockquote>
+<blockquote>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>节点总数 &lt;= 10000</code></li>
+</ul>
+</blockquote>
+<p>注意：本题与主站 104
+题相同：https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/</p>
+<h3 id="section"></h3>
+<p>树的遍历方式总体分为两类：深度优先搜索（DFS）、广度优先搜索（BFS）；</p>
+<ul>
+<li>常见的 DFS ： 先序遍历、中序遍历、后序遍历；</li>
+<li>常见的 BFS ： 层序遍历（即按层遍历）。</li>
+</ul>
+<p>求树的深度需要遍历树的所有节点，本文将介绍基于
+<strong>后序遍历（DFS）</strong> 和 <strong>层序遍历（BFS）</strong>
+的两种解法。</p>
+<h2 id="approach-1-后序遍历dfs">Approach 1: 后序遍历（DFS）</h2>
+<ul>
+<li>树的后序遍历 / 深度优先搜索往往利用 递归 或 栈
+实现，本文使用递归实现。</li>
+<li>关键点：
+此树的深度和其左（右）子树的深度之间的关系。显然，此树的深度 等于
+左子树的深度 与 右子树的深度 中的 最大值 +1+1 。</li>
+</ul>
+<p>算法解析：</p>
+<ul>
+<li>终止条件： 当 root 为空，说明已越过叶节点，因此返回 深度 00 。</li>
+<li>递推工作： 本质上是对树做后序遍历。
+<ul>
+<li>计算节点 root 的 左子树的深度 ，即调用 maxDepth(root.left)；</li>
+<li>计算节点 root 的 右子树的深度 ，即调用 maxDepth(root.right)；</li>
+</ul></li>
+<li>返回值： 返回 此树的深度 ，即 max(maxDepth(root.left),
+maxDepth(root.right)) + 1。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxDepth</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(self.maxDepth(root.left), self.maxDepth(root.right)) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度 O(N)： N
+为树的节点数量，计算树的深度需要遍历所有节点。</li>
+<li>空间复杂度 O(N) ： 最差情况下（当树退化为链表时），递归深度可达到 N
+。</li>
+</ul>
+<h2 id="方法二层序遍历bfs">方法二：层序遍历（BFS）</h2>
+<ul>
+<li><p>树的层序遍历 / 广度优先搜索往往利用 队列 实现。</p></li>
+<li><p>关键点： 每遍历一层，则计数器 +1+1
+，直到遍历完成，则可得到树的深度。</p></li>
+</ul>
+<p><strong>算法解析：</strong></p>
+<ul>
+<li><strong>特例处理</strong>： 当 root 为空，直接返回 深度 00 。</li>
+<li><strong>初始化</strong>： 队列 queue （加入根节点 root ），计数器
+res = 0。</li>
+<li><strong>循环遍历</strong>： 当 queue 为空时跳出。
+<ul>
+<li>初始化一个空列表 tmp ，用于临时存储下一层节点；</li>
+<li>遍历队列： 遍历 queue 中的各节点 node ，并将其左子节点和右子节点加入
+tmp；</li>
+<li>更新队列： 执行 queue = tmp ，将下一层节点赋值给 queue；</li>
+<li>统计层数： 执行 res += 1 ，代表层数加 1；</li>
+</ul></li>
+<li><strong>返回值</strong>： 返回 res 即可。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxDepth</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        queue, res = [root], <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            tmp = []</span><br><span class="line">            <span class="keyword">for</span> node <span class="keyword">in</span> queue:</span><br><span class="line">                <span class="keyword">if</span> node.left: tmp.append(node.left)</span><br><span class="line">                <span class="keyword">if</span> node.right: tmp.append(node.right)</span><br><span class="line">            queue = tmp</span><br><span class="line">            res += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度 O(N) ： N
+为树的节点数量，计算树的深度需要遍历所有节点。</li>
+<li>空间复杂度 O(N) ： 最差情况下（当树平衡时），队列 queue 同时存储 N/2
+个节点。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/04/08/2021-04-08-Q145-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86-%E4%B8%AD%E7%AD%89-%E6%A0%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -950,339 +1451,10 @@ O(N)，但遍历了链表 2
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/31/2021-03-31-Neuroscience%20-%20Adaptation%20to%20Visuomotor%20Rotation%20Through%20Interaction%20Between%20Posterior/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/31/2021-03-31-Neuroscience%20-%20Adaptation%20to%20Visuomotor%20Rotation%20Through%20Interaction%20Between%20Posterior/" class="post-title-link" itemprop="url">Neuroscience | Adaptation to Visuomotor Rotation Through Interaction Between Posterior Parietal and Motor Cortical Areas</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-03-31 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-31T00:00:00+08:00">2021-03-31</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>374</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1
-id="adaptation-to-visuomotor-rotation-through-interaction-between-posterior-parietal-and-motor-cortical-areas">Adaptation
-to Visuomotor Rotation Through Interaction Between Posterior Parietal
-and Motor Cortical Areas</h1>
-<p>论文链接：https://journals.physiology.org/doi/full/10.1152/jn.90834.2008</p>
-<h2 id="背景">背景</h2>
-<ul>
-<li>PPC中有高斯调制的神经元，使其成为适应视觉运动旋转的可能部位。Visually
-selective neurons with narrow Gaussian tuning curves have been
-identified in posterior parietal cortex, making it a possible site of
-adaptation to visuomotor rotation.</li>
-</ul>
-<h2 id="主要工作">主要工作</h2>
-<p>没细看，感觉可以引用。</p>
-<p>有些公式需要再仔细研究一下</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/31/2021-03-31-Q82-%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%20II-%E4%B8%AD%E7%AD%89-%E9%93%BE%E8%A1%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/31/2021-03-31-Q82-%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%20II-%E4%B8%AD%E7%AD%89-%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">Q82-删除排序链表中的重复元素 II-中等-链表</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-03-31 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-31T00:00:00+08:00">2021-03-31</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="删除排序链表中的重复元素-ii"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list-ii/">82.
-删除排序链表中的重复元素 II</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>存在一个按升序排列的链表，给你这个链表的头节点 head
-，请你删除链表中所有存在数字重复情况的节点，只保留原始链表中
-没有重复出现 的数字。</p>
-<p>返回同样按升序排列的结果链表。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入：head = [1,2,3,3,4,4,5] 输出：[1,2,5]</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>输入：head = [7,9,6,6,7,8,3,0,9,5], k = 5
-输出：[7,9,6,6,8,7,3,0,9,5]</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 3:</strong></p>
-<p>输入：head = [1,1,1,2,3] 输出：[2,3]</p>
-</blockquote>
-<blockquote>
-<p><strong>提示：</strong></p>
-<ul>
-<li>链表中节点数目在范围 [0, 300] 内</li>
-<li>-100 &lt;= Node.val &lt;= 100</li>
-<li>题目数据保证链表已经按升序排列</li>
-</ul>
-</blockquote>
-<h3 id="approach-1-顺序遍历搜索">Approach 1: 顺序遍历搜索</h3>
-<p>由于链表已经排序，因此要找到链表中重复的数字可以只用对比本节点的值和下一个节点的值，而不需使用HASH表。</p>
-<p>注意：</p>
-<ul>
-<li>头节点可能要修改，需要添加哑头节点；</li>
-<li>始终对比 cur.next.val 和
-cur.next.next.val，避免要寻找上一个节点；</li>
-<li>注意 cur 和 dummy 怎么使用；</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">deleteDuplicates</span>(<span class="params">self, head: ListNode</span>) -&gt; ListNode:</span><br><span class="line">        <span class="comment"># 判断链表非空</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> head:</span><br><span class="line">            <span class="keyword">return</span> head</span><br><span class="line">        <span class="comment"># 头节点可能要修改，需要添加哑头节点</span></span><br><span class="line">        dummy = ListNode([])</span><br><span class="line">        dummy.<span class="built_in">next</span> = head</span><br><span class="line">        cur = dummy</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> cur.<span class="built_in">next</span> <span class="keyword">and</span> cur.<span class="built_in">next</span>.<span class="built_in">next</span>:</span><br><span class="line">            <span class="keyword">if</span> cur.<span class="built_in">next</span>.val == cur.<span class="built_in">next</span>.<span class="built_in">next</span>.val:</span><br><span class="line">                x = cur.<span class="built_in">next</span>.val</span><br><span class="line">                <span class="keyword">while</span> cur.<span class="built_in">next</span> <span class="keyword">and</span> cur.<span class="built_in">next</span>.val == x:</span><br><span class="line">                    cur.<span class="built_in">next</span> = cur.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                cur = cur.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">return</span> dummy.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    head = stringToListNode([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line">    solution=Solution().deleteDuplicates(head)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(n)，其中 n 是链表的节点数量</li>
-<li>空间复杂度：O(1)，增加了常数个指针。</li>
-</ul>
-<h3 id="approach-2-递归">Approach 2: 递归</h3>
-<p>递归最基本的是要明白递归函数的定义！</p>
-<p>递归函数直接使用题目给出的函数 deleteDuplicates(head)
-，它的含义是删除以 head 作为开头的有序链表中，值出现重复的节点。</p>
-<p>终止条件就是能想到的基本的、不用继续递归处理的case。</p>
-<ul>
-<li>如果 head 为空，那么肯定没有值出现重复的节点，直接返回 head；</li>
-<li>如果 head.next
-为空，那么说明链表中只有一个节点，也没有值出现重复的节点，也直接返回
-head。</li>
-</ul>
-<p>什么时候需要递归呢？我们想一下这两种情况：</p>
-<ul>
-<li>如果 head.val != head.next.val
-，说明头节点的值不等于下一个节点的值，所以当前的 head 节点必须保留；但是
-head.next 节点要不要保留呢？我们还不知道，需要对 head.next
-进行递归，即对 head.next 作为头节点的链表，去除值重复的节点。所以
-head.next = self.deleteDuplicates(head.next).</li>
-<li>如果 head.val == head.next.val
-，说明头节点的值等于下一个节点的值，所以当前的 head 节点必须删除，并且
-head 之后所有与 head.val
-相等的节点也都需要删除；删除到哪个节点为止呢？需要用 move
-指针一直向后遍历寻找到与 head.val 不等的节点。此时 move
-之前的节点都不保留了，因此返回 deleteDuplicates(move);</li>
-</ul>
-<p>题目让我们返回删除了值重复的节点后剩余的链表，结合上面两种递归调用的情况。</p>
-<ul>
-<li>如果 head.val != head.next.val ，头结点需要保留，因此返回的是
-head；</li>
-<li>如果 head.val == head.next.val
-，头结点需要删除，需要返回的是deleteDuplicates(move);。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">deleteDuplicates1</span>(<span class="params">self, head</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> head <span class="keyword">or</span> <span class="keyword">not</span> head.<span class="built_in">next</span>:</span><br><span class="line">            <span class="keyword">return</span> head</span><br><span class="line">        <span class="keyword">if</span> head.val != head.<span class="built_in">next</span>.val:</span><br><span class="line">            head.<span class="built_in">next</span> = self.deleteDuplicates(head.<span class="built_in">next</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            move = head.<span class="built_in">next</span></span><br><span class="line">            <span class="keyword">while</span> move <span class="keyword">and</span> head.val == move.val:</span><br><span class="line">                move = move.<span class="built_in">next</span></span><br><span class="line">            <span class="keyword">return</span> self.deleteDuplicates(move)</span><br><span class="line">        <span class="keyword">return</span> head</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(N)，每个节点访问了一次。</li>
-<li>空间复杂度：O(N)，递归调用的时候会用到了系统的栈。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/31/2021-03-31-Neuroscience%20-%20The%20posterior%20parietal%20cortex%20Sensorimotor%20interface%20for%20the%20planning%20and%20online%20control%20of%20visually%20guided%20movements/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/31/2021-03-31-Neuroscience%20-%20The%20posterior%20parietal%20cortex%20Sensorimotor%20interface%20for%20the%20planning%20and%20online%20control%20of%20visually%20guided%20movements/" class="post-title-link" itemprop="url">Neuroscience | The posterior parietal cortex Sensorimotor interface for the planning and online control of visually guided movements</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-03-31 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-31T00:00:00+08:00">2021-03-31</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>542</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1
-id="the-posterior-parietal-cortex-sensorimotor-interface-for-the-planning-and-online-control-of-visually-guided-movements">The
-posterior parietal cortex: Sensorimotor interface for the planning and
-online control of visually guided movements</h1>
-<p>论文链接：https://www.sciencedirect.com/science/article/pii/S0028393205003337?via%3Dihub</p>
-<h2 id="背景">背景</h2>
-<p>后顶叶皮层（PPC）参与构建感觉运动地图</p>
-<h2 id="主要工作">主要工作</h2>
-<ul>
-<li>即对于手臂运动，PPC不仅在将感官信息转换为运动命令所需的逆变换中起作用，而且在“正向”变换中也发挥作用，即在将感觉输入与先前和正在进行的运动命令相集成以维持对手臂状态的连续估计的过程中用于更新当前和将来的移动计划。</li>
-<li>PPC参与了感觉运动的转化（R.A. Andersen, G.K. Essick, R.M. Siegel
-Neurons of area 7a activated by both visual stimuli and oculomotor
-behavior Experimental Brain Research, 67 (1987), pp. 316-322）</li>
-</ul>
-<h2 id="总结">总结</h2>
-<p>这篇文章主要介绍PPC在眼睛坐标系和手臂坐标系之间转换的作用，以及PPC对感觉运动映射的作用，可以参考</p>
-<p>但是图片实在是太难看了</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1350,7 +1522,7 @@ behavior Experimental Brain Research, 67 (1987), pp. 316-322）</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">230</span>
+          <span class="site-state-item-count">233</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1417,12 +1589,12 @@ behavior Experimental Brain Research, 67 (1987), pp. 316-322）</li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">552k</span>
+    <span title="Symbols count total">568k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:22</span>
+    <span title="Reading time total">8:36</span>
 </div>
 
         

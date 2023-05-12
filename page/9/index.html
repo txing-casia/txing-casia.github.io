@@ -198,6 +198,397 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/21/2021-07-21-Q134-%E5%8A%A0%E6%B2%B9%E7%AB%99-%E4%B8%AD%E7%AD%89-%E8%B4%AA%E5%BF%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/21/2021-07-21-Q134-%E5%8A%A0%E6%B2%B9%E7%AB%99-%E4%B8%AD%E7%AD%89-%E8%B4%AA%E5%BF%83/" class="post-title-link" itemprop="url">Q134-加油站-中等-贪心</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-07-21 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-21T00:00:00+08:00">2021-07-21</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="加油站"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/gas-station/">134.
+加油站</a></h4>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>在一条环路上有 N 个加油站，其中第 i 个加油站有汽油 gas[i] 升。</p>
+<p>你有一辆油箱容量无限的的汽车，从第 i 个加油站开往第 i+1
+个加油站需要消耗汽油 cost[i]
+升。你从其中的一个加油站出发，开始时油箱为空。</p>
+<p>如果你可以绕环路行驶一周，则返回出发时加油站的编号，否则返回 -1。</p>
+<p><strong>说明:</strong></p>
+<ul>
+<li>如果题目有解，该答案即为唯一答案。</li>
+<li>输入数组均为非空数组，且长度相同。</li>
+<li>输入数组中的元素均为非负数。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>输入: gas = [1,2,3,4,5] cost = [3,4,5,1,2]</p>
+<p>输出: 3</p>
+<p>解释: 从 3 号加油站(索引为 3 处)出发，可获得 4 升汽油。此时油箱有 = 0
++ 4 = 4 升汽油 开往 4 号加油站，此时油箱有 4 - 1 + 5 = 8 升汽油 开往 0
+号加油站，此时油箱有 8 - 2 + 1 = 7 升汽油 开往 1 号加油站，此时油箱有 7
+- 3 + 2 = 6 升汽油 开往 2 号加油站，此时油箱有 6 - 4 + 3 = 5 升汽油 开往
+3 号加油站，你需要消耗 5 升汽油，正好足够你返回到 3 号加油站。 因此，3
+可为起始索引。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>输入: gas = [2,3,4] cost = [3,4,3]</p>
+<p>输出: -1</p>
+<p>解释: 你不能从 0 号或 1
+号加油站出发，因为没有足够的汽油可以让你行驶到下一个加油站。 我们从 2
+号加油站出发，可以获得 4 升汽油。 此时油箱有 = 0 + 4 = 4 升汽油 开往 0
+号加油站，此时油箱有 4 - 3 + 2 = 3 升汽油 开往 1 号加油站，此时油箱有 3
+- 3 + 3 = 3 升汽油 你无法返回 2 号加油站，因为返程需要消耗 4
+升汽油，但是你的油箱只有 3 升汽油。
+因此，无论怎样，你都不可能绕环路行驶一周。</p>
+</blockquote>
+<h3 id="approach-1-直接求解">Approach 1: 直接求解</h3>
+<p>这个方法比较笨，但是最直接。</p>
+<p>把一次环形拆分为3段：</p>
+<ul>
+<li>出发点到最后一个加油站</li>
+<li>最后一个加油站到第一个加油站</li>
+<li>第一个加油站到出发点</li>
+</ul>
+<p>依次计算</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">canCompleteCircuit</span>(<span class="params">self, gas: <span class="type">List</span>[<span class="built_in">int</span>], cost: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        ans = -<span class="number">1</span></span><br><span class="line">        <span class="comment"># 以每个加油站为出发点依次正向遍历，直到最后一个加油站</span></span><br><span class="line">        <span class="keyword">for</span> step <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(gas)):</span><br><span class="line">            start = step <span class="comment"># 起始加油站编号</span></span><br><span class="line">            num_step = <span class="number">0</span> <span class="comment"># 走过的加油站数目</span></span><br><span class="line">            oil = gas[start] <span class="comment"># 油箱中油存量</span></span><br><span class="line">            <span class="comment"># 正向遍历到最后一个加油站i+1</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(step,<span class="built_in">len</span>(gas)-<span class="number">1</span>):</span><br><span class="line">                oil -= cost[i] </span><br><span class="line">                <span class="keyword">if</span> oil &lt; <span class="number">0</span>:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                oil += gas[i+<span class="number">1</span>]</span><br><span class="line">                num_step += <span class="number">1</span></span><br><span class="line">			<span class="comment"># 最后一个加油站到第一个加油站单独判断</span></span><br><span class="line">            oil -= cost[-<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">if</span> oil &gt;= <span class="number">0</span>:</span><br><span class="line">                oil += gas[<span class="number">0</span>]</span><br><span class="line">                num_step += <span class="number">1</span></span><br><span class="line">                <span class="comment"># 判断是否走完一圈</span></span><br><span class="line">                <span class="keyword">if</span> num_step == <span class="built_in">len</span>(gas):</span><br><span class="line">                    ans = start</span><br><span class="line">                    <span class="keyword">return</span> ans <span class="comment"># 题目说了是唯一解</span></span><br><span class="line">            <span class="keyword">else</span>: <span class="comment"># 油不够，退出循环</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="comment"># 从第一个加油站遍历到出发的加油站</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(step):</span><br><span class="line">                oil -= cost[j]</span><br><span class="line">                <span class="keyword">if</span> oil &lt; <span class="number">0</span>:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                oil += gas[j+<span class="number">1</span>]</span><br><span class="line">                num_step += <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> num_step == <span class="built_in">len</span>(gas):</span><br><span class="line">                    ans = start</span><br><span class="line">                    <span class="keyword">return</span> ans</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：<span class="math display">\[O(N^2)\]</span>。</li>
+<li>空间复杂度：<span class="math display">\[O(1)\]</span>.</li>
+</ul>
+<h3 id="approach-2-问题分析简化运算">Approach 2: 问题分析简化运算</h3>
+<p>这是个逻辑题。
+首先，老司机们都知道，开车的时候，油不能为负数，先变成负数再往后加回来是不可以的。
+然后开完一圈回来，如果耗得油总量比加的总量还多那铁定开不回来。</p>
+<p>再然后，我们只要遍历一遍就可以了。为什么呢，假设从头开始开一遍，累计下来耗油最多的点的后面那个点开始出发，一定就是跑完以后剩下油最多的。</p>
+<p>比如我们跑到第i个点，这时候总消耗减去总加油最大，那说明前面i个点的消耗是整条链上最多的。然后如果总油数比总消耗多，说明可以保证开完一圈。
+那么如果想保证能开完一圈，就要从它后面那个点开始开。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">canCompleteCircuit</span>(<span class="params">self, gas: <span class="type">List</span>[<span class="built_in">int</span>], cost: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        left = [gas[i] - cost[i] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(gas))]</span><br><span class="line">        minValue = <span class="number">999</span></span><br><span class="line">        minIndex = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        sumValue = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> j, l <span class="keyword">in</span> <span class="built_in">enumerate</span>(left):</span><br><span class="line">            sumValue += l</span><br><span class="line">            <span class="keyword">if</span> sumValue &lt; minValue:</span><br><span class="line">                minValue = sumValue</span><br><span class="line">                minIndex = j</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> sumValue &lt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> (minIndex + <span class="number">1</span>) % <span class="built_in">len</span>(gas)</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：<span class="math display">\[O(N)\]</span>。</li>
+<li>空间复杂度：<span class="math display">\[O(1)\]</span>.</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/21/2021-07-21-Q419-%E7%94%B2%E6%9D%BF%E4%B8%8A%E7%9A%84%E6%88%98%E8%88%B0-%E4%B8%AD%E7%AD%89-%E6%B7%B1%E5%BA%A6and%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/21/2021-07-21-Q419-%E7%94%B2%E6%9D%BF%E4%B8%8A%E7%9A%84%E6%88%98%E8%88%B0-%E4%B8%AD%E7%AD%89-%E6%B7%B1%E5%BA%A6and%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" class="post-title-link" itemprop="url">Q419-甲板上的战舰-中等-深度/宽度优先搜索</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-07-21 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-21T00:00:00+08:00">2021-07-21</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>775</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="甲板上的战舰"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/battleships-in-a-board/">419.
+甲板上的战舰</a></h4>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>给定一个二维的甲板， 请计算其中有多少艘战舰。 战舰用 'X'表示，空位用
+'.'表示。 你需要遵守以下规则：</p>
+<p>给你一个有效的甲板，仅由战舰或者空位组成。
+战舰只能水平或者垂直放置。换句话说,战舰只能由 1xN (1 行, N 列)组成，或者
+Nx1 (N 行, 1 列)组成，其中N可以是任意大小。
+两艘战舰之间至少有一个水平或垂直的空位分隔 - 即没有相邻的战舰。</p>
+<p>输入二维数组board</p>
+<p>输出有多少战舰</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">X..X</span><br><span class="line">...X</span><br><span class="line">...X</span><br></pre></td></tr></table></figure>
+<p>输出：2</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<p>不用考虑无效样本</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...X</span><br><span class="line">XXXX</span><br><span class="line">...X</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="approach-1-深度优先搜索递归">Approach 1: 深度优先搜索+递归</h3>
+<p>简单处理，DFS越来越熟练了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">countBattleships</span>(<span class="params">self, board: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">str</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">DFS</span>(<span class="params">cur_i,cur_j</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="number">0</span>&lt;=cur_i <span class="keyword">and</span> cur_i&lt;r <span class="keyword">and</span> <span class="number">0</span>&lt;=cur_j <span class="keyword">and</span> cur_j&lt;c <span class="keyword">and</span> board[cur_i][cur_j] == <span class="string">&#x27;X&#x27;</span>:</span><br><span class="line">                board[cur_i][cur_j] = <span class="string">&quot;.&quot;</span></span><br><span class="line">                <span class="keyword">for</span> di,dj <span class="keyword">in</span> [(-<span class="number">1</span>,<span class="number">0</span>),(<span class="number">1</span>,<span class="number">0</span>),(<span class="number">0</span>,-<span class="number">1</span>),(<span class="number">0</span>,<span class="number">1</span>)]:</span><br><span class="line">                    DFS(cur_i+di,cur_j+dj)</span><br><span class="line">            </span><br><span class="line">        r,c = <span class="built_in">len</span>(board),<span class="built_in">len</span>(board[<span class="number">0</span>])</span><br><span class="line">        ans=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(c):</span><br><span class="line">                <span class="keyword">if</span> board[i][j] == <span class="string">&#x27;X&#x27;</span>:</span><br><span class="line">                    ans+=<span class="number">1</span></span><br><span class="line">                    DFS(i,j)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans </span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：<span class="math display">\[O(R \times
+C)\]</span>。其中 R 是给定网格中的行数，C
+是列数。我们访问每个网格最多一次。</li>
+<li>空间复杂度：<span class="math display">\[O(1)\]</span></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/21/2021-07-21-Q695-%E5%B2%9B%E5%B1%BF%E7%9A%84%E6%9C%80%E5%A4%A7%E9%9D%A2%E7%A7%AF-%E4%B8%AD%E7%AD%89-%E6%B7%B1%E5%BA%A6and%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/21/2021-07-21-Q695-%E5%B2%9B%E5%B1%BF%E7%9A%84%E6%9C%80%E5%A4%A7%E9%9D%A2%E7%A7%AF-%E4%B8%AD%E7%AD%89-%E6%B7%B1%E5%BA%A6and%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" class="post-title-link" itemprop="url">Q695-岛屿的最大面积-中等-深度/宽度优先搜索</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-07-21 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-21T00:00:00+08:00">2021-07-21</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.4k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="岛屿的最大面积"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/max-area-of-island/">695.
+岛屿的最大面积</a></h4>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>给定一个包含了一些 0 和 1 的非空二维数组 grid 。</p>
+<p>一个 岛屿 是由一些相邻的 1 (代表土地)
+构成的组合，这里的「相邻」要求两个 1
+必须在水平或者竖直方向上相邻。你可以假设 grid 的四个边缘都被
+0（代表水）包围着。</p>
+<p>找到给定的二维数组中最大的岛屿面积。(如果没有岛屿，则返回面积为 0
+。)</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>[[0,0,1,0,0,0,0,1,0,0,0,0,0], [0,0,0,0,0,0,0,1,1,1,0,0,0],
+[0,1,1,0,1,0,0,0,0,0,0,0,0], [0,1,0,0,1,1,0,0,1,0,1,0,0],
+[0,1,0,0,1,1,0,0,1,1,1,0,0], [0,0,0,0,0,0,0,0,0,0,1,0,0],
+[0,0,0,0,0,0,0,1,1,1,0,0,0], [0,0,0,0,0,0,0,1,1,0,0,0,0]]</p>
+<p>对于上面这个给定矩阵应返回 <code>6</code>。注意答案不应该是
+<code>11</code> ，因为岛屿只能包含水平或垂直的四个方向的 <code>1</code>
+。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>[[0,0,0,0,0,0,0,0]]</p>
+<p>对于上面这个给定的矩阵, 返回 <code>0</code>。</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ul>
+<li>给定的矩阵<code>grid</code> 的长度和宽度都不超过 50。</li>
+</ul>
+</blockquote>
+<h3 id="approach-1-深度优先搜索递归">Approach 1: 深度优先搜索+递归</h3>
+<p>这个思路比较好理解，DFS+递归可以按照这个步骤思考</p>
+<ul>
+<li>计算行数，列数</li>
+<li>遍历二维数组，计算当前“岛屿”面积，并与最大面积对比取最大值
+<ul>
+<li>在DFS函数中计算当前岛屿的面积</li>
+<li>先判断位置是否合法（r and c）</li>
+<li>如果当前位置是1，那就置0，避免重复，在返回结果递归DFS，检测周围是否是岛屿</li>
+</ul></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxAreaOfIsland</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">DFS</span>(<span class="params">grid,ci,cj</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="number">0</span>&lt;=ci <span class="keyword">and</span> ci&lt;r <span class="keyword">and</span> <span class="number">0</span>&lt;=cj <span class="keyword">and</span> cj&lt;c <span class="keyword">and</span> grid[ci][cj] == <span class="number">1</span>:</span><br><span class="line">                grid[ci][cj] = <span class="number">0</span></span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span> + DFS(grid,ci-<span class="number">1</span>,cj) + DFS(grid,ci+<span class="number">1</span>,cj) + DFS(grid,ci,cj-<span class="number">1</span>) + DFS(grid,ci,cj+<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">                </span><br><span class="line">        r , c = <span class="built_in">len</span>(grid),<span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line">        fin_res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(c):</span><br><span class="line">                fin_res = <span class="built_in">max</span>(DFS(grid,i,j),fin_res)</span><br><span class="line">        <span class="keyword">return</span> fin_res</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：<span class="math display">\[O(R \times
+C)\]</span>。其中 R 是给定网格中的行数，C
+是列数。我们访问每个网格最多一次。</li>
+<li>空间复杂度：<span class="math display">\[O(R \times
+C)\]</span>，递归的深度最大可能是整个网格的大小，因此最大可能使用 <span
+class="math display">\[O(R \times C)\]</span> 的栈空间。</li>
+</ul>
+<h3 id="approach-2-广度优先搜索">Approach 2: 广度优先搜索</h3>
+<p>广度优先的写法需要建立一个队列que，记录当前遍历到的结点，结合while
+que进行遍历</p>
+<ul>
+<li>遍历每个元素，判断是否是1，是则放入que</li>
+<li>对每个放入que的元素遍历几种移动情况，满足条件的元素置零后放入que，继续遍历</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxAreaOfIsland</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        r , c = <span class="built_in">len</span>(grid) , <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line">        total_res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(c):</span><br><span class="line">                ans = <span class="number">0</span></span><br><span class="line">                que = []</span><br><span class="line">                <span class="keyword">if</span> grid[i][j] == <span class="number">1</span>:</span><br><span class="line">                    grid[i][j] = <span class="number">0</span></span><br><span class="line">                    ans += <span class="number">1</span></span><br><span class="line">                    que.append((i,j))</span><br><span class="line">                    <span class="keyword">while</span> que:</span><br><span class="line">                        cur_r,cur_c = que.pop(<span class="number">0</span>)</span><br><span class="line">                        <span class="keyword">for</span> dr,dc <span class="keyword">in</span> [(-<span class="number">1</span>,<span class="number">0</span>),(<span class="number">1</span>,<span class="number">0</span>),(<span class="number">0</span>,-<span class="number">1</span>),(<span class="number">0</span>,<span class="number">1</span>)]:</span><br><span class="line">                            temp_r , temp_c = cur_r + dr , cur_c + dc</span><br><span class="line">                            <span class="keyword">if</span> <span class="number">0</span>&lt;=temp_r <span class="keyword">and</span> temp_r&lt;r <span class="keyword">and</span> <span class="number">0</span>&lt;=temp_c <span class="keyword">and</span> temp_c&lt;c <span class="keyword">and</span> grid[temp_r][temp_c] == <span class="number">1</span>:</span><br><span class="line">                                grid[temp_r][temp_c] = <span class="number">0</span></span><br><span class="line">                                ans += <span class="number">1</span></span><br><span class="line">                                que.append((temp_r,temp_c))</span><br><span class="line">                total_res = <span class="built_in">max</span>(total_res,ans)</span><br><span class="line">        <span class="keyword">return</span> total_res</span><br></pre></td></tr></table></figure>
+<p>另一种写法，每次从队首取出土地，并将接下来想要遍历的土地放在队尾，就实现了广度优先搜索算法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxAreaOfIsland</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i, l <span class="keyword">in</span> <span class="built_in">enumerate</span>(grid):</span><br><span class="line">            <span class="keyword">for</span> j, n <span class="keyword">in</span> <span class="built_in">enumerate</span>(l):</span><br><span class="line">                cur = <span class="number">0</span></span><br><span class="line">                q = collections.deque([(i, j)])</span><br><span class="line">                <span class="keyword">while</span> q:</span><br><span class="line">                    cur_i, cur_j = q.popleft()</span><br><span class="line">                    <span class="keyword">if</span> cur_i &lt; <span class="number">0</span> <span class="keyword">or</span> cur_j &lt; <span class="number">0</span> <span class="keyword">or</span> cur_i == <span class="built_in">len</span>(grid) <span class="keyword">or</span> cur_j == <span class="built_in">len</span>(grid[<span class="number">0</span>]) <span class="keyword">or</span> grid[cur_i][cur_j] != <span class="number">1</span>:</span><br><span class="line">                        <span class="keyword">continue</span></span><br><span class="line">                    cur += <span class="number">1</span></span><br><span class="line">                    grid[cur_i][cur_j] = <span class="number">0</span></span><br><span class="line">                    <span class="keyword">for</span> di, dj <span class="keyword">in</span> [[<span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, -<span class="number">1</span>], [<span class="number">1</span>, <span class="number">0</span>], [-<span class="number">1</span>, <span class="number">0</span>]]:</span><br><span class="line">                        next_i, next_j = cur_i + di, cur_j + dj</span><br><span class="line">                        q.append((next_i, next_j))</span><br><span class="line">                ans = <span class="built_in">max</span>(ans, cur)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：<span class="math display">\[O(R \times
+C)\]</span>。其中 R 是给定网格中的行数，C
+是列数。我们访问每个网格最多一次。</li>
+<li>空间复杂度：<span class="math display">\[O(R \times
+C)\]</span>，队列中最多会存放所有的土地，土地的数量最多为 <span
+class="math display">\[R \times C\]</span> 块，因此使用的空间为 <span
+class="math display">\[O(R \times C)\]</span>。</li>
+<li></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/18/2021-07-18-Q688-%E9%A9%AC%E5%9C%A8%E6%A3%8B%E7%9B%98%E4%B8%8A%E7%9A%84%E6%A6%82%E7%8E%87-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1056,654 +1447,10 @@ m)\]</span>，其中 n 和 m
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/12/2021-07-12-Reinforcement%20Learning%20-%20DRN-A%20Deep%20Reinforcement%20Learning%20Framework%20for%20News%20Recommendation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/12/2021-07-12-Reinforcement%20Learning%20-%20DRN-A%20Deep%20Reinforcement%20Learning%20Framework%20for%20News%20Recommendation/" class="post-title-link" itemprop="url">Reinforcement Learning | DRN: A Deep Reinforcement Learning Framework for News Recommendation</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-07-12 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-12T00:00:00+08:00">2021-07-12</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>4.6k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>4 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1
-id="drn-a-deep-reinforcement-learning-framework-for-news-recommendation">DRN:
-A Deep Reinforcement Learning Framework for News Recommendation</h1>
-<p>论文链接：http://www.personal.psu.edu/~gjz5038/paper/www2018_reinforceRec/www2018_reinforceRec.pdf</p>
-<h2 id="主要内容">主要内容</h2>
-<ul>
-<li><p>针对新闻和用户动态特征的问题，目前的方法主要存在三个问题：</p>
-<ul>
-<li>模型<strong>只考虑当前奖励</strong>（例如CTR，点击转化率）</li>
-<li>很少有模型考虑<strong>使用用户的反馈</strong>而不是点击/不点击的标签（例如用户反馈频率）</li>
-<li>模型总是<strong>推荐相似的东西</strong>，会使得用户感到无聊</li>
-</ul></li>
-<li><p>一些典型方法：</p>
-<ul>
-<li>content based methods [19, 22, 33],</li>
-<li>collaborative filtering based methods [11, 28, 34]</li>
-<li>hybrid methods [12, 24, 25].</li>
-<li>deep learning models [8, 45, 52]</li>
-</ul></li>
-<li><p>三个挑战：</p>
-<ul>
-<li>First, the dynamic changes in news recommendations are difficult to
-handle.
-<ul>
-<li>First, news become outdated very fast.</li>
-<li>Second, users’ interest on different news might evolve during
-time.</li>
-</ul></li>
-<li>Second, current recommendation methods [23, 35, 36, 43] usually only
-consider the click / no click labels or ratings as users’ feedback.</li>
-<li>The third major issue of current recommendation methods is its
-tendency to keep recommending similar items to users, which might
-decrease users’ interest in similar topics.</li>
-</ul></li>
-<li><p>一般的强化学习推荐方法使用 <span
-class="math display">\[\epsilon-greedy\]</span> 或者 Upper Confidence
-Bound (UCB) 方法增加推荐的探索能力。</p>
-<p>但是 <span class="math display">\[\epsilon-greedy\]</span>
-会损害当前推荐的性能，而UCB在一件物品尝试了几次之后才能得到相对准确的奖励评估。因此需要更高效的探索方式。</p></li>
-<li><p>通过使用 Dueling Bandit Gradient Descent (DBGD)
-算法作为探索策略，它会随机从候选项的邻域或者候选项中选择推荐对象。这个探索策略可以避免推荐完全无关的信息，因此可以保持当前策略的精度。</p></li>
-<li><p>模型框图：</p>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-1.png" /></p></li>
-<li><p>算法每1小时更新一次。Every one hour, the agent will use the log
-in the memory to update its recommendation algorithm.</p></li>
-<li><p>主要贡献：</p>
-<ul>
-<li>我们认为用户的活跃性有助于提高推荐的准确性，这可以提供额外的信息，而不是简单地使用用户点击标签。</li>
-<li>应用了更有效的探索方法，避免了由经典探索方法(例如，<span
-class="math display">\[\epsilon\]</span>-greedy和置信上限)引起的推荐准确度下降。</li>
-<li>我们的系统已经在线部署在商业新闻推荐应用程序中。大量的离线和在线实验显示了我们方法的优越性能。</li>
-</ul></li>
-<li><p>一些推荐方法的特点：</p>
-<ul>
-<li>Content-based methods：统计内容的频率，推荐相似的内容；</li>
-<li>Collaborative filtering
-methods：使用过去的转化率或者其他类似用户的转化率，或者结合两者来预测；</li>
-<li>Hybrid methods：提升用户画像模型；</li>
-<li>deep learning models：建模复杂的用户-物品关系</li>
-</ul></li>
-</ul>
-<h3 id="算法模型">算法模型：</h3>
-<ul>
-<li><p>算法步骤：</p>
-<ol type="1">
-<li><strong>PUSH</strong>: In each timestamp (t1, t2, t3, t4, t5, ...),
-when a user sends a news request to the system, the recommendation agent
-G will take the feature representation of the current user and news
-candidates as input, and generate a top-k list of news to recommend L. L
-is generated by combining the exploitation of current model (will be
-discussed in Section 4.3) and exploration of novel items (will be
-discussed in Section 4.5).</li>
-<li><strong>FEEDBACK</strong>: User u who has received recommended news
-L will give their feedback B by his clicks on this set of news.</li>
-<li><strong>MINOR UPDATE</strong>: After each timestamp (e.g., after
-timestamp t1), with the feature representation of the previous user u
-and news list L, and the feedback B, agent G will update the model by
-comparing the recommendation performance of exploitation network Q and
-exploration network Q˜ (will be discussed in Section 4.5). If Q˜ gives
-better recommendation result, the current network will be updated
-towards Q˜ . Otherwise, Q will be kept unchanged. Minor update can
-happen after every recommendation impression happens.</li>
-<li><strong>MAJOR UPDATE</strong>: After certain period of timeTR(e.g.,
-after timestamp t3), agent G will use the user feedback B and user
-activeness stored in the memory to update the network Q. Here, we use
-the experience replay technique [31] to update the network.
-Specifically, agent G maintains a memory with recent historical click
-and user activeness records. When each update happens, agent G will
-sample a batch of records to update the model. Major update usually
-happens after a certain time interval, like one hour, during which
-thousands of recommendation impressions are conducted and their
-feedbacks are collected.</li>
-<li>Repeat step (1)-(4).</li>
-</ol></li>
-<li><p>特征设计：</p>
-<ul>
-<li><p><strong>News features</strong> includes 417 dimension one hot
-features that describe whether certain property appears in this piece of
-news, including headline, provider, ranking, entity name, category,
-topic category, and click counts in last 1 hour, 6 hours, 24 hours, 1
-week, and 1 year respectively.</p></li>
-<li><p><strong>User features</strong> mainly describes the features
-(i.e., headline, provider, ranking, entity name, category, and topic
-category) of the news that the user clicked in 1 hour, 6 hours, 24
-hours, 1 week, and 1 year respectively. There is also a total click
-count for each time granularity. Therefore, there will be totally 413 ×
-5 = 2065 dimensions.</p></li>
-<li><p><strong>User news features</strong>. These 25-dimensional
-features describe the interaction between user and one certain piece of
-news, i.e., the frequency for the entity (also category, topic category
-and provider) to appear in the history of the user’s readings.</p></li>
-<li><p><strong>Context features</strong>. These 32-dimensional features
-describe the context when a news request happens, including time,
-weekday, and the freshness of the news (the gap between request time and
-news publish time).</p></li>
-</ul></li>
-<li><p>模型框架，包含离线和在线部分</p></li>
-</ul>
-<figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-3.png"
-alt="Model framework" />
-<figcaption aria-hidden="true">Model framework</figcaption>
-</figure>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-4.png"
-alt="Q network" /> <span class="math display">\[
-y_{s,a}=Q(s,a)=r_{immediate}+\gamma r_{future}\\
-y_{s,a,t}=r_{a,t+1}+\gamma Q\big(s_{a,t+1},\arg \max_{a&#39;}
-Q(s_{a,t+1},a&#39;;W_t);W_t&#39;\big)
-\]</span></p>
-<h3 id="user-activeness">User Activeness</h3>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-3.png"
-alt="User activeness estimation" /> <span class="math display">\[
-\lambda(t)=\lim_{dt\rightarrow 0} \frac{\Pr\{t \leq T&lt;t+dt\mid T\geq
-t \}}{d t}\\
-S(t)=e^{-\int_0^\infty \lambda(x)dx}\\
-T_0=\int_0^{\infty}S(t)dt
-\]</span> the maximum user activeness is truncated to 1.</p>
-<p>The click / no click label <span
-class="math display">\[r_{click}\]</span> and the user activeness <span
-class="math display">\[r_{active}\]</span> are combined as: <span
-class="math display">\[
-r_{total}=r_{click}+\beta r_{active}
-\]</span></p>
-<ul>
-<li>网络框架</li>
-</ul>
-<figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-2.png"
-alt="Exploration by Dueling Bandit Gradient Descent" />
-<figcaption aria-hidden="true">Exploration by Dueling Bandit Gradient
-Descent</figcaption>
-</figure>
-<p><span class="math display">\[\hat{L}\]</span> 首先使用概率交错方法从
-<span class="math display">\[L\]</span> 和 <span
-class="math display">\[\tilde{L}\]</span> 。大致就是首先随机从 <span
-class="math display">\[L\]</span> 和 <span
-class="math display">\[\tilde{L}\]</span>
-选择推荐项，之后按照概率值更新网络 <span
-class="math display">\[\tilde{Q}\]</span></p>
-<p><span class="math display">\[
-\Delta W=\alpha \cdot rand(-1,1)\cdot W\\
-W&#39;=W+\eta \tilde{W}
-\]</span></p>
-<h2 id="总结">总结</h2>
-<p>感觉整体框架还是很好理解的，针对任务的改进比较多，对强化学习框架的改动比较小。</p>
-<p>两个网络的构造也类似于DQN中的target
-network，输入的高维特征类比于输入的图像信息。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/08/2021-07-08-Reinforcement%20Learning%20-%20Option-critic%20architecture/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/08/2021-07-08-Reinforcement%20Learning%20-%20Option-critic%20architecture/" class="post-title-link" itemprop="url">Reinforcement Learning | Option-critic Architecture</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-07-08 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-08T00:00:00+08:00">2021-07-08</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>5.5k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>5 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="option-critic-architecture">Option-critic Architecture</h1>
-<p>论文链接：www.aaai.org/ocs/index.php/AAAI/AAAI17/paper/download/14858/14328</p>
-<h2 id="主要内容">主要内容</h2>
-<ul>
-<li><p>分层强化学习自动学习时间抽象是很重要的</p></li>
-<li><p>设计了基于策略梯度理论的option-critic方法来学习内部策略和option的终点约束。We
-derive policy gradient theorems for options and propose a new
-option-critic architecture capable of learning both the internal
-policies and the termination conditions of options</p></li>
-<li><p>在离散和连续的任务中都取得了好的表现。 discrete and continuous
-environments</p></li>
-<li><p>时间抽象允许表示关于发生在不同时间尺度上的行动过程的知识。Temporal
-abstraction allows representing knowledge about courses of action that
-take place at different time scales.</p></li>
-<li><p>Discovering temporal abstractions autonomously
-成为了一个持续了15年的研究主题</p></li>
-<li><p>大部分的工作致力于发现子目标，并在后续的策略学习中实现它们。这个其实就是分层结构，并且和肌肉骨骼的运动控制很像。The
-majority of the existing work has focused on finding subgoals (useful
-states that an agent should reach) and subsequently learning policies to
-achieve them</p></li>
-<li><p>问题在于求解子目标时的探索时间和计算开销非常大。Additionally,
-learning policies associated with subgoals can be expensive in terms of
-data and computation time; in the worst case, it can be as expensive as
-solving the entire task.</p></li>
-<li><p>本文的方法模糊了发现option和学习option的界限，</p></li>
-<li><p>In contrast, we show that our approach is capable of successfully
-learning options within a single task without incurring any slowdown and
-while still providing benefits for <strong>transfer
-learning</strong>.（看着有点像我的Speed-accuracy
-Trade-off那篇文章，但它的是直接说在抢一学习上有好处的）</p></li>
-<li><p>core ideas：the <strong>intra-option policy</strong> and
-<strong>termination gradient theorems</strong></p></li>
-<li><p>方法需要的特殊条件少。As opposed to other methods, we only need
-to specify <strong>the number of desired options</strong>; it is
-<strong>not</strong> necessary to have <strong>subgoals</strong>,
-<strong>extra rewards</strong>, <strong>demonstrations</strong>,
-<strong>multiple problems</strong> or any other <strong>special
-accommodations</strong> (however, the approach can take advantage of
-pseudo-reward functions if desired)</p></li>
-</ul>
-<h3 id="option-framework">Option Framework</h3>
-<ul>
-<li>option框架假设对于option <span class="math display">\[\omega\in
-\Omega\]</span> 由三元组 <span
-class="math display">\[(I_{\omega},\pi_{\omega},\beta_{\omega})\]</span>
-组成。
-<ul>
-<li><span class="math display">\[I_{\omega} \subseteq S\]</span>
-是初始的状态集合</li>
-<li><span class="math display">\[\pi_{\omega}\]</span>
-是intra-option策略</li>
-<li><span class="math display">\[\beta_{\omega}: S \rightarrow
-[0,1]\]</span> 是终止函数</li>
-</ul></li>
-<li>当使用option框架时， MDP就变成了Semi-MDP，它有相应的最优值函数<span
-class="math display">\[V_{\Omega}(s)\]</span> 和option-value函数 <span
-class="math display">\[Q_{\Omega}(s,\omega)\]</span>
-。所谓的Semi-MDP就是指从状态s到下一个状态s‘要经过 <span
-class="math display">\[\tau\]</span>
-步的MDP，大致就是状态之间存在时间上的不连续。</li>
-<li>通过一些针对MDP的算法实现多个option并行地学习，这就是
-<strong>intra-option learning</strong> 的主要思路</li>
-<li>接下来就是要实现两个关键任务：learning <strong>option
-policies</strong> and <strong>termination functions</strong></li>
-<li>算法流程：一个外部的策略 <span
-class="math display">\[\pi_{\Omega}\]</span> 选择option来执行控制，
-intra-option policy <span class="math display">\[\pi_{\omega}\]</span>
-开始执行，直到终点（用终点函数来判断停止执行）</li>
-<li>定义option-value function can be written as:</li>
-</ul>
-<p><span class="math display">\[
-Q_{\Omega}(s,\omega)=\sum_a \pi_{\omega,\theta}(a \mid
-s)Q_{U}(s,\omega,a)
-\]</span></p>
-<p>其中 <span class="math display">\[Q_{U}(s,\omega,a)\]</span>
-是在state-option对下执行行为的评估值。</p>
-<p><span class="math display">\[
-Q_{U}(s,\omega,a)=r(s,a)+\gamma\sum_{s&#39;}P(s&#39; \mid
-s,a)U(\omega,s&#39;)
-\]</span></p>
-<p>注意 <span class="math display">\[(s,\omega)\]</span>
-组导致了一个扩张的状态空间 an augmented state space, cf. (Levy and
-Shimkin 2011)</p>
-<p><span class="math display">\[U: \Omega \times S\rightarrow
-\mathbb{R}\]</span> 是 the option-value function upon arrival，The value
-of executing <span class="math display">\[\omega\]</span> upon entering
-a state <span class="math display">\[s&#39;\]</span> is given by:</p>
-<p><span class="math display">\[
-U(\omega,s&#39;)=(1-\beta_{\omega,\vartheta}(s&#39;))Q_{\Omega}(s&#39;,\omega)+\beta_{\omega,\vartheta}(s&#39;)V_{\Omega}(s&#39;)
-\]</span></p>
-<p>如果option <span class="math display">\[\omega_t\]</span> 在时刻 t
-被初始化并被执行，此时状态为 <span class="math display">\[s_t\]</span>
-，然后在1步之后，状态转移到 <span
-class="math display">\[(s_{t+1},\omega_{t+1})\]</span> 的概率是：</p>
-<p><span class="math display">\[
-P(s_{t+1},\omega_{t+1} \mid s_t,\omega_t)=\sum_a
-\pi_{\omega_t,\theta}(a|s_t)P(s_{t+1} \mid s_t,a)\\
-\big((1-\beta_{\omega_t,\vartheta}(s_{t+1}))1_{\omega_t=\omega_{t+1}}+\beta_{\omega_t,\vartheta}(s_{t+1})\pi_{\Omega}(\omega_{t+1}
-\mid s_{t+1})\big)
-\]</span></p>
-<p>显然，给出计算过程是均匀的。在温和的条件下，由于选项到处可用，它实际上是遍历的，并且在
-state-option 对上存在唯一的平稳分布。</p>
-<p>接下来计算期望累积回报关于intra-option策略的参数 <span
-class="math display">\[\theta\]</span>
-的梯度，假设它是随机的可微分的，我们得到</p>
-<p><span class="math display">\[
-\frac{\partial Q_{\Omega}(s,\omega)}{\partial \theta}=\Bigg(\sum_a
-\frac{\partial \pi_{\omega,\theta}(a \mid s)}{\partial
-\theta}Q_{U}(s,\omega,a)\Bigg)\\
-+\sum_a\pi_{\omega,\theta}(a \mid s)\sum_{s&#39;} \gamma
-P(s&#39;|s,a)\frac{\partial U(\omega,s&#39;)}{\partial \theta}
-\]</span></p>
-<p><strong>Theorem 1</strong> (<strong>Intra-Option Policy Gradient
-Theorem</strong>). Given a set of Markov options with stochastic
-intra-option policies differentiable in their parameters <span
-class="math display">\[\theta\]</span>, the gradient of the expected
-discounted return with respect to <span
-class="math display">\[\theta\]</span> and initial condition <span
-class="math display">\[(s_0,\omega_0)\]</span> is:</p>
-<p><span class="math display">\[
-\sum_{s,\omega} \mu_{\Omega}(s,\omega \mid s_0,\omega_0)\sum_a
-\frac{\partial \pi_{\omega,\theta}(a \mid s)}{\partial \theta}
-Q_U(s,\omega,a)
-\]</span></p>
-<p>其中 <span class="math display">\[\mu_{\Omega}\]</span>
-是状态-选项对的折扣权重</p>
-<p><span class="math display">\[
-\mu_{\Omega}(s,\omega \mid s_0,\omega_0)=\sum_{t=0}^{\infty}\gamma^t
-P(s_t=s,\omega_t=\omega \mid s_0,\omega_0)
-\]</span></p>
-<p>下面计算终点函数的梯度，假设时间是随机化的并且可微的关于参数 <span
-class="math display">\[\vartheta\]</span></p>
-<p><span class="math display">\[
-\frac{\partial Q_{\Omega}(s,\omega)}{\partial \vartheta} = \sum_a
-\pi_{\omega,\theta}(a \mid s)\sum_{s&#39;}\gamma P(s&#39; \mid s,a)
-\frac{\partial U(\omega,s&#39;)}{\partial \vartheta}
-\]</span></p>
-<p>关于 <span class="math display">\[U\]</span> 的梯度，可以结合又是函数
-<span class="math display">\[A_{\Omega}\]</span> 来计算：</p>
-<p><span class="math display">\[
-\begin{align}
-\frac{\partial U(\omega,s&#39;)}{\partial \vartheta} =&amp;
--\frac{\partial \beta_{\omega,\vartheta}(s&#39;)}{\partial \vartheta}
-A_{\Omega}(s&#39;,\omega) \\
-&amp;+ \gamma\sum_{\omega&#39;} \sum_{s&#39;&#39;}
-P(s&#39;&#39;,\omega&#39; \mid s&#39;,\omega)\frac{\partial
-U(\omega&#39;,s&#39;&#39;)}{\partial \vartheta}
-\end{align}
-\]</span></p>
-<p>其中，优势函数 <span class="math display">\[A_{\Omega}(s&#39;,\omega)
-= Q_{\Omega}(s&#39;,\omega)-V_{\Omega}(s&#39;)\]</span> .</p>
-<p><strong>Theorem 2</strong> (<strong>Termination Gradient
-Theorem</strong>). Given a set of Markov options with stochastic
-termination functions differentiable in their parameters <span
-class="math display">\[\vartheta\]</span>, the gradient of the expected
-discounted return objective with respect to <span
-class="math display">\[\vartheta\]</span> and the initial condition
-<span class="math display">\[(s_1, \omega_0)\]</span> is:</p>
-<p><span class="math display">\[
--\sum_{s&#39;,\omega}\mu_{\Omega}(s&#39;,\omega \mid
-s_1,\omega_0)\frac{\partial \beta_{\omega,\vartheta}(s&#39;)}{\partial
-\vartheta}A_{\Omega}(s&#39;,\omega)
-\]</span></p>
-<p>其中 <span class="math display">\[\mu_{\Omega}(s&#39;,\omega \mid
-s_1,\omega_0)\]</span> 是状态-选项对 <span
-class="math display">\[(s_1,\omega_0)\]</span> 的折扣权重</p>
-<p><span class="math display">\[
-\mu_{\Omega}(s,\omega \mid s_1,\omega_0)=\sum_{t=0}^{\infty} \gamma^t
-P(s_{t+1}=s,\omega_t=\omega|s_1,\omega_0)
-\]</span></p>
-<ul>
-<li>算法结构：</li>
-</ul>
-<figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210709-1.png"
-alt="算法结构" />
-<figcaption aria-hidden="true">算法结构</figcaption>
-</figure>
-<ul>
-<li>算法伪代码：</li>
-</ul>
-<figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210709-2.png"
-alt="算法伪代码" />
-<figcaption aria-hidden="true">算法伪代码</figcaption>
-</figure>
-<ul>
-<li>算法的问题：假设了所有的options适用于所有的地方。Perhaps the biggest
-remaining limitation of our work is the assumption that all options
-apply everywhere.</li>
-</ul>
-<h2 id="总结">总结</h2>
-<p>option-critic算法框架是典型的HRL实现方式之一，上下两层都使用策略梯度优化的证明过程看着还是很不错的。具体公式和推导可以参考原文以及附件。相关代码可以在paper
-with code找出来看看，估计会比FuN的结构的HRL更容易复现吧。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/06/2021-07-06-Reinforcement%20Learning%20-%20Option%20Discovery%20in%20Hierarchical%20Reinforcement%20Learning%20using%20Spatio-Temporal%20Clustering%20-%20%E5%89%AF%E6%9C%AC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/06/2021-07-06-Reinforcement%20Learning%20-%20Option%20Discovery%20in%20Hierarchical%20Reinforcement%20Learning%20using%20Spatio-Temporal%20Clustering%20-%20%E5%89%AF%E6%9C%AC/" class="post-title-link" itemprop="url">Reinforcement Learning | Option Discovery in Hierarchical Reinforcement Learning using Spatio-Temporal Clustering</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-07-06 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-06T00:00:00+08:00">2021-07-06</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.8k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1
-id="option-discovery-in-hierarchical-reinforcement-learning-using-spatio-temporal-clustering">Option
-Discovery in Hierarchical Reinforcement Learning using Spatio-Temporal
-Clustering</h1>
-<p>论文链接：https://arxiv.org/pdf/1605.05359v3.pdf</p>
-<h2 id="主要内容">主要内容</h2>
-<ul>
-<li><p>本文旨在提出一个自动的技能获取框架，可以分层描述任务，对状态抽象以及在抽象状态之间拓展行为。这样的分层结构可以加速学习过程</p></li>
-<li><p>使用动态系统中寻找状态空间中亚稳态区域和抽象状态的思想。We use
-ideas from dynamical systems to find metastable regions in the state
-space and associate them with abstract states</p></li>
-<li><p>使用空间聚类算法PCCA+，做状态抽象，形成抽象的状态量</p></li>
-<li><p>These skills are independent of the learning task and can be
-efficiently reused across a variety of tasks defined over the same
-model</p></li>
-<li><p>The core idea of hierarchical reinforcement learning is to break
-down the reinforcement learning problem into subtasks through a
-hierarchy of abstractions.</p></li>
-<li><p>自动发现不同的技能，这是一个小领域。Our focus in this paper is to
-present our framework on automated discovery of skills</p>
-<ul>
-<li>定义状态空间中的瓶颈状态，这些状态被划分为集合，两组罕见状态之间的转换会在这种转换的相应点引入瓶颈状态。达到这种瓶颈状态的策略被缓存为选项
-(McGovern and Barto 2001).</li>
-<li>使用因式分解来表示状态空间中存在的结构，识别很少变化的动作序列，并把这些序列作为选项被缓存起来
-(Hengst 2004)</li>
-<li>使用智能体与环境交互的图表征，并使用中间中心性度量来识别子任务</li>
-<li>使用聚类方法(光谱或其他方法)分离出MDP的不同强关联成分，并识别连接不同聚类的瓶颈
-(Menache, Mannor, and Shimkin 2002).</li>
-</ul></li>
-<li><p>文章的目标是在没有任何先验知识的情况下获得技能和发现抽象</p></li>
-<li><p>使用SMDP Q-Learning，Intra Option Q-Learning</p></li>
-<li><p>主要贡献：</p>
-<ul>
-<li>使用PCCA+抽象MDP的state</li>
-<li>设计一种组合option的方式</li>
-<li>大状态空间下，不好使用，设计一种聚合的状态空间</li>
-</ul></li>
-<li><p>Option框架：The option framework is one of the formalisations
-used to represent hierarchies in RL (Sutton, Precup, and Singh 1999).
-Formally, an option is a tuple <span class="math inline">\(O = (I, \mu,
-\beta)\)</span> here:</p>
-<ul>
-<li><span class="math inline">\(I\)</span> is the initiation set: a set
-of states from which the action can be activated</li>
-<li><span class="math inline">\(\mu\)</span> is a policy function where
-µ(s, a) represents the preference value given to action a in state s
-following option O.</li>
-<li><span class="math inline">\(\beta\)</span> is the termination
-function: When an agent enters a state s while following option O, the
-option could be terminated with a probability <span
-class="math inline">\(\beta(s)\)</span>.</li>
-</ul></li>
-<li><p>Semi-Markov Decision Process (SMDP)</p></li>
-</ul>
-<p><span class="math display">\[
-Q(s,o)\leftarrow Q(s,o)+\alpha[r+\gamma^k \max_{a\in O} Q(s,a)-Q(s,o)]
-\]</span></p>
-<ul>
-<li><p>SMDP学习方法的一个主要缺点是，在了解其结果之前，选项需要完全执行到终止。</p></li>
-<li><p>Perron Cluster Analysis (PCCA+)</p></li>
-</ul>
-<h2 id="总结">总结</h2>
-<p>主要工作是利用一个谱聚类算法自动地寻找option，算是options类算法的变体。option可以赋予策略语义特征，可以看看原始文章。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1771,7 +1518,7 @@ Q(s,o)\leftarrow Q(s,o)+\alpha[r+\gamma^k \max_{a\in O} Q(s,a)-Q(s,o)]
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">230</span>
+          <span class="site-state-item-count">233</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1838,12 +1585,12 @@ Q(s,o)\leftarrow Q(s,o)+\alpha[r+\gamma^k \max_{a\in O} Q(s,a)-Q(s,o)]
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">552k</span>
+    <span title="Symbols count total">568k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:22</span>
+    <span title="Reading time total">8:36</span>
 </div>
 
         

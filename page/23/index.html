@@ -198,6 +198,453 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/02/2020-09-02-JZOffer20-%E8%A1%A8%E7%A4%BA%E6%95%B0%E5%80%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2-%E7%A1%AE%E5%AE%9A%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/02/2020-09-02-JZOffer20-%E8%A1%A8%E7%A4%BA%E6%95%B0%E5%80%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2-%E7%A1%AE%E5%AE%9A%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA/" class="post-title-link" itemprop="url">JZOffer20 表示数值的字符串-确定有限状态自动机</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-09-02 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-02T00:00:00+08:00">2020-09-02</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>4.4k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>4 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="表示数值的字符串"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/">表示数值的字符串</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。例如，字符串"+100"、"5e2"、"-123"、"3.1416"、"-1E-16"、"0123"都表示数值，但"12e"、"1a3.14"、"1.2.3"、"+-5"及"12e+5.4"都不是。</p>
+</blockquote>
+<h3 id="approach-1-确定有限状态自动机">Approach 1:
+确定有限状态自动机</h3>
+<p>确定有限状态自动机（以下简称「自动机」）是一类计算模型。它包含一系列状态，这些状态中：</p>
+<p>有一个特殊的状态，被称作「初始状态」。
+还有一系列状态被称为「接受状态」，它们组成了一个特殊的集合。其中，一个状态可能既是「初始状态」，也是「接受状态」。
+起初，这个自动机处于「初始状态」。随后，它顺序地读取字符串中的每一个字符，并根据当前状态和读入的字符，按照某个事先约定好的「转移规则」，从当前状态转移到下一个状态；当状态转移完成后，它就读取下一个字符。当字符串全部读取完毕后，如果自动机处于某个「接受状态」，则判定该字符串「被接受」；否则，判定该字符串「被拒绝」。</p>
+<p><strong>注意：</strong>如果输入的过程中某一步转移失败了，即不存在对应的「转移规则」，此时计算将提前中止。在这种情况下我们也判定该字符串「被拒绝」。</p>
+<p>一个自动机，总能够回答某种形式的「对于给定的输入字符串
+S，判断其是否满足条件 P」的问题。在本题中，条件 P
+即为「构成合法的表示数值的字符串」。</p>
+<p>自动机驱动的编程，可以被看做一种暴力枚举方法的延伸：它穷尽了在任何一种情况下，对应任何的输入，需要做的事情。</p>
+<p>自动机在计算机科学领域有着广泛的应用。在算法领域，它与大名鼎鼎的字符串查找算法「KMP」算法有着密切的关联；在工程领域，它是实现「正则表达式」的基础。</p>
+<p>在 C++ 文档
+中，描述了一个合法的数值字符串应当具有的格式。具体而言，它包含以下部分：</p>
+<ul>
+<li>符号位，即 ++、-− 两种符号</li>
+<li>整数部分，即由若干字符 0-90−9 组成的字符串</li>
+<li>小数点</li>
+<li>小数部分，其构成与整数部分相同</li>
+<li>指数部分，其中包含开头的字符
+e（大写小写均可）、可选的符号位，和整数部分</li>
+</ul>
+<p>相比于 C++
+文档而言，本题还有一点额外的不同，即允许字符串首末两端有一些额外的空格。</p>
+<p>在上面描述的五个部分中，每个部分都不是必需的，但也受一些额外规则的制约，如：</p>
+<ul>
+<li>如果符号位存在，其后面必须跟着数字或小数点。</li>
+<li>小数点的前后两侧，至少有一侧是数字。</li>
+</ul>
+<h3 id="思路与算法">思路与算法</h3>
+<p>根据上面的描述，现在可以定义自动机的「状态集合」了。那么怎么挖掘出所有可能的状态呢？一个常用的技巧是，用「当前处理到字符串的哪个部分」当作状态的表述。根据这一技巧，不难挖掘出所有状态：</p>
+<ul>
+<li>起始的空格</li>
+<li>符号位</li>
+<li>整数部分</li>
+<li>左侧有整数的小数点</li>
+<li>左侧无整数的小数点（根据前面的第二条额外规则，需要对左侧有无整数的两种小数点做区分）</li>
+<li>小数部分</li>
+<li>字符 <span class="math display">\[\text{e}\]</span></li>
+<li>指数部分的符号位</li>
+<li>指数部分的整数部分</li>
+<li>末尾的空格</li>
+</ul>
+<p>下一步是找出「初始状态」和「接受状态」的集合。根据题意，「初始状态」应当为状态
+1，而「接受状态」的集合则为状态 3、状态 4、状态 6、状态 9 以及状态
+10。换言之，字符串的末尾要么是空格，要么是数字，要么是小数点，但前提是小数点的前面有数字。</p>
+<p>最后，需要定义「转移规则」。结合数值字符串应当具备的格式，将自动机转移的过程以图解的方式表示出来：</p>
+<p>比较上图与「预备知识」一节中对自动机的描述，可以看出有一点不同：</p>
+<ul>
+<li>我们没有单独地考虑每种字符，而是划分为若干类。由于全部 1010
+个数字字符彼此之间都等价，因此只需定义一种统一的「数字」类型即可。对于正负号也是同理。</li>
+</ul>
+<p>在实际代码中，我们需要处理转移失败的情况。例如当位于状态
+1（起始空格）时，没有对应字符 <span
+class="math display">\[\text{e}\]</span>
+的状态。为了处理这种情况，我们可以创建一个特殊的拒绝状态。如果当前状态下没有对应读入字符的「转移规则」，我们就转移到这个特殊的拒绝状态。一旦自动机转移到这个特殊状态，我们就可以立即判定该字符串不「被接受」。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> enum <span class="keyword">import</span> Enum</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isNumber</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        State = Enum(<span class="string">&quot;State&quot;</span>, [</span><br><span class="line">            <span class="string">&quot;STATE_INITIAL&quot;</span>,</span><br><span class="line">            <span class="string">&quot;STATE_INT_SIGN&quot;</span>,</span><br><span class="line">            <span class="string">&quot;STATE_INTEGER&quot;</span>,</span><br><span class="line">            <span class="string">&quot;STATE_POINT&quot;</span>,</span><br><span class="line">            <span class="string">&quot;STATE_POINT_WITHOUT_INT&quot;</span>,</span><br><span class="line">            <span class="string">&quot;STATE_FRACTION&quot;</span>,</span><br><span class="line">            <span class="string">&quot;STATE_EXP&quot;</span>,</span><br><span class="line">            <span class="string">&quot;STATE_EXP_SIGN&quot;</span>,</span><br><span class="line">            <span class="string">&quot;STATE_EXP_NUMBER&quot;</span>,</span><br><span class="line">            <span class="string">&quot;STATE_END&quot;</span>,</span><br><span class="line">        ])</span><br><span class="line">        Chartype = Enum(<span class="string">&quot;Chartype&quot;</span>, [</span><br><span class="line">            <span class="string">&quot;CHAR_NUMBER&quot;</span>,</span><br><span class="line">            <span class="string">&quot;CHAR_EXP&quot;</span>,</span><br><span class="line">            <span class="string">&quot;CHAR_POINT&quot;</span>,</span><br><span class="line">            <span class="string">&quot;CHAR_SIGN&quot;</span>,</span><br><span class="line">            <span class="string">&quot;CHAR_SPACE&quot;</span>,</span><br><span class="line">            <span class="string">&quot;CHAR_ILLEGAL&quot;</span>,</span><br><span class="line">        ])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">toChartype</span>(<span class="params">ch: <span class="built_in">str</span></span>) -&gt; Chartype:</span><br><span class="line">            <span class="keyword">if</span> ch.isdigit(): <span class="comment"># 检测字符串是否只由数字组成</span></span><br><span class="line">                <span class="keyword">return</span> Chartype.CHAR_NUMBER</span><br><span class="line">            <span class="keyword">elif</span> ch.lower() == <span class="string">&quot;e&quot;</span>: <span class="comment"># 字符串转换大写为小写</span></span><br><span class="line">               	<span class="keyword">return</span> Chartype.CHAR_EXP</span><br><span class="line">            <span class="keyword">elif</span> ch == <span class="string">&quot;.&quot;</span>:</span><br><span class="line">                <span class="keyword">return</span> Chartype.CHAR_POINT</span><br><span class="line">            <span class="keyword">elif</span> ch == <span class="string">&quot;+&quot;</span> <span class="keyword">or</span> ch == <span class="string">&quot;-&quot;</span>:</span><br><span class="line">                <span class="keyword">return</span> Chartype.CHAR_SIGN</span><br><span class="line">            <span class="keyword">elif</span> ch == <span class="string">&quot; &quot;</span>:</span><br><span class="line">                <span class="keyword">return</span> Chartype.CHAR_SPACE</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> Chartype.CHAR_ILLEGAL</span><br><span class="line"></span><br><span class="line">        transfer = &#123;</span><br><span class="line">            State.STATE_INITIAL: &#123;</span><br><span class="line">                Chartype.CHAR_SPACE: State.STATE_INITIAL,</span><br><span class="line">                Chartype.CHAR_NUMBER: State.STATE_INTEGER,</span><br><span class="line">                Chartype.CHAR_POINT: State.STATE_POINT_WITHOUT_INT,</span><br><span class="line">                Chartype.CHAR_SIGN: State.STATE_INT_SIGN,</span><br><span class="line">            &#125;,</span><br><span class="line">            State.STATE_INT_SIGN: &#123;</span><br><span class="line">                Chartype.CHAR_NUMBER: State.STATE_INTEGER,</span><br><span class="line">                Chartype.CHAR_POINT: State.STATE_POINT_WITHOUT_INT,</span><br><span class="line">            &#125;,</span><br><span class="line">            State.STATE_INTEGER: &#123;</span><br><span class="line">                Chartype.CHAR_NUMBER: State.STATE_INTEGER,</span><br><span class="line">                Chartype.CHAR_EXP: State.STATE_EXP,</span><br><span class="line">                Chartype.CHAR_POINT: State.STATE_POINT,</span><br><span class="line">                Chartype.CHAR_SPACE: State.STATE_END,</span><br><span class="line">            &#125;,</span><br><span class="line">            State.STATE_POINT: &#123;</span><br><span class="line">                Chartype.CHAR_NUMBER: State.STATE_FRACTION,</span><br><span class="line">                Chartype.CHAR_EXP: State.STATE_EXP,</span><br><span class="line">                Chartype.CHAR_SPACE: State.STATE_END,</span><br><span class="line">            &#125;,</span><br><span class="line">            State.STATE_POINT_WITHOUT_INT: &#123;</span><br><span class="line">                Chartype.CHAR_NUMBER: State.STATE_FRACTION,</span><br><span class="line">            &#125;,</span><br><span class="line">            State.STATE_FRACTION: &#123;</span><br><span class="line">                Chartype.CHAR_NUMBER: State.STATE_FRACTION,</span><br><span class="line">                Chartype.CHAR_EXP: State.STATE_EXP,</span><br><span class="line">                Chartype.CHAR_SPACE: State.STATE_END,</span><br><span class="line">            &#125;,</span><br><span class="line">            State.STATE_EXP: &#123;</span><br><span class="line">                Chartype.CHAR_NUMBER: State.STATE_EXP_NUMBER,</span><br><span class="line">                Chartype.CHAR_SIGN: State.STATE_EXP_SIGN,</span><br><span class="line">            &#125;,</span><br><span class="line">            State.STATE_EXP_SIGN: &#123;</span><br><span class="line">                Chartype.CHAR_NUMBER: State.STATE_EXP_NUMBER,</span><br><span class="line">            &#125;,</span><br><span class="line">            State.STATE_EXP_NUMBER: &#123;</span><br><span class="line">                Chartype.CHAR_NUMBER: State.STATE_EXP_NUMBER,</span><br><span class="line">                Chartype.CHAR_SPACE: State.STATE_END,</span><br><span class="line">            &#125;,</span><br><span class="line">            State.STATE_END: &#123;</span><br><span class="line">                Chartype.CHAR_SPACE: State.STATE_END,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        st = State.STATE_INITIAL</span><br><span class="line">        <span class="keyword">for</span> ch <span class="keyword">in</span> s:</span><br><span class="line">            typ = toChartype(ch)</span><br><span class="line">            <span class="keyword">if</span> typ <span class="keyword">not</span> <span class="keyword">in</span> transfer[st]:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            st = transfer[st][typ]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> st <span class="keyword">in</span> [State.STATE_INTEGER, State.STATE_POINT, State.STATE_FRACTION, State.STATE_EXP_NUMBER,</span><br><span class="line">                      State.STATE_END]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    s = <span class="string">&quot;0&quot;</span></span><br><span class="line">    solution=Solution().isNumber(s)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="复杂度分析">复杂度分析</h3>
+<ul>
+<li>时间复杂度：O(N)，其中 N
+为字符串的长度。我们需要遍历字符串的每个字符，其中状态转移所需的时间复杂度为
+O(1)。</li>
+<li>空间复杂度：O(1)。只需要创建固定大小的状态转移表。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/01/2020-09-01-Q486-Predict%20the%20Winner-%E9%80%92%E5%BD%92%20%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/01/2020-09-01-Q486-Predict%20the%20Winner-%E9%80%92%E5%BD%92%20%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="post-title-link" itemprop="url">Q486 Predict the Winner-递归 动态规划</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-09-01 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-01T00:00:00+08:00">2020-09-01</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>4.2k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>4 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="predict-the-winner"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/predict-the-winner/">Predict the
+Winner</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>Given an array of scores that are non-negative integers. Player 1
+picks one of the numbers from either end of the array followed by the
+player 2 and then player 1 and so on. Each time a player picks a number,
+that number will not be available for the next player. This continues
+until all the scores have been chosen. The player with the maximum score
+wins.</p>
+<p>Given an array of scores, predict whether player 1 is the winner. You
+can assume each player plays to maximize his score.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>Input: [1, 5, 2] Output: False Explanation: Initially, player 1 can
+choose between 1 and 2. If he chooses 2 (or 1), then player 2 can choose
+from 1 (or 2) and 5. If player 2 chooses 5, then player 1 will be left
+with 1 (or 2). So, final score of player 1 is 1 + 2 = 3, and player 2 is
+5. Hence, player 1 will never be the winner and you need to return
+False.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2：</strong></p>
+<p>Input: [1, 5, 233, 7] Output: True Explanation: Player 1 first
+chooses 1. Then player 2 have to choose between 5 and 7. No matter which
+number player 2 choose, player 1 can choose 233. Finally, player 1 has
+more score (234) than player 2 (12), so you need to return True
+representing player1 can win.</p>
+</blockquote>
+<blockquote>
+<p><strong>constraints</strong></p>
+<p>1 &lt;= length of the array &lt;= 20. Any scores in the given array
+are non-negative integers and will not exceed 10,000,000. If the scores
+of both players are equal, then player 1 is still the winner.</p>
+</blockquote>
+<h3 id="approach-1-递归">Approach 1: 递归</h3>
+<p>为了判断哪个玩家可以获胜，需要计算一个总分，为先手得分与后手得分之差。当数组中的所有数字都被拿取时，如果总分大于或等于
+0，则先手获胜，反之则后手获胜。</p>
+<p>由于每次只能从数组的任意一端拿取数字，因此可以保证数组中剩下的部分一定是连续的。假设数组当前剩下的部分为下标
+<span class="math display">\[\textit{start}\]</span> 到下标 <span
+class="math display">\[\textit{end}\]</span>，其中<span
+class="math display">\[ 0 \le \textit{start} \le \textit{end} &lt;
+\textit{nums}.\text{length}\]</span>。如果 <span
+class="math display">\[\textit{start}=\textit{end}\]</span>，则只剩一个数字，当前玩家只能拿取这个数字。如果
+<span
+class="math display">\[\textit{start}&lt;\textit{end}\]</span>，则当前玩家可以选择
+<span class="math display">\[\textit{nums}[\textit{start}]\]</span>或
+<span
+class="math display">\[\textit{nums}[\textit{end}]\]</span>，然后轮到另一个玩家在数组剩下的部分选取数字。这是一个递归的过程。</p>
+<p>计算总分时，需要记录当前玩家是先手还是后手，判断当前玩家的得分应该记为正还是负。当数组中剩下的数字多于
+1
+个时，当前玩家会选择最优的方案，使得自己的分数最大化，因此对两种方案分别计算当前玩家可以得到的分数，其中的最大值为当前玩家最多可以得到的分数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">PredictTheWinner_solution_1</span>(<span class="params">self, nums</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">total</span>(<span class="params">start: <span class="built_in">int</span>, end: <span class="built_in">int</span>, turn: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">            <span class="keyword">if</span> start == end:</span><br><span class="line">                <span class="keyword">return</span> nums[start] * turn</span><br><span class="line">            scoreStart = nums[start] * turn + total(start + <span class="number">1</span>, end, -turn) <span class="comment"># case 1</span></span><br><span class="line">            scoreEnd = nums[end] * turn + total(start, end - <span class="number">1</span>, -turn)<span class="comment"># case 2</span></span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">max</span>(scoreStart * turn, scoreEnd * turn) * turn</span><br><span class="line">        <span class="keyword">return</span> total(<span class="number">0</span>, <span class="built_in">len</span>(nums) - <span class="number">1</span>, <span class="number">1</span>) &gt;= <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums = [<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">8</span>]</span><br><span class="line">    solution=Solution().PredictTheWinner_solution_1(nums)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>时间复杂度：<span class="math display">\[O(2^n)\]</span>，其中 n
+是数组的长度。</li>
+<li>空间复杂度：<span class="math display">\[O(n)\]</span>，其中 n
+是数组的长度。空间复杂度取决于递归使用的栈空间。</li>
+</ul>
+<h2 id="approach-2-动态规划">Approach 2: 动态规划</h2>
+<p>方法一使用递归，存在大量重复计算，因此时间复杂度很高。由于存在重复子问题，因此可以使用动态规划降低时间复杂度。</p>
+<p>定义二维数组 <span
+class="math display">\[\textit{dp}\]</span>，其行数和列数都等于数组的长度，<span
+class="math display">\[\textit{dp}[i][j]\]</span>表示当数组剩下的部分为下标
+i 到下标 j
+时，当前玩家与另一个玩家的分数之差的最大值，注意当前玩家不一定是先手。</p>
+<p>只有当 <span class="math display">\[i \le j\]</span>
+时，数组剩下的部分才有意义，因此当 <span
+class="math display">\[i&gt;j\]</span> 时，<span
+class="math display">\[\textit{dp}[i][j]=0\]</span>。</p>
+<p>当 <span class="math display">\[i=j\]</span>
+时，只剩一个数字，当前玩家只能拿取这个数字，因此对于所有 <span
+class="math display">\[0 \le i &lt;
+\textit{nums}.\text{length}\]</span>，都有 <span
+class="math display">\[\textit{dp}[i][i]=\textit{nums}[i]\]</span>。</p>
+<p>当 <span class="math display">\[i&lt;j\]</span> 时，当前玩家可以选择
+<span class="math display">\[\textit{nums}[i]\]</span> 或 <span
+class="math display">\[\textit{nums}[j]\]</span>，然后轮到另一个玩家在数组剩下的部分选取数字。在两种方案中，当前玩家会选择最优的方案，使得自己的分数最大化。因此可以得到如下状态转移方程：</p>
+<p><span class="math display">\[\textit{dp}[i][j]=\max(\textit{nums}[i]
+- \textit{dp}[i + 1][j], \textit{nums}[j] - \textit{dp}[i][j -
+1])\]</span></p>
+<p>最后判断 <span
+class="math display">\[\textit{dp}[0][\textit{nums}.\text{length}-1]\]</span>
+的值，如果大于或等于
+0，则先手得分大于或等于后手得分，因此先手成为赢家，否则后手成为赢家。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">PredictTheWinner_solution_2</span>(<span class="params">self, nums</span>):</span><br><span class="line">	length = <span class="built_in">len</span>(nums)</span><br><span class="line">    dp = [[<span class="number">0</span>] * length <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(length)]</span><br><span class="line">    <span class="keyword">for</span> i, num <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums):</span><br><span class="line">        dp[i][i] = num</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(length - <span class="number">2</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i + <span class="number">1</span>, length):</span><br><span class="line">        	dp[i][j] = <span class="built_in">max</span>(nums[i] - dp[i + <span class="number">1</span>][j], nums[j] - dp[i][j - <span class="number">1</span>])</span><br><span class="line">    <span class="keyword">return</span> dp[<span class="number">0</span>][length - <span class="number">1</span>] &gt;= <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>上述代码中使用了二维数组 <span
+class="math display">\[\textit{dp}\]</span>。分析状态转移方程可以看到，<span
+class="math display">\[\textit{dp}[i][j]\]</span> 的值只和 <span
+class="math display">\[\textit{dp}[i + 1][j]\]</span> 与 <span
+class="math display">\[\textit{dp}[i][j - 1]\]</span> 有关，即在计算
+<span class="math display">\[\textit{dp}\]</span> 的第 i
+行的值时，只需要使用到 <span class="math display">\[\textit{dp}\]</span>
+的第 i 行和第 i+1
+行的值，因此可以使用一维数组代替二维数组，对空间进行优化。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">PredictTheWinner_solution_2_1</span>(<span class="params">self, nums</span>):</span><br><span class="line">    length = <span class="built_in">len</span>(nums)</span><br><span class="line">    dp = [<span class="number">0</span>] * length</span><br><span class="line">    <span class="keyword">for</span> i, num <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums):</span><br><span class="line">        dp[i] = num</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(length - <span class="number">2</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i + <span class="number">1</span>, length):</span><br><span class="line">            dp[j] = <span class="built_in">max</span>(nums[i] - dp[j], nums[j] - dp[j - <span class="number">1</span>])</span><br><span class="line">    <span class="keyword">return</span> dp[length - <span class="number">1</span>] &gt;= <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>时间复杂度：<span class="math display">\[O(n^2)\]</span>，其中 n
+是数组的长度。需要计算每个子数组对应的 <span
+class="math display">\[\textit{dp}\]</span> 的值，共有 <span
+class="math display">\[\frac{n(n+1)}{2} \]</span>个子数组。</p></li>
+<li><p>空间复杂度：<span class="math display">\[O(n)\]</span>，其中 n
+是数组的长度。空间复杂度取决于额外创建的数组 <span
+class="math display">\[\textit{dp}\]</span>，如果不优化空间，则空间复杂度是
+<span
+class="math display">\[O(n^2)\]</span>，使用一维数组优化之后空间复杂度可以降至
+<span class="math display">\[O(n)\]</span>。</p></li>
+</ul>
+<p>for 循环使用 enumerate：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>seq = [<span class="string">&#x27;one&#x27;</span>, <span class="string">&#x27;two&#x27;</span>, <span class="string">&#x27;three&#x27;</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i, element <span class="keyword">in</span> <span class="built_in">enumerate</span>(seq):</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>    <span class="built_in">print</span> i, element</span><br><span class="line"></span><br><span class="line">output:</span><br><span class="line"><span class="number">0</span> one</span><br><span class="line"><span class="number">1</span> two</span><br><span class="line"><span class="number">2</span> three</span><br></pre></td></tr></table></figure>
+<h2 id="拓展练习">拓展练习</h2>
+<p>读者在做完这道题之后，可以做另一道类似的题：「877.
+石子游戏」。和这道题相比，<a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/stone-game/">第 877
+题</a>增加了两个限制条件：</p>
+<ul>
+<li><p>数组的长度是偶数；</p></li>
+<li><p>数组的元素之和是奇数，所以没有平局。</p></li>
+</ul>
+<p>对于第 877
+题，除了使用这道题的解法以外，能否利用上述两个限制条件进行求解？</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/08/31/2020-08-31-Q1561-%E4%BD%A0%E5%8F%AF%E4%BB%A5%E8%8E%B7%E5%BE%97%E7%9A%84%E6%9C%80%E5%A4%A7%E7%A1%AC%E5%B8%81%E6%95%B0%E7%9B%AE-%E6%8E%92%E5%BA%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/31/2020-08-31-Q1561-%E4%BD%A0%E5%8F%AF%E4%BB%A5%E8%8E%B7%E5%BE%97%E7%9A%84%E6%9C%80%E5%A4%A7%E7%A1%AC%E5%B8%81%E6%95%B0%E7%9B%AE-%E6%8E%92%E5%BA%8F/" class="post-title-link" itemprop="url">Q1561 你可以获得的最大硬币数目-排序</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-08-31 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-31T00:00:00+08:00">2020-08-31</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>963</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="你可以获得的最大硬币数目"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-number-of-coins-you-can-get/">你可以获得的最大硬币数目</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>有 3n 堆数目不一的硬币，你和你的朋友们打算按以下方式分硬币：</p>
+<p>每一轮中，你将会选出<strong>任意</strong>3 堆硬币（不一定连续）。
+Alice 将会取走硬币数量最多的那一堆。 你将会取走硬币数量第二多的那一堆。
+Bob 将会取走最后一堆。 重复这个过程，直到没有更多硬币。 给你一个整数数组
+piles ，其中 piles[i] 是第 i 堆中硬币的数目。</p>
+<p>返回你可以获得的最大硬币数目。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>输入：piles = [2,4,1,2,7,8] 输出：9 解释：选出 (2, 7, 8) ，Alice 取走
+8 枚硬币的那堆，你取走 7 枚硬币的那堆，Bob 取走最后一堆。 选出 (1, 2, 4)
+, Alice 取走 4 枚硬币的那堆，你取走 2 枚硬币的那堆，Bob 取走最后一堆。
+你可以获得的最大硬币数目：7 + 2 = 9. 考虑另外一种情况，如果选出的是 (1,
+2, 8) 和 (2, 4, 7) ，你就只能得到 2 + 4 = 6 枚硬币，这不是最优解。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2：</strong></p>
+<p>输入：piles = [2,4,5] 输出：4</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 3：</strong></p>
+<p>输入：piles = [9,8,7,6,5,1,2,3,4] 输出：18</p>
+</blockquote>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>3 &lt;= piles.length &lt;= 10^5</p>
+<p>piles.length % 3 == 0</p>
+<p>1 &lt;= piles[i] &lt;= 10^4</p>
+</blockquote>
+<h3 id="approach-1-intuitive-solution">Approach 1: Intuitive
+Solution</h3>
+<p>Bob取走最小的n堆，剩下的2n堆里面，我每次取次小的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxCoins</span>(<span class="params">self, piles</span>):</span><br><span class="line">        piles_sort=<span class="built_in">sorted</span>(piles)</span><br><span class="line">        <span class="built_in">print</span>(piles_sort[<span class="built_in">int</span>(<span class="built_in">len</span>(piles)/<span class="number">3</span>):<span class="built_in">len</span>(piles):<span class="number">2</span>])</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(piles_sort[<span class="built_in">int</span>(<span class="built_in">len</span>(piles)/<span class="number">3</span>):<span class="built_in">len</span>(piles):<span class="number">2</span>])</span><br><span class="line">    	<span class="comment"># return sum(piles_sort[int(len(piles)/3)::2])</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    piles = [<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">8</span>]</span><br><span class="line">    solution=Solution().maxCoins(piles)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>时间复杂度：O(N)。</li>
+<li>空间复杂度：O(N)。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/08/30/2020-08-30-Q557-%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%8D%95%E8%AF%8D%20III/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -693,420 +1140,10 @@ target="_blank" rel="noopener" href="https://github.com/aminophen/w32tex-build/b
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/10/24/2019-10-24-Pycharm%E8%BF%9E%E6%8E%A5Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/24/2019-10-24-Pycharm%E8%BF%9E%E6%8E%A5Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">Pycharm连接Linux服务器配置方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-10-24 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-24T00:00:00+08:00">2019-10-24</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>703</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1
-id="pycharm连接linux服务器配置方法">Pycharm连接Linux服务器配置方法</h1>
-<p>今天手贱在pycharm删除不用的解释器时把几个月前配置的远程解释器删了，查了下资料重新恢复，顺便留个笔记以防万一。</p>
-<ul>
-<li>Step
-1：打开python工程，点击Tool-&gt;Deployment-&gt;Configration</li>
-<li>Step
-2：填写远程解释器Name（随意命名），在connection页面选择类型为SFTP，填写host，user
-name，password等等。最后可以点击test SFTP
-connectioin测试一下。转到mapping页面，选择将windows下的代码和服务器上代码相连，填写本地Local
-path，服务器path，apply。</li>
-<li>Step 3：在菜单栏，File -&gt; Settings… -&gt; Project ×× -&gt;
-Project Interpreter，点击Add添加解释器。选择SSH Interpreter。</li>
-<li>Step 4：填写服务器的 Host
-地址，端口Port，用户名Username，填好后，下一步Next。</li>
-<li>Step 5：填写密码 Password，下一步Next。</li>
-<li>Step
-6：选择服务器上Python解释器的位置，以及服务器上的远程同步文件夹Sync
-folders（可设置多个）。服务器上可以使用命令which
-python找到当前环境Python的安装位置。如果通过anaconda安装了新的python环境，可以用conda
-activate opensim-rl，切换默认的base环境到opensim-rl环境，再用which
-python查找位置。输入好路径，点击Finish，配置结束。</li>
-</ul>
-<p>2019年10月24日</p>
-<p>Txing</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/09/10/2019-09-10-Reinforcement%20Learning%20-%20Deep%20Deterministic%20Policy%20Gradient%20algorithm%20(DDPG)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/09/10/2019-09-10-Reinforcement%20Learning%20-%20Deep%20Deterministic%20Policy%20Gradient%20algorithm%20(DDPG)/" class="post-title-link" itemprop="url">Reinforcement Learning | Deep Deterministic Policy Gradient algorithm (DDPG)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-09-10 00:00:00" itemprop="dateCreated datePublished" datetime="2019-09-10T00:00:00+08:00">2019-09-10</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>3.2k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>3 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="continuous-control-with-deep-reinforcement-learning">Continuous
-Control with Deep Reinforcement Learning</h1>
-<p>论文链接：https://arxiv.org/abs/1509.02971v2</p>
-<h2 id="前言">前言</h2>
-<blockquote>
-<p>Reinforcement
-Learning是2019年9月新开的专栏企划，旨在为今后RL的学习提供比较广阔的专业视野，同时贡献于New
-Idea的产生。</p>
-</blockquote>
-<h2 id="方法">方法</h2>
-<ul>
-<li><p><strong>意义：</strong>DDPG诞生于2016年的ICRL，作为Deep
-Q-learning的进阶算法，将Q-learning从离散action space拓展到了连续action
-space的应用领域，并实现了一个end-to-end ( image to action )
-的决策框架。</p></li>
-<li><p><strong>难点：</strong>DDPG提供了一个以未处理的高维传感信号作输入，解决复杂任务的算法框架。One
-of the primary goals of the field of artificial intelligence is to solve
-complex tasks from unprocessed, high-dimensional, sensory
-input.</p></li>
-<li><p>DQN的缺点：However, while DQN solves problems with
-high-dimensional observation spaces, it can only handle discrete and
-low-dimensional action spaces.</p></li>
-<li><p>面向的应用场景：Many tasks of interest, most notably physical
-control tasks, have continuous (real valued) and high dimensional action
-spaces.</p></li>
-<li><p>如果想把DQN用在连续的action
-space中，有一种办法是把action离散化。但是这样会大大增加action的维度，从而带来决策上的困难。例如一个3自由度的机器人，把每个关节角离散为10个角度，那么action
-space维度就会变为<span
-class="math display">\[10^{3}\]</span>。在需要精确控制的时候，这个问题会更加严重。（the
-number of actions increases exponentially with the number of degrees of
-freedom）。此外，这种粗略的离散化丢失了action的结构信息，可能会影响到问题的求解。</p></li>
-<li><p>DDPG本质：In this work we present a model-free, off-policy
-actor-critic algorithm using deep function approximators that can learn
-policies in high-dimensional, continuous action spaces.</p></li>
-<li><p>DDPG基于DPG算法，DPG由于只是加入了简单的神经网络函数近似，因此算法并不稳定。</p></li>
-<li><p>DQN is able to learn value functions using such function
-approximators in a stable and robust way due to two innovations:</p>
-<ul>
-<li>the network is trained off-policy with samples from a <strong>replay
-buffer</strong> to minimize correlations between samples;</li>
-<li>the network is trained with a <strong>target Q network</strong> to
-give consistent targets during temporal difference backups</li>
-</ul></li>
-<li><p>DDPG在实验中用摄像机的画面提取低维信息（例如：cartesian
-coordinates or joint angles
-笛卡尔坐标或者关节角），将其作为observation。using both low-dimensional
-observations (e.g. joint angles) and directly from pixels.</p></li>
-<li><p>Here, we assumed the environment is fully-observed so <span
-class="math display">\[s_t = x_t\]</span>.</p></li>
-<li><p>replay buffer + soft updates</p></li>
-</ul>
-<p><strong>DDPG algorithm</strong></p>
-<blockquote>
-<hr />
-<p>Randomly initialize critic network <span
-class="math display">\[Q(s,a\mid \theta^Q)\]</span> and actor <span
-class="math display">\[\mu(s\mid\theta^{\,u})\]</span> with weights
-<span class="math display">\[\theta^Q\]</span> and <span
-class="math display">\[\theta^{\mu}\]</span></p>
-<p>Initialize target network <span
-class="math display">\[Q&#39;\]</span> and <span
-class="math display">\[\mu&#39;\]</span> with weights <span
-class="math display">\[\theta^{Q&#39;}\leftarrow \theta^{Q}\]</span>,
-<span class="math display">\[\theta^{\mu&#39;}\leftarrow
-\theta^{\mu}\]</span></p>
-<p>Initialize replay buffer <span class="math display">\[R\]</span>
-<strong>For</strong> <span class="math display">\[episode = 1\]</span>,
-<span class="math display">\[M\]</span> <strong>do</strong></p>
-<p>---- Initialize a random process <span
-class="math display">\[\mathscr{N}\]</span> for action exploration ----
-Receive initial observation state <span
-class="math display">\[s_1\]</span></p>
-<p>---- <strong>For</strong> <span class="math display">\[t = 1,
-T\]</span> <strong>do</strong></p>
-<p>---- ---- Select action <span class="math display">\[a_t =
-\mu(s_t\mid\theta^{\mu}) + \mathscr{N}_t\]</span> according to the
-current policy and exploration noise</p>
-<p>---- ---- Execute action at and observe reward <span
-class="math display">\[r_t\]</span> and observe new state <span
-class="math display">\[s_{t+1}\]</span></p>
-<p>---- ---- Store transition <span
-class="math display">\[(s_t,a_t,r_t,s_{t+1})\]</span> in <span
-class="math display">\[R\]</span></p>
-<p>---- ---- Sample a random minibatch of <span
-class="math display">\[N\]</span> transitions <span
-class="math display">\[(s_t,a_t,r_t,s_{t+1})\]</span> from <span
-class="math display">\[R\]</span></p>
-<p>---- ---- Set <span class="math display">\[y_i = r_i + \gamma
-Q&#39;(s_{i+1},\mu&#39;(s_{i+1}\midθ^{\mu&#39;})\mid \theta
-^{Q&#39;})\]</span></p>
-<p>---- ---- Update critic by minimizing the loss: <span
-class="math display">\[L = \frac{1}{N} \sum_i(y_i - Q(s_i,a_i \mid
-\theta^Q))^2\]</span></p>
-<p>---- ---- Update the actor policy using the sampled policy
-gradient:</p>
-<p>---- ---- ---- <span class="math display">\[\triangledown
-_{\theta^{\mu}}J \approx \frac{1}{N}\sum\triangledown_a Q(s,a\mid
-\theta^Q) \mid _{s=s_i,a=\mu(s_i)}\triangledown_{\theta^{\mu}}\mu(s \mid
-\theta^{\mu})\mid_{s_i}\]</span></p>
-<p>---- ---- Update the target networks:</p>
-<p>---- ---- ---- <span
-class="math display">\[\theta^{Q&#39;}\leftarrow\tau\theta^Q+(1-\tau)\theta^{Q&#39;}\]</span>,</p>
-<p>---- ---- ---- <span
-class="math display">\[\theta^{\mu&#39;}\leftarrow\tau\theta^{\mu}+(1-\tau)\theta^{\mu&#39;}\]</span></p>
-<p>---- <strong>end For</strong></p>
-<p><strong>end For</strong></p>
-</blockquote>
-<hr />
-<h2 id="总结">总结</h2>
-<p>不知道为什么看完之后觉得DDPG并没有想象中的复杂，也没有什么推导过程，架构也比较简单清晰，文章中大量的实验验证了算法的普适性。可能这些点正是一个RL算法的可贵之处吧。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/09/07/2019-09-07-%E5%88%A9%E7%94%A8syncthing%E5%BB%BA%E7%AB%8BLinux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E6%9C%AC%E5%9C%B0Win10%E7%9A%84%E5%90%8C%E6%AD%A5%E6%96%87%E4%BB%B6%E5%A4%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/09/07/2019-09-07-%E5%88%A9%E7%94%A8syncthing%E5%BB%BA%E7%AB%8BLinux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E6%9C%AC%E5%9C%B0Win10%E7%9A%84%E5%90%8C%E6%AD%A5%E6%96%87%E4%BB%B6%E5%A4%B9/" class="post-title-link" itemprop="url">利用syncthing建立Linux服务器与本地Win10的同步文件夹</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-09-07 00:00:00" itemprop="dateCreated datePublished" datetime="2019-09-07T00:00:00+08:00">2019-09-07</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.9k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1
-id="利用syncthing建立linux服务器与本地win10的同步文件夹">利用syncthing建立Linux服务器与本地Win10的同步文件夹</h1>
-<h2 id="background">Background</h2>
-<p>由于最近把本地的试验程序搬到了服务器上（<a
-target="_blank" rel="noopener" href="https://txing.tk/2019/09/06/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E9%85%8D%E7%BD%AEAnaconda3%E4%BB%A5Pytorch-RL%E7%8E%AF%E5%A2%83/">Linux服务器上配置Anaconda3以Pytorch-RL环境</a>），现在的试验结果就自然地在运行后保存在了服务器上（图片、数据）。</p>
-<p>由于没有配置服务器端的可视化界面，就没法查看结果了。如果利用pscp进行Linux<span
-class="math display">\[\to\]</span>windows的文件传输，等结果到了本地再查看，这样每跑一次实验就要单独传输一次，势必非常麻烦。</p>
-<p>于是这里就迫切需求一种<strong>及时</strong>、<strong>高效</strong>、<strong>自动</strong>的linux<span
-class="math display">\[\to\]</span>windows10的文件传输方案。</p>
-<hr />
-<p>经过一番调研，目前有这样几种方案备选：</p>
-<p><strong>1、在linux服务器端查看图片。</strong>这个方案需要使用到类似SimpleHTTPServer的服务，简单地说就是在通过浏览器在ip:8000口查看图片。这个方案仍然需要在运行完成之后单独再操作一步，虽然实现了查看图片的功能，但如果需要保存图片到本地，还是绕不开pscp的操作。</p>
-<p><strong>2、利用VNCserver将服务器端界面图形化。</strong>这是一个非常有吸引力的方案，因为图形化服务器端的意义不仅仅在于查看图片，跟在于今后其它文件操作都可以变得更加具体明确。但初尝试的过程中发现提供VNC服务的第三方软件很多，具体操作和配置看得眼花缭乱，莫衷一是。</p>
-<p><strong>3、把服务器的文件传回本地查看。</strong>既然要在服务器上查看图片这么麻烦，我们何不直接把图片传回本地的windows环境呢，到了windows下那还不是为所欲为啊。这一方案主要同样有很多的备选子方案：</p>
-<ul>
-<li><strong>我们的老朋友pscp</strong>：每次使用都要输入一长串目录路径（本地和服务器的），让人身心俱疲。</li>
-<li><strong>rsync</strong>：支持增量备份的优秀镜像备份工具，网上的具体实施方案比较繁琐，依然莫衷一是。</li>
-<li><strong>syncthing</strong>：syncthing是个类似rsync的开运啊同步工具，支持windows,
-linux, Mac等不同的平台看来是个不错的选择。</li>
-</ul>
-<hr />
-<h2 id="syncthing-a-wise-choice">syncthing: a wise choice</h2>
-<p>接下来我们选择syncthing，并尝试安装并配置</p>
-<h3 id="windows-10端">windows 10端：</h3>
-<ul>
-<li>直接在<a
-target="_blank" rel="noopener" href="https://syncthing.net/">syncthing官网</a>可以下载到windows版本的安装包，直接解压点开exe即可完成安装。</li>
-</ul>
-<h3 id="linux服务器端">Linux服务器端：</h3>
-<ul>
-<li><p>第一步：在windows上下载好最新的<a
-target="_blank" rel="noopener" href="https://github.com/syncthing/syncthing/releases/tag/v1.2.2">安装包</a>（我这里选择的是<a
-target="_blank" rel="noopener" href="https://github.com/syncthing/syncthing/releases/download/v1.2.2/syncthing-linux-amd64-v1.2.2.tar.gz">syncthing-linux-amd64-v1.2.2.tar.gz</a>）</p></li>
-<li><p>第二步：将安装包上传至服务器，具体操作参考<a
-target="_blank" rel="noopener" href="https://txing.tk/2019/09/06/Windows%E9%80%9A%E8%BF%87SSH%E5%90%91Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/">Windows通过SSH向Linux服务器上传文件</a></p></li>
-<li><p>第三步：解压文件并安装。</p>
-<p>在新建的安装包所在目录中执行解压命令，并打开文件夹</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf syncthing-linux-amd64-v1.2.2.tar.gz</span><br><span class="line">cd syncthing-linux-amd64-v1.2.2</span><br></pre></td></tr></table></figure>
-<p>这里通过ls命令可以看到有一个可执行文件，现在先打开它用来生成我们需要更改的配置文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./syncthing</span><br></pre></td></tr></table></figure>
-<p>等到看见类似如下字样的时候，表示启动完成，按Ctrl+c关闭</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[QQAFC] 16:59:18 INFO: Detected 1 NAT service</span><br></pre></td></tr></table></figure></li>
-<li><p>第四步：配置syncthing。由于syncthing默认是只允许本机访问，这里需要进行设置。大多数教程这里都会使用vim进行编辑，但是我的环境里没有vim，也有有sudo权限安装，因此参考这里的<a
-target="_blank" rel="noopener" href="https://www.youcl.com/info/10588">某教程</a>里的方法，通过nano进行编辑</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano ~/.config/syncthing/config.xml</span><br></pre></td></tr></table></figure>
-<p>这时会弹出一大片文本，但我们只需要找到下面这一段</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;gui enabled=&quot;true&quot; tls=&quot;false&quot;&gt;</span><br><span class="line">    &lt;address&gt;127.0.0.1:46554&lt;/address&gt;</span><br><span class="line">&lt;/gui&gt;</span><br></pre></td></tr></table></figure>
-<p>再把前4段数字全部变成0，即0.0.0.0:46554（冒号后面的数字不用变）。然后按Ctrl+x退出编辑，在按y保存更改。</p></li>
-<li><p>第五步：再次运行syncthing</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./syncthing</span><br></pre></td></tr></table></figure>
-<p>在浏览器输入</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://服务器IP:46554</span><br></pre></td></tr></table></figure>
-<p>后面的数字是在第4步修改地址时看到的冒号后的数字，按下回车进行图形化的配置。</p></li>
-<li><p>第六步：图形化配置</p>
-<p>配置分为两部分：</p>
-<ul>
-<li>登录<code>http://服务器IP:46554</code>选择服务器端要共享的文件夹及路径。记录服务器端ID。</li>
-<li>另一台机器打开syncthing，自动打开桌面端配置页面，配置要共享的文件夹和路径。添加设备，粘贴服务器端ID，在服务器端点击同意，完成连接。</li>
-</ul></li>
-</ul>
-<p>之后的设置比较简单这里给出参考不过多介绍：<a
-target="_blank" rel="noopener" href="https://blog.curlc.com/archives/333.html">Syncthing同步设置教程</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/22/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/24/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/22/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/24/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1174,7 +1211,7 @@ target="_blank" rel="noopener" href="https://blog.curlc.com/archives/333.html">S
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">230</span>
+          <span class="site-state-item-count">233</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1241,12 +1278,12 @@ target="_blank" rel="noopener" href="https://blog.curlc.com/archives/333.html">S
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">552k</span>
+    <span title="Symbols count total">568k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:22</span>
+    <span title="Reading time total">8:36</span>
 </div>
 
         

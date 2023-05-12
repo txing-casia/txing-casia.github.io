@@ -198,6 +198,387 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/05/13/2019-05-13-Q347-Top-K-Frequent-Elements/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/05/13/2019-05-13-Q347-Top-K-Frequent-Elements/" class="post-title-link" itemprop="url">Q347 Top K Frequent Elements</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-05-13 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-13T00:00:00+08:00">2019-05-13</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.8k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="top-k-frequent-elements"><a
+target="_blank" rel="noopener" href="https://leetcode.com/problems/top-k-frequent-elements/">Top K
+Frequent Elements</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>Given a non-empty array of integers, return the <strong>k</strong>
+most frequent elements.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>Input: nums = [1,1,1,2,2,3], k = 2 Output: [1,2]</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>Input: nums = [1], k = 1 Output: [1]</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ol type="1">
+<li>You may assume k is always valid, 1 ≤ k ≤ number of unique
+elements.</li>
+<li>Your algorithm's time complexity must be better than O(n log n),
+where n is the array's size.</li>
+</ol>
+</blockquote>
+<h3 id="approach-1-heap">Approach 1: Heap</h3>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>If <code>k = 1</code> the linear-time solution is quite simple. One
+could keep the frequency of elements appearance in a hash map and update
+the maximum element at each step.</p>
+<p>When <code>k &gt; 1</code> we need a data structure that has a fast
+access to the elements ordered by their frequencies. The idea here is to
+use the heap which is also known as priority queue.</p>
+<p>The first step is to build a hash map
+<code>element -&gt; its frequency</code>. In Java we could use data
+structure <code>HashMap</code> but have to fill it manually. Python
+provides us both a dictionary structure for the hash map and a method
+<code>Counter</code> in the <code>collections</code> library to build
+the hash map we need. This step takes <span
+class="math display">\[\mathcal{O}(N)\]</span> time where <code>N</code>
+is number of elements in the list.</p>
+<p>The second step is to build a heap. The time complexity of adding an
+element in a heap is <span
+class="math display">\[\mathcal{O}(\log(k))\]</span> and we do it
+<code>N</code> times that means <span
+class="math display">\[\mathcal{O}(N \log(k))\]</span> time complexity
+for this step.</p>
+<p>The last step to build an output list has <span
+class="math display">\[\mathcal{O}(k \log(k))\]</span> time
+complexity.</p>
+<p>In Python there is a method <code>nlargest</code> in
+<code>heapq</code> library (<a
+target="_blank" rel="noopener" href="https://hg.python.org/cpython/file/2.7/Lib/heapq.py#l203">check
+here the source code</a>) which has the same <span
+class="math display">\[\mathcal{O}(k \log(k))​\]</span> time complexity
+and combines two last steps in one line.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"><span class="keyword">import</span> heapq</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">topKFrequent</span>(<span class="params">self, nums, k</span>):</span><br><span class="line">        count = collections.Counter(nums)</span><br><span class="line">        <span class="keyword">return</span> heapq.nlargest(k, count.keys(), key=count.get)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums =[<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">    k=<span class="number">2</span></span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.topKFrequent(nums,k)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Runtime: 40 ms, faster than 99.60% of Python3 online submissions for
+Top K Frequent Elements.</li>
+<li>Memory Usage: 15.8 MB, less than 8.41% of Python3 online submissions
+for Top K Frequent Elements.</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/05/10/2019-05-10-Q575-Distribute-Candies/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/05/10/2019-05-10-Q575-Distribute-Candies/" class="post-title-link" itemprop="url">Q575 Distribute Candies</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-05-10 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-10T00:00:00+08:00">2019-05-10</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.2k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="distribute-candies"><a
+target="_blank" rel="noopener" href="https://leetcode.com/problems/distribute-candies/">Distribute
+Candies</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>Given an integer array with <strong>even</strong> length, where
+different numbers in this array represent different
+<strong>kinds</strong> of candies. Each number means one candy of the
+corresponding kind. You need to distribute these candies
+<strong>equally</strong> in number to brother and sister. Return the
+maximum number of <strong>kinds</strong> of candies the sister could
+gain.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>Input: candies = [1,1,2,2,3,3] Output: 3 Explanation: There are three
+different kinds of candies (1, 2 and 3), and two candies for each kind.
+Optimal distribution: The sister has candies [1,2,3] and the brother has
+candies [1,2,3], too. The sister has three different kinds of
+candies.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>Input: candies = [1,1,2,3] Output: 2 Explanation: For example, the
+sister has candies [2,3] and the brother has candies [1,1]. The sister
+has two different kinds of candies, the brother has only one kind of
+candies.</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ol type="1">
+<li>The length of the given array is in range [2, 10,000], and will be
+even.</li>
+<li>The number in given array is in range [-100,000, 100,000].</li>
+</ol>
+</blockquote>
+<h3 id="approach-1-hash-table">Approach 1: Hash Table</h3>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>First, counting the number of kinds. Then, returning the number of
+given kinds.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">distributeCandies</span>(<span class="params">self, candies</span>):</span><br><span class="line">        Hash=<span class="built_in">dict</span>()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(candies)):</span><br><span class="line">            Hash[candies[i]]=i</span><br><span class="line">        kinds=<span class="built_in">len</span>(Hash)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">min</span>(kinds,<span class="built_in">len</span>(candies)//<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    candies =[<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.distributeCandies(candies)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Runtime: 136 ms, faster than 35.19% of Python3 online submissions
+for Distribute Candies.</li>
+<li>Memory Usage: 14.5 MB, less than 5.88% of Python3 online submissions
+for Distribute Candies.</li>
+</ul>
+<hr />
+<h3 id="approach-2-using-set">Approach 2: Using Set</h3>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>Another way to find the number of unique elements is to traverse over
+all the elements of the given candies array and keep on putting the
+elements in a set. By the property of a set, it will contain only unique
+elements. At the end, we can count the number of elements in the set,
+given by, say count. The value to be returned will again be given by
+<span class="math display">\[\text{min}(count, n/2)\]</span>. Here,
+<span class="math display">\[n\]</span> refers to the size of the
+candies array.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">distributeCandies</span>(<span class="params">self, candies</span>):</span><br><span class="line">        candyType = <span class="built_in">set</span>(candies)<span class="comment"># 统计糖果种类数</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">min</span>(<span class="built_in">len</span>(candyType), <span class="built_in">len</span>(candies) //<span class="number">2</span>)</span><br><span class="line">    <span class="comment"># 如果种类数&gt;n/2，则最多给n/2种糖果</span></span><br><span class="line">    <span class="comment"># 如果种类数&lt;n/2，则给所有种类的糖果</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Runtime: 104 ms, faster than <strong><em>99.13%</em></strong> of
+Python3 online submissions for Distribute Candies.</p></li>
+<li><p>Memory Usage: 14.8 MB, less than 5.88% of Python3 online
+submissions for Distribute Candies.</p></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/05/09/2019-05-09-Q938-Range%20Sum%20of%20BST/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/05/09/2019-05-09-Q938-Range%20Sum%20of%20BST/" class="post-title-link" itemprop="url">Q938 Range Sum of BST</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-05-09 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-09T00:00:00+08:00">2019-05-09</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="range-sum-of-bst"><a
+target="_blank" rel="noopener" href="https://leetcode.com/problems/range-sum-of-bst/">Range Sum of
+BST</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>Given the <code>root</code> node of a binary search tree, return the
+sum of values of all nodes with value between <code>L</code> and
+<code>R</code> (inclusive).</p>
+<p>The binary search tree is guaranteed to have unique values.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>Input: root = [10,5,15,3,7,null,18], L = 7, R = 15 Output: 32</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>Input: root = [10,5,15,3,7,13,18,1,null,6], L = 6, R = 10 Output:
+23</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ol type="1">
+<li>The number of nodes in the tree is at most <code>10000</code>.</li>
+<li>The final answer is guaranteed to be less than
+<code>2^31</code>.</li>
+</ol>
+</blockquote>
+<h3 id="approach-1-depth-first-search">Approach 1: Depth First
+Search</h3>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>We traverse the tree using a depth first search. If
+<code>node.val</code> falls outside the range <code>[L, R]</code>, (for
+example <code>node.val &lt; L</code>), then we know that only the right
+branch could have nodes with value inside <code>[L, R]</code>.</p>
+<p>We showcase two implementations - one using a recursive algorithm,
+and one using an iterative one.</p>
+<p><strong>Recursive Implementation</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">rangeSumBST</span>(<span class="params">self, root, L, R</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">node</span>):</span><br><span class="line">            <span class="keyword">if</span> node:</span><br><span class="line">                <span class="keyword">if</span> L &lt;= node.val &lt;= R:</span><br><span class="line">                    self.ans += node.val</span><br><span class="line">                <span class="keyword">if</span> L &lt; node.val:</span><br><span class="line">                    dfs(node.left)</span><br><span class="line">                <span class="keyword">if</span> node.val &lt; R:</span><br><span class="line">                    dfs(node.right)</span><br><span class="line"></span><br><span class="line">        self.ans = <span class="number">0</span></span><br><span class="line">        dfs(root)</span><br><span class="line">        <span class="keyword">return</span> self.ans</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>Iterative Implementation</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">rangeSumBST</span>(<span class="params">self, root, L, R</span>):</span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        stack = [root]</span><br><span class="line">        <span class="keyword">while</span> stack:</span><br><span class="line">            node = stack.pop()</span><br><span class="line">            <span class="keyword">if</span> node:</span><br><span class="line">                <span class="keyword">if</span> L &lt;= node.val &lt;= R:</span><br><span class="line">                    ans += node.val</span><br><span class="line">                <span class="keyword">if</span> L &lt; node.val:</span><br><span class="line">                    stack.append(node.left)</span><br><span class="line">                <span class="keyword">if</span> node.val &lt; R:</span><br><span class="line">                    stack.append(node.right)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/05/08/2019-05-08-Q739-Daily-Temperatures/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3260,398 +3641,10 @@ etc.</p>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/05/04/2019-05-04-Q867-Transpose%20Matrix/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/04/2019-05-04-Q867-Transpose%20Matrix/" class="post-title-link" itemprop="url">Q867 Transpose Matrix</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-05-04 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-04T00:00:00+08:00">2019-05-04</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>891</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="transpose-matrix"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/transpose-matrix/">Transpose
-Matrix</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given a matrix <code>A</code>, return the transpose of
-<code>A</code>.</p>
-<p>The transpose of a matrix is the matrix flipped over it's main
-diagonal, switching the row and column indices of the matrix.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1</strong>:</p>
-<p>Input: [[1,2,3],[4,5,6],[7,8,9]] Output:
-[[1,4,7],[2,5,8],[3,6,9]]</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2</strong>:</p>
-<p>Input: [[1,2,3],[4,5,6]] Output: [[1,4],[2,5],[3,6]]</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li><code>1 &lt;= A.length &lt;= 1000</code></li>
-<li><code>1 &lt;= A[0].length &lt;= 1000</code></li>
-</ul>
-</blockquote>
-<hr />
-<h3 id="approach-1-copy-directly">Approach 1: Copy Directly</h3>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>The transpose of a matrix <code>A</code> with dimensions
-<code>R x C</code> is a matrix <code>ans</code> with dimensions
-<code>C x R</code> for which <code>ans[c][r] = A[r][c]</code>.</p>
-<p>Let's initialize a new matrix <code>ans</code> representing the
-answer. Then, we'll copy each entry of the matrix as appropriate.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">transpose</span>(<span class="params">self, A</span>):</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(A[<span class="number">0</span>])):</span><br><span class="line">            temp = []</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(A)):</span><br><span class="line">                temp.append(A[j][i])</span><br><span class="line">            res.append(temp)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    A = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>],[<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>]]</span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.transpose(A)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/04/30/2019-04-30-Q766-Toeplitz-Matrix/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/04/30/2019-04-30-Q766-Toeplitz-Matrix/" class="post-title-link" itemprop="url">Q766 Toeplitz Matrix</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-04-30 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-30T00:00:00+08:00">2019-04-30</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.9k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="toeplitz-matrix"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/toeplitz-matrix/">Toeplitz
-Matrix</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>A matrix is <em>Toeplitz</em> if every diagonal from top-left to
-bottom-right has the same element.</p>
-<p>Now given an <code>M x N</code> matrix, return <code>True</code> if
-and only if the matrix is <em>Toeplitz</em>.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1</strong>:</p>
-<p>Input: matrix = [ [1,2,3,4], [5,1,2,3], [9,5,1,2]] Output: True
-Explanation: In the above grid, the diagonals are: "[9]", "[5, 5]", "[1,
-1, 1]", "[2, 2, 2]", "[3, 3]", "[4]". In each diagonal all elements are
-the same, so the answer is True.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2</strong>:</p>
-<p>Input: matrix = [ [1,2], [2,2]] Output: False Explanation: The
-diagonal "[1, 2]" has different elements.</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li><code>matrix</code> will be a 2D array of integers.</li>
-<li><code>matrix</code> will have a number of rows and columns in range
-<code>[1, 20]</code>.</li>
-<li><code>matrix[i][j]</code> will be integers in range
-<code>[0, 99]</code>.</li>
-</ul>
-</blockquote>
-<hr />
-<h3 id="approach-1-group-by-category">Approach 1: Group by Category</h3>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>We ask what feature makes two coordinates <code>(r1, c1)</code> and
-<code>(r2, c2)</code> belong to the same diagonal?</p>
-<p>It turns out two coordinates are on the same diagonal if and only if
-<code>r1 - c1 == r2 - c2</code>.</p>
-<p>This leads to the following idea: remember the value of that diagonal
-as <code>groups[r-c]</code>. If we see a mismatch, the matrix is not
-Toeplitz; otherwise it is.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isToeplitzMatrix</span>(<span class="params">self, matrix</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        groups = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> r, row <span class="keyword">in</span> <span class="built_in">enumerate</span>(matrix):</span><br><span class="line">            <span class="keyword">for</span> c, val <span class="keyword">in</span> <span class="built_in">enumerate</span>(row):</span><br><span class="line">                <span class="keyword">if</span> (r - c) <span class="keyword">not</span> <span class="keyword">in</span> groups: <span class="comment"># 行与列的差不在groups</span></span><br><span class="line">                    groups[r - c] = val</span><br><span class="line">                <span class="keyword">elif</span> groups[r - c] != val:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
-<hr />
-<h3 id="approach-2-compare-with-top-left-neighbor">Approach 2: Compare
-With Top-Left Neighbor</h3>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>For each diagonal with elements in order <span
-class="math inline">\(a_1, a_2, a_3, \dots, a_k\)</span>, we can check
-<span class="math inline">\(a_1 = a_2, a_2 = a_3, \dots, a_{k-1} =
-a_k\)</span>. The matrix is <em>Toeplitz</em> if and only if all of
-these conditions are true for all (top-left to bottom-right)
-diagonals.</p>
-<p>Every element belongs to some diagonal, and it's previous element (if
-it exists) is it's top-left neighbor. Thus, for the square
-<code>(r, c)</code>, we only need to check
-<code>r == 0 OR c == 0 OR matrix[r-1][c-1] == matrix[r][c]</code>.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isToeplitzMatrix</span>(<span class="params">self, matrix</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">all</span>(r == <span class="number">0</span> <span class="keyword">or</span> c == <span class="number">0</span> <span class="keyword">or</span> matrix[r-<span class="number">1</span>][c-<span class="number">1</span>] == val</span><br><span class="line">                   <span class="keyword">for</span> r, row <span class="keyword">in</span> <span class="built_in">enumerate</span>(matrix)</span><br><span class="line">                   <span class="keyword">for</span> c, val <span class="keyword">in</span> <span class="built_in">enumerate</span>(row))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># all(),相当于or的含义，括号中有元素就返回True，无元素返回False</span></span><br></pre></td></tr></table></figure>
-<p>Runtime: 44 ms, faster than 98.04% of Python3 online submissions
-forToeplitz Matrix.</p>
-<p>Memory Usage: 13.1 MB, less than 6.86% of Python3 online submissions
-for Toeplitz Matrix.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/04/29/2019-04-29-Q985-Sum-of-Even-Numbers-After-Queries/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/04/29/2019-04-29-Q985-Sum-of-Even-Numbers-After-Queries/" class="post-title-link" itemprop="url">Q985 Sum of Even Numbers After Queries</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-04-29 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-29T00:00:00+08:00">2019-04-29</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.3k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="sum-of-even-numbers-after-queries"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-of-even-numbers-after-queries/">Sum
-of Even Numbers After Queries</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>We have an array <code>A</code> of integers, and an array
-<code>queries</code> of queries.</p>
-<p>For the <code>i</code>-th query
-<code>val = queries[i][0], index = queries[i][1]</code>, we add val to
-<code>A[index]</code>. Then, the answer to the <code>i</code>-th query
-is the sum of the even values of <code>A</code>.</p>
-<p><em>(Here, the given index = queries[i][1] is a 0-based index, and
-each query permanently modifies the array A.)</em></p>
-<p>Return the answer to all queries. Your <code>answer</code> array
-should have <code>answer[i]</code> as the answer to the
-<code>i</code>-th query.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1</strong>:</p>
-<p>Input: A = [1,2,3,4], queries = [[1,0],[-3,1],[-4,0],[2,3]] Output:
-[8,6,2,4] Explanation: At the beginning, the array is [1,2,3,4]. After
-adding 1 to A[0], the array is [2,2,3,4], and the sum of even values is
-2 + 2 + 4 = 8. After adding -3 to A[1], the array is [2,-1,3,4], and the
-sum of even values is 2 + 4 = 6. After adding -4 to A[0], the array is
-[-2,-1,3,4], and the sum of even values is -2 + 4 = 2. After adding 2 to
-A[3], the array is [-2,-1,3,6], and the sum of even values is -2 + 6 =
-4</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li><code>1 &lt;= A.length &lt;= 10000</code></li>
-<li><code>-10000 &lt;= A[i] &lt;= 10000</code></li>
-<li><code>1 &lt;= queries.length &lt;= 10000</code></li>
-<li><code>-10000 &lt;= queries[i][0] &lt;= 10000</code></li>
-<li><code>0 &lt;= queries[i][1] &lt; A.length</code></li>
-</ul>
-</blockquote>
-<hr />
-<h3 id="approach-1-maintain-array-sum">Approach 1: Maintain Array
-Sum</h3>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>Let's try to maintain <code>S</code>, the sum of the array throughout
-one query operation.</p>
-<p>When acting on an array element <code>A[index]</code>, the rest of
-the values of <code>A</code> remain the same. Let's remove
-<code>A[index]</code> from <code>S</code> if it is even, then add
-<code>A[index] + val</code> back (if it is even.)</p>
-<p>Here are some examples:</p>
-<ul>
-<li>If we have <code>A = [2,2,2,2,2]</code>, <code>S = 10</code>, and we
-do <code>A[0] += 4</code>: we will update <code>S -= 2</code>, then
-<code>S += 6</code>. At the end, we will have
-<code>A = [6,2,2,2,2]</code> and <code>S = 14</code>.</li>
-<li>If we have <code>A = [1,2,2,2,2]</code>, <code>S = 8</code>, and we
-do <code>A[0] += 3</code>: we will skip updating <code>S</code> (since
-<code>A[0]</code> is odd), then <code>S += 4</code>. At the end, we will
-have <code>A = [4,2,2,2,2]</code> and <code>S = 12</code>.</li>
-<li>If we have <code>A = [2,2,2,2,2]</code>, <code>S = 10</code> and we
-do <code>A[0] += 1</code>: we will update <code>S -= 2</code>, then skip
-updating <code>S</code> (since <code>A[0] + 1</code> is odd.) At the
-end, we will have <code>A = [3,2,2,2,2]</code> and
-<code>S = 8</code>.</li>
-<li>If we have <code>A = [1,2,2,2,2]</code>, <code>S = 8</code> and we
-do <code>A[0] += 2</code>: we will skip updating <code>S</code> (since
-<code>A[0]</code> is odd), then skip updating <code>S</code> again
-(since <code>A[0] + 2</code> is odd.) At the end, we will have
-<code>A = [3,2,2,2,2]</code>and <code>S = 8</code>.</li>
-</ul>
-<p>These examples help illustrate that our algorithm actually maintains
-the value of <code>S</code> throughout each query operation.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sumEvenAfterQueries</span>(<span class="params">self, A: <span class="type">List</span>[<span class="built_in">int</span>], queries: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        results=[]</span><br><span class="line">        even = <span class="built_in">sum</span>(x <span class="keyword">for</span> x <span class="keyword">in</span> A <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">for</span> x,y <span class="keyword">in</span> queries:</span><br><span class="line">            <span class="keyword">if</span> x%<span class="number">2</span>!=<span class="number">0</span> <span class="keyword">and</span> A[y]%<span class="number">2</span>!=<span class="number">0</span>:</span><br><span class="line">                even+=(x+A[y])</span><br><span class="line">            <span class="keyword">elif</span> x%<span class="number">2</span>==<span class="number">0</span> <span class="keyword">and</span> A[y]%<span class="number">2</span>==<span class="number">0</span>:</span><br><span class="line">                even += x</span><br><span class="line">            <span class="keyword">elif</span> x % <span class="number">2</span> != <span class="number">0</span> <span class="keyword">and</span> A[y] % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">                even -= A[y]</span><br><span class="line">            A[y] += x</span><br><span class="line">            results.append(even)</span><br><span class="line">        <span class="keyword">return</span> results</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Runtime: 180 ms, faster than 49.38% of Python3 online submissions
-forSum of Even Numbers After Queries.</li>
-<li>Memory Usage: 17.5 MB, less than 5.56% of Python3 online submissions
-for Sum of Even Numbers After Queries.</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/27/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><span class="page-number current">28</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/29/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/27/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><span class="page-number current">28</span><a class="page-number" href="/page/29/">29</a><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/29/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -3719,7 +3712,7 @@ for Sum of Even Numbers After Queries.</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">230</span>
+          <span class="site-state-item-count">233</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -3786,12 +3779,12 @@ for Sum of Even Numbers After Queries.</li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">552k</span>
+    <span title="Symbols count total">568k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:22</span>
+    <span title="Reading time total">8:36</span>
 </div>
 
         

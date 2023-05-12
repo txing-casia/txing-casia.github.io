@@ -198,6 +198,394 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/05/04/2019-05-04-Q867-Transpose%20Matrix/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/05/04/2019-05-04-Q867-Transpose%20Matrix/" class="post-title-link" itemprop="url">Q867 Transpose Matrix</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-05-04 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-04T00:00:00+08:00">2019-05-04</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>891</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="transpose-matrix"><a
+target="_blank" rel="noopener" href="https://leetcode.com/problems/transpose-matrix/">Transpose
+Matrix</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>Given a matrix <code>A</code>, return the transpose of
+<code>A</code>.</p>
+<p>The transpose of a matrix is the matrix flipped over it's main
+diagonal, switching the row and column indices of the matrix.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1</strong>:</p>
+<p>Input: [[1,2,3],[4,5,6],[7,8,9]] Output:
+[[1,4,7],[2,5,8],[3,6,9]]</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2</strong>:</p>
+<p>Input: [[1,2,3],[4,5,6]] Output: [[1,4],[2,5],[3,6]]</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ul>
+<li><code>1 &lt;= A.length &lt;= 1000</code></li>
+<li><code>1 &lt;= A[0].length &lt;= 1000</code></li>
+</ul>
+</blockquote>
+<hr />
+<h3 id="approach-1-copy-directly">Approach 1: Copy Directly</h3>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>The transpose of a matrix <code>A</code> with dimensions
+<code>R x C</code> is a matrix <code>ans</code> with dimensions
+<code>C x R</code> for which <code>ans[c][r] = A[r][c]</code>.</p>
+<p>Let's initialize a new matrix <code>ans</code> representing the
+answer. Then, we'll copy each entry of the matrix as appropriate.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">transpose</span>(<span class="params">self, A</span>):</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(A[<span class="number">0</span>])):</span><br><span class="line">            temp = []</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(A)):</span><br><span class="line">                temp.append(A[j][i])</span><br><span class="line">            res.append(temp)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    A = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>],[<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>]]</span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.transpose(A)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/04/30/2019-04-30-Q766-Toeplitz-Matrix/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/04/30/2019-04-30-Q766-Toeplitz-Matrix/" class="post-title-link" itemprop="url">Q766 Toeplitz Matrix</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-04-30 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-30T00:00:00+08:00">2019-04-30</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="toeplitz-matrix"><a
+target="_blank" rel="noopener" href="https://leetcode.com/problems/toeplitz-matrix/">Toeplitz
+Matrix</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>A matrix is <em>Toeplitz</em> if every diagonal from top-left to
+bottom-right has the same element.</p>
+<p>Now given an <code>M x N</code> matrix, return <code>True</code> if
+and only if the matrix is <em>Toeplitz</em>.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1</strong>:</p>
+<p>Input: matrix = [ [1,2,3,4], [5,1,2,3], [9,5,1,2]] Output: True
+Explanation: In the above grid, the diagonals are: "[9]", "[5, 5]", "[1,
+1, 1]", "[2, 2, 2]", "[3, 3]", "[4]". In each diagonal all elements are
+the same, so the answer is True.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2</strong>:</p>
+<p>Input: matrix = [ [1,2], [2,2]] Output: False Explanation: The
+diagonal "[1, 2]" has different elements.</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ul>
+<li><code>matrix</code> will be a 2D array of integers.</li>
+<li><code>matrix</code> will have a number of rows and columns in range
+<code>[1, 20]</code>.</li>
+<li><code>matrix[i][j]</code> will be integers in range
+<code>[0, 99]</code>.</li>
+</ul>
+</blockquote>
+<hr />
+<h3 id="approach-1-group-by-category">Approach 1: Group by Category</h3>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>We ask what feature makes two coordinates <code>(r1, c1)</code> and
+<code>(r2, c2)</code> belong to the same diagonal?</p>
+<p>It turns out two coordinates are on the same diagonal if and only if
+<code>r1 - c1 == r2 - c2</code>.</p>
+<p>This leads to the following idea: remember the value of that diagonal
+as <code>groups[r-c]</code>. If we see a mismatch, the matrix is not
+Toeplitz; otherwise it is.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isToeplitzMatrix</span>(<span class="params">self, matrix</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        groups = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> r, row <span class="keyword">in</span> <span class="built_in">enumerate</span>(matrix):</span><br><span class="line">            <span class="keyword">for</span> c, val <span class="keyword">in</span> <span class="built_in">enumerate</span>(row):</span><br><span class="line">                <span class="keyword">if</span> (r - c) <span class="keyword">not</span> <span class="keyword">in</span> groups: <span class="comment"># 行与列的差不在groups</span></span><br><span class="line">                    groups[r - c] = val</span><br><span class="line">                <span class="keyword">elif</span> groups[r - c] != val:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<hr />
+<h3 id="approach-2-compare-with-top-left-neighbor">Approach 2: Compare
+With Top-Left Neighbor</h3>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>For each diagonal with elements in order <span
+class="math inline">\(a_1, a_2, a_3, \dots, a_k\)</span>, we can check
+<span class="math inline">\(a_1 = a_2, a_2 = a_3, \dots, a_{k-1} =
+a_k\)</span>. The matrix is <em>Toeplitz</em> if and only if all of
+these conditions are true for all (top-left to bottom-right)
+diagonals.</p>
+<p>Every element belongs to some diagonal, and it's previous element (if
+it exists) is it's top-left neighbor. Thus, for the square
+<code>(r, c)</code>, we only need to check
+<code>r == 0 OR c == 0 OR matrix[r-1][c-1] == matrix[r][c]</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isToeplitzMatrix</span>(<span class="params">self, matrix</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">all</span>(r == <span class="number">0</span> <span class="keyword">or</span> c == <span class="number">0</span> <span class="keyword">or</span> matrix[r-<span class="number">1</span>][c-<span class="number">1</span>] == val</span><br><span class="line">                   <span class="keyword">for</span> r, row <span class="keyword">in</span> <span class="built_in">enumerate</span>(matrix)</span><br><span class="line">                   <span class="keyword">for</span> c, val <span class="keyword">in</span> <span class="built_in">enumerate</span>(row))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># all(),相当于or的含义，括号中有元素就返回True，无元素返回False</span></span><br></pre></td></tr></table></figure>
+<p>Runtime: 44 ms, faster than 98.04% of Python3 online submissions
+forToeplitz Matrix.</p>
+<p>Memory Usage: 13.1 MB, less than 6.86% of Python3 online submissions
+for Toeplitz Matrix.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/04/29/2019-04-29-Q985-Sum-of-Even-Numbers-After-Queries/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/04/29/2019-04-29-Q985-Sum-of-Even-Numbers-After-Queries/" class="post-title-link" itemprop="url">Q985 Sum of Even Numbers After Queries</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-04-29 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-29T00:00:00+08:00">2019-04-29</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.3k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="sum-of-even-numbers-after-queries"><a
+target="_blank" rel="noopener" href="https://leetcode.com/problems/sum-of-even-numbers-after-queries/">Sum
+of Even Numbers After Queries</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>We have an array <code>A</code> of integers, and an array
+<code>queries</code> of queries.</p>
+<p>For the <code>i</code>-th query
+<code>val = queries[i][0], index = queries[i][1]</code>, we add val to
+<code>A[index]</code>. Then, the answer to the <code>i</code>-th query
+is the sum of the even values of <code>A</code>.</p>
+<p><em>(Here, the given index = queries[i][1] is a 0-based index, and
+each query permanently modifies the array A.)</em></p>
+<p>Return the answer to all queries. Your <code>answer</code> array
+should have <code>answer[i]</code> as the answer to the
+<code>i</code>-th query.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1</strong>:</p>
+<p>Input: A = [1,2,3,4], queries = [[1,0],[-3,1],[-4,0],[2,3]] Output:
+[8,6,2,4] Explanation: At the beginning, the array is [1,2,3,4]. After
+adding 1 to A[0], the array is [2,2,3,4], and the sum of even values is
+2 + 2 + 4 = 8. After adding -3 to A[1], the array is [2,-1,3,4], and the
+sum of even values is 2 + 4 = 6. After adding -4 to A[0], the array is
+[-2,-1,3,4], and the sum of even values is -2 + 4 = 2. After adding 2 to
+A[3], the array is [-2,-1,3,6], and the sum of even values is -2 + 6 =
+4</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ul>
+<li><code>1 &lt;= A.length &lt;= 10000</code></li>
+<li><code>-10000 &lt;= A[i] &lt;= 10000</code></li>
+<li><code>1 &lt;= queries.length &lt;= 10000</code></li>
+<li><code>-10000 &lt;= queries[i][0] &lt;= 10000</code></li>
+<li><code>0 &lt;= queries[i][1] &lt; A.length</code></li>
+</ul>
+</blockquote>
+<hr />
+<h3 id="approach-1-maintain-array-sum">Approach 1: Maintain Array
+Sum</h3>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>Let's try to maintain <code>S</code>, the sum of the array throughout
+one query operation.</p>
+<p>When acting on an array element <code>A[index]</code>, the rest of
+the values of <code>A</code> remain the same. Let's remove
+<code>A[index]</code> from <code>S</code> if it is even, then add
+<code>A[index] + val</code> back (if it is even.)</p>
+<p>Here are some examples:</p>
+<ul>
+<li>If we have <code>A = [2,2,2,2,2]</code>, <code>S = 10</code>, and we
+do <code>A[0] += 4</code>: we will update <code>S -= 2</code>, then
+<code>S += 6</code>. At the end, we will have
+<code>A = [6,2,2,2,2]</code> and <code>S = 14</code>.</li>
+<li>If we have <code>A = [1,2,2,2,2]</code>, <code>S = 8</code>, and we
+do <code>A[0] += 3</code>: we will skip updating <code>S</code> (since
+<code>A[0]</code> is odd), then <code>S += 4</code>. At the end, we will
+have <code>A = [4,2,2,2,2]</code> and <code>S = 12</code>.</li>
+<li>If we have <code>A = [2,2,2,2,2]</code>, <code>S = 10</code> and we
+do <code>A[0] += 1</code>: we will update <code>S -= 2</code>, then skip
+updating <code>S</code> (since <code>A[0] + 1</code> is odd.) At the
+end, we will have <code>A = [3,2,2,2,2]</code> and
+<code>S = 8</code>.</li>
+<li>If we have <code>A = [1,2,2,2,2]</code>, <code>S = 8</code> and we
+do <code>A[0] += 2</code>: we will skip updating <code>S</code> (since
+<code>A[0]</code> is odd), then skip updating <code>S</code> again
+(since <code>A[0] + 2</code> is odd.) At the end, we will have
+<code>A = [3,2,2,2,2]</code>and <code>S = 8</code>.</li>
+</ul>
+<p>These examples help illustrate that our algorithm actually maintains
+the value of <code>S</code> throughout each query operation.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sumEvenAfterQueries</span>(<span class="params">self, A: <span class="type">List</span>[<span class="built_in">int</span>], queries: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        results=[]</span><br><span class="line">        even = <span class="built_in">sum</span>(x <span class="keyword">for</span> x <span class="keyword">in</span> A <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">for</span> x,y <span class="keyword">in</span> queries:</span><br><span class="line">            <span class="keyword">if</span> x%<span class="number">2</span>!=<span class="number">0</span> <span class="keyword">and</span> A[y]%<span class="number">2</span>!=<span class="number">0</span>:</span><br><span class="line">                even+=(x+A[y])</span><br><span class="line">            <span class="keyword">elif</span> x%<span class="number">2</span>==<span class="number">0</span> <span class="keyword">and</span> A[y]%<span class="number">2</span>==<span class="number">0</span>:</span><br><span class="line">                even += x</span><br><span class="line">            <span class="keyword">elif</span> x % <span class="number">2</span> != <span class="number">0</span> <span class="keyword">and</span> A[y] % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">                even -= A[y]</span><br><span class="line">            A[y] += x</span><br><span class="line">            results.append(even)</span><br><span class="line">        <span class="keyword">return</span> results</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Runtime: 180 ms, faster than 49.38% of Python3 online submissions
+forSum of Even Numbers After Queries.</li>
+<li>Memory Usage: 17.5 MB, less than 5.56% of Python3 online submissions
+for Sum of Even Numbers After Queries.</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/04/26/2019-04-26-Q768-Max-Chunks-To-Make-Sorted-IId-(Undone)%20-%20%E5%89%AF%E6%9C%AC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -921,116 +1309,10 @@ exists.</strong></p>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2018/08/15/2018-08-15-%E5%9C%A8python%E4%B8%AD%E8%B0%83%E7%94%A8MATLAB%E7%9A%84%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/08/15/2018-08-15-%E5%9C%A8python%E4%B8%AD%E8%B0%83%E7%94%A8MATLAB%E7%9A%84%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">在python中调用MATLAB的方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-08-15 00:00:00" itemprop="dateCreated datePublished" datetime="2018-08-15T00:00:00+08:00">2018-08-15</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>740</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="在python中调用matlab的方法">在python中调用MATLAB的方法</h1>
-<p>网上有些是让你安装mlab库来实现调用的，这个方法已经淘汰不用了，这里介绍比较新的方法。</p>
-<h2 id="step-1-install-matlab-engine-api-for-python">Step 1: install
-MATLAB Engine API for Python</h2>
-<p>官网给出的方案：</p>
-<p><a
-target="_blank" rel="noopener" href="http://ww2.mathworks.cn/help/matlab/matlab_external/install-the-matlab-engine-for-python.html?ue">install
-MATLAB Engine API for Python</a></p>
-<p>在MATLAB中输入：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">matlabroot</span><br></pre></td></tr></table></figure>
-<p>得到返回的位置</p>
-<p>打开anaconda，输入下面语句进行安装</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd matlabroot\extern\engines\python</span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
-<p>注意要将matlabroot替换为之前返回的位置</p>
-<h2 id="step-2-call-user-script-and-function-from-python">Step 2: Call
-User Script and Function from Python</h2>
-<p>官网给出的方案：</p>
-<p><a
-target="_blank" rel="noopener" href="http://cn.mathworks.com/help/matlab/matlab_external/call-user-script-and-function-from-python.html">Call
-User Script and Function from Python</a></p>
-<p>###.m脚本的调用</p>
-<p>.m文件与.py文件需要放在同一目录下。在test.m文件中输入：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">b=<span class="number">2</span>;</span><br><span class="line">h=<span class="number">3</span>;</span><br><span class="line">a=b*h</span><br></pre></td></tr></table></figure>
-<p>在H.py文件中输入：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matlab.engine</span><br><span class="line">eng = matlab.engine.start_matlab()</span><br><span class="line">eng.test(nargout=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<p>其中指定 <code>nargout=0</code>。尽管脚本会打印输出，但它不会向
-Python 返回任何输出参数。</p>
-<h3 id="自定义函数的调用">自定义函数的调用</h3>
-<p>在time.m中输入：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span> = <span class="title">time</span><span class="params">(b,h)</span></span></span><br><span class="line">	a = b*h;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>在H.py中输入：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matlab.engine</span><br><span class="line">eng = matlab.engine.start_matlab()</span><br><span class="line">ret = eng.time(<span class="number">1.0</span>,<span class="number">5.0</span>)</span><br><span class="line"><span class="built_in">print</span>(ret)</span><br></pre></td></tr></table></figure>
-<p>可以实现函数的调用。由于函数仅返回一个输出参数，因此无需指定
-<code>nargout</code>。</p>
-<p>‎2018‎年‎8‎月‎15‎日</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/28/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><span class="page-number current">29</span>
+    <a class="extend prev" rel="prev" href="/page/28/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><span class="page-number current">29</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/30/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1098,7 +1380,7 @@ Python 返回任何输出参数。</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">230</span>
+          <span class="site-state-item-count">233</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1165,12 +1447,12 @@ Python 返回任何输出参数。</p>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">552k</span>
+    <span title="Symbols count total">568k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:22</span>
+    <span title="Reading time total">8:36</span>
 </div>
 
         

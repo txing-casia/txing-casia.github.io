@@ -81,7 +81,119 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -194,6 +306,251 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/09/23/2022-09-23-Reinforcement%20Learning%20-%20[u]%20Human-level%20Atari%20200x%20faster/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/23/2022-09-23-Reinforcement%20Learning%20-%20%5Bu%5D%20Human-level%20Atari%20200x%20faster/" class="post-title-link" itemprop="url">Reinforcement Learning | Human-level Atari 200x faster</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-09-23 00:00:00" itemprop="dateCreated datePublished" datetime="2022-09-23T00:00:00+08:00">2022-09-23</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>595</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Deepmind的Agent57是第一个在57款Atari游戏上全面超过人类水平的强化学习智能体。但是Agent57的数据利用效率很低，要求80亿帧数据。本文通过设置不同的策略集合实现了200倍的训练效率提高。</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/09/20/2022-09-20-Autonomous%20Driving%20-%20BEVFormer%20Learning%20Bird%E2%80%99s-Eye-View%20Representation%20from%20Multi-Camera%20Images%20via%20Spatiotemporal%20Transformers/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/20/2022-09-20-Autonomous%20Driving%20-%20BEVFormer%20Learning%20Bird%E2%80%99s-Eye-View%20Representation%20from%20Multi-Camera%20Images%20via%20Spatiotemporal%20Transformers/" class="post-title-link" itemprop="url">Autonomous Driving | BEVFormer: Learning Bird’s-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-09-20 00:00:00" itemprop="dateCreated datePublished" datetime="2022-09-20T00:00:00+08:00">2022-09-20</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>多相机3D检测的工作。提出了spatial cross-attention整合空间信息；提出了temporal self-attention整合历史BEV信息。</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/09/05/2022-09-05%20-%20Python%E6%8A%A5%E9%94%99libGL%20error%20MESA-LOADER%20failed%20to%20open%20iris/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/05/2022-09-05%20-%20Python%E6%8A%A5%E9%94%99libGL%20error%20MESA-LOADER%20failed%20to%20open%20iris/" class="post-title-link" itemprop="url">Python报错libGL error: MESA-LOADER: failed to open iris</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-09-05 00:00:00" itemprop="dateCreated datePublished" datetime="2022-09-05T00:00:00+08:00">2022-09-05</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.5k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2
+id="python报错libgl-error-mesa-loader-failed-to-open-iris">Python报错libGL
+error: MESA-LOADER: failed to open iris</h2>
+<h3 id="问题背景">1 问题背景</h3>
+<p>执行gym-like环境代码时，渲染动画输出时报错无法找到系统显卡驱动（笔记本，核显，Ubuntu），报错信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">libGL error: MESA-LOADER: failed to open iris: /usr/lib/dri/iris_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$$&#123;ORIGIN&#125;/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: iris</span><br><span class="line">libGL error: MESA-LOADER: failed to open iris: /usr/lib/dri/iris_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$$&#123;ORIGIN&#125;/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: iris</span><br><span class="line">libGL error: MESA-LOADER: failed to open swrast: /usr/lib/dri/swrast_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$$&#123;ORIGIN&#125;/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: swrast</span><br></pre></td></tr></table></figure>
+<p>然而，根据提示，在<code>/usr/lib/x86_64-linux-gnu/dri</code>路径下是可以找<code>iris_dri.so</code>驱动的。</p>
+<h3 id="处理办法">2 处理办法</h3>
+<p><a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/538877347">这篇博客</a>提供了一个有效解决方法：</p>
+<p>Step 1: 建立一个 /usr/lib/dri/iris_dri.so 的软连接</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(base) pcon@pcon-ThinkPad-L14-Gen-2:/usr/lib$ sudo mkdir dri</span><br><span class="line">(base) pcon@pcon-ThinkPad-L14-Gen-2:/usr/lib$ cd dri </span><br><span class="line">(base) pcon@pcon-ThinkPad-L14-Gen-2:/usr/lib/dri$ sudo ln -s /usr/lib/x86_64-linux-gnu/dri/iris_dri.so iris_dri.so</span><br></pre></td></tr></table></figure>
+<p>Step 2: 再次python执行代码，报错变为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">libGL error: MESA-LOADER: failed to open iris: /home/pcon/anaconda3/bin/../lib/libstdc++.so.6: version `GLIBCXX_3.4.29&#x27; not found (required by /usr/lib/dri/iris_dri.so) (search paths /usr/lib/x86_64-linux-gnu/dri:\$$&#123;ORIGIN&#125;/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: iris</span><br><span class="line">libGL error: MESA-LOADER: failed to open iris: /home/pcon/anaconda3/bin/../lib/libstdc++.so.6: version `GLIBCXX_3.4.29&#x27; not found (required by /usr/lib/dri/iris_dri.so) (search paths /usr/lib/x86_64-linux-gnu/dri:\$$&#123;ORIGIN&#125;/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: iris</span><br><span class="line">libGL error: MESA-LOADER: failed to open swrast: /usr/lib/dri/swrast_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$$&#123;ORIGIN&#125;/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: swrast</span><br></pre></td></tr></table></figure>
+<p>这是由于 conda 里的 libstdcxx-ng 版本不够高造成的。</p>
+<p>Step 3：执行以下命令查看GLIBCXX版本信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(base) pcon@pcon-ThinkPad-L14-Gen-2:~/anaconda3$ strings /home/pcon/anaconda3//lib/libstdc++.so.6 | grep GLIBCXX</span><br></pre></td></tr></table></figure>
+<p>Step 4：升级 conda 里的 libstdcxx-ng (根据<a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/538877347">博客</a>)
+。（截至2022.09该版本号有效）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(base) pcon@pcon-ThinkPad-L14-Gen-2:~/anaconda3$ conda install libstdcxx-ng=12.1.0</span><br></pre></td></tr></table></figure>
+<p>再次查看版本号</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(base) pcon@pcon-ThinkPad-L14-Gen-2:~/anaconda3$ strings /home/pcon/anaconda3//lib/libstdc++.so.6 | grep GLIBCXX</span><br></pre></td></tr></table></figure>
+<p>执行Python代码，成功运行！</p>
+<p>ref</p>
+<p>https://zhuanlan.zhihu.com/p/538877347</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1375,781 +1732,10 @@ autonomous driving</figcaption>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/08/17/2022-08-17-Autonomous%20Driving%20-%20SMARTS%20Scalable%20Multi-Agent%20Reinforcement%20Learning%20Training%20School%20for%20Autonomous%20Driving/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/08/17/2022-08-17-Autonomous%20Driving%20-%20SMARTS%20Scalable%20Multi-Agent%20Reinforcement%20Learning%20Training%20School%20for%20Autonomous%20Driving/" class="post-title-link" itemprop="url">Autonomous Driving | SMARTS Scalable Multi-Agent Reinforcement Learning Training School for Autonomous Driving (Huawei)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-08-17 00:00:00" itemprop="dateCreated datePublished" datetime="2022-08-17T00:00:00+08:00">2022-08-17</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.6k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2
-id="smarts-scalable-multi-agent-reinforcement-learning-training-school-for-autonomous-driving">SMARTS:
-Scalable Multi-Agent Reinforcement Learning Training School for
-Autonomous Driving</h2>
-<p>顾名思义，SMARTS是针对多智能体算法的自动驾驶强化学习仿真平台。</p>
-<p>开源了基准任务和代码：https://github.com/huawei-noah/SMARTS</p>
-<h3 id="introduction">1 Introduction</h3>
-<ul>
-<li><p>自动驾驶仿真的挑战之一是天气问题；绝大部分数据是在好天气（fair
-weather）下采集的；当前的L4自动驾驶面对复杂的交互情况时。倾向于减速等待，而不是提前主动找办法通过；</p></li>
-<li><p>Waymo的California2018的自动驾驶事故数据中, 57%是发生了追尾（rear
-endings），29%是发生了侧面碰撞（sideswipes），并且事故都是由于他车造成的，因此说明过于保守的驾驶策略</p></li>
-<li><p>waymo的汽车相比人类驾驶员经常过分刹车，导致乘客晕车</p></li>
-<li><p>多智能体交互的分级标准：“multi-agent learning levels”, or
-“M-levels“</p></li>
-<li><p>double
-merge道路场景（即&gt;--&lt;形道路）是多智能体交互的难点，车辆需考虑是继续走还是等待；在间隙不够大的时候是否需要变道；其他车开到了自车车道上，是否和它交换位置？等</p></li>
-<li><p>平台设计目标：</p>
-<ul>
-<li><p>Bootstrapping Realistic Interaction</p>
-<ul>
-<li><ol type="1">
-<li>physics,</li>
-</ol></li>
-<li><ol start="2" type="1">
-<li>behavior of road users,</li>
-</ol></li>
-<li><ol start="3" type="1">
-<li>road structure &amp; regula-tions,</li>
-</ol></li>
-<li><ol start="4" type="1">
-<li>background traffic flow.</li>
-</ol></li>
-</ul></li>
-<li><p>Heterogeneous Agent Computing（异构智能体计算）</p></li>
-<li><p>Simulation Providers</p></li>
-<li><p>Interaction Scenarios</p></li>
-<li><p>Distributed Computing</p></li>
-</ul></li>
-<li><p>Key Features：</p></li>
-</ul>
-<figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220817-1.png"
-alt="Levels of multi-agent learning in autonomous driving" />
-<figcaption aria-hidden="true">Levels of multi-agent learning in
-autonomous driving</figcaption>
-</figure>
-<ul>
-<li>场景：</li>
-</ul>
-<figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220817-2.png"
-alt="Levels of multi-agent learning in autonomous driving" />
-<figcaption aria-hidden="true">Levels of multi-agent learning in
-autonomous driving</figcaption>
-</figure>
-<ul>
-<li><p><strong>Observation.</strong> The observation is a stack of three
-consecutive frames, which covers the dynamic objects and key events. For
-each frame, it contains: 1) relative position of goal; 2) distance to
-the center of lane; 3) speed; 4) steering; 5) a list of heading errors;
-6) at most eight neighboring vehicles’ driving states (relative
-distance, speed and position); 7) a bird’s-eye view gray-scale image
-with the agent at the center.</p></li>
-<li><p><strong>Action.</strong> The action used here is a
-four-dimensional vector of discrete values, for longitudinal
-control—keep lane and slow down—and lateral control—turn right and turn
-left.</p></li>
-<li><p><strong>Reward.</strong> The reward is a weighted sum of the
-reward components shaped according to ego vehicle states, interactions
-involving surrounding vehicles, and key traffic events. More details can
-be found in our implementation code.</p></li>
-</ul>
-<h3 id="总结">总结</h3>
-<p>华为推出的针对多智能体的自动驾驶仿真环境，设计相对灵活，支持场景和他车的编辑，以及Waymo的真实数据，后续可以继续看看</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/08/12/2022-08-12-Autonomous%20Driving%20-%20An%20Optimistic%20Perspective%20on%20Offline%20Reinforcement%20Learning/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/08/12/2022-08-12-Autonomous%20Driving%20-%20An%20Optimistic%20Perspective%20on%20Offline%20Reinforcement%20Learning/" class="post-title-link" itemprop="url">Autonomous Driving | An Optimistic Perspective on Offline Reinforcement Learning (Google)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-08-12 00:00:00" itemprop="dateCreated datePublished" datetime="2022-08-12T00:00:00+08:00">2022-08-12</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>4.3k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>4 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2
-id="an-optimistic-perspective-on-offline-reinforcement-learning-google">An
-Optimistic Perspective on Offline Reinforcement Learning (Google)</h2>
-<p>作者用online DQN在60款 Atari
-2600游戏上获取数据样本，然后用这些样本(fixed
-dataset)训练offline强化学习算法，一些offline的算法性能可以超过online的算法。本文提出的Random
-Ensemble Mixture
-(REM)算法在离线回放数据上的表现超过了强的基准算法。因此作者认为在离线样本足够多，多样化充分的情况下，使用鲁棒的RL算法可以获得高质量的策略。</p>
-<p>代码： github.com/google-research/batch_rl</p>
-<h3 id="introduction">1 Introduction</h3>
-<p>离线强化学习的设定是不与真实环境的主动交互，而是通过对收集的离线回放数据中学习策略，在评估模型中生成新的交互数据。相应的情景在以下场景均会面临：</p>
-<ul>
-<li><strong>robotics</strong>
-<ul>
-<li>Cabi, S., Colmenarejo, S. G., Novikov, A., Konyushkova, K., Reed,
-S., Jeong, R., Zołna, K., Aytar, Y., Budden, D., Vecerik, M., et al. A
-framework for data-driven robotics. arXiv preprint arXiv:1909.12200,
-2019.</li>
-<li>Dasari, S., Ebert, F., Tian, S., Nair, S., Bucher, B., Schmeckpeper,
-K., Singh, S., Levine, S., and Finn, C. Robonet: Large-scale multi-robot
-learning. CoRL, 2019.</li>
-</ul></li>
-<li><strong>autonomous driving</strong>
-<ul>
-<li>Yu, F., Xian, W., Chen, Y., Liu, F., Liao, M., Madhavan, V., and
-Darrell, T. Bdd100k: A diverse driving video database with scalable
-annotation tooling. CVPR, 2018.</li>
-</ul></li>
-<li><strong>recommendation systems</strong>
-<ul>
-<li>Strehl, A. L., Langford, J., Li, L., and Kakade, S. Learning from
-logged implicit exploration data. NeurIPS, 2010.</li>
-<li>Bottou, L., Peters, J., Quiñonero-Candela, J., Charles, D. X.,
-Chickering, D. M., Portugaly, E., Ray, D., Simard, P., and Snelson, E.
-Counterfactual reasoning and learning systems: The example of
-computational advertising. JMLR, 2013.</li>
-</ul></li>
-<li><strong>healthcare</strong>
-<ul>
-<li>Shortreed, S. M., Laber, E., Lizotte, D. J., Stroup, T. S., Pineau,
-J., and Murphy, S. A. Informing sequential clinical decisionmaking
-through reinforcement learning: an empirical study. Machine learning,
-2011.</li>
-</ul></li>
-</ul>
-<p>面对离线强化学习问题时，off-policy算法普遍表现不好，设计大的replay
-buffer反而会损害off-policy算法的性能（由于算法的off-policyness）</p>
-<ul>
-<li>对比的方法包括：
-<ul>
-<li><strong>offline QR-DQN</strong>：Dabney, W., Rowland, M., Bellemare,
-M. G., and Munos, R. Distributional reinforcement learning with quantile
-regression. AAAI, 2018.</li>
-<li><strong>DQN</strong>：（Nature）</li>
-<li><strong>Random Ensemble
-Mixture</strong>（REM，随机集成混合）：为本文提出方法</li>
-<li><strong>online C51</strong>： 分布式DQN算法。Bellemare, M. G.,
-Dabney, W., and Munos, R. A distributional perspective on reinforcement
-learning. ICML, 2017.</li>
-<li><strong>distributional QR-DQN (SOTA)</strong>：Dabney, W., Rowland,
-M., Bellemare, M. G., and Munos, R. Distributional reinforcement
-learning with quantile regression. AAAI, 2018</li>
-</ul></li>
-</ul>
-<h3 id="off-policy-reinforcement-learning">2 Off-policy Reinforcement
-Learning</h3>
-<ul>
-<li><p>DQN算法介绍</p>
-<ul>
-<li>Huber loss：介于MSE和MAE之间的，对数据异常值更不敏感的loss</li>
-</ul>
-<p><span class="math display">\[
-l_{\lambda}(u)=
-\begin{align}
-\begin{cases}
-\frac{1}{2}u^2,&amp;\mid u \mid \leq \lambda\\
-\lambda(\mid u\mid-\frac{1}{2}\lambda),&amp; \text{otherwise}
-\end{cases}
-\end{align}
-\]</span></p></li>
-<li><p>baseline方法：分布式RL（Distributional RL）</p>
-<ul>
-<li>C51</li>
-<li>QR-DQN</li>
-</ul></li>
-</ul>
-<h3 id="offline-reinforcement-learning">3 Offline Reinforcement
-Learning</h3>
-<ul>
-<li><p>offline的模式分离了模型对经验的利用、生成能力（exploit） vs
-探索效率（explore）</p></li>
-<li><p>offline RL面临的挑战是<strong>distribution
-mismatch</strong>：错误匹配当前使用的策略和固定的离线数据集。例如，当采取了数据集中不存在的行为时，并不知道响应的奖励是多少。<br />
-</p></li>
-<li><p>本文尝试在不解决distribution
-mismatch的基础上，训练高性能的agent</p></li>
-</ul>
-<h3 id="developing-robust-offline-rl-algorithms">4 Developing Robust
-Offline RL Algorithms</h3>
-<ul>
-<li>采用集成（Ensemble）可以提高模型的泛化能力，本文使用了Ensemble
-DQN和REM两个采取该思想的方法。</li>
-</ul>
-<h4 id="ensemble-dqn">4.1 Ensemble-DQN</h4>
-<ul>
-<li><p>该方法是对DQN算法的简单扩展，使用集成多个参数化的Q函数来近视Q值。</p>
-<ul>
-<li>Faußer, S. and Schwenker, F. Neural network ensembles in
-reinforcement learning. Neural Processing Letters, 2015<br />
-</li>
-<li>Osband, I., Blundell, C., Pritzel, A., and Van Roy, B. Deep
-exploration via bootstrapped DQN. NeurIPS, 2016.<br />
-</li>
-<li>Anschel, O., Baram, N., and Shimkin, N. Averaged-dqn: Variance
-reduction and stabilization for deep reinforcement learning. ICML,
-2017.</li>
-</ul></li>
-<li><p>每个参数化Q函数的优化目标是近似真实的Q值，参考下面这篇文章：</p>
-<ul>
-<li><strong>Bootstrapped-DQN</strong>：Osband, I., Blundell, C.,
-Pritzel, A., and Van Roy, B. Deep exploration via bootstrapped DQN.
-NeurIPS, 2016.</li>
-</ul></li>
-<li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220812-2.png"
-alt="损失函数" />
-<figcaption aria-hidden="true">损失函数</figcaption>
-</figure>
-<p>其中，<span
-class="math display">\[l_{\lambda}\]</span>是Huber损失。算法使用所有Q函数的均值作为输出。</p></li>
-</ul>
-<h4 id="random-ensemble-mixture-rem">4.2 Random Ensemble Mixture
-(REM)</h4>
-<ul>
-<li>引入了dropout：
-<ul>
-<li>Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., and
-Salakhutdinov, R. Dropout: a simple way to prevent neural networks from
-overfitting. JMLR, 2014</li>
-</ul></li>
-<li>不同于Ensemble-DQN，REM构造一个包含多个Q函数近似器的凸组合（convex
-combination），将多个Q 函数近似器作为1个近似器使用。使用(K −
-1)-simplex计算混合的概率。</li>
-</ul>
-<figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220812-3.png"
-alt="模型结构" />
-<figcaption aria-hidden="true">模型结构</figcaption>
-</figure>
-<ul>
-<li><p>对于每个mini-batch，随机产生一个分类分布（categorical
-distribution）<span
-class="math display">\[\alpha\]</span>，它定义了一个逼近最优Q-函数的K个估计器的凸组合</p></li>
-<li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220817-3.png"
-alt="REM的loss形式" />
-<figcaption aria-hidden="true">REM的loss形式</figcaption>
-</figure>
-<p>其中，<span
-class="math display">\[P_{\Delta}\]</span>表示标准的(K-1)-simplex的概率分布，<span
-class="math display">\[\Delta^{K-1}=\{\alpha\in R^K:
-\alpha_1+\alpha_2+...+\alpha_K=1,\alpha_k\geq0,k=1,...,K
-\}\]</span></p></li>
-<li><p>对于<span class="math display">\[P_{\Delta}\]</span>：先从Uniform
-(0,1)分布中采样K个独立同分布的值，然后归一化它们获得有效的分类分布（<span
-class="math display">\[a&#39;_k \sim U(0,1),a_k=a&#39;_k/\sum_k
-a&#39;_i\]</span>）</p></li>
-<li><p>对于Q值的求解，使用<span
-class="math display">\[Q(s,a)=\frac{1}{K}\sum_k Q_{\theta}^k
-(s,a)\]</span></p></li>
-</ul>
-<h3 id="offline-rl-on-atari-2600-games">5 Offline RL on Atari 2600
-Games</h3>
-<ul>
-<li>将Nature DQN在60个Atari游戏上的行为数据用来构建DQN
-replay数据集，每个游戏2亿帧（200 million frames）</li>
-<li>每个游戏训练5个智能体，因此60个游戏一共有60个数据集</li>
-<li>ofline RL算法性能对比：</li>
-</ul>
-<figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220812-1.png"
-alt="Offline RL on Atari 2600." />
-<figcaption aria-hidden="true">Offline RL on Atari 2600.</figcaption>
-</figure>
-<ul>
-<li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220818-1.png"
-alt="Offline QR-DQN vs. DQN (Nature)" />
-<figcaption aria-hidden="true">Offline QR-DQN vs. DQN
-(Nature)</figcaption>
-</figure></li>
-<li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220818-2.png"
-alt="Offline Agents on DQN Replay Dataset" />
-<figcaption aria-hidden="true">Offline Agents on DQN Replay
-Dataset</figcaption>
-</figure></li>
-<li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220818-3.png"
-alt="Asymptotic performance of offline agents" />
-<figcaption aria-hidden="true">Asymptotic performance of offline
-agents</figcaption>
-</figure></li>
-<li><p>文中提到offline连续强化学习方法，实验了offline DDPG，offline
-TD3，offline BCQ等算法</p>
-<ul>
-<li><p>Fujimoto, S., Meger, D., and Precup, D. Off-policy deep
-reinforcement learning without exploration. ICML, 2019b.</p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220818-4.png"
-alt="Asymptotic performance of offline agents" />
-<figcaption aria-hidden="true">Asymptotic performance of offline
-agents</figcaption>
-</figure></li>
-</ul></li>
-</ul>
-<h3 id="总结">总结</h3>
-<p>总的来说，文章本身目的更倾向于提供一种乐观的横向对比，证明offline
-RL在一些情况下可以获取SOTA的性能，甚至超过online RL。提供的几个offline
-Q-learning变体和offline连续情况的RL算法可以再看看。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/08/04/2022-08-04-Autonomous%20Driving%20-%20UMBRELLA%20Uncertainty-Aware%20Model-Based%20Offline%20Reinforcement%20Learning%20Leveraging%20Planning/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/08/04/2022-08-04-Autonomous%20Driving%20-%20UMBRELLA%20Uncertainty-Aware%20Model-Based%20Offline%20Reinforcement%20Learning%20Leveraging%20Planning/" class="post-title-link" itemprop="url">Autonomous Driving | UMBRELLA: Uncertainty-Aware Model-Based Offline Reinforcement Learning Leveraging Planning</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-08-04 00:00:00" itemprop="dateCreated datePublished" datetime="2022-08-04T00:00:00+08:00">2022-08-04</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>5.2k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>5 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2
-id="umbrella-uncertainty-aware-model-based-offline-reinforcement-learning-leveraging-planning">UMBRELLA:
-Uncertainty-Aware Model-Based Offline Reinforcement Learning Leveraging
-Planning</h2>
-<ul>
-<li>在学习过程中考虑了随机不确定性的影响，提高了模型的可迁移性和可解释性</li>
-</ul>
-<h3 id="introduction">1 Introduction</h3>
-<ul>
-<li><p>目前的模型考虑到多智能体之间的交互和复杂行为，多采用工程设计的驾驶策略，但这样难以适用更复杂的任务。强化学习通过试错学习的方式避免了这些手工设计，但需要大量的试错机会。相比于模仿学习习得次优行为，强化学习可以提升不同类型数据的质量</p></li>
-<li><p>主要贡献：</p>
-<ul>
-<li>提出了一个基于模型的离线规划算法UMBRELLA，在观测上考虑了认知和偶然的不确定性（epistemic
-和 aleatoric）<br />
-</li>
-<li>引入了一个消融实验，优化最坏情况模型</li>
-<li>实验中，在稠密车流（with dense
-traffic）的城市和高速场景中，胜过了BC行为克隆方法和MBOP算法</li>
-</ul></li>
-</ul>
-<h3 id="related-work">2 Related Work</h3>
-<ul>
-<li><p><strong>Model-based Offline Reinforcement Learning</strong>：</p>
-<p>其主要的问题是the distributional
-shift。MOReL和MBOP方法将动态模型的认知不确定性估计结合到奖励函数中，以惩罚未被行为分布覆盖的状态</p>
-<ul>
-<li>Sergey Levine, Aviral Kumar, George Tucker, and Justin Fu. Offline
-reinforcement learning: Tutorial, review, and perspectives on open
-problems. CoRR, 2020. arXiv:2005.01643.</li>
-</ul>
-<p>这些方法在多智能体环境中测试，没考虑到由行人和其它车辆行为造成的偶然不确定性（aleatoric
-uncertainty）的影响。[Henaff et al.,
-2019]通过由条件变分自动编码器（conditional variational
-autoencoder，CVAE）表示的随机动力学模型解决了这个问题[Kingma and
-Welling,
-2014]。然而，他们的方法依赖于策略学习，这与基于模型的离线规划相比，可解释性和控制灵活性有所降低。</p>
-<ul>
-<li>Mikael Henaff, Alfredo Canziani, and Yann LeCun. Model-predictive
-policy learning with uncertainty regularization for driving in dense
-traffic. In International Conference on Learning Representations,
-\2019.<br />
-</li>
-<li>Diederik P. Kingma and Max Welling. Auto-Encoding Variational Bayes.
-In International Conference on Learning Representations, 2014.</li>
-</ul></li>
-<li><p><strong>Interaction-aware Motion Prediction and
-Planning</strong>：</p>
-<p>单纯通过规划安全的pass进行自动驾驶忽略了车辆之间包含规划和预测（planning
-and prediction）的行为交互</p>
-<p>引入博弈论的方法考虑了多智能体的动力学过程，但带来了计算上的开销。</p>
-<p>一些基于学习的模型可以生成更多的场景，但是没有考虑认知不确定性</p>
-<ul>
-<li>Jerry Liu, Wenyuan Zeng, Raquel Urtasun, and Ersin Yumer. Deep
-structured reactive planning. In IEEE International Conference on
-Robotics and Automation, 2021.<br />
-</li>
-<li>Nicholas Rhinehart, Jeff He, Charles Packer, Matthew A. Wright,
-Rowan McAllister, Joseph E. Gonzalez, and Sergey Levine. Contingencies
-from observations: Tractable contingency planning with learned behavior
-models. In IEEE International Conference on Robotics and Automation,
-2021.</li>
-</ul></li>
-</ul>
-<h3 id="the-umbrella-framework">3 The UMBRELLA Framework</h3>
-<ul>
-<li><p>UMBRELLA 是 MBOP 算法的扩展</p>
-<ul>
-<li>Arthur Argenson and Gabriel Dulac-Arnold. Model-based offline
-planning. In International Conference on Learning Representations,
-2021.</li>
-</ul></li>
-<li><p>问题形式化，用MDP的<span class="math display">\[(S; A; p; r;
-\gamma)\]</span>
-表示，在offline设定中，智能体不与环境直接交互，而是从数据集中学习策略<span
-class="math display">\[\pi_d\]</span>。如果观测值<span
-class="math display">\[O\]</span>并不是完全可得，那么问题就变化为（partially
-observable MDP，POMDP），使用 <span
-class="math display">\[M_{PO}=(S;A;O;p;r;\gamma)\]</span>，处理该问题的常用方法是使用nth-order
-history
-方法，可以近似得到状态估计，然后将其转变为MDP，用标准的RL方法处理。</p></li>
-<li><p>UMBRELLA使用连续的潜在变量（continuous latent variable）<span
-class="math display">\[z_t\in Z\]</span>
-，并枚举自车所有的可能行为（行为采样通过学到的BC
-policy）。预测N条长度界限为H的轨迹。还使用了一个return-weighted
-trajectory optimizer，处理POMDP问题，用持续观测状态从<span
-class="math display">\[o_{t-_c:t}\]</span>直到时间步t估计缺失的观测状态。（相关解释参考VAE算法）</p>
-<ul>
-<li><span
-class="math display">\[z_t=\mu_{\phi}+\sigma_{\phi}*\epsilon\]</span></li>
-<li><span
-class="math display">\[(\mu_{\phi},\sigma_{\phi})=q_{\phi}(s_t,s_{t+1})\]</span></li>
-<li><span class="math display">\[\epsilon \sim
-\mathcal{N}(0,1)\]</span></li>
-</ul></li>
-<li><p>随机动力学模型：</p>
-<ul>
-<li><p>为了建模不同的未来可能情况，学习随机前向动力学模型<span
-class="math display">\[f_{m,\theta}:S\times A\times Z \rightarrow S
-\times \mathbb{R}\]</span></p></li>
-<li><p>该模型采用CVAE架构，预测下一时刻的状态</p>
-<ul>
-<li>Diederik P. Kingma and Max Welling. Auto-Encoding Variational Bayes.
-In International Conference on Learning Representations, 2014.</li>
-</ul></li>
-<li><p><span
-class="math display">\[\hat{s}_{t+1}=f_m(s_t,a_t,z_t)_s\]</span></p></li>
-<li><p><span
-class="math display">\[\hat{r}_{t}=f_m(s_t,a_t,z_t)_r\]</span></p></li>
-<li><p>其中潜在变量<span
-class="math display">\[z_t\]</span>建模了不同的未来预测，并确保了输出对于输入是非确定性的。在训练过程中，该潜在变量从后验分布<span
-class="math display">\[q_{\phi}(z\mid s_t,s_{t+1})\]</span>中采样，<span
-class="math display">\[\phi\]</span>是参数。由于实际采样只能从先验分布中采，因此使用Kullback-Leibler
-(KL) divergence度量后验分布和先验分布<span
-class="math display">\[p(z)\]</span>并最小化距离。</p>
-<ul>
-<li>潜变量用于区分细分情况，精细化建模</li>
-</ul></li>
-<li><p>定义Evidence Lower BOund (ELBO)目标训练VAEs。</p>
-<ul>
-<li>Evidence Lower BOund： https://zhuanlan.zhihu.com/p/400322786</li>
-</ul></li>
-<li><p>损失函数为： <span class="math display">\[
-L(\theta,\phi;s_t,s_{t+1},a_t,r_t)=\mid\mid s_{t+1} -
-f_{m,\theta}(s_t,a_t,z_t)_s\mid\mid_2^2 + \mid\mid
-r_t-f_{m,\theta}(s_t,a_t,z_t)_r\mid\mid^2_2 \\
-\zeta D_{KL}(q_{\phi}(z_t\mid s_t,s_{t+1})\mid\mid p(z_t))
-\]</span></p></li>
-<li><p>BC policies <span class="math display">\[f_{b,\psi}:S\times
-A^{n_c} \rightarrow A \]</span> ，<span
-class="math display">\[f_b(s_t,a_{(t-n_c):(t-1)})\]</span>，该函数使用当前的状态和<span
-class="math display">\[n_c\]</span>个之前的行为作为输入，输出行为<span
-class="math display">\[a_t\]</span>。通过将之前的行为串联考虑，可以使得输出的行为更加平滑。</p></li>
-<li><p>训练BC Policy使用最小化损失函数：</p>
-<p><span
-class="math display">\[L(\psi;s_t,a_{(t-n_c):(t-1)},a_t)=\mid\mid a_t -
-f_{b,\psi}(s_t,a_{(t-n_c):(t-1)})\mid\mid^2_2\]</span></p></li>
-<li><p>截断价值函数<span class="math display">\[f_{R,\xi}:S\times
-A^{n_c}\rightarrow \mathbb{R}\]</span> 估计H个时间步后的期望回报<span
-class="math display">\[\hat{R}_H\]</span></p></li>
-</ul></li>
-<li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-3.png"
-alt="Simplified network architecture of the stochastic forward dynamics model during training" />
-<figcaption aria-hidden="true">Simplified network architecture of the
-stochastic forward dynamics model during training</figcaption>
-</figure></li>
-<li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-4.png"
-alt="Behavior-cloned policy network architecture" />
-<figcaption aria-hidden="true">Behavior-cloned policy network
-architecture</figcaption>
-</figure></li>
-<li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-5.png"
-alt="Truncated value function network architecture" />
-<figcaption aria-hidden="true">Truncated value function network
-architecture</figcaption>
-</figure></li>
-<li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-6.png"
-alt="Signal flow of the stochastic forward dynamics model" />
-<figcaption aria-hidden="true">Signal flow of the stochastic forward
-dynamics model</figcaption>
-</figure></li>
-<li><p><strong>UMBRELLA-Planning</strong>：采用了MPC，在每一步规划未来H步的最优控制轨迹，然后只执行第一步行为，之后再次进行规划，并不断迭代。通过这样的迭代优化可以降低模型误差带来的影响。</p></li>
-<li><p><strong>UMBRELLA Trajectory Optimizer</strong>：</p>
-<p>最终的轨迹输出使用MPPI framework</p>
-<ul>
-<li>Grady Williams, Andrew Aldrich, and Evangelos A. Theodorou. Model
-predictive path integral control: From theory to parallel computation.
-Journal of Guidance, Control, and Dynamics, 40(2): 344–357, 2017.</li>
-</ul></li>
-<li><p>最后，模型通过re-weighting获得最优轨迹：</p></li>
-</ul>
-<p><span class="math display">\[
-T^*_t = \frac{\sum_{n=1}^N e^{kR_n} A_{n,t+1}}{\sum_{n=1}^N e^{kR_n}}
-\]</span></p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-1.png"
-alt="UMBRELLA Planning" />
-<figcaption aria-hidden="true">UMBRELLA Planning</figcaption>
-</figure>
-<ul>
-<li><strong>Pessimistic Trajectory Optimizer</strong>：
-面对认知的不确定性，UMBRELLA-P对最坏情况的结果进行优化，并采取悲观的行动</li>
-</ul>
-<h3 id="experimental-evaluation">4 Experimental Evaluation</h3>
-<ul>
-<li>环境：
-<ul>
-<li><strong>NGSIM</strong>：多智能体自动驾驶环境<br />
-</li>
-<li><strong>CARLA</strong>：城市多智能体自动驾驶场景</li>
-</ul></li>
-<li>基线方法：
-<ul>
-<li><strong>1-step IL</strong>：模仿专家行为的BC policy</li>
-<li><strong>MBOP</strong>：当前最好的基于模型的离线RL方法
-<ul>
-<li>Arthur Argenson and Gabriel Dulac-Arnold. Model-based offline
-planning. In International Conference on Learning Representations,
-2021.<br />
-</li>
-</ul></li>
-<li><strong>MPUR</strong>：最好的基于模型策略学习方法
-<ul>
-<li>Mikael Henaff, Alfredo Canziani, and Yann LeCun. Model-predictive
-policy learning with uncertainty regularization for driving in dense
-traffic. In International Conference on Learning Representations,
-2019.<br />
-</li>
-</ul></li>
-</ul></li>
-<li>指标：
-<ul>
-<li>Success rate (SR)：The rate of collision-free
-episodes，并要求在时间内到达目标位置</li>
-<li>Mean distance (MD)：NGSIM中的纵向行驶距离</li>
-<li>mean successful time (MST)<br />
-</li>
-<li>mean proximity reward <span
-class="math display">\[\overline{r}_{prox}\]</span></li>
-<li>mean lane reward <span
-class="math display">\[\overline{r}_{lane}\]</span><br />
-</li>
-<li>mean final reward <span
-class="math display">\[\overline{r}\]</span><br />
-</li>
-</ul></li>
-<li>实验结果：</li>
-</ul>
-<figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-2.png"
-alt="性能对比" />
-<figcaption aria-hidden="true">性能对比</figcaption>
-</figure>
-<h3 id="总结">总结</h3>
-<p>奖励函数误设计仍然是一个较大的问题，也是自动驾驶策略不像人的原因之一。</p>
-<ul>
-<li>W. Bradley Knox, Alessandro Allievi, Holger Banzhaf, Felix Schmitt,
-and Peter Stone. Reward (mis)design for autonomous driving. 2021.
-arxiv:2104.13906.</li>
-</ul>
-<p>模型考虑偶然不确定性：使用潜变量<span
-class="math display">\[z\]</span>，枚举可能的轨迹</p>
-<p>模型考虑认知不确定性：在reward中进行re-weighting和使用参数<span
-class="math display">\[\beta\]</span></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2217,7 +1803,7 @@ class="math display">\[\beta\]</span></p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">230</span>
+          <span class="site-state-item-count">233</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -2284,12 +1870,12 @@ class="math display">\[\beta\]</span></p>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">552k</span>
+    <span title="Symbols count total">568k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:22</span>
+    <span title="Reading time total">8:36</span>
 </div>
 
         
@@ -2346,6 +1932,59 @@ class="math display">\[\beta\]</span></p>
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

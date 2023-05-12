@@ -198,6 +198,228 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/01/06/2022-01-06-Pytorch-%E6%89%8B%E5%8A%A8%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%9A%84%E6%9B%B2%E7%BA%BF%E6%8B%9F%E5%90%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/06/2022-01-06-Pytorch-%E6%89%8B%E5%8A%A8%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%9A%84%E6%9B%B2%E7%BA%BF%E6%8B%9F%E5%90%88/" class="post-title-link" itemprop="url">Pytorch-手动梯度下降的曲线拟合</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-01-06 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-06T00:00:00+08:00">2022-01-06</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="pytorch---手动梯度下降的曲线拟合">Pytorch -
+手动梯度下降的曲线拟合</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create random input and output data</span></span><br><span class="line">x = np.linspace(-math.pi, math.pi, <span class="number">2000</span>)</span><br><span class="line">y = np.sin(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Randomly initialize weights</span></span><br><span class="line">a = np.random.randn()</span><br><span class="line">b = np.random.randn()</span><br><span class="line">c = np.random.randn()</span><br><span class="line">d = np.random.randn()</span><br><span class="line"></span><br><span class="line">learning_rate = <span class="number">1e-6</span></span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2000</span>):</span><br><span class="line">    <span class="comment"># Forward pass: compute predicted y</span></span><br><span class="line">    <span class="comment"># y = a + b x + c x^2 + d x^3</span></span><br><span class="line">    y_pred = a + b * x + c * x ** <span class="number">2</span> + d * x ** <span class="number">3</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Compute and print loss</span></span><br><span class="line">    loss = np.square(y_pred - y).<span class="built_in">sum</span>()</span><br><span class="line">    <span class="keyword">if</span> t % <span class="number">100</span> == <span class="number">99</span>:</span><br><span class="line">        <span class="built_in">print</span>(t, loss)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Backprop to compute gradients of a, b, c, d with respect to loss</span></span><br><span class="line">    grad_y_pred = <span class="number">2.0</span>*(y_pred - y)</span><br><span class="line">    grad_a = grad_y_pred.<span class="built_in">sum</span>()</span><br><span class="line">    grad_b = (grad_y_pred * x).<span class="built_in">sum</span>()</span><br><span class="line">    grad_c = (grad_y_pred * x ** <span class="number">2</span>).<span class="built_in">sum</span>()</span><br><span class="line">    grad_d = (grad_y_pred * x ** <span class="number">3</span>).<span class="built_in">sum</span>()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Update weights</span></span><br><span class="line">    a -= learning_rate * grad_a</span><br><span class="line">    b -= learning_rate * grad_b</span><br><span class="line">    c -= learning_rate * grad_c</span><br><span class="line">    d -= learning_rate * grad_d</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;Result: y = <span class="subst">&#123;a&#125;</span> + <span class="subst">&#123;b&#125;</span> x + <span class="subst">&#123;c&#125;</span> x^2 + <span class="subst">&#123;d&#125;</span> x^3&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">fig  = plt.figure()</span><br><span class="line">ax = fig.add_subplot(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">ax.plot(y)</span><br><span class="line">ax.plot(y_pred)</span><br><span class="line">plt.show()</span><br><span class="line"><span class="built_in">input</span>()</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/01/06/2022-01-06-pytorch-%E4%BD%BF%E7%94%A8%E4%BC%98%E5%8C%96%E5%99%A8%E7%9A%84%E6%9B%B2%E7%BA%BF%E6%8B%9F%E5%90%88%E7%A8%8B%E5%BA%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/06/2022-01-06-pytorch-%E4%BD%BF%E7%94%A8%E4%BC%98%E5%8C%96%E5%99%A8%E7%9A%84%E6%9B%B2%E7%BA%BF%E6%8B%9F%E5%90%88%E7%A8%8B%E5%BA%8F/" class="post-title-link" itemprop="url">pytorch-使用优化器的曲线拟合程序</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-01-06 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-06T00:00:00+08:00">2022-01-06</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.8k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="pytorch---使用优化器的曲线拟合程序">Pytorch -
+使用优化器的曲线拟合程序</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##############################</span></span><br><span class="line"><span class="comment"># pytorch-使用优化器的曲线拟合程序</span></span><br><span class="line"><span class="comment">##############################</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create Tensors to hold input and outputs.</span></span><br><span class="line">x = torch.linspace(-math.pi, math.pi, <span class="number">2000</span>)</span><br><span class="line">y = torch.sin(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Prepare the input tensor (x, x^2, x^3).</span></span><br><span class="line">p = torch.tensor([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">xx = x.unsqueeze(-<span class="number">1</span>).<span class="built_in">pow</span>(p)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Use the nn package to define our model and loss function.</span></span><br><span class="line">model = torch.nn.Sequential(</span><br><span class="line">    torch.nn.Linear(<span class="number">3</span>, <span class="number">1</span>),</span><br><span class="line">    torch.nn.Flatten(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">)</span><br><span class="line">loss_fn = torch.nn.MSELoss(reduction=<span class="string">&#x27;sum&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Use the optim package to define an Optimizer that will update the weights of</span></span><br><span class="line"><span class="comment"># the model for us. Here we will use RMSprop; the optim package contains many other</span></span><br><span class="line"><span class="comment"># optimization algorithms. The first argument to the RMSprop constructor tells the</span></span><br><span class="line"><span class="comment"># optimizer which Tensors it should update.</span></span><br><span class="line">learning_rate = <span class="number">1e-3</span></span><br><span class="line">optimizer = torch.optim.RMSprop(model.parameters(), lr=learning_rate)</span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2000</span>):</span><br><span class="line">    <span class="comment"># Forward pass: compute predicted y by passing x to the model.</span></span><br><span class="line">    y_pred = model(xx)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Compute and print loss.</span></span><br><span class="line">    loss = loss_fn(y_pred, y)</span><br><span class="line">    <span class="keyword">if</span> t % <span class="number">100</span> == <span class="number">99</span>:</span><br><span class="line">        <span class="built_in">print</span>(t, loss.item())</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Before the backward pass, use the optimizer object to zero all of the</span></span><br><span class="line">    <span class="comment"># gradients for the variables it will update (which are the learnable</span></span><br><span class="line">    <span class="comment"># weights of the model). This is because by default, gradients are</span></span><br><span class="line">    <span class="comment"># accumulated in buffers( i.e, not overwritten) whenever .backward()</span></span><br><span class="line">    <span class="comment"># is called. Checkout docs of torch.autograd.backward for more details.</span></span><br><span class="line">    optimizer.zero_grad()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Backward pass: compute gradient of the loss with respect to model</span></span><br><span class="line">    <span class="comment"># parameters</span></span><br><span class="line">    loss.backward()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Calling the step function on an Optimizer makes an update to its</span></span><br><span class="line">    <span class="comment"># parameters</span></span><br><span class="line">    optimizer.step()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">linear_layer = model[<span class="number">0</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;Result: y = <span class="subst">&#123;linear_layer.bias.item()&#125;</span> + <span class="subst">&#123;linear_layer.weight[:, <span class="number">0</span>].item()&#125;</span> x + <span class="subst">&#123;linear_layer.weight[:, <span class="number">1</span>].item()&#125;</span> x^2 + <span class="subst">&#123;linear_layer.weight[:, <span class="number">2</span>].item()&#125;</span> x^3&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/01/06/2022-01-06-pytorch-%E8%87%AA%E5%AE%9A%E4%B9%89nn%E6%A8%A1%E5%9D%97%E7%9A%84%E6%9B%B2%E7%BA%BF%E6%8B%9F%E5%90%88%E7%A8%8B%E5%BA%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/06/2022-01-06-pytorch-%E8%87%AA%E5%AE%9A%E4%B9%89nn%E6%A8%A1%E5%9D%97%E7%9A%84%E6%9B%B2%E7%BA%BF%E6%8B%9F%E5%90%88%E7%A8%8B%E5%BA%8F/" class="post-title-link" itemprop="url">pytorch-自定义nn模块的曲线拟合程序</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-01-06 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-06T00:00:00+08:00">2022-01-06</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="pytorch---自定义nn模块的曲线拟合程序">Pytorch -
+自定义nn模块的曲线拟合程序</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##############################</span></span><br><span class="line"><span class="comment"># pytorch-自定义nn模块的曲线拟合程序</span></span><br><span class="line"><span class="comment">##############################</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Polynomial3</span>(torch.nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        In the constructor we instantiate four parameters and assign them as</span></span><br><span class="line"><span class="string">        member parameters.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.a = torch.nn.Parameter(torch.randn(()))</span><br><span class="line">        self.b = torch.nn.Parameter(torch.randn(()))</span><br><span class="line">        self.c = torch.nn.Parameter(torch.randn(()))</span><br><span class="line">        self.d = torch.nn.Parameter(torch.randn(()))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        In the forward function we accept a Tensor of input data and we must return</span></span><br><span class="line"><span class="string">        a Tensor of output data. We can use Modules defined in the constructor as</span></span><br><span class="line"><span class="string">        well as arbitrary operators on Tensors.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> self.a + self.b * x + self.c * x ** <span class="number">2</span> + self.d * x ** <span class="number">3</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">string</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Just like any class in Python, you can also define custom method on PyTorch modules</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">f&#x27;y = <span class="subst">&#123;self.a.item()&#125;</span> + <span class="subst">&#123;self.b.item()&#125;</span> x + <span class="subst">&#123;self.c.item()&#125;</span> x^2 + <span class="subst">&#123;self.d.item()&#125;</span> x^3&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create Tensors to hold input and outputs.</span></span><br><span class="line">x = torch.linspace(-math.pi, math.pi, <span class="number">2000</span>)</span><br><span class="line">y = torch.sin(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Construct our model by instantiating the class defined above</span></span><br><span class="line">model = Polynomial3()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Construct our loss function and an Optimizer. The call to model.parameters()</span></span><br><span class="line"><span class="comment"># in the SGD constructor will contain the learnable parameters (defined </span></span><br><span class="line"><span class="comment"># with torch.nn.Parameter) which are members of the model.</span></span><br><span class="line">criterion = torch.nn.MSELoss(reduction=<span class="string">&#x27;sum&#x27;</span>)</span><br><span class="line">optimizer = torch.optim.SGD(model.parameters(), lr=<span class="number">1e-6</span>)</span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2000</span>):</span><br><span class="line">    <span class="comment"># Forward pass: Compute predicted y by passing x to the model</span></span><br><span class="line">    y_pred = model(x)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Compute and print loss</span></span><br><span class="line">    loss = criterion(y_pred, y)</span><br><span class="line">    <span class="keyword">if</span> t % <span class="number">100</span> == <span class="number">99</span>:</span><br><span class="line">        <span class="built_in">print</span>(t, loss.item())</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Zero gradients, perform a backward pass, and update the weights.</span></span><br><span class="line">    optimizer.zero_grad()</span><br><span class="line">    loss.backward()</span><br><span class="line">    optimizer.step()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;Result: <span class="subst">&#123;model.string()&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/12/01/2021-12-01-Word%E5%A4%9A%E8%A1%8C%E5%85%AC%E5%BC%8F%E7%9A%84%E6%8D%A2%E8%A1%8C%E3%80%81%E5%AF%B9%E9%BD%90%E4%B8%8E%E7%BC%96%E5%8F%B7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -967,382 +1189,10 @@ mn。</li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/09/06/2021-09-06-Neuroscience%20-%20Integration%20of%20Reinforcement%20Learning%20and%20Optimal%20Decision-Making%20Theories%20of%20the%20Basal%20Ganglia/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/06/2021-09-06-Neuroscience%20-%20Integration%20of%20Reinforcement%20Learning%20and%20Optimal%20Decision-Making%20Theories%20of%20the%20Basal%20Ganglia/" class="post-title-link" itemprop="url">Neuroscience | Integration of Reinforcement Learning and Optimal Decision-Making Theories of the Basal Ganglia</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-09-06 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-06T00:00:00+08:00">2021-09-06</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>196</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1
-id="integration-of-reinforcement-learning-and-optimal-decision-making-theories-of-the-basal-ganglia">Integration
-of Reinforcement Learning and Optimal Decision-Making Theories of the
-Basal Ganglia</h1>
-<p>论文链接：https://direct.mit.edu/neco/article/23/4/817/7637/Integration-of-Reinforcement-Learning-and-Optimal</p>
-<h2 id="背景">背景</h2>
-<h2 id="主要工作">主要工作</h2>
-<ul>
-<li></li>
-</ul>
-<h2 id="总结">总结</h2>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/09/03/2021-09-03-Q744-%E5%AF%BB%E6%89%BE%E6%AF%94%E7%9B%AE%E6%A0%87%E5%AD%97%E6%AF%8D%E5%A4%A7%E7%9A%84%E6%9C%80%E5%B0%8F%E5%AD%97%E6%AF%8D-%E7%AE%80%E5%8D%95-%E4%BA%8C%E5%88%86%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/03/2021-09-03-Q744-%E5%AF%BB%E6%89%BE%E6%AF%94%E7%9B%AE%E6%A0%87%E5%AD%97%E6%AF%8D%E5%A4%A7%E7%9A%84%E6%9C%80%E5%B0%8F%E5%AD%97%E6%AF%8D-%E7%AE%80%E5%8D%95-%E4%BA%8C%E5%88%86%E6%B3%95/" class="post-title-link" itemprop="url">Q744-寻找比目标字母大的最小字母-简单-二分法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-03T00:00:00+08:00">2021-09-03</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.1k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="括号生成"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/generate-parentheses/">22.
-括号生成</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>给你一个排序后的字符列表 letters
-，列表中只包含小写英文字母。另给出一个目标字母
-target，请你寻找在这一有序列表里比目标字母大的最小字母。</p>
-<p>在比较时，字母是依序循环出现的。举个例子：</p>
-<p>如果目标字母 target = 'z' 并且字符列表为 letters = ['a',
-'b']，则答案返回 'a'</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入: letters = ["c", "f", "j"] target = "a" 输出: "c"</p>
-<p>输入: letters = ["c", "f", "j"] target = "c" 输出: "f"</p>
-<p>输入: letters = ["c", "f", "j"] target = "d" 输出: "f"</p>
-<p>输入: letters = ["c", "f", "j"] target = "g" 输出: "j"</p>
-<p>输入: letters = ["c", "f", "j"] target = "j" 输出: "c"</p>
-<p>输入: letters = ["c", "f", "j"] target = "k" 输出: "c"</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li><code>letters</code>长度范围在<code>[2, 10000]</code>区间内。</li>
-<li><code>letters</code> 仅由小写字母组成，最少包含两个不同的字母。</li>
-<li>目标字母<code>target</code> 是一个小写字母。</li>
-</ul>
-</blockquote>
-<h3 id="approach-1-查找法">Approach 1: 查找法</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">nextGreatestLetter</span>(<span class="params">self, letters, target: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">26</span>):</span><br><span class="line">            ans = <span class="built_in">chr</span>((<span class="built_in">ord</span>(target) - <span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>) + i ) % <span class="number">26</span> + <span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>))</span><br><span class="line">            <span class="keyword">if</span> ans <span class="keyword">in</span> letters:</span><br><span class="line">                <span class="keyword">return</span> ans</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：<span class="math display">\[O(n)\]</span>，</p></li>
-<li><p>空间复杂度：<span class="math display">\[O(1)\]</span>，</p></li>
-</ul>
-<h3 id="approach-2-二分法">Approach 2: 二分法</h3>
-<p>注意由于是循环的数组，所以最后输出的时候有个取余的操作，是为了处理当
-<span class="math display">\[L=len(letters)\]</span> 的情况</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">nextGreatestLetter2</span>(<span class="params">self, letters, target: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        L = <span class="number">0</span></span><br><span class="line">        R = <span class="built_in">len</span>(letters) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> L &lt;= R:</span><br><span class="line">            M = L + (R - L) // <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> letters[M] &lt;= target:</span><br><span class="line">                L = M + <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> letters[M] &gt; target:</span><br><span class="line">                R = M - <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> letters[L % <span class="built_in">len</span>(letters)]</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：<span class="math display">\[O(\log N)\]</span>。<span
-class="math display">\[N\]</span> 指的是 letters
-的长度，我们只查看数组中的 <span class="math display">\[\log n\]</span>
-个元素。</li>
-<li>空间复杂度：<span class="math display">\[O(1)\]</span>。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/08/20/2021-08-20-Q22-%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90-%E5%9B%9E%E6%BA%AF%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/20/2021-08-20-Q22-%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90-%E5%9B%9E%E6%BA%AF%E6%B3%95/" class="post-title-link" itemprop="url">Q22-括号生成-中等-回溯法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-08-20 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-20T00:00:00+08:00">2021-08-20</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.5k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="括号生成"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/generate-parentheses/">22.
-括号生成</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>数字 <code>n</code>
-代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且
-<strong>有效的</strong> 括号组合。</p>
-<p>有效括号组合需满足：左括号必须以正确的顺序闭合。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入：n = 3 输出：["((()))","(()())","(())()","()(())","()()()"]</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>输入：n = 1 输出：["()"]</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li>1 &lt;= n &lt;= 8</li>
-</ul>
-</blockquote>
-<h3 id="approach-1-暴力法">Approach 1: 暴力法</h3>
-<p><strong>思路</strong></p>
-<p>我们可以生成所有 <span class="math display">\[2^{2n}\]</span> 个 '('
-和 ')' 字符构成的序列，然后我们检查每一个是否有效即可。</p>
-<p><strong>算法</strong></p>
-<p>为了生成所有序列，我们可以使用递归。长度为 n 的序列就是在长度为 n-1
-的序列前加一个 '(' 或 ')'。</p>
-<p>为了检查序列是否有效，我们遍历这个序列，并使用一个变量 balance
-表示左括号的数量减去右括号的数量。如果在遍历过程中 balance
-的值小于零，或者结束时 balance
-的值不为零，那么该序列就是无效的，否则它是有效的。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">generateParenthesis</span>(<span class="params">self, n: <span class="built_in">int</span></span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">generate</span>(<span class="params">A</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(A) == <span class="number">2</span>*n:</span><br><span class="line">                <span class="keyword">if</span> valid(A):</span><br><span class="line">                    ans.append(<span class="string">&quot;&quot;</span>.join(A))</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                A.append(<span class="string">&#x27;(&#x27;</span>)</span><br><span class="line">                generate(A)</span><br><span class="line">                A.pop()</span><br><span class="line">                A.append(<span class="string">&#x27;)&#x27;</span>)</span><br><span class="line">                generate(A)</span><br><span class="line">                A.pop()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">valid</span>(<span class="params">A</span>):</span><br><span class="line">            bal = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> A:</span><br><span class="line">                <span class="keyword">if</span> c == <span class="string">&#x27;(&#x27;</span>: bal += <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>: bal -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> bal &lt; <span class="number">0</span>: <span class="comment"># 合法字符串只可能出现差右括号的情况，不会差左括号 </span></span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">return</span> bal == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        ans = []</span><br><span class="line">        generate([])</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：<span
-class="math display">\[O(2^{2n}n)\]</span>，对于 <span
-class="math display">\[2^{2n}\]</span>
-个序列中的每一个，我们用于建立和验证该序列的复杂度为 <span
-class="math display">\[O(n)\]</span>。</p></li>
-<li><p>空间复杂度：<span
-class="math display">\[O(n)\]</span>，除了答案数组之外，我们所需要的空间取决于递归栈的深度，每一层递归函数需要
-<span class="math display">\[O(1)\]</span> 的空间，最多递归 <span
-class="math display">\[2n\]</span> 层，因此空间复杂度为 <span
-class="math display">\[O(n)\]</span>。</p></li>
-</ul>
-<h3 id="approach-2-回溯法">Approach 2: 回溯法</h3>
-<p>方法一还有改进的余地：我们可以只在序列仍然保持有效时才添加 '(' or
-')'，而不是像 方法一
-那样每次添加。我们可以通过跟踪到目前为止放置的左括号和右括号的数目来做到这一点，</p>
-<p>如果左括号数量不大于
-n，我们可以放一个左括号。如果右括号数量小于左括号的数量，我们可以放一个右括号。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">generateParenthesis2</span>(<span class="params">self, n: <span class="built_in">int</span></span>):</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">backtrack</span>(<span class="params">S, left, right</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(S) == <span class="number">2</span> * n:</span><br><span class="line">                ans.append(<span class="string">&#x27;&#x27;</span>.join(S))</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">if</span> left &lt; n:</span><br><span class="line">                S.append(<span class="string">&#x27;(&#x27;</span>)</span><br><span class="line">                backtrack(S, left+<span class="number">1</span>, right)</span><br><span class="line">                S.pop()</span><br><span class="line">            <span class="keyword">if</span> right &lt; left:</span><br><span class="line">                S.append(<span class="string">&#x27;)&#x27;</span>)</span><br><span class="line">                backtrack(S, left, right+<span class="number">1</span>)</span><br><span class="line">                S.pop()</span><br><span class="line"></span><br><span class="line">        backtrack([], <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<p>我们的复杂度分析依赖于理解 generateParenthesis(n)
-中有多少个元素。这个分析超出了本文的范畴，但事实证明这是第 n 个卡特兰数
-<span class="math display">\[\dfrac{1}{n+1}\dbinom{2n}{n}
-\]</span>，这是由 <span
-class="math display">\[\dfrac{4^n}{n\sqrt{n}}\]</span> 渐近界定的。</p>
-<ul>
-<li><p>时间复杂度：<span
-class="math display">\[O(\dfrac{4^n}{\sqrt{n}})\]</span>，在回溯过程中，每个答案需要
-<span class="math display">\[O(n)\]</span>
-的时间复制到答案数组中。</p></li>
-<li><p>空间复杂度：<span
-class="math display">\[O(n)\]</span>，除了答案数组之外，我们所需要的空间取决于递归栈的深度，每一层递归函数需要
-<span class="math display">\[O(1)\]</span> 的空间，最多递归 2n
-层，因此空间复杂度为 <span
-class="math display">\[O(n)\]</span>。</p></li>
-</ul>
-<h3 id="approach-3-按括号序列的长度递归">Approach 3:
-按括号序列的长度递归</h3>
-<p><strong>思路与算法</strong></p>
-<p>任何一个括号序列都一定是由 ( 开头，并且第一个 (
-一定有一个唯一与之对应的 )。这样一来，每一个括号序列可以用 (a)b
-来表示，其中 a 与 b 分别是一个合法的括号序列（可以为空）。</p>
-<p>那么，要生成所有长度为 2 * n 的括号序列，我们定义一个函数 generate(n)
-来返回所有可能的括号序列。那么在函数 generate(n) 的过程中：</p>
-<ul>
-<li>我们需要枚举与第一个 ( 对应的 ) 的位置 2 * i + 1；</li>
-<li>递归调用 generate(i) 即可计算 a 的所有可能性；</li>
-<li>递归调用 generate(n - i - 1) 即可计算 b 的所有可能性；</li>
-<li>遍历 a 与 b 的所有可能性并拼接，即可得到所有长度为 2 * n
-的括号序列。</li>
-</ul>
-<p>为了节省计算时间，我们在每次 generate(i)
-函数返回之前，把返回值存储起来，下次再调用 generate(i)
-时可以直接返回，不需要再递归计算。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">generateParenthesis3</span>(<span class="params">self, n: <span class="built_in">int</span></span>):</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> [<span class="string">&#x27;&#x27;</span>]</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">for</span> left <span class="keyword">in</span> self.generateParenthesis(c):</span><br><span class="line">                <span class="keyword">for</span> right <span class="keyword">in</span> self.generateParenthesis(n-<span class="number">1</span>-c):</span><br><span class="line">                    ans.append(<span class="string">&#x27;(&#123;&#125;)&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(left, right))</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：<span
-class="math display">\[O(\dfrac{4^n}{\sqrt{n}})\]</span>，该分析与
-方法二 类似。</p></li>
-<li><p>空间复杂度：<span class="math display">\[
-O(\dfrac{4^n}{\sqrt{n}})\]</span>，此方法除答案数组外，中间过程中会存储与答案数组同样数量级的临时数组，是我们所需要的空间复杂度。</p></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1410,7 +1260,7 @@ O(\dfrac{4^n}{\sqrt{n}})\]</span>，此方法除答案数组外，中间过程�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">230</span>
+          <span class="site-state-item-count">233</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1477,12 +1327,12 @@ O(\dfrac{4^n}{\sqrt{n}})\]</span>，此方法除答案数组外，中间过程�
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">552k</span>
+    <span title="Symbols count total">568k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:22</span>
+    <span title="Reading time total">8:36</span>
 </div>
 
         

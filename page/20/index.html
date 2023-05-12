@@ -198,6 +198,572 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/21/2020-09-21-Neuroscience%20-%20Principles%20of%20Temporal%20Processing%20Across%20the%20Cortical%20Hierarchy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/21/2020-09-21-Neuroscience%20-%20Principles%20of%20Temporal%20Processing%20Across%20the%20Cortical%20Hierarchy/" class="post-title-link" itemprop="url">Neuroscience | Principles of Temporal Processing Across the Cortical Hierarchy</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-09-21 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-21T00:00:00+08:00">2020-09-21</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.8k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1
+id="principles-of-temporal-processing-across-the-cortical-hierarchy">Principles
+of Temporal Processing Across the Cortical Hierarchy</h1>
+<p>论文链接：https://www.sciencedirect.com/science/article/pii/S0306452218302951?via%3Dihub</p>
+<h2 id="背景">背景</h2>
+<p>生活中存在着许多的时间和空间的尺度。对于空间结构的表现，在网络中通常是以Pooling，normalization，以及pattern
+completion的形式呈现。这些操作可以改变空间上的尺度，形成对空间鲁棒的识别能力。这篇文章回顾了一些列的时间上操作的研究，帮助理解temporal
+polling，temporal normalization，以及temporal pattern completion。</p>
+<ul>
+<li>Pooling：建立高维的表征，形成对输入的鲁棒的缩放和转换</li>
+<li>normalization：增强特征选择以及输入的鲁棒性</li>
+<li>pattern completion：降低噪声和缺失数据的影响</li>
+</ul>
+<p>如果空间上的这些操作能够帮助开展高效的不同尺度的分析，那么类似的，时间上的操作应该也能帮助对时间的结构分析。</p>
+<h2 id="主要工作">主要工作</h2>
+<ul>
+<li><p>分层的大脑结构是通过语言、听觉、视觉任务来发现的。</p></li>
+<li><p>三个问题：</p>
+<ul>
+<li>如何在功能层面定义时间操作；</li>
+<li>操作在皮层中实施的神经基础是什么；</li>
+<li>该操作被迭代的运用在多个皮层层级上吗；</li>
+</ul></li>
+</ul>
+<h3 id="时间上的信息处理原则">时间上的信息处理原则</h3>
+<h4 id="pooling-in-space-and-time">1.1 Pooling in space and time</h4>
+<ul>
+<li><p>pooling可以看做是一个"sum" or "max" operation，产生high-level
+representations</p></li>
+<li><p>方法：</p>
+<ul>
+<li>定义窗口宽度<span class="math display">\[\tau\]</span></li>
+<li>在<span
+class="math display">\[[t-\tau,t]\]</span>的时间内发生了激活，则输出激活信号。</li>
+</ul></li>
+<li><p>允许了精确的输入时间</p></li>
+<li><p>生物证据：神经元的兴奋通过突出调节，在数秒至数小时内累积并持续（Kukushkin
+NV, Carew TJ (2017) Memory takes time. Neuron 95(2):259–279）</p></li>
+</ul>
+<h4 id="normalization-in-space-and-time">1.2 Normalization in space and
+time</h4>
+<ul>
+<li>神经系统需要非线性操作来增加刺激的选择性响应和抑制过度激活（A
+feedforward architecture accounts for rapid categorization. Proc Natl
+Acad Sci 104 (15):6424–642）</li>
+<li>空间Normalization是根据其他具有相似选择性的神经元收到的输入重新调整其响应的过程</li>
+</ul>
+<p><span class="math display">\[
+R_j=\gamma \bigg(\frac{D^n_i}{\sigma^n+\sum_k D^n_k}\bigg)
+\]</span> 神经元<span class="math display">\[j\]</span>的响应 <span
+class="math display">\[R_j\]</span> ，<span
+class="math display">\[D_i\]</span> 是输入信号<span
+class="math display">\[\gamma\]</span>是乘法尺度系数，<span
+class="math display">\[\sigma\]</span>是形状系数，<span
+class="math display">\[n\]</span>决定了非线性的程度。这个公式是“winner-take-all”
+mechanism: all neuralu units will be normalized to zero, except the unit
+thatr eceives the largest input drive.</p>
+<ul>
+<li><p>Normalization in time</p></li>
+<li><p><strong>neuronal adaptation</strong>: the tendency of a neuron to
+decrease its response to a stimulus, when that stimulus was previously
+presented within some time window.</p></li>
+<li><p>temporal normalization can improve <strong>neuronal sensitivity
+to sequential patterns</strong>, and make them robust to changes in
+input gain .</p></li>
+<li><p><strong>pop-out effect</strong>: infrequently presented stimuli
+are less adapted and therefore produce larger responses than frequent
+stimuli.</p></li>
+</ul>
+<h4 id="pattern-completion-in-space-and-time">1.3 Pattern completion in
+space and time</h4>
+<h2 id="总结">总结</h2>
+<p>这篇文章讲得不够具体，temporal pool 和 temporal normalization
+还行，似乎能和计算模型结合，可是 temporal normalization
+有什么好处呢？</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/19/2020-09-19-Reinforcement%20Learning%20-%20Hierarchical%20motor%20control%20in%20mammals%20and%20machinesd%20(Nature)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/19/2020-09-19-Reinforcement%20Learning%20-%20Hierarchical%20motor%20control%20in%20mammals%20and%20machinesd%20(Nature)/" class="post-title-link" itemprop="url">Reinforcement Learning | Hierarchical motor control in mammals and machinesd (Nature)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-09-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-19T00:00:00+08:00">2020-09-19</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>6.2k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>6 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="hierarchical-motor-control-in-mammals-and-machines">Hierarchical
+motor control in mammals and machines</h1>
+<p>论文链接：https://www.nature.com/articles/s41467-019-13239-6</p>
+<h2 id="背景">背景</h2>
+<p>很多人工智能领域的进展启发了神经科学的研究。多数神经科学的研究都致力于探索单个任务空间的离散任务，而AI研究主要在agent玩复杂的游戏上。近期生物上的“synthetic
+motor control”却很少有人讨论。</p>
+<p>本文是一篇讨论AI和神经科学关于HRL以及H
+control的综述，角度比较好，介绍了大量细分方向的工作，非常值得一读。</p>
+<h2 id="主要工作">主要工作</h2>
+<ul>
+<li>神经科学启发了机器人中的subsumption
+architecture，简单搜了一下类似于层级机构的雏形（1986）。</li>
+<li>Optimal feedback control
+(OFC)研究如何优化运动，降低优化函数的值，取得最优性能；神经科学研究的是如何理解通过神经系统生成不同的行为动作。</li>
+</ul>
+<p>下面介绍几个重叠领域的重要工作：</p>
+<h3 id="computational-approaches-to-motor-control">1. computational
+approaches to motor control</h3>
+<ul>
+<li>运动控制在animal and artificial system中都是值得关注的问题；</li>
+<li>控制通过一个controller或者policy</li>
+<li>图1提供了三种控制结构，</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200917-1.png" /></p>
+<ul>
+<li><p>生物：内部前向模型Internal forward models are used to predict the
+future consequences of
+actions。该模型是允许虚拟行为的，可以预测行为后果。</p></li>
+<li><p>OFC被用于解释volitional control意志控制</p>
+<ul>
+<li>Diedrichsen, J., Shadmehr, R. &amp; Ivry, R. B. The coordination of
+movement: optimal feedback control and beyond. Trends Cogn. Sci. 14,
+31–39 (2010).</li>
+<li>Scott, S. H. The computational and neural basis of voluntary motor
+control and planning. Trends Cogn, Sci, 16, 541–549 (2012).</li>
+</ul></li>
+<li><p>OFC几乎可以概括所有的闭环控制算法，一些扩展的OFC主要是考虑了以下三点：</p>
+<ul>
+<li><p>运动控制目标是最大化一个优化函数；</p></li>
+<li><p>利用传感反馈来进行行为选择；</p></li>
+<li><p>内部模型帮助弥补传感延迟和执行状态估计；</p></li>
+</ul></li>
+<li><p>OFC对目标函数的组成结构非常包容，甚至不需要一个直接的目标，但在快速求解上有一点缺陷</p></li>
+</ul>
+<h3 id="motor-control-of-synthetic-systems">2. Motor control of
+synthetic systems</h3>
+<ul>
+<li><p>这部分内容主要涉及DRL，没提到什么新鲜的内容。</p></li>
+<li><p>planning methods:</p>
+<ul>
+<li>Mordatch, I., Todorov, E. &amp; Popović, Z. Discovery of complex
+behaviors through contact-invariant optimization. ACM T, Graphics (TOG)
+31, 43 (2012).</li>
+<li>Mordatch, I., Wang, J. M., Todorov, E. &amp; Koltun, V. Animating
+human lower limbs using contact-invariant optimization. ACM T. Graphic.
+32, 203 (2013)</li>
+</ul></li>
+<li><p>导航任务：Jaderberg, M. et al. Reinforcement learning with
+unsupervised auxiliary tasks. In International Conference on Learning
+Representations, 2017.</p></li>
+<li><p><strong>挑战1：</strong>DRL的优化目标比较狭窄比如走路faster，保持平衡稳定，运动到某个位置等等，很难设计有泛化能力的目标。</p></li>
+<li><p><strong>挑战2：</strong>
+<strong>处理变化的目标</strong>。通过其他任务的经验生成运动，适应变化的目标。</p></li>
+</ul>
+<h3 id="core-principles-of-hierarchical-motor-control">3. Core
+principles of hierarchical motor control</h3>
+<h4 id="information-factorization">3.1 Information factorization</h4>
+<ul>
+<li>Information factorization
+（信息因子分解）：分层系统提供局部或者预处理的信息给其它系统的过程</li>
+<li>运动中有一部分模式的通用的，要么high-level behavior是invariant
+，要么low-level behavior是invariant</li>
+<li>That some goals or tasks can be solved by a multiplicity of
+execution details (“motor equivalence”) has long been recognized as
+important in movement science and has also been identified as relevant
+for robot control.
+有些任务可以用等效的运动去完成，这也是机器人控制上的一个问题</li>
+</ul>
+<h4 id="partial-autonomy">3.2 Partial autonomy</h4>
+<ul>
+<li>完整的优化一个动作成本很高，但是只要产生出了一次动作，可以训练一个“reactive”
+subsystem重复地长生这个运动而不用冗余的规划过程。这个过程涉及到局部自主（partial
+autonomy）以及半自主系统（semi-autonomous
+subsystem），在算法层面主要是加载之前算出来的解。</li>
+<li>self-supervised learning ，生成的轨迹永续训练另外的系统in an
+amortized fashion（用分期的方式）</li>
+</ul>
+<h4 id="modular-objectives">3.3 Modular objectives</h4>
+<ul>
+<li>很多ANN在用于控制问题时使用end2end的优化，这样就只能设置一个优化目标，并最大化它</li>
+<li>使用模块化的子系统需要制定独特的模块化子目标</li>
+<li>一种流行的方法是训练控制器解决任务的同事也训练一组内部状态表征（internal
+state
+representations）来预测未来的传感数据，某种程度上来讲，这也是一种分层的控制系统。</li>
+<li>另一个景点的方法同样保持了层级的目标结构，divideand-conquer
+strategy。例如高层控制器决定运动的方向，低层控制器去实施，高层控制器的信号也可以作为
+a dense teaching signal that the low-level controller learns from as it
+assesses how well it stays on the instructed
+course。高层口农资器处理更全局的任务。代表工作：（前两篇低层系统优化目标固定，最有一批FuN是学习抽象目标空间）
+<ul>
+<li>Nachum, O., Gu, S., Lee, H. &amp; Levine, S. <strong>Near-optimal
+representation learning for hierarchical reinforcement
+learning</strong>. In International Conference on Learning
+Representations, 2019.<br />
+</li>
+<li>Wayne, G. &amp; Abbott, L. F. Hierarchical control using networks
+trained with higher-level forward models. Neural Comput. 26, 2163–2193
+(2014)<br />
+</li>
+<li>Vezhnevets, A. S. et al. Feudal networks for hierarchical
+reinforcement learning. In Proceedings of the 34th International
+Conference on achine Learning, 3540–3549. JMLR. org, 2017.</li>
+</ul></li>
+</ul>
+<h4 id="multi-joint-coordination">3.4 Multi-joint coordination</h4>
+<ul>
+<li><p>motor synergy concept （Synergies in coordination: a
+comprehensive overview of neural, computational, and behavioral
+approaches. J. Neurophysiol. 120, 2761–2774 (2018). ）</p></li>
+<li><p>在肌肉驱动的系统上，从高层面设计任务显然会更容易，例如reaching
+and grasping. This is perhaps most readily apparent in a setting like
+reaching and grasping, where random movement of all degrees of freedom
+independently will be ineffective, but random movements in the subspace
+of hand configurations encountered during grasping will lead to more
+effective interactions.</p></li>
+<li><p>几个机器人学方面的工作:</p></li>
+<li><p>Vukobratović, M. &amp; Borovac, B. Zero-moment point—thirty five
+years of its life. Int. J. Hum. Robot. 1, 157–173 (2004).</p></li>
+<li><p>Todorov, E., Li, W. &amp; Pan, X. From task parameters to motor
+synergies: a hierarchical framework for approximately optimal control of
+redundant manipulators. J. Robot. Syst. 22, 691–710 (2005).</p></li>
+<li><p>Mordatch, I., De Lasa, M. &amp; Hertzmann, A. Robust
+physics-based locomotion using low-dimensional planning. ACM T. Graphic.
+29, 71 (2010).</p></li>
+<li><p>unsupervised learning (or self-supervised learning) of
+sensorimotor primitives in order to produce a learned low-level
+controller</p>
+<ul>
+<li>Todorov, E. <strong>Optimality principles in sensorimotor
+control</strong>. Nat. Neurosci. 7, 907 (2004).<br />
+</li>
+<li>Todorov E. &amp; Ghahramani., Z. Unsupervised learning of
+sensory-motor primitives. In Proceedings of the 25th Annual
+International Conference of the IEEE Engineering in Medicine and Biology
+Society, Vol. 2, 1750–1753. IEEE, 2003.</li>
+</ul></li>
+</ul>
+<h4 id="temporal-abstraction">3.5 Temporal abstraction</h4>
+<ul>
+<li>通过设置时间间隔简化使得高层控制器更宏观，但会损失控制精度，这需要低层的控制器去完成。</li>
+<li>对于机器人操作任务，离散情况下只有时间维度是最好抽象的，在连续控制的问题上，多关节的协同比时间抽象更有决定性的作用。当然长期的行动规划和行为选择是需要时间抽象（Temporal
+abstraction）的。</li>
+</ul>
+<h3 id="neurobiological-hierarchical-motor-control">4. Neurobiological
+hierarchical motor control</h3>
+<ul>
+<li>这部分主要就少神经科学上关于分层控制的研究工作。</li>
+<li>神经系统在结构和功能和功能上都有分层（both anatomically and
+functionally hierarchical）</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200918-1.png" /></p>
+<h4 id="lower-level-movement-centers">4.1 “Lower-level” movement
+centers</h4>
+<ul>
+<li>脊髓（spine）在没有高层输入的情况下也可以控制躯体运动；脊髓环路能生成多关节的时空协同模式
+(spatiotemporal coordination patterns)，通过中心模式生成器（central
+pattern generators (CPGs) ）产生虚构的动作（ “fictive”
+locomotion）；也可以通过传感信息局部调制关节活动。（CPG）</li>
+<li>多关节协同通常需要：cerebellum-derived signals，somatic
+feedback（躯体反馈）以及inputs from other sensory
+systemts（传感输入）</li>
+<li>CPG主要产生节律的运动，比如走路，鱼摆尾等等</li>
+</ul>
+<h4 id="subcortical-mid-level-movement-regulation">4.2 Subcortical
+“mid-level” movement regulation</h4>
+<ul>
+<li>1）皮层对于运动来说并不是必要的。因为去除了皮层的cat在恢复一段时间后，可以具备避障能力（刚切除时没有）。这反映出层次化控制和局部自治。</li>
+<li>2）皮层下的结构可以选择运动协调模式</li>
+<li>3）没了皮层后，传感受到损伤。但还可以通过non-cortical的通路接收传感信息。这里体现了信息因子分解。</li>
+<li>4）小脑负责运动协调，基底神经节负责行为选择；</li>
+</ul>
+<h4 id="cortical-high-level-control-of-movement">4.3 Cortical
+“high-level” control of movement</h4>
+<ul>
+<li>具备一些分层结构特征</li>
+</ul>
+<h3 id="shared-challenges-for-biological-and-synthetic-motor-control">5.
+Shared challenges for biological and synthetic motor control</h3>
+<ul>
+<li>despite significant progress in artificial intelligence research
+over the past years, there remain meaningful challenges in dealing with
+rich sensation, a broader range of tasks, rapid adaptation or
+improvisation, as well as object interaction and tool use.
+<ul>
+<li>处理多传感融合</li>
+<li>处理更普遍的任务</li>
+<li>快速适应、即兴创作</li>
+<li>物体交互</li>
+<li>使用工具</li>
+</ul></li>
+</ul>
+<h4 id="towards-full-scale-body-control">5.1 Towards full-scale body
+control</h4>
+<ul>
+<li>对生物力学、肌肉系统、肌肉骨骼系统的研究</li>
+<li>针对这类系统有两个控制思路：
+<ul>
+<li>训练该系统解决不同的任务</li>
+<li>对观测到的行为生成数据驱动的模型</li>
+</ul></li>
+</ul>
+<h4 id="the-structure-of-inter-region-communication">5.2 The structure
+of inter-region communication</h4>
+<ul>
+<li>脑区之间的编码方案(coding
+schemes)仍然未知，我们同样不确定分层控制系统中的信息流的形式。</li>
+<li>三个问题：
+<ul>
+<li>一个问题是分层的学习系统层级间的通信不一定需要有明确的可解释性，除非可解释的结构能带来明确的好处</li>
+<li>一个系统的输出如何调制另一个系统，对目标的调制应该是线性的还是非线性的？</li>
+<li>关于分辨率问题，表示具体行为的抽象目标之间的通讯和对下级系统丰富的指令怎么保持平衡</li>
+</ul></li>
+<li>生物的角度来看，层次化的系统间一定要有一种语言或者编码，这种上下层级之间的通讯方案是AI和神经科学应该共同讨论的问题。</li>
+</ul>
+<h4 id="ethological-行为学的-motor-learning-and-imitation">5.3
+Ethological （行为学的） motor learning and imitation</h4>
+<ul>
+<li>self-directed rehearsal: songbird在雏鸟阶段学习唱歌</li>
+<li>主动采样策略：Gottlieb J. &amp; Oudeyer, P. Y. <strong>Towards a
+neuroscience of active sampling and curiosity</strong>. Nat. Rev.
+Neurosci. 19, 758–770 (2018)</li>
+</ul>
+<h2 id="总结">总结</h2>
+<p>这篇综述很好地概括并梳理了在AI和生物神经科学中的零散的工作，总结出了很多子领域和本质问题，这是一篇很好的综述，可以帮助对领域的快速了解。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/18/2020-09-18-Q47%20Permutations%20II-%E4%B8%AD%E7%AD%89-%E5%9B%9E%E6%BA%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/18/2020-09-18-Q47%20Permutations%20II-%E4%B8%AD%E7%AD%89-%E5%9B%9E%E6%BA%AF/" class="post-title-link" itemprop="url">Q47 Permutations II-中等-回溯</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-09-18 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-18T00:00:00+08:00">2020-09-18</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="permutations-ii"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/permutations-ii/">Permutations
+II</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>Given a collection of numbers that might contain duplicates, return
+all possible unique permutations.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>Input: [1,1,2] Output: [ [1,1,2], [1,2,1], [2,1,1]]</p>
+</blockquote>
+<h3 id="approach-1-循环">Approach 1: 循环</h3>
+<p>本来打算使用Hash
+table统计一下有哪些元素，以及对应的个数，但后来想了想其实没有必要统计。在写代码的时候找到了一个快速实现字典初始化的方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Hash=<span class="built_in">dict</span>()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">    Hash[nums[i]]=<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>可以用下面这句等效替代，节省一个For循环：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hash.setdefault(nums[i], <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>下面正片开始</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">permuteUnique</span>(<span class="params">self, nums</span>):</span><br><span class="line">        <span class="comment"># 错误输入检测</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">nums, temp_list</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(temp_list) == n:</span><br><span class="line">                ans.append(temp_list) <span class="comment"># temp_list存满了就放入ans</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">                <span class="keyword">if</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> nums[i] == nums[i-<span class="number">1</span>]: <span class="comment"># 第一个元素不进行此判断</span></span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                dfs(nums[:i]+nums[i+<span class="number">1</span>:], temp_list+[nums[i]])</span><br><span class="line"></span><br><span class="line">        ans = []</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        nums.sort()</span><br><span class="line">        dfs(nums, [])</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums =[<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">    solution=Solution().permuteUnique(nums)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p>主要利用排序后对列表的切片操作，巧妙地对排列进行剪支</p>
+<p>写的非常简洁，值得好好研究</p>
+<h2 id="复杂度分析">复杂度分析</h2>
+<ul>
+<li><p>时间复杂度：<span class="math display">\[O(n\times
+n!)\]</span></p>
+<p>算法的复杂度首先受 backtrack 的调用次数制约，backtrack 的调用次数为
+<span class="math display">\[\sum_{k = 1}^{n}{P(n, k)}\]</span>次，其中
+<span class="math display">\[P(n, k) = \frac{n!}{(n - k)!} = n (n - 1)
+... (n - k + 1)\]</span>，该式被称作 n 的 k - 排列，或者部分排列</p>
+<p>这说明 backtrack 的调用次数是 <span
+class="math display">\[O(n!)\]</span>的。</p>
+<p>而对于 backtrack 调用的每个叶结点（最坏情况下没有重复数字共 <span
+class="math display">\[n!\]</span> 个），我们需要将当前答案使用 <span
+class="math display">\[O(n)\]</span>
+的时间复制到答案数组中，相乘得时间复杂度为 <span
+class="math display">\[O(n \times n!)\]</span>。</p></li>
+<li><p>空间复杂度：<span class="math display">\[O(n
+)\]</span>。递归的时候栈深度会达到
+O(n)<em>O</em>(<em>n</em>)，因此总空间复杂度为 O(n +
+n)=O(2n)=O(n)<em>O</em>(<em>n</em>+<em>n</em>)=<em>O</em>(2<em>n</em>)=<em>O</em>(<em>n</em>)。</p></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/17/2020-09-17-Q1470%20Shuffle%20the%20Array-%E7%AE%80%E5%8D%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -815,417 +1381,10 @@ cells的空间信息处理机制，agent可以自动寻路，还可以做路径�
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/15/2020-09-15-Q1431%20Kids%20With%20the%20Greatest%20Number%20of%20Candies-%E7%AE%80%E5%8D%95-%E6%9E%9A%E4%B8%BE%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/15/2020-09-15-Q1431%20Kids%20With%20the%20Greatest%20Number%20of%20Candies-%E7%AE%80%E5%8D%95-%E6%9E%9A%E4%B8%BE%E6%B3%95/" class="post-title-link" itemprop="url">Q1431 Kids With the Greatest Number of Candies-简单-枚举</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-09-15 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-15T00:00:00+08:00">2020-09-15</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.1k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="kids-with-the-greatest-number-of-candies"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/kids-with-the-greatest-number-of-candies/">Kids
-With the Greatest Number of Candies</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given the array candies and the integer extraCandies, where
-candies[i] represents the number of candies that the ith kid has.</p>
-<p>For each kid check if there is a way to distribute extraCandies among
-the kids such that he or she can have the greatest number of candies
-among them. Notice that multiple kids can have the greatest number of
-candies.</p>
-<p><strong>Constraints:</strong></p>
-<p>2 &lt;= candies.length &lt;= 100 1 &lt;= candies[i] &lt;= 100 1 &lt;=
-extraCandies &lt;= 50</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input: candies = [2,3,5,1,3], extraCandies = 3 Output:
-[true,true,true,false,true] Explanation: Kid 1 has 2 candies and if he
-or she receives all extra candies (3) will have 5 candies --- the
-greatest number of candies among the kids. Kid 2 has 3 candies and if he
-or she receives at least 2 extra candies will have the greatest number
-of candies among the kids. Kid 3 has 5 candies and this is already the
-greatest number of candies among the kids. Kid 4 has 1 candy and even if
-he or she receives all extra candies will only have 4 candies. Kid 5 has
-3 candies and if he or she receives at least 2 extra candies will have
-the greatest number of candies among the kids.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>Input: candies = [4,2,1,1,2], extraCandies = 1 Output:
-[true,false,false,false,false] Explanation: There is only 1 extra candy,
-therefore only kid 1 will have the greatest number of candies among the
-kids regardless of who takes the extra candy.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 3:</strong></p>
-<p>Input: candies = [12,1,12], extraCandies = 10 Output:
-[true,false,true]</p>
-</blockquote>
-<h3 id="approach-1-枚举法">Approach 1: 枚举法</h3>
-<p>这道题目关键点在于判断<em>candies[i] + extraCandies &gt;=
-max_candies</em>
-，因此需要先找出最大的糖果数，之后在一个for循环中诸葛对比。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">kidsWithCandies</span>(<span class="params">self, candies , extraCandies </span>) :</span><br><span class="line">        sort_candies=<span class="built_in">sorted</span>(candies)</span><br><span class="line">        ans=<span class="built_in">list</span>()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(candies)):</span><br><span class="line">            <span class="keyword">if</span> candies[i]+extraCandies&gt;=sort_candies[-<span class="number">1</span>]:</span><br><span class="line">                ans.append(<span class="built_in">bool</span>(<span class="number">1</span>))</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                ans.append(<span class="built_in">bool</span>(<span class="number">0</span>))</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    candies = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>]</span><br><span class="line">    extraCandies = <span class="number">3</span></span><br><span class="line">    solution=Solution().kidsWithCandies(candies,extraCandies)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p>上面的代码中使用了sorted排序，其实没有必要，因为只需求到最大值。for循环也可以使用简洁形式表达，使代码更加紧凑</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">kidsWithCandies</span>(<span class="params">self, candies , extraCandies </span>) :</span><br><span class="line">        maxCandies = <span class="built_in">max</span>(candies)</span><br><span class="line">        ret = [candy + extraCandies &gt;= maxCandies <span class="keyword">for</span> candy <span class="keyword">in</span> candies]</span><br><span class="line">        <span class="keyword">return</span> ret</span><br></pre></td></tr></table></figure>
-<h3 id="复杂度分析">复杂度分析</h3>
-<ul>
-<li><p>时间复杂度：我们首先使用
-O(n)的时间预处理出所有小朋友拥有的糖果数目最大值。对于每一个小朋友，我们需要
-O(1) 的时间判断这个小朋友是否可以拥有最多的糖果，故渐进时间复杂度为
-O(n)。</p></li>
-<li><p>空间复杂度：这里只用了常数个变量作为辅助空间，与 n
-的规模无关，故渐进空间复杂度为 O(1)。</p></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/14/2020-09-14-Q1480%20Running%20Sum%20of%201d%20Array-%E7%AE%80%E5%8D%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/14/2020-09-14-Q1480%20Running%20Sum%20of%201d%20Array-%E7%AE%80%E5%8D%95/" class="post-title-link" itemprop="url">Q1480 Running Sum of 1d Array-简单</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-09-14 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-14T00:00:00+08:00">2020-09-14</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>899</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="running-sum-of-1d-array"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/running-sum-of-1d-array/">Running
-Sum of 1d Array</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given an array nums. We define a running sum of an array as
-runningSum[i] = sum(nums[0]…nums[i]).</p>
-<p>Return the running sum of nums.</p>
-<p><strong>Constraints:</strong></p>
-<ul>
-<li><code>1 &lt;= nums.length &lt;= 1000</code></li>
-<li><code>-10^6 &lt;= nums[i] &lt;= 10^6</code></li>
-</ul>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input: nums = [1,2,3,4] Output: [1,3,6,10] Explanation: Running sum
-is obtained as follows: [1, 1+2, 1+2+3, 1+2+3+4].</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>Input: nums = [1,1,1,1,1] Output: [1,2,3,4,5] Explanation: Running
-sum is obtained as follows: [1, 1+1, 1+1+1, 1+1+1+1, 1+1+1+1+1].</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 3:</strong></p>
-<p>Input: nums = [3,1,2,10,1] Output: [3,4,6,16,17]</p>
-</blockquote>
-<h3 id="approach-1">Approach 1:</h3>
-<p>开始的时候想建立sum变量来储存前i项和，但这样造成了空间的浪费，可以直接改写input列表，将其作为输出。</p>
-<p><strong>Note:</strong>
-如果面试遇到这个问题，问清楚面试官，是否可以修改传来的 nums 数组！</p>
-<p>约束条件限制了nums非空，因此不用判断这点；限制了元素大小，因此不考虑传入错误字符的情况</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">runningSum</span>(<span class="params">self, nums</span>):</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(nums)):</span><br><span class="line">            nums[i]=nums[i-<span class="number">1</span>]+nums[i]</span><br><span class="line">        <span class="keyword">return</span> nums</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums = [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>]</span><br><span class="line">    solution=Solution().runningSum(nums)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<h3 id="复杂度分析">复杂度分析</h3>
-<ul>
-<li>时间复杂度O(n)</li>
-<li>空间复杂度O(n)</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/13/2020-09-13-Reinforcement%20Learning%20-%20HIerarchical%20Reinforcement%20learning%20with%20Off-policy%20correction%20(HIRO)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/13/2020-09-13-Reinforcement%20Learning%20-%20HIerarchical%20Reinforcement%20learning%20with%20Off-policy%20correction%20(HIRO)/" class="post-title-link" itemprop="url">Reinforcement Learning | HIerarchical Reinforcement learning with Off-policy correction (HIRO)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-09-13 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-13T00:00:00+08:00">2020-09-13</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.4k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1
-id="data-efficient-hierarchical-reinforcement-learning">Data-Efficient
-Hierarchical Reinforcement Learning</h1>
-<p>论文链接：http://papers.nips.cc/paper/7591-data-efficient-hierarchical-reinforcement-learning.pdf</p>
-<h2 id="背景">背景</h2>
-<p>HRL是处理复杂任务的有效方式，之前的方法大多需要针对具体任务进行特殊设计，并使用on-policy的方法进行训练，这些因素导致HRL很难被引用到真实的场景中。本文用off-policy的方式训练higher-
-and lower-level
-controllers，提高了模型的数据利用率，性能超过了之前SOTA的Option-Critic。</p>
-<p><strong>Option-Critic</strong>：Pierre-Luc Bacon, Jean Harb, and
-Doina Precup. The option-critic architecture. In AAAI, pages 1726–1734,
-2017.</p>
-<h2 id="主要工作">主要工作</h2>
-<ul>
-<li><p>首先需要明确的是什么是复杂的任务，文中定义的一个复杂任务是perform
-exploratory navigaive as well as complex sequences of interaction with
-ovjects inthe environment. 作者认为这些任务是unsolvable by
-non-HRL，主要是因为奖励稀疏，完成任务需要多个步骤；</p></li>
-<li><p>低级/高级策略如何定义并训练？之前的方法用人工设计来解决，因此方法没有一般性。</p></li>
-<li><p>Note that 本文只用的是state
-observation而不是高维图像输入，这个与FuN是不同的</p></li>
-<li><p>本文使用的是off-policy的学习方法（TD3, [<a
-href="https://link.zhihu.com/?target=http%3A//proceedings.mlr.press/v80/fujimoto18a/fujimoto18a.pdf">Addressing
-Function Approximation Error in Actor-Critic
-Methods</a>，它是DDPG的一种变体，同样针对连续的控制），试图提高sample的利用效率，但是这会带来两个问题：</p>
-<ul>
-<li>off-policy会带来学习上的不稳定，在多重policy的情况下这种影响还会更大。</li>
-<li>低级的policy在训练过程中会不断变化，因此之前收集到的samples就不再是valid
-experience for training</li>
-</ul>
-<p>针对这两个问题，本文建立了<strong>off-policy修正模型</strong>，re-label过去的经验，并用高级策略选择可能获得最大奖励的行为。</p></li>
-</ul>
-<h2 id="方法">方法</h2>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200912-1.png" /></p>
-<ul>
-<li><p>两层策略：a lower-level policy <span
-class="math display">\[\mu^{lo}\]</span> and a higher-level policy <span
-class="math display">\[\mu^{hi}\]</span></p></li>
-<li><p><span
-class="math display">\[\mu^{hi}\]</span>以从环境获取的obs为输入，获得high-level
-action (goal) <span class="math display">\[g_t\in
-\mathbb{R}^d\]</span>。<span
-class="math display">\[g_t\]</span>要么用<span
-class="math display">\[\mu^{hi}\]</span>以<span
-class="math display">\[c\]</span>步为间隔进行采样<span
-class="math display">\[g_t\sim \mu^{hi}\  (when\ t\equiv
-0)\]</span>，要么使用一个固定目标的转换函数<span
-class="math display">\[g_t=h(s_{t-1},g_{t-1},s_t)\]</span>，获得的奖励为<span
-class="math display">\[R(s_t,a_t)\]</span>。</p></li>
-<li><p><span class="math display">\[\mu^{lo}\]</span>观测状态<span
-class="math display">\[s_t\]</span>和目标<span class="math display">\[
-g_t\]</span>，并产生低维的行为<span class="math display">\[a_t\sim
-\mu^{lo}(s_t, g_t)\]</span>，获得奖励<span
-class="math display">\[r_t=r(s_t,g_t,a_t,s_{t+1})\]</span></p></li>
-<li><p>低级策略储存经验<span
-class="math display">\[(s_t,g_t,a_t,r_t,s_{t+1},h(s_t,g_t,s_{s+1}))\]</span></p></li>
-<li><p>高级策略储存经验<span
-class="math display">\[(s_{t:t+c-1},g_{t:t+c-1},a_{t:t+c-1},R_{t:t+c-1},s_{t+c})\]</span></p></li>
-</ul>
-<h3 id="参数化rewards">参数化Rewards</h3>
-<ul>
-<li><p>goal transition model <span class="math display">\[h\]</span> is
-defined as: <span class="math display">\[h(s_t,g_t,s_{t+1}) = s_t + g_t
-- s_{t+1}\]</span></p></li>
-<li><p>intrinsic reward: <span class="math display">\[
-r(s_t,g_t,a_t,s_{t+1}) = -\parallel s_t + g_t - s_{t+1}\parallel _2
-\]</span> ，这里<span
-class="math display">\[g_t\]</span>相当于是一个状态增量，学习目标是使得
-<span class="math display">\[ s_t + g_t = s_{t+1} \]</span></p></li>
-<li><p>实验中<span class="math display">\[g_t\]</span>是期望的坐标<span
-class="math display">\[(x,y,z)\]</span>，obs也仅仅包含位置的观测</p></li>
-<li><p>高级策略state-action-reward transition <span
-class="math display">\[(s_t,g_t,\sum
-R_{t:t+c-1},s_{t+c})\]</span></p></li>
-<li><p>对于旧的经验，给定<span
-class="math display">\[\widetilde{g}_t\]</span>最大化<span
-class="math display">\[\mu^{lo}(a_{t:t+c-1}\mid
-s_{t:t+c-1},\widetilde{g}_{t:t+c-1})\]</span></p></li>
-<li><p>中间目标 <span
-class="math display">\[\widetilde{g}_{t+1:t+c-1}\]</span>
-用固定目标转移函数<span class="math display">\[h\]</span>生成</p></li>
-<li><p>log probability <span class="math display">\[ \log
-\mu^{lo}(a_{t:t+c-1}\mid s_{t:t+c-1},\widetilde{g}_{t:t+c-1}) \]</span>
-通过下式计算得到</p></li>
-</ul>
-<p><span class="math display">\[
-\log \mu^{lo}(a_{t:t+c-1}\mid
-s_{t:t+c-1},\widetilde{g}_{t:t+c-1})\propto
--\frac{1}{2}\sum_{i=t}^{t+c-1}\parallel
-a_i-\mu^{lo}(s_i,\widetilde{g}_i)\parallel^2_2+\text{const}
-\]</span></p>
-<h2 id="总结">总结</h2>
-<p>HIRO整体节奏还是很明快的，整体结构基于DDPG和TD3经验修正的地方稍微有些含糊。文中的目标
-<span class="math display">\[ g_t \]</span>
-就相当于是一个状态增量，修正就是用10个高斯分布在 <span
-class="math display">\[ [0,\mid s_{t+1}-s_t\mid] \]</span> 或者 <span
-class="math display">\[ [-\mid s_{t+1}-s_t\mid ,0] \]</span>
-之间取值目标 <span class="math display">\[ \widetilde{g}_t \]</span>
-。至于为什么是10个高斯，怎么取值，这些正文中没有说明，附录里面应该有，细看的时候可以找一找。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/19/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/21/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/19/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/21/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1293,7 +1452,7 @@ class="math display">\[ [-\mid s_{t+1}-s_t\mid ,0] \]</span>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">230</span>
+          <span class="site-state-item-count">233</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1360,12 +1519,12 @@ class="math display">\[ [-\mid s_{t+1}-s_t\mid ,0] \]</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">552k</span>
+    <span title="Symbols count total">568k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:22</span>
+    <span title="Reading time total">8:36</span>
 </div>
 
         

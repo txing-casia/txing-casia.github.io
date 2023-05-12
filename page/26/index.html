@@ -198,6 +198,349 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/06/05/2019-06-05-Q657-Robot-Return-to-Origin/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/05/2019-06-05-Q657-Robot-Return-to-Origin/" class="post-title-link" itemprop="url">Q657 Robot Return to Origin</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-05 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-05T00:00:00+08:00">2019-06-05</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="robot-return-to-origin"><a
+target="_blank" rel="noopener" href="https://leetcode.com/problems/robot-return-to-origin/">Robot
+Return to Origin</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>There is a robot starting at position (0, 0), the origin, on a 2D
+plane. Given a sequence of its moves, judge if this robot <strong>ends
+up at (0, 0)</strong> after it completes its moves.</p>
+<p>The move sequence is represented by a string, and the character
+moves[i] represents its ith move. Valid moves are R (right), L (left), U
+(up), and D (down). If the robot returns to the origin after it finishes
+all of its moves, return true. Otherwise, return false.</p>
+<p><strong>Note</strong>: The way that the robot is "facing" is
+irrelevant. "R" will always make the robot move to the right once, "L"
+will always make it move left, etc. Also, assume that the magnitude of
+the robot's movement is the same for each move.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>Input: "UD" Output: true Explanation: The robot moves up once, and
+then down once. All moves have the same magnitude, so it ended up at the
+origin where it started. Therefore, we return true.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>Input: "LL" Output: false Explanation: The robot moves left twice. It
+ends up two "moves" to the left of the origin. We return false because
+it is not at the origin at the end of its moves.</p>
+</blockquote>
+<h2 id="approach-1-hash-set">Approach 1: Hash Set</h2>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>We can transform each <code>word</code> into it's Morse Code
+representation.</p>
+<p>After, we put all transformations into a set <code>seen</code>, and
+return the size of the set.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">judgeCircle</span>(<span class="params">self, moves</span>):</span><br><span class="line">        Return=[<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> moves:</span><br><span class="line">            <span class="keyword">if</span> i==<span class="string">&#x27;U&#x27;</span>:</span><br><span class="line">                Return[<span class="number">0</span>] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> i==<span class="string">&#x27;D&#x27;</span>:</span><br><span class="line">                Return[<span class="number">0</span>] -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> i == <span class="string">&#x27;L&#x27;</span>:</span><br><span class="line">                Return[<span class="number">1</span>] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> i == <span class="string">&#x27;R&#x27;</span>:</span><br><span class="line">                Return[<span class="number">1</span>] -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">not</span>(<span class="built_in">bool</span>(Return[<span class="number">0</span>]) <span class="keyword">or</span> <span class="built_in">bool</span>(Return[<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    Action=[<span class="string">&#x27;U&#x27;</span>,<span class="string">&#x27;D&#x27;</span>]</span><br><span class="line">    solution=Solution().judgeCircle(Action)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time Complexity: <em>O</em>(<em>n</em>), where <em>n</em> is the
+amount of the movents in <code>moves</code>.</li>
+<li>Space Complexity: <em>O</em>(<em>1</em>).</li>
+<li>Runtime: 88 ms, faster than 68.89% of Python online submissions for
+Robot Return to Origin.</li>
+<li>Memory Usage: 12.1 MB, less than 35.59% of Python online submissions
+for Robot Return to Origin.</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/06/04/2019-06-04-Q804-Unique-Morse-Code-Words/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/04/2019-06-04-Q804-Unique-Morse-Code-Words/" class="post-title-link" itemprop="url">Q804 Unique Morse Code Words</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-04 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-04T00:00:00+08:00">2019-06-04</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.2k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="unique-morse-code-words"><a
+target="_blank" rel="noopener" href="https://leetcode.com/problems/unique-morse-code-words/">Unique
+Morse Code Words</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>International Morse Code defines a standard encoding where each
+letter is mapped to a series of dots and dashes, as follows:
+<code>"a"</code> maps to <code>".-"</code>, <code>"b"</code> maps to
+<code>"-..."</code>, <code>"c"</code> maps to <code>"-.-."</code>, and
+so on.</p>
+<p>For convenience, the full table for the 26 letters of the English
+alphabet is given below:</p>
+<p><code>[".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]</code></p>
+<p>Now, given a list of words, each word can be written as a
+concatenation of the Morse code of each letter. For example, "cba" can
+be written as "-.-..--...", (which is the concatenation "-.-." + "-..."
++ ".-"). We'll call such a concatenation, the transformation of a
+word.</p>
+<p>Return the number of different transformations among all words we
+have.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong> Input: words = ["gin", "zen", "gig",
+"msg"] Output: 2 Explanation: The transformation of each word is: "gin"
+-&gt; "--...-." "zen" -&gt; "--...-." "gig" -&gt; "--...--." "msg" -&gt;
+"--...--."</p>
+<p>There are 2 different transformations, "--...-." and "--...--.".</p>
+</blockquote>
+<h2 id="approach-1-hash-set">Approach 1: Hash Set</h2>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>We can transform each <code>word</code> into it's Morse Code
+representation.</p>
+<p>After, we put all transformations into a set <code>seen</code>, and
+return the size of the set.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">uniqueMorseRepresentations</span>(<span class="params">self, words</span>):</span><br><span class="line">        MORSE = [<span class="string">&quot;.-&quot;</span>,<span class="string">&quot;-...&quot;</span>,<span class="string">&quot;-.-.&quot;</span>,<span class="string">&quot;-..&quot;</span>,<span class="string">&quot;.&quot;</span>,<span class="string">&quot;..-.&quot;</span>,<span class="string">&quot;--.&quot;</span>,</span><br><span class="line">                 <span class="string">&quot;....&quot;</span>,<span class="string">&quot;..&quot;</span>,<span class="string">&quot;.---&quot;</span>,<span class="string">&quot;-.-&quot;</span>,<span class="string">&quot;.-..&quot;</span>,<span class="string">&quot;--&quot;</span>,<span class="string">&quot;-.&quot;</span>,</span><br><span class="line">                 <span class="string">&quot;---&quot;</span>,<span class="string">&quot;.--.&quot;</span>,<span class="string">&quot;--.-&quot;</span>,<span class="string">&quot;.-.&quot;</span>,<span class="string">&quot;...&quot;</span>,<span class="string">&quot;-&quot;</span>,<span class="string">&quot;..-&quot;</span>,</span><br><span class="line">                 <span class="string">&quot;...-&quot;</span>,<span class="string">&quot;.--&quot;</span>,<span class="string">&quot;-..-&quot;</span>,<span class="string">&quot;-.--&quot;</span>,<span class="string">&quot;--..&quot;</span>]</span><br><span class="line"></span><br><span class="line">        seen = &#123;<span class="string">&quot;&quot;</span>.join(MORSE[<span class="built_in">ord</span>(c) - <span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>)] <span class="keyword">for</span> c <span class="keyword">in</span> word)</span><br><span class="line">                <span class="keyword">for</span> word <span class="keyword">in</span> words&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(seen)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    Ain=[<span class="string">&quot;gin&quot;</span>, <span class="string">&quot;zen&quot;</span>, <span class="string">&quot;gig&quot;</span>, <span class="string">&quot;msg&quot;</span>]</span><br><span class="line">    solution=Solution().uniqueMorseRepresentations(Ain)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time Complexity: <em>O</em>(<em>S</em>), where <em>S</em> is the sum
+of the lengths of words in <code>words</code>. We iterate through each
+character of each word in <code>words</code>.</li>
+<li>Space Complexity: <em>O</em>(<em>S</em>).</li>
+<li>Runtime: 20 ms, faster than 95.59% of Python online submissions for
+Unique Morse Code Words.</li>
+<li>Memory Usage: 11.8 MB, less than 46.42% of Python online submissions
+for Unique Morse Code Words.</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/06/03/2019-06-03-Q977-Squares-of-a-Sorted-Array/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/03/2019-06-03-Q977-Squares-of-a-Sorted-Array/" class="post-title-link" itemprop="url">Q977 Squares of a Sorted Array</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-03 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-03T00:00:00+08:00">2019-06-03</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="squares-of-a-sorted-array"><a
+target="_blank" rel="noopener" href="https://leetcode.com/problems/squares-of-a-sorted-array/">Squares
+of a Sorted Array</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>Given an array of integers <code>A</code> sorted in non-decreasing
+order, return an array of the squares of each number, also in sorted
+non-decreasing order.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong> Input: [-4,-1,0,3,10] Output:
+[0,1,9,16,100]</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong> Input: [-7,-3,2,3,11] Output:
+[4,9,9,49,121]</p>
+</blockquote>
+<h3 id="approach-1-direct-method">Approach 1: Direct Method</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sortedSquares</span>(<span class="params">self, A</span>):</span><br><span class="line">        B=[]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(A)):</span><br><span class="line">            B.append(<span class="built_in">int</span>(math.<span class="built_in">pow</span>(A[i],<span class="number">2</span>)))</span><br><span class="line">        B.sort()</span><br><span class="line">        <span class="keyword">return</span> B</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    Ain=[-<span class="number">4</span>,-<span class="number">1</span>,<span class="number">0</span>,<span class="number">3</span>,<span class="number">10</span>]</span><br><span class="line">    solution=Solution().sortedSquares(Ain)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Runtime: 220 ms, faster than 33.27% of Python online submissions
+forSquares of a Sorted Array.</li>
+<li>Memory Usage: 13.9 MB, less than 20.54% of Python online submissions
+for Squares of a Sorted Array.</li>
+</ul>
+<h2 id="approach-2-sort">Approach 2: Sort</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sortedSquares</span>(<span class="params">self, A</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sorted</span>(x*x <span class="keyword">for</span> x <span class="keyword">in</span> A)</span><br></pre></td></tr></table></figure>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li><p>Time Complexity: <em>O</em>(<em>N</em>log<em>N</em>), where
+<em>N</em> is the length of <code>A</code>.</p></li>
+<li><p>Space Complexity: <em>O</em>(<em>N</em>).</p></li>
+<li><p>Runtime: 200 ms, faster than 58.97% of Python online submissions
+for Squares of a Sorted Array.</p></li>
+<li><p>Memory Usage: 13.9 MB, less than 25.48% of Python online
+submissions for Squares of a Sorted Array.</p></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/05/30/2019-05-30-Q1019-Next-Greater-Node-In-Linked-List/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -762,363 +1105,10 @@ submissions for Delete Node in a Linked List.</p></li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/05/22/2019-05-22-Q817-Linked-List-Components/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/22/2019-05-22-Q817-Linked-List-Components/" class="post-title-link" itemprop="url">Q817 Linked List Components</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-05-22 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-22T00:00:00+08:00">2019-05-22</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.2k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="linked-list-components"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/linked-list-components/">Linked List
-Components</a></h1>
-<h2 id="question-it-is-a-wrong-problem-description">Question (It is a
-wrong problem description!)</h2>
-<blockquote>
-<p>We are given <code>head</code>, the head node of a linked list
-containing <strong>unique integer values</strong>.</p>
-<p>We are also given the list <code>G</code>, a subset of the values in
-the linked list.</p>
-<p>Return the number of connected components in <code>head</code>, where
-two values are connected if they appear consecutively in the linked
-list.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong> Input: head: 0-&gt;1-&gt;2-&gt;3 G = [0,
-1, 3] Output: 2 Explanation: 0 and 1 are connected, so [0, 1] and [3]
-are the two connected components.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong> Input: head: 0-&gt;1-&gt;2-&gt;3-&gt;4 G
-= [0, 3, 1, 4] Output: 2 Explanation: 0 and 1 are connected, 3 and 4 are
-connected, so [0, 1] and [3, 4] are the two connected components.</p>
-</blockquote>
-<h3 id="approach-1-grouping">Approach 1: Grouping</h3>
-<blockquote>
-<p>Note: There is something wrong in the problem description. The test
-cases online are confusing.</p>
-<p><strong>Example:</strong></p>
-<p>input: [0] and [0]</p>
-<p>expected output: [1]</p>
-</blockquote>
-<p><strong>Intuition</strong></p>
-<p>Instead of thinking about connected components in <code>G</code>,
-think about them in the linked list. Connected components in
-<code>G</code> must occur consecutively in the linked list.</p>
-<p><strong>Algorithm</strong></p>
-<p>Scanning through the list, if <code>node.val</code> is in
-<code>G</code> and <code>node.next.val</code> isn't (including if
-<code>node.next</code> is <code>null</code>), then this must be the end
-of a connected component.</p>
-<p>For example, if the list is
-<code>0 -&gt; 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; 6 -&gt; 7</code>,
-and <code>G = [0, 2, 3, 5, 7]</code>, then when scanning through the
-list, we fulfill the above condition at <code>0, 3, 5, 7</code>, for a
-total answer of <code>4</code>.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numComponents</span>(<span class="params">self, head: ListNode, G</span>):</span><br><span class="line">        Gset = <span class="built_in">set</span>(G)</span><br><span class="line">        cur = head</span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> cur:</span><br><span class="line">            <span class="keyword">if</span> (cur.val <span class="keyword">in</span> Gset <span class="keyword">and</span> <span class="built_in">getattr</span>(cur.<span class="built_in">next</span>, <span class="string">&#x27;val&#x27;</span>, <span class="literal">None</span>) <span class="keyword">not</span> <span class="keyword">in</span> Gset):</span><br><span class="line">                ans += <span class="number">1</span></span><br><span class="line">            cur = cur.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    head=stringToListNode([<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])<span class="comment"># 将输入的元组转换为链表</span></span><br><span class="line">    G=[<span class="number">0</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">4</span>]</span><br><span class="line">    <span class="built_in">print</span>(Solution().numComponents(head,G))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li><p>Time Complexity: <span class="math display">\[O(N +
-G\text{.length})\]</span>, where <em>N</em> is the length of the linked
-list with root node <code>head</code>.</p></li>
-<li><p>Space Complexity: <span
-class="math display">\[O(G\text{.length})\]</span>, to store
-<code>Gset</code>.</p></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/05/21/2019-05-21-Achievements-in-Weibo-Management/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/21/2019-05-21-Achievements-in-Weibo-Management/" class="post-title-link" itemprop="url">Achievements in Weibo Management</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-05-21 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-21T00:00:00+08:00">2019-05-21</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>217</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="achievements-in-weibo-management">Achievements in Weibo
-Management</h1>
-<ul>
-<li><p>科普专业知识点共计111条，包括：计算机视觉、语音识别、深度学习、强化学习等（2019-5-21）</p></li>
-<li><p>创建话题：</p>
-<ul>
-<li>#紫冬物语#：阅读量75.4万，讨论196条 （2019-5-21）</li>
-<li>#AI词说#：阅读量89.4万，讨论233条（2019-5-21）</li>
-<li>#AI爱新词#：阅读量86.5万，讨论201条（2019-5-21）</li>
-</ul></li>
-<li><p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/weibo.jpg" /></p>
-<center>
-<p>From Aug. 2018 to May. 2019（实现1000+新粉丝）</p>
-</center></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/05/21/2019-05-21-Q206-Reverse-Linked-List/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/21/2019-05-21-Q206-Reverse-Linked-List/" class="post-title-link" itemprop="url">Q206 Reverse Linked List</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-05-21 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-21T00:00:00+08:00">2019-05-21</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.9k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>3 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="reverse-linked-list"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-linked-list/">Reverse Linked
-List</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Reverse a singly linked list.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong> Input: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL
-Output: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL</p>
-</blockquote>
-<h3 id="approach-1-iterative">Approach 1: Iterative</h3>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>Assume that we have linked list <code>1 → 2 → 3 → Ø</code>, we would
-like to change it to <code>Ø ← 1 ← 2 ← 3</code>.</p>
-<p>While you are traversing the list, change the current node's next
-pointer to point to its previous element. Since a node does not have
-reference to its previous node, you must store its previous element
-beforehand. You also need another pointer to store the next node before
-changing the reference. Do not forget to return the new head reference
-at the end!</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseList</span>(<span class="params">self, head</span>):</span><br><span class="line">        prev_node = <span class="literal">None</span></span><br><span class="line">        curr_node = head</span><br><span class="line">        <span class="keyword">while</span> curr_node:</span><br><span class="line">            next_node = curr_node.<span class="built_in">next</span>  <span class="comment"># Remember next node</span></span><br><span class="line">            curr_node.<span class="built_in">next</span> = prev_node  <span class="comment"># REVERSE! None, first time round.</span></span><br><span class="line">            prev_node = curr_node  <span class="comment"># Used in the next iteration.</span></span><br><span class="line">            curr_node = next_node  <span class="comment"># Move to next node.</span></span><br><span class="line">        head = prev_node</span><br><span class="line">        <span class="keyword">return</span> head</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    head=stringToListNode([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])<span class="comment"># 将输入的元组转换为链表</span></span><br><span class="line">    <span class="built_in">print</span>(listNodeToString(Solution().reverseList(head)))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li><p>Time complexity : <em>O</em>(<em>n</em>). Assume that <em>n</em>
-is the list's length, the time complexity is
-<em>O</em>(<em>n</em>).</p></li>
-<li><p>Space complexity : <em>O</em>(1).</p></li>
-<li><p>Runtime: 28 ms, faster than 99.98% of Python3 online submissions
-forReverse Linked List.</p></li>
-<li><p>Memory Usage: 14.5 MB, less than 50.22% of Python3 online
-submissions for Reverse Linked List.</p></li>
-</ul>
-<hr />
-<h3 id="approach-2-recursive">Approach 2: Recursive</h3>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>The recursive version is slightly trickier and the key is to work
-backwards. Assume that the rest of the list had already been reversed,
-now how do I reverse the front part? Let's assume the list is: <span
-class="math display">\[n_1 \to … \to n_{k-1} \to n_k \to n_{k+1} \to …
-\to n_m \to \phi​\]</span></p>
-<p>Assume from node <span class="math display">\[n_{k+1}\]</span> to
-<span class="math display">\[n_m\]</span> had been reversed and you are
-at node <span class="math display">\[n_k\]</span>.</p>
-<p><span class="math display">\[n_1 \to … \to n_{k-1} \to n_k \to
-n_{k+1} \leftarrow … \leftarrow n_m\]</span></p>
-<p>We want <span class="math display">\[n_{k+1}\]</span>’s next node to
-point to <span class="math display">\[n_k\]</span>.</p>
-<p>So, <span class="math display">\[n_k\]</span>.next.next = <span
-class="math display">\[n_k​\]</span>;</p>
-<p>Be very careful that <span class="math display">\[n_1\]</span>'s next
-must point to <span class="math display">\[\phi​\]</span>. If you forget
-about this, your linked list has a cycle in it. This bug could be caught
-if you test your code with a linked list of size 2.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseList</span>(<span class="params">self, head</span>):</span><br><span class="line">        <span class="keyword">if</span> head==<span class="literal">None</span> <span class="keyword">or</span> head.<span class="built_in">next</span>==<span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> head</span><br><span class="line">        p=head.<span class="built_in">next</span> <span class="comment"># 设定p是下一个node</span></span><br><span class="line">        p=Solution().reverseList(p)</span><br><span class="line">        head.<span class="built_in">next</span>.<span class="built_in">next</span>=head</span><br><span class="line">        head.<span class="built_in">next</span>=<span class="literal">None</span></span><br><span class="line">        <span class="keyword">return</span> p</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity analysis</strong></p>
-<ul>
-<li><p>Time complexity : <em>O</em>(<em>n</em>). Assume that <em>n</em>
-is the list's length, the time complexity is
-<em>O</em>(<em>n</em>).</p></li>
-<li><p>Space complexity : <em>O</em>(<em>n</em>). The extra space comes
-from implicit stack space due to recursion. The recursion could go up to
-<em>n</em> levels deep.</p></li>
-<li><p>Runtime: 44 ms, faster than 69.21% of Python3 online submissions
-forReverse Linked List.</p></li>
-<li><p>Memory Usage: 19.1 MB, less than 11.36% of Python3 online
-submissions for Reverse Linked List.</p></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/25/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/27/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/25/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/27/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1186,7 +1176,7 @@ submissions for Reverse Linked List.</p></li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">230</span>
+          <span class="site-state-item-count">233</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1253,12 +1243,12 @@ submissions for Reverse Linked List.</p></li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">552k</span>
+    <span title="Symbols count total">568k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:22</span>
+    <span title="Reading time total">8:36</span>
 </div>
 
         

@@ -198,6 +198,359 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/05/22/2019-05-22-Q817-Linked-List-Components/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/05/22/2019-05-22-Q817-Linked-List-Components/" class="post-title-link" itemprop="url">Q817 Linked List Components</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-05-22 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-22T00:00:00+08:00">2019-05-22</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.2k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="linked-list-components"><a
+target="_blank" rel="noopener" href="https://leetcode.com/problems/linked-list-components/">Linked List
+Components</a></h1>
+<h2 id="question-it-is-a-wrong-problem-description">Question (It is a
+wrong problem description!)</h2>
+<blockquote>
+<p>We are given <code>head</code>, the head node of a linked list
+containing <strong>unique integer values</strong>.</p>
+<p>We are also given the list <code>G</code>, a subset of the values in
+the linked list.</p>
+<p>Return the number of connected components in <code>head</code>, where
+two values are connected if they appear consecutively in the linked
+list.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong> Input: head: 0-&gt;1-&gt;2-&gt;3 G = [0,
+1, 3] Output: 2 Explanation: 0 and 1 are connected, so [0, 1] and [3]
+are the two connected components.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong> Input: head: 0-&gt;1-&gt;2-&gt;3-&gt;4 G
+= [0, 3, 1, 4] Output: 2 Explanation: 0 and 1 are connected, 3 and 4 are
+connected, so [0, 1] and [3, 4] are the two connected components.</p>
+</blockquote>
+<h3 id="approach-1-grouping">Approach 1: Grouping</h3>
+<blockquote>
+<p>Note: There is something wrong in the problem description. The test
+cases online are confusing.</p>
+<p><strong>Example:</strong></p>
+<p>input: [0] and [0]</p>
+<p>expected output: [1]</p>
+</blockquote>
+<p><strong>Intuition</strong></p>
+<p>Instead of thinking about connected components in <code>G</code>,
+think about them in the linked list. Connected components in
+<code>G</code> must occur consecutively in the linked list.</p>
+<p><strong>Algorithm</strong></p>
+<p>Scanning through the list, if <code>node.val</code> is in
+<code>G</code> and <code>node.next.val</code> isn't (including if
+<code>node.next</code> is <code>null</code>), then this must be the end
+of a connected component.</p>
+<p>For example, if the list is
+<code>0 -&gt; 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; 6 -&gt; 7</code>,
+and <code>G = [0, 2, 3, 5, 7]</code>, then when scanning through the
+list, we fulfill the above condition at <code>0, 3, 5, 7</code>, for a
+total answer of <code>4</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numComponents</span>(<span class="params">self, head: ListNode, G</span>):</span><br><span class="line">        Gset = <span class="built_in">set</span>(G)</span><br><span class="line">        cur = head</span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> cur:</span><br><span class="line">            <span class="keyword">if</span> (cur.val <span class="keyword">in</span> Gset <span class="keyword">and</span> <span class="built_in">getattr</span>(cur.<span class="built_in">next</span>, <span class="string">&#x27;val&#x27;</span>, <span class="literal">None</span>) <span class="keyword">not</span> <span class="keyword">in</span> Gset):</span><br><span class="line">                ans += <span class="number">1</span></span><br><span class="line">            cur = cur.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    head=stringToListNode([<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])<span class="comment"># 将输入的元组转换为链表</span></span><br><span class="line">    G=[<span class="number">0</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">4</span>]</span><br><span class="line">    <span class="built_in">print</span>(Solution().numComponents(head,G))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li><p>Time Complexity: <span class="math display">\[O(N +
+G\text{.length})\]</span>, where <em>N</em> is the length of the linked
+list with root node <code>head</code>.</p></li>
+<li><p>Space Complexity: <span
+class="math display">\[O(G\text{.length})\]</span>, to store
+<code>Gset</code>.</p></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/05/21/2019-05-21-Achievements-in-Weibo-Management/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/05/21/2019-05-21-Achievements-in-Weibo-Management/" class="post-title-link" itemprop="url">Achievements in Weibo Management</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-05-21 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-21T00:00:00+08:00">2019-05-21</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>217</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="achievements-in-weibo-management">Achievements in Weibo
+Management</h1>
+<ul>
+<li><p>科普专业知识点共计111条，包括：计算机视觉、语音识别、深度学习、强化学习等（2019-5-21）</p></li>
+<li><p>创建话题：</p>
+<ul>
+<li>#紫冬物语#：阅读量75.4万，讨论196条 （2019-5-21）</li>
+<li>#AI词说#：阅读量89.4万，讨论233条（2019-5-21）</li>
+<li>#AI爱新词#：阅读量86.5万，讨论201条（2019-5-21）</li>
+</ul></li>
+<li><p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/weibo.jpg" /></p>
+<center>
+<p>From Aug. 2018 to May. 2019（实现1000+新粉丝）</p>
+</center></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/05/21/2019-05-21-Q206-Reverse-Linked-List/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/05/21/2019-05-21-Q206-Reverse-Linked-List/" class="post-title-link" itemprop="url">Q206 Reverse Linked List</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-05-21 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-21T00:00:00+08:00">2019-05-21</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.9k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>3 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="reverse-linked-list"><a
+target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-linked-list/">Reverse Linked
+List</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>Reverse a singly linked list.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong> Input: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL
+Output: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL</p>
+</blockquote>
+<h3 id="approach-1-iterative">Approach 1: Iterative</h3>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>Assume that we have linked list <code>1 → 2 → 3 → Ø</code>, we would
+like to change it to <code>Ø ← 1 ← 2 ← 3</code>.</p>
+<p>While you are traversing the list, change the current node's next
+pointer to point to its previous element. Since a node does not have
+reference to its previous node, you must store its previous element
+beforehand. You also need another pointer to store the next node before
+changing the reference. Do not forget to return the new head reference
+at the end!</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseList</span>(<span class="params">self, head</span>):</span><br><span class="line">        prev_node = <span class="literal">None</span></span><br><span class="line">        curr_node = head</span><br><span class="line">        <span class="keyword">while</span> curr_node:</span><br><span class="line">            next_node = curr_node.<span class="built_in">next</span>  <span class="comment"># Remember next node</span></span><br><span class="line">            curr_node.<span class="built_in">next</span> = prev_node  <span class="comment"># REVERSE! None, first time round.</span></span><br><span class="line">            prev_node = curr_node  <span class="comment"># Used in the next iteration.</span></span><br><span class="line">            curr_node = next_node  <span class="comment"># Move to next node.</span></span><br><span class="line">        head = prev_node</span><br><span class="line">        <span class="keyword">return</span> head</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    head=stringToListNode([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])<span class="comment"># 将输入的元组转换为链表</span></span><br><span class="line">    <span class="built_in">print</span>(listNodeToString(Solution().reverseList(head)))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li><p>Time complexity : <em>O</em>(<em>n</em>). Assume that <em>n</em>
+is the list's length, the time complexity is
+<em>O</em>(<em>n</em>).</p></li>
+<li><p>Space complexity : <em>O</em>(1).</p></li>
+<li><p>Runtime: 28 ms, faster than 99.98% of Python3 online submissions
+forReverse Linked List.</p></li>
+<li><p>Memory Usage: 14.5 MB, less than 50.22% of Python3 online
+submissions for Reverse Linked List.</p></li>
+</ul>
+<hr />
+<h3 id="approach-2-recursive">Approach 2: Recursive</h3>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>The recursive version is slightly trickier and the key is to work
+backwards. Assume that the rest of the list had already been reversed,
+now how do I reverse the front part? Let's assume the list is: <span
+class="math display">\[n_1 \to … \to n_{k-1} \to n_k \to n_{k+1} \to …
+\to n_m \to \phi​\]</span></p>
+<p>Assume from node <span class="math display">\[n_{k+1}\]</span> to
+<span class="math display">\[n_m\]</span> had been reversed and you are
+at node <span class="math display">\[n_k\]</span>.</p>
+<p><span class="math display">\[n_1 \to … \to n_{k-1} \to n_k \to
+n_{k+1} \leftarrow … \leftarrow n_m\]</span></p>
+<p>We want <span class="math display">\[n_{k+1}\]</span>’s next node to
+point to <span class="math display">\[n_k\]</span>.</p>
+<p>So, <span class="math display">\[n_k\]</span>.next.next = <span
+class="math display">\[n_k​\]</span>;</p>
+<p>Be very careful that <span class="math display">\[n_1\]</span>'s next
+must point to <span class="math display">\[\phi​\]</span>. If you forget
+about this, your linked list has a cycle in it. This bug could be caught
+if you test your code with a linked list of size 2.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseList</span>(<span class="params">self, head</span>):</span><br><span class="line">        <span class="keyword">if</span> head==<span class="literal">None</span> <span class="keyword">or</span> head.<span class="built_in">next</span>==<span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> head</span><br><span class="line">        p=head.<span class="built_in">next</span> <span class="comment"># 设定p是下一个node</span></span><br><span class="line">        p=Solution().reverseList(p)</span><br><span class="line">        head.<span class="built_in">next</span>.<span class="built_in">next</span>=head</span><br><span class="line">        head.<span class="built_in">next</span>=<span class="literal">None</span></span><br><span class="line">        <span class="keyword">return</span> p</span><br></pre></td></tr></table></figure>
+<p><strong>Complexity analysis</strong></p>
+<ul>
+<li><p>Time complexity : <em>O</em>(<em>n</em>). Assume that <em>n</em>
+is the list's length, the time complexity is
+<em>O</em>(<em>n</em>).</p></li>
+<li><p>Space complexity : <em>O</em>(<em>n</em>). The extra space comes
+from implicit stack space due to recursion. The recursion could go up to
+<em>n</em> levels deep.</p></li>
+<li><p>Runtime: 44 ms, faster than 69.21% of Python3 online submissions
+forReverse Linked List.</p></li>
+<li><p>Memory Usage: 19.1 MB, less than 11.36% of Python3 online
+submissions for Reverse Linked List.</p></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/05/20/2019-05-20-Q876-Middle-of-the-Linked-List/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1149,391 +1502,10 @@ for Subdomain Visit Count.</li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/05/13/2019-05-13-Q347-Top-K-Frequent-Elements/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/13/2019-05-13-Q347-Top-K-Frequent-Elements/" class="post-title-link" itemprop="url">Q347 Top K Frequent Elements</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-05-13 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-13T00:00:00+08:00">2019-05-13</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.8k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="top-k-frequent-elements"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/top-k-frequent-elements/">Top K
-Frequent Elements</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given a non-empty array of integers, return the <strong>k</strong>
-most frequent elements.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input: nums = [1,1,1,2,2,3], k = 2 Output: [1,2]</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>Input: nums = [1], k = 1 Output: [1]</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ol type="1">
-<li>You may assume k is always valid, 1 ≤ k ≤ number of unique
-elements.</li>
-<li>Your algorithm's time complexity must be better than O(n log n),
-where n is the array's size.</li>
-</ol>
-</blockquote>
-<h3 id="approach-1-heap">Approach 1: Heap</h3>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>If <code>k = 1</code> the linear-time solution is quite simple. One
-could keep the frequency of elements appearance in a hash map and update
-the maximum element at each step.</p>
-<p>When <code>k &gt; 1</code> we need a data structure that has a fast
-access to the elements ordered by their frequencies. The idea here is to
-use the heap which is also known as priority queue.</p>
-<p>The first step is to build a hash map
-<code>element -&gt; its frequency</code>. In Java we could use data
-structure <code>HashMap</code> but have to fill it manually. Python
-provides us both a dictionary structure for the hash map and a method
-<code>Counter</code> in the <code>collections</code> library to build
-the hash map we need. This step takes <span
-class="math display">\[\mathcal{O}(N)\]</span> time where <code>N</code>
-is number of elements in the list.</p>
-<p>The second step is to build a heap. The time complexity of adding an
-element in a heap is <span
-class="math display">\[\mathcal{O}(\log(k))\]</span> and we do it
-<code>N</code> times that means <span
-class="math display">\[\mathcal{O}(N \log(k))\]</span> time complexity
-for this step.</p>
-<p>The last step to build an output list has <span
-class="math display">\[\mathcal{O}(k \log(k))\]</span> time
-complexity.</p>
-<p>In Python there is a method <code>nlargest</code> in
-<code>heapq</code> library (<a
-target="_blank" rel="noopener" href="https://hg.python.org/cpython/file/2.7/Lib/heapq.py#l203">check
-here the source code</a>) which has the same <span
-class="math display">\[\mathcal{O}(k \log(k))​\]</span> time complexity
-and combines two last steps in one line.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"><span class="keyword">import</span> heapq</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">topKFrequent</span>(<span class="params">self, nums, k</span>):</span><br><span class="line">        count = collections.Counter(nums)</span><br><span class="line">        <span class="keyword">return</span> heapq.nlargest(k, count.keys(), key=count.get)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums =[<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">    k=<span class="number">2</span></span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.topKFrequent(nums,k)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Runtime: 40 ms, faster than 99.60% of Python3 online submissions for
-Top K Frequent Elements.</li>
-<li>Memory Usage: 15.8 MB, less than 8.41% of Python3 online submissions
-for Top K Frequent Elements.</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/05/10/2019-05-10-Q575-Distribute-Candies/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/10/2019-05-10-Q575-Distribute-Candies/" class="post-title-link" itemprop="url">Q575 Distribute Candies</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-05-10 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-10T00:00:00+08:00">2019-05-10</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.2k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="distribute-candies"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/distribute-candies/">Distribute
-Candies</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given an integer array with <strong>even</strong> length, where
-different numbers in this array represent different
-<strong>kinds</strong> of candies. Each number means one candy of the
-corresponding kind. You need to distribute these candies
-<strong>equally</strong> in number to brother and sister. Return the
-maximum number of <strong>kinds</strong> of candies the sister could
-gain.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input: candies = [1,1,2,2,3,3] Output: 3 Explanation: There are three
-different kinds of candies (1, 2 and 3), and two candies for each kind.
-Optimal distribution: The sister has candies [1,2,3] and the brother has
-candies [1,2,3], too. The sister has three different kinds of
-candies.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>Input: candies = [1,1,2,3] Output: 2 Explanation: For example, the
-sister has candies [2,3] and the brother has candies [1,1]. The sister
-has two different kinds of candies, the brother has only one kind of
-candies.</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ol type="1">
-<li>The length of the given array is in range [2, 10,000], and will be
-even.</li>
-<li>The number in given array is in range [-100,000, 100,000].</li>
-</ol>
-</blockquote>
-<h3 id="approach-1-hash-table">Approach 1: Hash Table</h3>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>First, counting the number of kinds. Then, returning the number of
-given kinds.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">distributeCandies</span>(<span class="params">self, candies</span>):</span><br><span class="line">        Hash=<span class="built_in">dict</span>()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(candies)):</span><br><span class="line">            Hash[candies[i]]=i</span><br><span class="line">        kinds=<span class="built_in">len</span>(Hash)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">min</span>(kinds,<span class="built_in">len</span>(candies)//<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    candies =[<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.distributeCandies(candies)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Runtime: 136 ms, faster than 35.19% of Python3 online submissions
-for Distribute Candies.</li>
-<li>Memory Usage: 14.5 MB, less than 5.88% of Python3 online submissions
-for Distribute Candies.</li>
-</ul>
-<hr />
-<h3 id="approach-2-using-set">Approach 2: Using Set</h3>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>Another way to find the number of unique elements is to traverse over
-all the elements of the given candies array and keep on putting the
-elements in a set. By the property of a set, it will contain only unique
-elements. At the end, we can count the number of elements in the set,
-given by, say count. The value to be returned will again be given by
-<span class="math display">\[\text{min}(count, n/2)\]</span>. Here,
-<span class="math display">\[n\]</span> refers to the size of the
-candies array.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">distributeCandies</span>(<span class="params">self, candies</span>):</span><br><span class="line">        candyType = <span class="built_in">set</span>(candies)<span class="comment"># 统计糖果种类数</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">min</span>(<span class="built_in">len</span>(candyType), <span class="built_in">len</span>(candies) //<span class="number">2</span>)</span><br><span class="line">    <span class="comment"># 如果种类数&gt;n/2，则最多给n/2种糖果</span></span><br><span class="line">    <span class="comment"># 如果种类数&lt;n/2，则给所有种类的糖果</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>Runtime: 104 ms, faster than <strong><em>99.13%</em></strong> of
-Python3 online submissions for Distribute Candies.</p></li>
-<li><p>Memory Usage: 14.8 MB, less than 5.88% of Python3 online
-submissions for Distribute Candies.</p></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/05/09/2019-05-09-Q938-Range%20Sum%20of%20BST/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/09/2019-05-09-Q938-Range%20Sum%20of%20BST/" class="post-title-link" itemprop="url">Q938 Range Sum of BST</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-05-09 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-09T00:00:00+08:00">2019-05-09</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.3k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="range-sum-of-bst"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/range-sum-of-bst/">Range Sum of
-BST</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given the <code>root</code> node of a binary search tree, return the
-sum of values of all nodes with value between <code>L</code> and
-<code>R</code> (inclusive).</p>
-<p>The binary search tree is guaranteed to have unique values.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input: root = [10,5,15,3,7,null,18], L = 7, R = 15 Output: 32</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>Input: root = [10,5,15,3,7,13,18,1,null,6], L = 6, R = 10 Output:
-23</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ol type="1">
-<li>The number of nodes in the tree is at most <code>10000</code>.</li>
-<li>The final answer is guaranteed to be less than
-<code>2^31</code>.</li>
-</ol>
-</blockquote>
-<h3 id="approach-1-depth-first-search">Approach 1: Depth First
-Search</h3>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>We traverse the tree using a depth first search. If
-<code>node.val</code> falls outside the range <code>[L, R]</code>, (for
-example <code>node.val &lt; L</code>), then we know that only the right
-branch could have nodes with value inside <code>[L, R]</code>.</p>
-<p>We showcase two implementations - one using a recursive algorithm,
-and one using an iterative one.</p>
-<p><strong>Recursive Implementation</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">rangeSumBST</span>(<span class="params">self, root, L, R</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">node</span>):</span><br><span class="line">            <span class="keyword">if</span> node:</span><br><span class="line">                <span class="keyword">if</span> L &lt;= node.val &lt;= R:</span><br><span class="line">                    self.ans += node.val</span><br><span class="line">                <span class="keyword">if</span> L &lt; node.val:</span><br><span class="line">                    dfs(node.left)</span><br><span class="line">                <span class="keyword">if</span> node.val &lt; R:</span><br><span class="line">                    dfs(node.right)</span><br><span class="line"></span><br><span class="line">        self.ans = <span class="number">0</span></span><br><span class="line">        dfs(root)</span><br><span class="line">        <span class="keyword">return</span> self.ans</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><strong>Iterative Implementation</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">rangeSumBST</span>(<span class="params">self, root, L, R</span>):</span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        stack = [root]</span><br><span class="line">        <span class="keyword">while</span> stack:</span><br><span class="line">            node = stack.pop()</span><br><span class="line">            <span class="keyword">if</span> node:</span><br><span class="line">                <span class="keyword">if</span> L &lt;= node.val &lt;= R:</span><br><span class="line">                    ans += node.val</span><br><span class="line">                <span class="keyword">if</span> L &lt; node.val:</span><br><span class="line">                    stack.append(node.left)</span><br><span class="line">                <span class="keyword">if</span> node.val &lt; R:</span><br><span class="line">                    stack.append(node.right)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/26/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><span class="page-number current">27</span><a class="page-number" href="/page/28/">28</a><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/28/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/26/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><span class="page-number current">27</span><a class="page-number" href="/page/28/">28</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/28/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1601,7 +1573,7 @@ and one using an iterative one.</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">230</span>
+          <span class="site-state-item-count">233</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1668,12 +1640,12 @@ and one using an iterative one.</p>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">552k</span>
+    <span title="Symbols count total">568k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:22</span>
+    <span title="Reading time total">8:36</span>
 </div>
 
         

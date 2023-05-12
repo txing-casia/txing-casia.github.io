@@ -198,6 +198,416 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/10/24/2019-10-24-Pycharm%E8%BF%9E%E6%8E%A5Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/24/2019-10-24-Pycharm%E8%BF%9E%E6%8E%A5Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">Pycharm连接Linux服务器配置方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-10-24 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-24T00:00:00+08:00">2019-10-24</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>703</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1
+id="pycharm连接linux服务器配置方法">Pycharm连接Linux服务器配置方法</h1>
+<p>今天手贱在pycharm删除不用的解释器时把几个月前配置的远程解释器删了，查了下资料重新恢复，顺便留个笔记以防万一。</p>
+<ul>
+<li>Step
+1：打开python工程，点击Tool-&gt;Deployment-&gt;Configration</li>
+<li>Step
+2：填写远程解释器Name（随意命名），在connection页面选择类型为SFTP，填写host，user
+name，password等等。最后可以点击test SFTP
+connectioin测试一下。转到mapping页面，选择将windows下的代码和服务器上代码相连，填写本地Local
+path，服务器path，apply。</li>
+<li>Step 3：在菜单栏，File -&gt; Settings… -&gt; Project ×× -&gt;
+Project Interpreter，点击Add添加解释器。选择SSH Interpreter。</li>
+<li>Step 4：填写服务器的 Host
+地址，端口Port，用户名Username，填好后，下一步Next。</li>
+<li>Step 5：填写密码 Password，下一步Next。</li>
+<li>Step
+6：选择服务器上Python解释器的位置，以及服务器上的远程同步文件夹Sync
+folders（可设置多个）。服务器上可以使用命令which
+python找到当前环境Python的安装位置。如果通过anaconda安装了新的python环境，可以用conda
+activate opensim-rl，切换默认的base环境到opensim-rl环境，再用which
+python查找位置。输入好路径，点击Finish，配置结束。</li>
+</ul>
+<p>2019年10月24日</p>
+<p>Txing</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/09/10/2019-09-10-Reinforcement%20Learning%20-%20Deep%20Deterministic%20Policy%20Gradient%20algorithm%20(DDPG)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/10/2019-09-10-Reinforcement%20Learning%20-%20Deep%20Deterministic%20Policy%20Gradient%20algorithm%20(DDPG)/" class="post-title-link" itemprop="url">Reinforcement Learning | Deep Deterministic Policy Gradient algorithm (DDPG)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-09-10 00:00:00" itemprop="dateCreated datePublished" datetime="2019-09-10T00:00:00+08:00">2019-09-10</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>3.2k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>3 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="continuous-control-with-deep-reinforcement-learning">Continuous
+Control with Deep Reinforcement Learning</h1>
+<p>论文链接：https://arxiv.org/abs/1509.02971v2</p>
+<h2 id="前言">前言</h2>
+<blockquote>
+<p>Reinforcement
+Learning是2019年9月新开的专栏企划，旨在为今后RL的学习提供比较广阔的专业视野，同时贡献于New
+Idea的产生。</p>
+</blockquote>
+<h2 id="方法">方法</h2>
+<ul>
+<li><p><strong>意义：</strong>DDPG诞生于2016年的ICRL，作为Deep
+Q-learning的进阶算法，将Q-learning从离散action space拓展到了连续action
+space的应用领域，并实现了一个end-to-end ( image to action )
+的决策框架。</p></li>
+<li><p><strong>难点：</strong>DDPG提供了一个以未处理的高维传感信号作输入，解决复杂任务的算法框架。One
+of the primary goals of the field of artificial intelligence is to solve
+complex tasks from unprocessed, high-dimensional, sensory
+input.</p></li>
+<li><p>DQN的缺点：However, while DQN solves problems with
+high-dimensional observation spaces, it can only handle discrete and
+low-dimensional action spaces.</p></li>
+<li><p>面向的应用场景：Many tasks of interest, most notably physical
+control tasks, have continuous (real valued) and high dimensional action
+spaces.</p></li>
+<li><p>如果想把DQN用在连续的action
+space中，有一种办法是把action离散化。但是这样会大大增加action的维度，从而带来决策上的困难。例如一个3自由度的机器人，把每个关节角离散为10个角度，那么action
+space维度就会变为<span
+class="math display">\[10^{3}\]</span>。在需要精确控制的时候，这个问题会更加严重。（the
+number of actions increases exponentially with the number of degrees of
+freedom）。此外，这种粗略的离散化丢失了action的结构信息，可能会影响到问题的求解。</p></li>
+<li><p>DDPG本质：In this work we present a model-free, off-policy
+actor-critic algorithm using deep function approximators that can learn
+policies in high-dimensional, continuous action spaces.</p></li>
+<li><p>DDPG基于DPG算法，DPG由于只是加入了简单的神经网络函数近似，因此算法并不稳定。</p></li>
+<li><p>DQN is able to learn value functions using such function
+approximators in a stable and robust way due to two innovations:</p>
+<ul>
+<li>the network is trained off-policy with samples from a <strong>replay
+buffer</strong> to minimize correlations between samples;</li>
+<li>the network is trained with a <strong>target Q network</strong> to
+give consistent targets during temporal difference backups</li>
+</ul></li>
+<li><p>DDPG在实验中用摄像机的画面提取低维信息（例如：cartesian
+coordinates or joint angles
+笛卡尔坐标或者关节角），将其作为observation。using both low-dimensional
+observations (e.g. joint angles) and directly from pixels.</p></li>
+<li><p>Here, we assumed the environment is fully-observed so <span
+class="math display">\[s_t = x_t\]</span>.</p></li>
+<li><p>replay buffer + soft updates</p></li>
+</ul>
+<p><strong>DDPG algorithm</strong></p>
+<blockquote>
+<hr />
+<p>Randomly initialize critic network <span
+class="math display">\[Q(s,a\mid \theta^Q)\]</span> and actor <span
+class="math display">\[\mu(s\mid\theta^{\,u})\]</span> with weights
+<span class="math display">\[\theta^Q\]</span> and <span
+class="math display">\[\theta^{\mu}\]</span></p>
+<p>Initialize target network <span
+class="math display">\[Q&#39;\]</span> and <span
+class="math display">\[\mu&#39;\]</span> with weights <span
+class="math display">\[\theta^{Q&#39;}\leftarrow \theta^{Q}\]</span>,
+<span class="math display">\[\theta^{\mu&#39;}\leftarrow
+\theta^{\mu}\]</span></p>
+<p>Initialize replay buffer <span class="math display">\[R\]</span>
+<strong>For</strong> <span class="math display">\[episode = 1\]</span>,
+<span class="math display">\[M\]</span> <strong>do</strong></p>
+<p>---- Initialize a random process <span
+class="math display">\[\mathscr{N}\]</span> for action exploration ----
+Receive initial observation state <span
+class="math display">\[s_1\]</span></p>
+<p>---- <strong>For</strong> <span class="math display">\[t = 1,
+T\]</span> <strong>do</strong></p>
+<p>---- ---- Select action <span class="math display">\[a_t =
+\mu(s_t\mid\theta^{\mu}) + \mathscr{N}_t\]</span> according to the
+current policy and exploration noise</p>
+<p>---- ---- Execute action at and observe reward <span
+class="math display">\[r_t\]</span> and observe new state <span
+class="math display">\[s_{t+1}\]</span></p>
+<p>---- ---- Store transition <span
+class="math display">\[(s_t,a_t,r_t,s_{t+1})\]</span> in <span
+class="math display">\[R\]</span></p>
+<p>---- ---- Sample a random minibatch of <span
+class="math display">\[N\]</span> transitions <span
+class="math display">\[(s_t,a_t,r_t,s_{t+1})\]</span> from <span
+class="math display">\[R\]</span></p>
+<p>---- ---- Set <span class="math display">\[y_i = r_i + \gamma
+Q&#39;(s_{i+1},\mu&#39;(s_{i+1}\midθ^{\mu&#39;})\mid \theta
+^{Q&#39;})\]</span></p>
+<p>---- ---- Update critic by minimizing the loss: <span
+class="math display">\[L = \frac{1}{N} \sum_i(y_i - Q(s_i,a_i \mid
+\theta^Q))^2\]</span></p>
+<p>---- ---- Update the actor policy using the sampled policy
+gradient:</p>
+<p>---- ---- ---- <span class="math display">\[\triangledown
+_{\theta^{\mu}}J \approx \frac{1}{N}\sum\triangledown_a Q(s,a\mid
+\theta^Q) \mid _{s=s_i,a=\mu(s_i)}\triangledown_{\theta^{\mu}}\mu(s \mid
+\theta^{\mu})\mid_{s_i}\]</span></p>
+<p>---- ---- Update the target networks:</p>
+<p>---- ---- ---- <span
+class="math display">\[\theta^{Q&#39;}\leftarrow\tau\theta^Q+(1-\tau)\theta^{Q&#39;}\]</span>,</p>
+<p>---- ---- ---- <span
+class="math display">\[\theta^{\mu&#39;}\leftarrow\tau\theta^{\mu}+(1-\tau)\theta^{\mu&#39;}\]</span></p>
+<p>---- <strong>end For</strong></p>
+<p><strong>end For</strong></p>
+</blockquote>
+<hr />
+<h2 id="总结">总结</h2>
+<p>不知道为什么看完之后觉得DDPG并没有想象中的复杂，也没有什么推导过程，架构也比较简单清晰，文章中大量的实验验证了算法的普适性。可能这些点正是一个RL算法的可贵之处吧。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/09/07/2019-09-07-%E5%88%A9%E7%94%A8syncthing%E5%BB%BA%E7%AB%8BLinux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E6%9C%AC%E5%9C%B0Win10%E7%9A%84%E5%90%8C%E6%AD%A5%E6%96%87%E4%BB%B6%E5%A4%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/07/2019-09-07-%E5%88%A9%E7%94%A8syncthing%E5%BB%BA%E7%AB%8BLinux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E6%9C%AC%E5%9C%B0Win10%E7%9A%84%E5%90%8C%E6%AD%A5%E6%96%87%E4%BB%B6%E5%A4%B9/" class="post-title-link" itemprop="url">利用syncthing建立Linux服务器与本地Win10的同步文件夹</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-09-07 00:00:00" itemprop="dateCreated datePublished" datetime="2019-09-07T00:00:00+08:00">2019-09-07</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1
+id="利用syncthing建立linux服务器与本地win10的同步文件夹">利用syncthing建立Linux服务器与本地Win10的同步文件夹</h1>
+<h2 id="background">Background</h2>
+<p>由于最近把本地的试验程序搬到了服务器上（<a
+target="_blank" rel="noopener" href="https://txing.tk/2019/09/06/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E9%85%8D%E7%BD%AEAnaconda3%E4%BB%A5Pytorch-RL%E7%8E%AF%E5%A2%83/">Linux服务器上配置Anaconda3以Pytorch-RL环境</a>），现在的试验结果就自然地在运行后保存在了服务器上（图片、数据）。</p>
+<p>由于没有配置服务器端的可视化界面，就没法查看结果了。如果利用pscp进行Linux<span
+class="math display">\[\to\]</span>windows的文件传输，等结果到了本地再查看，这样每跑一次实验就要单独传输一次，势必非常麻烦。</p>
+<p>于是这里就迫切需求一种<strong>及时</strong>、<strong>高效</strong>、<strong>自动</strong>的linux<span
+class="math display">\[\to\]</span>windows10的文件传输方案。</p>
+<hr />
+<p>经过一番调研，目前有这样几种方案备选：</p>
+<p><strong>1、在linux服务器端查看图片。</strong>这个方案需要使用到类似SimpleHTTPServer的服务，简单地说就是在通过浏览器在ip:8000口查看图片。这个方案仍然需要在运行完成之后单独再操作一步，虽然实现了查看图片的功能，但如果需要保存图片到本地，还是绕不开pscp的操作。</p>
+<p><strong>2、利用VNCserver将服务器端界面图形化。</strong>这是一个非常有吸引力的方案，因为图形化服务器端的意义不仅仅在于查看图片，跟在于今后其它文件操作都可以变得更加具体明确。但初尝试的过程中发现提供VNC服务的第三方软件很多，具体操作和配置看得眼花缭乱，莫衷一是。</p>
+<p><strong>3、把服务器的文件传回本地查看。</strong>既然要在服务器上查看图片这么麻烦，我们何不直接把图片传回本地的windows环境呢，到了windows下那还不是为所欲为啊。这一方案主要同样有很多的备选子方案：</p>
+<ul>
+<li><strong>我们的老朋友pscp</strong>：每次使用都要输入一长串目录路径（本地和服务器的），让人身心俱疲。</li>
+<li><strong>rsync</strong>：支持增量备份的优秀镜像备份工具，网上的具体实施方案比较繁琐，依然莫衷一是。</li>
+<li><strong>syncthing</strong>：syncthing是个类似rsync的开运啊同步工具，支持windows,
+linux, Mac等不同的平台看来是个不错的选择。</li>
+</ul>
+<hr />
+<h2 id="syncthing-a-wise-choice">syncthing: a wise choice</h2>
+<p>接下来我们选择syncthing，并尝试安装并配置</p>
+<h3 id="windows-10端">windows 10端：</h3>
+<ul>
+<li>直接在<a
+target="_blank" rel="noopener" href="https://syncthing.net/">syncthing官网</a>可以下载到windows版本的安装包，直接解压点开exe即可完成安装。</li>
+</ul>
+<h3 id="linux服务器端">Linux服务器端：</h3>
+<ul>
+<li><p>第一步：在windows上下载好最新的<a
+target="_blank" rel="noopener" href="https://github.com/syncthing/syncthing/releases/tag/v1.2.2">安装包</a>（我这里选择的是<a
+target="_blank" rel="noopener" href="https://github.com/syncthing/syncthing/releases/download/v1.2.2/syncthing-linux-amd64-v1.2.2.tar.gz">syncthing-linux-amd64-v1.2.2.tar.gz</a>）</p></li>
+<li><p>第二步：将安装包上传至服务器，具体操作参考<a
+target="_blank" rel="noopener" href="https://txing.tk/2019/09/06/Windows%E9%80%9A%E8%BF%87SSH%E5%90%91Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/">Windows通过SSH向Linux服务器上传文件</a></p></li>
+<li><p>第三步：解压文件并安装。</p>
+<p>在新建的安装包所在目录中执行解压命令，并打开文件夹</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf syncthing-linux-amd64-v1.2.2.tar.gz</span><br><span class="line">cd syncthing-linux-amd64-v1.2.2</span><br></pre></td></tr></table></figure>
+<p>这里通过ls命令可以看到有一个可执行文件，现在先打开它用来生成我们需要更改的配置文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./syncthing</span><br></pre></td></tr></table></figure>
+<p>等到看见类似如下字样的时候，表示启动完成，按Ctrl+c关闭</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[QQAFC] 16:59:18 INFO: Detected 1 NAT service</span><br></pre></td></tr></table></figure></li>
+<li><p>第四步：配置syncthing。由于syncthing默认是只允许本机访问，这里需要进行设置。大多数教程这里都会使用vim进行编辑，但是我的环境里没有vim，也有有sudo权限安装，因此参考这里的<a
+target="_blank" rel="noopener" href="https://www.youcl.com/info/10588">某教程</a>里的方法，通过nano进行编辑</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano ~/.config/syncthing/config.xml</span><br></pre></td></tr></table></figure>
+<p>这时会弹出一大片文本，但我们只需要找到下面这一段</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;gui enabled=&quot;true&quot; tls=&quot;false&quot;&gt;</span><br><span class="line">    &lt;address&gt;127.0.0.1:46554&lt;/address&gt;</span><br><span class="line">&lt;/gui&gt;</span><br></pre></td></tr></table></figure>
+<p>再把前4段数字全部变成0，即0.0.0.0:46554（冒号后面的数字不用变）。然后按Ctrl+x退出编辑，在按y保存更改。</p></li>
+<li><p>第五步：再次运行syncthing</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./syncthing</span><br></pre></td></tr></table></figure>
+<p>在浏览器输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://服务器IP:46554</span><br></pre></td></tr></table></figure>
+<p>后面的数字是在第4步修改地址时看到的冒号后的数字，按下回车进行图形化的配置。</p></li>
+<li><p>第六步：图形化配置</p>
+<p>配置分为两部分：</p>
+<ul>
+<li>登录<code>http://服务器IP:46554</code>选择服务器端要共享的文件夹及路径。记录服务器端ID。</li>
+<li>另一台机器打开syncthing，自动打开桌面端配置页面，配置要共享的文件夹和路径。添加设备，粘贴服务器端ID，在服务器端点击同意，完成连接。</li>
+</ul></li>
+</ul>
+<p>之后的设置比较简单这里给出参考不过多介绍：<a
+target="_blank" rel="noopener" href="https://blog.curlc.com/archives/333.html">Syncthing同步设置教程</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/09/06/2019-09-06-Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E9%85%8D%E7%BD%AEAnaconda3%E4%BB%A5%E5%8F%8APytorch-RL%E7%8E%AF%E5%A2%83/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -750,409 +1160,10 @@ for Two Sum II - Input array is sorted.</li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/07/10/2019-07-10-Q349-Intersection-of-Two-Arrays/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/07/10/2019-07-10-Q349-Intersection-of-Two-Arrays/" class="post-title-link" itemprop="url">Q349 Intersection of Two Arrays</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-07-10 00:00:00" itemprop="dateCreated datePublished" datetime="2019-07-10T00:00:00+08:00">2019-07-10</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.9k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="intersection-of-two-arrays"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/peak-index-in-a-mountain-array/">Intersection
-of Two Arrays</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given two arrays, write a function to compute their intersection.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input: nums1 = [1,2,2,1], nums2 = [2,2] Output: [2]</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4] Output: [9,4]</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li>Each element in the result must be unique.</li>
-<li>The result can be in any order.</li>
-</ul>
-</blockquote>
-<h2 id="approach-1-array">Approach 1: Array</h2>
-<p><strong>Intuition and Algorithm</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">intersection</span>(<span class="params">self, nums1, nums2</span>):</span><br><span class="line">        out=[]</span><br><span class="line">        <span class="keyword">for</span> A <span class="keyword">in</span> nums1:</span><br><span class="line">            <span class="keyword">if</span> A <span class="keyword">in</span> nums2 <span class="keyword">and</span> A <span class="keyword">not</span> <span class="keyword">in</span> out:</span><br><span class="line">                out.append(A)</span><br><span class="line">        <span class="keyword">return</span> out</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums1 = [<span class="number">4</span>, <span class="number">9</span>, <span class="number">5</span>]</span><br><span class="line">    nums2 = [<span class="number">9</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">8</span>, <span class="number">4</span>]</span><br><span class="line">    solution=Solution().intersection(nums1,nums2)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li>Time Complexity: <em>O</em>(<em>N</em>), where <em>N</em> is the
-length of <code>nums1</code>.</li>
-<li>Space Complexity: <em>O</em>(1).</li>
-<li>Runtime: 52 ms, faster than 23.52% of Python online submissions for
-Intersection of Two Arrays.</li>
-<li>Memory Usage: 11.8 MB, less than 86.37% of Python online submissions
-for Intersection of Two Arrays.</li>
-</ul>
-<h2 id="approach-2-binary-search">Approach 2: Binary Search</h2>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>The comparison <code>A[i] &lt; A[i+1]</code> in a mountain array
-looks like
-<code>[True, True, True, ..., True, False, False, ..., False]</code>: 1
-or more boolean <code>True</code>s, followed by 1 or more boolean
-<code>False</code>. For example, in the mountain array
-<code>[1, 2, 3, 4, 1]</code>, the comparisons
-<code>A[i] &lt; A[i+1]</code> would be
-<code>True, True, True, False</code>.</p>
-<p>We can binary search over this array of comparisons, to find the
-largest index <code>i</code> such that <code>A[i] &lt; A[i+1]</code>.
-For more on <em>binary search</em>, see the <a
-target="_blank" rel="noopener" href="https://leetcode.com/explore/learn/card/binary-search/">LeetCode
-explore topic here.</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">intersection</span>(<span class="params">self, nums1, nums2</span>):</span><br><span class="line">        set1 = <span class="built_in">set</span>(nums1)</span><br><span class="line">        set2 = <span class="built_in">set</span>(nums2)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">list</span>(set2 &amp; set1)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums1 = [<span class="number">4</span>, <span class="number">9</span>, <span class="number">5</span>]</span><br><span class="line">    nums2 = [<span class="number">9</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">8</span>, <span class="number">4</span>]</span><br><span class="line">    solution=Solution().intersection(nums1,nums2)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li>Time complexity : <span class="math display">\[\mathcal{O}(n +
-m)\]</span> in the average case and <span
-class="math display">\[\mathcal{O}(n \times m)\]</span> <a
-target="_blank" rel="noopener" href="https://wiki.python.org/moin/TimeComplexity#set">in the worst case
-when load factor is high enough</a>.</li>
-<li>Space complexity : <span class="math display">\[\mathcal{O}(n +
-m)\]</span> in the worst case when all elements in the arrays are
-different.</li>
-<li>Runtime: 28 ms, faster than 93.60% of Python online submissions for
-Intersection of Two Arrays.</li>
-<li>Memory Usage: 11.9 MB, less than 50.78% of Python online submissions
-for Intersection of Two Arrays.</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/07/09/2019-07-09-Q852-Peak-Index-in-a-Mountain-Array/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/07/09/2019-07-09-Q852-Peak-Index-in-a-Mountain-Array/" class="post-title-link" itemprop="url">Q852 Peak Index in a Mountain Array</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-07-09 00:00:00" itemprop="dateCreated datePublished" datetime="2019-07-09T00:00:00+08:00">2019-07-09</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.1k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="peak-index-in-a-mountain-array"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/peak-index-in-a-mountain-array/">Peak
-Index in a Mountain Array</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Let's call an array <code>A</code> a <em>mountain</em> if the
-following properties hold:</p>
-<ul>
-<li><code>A.length &gt;= 3</code></li>
-<li>There exists some <code>0 &lt; i &lt; A.length - 1</code> such that
-<code>A[0] &lt; A[1] &lt; ... A[i-1] &lt; A[i] &gt; A[i+1] &gt; ... &gt; A[A.length - 1]</code></li>
-</ul>
-<p>Given an array that is definitely a mountain, return any
-<code>i</code> such that
-<code>A[0] &lt; A[1] &lt; ... A[i-1] &lt; A[i] &gt; A[i+1] &gt; ... &gt; A[A.length - 1]</code>.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input: [0,1,0] Output: 1</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>Input: [0,2,1,0] Output: 1</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li><code>3 &lt;= A.length &lt;= 10000</code></li>
-<li><code>0 &lt;= A[i] &lt;= 10^6</code></li>
-<li>A is a mountain, as defined above.</li>
-</ul>
-</blockquote>
-<h2 id="approach-1-linear-scan">Approach 1: Linear Scan</h2>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>The mountain increases until it doesn't. The point at which it stops
-increasing is the peak.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">peakIndexInMountainArray</span>(<span class="params">self, A</span>):</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(A)):</span><br><span class="line">            <span class="keyword">if</span> A[i]&gt;A[i+<span class="number">1</span>]: <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">return</span> i</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    A=[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">0</span>]</span><br><span class="line">    solution=Solution().peakIndexInMountainArray(A)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li>Time Complexity: <em>O</em>(<em>N</em>), where <em>N</em> is the
-length of <code>A</code>.</li>
-<li>Space Complexity: <em>O</em>(1).</li>
-<li>Runtime: 56 ms, faster than 95.41% of Python online submissions for
-Peak Index in a Mountain Array.</li>
-<li>Memory Usage: 12.5 MB, less than 99.37% of Python online submissions
-for Peak Index in a Mountain Array.</li>
-</ul>
-<h2 id="approach-2-binary-search">Approach 2: Binary Search</h2>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>The comparison <code>A[i] &lt; A[i+1]</code> in a mountain array
-looks like
-<code>[True, True, True, ..., True, False, False, ..., False]</code>: 1
-or more boolean <code>True</code>s, followed by 1 or more boolean
-<code>False</code>. For example, in the mountain array
-<code>[1, 2, 3, 4, 1]</code>, the comparisons
-<code>A[i] &lt; A[i+1]</code> would be
-<code>True, True, True, False</code>.</p>
-<p>We can binary search over this array of comparisons, to find the
-largest index <code>i</code> such that <code>A[i] &lt; A[i+1]</code>.
-For more on <em>binary search</em>, see the <a
-target="_blank" rel="noopener" href="https://leetcode.com/explore/learn/card/binary-search/">LeetCode
-explore topic here.</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">peakIndexInMountainArray</span>(<span class="params">self, A</span>):</span><br><span class="line">        lo, hi = <span class="number">0</span>, <span class="built_in">len</span>(A) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> lo &lt; hi:</span><br><span class="line">            mi = (lo + hi) / <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> A[mi] &lt; A[mi + <span class="number">1</span>]:</span><br><span class="line">                lo = mi + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                hi = mi</span><br><span class="line">        <span class="keyword">return</span> lo</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    A=[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">0</span>]</span><br><span class="line">    solution=Solution().peakIndexInMountainArray(A)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li>Time Complexity: <em>O</em>(<em>N</em>), where <em>N</em> is the
-length of <code>A</code>.</li>
-<li>Space Complexity: <em>O</em>(1).</li>
-<li>Runtime: 56 ms, faster than 95.41% of Python online submissions for
-Peak Index in a Mountain Array.</li>
-<li>Memory Usage: 12.5 MB, less than 99.37% of Python online submissions
-for Peak Index in a Mountain Array.</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/06/19/2019-06-19-Q917-Reverse-Only-Letters/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/19/2019-06-19-Q917-Reverse-Only-Letters/" class="post-title-link" itemprop="url">Q917 Reverse Only Letters</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-06-19 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-19T00:00:00+08:00">2019-06-19</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.2k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="reverse-only-letters"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-only-letters/">Reverse Only
-Letters</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given a string <code>S</code>, return the "reversed" string where all
-characters that are not a letter stay in the same place, and all letters
-reverse their positions.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input: "ab-cd" Output: "dc-ba"</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>Input: "a-bC-dEf-ghIj" Output: "j-Ih-gfE-dCba"</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 3:</strong></p>
-<p>Input: "Test1ng-Leet=code-Q!" Output: "Qedo1ct-eeLg=ntse-T!"</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li>S.length &lt;= 100</li>
-<li>33 &lt;= S[i].ASCIIcode &lt;= 122</li>
-<li>S doesn't contain <code>\</code> or <code>"</code></li>
-</ul>
-</blockquote>
-<h2 id="approach-1-stack-of-letters">Approach 1: Stack of Letters</h2>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>Collect the letters of <code>S</code> separately into a stack, so
-that popping the stack reverses the letters. (Alternatively, we could
-have collected the letters into an array and reversed the array.)</p>
-<p>Then, when writing the characters of <code>S</code>, any time we need
-a letter, we use the one we have prepared instead.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseOnlyLetters</span>(<span class="params">self, S</span>):</span><br><span class="line">        letters = [c <span class="keyword">for</span> c <span class="keyword">in</span> S <span class="keyword">if</span> c.isalpha()]</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> S:</span><br><span class="line">            <span class="keyword">if</span> c.isalpha():</span><br><span class="line">                ans.append(letters.pop())</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                ans.append(c)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;&quot;</span>.join(ans)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    S=<span class="string">&quot;ab-cd&quot;</span></span><br><span class="line">    solution=Solution().reverseOnlyLetters(S)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li>Time Complexity:<em>O</em>(<em>N</em>), where <em>N</em> is the
-length of <code>S</code>.</li>
-<li>Space Complexity: <em>O</em>(<em>N</em>).</li>
-<li>Runtime: 16 ms, faster than 92.70% of Python online submissions for
-Reverse Only Letters.</li>
-<li>Memory Usage: 11.8 MB, less than 51.06% of Python online submissions
-for Reverse Only Letters.</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/23/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><span class="page-number current">24</span><a class="page-number" href="/page/25/">25</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/25/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/23/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><span class="page-number current">24</span><a class="page-number" href="/page/25/">25</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/25/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1220,7 +1231,7 @@ for Reverse Only Letters.</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">230</span>
+          <span class="site-state-item-count">233</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1287,12 +1298,12 @@ for Reverse Only Letters.</li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">552k</span>
+    <span title="Symbols count total">568k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:22</span>
+    <span title="Reading time total">8:36</span>
 </div>
 
         
