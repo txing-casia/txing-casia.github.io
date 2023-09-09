@@ -198,6 +198,164 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/13/2021-07-13-Q130-%E8%A2%AB%E5%9B%B4%E7%BB%95%E7%9A%84%E5%8C%BA%E5%9F%9F-%E4%B8%AD%E7%AD%89-%E6%B7%B1%E5%BA%A6and%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/13/2021-07-13-Q130-%E8%A2%AB%E5%9B%B4%E7%BB%95%E7%9A%84%E5%8C%BA%E5%9F%9F-%E4%B8%AD%E7%AD%89-%E6%B7%B1%E5%BA%A6and%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" class="post-title-link" itemprop="url">Q130-被围绕的区域-中等-DFS/BFS</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-07-13 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-13T00:00:00+08:00">2021-07-13</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>3.4k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>3 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="被围绕的区域"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/surrounded-regions/">130.
+被围绕的区域</a></h4>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>给你一个 <code>m x n</code> 的矩阵 <code>board</code> ，由若干字符
+<code>'X'</code> 和 <code>'O'</code> ，找到所有被 <code>'X'</code>
+围绕的区域，并将这些区域里所有的 <code>'O'</code> 用 <code>'X'</code>
+填充。</p>
+<p>x x x x <span class="math display">\[\rightarrow\]</span> x x x x</p>
+<p>x 0 0 x <span class="math display">\[\rightarrow\]</span> x x x x</p>
+<p>x x 0 x <span class="math display">\[\rightarrow\]</span> x x x x</p>
+<p>x 0 x x <span class="math display">\[\rightarrow\]</span> x 0 x x</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>输入：board =
+[["X","X","X","X"],["X","O","O","X"],["X","X","O","X"],["X","O","X","X"]]
+输出：[["X","X","X","X"],["X","X","X","X"],["X","X","X","X"],["X","O","X","X"]]
+解释：被围绕的区间不会存在于边界上，换句话说，任何边界上的 'O'
+都不会被填充为 'X'。 任何不在边界上，或不与边界上的 'O' 相连的 'O'
+最终都会被填充为
+'X'。如果两个元素在水平或垂直方向相邻，则称它们是“相连”的。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>输入：board = [["X"]] 输出：[["X"]]</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ul>
+<li><code>m == board.length</code></li>
+<li><code>n == board[i].length</code></li>
+<li><code>1 &lt;= m, n &lt;= 200</code></li>
+<li><code>board[i][j]</code> 为 <code>'X'</code> 或
+<code>'O'</code></li>
+</ul>
+</blockquote>
+<h3 id="approach-1-深度优先搜索">Approach 1: 深度优先搜索</h3>
+<p>写在前面 本题给定的矩阵中有三种元素：</p>
+<ul>
+<li><p>字母 X；</p></li>
+<li><p>被字母 X 包围的字母 O；</p></li>
+<li><p>没有被字母 X 包围的字母 O。</p></li>
+</ul>
+<p>本题要求将所有被字母 X 包围的字母 O都变为字母 X ，但很难判断哪些 O
+是被包围的，哪些 O 不是被包围的。</p>
+<p>注意到题目解释中提到：任何边界上的 O 都不会被填充为 X。
+我们可以想到，所有的不被包围的 O 都直接或间接与边界上的 O
+相连。我们可以利用这个性质判断 O 是否在边界上，具体地说：</p>
+<ul>
+<li>对于每一个边界上的
+O，我们以它为起点，标记所有与它直接或间接相连的字母 O；</li>
+<li>最后我们遍历这个矩阵，对于每一个字母：
+<ul>
+<li>如果该字母被标记过，则该字母为没有被字母 X 包围的字母
+O，我们将其还原为字母 O；</li>
+<li>如果该字母没有被标记过，则该字母为被字母 X 包围的字母
+O，我们将其修改为字母 X。</li>
+</ul></li>
+</ul>
+<p><strong>深度优先搜索：</strong></p>
+<p>我们可以使用深度优先搜索实现标记操作。在下面的代码中，我们把标记过的字母
+<code>O</code> 修改为字母 <code>A</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">solve</span>(<span class="params">self, board</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Do not return anything, modify board in-place instead.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> board:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        n, m = <span class="built_in">len</span>(board), <span class="built_in">len</span>(board[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">x, y</span>):</span><br><span class="line">            <span class="comment"># 如果board[x][y]不是位于矩阵边框，且字符为&#x27;x&#x27;，则返回为空</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> <span class="number">0</span> &lt;= x &lt; n <span class="keyword">or</span> <span class="keyword">not</span> <span class="number">0</span> &lt;= y &lt; m <span class="keyword">or</span> board[x][y] != <span class="string">&#x27;O&#x27;</span>:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="comment"># 对于位于矩阵边框，且字符为&#x27;0&#x27;的元素</span></span><br><span class="line">            board[x][y] = <span class="string">&quot;A&quot;</span></span><br><span class="line">            dfs(x + <span class="number">1</span>, y)</span><br><span class="line">            dfs(x - <span class="number">1</span>, y)</span><br><span class="line">            dfs(x, y + <span class="number">1</span>)</span><br><span class="line">            dfs(x, y - <span class="number">1</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 检测边框</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            dfs(i, <span class="number">0</span>)</span><br><span class="line">            dfs(i, m - <span class="number">1</span>)</span><br><span class="line">        <span class="comment"># 检测边框</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m - <span class="number">1</span>):</span><br><span class="line">            dfs(<span class="number">0</span>, i)</span><br><span class="line">            dfs(n - <span class="number">1</span>, i)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">                <span class="keyword">if</span> board[i][j] == <span class="string">&quot;A&quot;</span>:</span><br><span class="line">                    board[i][j] = <span class="string">&quot;O&quot;</span></span><br><span class="line">                <span class="keyword">elif</span> board[i][j] == <span class="string">&quot;O&quot;</span>:</span><br><span class="line">                    board[i][j] = <span class="string">&quot;X&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="comment"># [[&quot;X&quot;]] </span></span><br><span class="line">    <span class="comment"># [[&quot;X&quot;,&quot;X&quot;,&quot;X&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;O&quot;,&quot;O&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;X&quot;,&quot;O&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;O&quot;,&quot;X&quot;,&quot;X&quot;]]</span></span><br><span class="line">    board = [[<span class="string">&quot;X&quot;</span>,<span class="string">&quot;X&quot;</span>,<span class="string">&quot;X&quot;</span>,<span class="string">&quot;X&quot;</span>],[<span class="string">&quot;X&quot;</span>,<span class="string">&quot;O&quot;</span>,<span class="string">&quot;O&quot;</span>,<span class="string">&quot;X&quot;</span>],[<span class="string">&quot;X&quot;</span>,<span class="string">&quot;X&quot;</span>,<span class="string">&quot;O&quot;</span>,<span class="string">&quot;X&quot;</span>],[<span class="string">&quot;X&quot;</span>,<span class="string">&quot;O&quot;</span>,<span class="string">&quot;X&quot;</span>,<span class="string">&quot;X&quot;</span>]]</span><br><span class="line">    solution=Solution().solve(board)</span><br><span class="line">    <span class="built_in">print</span>(board)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><strong>时间复杂度</strong>：<span class="math display">\[O(n \times
+m)\]</span>，其中 n 和 m
+分别为矩阵的行数和列数。深度优先搜索过程中，每一个点至多只会被标记一次。</li>
+<li><strong>空间复杂度</strong>：<span class="math display">\[O(n \times
+m)\]</span>，其中 n 和 m
+分别为矩阵的行数和列数。主要为深度优先搜索的栈的开销。</li>
+</ul>
+<h3 id="approach-2-广度优先搜索">Approach 2: 广度优先搜索</h3>
+<p>我们可以使用广度优先搜索实现标记操作。在下面的代码中，我们把标记过的字母
+<code>O</code> 修改为字母 <code>A</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">solve_BFS</span>(<span class="params">self, board </span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Do not return anything, modify board in-place instead.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> board:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        n, m = <span class="built_in">len</span>(board), <span class="built_in">len</span>(board[<span class="number">0</span>])</span><br><span class="line">        <span class="comment"># 边框有&#x27;0&#x27;就放入队列</span></span><br><span class="line">        que = collections.deque()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">if</span> board[i][<span class="number">0</span>] == <span class="string">&quot;O&quot;</span>:</span><br><span class="line">                que.append((i, <span class="number">0</span>))</span><br><span class="line">            <span class="keyword">if</span> board[i][m - <span class="number">1</span>] == <span class="string">&quot;O&quot;</span>:</span><br><span class="line">                que.append((i, m - <span class="number">1</span>))</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m - <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> board[<span class="number">0</span>][i] == <span class="string">&quot;O&quot;</span>:</span><br><span class="line">                que.append((<span class="number">0</span>, i))</span><br><span class="line">            <span class="keyword">if</span> board[n - <span class="number">1</span>][i] == <span class="string">&quot;O&quot;</span>:</span><br><span class="line">                que.append((n - <span class="number">1</span>, i))</span><br><span class="line">        <span class="comment"># 队列中的每个元素标记为&#x27;A&#x27;</span></span><br><span class="line">        <span class="keyword">while</span> que:</span><br><span class="line">            x, y = que.popleft()</span><br><span class="line">            board[x][y] = <span class="string">&quot;A&quot;</span></span><br><span class="line">        <span class="comment"># 检测周围的4个点是否为非边框，且值为&#x27;0&#x27;，如果是，则加入队列</span></span><br><span class="line">            <span class="keyword">for</span> mx, my <span class="keyword">in</span> [(x - <span class="number">1</span>, y), (x + <span class="number">1</span>, y), (x, y - <span class="number">1</span>), (x, y + <span class="number">1</span>)]:</span><br><span class="line">                <span class="keyword">if</span> <span class="number">0</span> &lt;= mx &lt; n <span class="keyword">and</span> <span class="number">0</span> &lt;= my &lt; m <span class="keyword">and</span> board[mx][my] == <span class="string">&quot;O&quot;</span>:</span><br><span class="line">                    que.append((mx, my))</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">                <span class="keyword">if</span> board[i][j] == <span class="string">&quot;A&quot;</span>:</span><br><span class="line">                    board[i][j] = <span class="string">&quot;O&quot;</span></span><br><span class="line">                <span class="keyword">elif</span> board[i][j] == <span class="string">&quot;O&quot;</span>:</span><br><span class="line">                    board[i][j] = <span class="string">&quot;X&quot;</span></span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><strong>时间复杂度</strong>：<span class="math display">\[O(n \times
+m)\]</span>，其中 n 和
+分别为矩阵的行数和列数。广度优先搜索过程中，每一个点至多只会被标记一次。</li>
+<li><strong>空间复杂度</strong>：<span class="math display">\[O(n \times
+m)\]</span>，其中 n 和 m
+分别为矩阵的行数和列数。主要为广度优先搜索的队列的开销。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/12/2021-07-12-Reinforcement%20Learning%20-%20DRN-A%20Deep%20Reinforcement%20Learning%20Framework%20for%20News%20Recommendation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1379,117 +1537,6 @@ L(s,a,\theta_k,\theta)=\min
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/05/20/2021-05-20-%E5%AE%89%E8%A3%85Atari%E7%8E%AF%E5%A2%83%E7%9B%B8%E5%85%B3%E6%8A%A5%E9%94%99/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/20/2021-05-20-%E5%AE%89%E8%A3%85Atari%E7%8E%AF%E5%A2%83%E7%9B%B8%E5%85%B3%E6%8A%A5%E9%94%99/" class="post-title-link" itemprop="url">安装Atari环境报错缺少ale_c.dll解决办法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-05-20 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-20T00:00:00+08:00">2021-05-20</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.5k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2
-id="安装atari环境报错缺少ale_c.dll解决办法">安装Atari环境报错缺少ale_c.dll解决办法</h2>
-<h3 id="背景"><strong>背景：</strong></h3>
-<p>在Atari游戏环境中做RL测试。通过anaconda新建了环境，配置好torch，numpy，gym等环境。运行中报错如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FileNotFoundError: Could not find module &#x27;D:\Anaconda3\envs\PPOenv\lib\site-packages\atari_py\ale_interface\ale_c.dll&#x27; (or one of its dependencies). Try using the full path with constructor syntax.</span><br></pre></td></tr></table></figure>
-<p>意思是所显示路径下缺少ale_c.dll</p>
-<h3 id="处理方法"><strong>处理方法：</strong></h3>
-<h4
-id="方法1对我情况无效但点赞很多">方法1（对我情况无效，但点赞很多）</h4>
-<p>首先检索到了这个方案（作者@razzzu）</p>
-<p>https://github.com/openai/gym/issues/1726</p>
-<p><strong>Step1:</strong> 卸载相关库</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip uninstall atari-py</span><br><span class="line">pip uninstall gym[atari]</span><br></pre></td></tr></table></figure>
-<p><strong>Step2:</strong> 安装 VS build tools工具</p>
-<p>Download VS build tools here:
-https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools&amp;rel=16</p>
-<p>运行后勾选左侧“C++ build tools”以及右侧的</p>
-<ul>
-<li>MSVC v142-VS 2019 C++ x64/x86 build tools</li>
-<li>windows 10 SDK</li>
-<li>C++ CMaKer</li>
-<li>Testing tools core features - build tools</li>
-</ul>
-<p><strong>Step3:</strong> 重启电脑</p>
-<p><strong>Step4:</strong> 重新安装库</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Install cmake, atari-py and gym</span><br><span class="line">pip install cmake</span><br><span class="line">pip install atari-py</span><br><span class="line">pip install gym[atari]</span><br></pre></td></tr></table></figure>
-<p>Step5: 运行测试</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Now run the following code:</span><br><span class="line"><span class="keyword">import</span> atari_py</span><br><span class="line"><span class="built_in">print</span>(atari_py.list_games())</span><br></pre></td></tr></table></figure>
-<p>and if everything worked then it should return a list of all games as
-shown below</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">&#x27;adventure&#x27;</span>, <span class="string">&#x27;air_raid&#x27;</span>, <span class="string">&#x27;alien&#x27;</span>, <span class="string">&#x27;amidar&#x27;</span>, <span class="string">&#x27;assault&#x27;</span>, <span class="string">&#x27;asterix&#x27;</span>, <span class="string">&#x27;asteroids&#x27;</span>, <span class="string">&#x27;atlantis&#x27;</span>, <span class="string">&#x27;bank_heist&#x27;</span>, <span class="string">&#x27;battle_zone&#x27;</span>, <span class="string">&#x27;beam_rider&#x27;</span>, <span class="string">&#x27;berzerk&#x27;</span>, <span class="string">&#x27;bowling&#x27;</span>, <span class="string">&#x27;boxing&#x27;</span>, <span class="string">&#x27;breakout&#x27;</span>, <span class="string">&#x27;carnival&#x27;</span>, <span class="string">&#x27;centipede&#x27;</span>, <span class="string">&#x27;chopper_command&#x27;</span>, <span class="string">&#x27;crazy_climber&#x27;</span>, <span class="string">&#x27;defender&#x27;</span>, <span class="string">&#x27;demon_attack&#x27;</span>, <span class="string">&#x27;double_dunk&#x27;</span>, <span class="string">&#x27;elevator_action&#x27;</span>, <span class="string">&#x27;enduro&#x27;</span>, <span class="string">&#x27;fishing_derby&#x27;</span>, <span class="string">&#x27;freeway&#x27;</span>, <span class="string">&#x27;frostbite&#x27;</span>, <span class="string">&#x27;gopher&#x27;</span>, <span class="string">&#x27;gravitar&#x27;</span>, <span class="string">&#x27;hero&#x27;</span>, <span class="string">&#x27;ice_hockey&#x27;</span>, <span class="string">&#x27;jamesbond&#x27;</span>, <span class="string">&#x27;journey_escape&#x27;</span>, <span class="string">&#x27;kaboom&#x27;</span>, <span class="string">&#x27;kangaroo&#x27;</span>, <span class="string">&#x27;krull&#x27;</span>, <span class="string">&#x27;kung_fu_master&#x27;</span>, <span class="string">&#x27;montezuma_revenge&#x27;</span>, <span class="string">&#x27;ms_pacman&#x27;</span>, <span class="string">&#x27;name_this_game&#x27;</span>, <span class="string">&#x27;phoenix&#x27;</span>, <span class="string">&#x27;pitfall&#x27;</span>, <span class="string">&#x27;pong&#x27;</span>, <span class="string">&#x27;pooyan&#x27;</span>, <span class="string">&#x27;private_eye&#x27;</span>, <span class="string">&#x27;qbert&#x27;</span>, <span class="string">&#x27;riverraid&#x27;</span>, <span class="string">&#x27;road_runner&#x27;</span>, <span class="string">&#x27;robotank&#x27;</span>, <span class="string">&#x27;seaquest&#x27;</span>, <span class="string">&#x27;skiing&#x27;</span>, <span class="string">&#x27;solaris&#x27;</span>, <span class="string">&#x27;space_invaders&#x27;</span>, <span class="string">&#x27;star_gunner&#x27;</span>, <span class="string">&#x27;tennis&#x27;</span>, <span class="string">&#x27;time_pilot&#x27;</span>, <span class="string">&#x27;tutankham&#x27;</span>, <span class="string">&#x27;up_n_down&#x27;</span>, <span class="string">&#x27;venture&#x27;</span>, <span class="string">&#x27;video_pinball&#x27;</span>, <span class="string">&#x27;wizard_of_wor&#x27;</span>, <span class="string">&#x27;yars_revenge&#x27;</span>, <span class="string">&#x27;zaxxon&#x27;</span>]</span><br></pre></td></tr></table></figure>
-<p>我在完成上述步骤后发现还是缺少ale_c.dll，于是打算直接下载一个ale_c.dll</p>
-<h4 id="方法2-有效">方法2 （有效）</h4>
-<p>根据<a
-target="_blank" rel="noopener" href="https://stackoverflow.com/questions/63080326/could-not-find-module-atari-py-ale-interface-ale-c-dll-or-one-of-its-dependenc/64104353#64104353">stackoverflow上的方法</a></p>
-<p><strong>Step1:</strong> Download ale_c.dll from <a
-target="_blank" rel="noopener" href="https://drive.google.com/file/d/1WQrEBliYbASwNDyyVIlPFSZHRwAa7sPp/view?usp=sharing">here</a>.(下载需要梯子，我在博客img中放了文件备份)
-<strong>Step2:</strong> Copy it in C:Raval-packages_py_interface (Your
-path can be different).</p>
-<p>成功解决问题！</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1561,14 +1608,14 @@ path can be different).</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-count">234</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1628,12 +1675,12 @@ path can be different).</p>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">568k</span>
+    <span title="Symbols count total">572k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:36</span>
+    <span title="Reading time total">8:40</span>
 </div>
 
         

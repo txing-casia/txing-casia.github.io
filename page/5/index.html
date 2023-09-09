@@ -198,6 +198,123 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/07/23/2022-07-23-%E4%BD%BF%E7%94%A8VSCode%E8%B0%83%E8%AF%95%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84Python%E8%84%9A%E6%9C%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/23/2022-07-23-%E4%BD%BF%E7%94%A8VSCode%E8%B0%83%E8%AF%95%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84Python%E8%84%9A%E6%9C%AC/" class="post-title-link" itemprop="url">使用VSCode调试带参数的Python脚本</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-07-23 00:00:00" itemprop="dateCreated datePublished" datetime="2022-07-23T00:00:00+08:00">2022-07-23</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>3.3k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>3 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2
+id="使用vscode调试带参数的python脚本">使用VSCode调试带参数的Python脚本</h2>
+<h3 id="问题描述">1 问题描述</h3>
+<p>linux系统上执行带参数的python程序直接添加-arg
+xxx即可。但在VSCode调试模式（Debug）下该执行方式不可行。那么是否有办法在VSCode上调试带参数的python脚本呢？</p>
+<p>这里提供三种方案：</p>
+<ul>
+<li>2.1 方案1 pbd命令的Debug</li>
+<li>2.2 方案2 在launch.json中设置参数的Debug</li>
+<li>2.3 方案3 终端命令行中写入参数的Debug</li>
+</ul>
+<h3 id="解决方案">2 解决方案</h3>
+<h4 id="方案1-pbd命令的debug">2.1 方案1 pbd命令的Debug</h4>
+<p>终端窗口执行命令</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pdb xxx.py</span><br></pre></td></tr></table></figure>
+<p>开启Debug模式，在断点处暂停，可输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">h：（<span class="built_in">help</span>）帮助</span><br><span class="line">w：（<span class="built_in">where</span>）打印当前执行堆栈</span><br><span class="line">d：（down）执行跳转到在当前堆栈的深一层（个人没觉得有什么用处）</span><br><span class="line">u：（up）执行跳转到当前堆栈的上一层</span><br><span class="line">b：（<span class="built_in">break</span>）添加断点</span><br><span class="line">	b 列出当前所有断点，和断点执行到统计次数</span><br><span class="line">	b line_no：当前脚本的line_no行添加断点</span><br><span class="line">	b filename:line_no：脚本filename的line_no行添加断点</span><br><span class="line">	b <span class="keyword">function</span>：在函数<span class="keyword">function</span>的第一条可执行语句处添加断点</span><br><span class="line">tbreak：（temporary <span class="built_in">break</span>）临时断点</span><br><span class="line">	在第一次执行到这个断点之后，就自动删除这个断点，用法和b一样</span><br><span class="line">cl：（clear）清除断点</span><br><span class="line">	cl 清除所有断点</span><br><span class="line">	cl bpnumber1 bpnumber2… 清除断点号为bpnumber1,bpnumber2…的断点</span><br><span class="line">	cl lineno 清除当前脚本lineno行的断点</span><br><span class="line">	cl filename:line_no 清除脚本filename的line_no行的断点</span><br><span class="line"><span class="built_in">disable</span>：停用断点，参数为bpnumber，和cl的区别是，断点依然存在，只是不启用</span><br><span class="line"><span class="built_in">enable</span>：激活断点，参数为bpnumber</span><br><span class="line">s：（step）执行下一条命令</span><br><span class="line">	如果本句是函数调用，则s会执行到函数的第一句</span><br><span class="line">n：（next）执行下一条语句</span><br><span class="line">	如果本句是函数调用，则执行函数，接着执行当前执行语句的下一条。</span><br><span class="line">r：（<span class="built_in">return</span>）执行当前运行函数到结束</span><br><span class="line">c：（<span class="built_in">continue</span>）继续执行，直到遇到下一条断点</span><br><span class="line">l：（list）列出源码</span><br><span class="line">	l 列出当前执行语句周围11条代码</span><br><span class="line">	l first 列出first行周围11条代码</span><br><span class="line">	l first second 列出first–second范围的代码，如果second&lt;first，second将被解析为行数</span><br><span class="line">a：（args）列出当前执行函数的函数</span><br><span class="line">p expression：（<span class="built_in">print</span>）输出expression的值</span><br><span class="line">pp expression：好看一点的p expression</span><br><span class="line">run：重新启动debug，相当于restart</span><br><span class="line">q：（quit）退出debug</span><br><span class="line">j lineno：（jump）设置下条执行的语句函数</span><br><span class="line">	只能在堆栈的最底层跳转，向后重新执行，向前可直接执行到行号</span><br><span class="line">unt：（until）执行到下一行（跳出循环），或者当前堆栈结束</span><br><span class="line">condition bpnumber conditon，给断点设置条件，当参数condition返回True的时候bpnumber断点有效，否则bpnumber断点无效</span><br></pre></td></tr></table></figure>
+<p><strong>Note：</strong>
+<code>1：直接输入Enter，会执行上一条命令；</code>
+<code>2：输入PDB不认识的命令，PDB会把他当做Python语句在当前环境下执行；</code></p>
+<p>但这种方式不依赖VSCode，并且是在命令行中调试，并不方便。</p>
+<h4 id="方案2-在launch.json中设置参数的debug">2.2 方案2
+在launch.json中设置参数的Debug</h4>
+<p><strong>Step1：</strong>VSCode菜单栏-运行-打开配置，出现launch.json文件。</p>
+<p><strong>Step2：</strong>在configurations中添加”args”参数形式如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">      <span class="string">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">      <span class="string">&quot;configurations&quot;</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                  <span class="string">&quot;name&quot;</span>: <span class="string">&quot;Python: Current File&quot;</span></span><br><span class="line">                  <span class="string">&quot;type&quot;</span>: <span class="string">&quot;python&quot;</span>,</span><br><span class="line">                  <span class="string">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">                  <span class="string">&quot;program&quot;</span>: <span class="string">&quot;<span class="variable">$&#123;file&#125;</span>&quot;</span>,</span><br><span class="line">                  <span class="string">&quot;console&quot;</span>: <span class="string">&quot;integratedTerminal&quot;</span>,</span><br><span class="line">                  <span class="string">&quot;args&quot;</span>: [</span><br><span class="line">                        <span class="string">&quot;arg1&quot;</span>, <span class="string">&quot;xxx&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;arg2&quot;</span>, <span class="string">&quot;xxx&quot;</span>,</span><br><span class="line">                   ]</span><br><span class="line">            &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Step3：</strong>添加完成后，设置断点，按F5执行即可开始调试。</p>
+<p>该方式需要预先写入参数，在实际项目中参数数量和名称可能常常发生变化，这种方式在调整时还不够灵活，效率不够高。</p>
+<h4 id="方案3-终端命令行中写入参数的debug">2.3 方案3
+终端命令行中写入参数的Debug</h4>
+<p><strong>Step1：</strong>安装debugpy库，<code>pip install debugpy</code></p>
+<p><strong>Step2：</strong>打开本地终端，找到一个未占用的端口号。输入<code>netstat -a</code>
+State显示为LISTEN即为未占用，记该端口号为xxxx</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">关于State的说明：</span><br><span class="line">- LISTEN: The socket is listening for incoming connections. Foreign address is not relevant for this line</span><br><span class="line">- ESTABLISHED: The socket has an established connection. Foreign address in the address of the remote end point of the socket.</span><br><span class="line">- CLOSE_WAIT: The remote end has shut down, waiting for the socket to close.</span><br></pre></td></tr></table></figure>
+<p><strong>Step3：</strong>修改launch.json中内容为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;version&quot;: &quot;0.2.0&quot;,</span><br><span class="line">	&quot;configurations&quot;: [</span><br><span class="line">		&#123;</span><br><span class="line">			&quot;name&quot;: &quot;Python: Attach&quot;,</span><br><span class="line">			&quot;type&quot;: &quot;python&quot;,</span><br><span class="line">			&quot;request&quot;: &quot;attach&quot;,</span><br><span class="line">			&quot;connect&quot;: &#123;</span><br><span class="line">				&quot;host&quot;: &quot;localhost&quot;,</span><br><span class="line">				&quot;port&quot;: xxxx</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中，xxxx表示使用的端口号。</p>
+<p><strong>Step4：</strong>假设run
+该Python脚本的命令为：<code>python xxx.py -arg1 ARG1 -arg2 ARG2</code>。即脚本有两个参数输入。在进行调试之前，在VSCode终端命令行中键入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m debugpy --listen xxxx --wait-for-client xxx.py -arg1 ARG1 -arg2 ARG2</span><br></pre></td></tr></table></figure>
+<p>注意这里监听的端口xxxx即为上一步找到的未占用端口（这里输入的端口号需要和launch.json中设置的端口号一致）</p>
+<p>执行上述命令，终端处于执行中，没有任何返回。接下来在程序中设置断点，按下F5键，即可进入VSCode的调试模式。调试方式与不带参数的情况相同。</p>
+<h3 id="ref">Ref:</h3>
+<p>https://blog.csdn.net/weixin_37251044/article/details/107471459</p>
+<p>https://www.cnblogs.com/JavicxhloWong/p/14356814.html（重要参考，感谢）</p>
+<p>https://blog.csdn.net/qq_37837061/article/details/124561317</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/07/22/2022-07-22-Autonomous%20Driving%20-%20MotionCNN%20A%20Strong%20Baseline%20for%20Motion%20Prediction%20in%20Autonomous%20Driving/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1783,156 +1900,6 @@ class="math display">\[O(1)\]</span>。使用滚动数组，可以只存储前�
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/04/10/2022-04-10-Q221-%E6%9C%80%E5%A4%A7%E6%AD%A3%E6%96%B9%E5%BD%A2-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/10/2022-04-10-Q221-%E6%9C%80%E5%A4%A7%E6%AD%A3%E6%96%B9%E5%BD%A2-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="post-title-link" itemprop="url">Q221-最大正方形-中等-动态规划</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-04-10 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-10T00:00:00+08:00">2022-04-10</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.2k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="最大正方形"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximal-square/">221.
-最大正方形</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>在一个由 <code>'0'</code> 和 <code>'1'</code>
-组成的二维矩阵内，找到只包含 <code>'1'</code>
-的最大正方形，并返回其面积。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入：matrix = [</p>
-<p>["1","0","1","0","0"],</p>
-<p>["1","0","1","1","1"],</p>
-<p>["1","1","1","1","1"],</p>
-<p>["1","0","0","1","0"]] 输出：4</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>输入：matrix = [["0","1"],["1","0"]] 输出：1</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>输入：matrix = [["0"]] 输出：0</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li>m == matrix.length</li>
-<li>n == matrix[i].length</li>
-<li>1 &lt;= m, n &lt;= 300</li>
-<li>matrix[i][j] 为 '0' 或 '1'</li>
-</ul>
-</blockquote>
-<h3 id="approach-1-动态规划">Approach 1: 动态规划</h3>
-<p>可以使用动态规划降低时间复杂度。我们用 <span
-class="math display">\[\textit{dp}(i, j)\]</span> 表示以 <span
-class="math display">\[(i, j)\]</span> 为右下角，且只包含 1
-的正方形的边长最大值。如果我们能计算出所有 <span
-class="math display">\[\textit{dp}(i, j)\]</span>
-的值，那么其中的最大值即为矩阵中只包含 1
-的正方形的边长最大值，其平方即为最大正方形的面积。</p>
-<p>那么如何计算 <span class="math display">\[\textit{dp}\]</span>
-中的每个元素值呢？对于每个位置 <span class="math display">\[(i,
-j)\]</span>，检查在矩阵中该位置的值：</p>
-<ul>
-<li>如果该位置的值是 0，则 <span class="math display">\[\textit{dp}(i,
-j) = 0\]</span>，因为当前位置不可能在由 1 组成的正方形中；</li>
-<li>如果该位置的值是 1，则 <span class="math display">\[\textit{dp}(i,
-j)\]</span> 的值由其上方、左方和左上方的三个相邻位置的 <span
-class="math display">\[\textit{dp}\]</span>
-值决定。具体而言，当前位置的元素值等于三个相邻位置的元素中的最小值加
-1，状态转移方程如下：</li>
-</ul>
-<p><span class="math display">\[
-dp(i,j)=min\big(dp(i−1,j),dp(i−1,j−1),dp(i,j−1)\big)+1
-\]</span> 如果读者对这个状态转移方程感到不解，可以参考 1277. 统计全为 1
-的正方形子矩阵的官方题解，其中给出了详细的证明。</p>
-<p>此外，还需要考虑边界条件。如果 i 和 j 中至少有一个为 0，则以位置 (i,
-j) 为右下角的最大正方形的边长只能是 1，因此 <span
-class="math display">\[\textit{dp}(i, j) = 1\]</span>。</p>
-<p>Python:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maximalSquare</span>(<span class="params">self, matrix: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">str</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(matrix) == <span class="number">0</span> <span class="keyword">or</span> <span class="built_in">len</span>(matrix[<span class="number">0</span>]) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        maxSide = <span class="number">0</span></span><br><span class="line">        rows, columns = <span class="built_in">len</span>(matrix), <span class="built_in">len</span>(matrix[<span class="number">0</span>])</span><br><span class="line">        dp = [[<span class="number">0</span>] * columns <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(rows)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(rows):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(columns):</span><br><span class="line">                <span class="keyword">if</span> matrix[i][j] == <span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">                    <span class="keyword">if</span> i == <span class="number">0</span> <span class="keyword">or</span> j == <span class="number">0</span>:</span><br><span class="line">                        dp[i][j] = <span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        dp[i][j] = <span class="built_in">min</span>(dp[i - <span class="number">1</span>][j], dp[i][j - <span class="number">1</span>], dp[i - <span class="number">1</span>][j - <span class="number">1</span>]) + <span class="number">1</span></span><br><span class="line">                    maxSide = <span class="built_in">max</span>(maxSide, dp[i][j])</span><br><span class="line">        </span><br><span class="line">        maxSquare = maxSide * maxSide</span><br><span class="line">        <span class="keyword">return</span> maxSquare</span><br></pre></td></tr></table></figure>
-<p>C++:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maximalSquare</span><span class="params">(vector&lt;vector&lt;<span class="type">char</span>&gt;&gt;&amp; matrix)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (matrix.<span class="built_in">size</span>() == <span class="number">0</span> || matrix[<span class="number">0</span>].<span class="built_in">size</span>() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> maxSide = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> rows = matrix.<span class="built_in">size</span>(), columns = matrix[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">dp</span>(rows, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(columns));</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; rows; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; columns; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (matrix[i][j] == <span class="string">&#x27;1&#x27;</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (i == <span class="number">0</span> || j == <span class="number">0</span>) &#123;</span><br><span class="line">                        dp[i][j] = <span class="number">1</span>;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        dp[i][j] = <span class="built_in">min</span>(<span class="built_in">min</span>(dp[i - <span class="number">1</span>][j], dp[i][j - <span class="number">1</span>]), dp[i - <span class="number">1</span>][j - <span class="number">1</span>]) + <span class="number">1</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    maxSide = <span class="built_in">max</span>(maxSide, dp[i][j]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> maxSquare = maxSide * maxSide;</span><br><span class="line">        <span class="keyword">return</span> maxSquare;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：<span class="math display">\[O(mn)\]</span>，其中 m 和 n
-是矩阵的行数和列数。需要遍历原始矩阵中的每个元素计算 <span
-class="math display">\[\textit{dp}\]</span> 的值。</li>
-<li>空间复杂度：<span class="math display">\[O(mn)\]</span>，其中 m 和 n
-是矩阵的行数和列数。创建了一个和原始矩阵大小相同的矩阵 <span
-class="math display">\[\textit{dp}\]</span>。由于状态转移方程中的 <span
-class="math display">\[\textit{dp}(i, j)\]</span>
-由其上方、左方和左上方的三个相邻位置的 <span
-class="math display">\[\textit{dp}\]</span>
-值决定，因此可以使用两个一维数组进行状态转移，空间复杂度优化至 <span
-class="math display">\[O(n)\]</span>。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2004,14 +1971,14 @@ class="math display">\[O(n)\]</span>。</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-count">234</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -2071,12 +2038,12 @@ class="math display">\[O(n)\]</span>。</li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">568k</span>
+    <span title="Symbols count total">572k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:36</span>
+    <span title="Reading time total">8:40</span>
 </div>
 
         

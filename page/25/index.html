@@ -198,6 +198,116 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/08/13/2019-08-13-Q167-Two%20Sum%20II%20-%20Input%20array%20is%20sorted/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/13/2019-08-13-Q167-Two%20Sum%20II%20-%20Input%20array%20is%20sorted/" class="post-title-link" itemprop="url">Q167 Two Sum II - Input array is sorted</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-08-13 00:00:00" itemprop="dateCreated datePublished" datetime="2019-08-13T00:00:00+08:00">2019-08-13</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.2k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="two-sum-ii---input-array-is-sorted"><a
+target="_blank" rel="noopener" href="https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/">Two
+Sum II - Input array is sorted</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>Given an array of integers that is already <strong>sorted in
+ascending order</strong>, find two numbers such that they add up to a
+specific target number.</p>
+<p>The function twoSum should return indices of the two numbers such
+that they add up to the target, where index1 must be less than
+index2.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>Input: numbers = [2,7,11,15], target = 9 Output: [1,2] Explanation:
+The sum of 2 and 7 is 9. Therefore index1 = 1, index2 = 2.</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ul>
+<li>Your returned answers (both index1 and index2) are not
+zero-based.</li>
+<li>You may assume that each input would have <em>exactly</em> one
+solution and you may not use the same element twice.</li>
+</ul>
+</blockquote>
+<h2 id="approach-1-dictionary">Approach 1: Dictionary</h2>
+<p><strong>Intuition and Algorithm</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">twoSum</span>(<span class="params">self, numbers, target</span>):</span><br><span class="line">        dic = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i, num <span class="keyword">in</span> <span class="built_in">enumerate</span>(numbers): <span class="comment"># 获得编号i(从0开始)和值num</span></span><br><span class="line">            <span class="keyword">if</span> target - num <span class="keyword">in</span> dic:</span><br><span class="line">                <span class="keyword">return</span> [dic[target - num] + <span class="number">1</span>, i + <span class="number">1</span>]</span><br><span class="line">            dic[num] = i</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    numbers = [<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>]</span><br><span class="line">    target = <span class="number">9</span></span><br><span class="line">    solution=Solution().twoSum(numbers,target)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time Complexity: <em>O</em>(<em>N</em>), where <em>N</em> is the
+length of <code>numbers</code>.</li>
+<li>Space Complexity: <em>O</em>(1).</li>
+<li>Runtime: 40 ms, faster than 98.01% of Python online submissions for
+Two Sum II - Input array is sorted.</li>
+<li>Memory Usage: 12.1 MB, less than 40.00% of Python online submissions
+for Two Sum II - Input array is sorted.</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/07/10/2019-07-10-Q349-Intersection-of-Two-Arrays/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1114,140 +1224,6 @@ for Unique Email Addresses.</li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/06/06/2019-06-06-Q929-Unique-Email-Addresses/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/06/2019-06-06-Q929-Unique-Email-Addresses/" class="post-title-link" itemprop="url">Q929 Unique Email Addresses</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+08:00">2019-06-06</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.1k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="unique-email-addresses"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/unique-email-addresses/">Unique
-Email Addresses</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Every email consists of a local name and a domain name, separated by
-the @ sign.</p>
-<p>For example, in <code>alice@leetcode.com</code>, <code>alice</code>
-is the local name, and <code>leetcode.com</code> is the domain name.</p>
-<p>Besides lowercase letters, these emails may contain <code>'.'</code>s
-or <code>'+'</code>s.</p>
-<p>If you add periods (<code>'.'</code>) between some characters in the
-<strong>local name</strong> part of an email address, mail sent there
-will be forwarded to the same address without dots in the local name.
-For example, <code>"alice.z@leetcode.com"</code> and
-<code>"alicez@leetcode.com"</code> forward to the same email address.
-(Note that this rule does not apply for domain names.)</p>
-<p>If you add a plus (<code>'+'</code>) in the <strong>local
-name</strong>, everything after the first plus sign will be
-<strong>ignored</strong>. This allows certain emails to be filtered, for
-example <code>m.y+name@email.com</code> will be forwarded to
-<code>my@email.com</code>. (Again, this rule does not apply for domain
-names.)</p>
-<p>It is possible to use both of these rules at the same time.</p>
-<p>Given a list of <code>emails</code>, we send one email to each
-address in the list. How many different addresses actually receive
-mails?</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input:
-["test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"]
-Output: 2 Explanation: "testemail@leetcode.com" and
-"testemail@lee.tcode.com" actually receive mails</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li><code>1 &lt;= emails[i].length &lt;= 100</code></li>
-<li><code>1 &lt;= emails.length &lt;= 100</code></li>
-<li>Each <code>emails[i]</code> contains exactly one <code>'@'</code>
-character.</li>
-<li>All local and domain names are non-empty.</li>
-<li>Local names do not start with a <code>'+'</code> character.</li>
-</ul>
-</blockquote>
-<h2 id="approach-1-split-words-original-method">Approach 1: Split Words
-(Original Method)</h2>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>Note that <code>split</code> is a useful method.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseWords</span>(<span class="params">self, s</span>):</span><br><span class="line">        out = []</span><br><span class="line">        singleWord=s.split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">iter</span> <span class="keyword">in</span> singleWord:</span><br><span class="line">            <span class="built_in">iter</span>=<span class="built_in">iter</span>[::-<span class="number">1</span>]<span class="comment"># 反向排序数组</span></span><br><span class="line">            out.append(<span class="built_in">iter</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27; &#x27;</span>.join(out) <span class="comment"># 返回字符串，用空格填充out中元素的间隔</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    s=<span class="string">&quot;Let&#x27;s take LeetCode contest&quot;</span></span><br><span class="line">    solution=Solution().reverseWords(s)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<h3 id="simplification">simplification</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseWords</span>(<span class="params">self, s</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot; &quot;</span>.join([i[::-<span class="number">1</span>] <span class="keyword">for</span> i <span class="keyword">in</span> s.split()])</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li>Time Complexity: <em>O</em>(<em>n</em>), where <em>n</em> is the
-total words of <code>s</code>.</li>
-<li>Space Complexity: <em>O</em>(<em>1</em>).</li>
-<li>Runtime: 20 ms, faster than 94.03% of Python online submissions for
-Reverse Words in a String III.</li>
-<li>Memory Usage: 13 MB, less than 43.54% of Python online submissions
-for Reverse Words in a String III.</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1319,14 +1295,14 @@ for Reverse Words in a String III.</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-count">234</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1386,12 +1362,12 @@ for Reverse Words in a String III.</li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">568k</span>
+    <span title="Symbols count total">572k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:36</span>
+    <span title="Reading time total">8:40</span>
 </div>
 
         

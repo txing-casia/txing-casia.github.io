@@ -198,6 +198,156 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/04/10/2022-04-10-Q221-%E6%9C%80%E5%A4%A7%E6%AD%A3%E6%96%B9%E5%BD%A2-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/10/2022-04-10-Q221-%E6%9C%80%E5%A4%A7%E6%AD%A3%E6%96%B9%E5%BD%A2-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="post-title-link" itemprop="url">Q221-最大正方形-中等-动态规划</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-04-10 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-10T00:00:00+08:00">2022-04-10</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.2k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="最大正方形"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximal-square/">221.
+最大正方形</a></h4>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>在一个由 <code>'0'</code> 和 <code>'1'</code>
+组成的二维矩阵内，找到只包含 <code>'1'</code>
+的最大正方形，并返回其面积。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>输入：matrix = [</p>
+<p>["1","0","1","0","0"],</p>
+<p>["1","0","1","1","1"],</p>
+<p>["1","1","1","1","1"],</p>
+<p>["1","0","0","1","0"]] 输出：4</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>输入：matrix = [["0","1"],["1","0"]] 输出：1</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>输入：matrix = [["0"]] 输出：0</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ul>
+<li>m == matrix.length</li>
+<li>n == matrix[i].length</li>
+<li>1 &lt;= m, n &lt;= 300</li>
+<li>matrix[i][j] 为 '0' 或 '1'</li>
+</ul>
+</blockquote>
+<h3 id="approach-1-动态规划">Approach 1: 动态规划</h3>
+<p>可以使用动态规划降低时间复杂度。我们用 <span
+class="math display">\[\textit{dp}(i, j)\]</span> 表示以 <span
+class="math display">\[(i, j)\]</span> 为右下角，且只包含 1
+的正方形的边长最大值。如果我们能计算出所有 <span
+class="math display">\[\textit{dp}(i, j)\]</span>
+的值，那么其中的最大值即为矩阵中只包含 1
+的正方形的边长最大值，其平方即为最大正方形的面积。</p>
+<p>那么如何计算 <span class="math display">\[\textit{dp}\]</span>
+中的每个元素值呢？对于每个位置 <span class="math display">\[(i,
+j)\]</span>，检查在矩阵中该位置的值：</p>
+<ul>
+<li>如果该位置的值是 0，则 <span class="math display">\[\textit{dp}(i,
+j) = 0\]</span>，因为当前位置不可能在由 1 组成的正方形中；</li>
+<li>如果该位置的值是 1，则 <span class="math display">\[\textit{dp}(i,
+j)\]</span> 的值由其上方、左方和左上方的三个相邻位置的 <span
+class="math display">\[\textit{dp}\]</span>
+值决定。具体而言，当前位置的元素值等于三个相邻位置的元素中的最小值加
+1，状态转移方程如下：</li>
+</ul>
+<p><span class="math display">\[
+dp(i,j)=min\big(dp(i−1,j),dp(i−1,j−1),dp(i,j−1)\big)+1
+\]</span> 如果读者对这个状态转移方程感到不解，可以参考 1277. 统计全为 1
+的正方形子矩阵的官方题解，其中给出了详细的证明。</p>
+<p>此外，还需要考虑边界条件。如果 i 和 j 中至少有一个为 0，则以位置 (i,
+j) 为右下角的最大正方形的边长只能是 1，因此 <span
+class="math display">\[\textit{dp}(i, j) = 1\]</span>。</p>
+<p>Python:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maximalSquare</span>(<span class="params">self, matrix: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">str</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(matrix) == <span class="number">0</span> <span class="keyword">or</span> <span class="built_in">len</span>(matrix[<span class="number">0</span>]) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        maxSide = <span class="number">0</span></span><br><span class="line">        rows, columns = <span class="built_in">len</span>(matrix), <span class="built_in">len</span>(matrix[<span class="number">0</span>])</span><br><span class="line">        dp = [[<span class="number">0</span>] * columns <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(rows)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(rows):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(columns):</span><br><span class="line">                <span class="keyword">if</span> matrix[i][j] == <span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">                    <span class="keyword">if</span> i == <span class="number">0</span> <span class="keyword">or</span> j == <span class="number">0</span>:</span><br><span class="line">                        dp[i][j] = <span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        dp[i][j] = <span class="built_in">min</span>(dp[i - <span class="number">1</span>][j], dp[i][j - <span class="number">1</span>], dp[i - <span class="number">1</span>][j - <span class="number">1</span>]) + <span class="number">1</span></span><br><span class="line">                    maxSide = <span class="built_in">max</span>(maxSide, dp[i][j])</span><br><span class="line">        </span><br><span class="line">        maxSquare = maxSide * maxSide</span><br><span class="line">        <span class="keyword">return</span> maxSquare</span><br></pre></td></tr></table></figure>
+<p>C++:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maximalSquare</span><span class="params">(vector&lt;vector&lt;<span class="type">char</span>&gt;&gt;&amp; matrix)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (matrix.<span class="built_in">size</span>() == <span class="number">0</span> || matrix[<span class="number">0</span>].<span class="built_in">size</span>() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> maxSide = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> rows = matrix.<span class="built_in">size</span>(), columns = matrix[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">dp</span>(rows, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(columns));</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; rows; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; columns; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (matrix[i][j] == <span class="string">&#x27;1&#x27;</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (i == <span class="number">0</span> || j == <span class="number">0</span>) &#123;</span><br><span class="line">                        dp[i][j] = <span class="number">1</span>;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        dp[i][j] = <span class="built_in">min</span>(<span class="built_in">min</span>(dp[i - <span class="number">1</span>][j], dp[i][j - <span class="number">1</span>]), dp[i - <span class="number">1</span>][j - <span class="number">1</span>]) + <span class="number">1</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    maxSide = <span class="built_in">max</span>(maxSide, dp[i][j]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> maxSquare = maxSide * maxSide;</span><br><span class="line">        <span class="keyword">return</span> maxSquare;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：<span class="math display">\[O(mn)\]</span>，其中 m 和 n
+是矩阵的行数和列数。需要遍历原始矩阵中的每个元素计算 <span
+class="math display">\[\textit{dp}\]</span> 的值。</li>
+<li>空间复杂度：<span class="math display">\[O(mn)\]</span>，其中 m 和 n
+是矩阵的行数和列数。创建了一个和原始矩阵大小相同的矩阵 <span
+class="math display">\[\textit{dp}\]</span>。由于状态转移方程中的 <span
+class="math display">\[\textit{dp}(i, j)\]</span>
+由其上方、左方和左上方的三个相邻位置的 <span
+class="math display">\[\textit{dp}\]</span>
+值决定，因此可以使用两个一维数组进行状态转移，空间复杂度优化至 <span
+class="math display">\[O(n)\]</span>。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/04/08/2022-04-08-Q1277-%E7%BB%9F%E8%AE%A1%E5%85%A8%E4%B8%BA1%E7%9A%84%E6%AD%A3%E6%96%B9%E5%BD%A2%E5%AD%90%E7%9F%A9%E9%98%B5-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1153,121 +1303,6 @@ alt="cart_pole.ttt" />
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/01/16/2022-01-16-CoppeliaSim%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/16/2022-01-16-CoppeliaSim%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">CoppeliaSim入门指南</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-01-16 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-16T00:00:00+08:00">2022-01-16</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>3.2k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>3 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="coppeliasim入门指南">CoppeliaSim入门指南</h1>
-<h3 id="软件安装">1 软件安装</h3>
-<p>CoppeliaSim 以前叫做
-V-rep，是一款广泛使用的机器人仿真软件环境。在本指南中，尝试在 python
-中实现对 CoppeliaSim 的调用。</p>
-<blockquote>
-<p>CoppeliaSim下载地址：https://www.coppeliarobotics.com/</p>
-</blockquote>
-<p>下载完成后按照默认引导完成安装。</p>
-<h3 id="环境配置">2 环境配置</h3>
-<p>然后新建 python 工程环境，在工程文件夹内需要添加三个 CoppeliaSim
-相关的文件，分别为：</p>
-<ul>
-<li><p>sim.py（原vrep.py）</p>
-<blockquote>
-<p>位置：C:Files</p>
-</blockquote></li>
-<li><p>simConst.py（原vrepConst.py）</p>
-<blockquote>
-<p>位置：C:Files</p>
-</blockquote></li>
-<li><p>remoteApi.dll</p>
-<blockquote>
-<p>位置：C:Files</p>
-</blockquote></li>
-</ul>
-<p>在 CoppeliaSim 窗口中，双击 main
-文件，添加如下所示第三行代码。帮助实现与 python 的远程连接</p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220117-1.png"
-alt="main文件位置" />
-<figcaption aria-hidden="true">main文件位置</figcaption>
-</figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-- The main script is not supposed to be modified, except in special cases.</span><br><span class="line">require(&#x27;defaultMainScript&#x27;)</span><br><span class="line">simRemoteApi.start(19999)</span><br></pre></td></tr></table></figure>
-<h3 id="程序代码">3 程序代码</h3>
-<p>在 python 窗口中，添加如下代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Make sure to have the server side running in CoppeliaSim: </span></span><br><span class="line"><span class="comment"># in a child script of a CoppeliaSim scene, add following command</span></span><br><span class="line"><span class="comment"># to be executed just once, at simulation start:</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># simRemoteApi.start(19997)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># then start simulation, and run this program.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># IMPORTANT: for each successful call to simxStart, there</span></span><br><span class="line"><span class="comment"># should be a corresponding call to simxFinish at the end!</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">import</span> sim</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;--------------------------------------------------------------&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;&quot;sim.py&quot; could not be imported. This means very probably that&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;either &quot;sim.py&quot; or the remoteApi library could not be found.&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;Make sure both are in the same folder as this file,&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;or appropriately adjust the file &quot;sim.py&quot;&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;--------------------------------------------------------------&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> (<span class="string">&#x27;Program started&#x27;</span>)</span><br><span class="line">sim.simxFinish(-<span class="number">1</span>) <span class="comment"># just in case, close all opened connections</span></span><br><span class="line">clientID=sim.simxStart(<span class="string">&#x27;127.0.0.1&#x27;</span>,<span class="number">19999</span>,<span class="literal">True</span>,<span class="literal">True</span>,<span class="number">5000</span>,<span class="number">5</span>) <span class="comment"># Connect to CoppeliaSim</span></span><br><span class="line"><span class="keyword">if</span> clientID!=-<span class="number">1</span>:</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;Connected to remote API server&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Now try to retrieve data in a blocking fashion (i.e. a service call):</span></span><br><span class="line">    res,objs=sim.simxGetObjects(clientID,sim.sim_handle_all,sim.simx_opmode_blocking)</span><br><span class="line">    <span class="keyword">if</span> res==sim.simx_return_ok:</span><br><span class="line">        <span class="built_in">print</span> (<span class="string">&#x27;Number of objects in the scene: &#x27;</span>,<span class="built_in">len</span>(objs))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span> (<span class="string">&#x27;Remote API function call returned with error code: &#x27;</span>,res)</span><br><span class="line"></span><br><span class="line">    time.sleep(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Now retrieve streaming data (i.e. in a non-blocking fashion):</span></span><br><span class="line">    startTime=time.time()</span><br><span class="line">    sim.simxGetIntegerParameter(clientID,sim.sim_intparam_mouse_x,sim.simx_opmode_streaming) <span class="comment"># Initialize streaming</span></span><br><span class="line">    <span class="keyword">while</span> time.time()-startTime &lt; <span class="number">5</span>:</span><br><span class="line">        returnCode,data=sim.simxGetIntegerParameter(clientID,sim.sim_intparam_mouse_x,sim.simx_opmode_buffer) <span class="comment"># Try to retrieve the streamed data</span></span><br><span class="line">        <span class="keyword">if</span> returnCode==sim.simx_return_ok: <span class="comment"># After initialization of streaming, it will take a few ms before the first value arrives, so check the return code</span></span><br><span class="line">            <span class="built_in">print</span> (<span class="string">&#x27;Mouse position x: &#x27;</span>,data) <span class="comment"># Mouse position x is actualized when the cursor is over CoppeliaSim&#x27;s window</span></span><br><span class="line">        time.sleep(<span class="number">0.005</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Now send some data to CoppeliaSim in a non-blocking fashion:</span></span><br><span class="line">    sim.simxAddStatusbarMessage(clientID,<span class="string">&#x27;Hello CoppeliaSim!&#x27;</span>,sim.simx_opmode_oneshot)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Before closing the connection to CoppeliaSim, make sure that the last command sent out had time to arrive. You can guarantee this with (for example):</span></span><br><span class="line">    sim.simxGetPingTime(clientID)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Now close the connection to CoppeliaSim:</span></span><br><span class="line">    sim.simxFinish(clientID)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;Failed connecting to remote API server&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span> (<span class="string">&#x27;Program ended&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>代码来自于样例程序simpleTest.py (C:Files)</p>
-<h3 id="功能实现">4 功能实现</h3>
-<p>功能大致是：获取 CoppeliaSim 窗口中鼠标的 x 坐标，并返回到 python
-窗口输出。</p>
-<p>运行方式为：先点击 CoppeliaSim 的 start simulation
-按键运行仿真，再运行 python 程序，会自动实现通信。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1339,14 +1374,14 @@ alt="main文件位置" />
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-count">234</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1406,12 +1441,12 @@ alt="main文件位置" />
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">568k</span>
+    <span title="Symbols count total">572k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:36</span>
+    <span title="Reading time total">8:40</span>
 </div>
 
         

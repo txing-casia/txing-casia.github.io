@@ -198,6 +198,140 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/06/06/2019-06-06-Q929-Unique-Email-Addresses/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/06/2019-06-06-Q929-Unique-Email-Addresses/" class="post-title-link" itemprop="url">Q929 Unique Email Addresses</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+08:00">2019-06-06</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.1k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="unique-email-addresses"><a
+target="_blank" rel="noopener" href="https://leetcode.com/problems/unique-email-addresses/">Unique
+Email Addresses</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>Every email consists of a local name and a domain name, separated by
+the @ sign.</p>
+<p>For example, in <code>alice@leetcode.com</code>, <code>alice</code>
+is the local name, and <code>leetcode.com</code> is the domain name.</p>
+<p>Besides lowercase letters, these emails may contain <code>'.'</code>s
+or <code>'+'</code>s.</p>
+<p>If you add periods (<code>'.'</code>) between some characters in the
+<strong>local name</strong> part of an email address, mail sent there
+will be forwarded to the same address without dots in the local name.
+For example, <code>"alice.z@leetcode.com"</code> and
+<code>"alicez@leetcode.com"</code> forward to the same email address.
+(Note that this rule does not apply for domain names.)</p>
+<p>If you add a plus (<code>'+'</code>) in the <strong>local
+name</strong>, everything after the first plus sign will be
+<strong>ignored</strong>. This allows certain emails to be filtered, for
+example <code>m.y+name@email.com</code> will be forwarded to
+<code>my@email.com</code>. (Again, this rule does not apply for domain
+names.)</p>
+<p>It is possible to use both of these rules at the same time.</p>
+<p>Given a list of <code>emails</code>, we send one email to each
+address in the list. How many different addresses actually receive
+mails?</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>Input:
+["test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"]
+Output: 2 Explanation: "testemail@leetcode.com" and
+"testemail@lee.tcode.com" actually receive mails</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ul>
+<li><code>1 &lt;= emails[i].length &lt;= 100</code></li>
+<li><code>1 &lt;= emails.length &lt;= 100</code></li>
+<li>Each <code>emails[i]</code> contains exactly one <code>'@'</code>
+character.</li>
+<li>All local and domain names are non-empty.</li>
+<li>Local names do not start with a <code>'+'</code> character.</li>
+</ul>
+</blockquote>
+<h2 id="approach-1-split-words-original-method">Approach 1: Split Words
+(Original Method)</h2>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>Note that <code>split</code> is a useful method.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseWords</span>(<span class="params">self, s</span>):</span><br><span class="line">        out = []</span><br><span class="line">        singleWord=s.split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">iter</span> <span class="keyword">in</span> singleWord:</span><br><span class="line">            <span class="built_in">iter</span>=<span class="built_in">iter</span>[::-<span class="number">1</span>]<span class="comment"># 反向排序数组</span></span><br><span class="line">            out.append(<span class="built_in">iter</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27; &#x27;</span>.join(out) <span class="comment"># 返回字符串，用空格填充out中元素的间隔</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    s=<span class="string">&quot;Let&#x27;s take LeetCode contest&quot;</span></span><br><span class="line">    solution=Solution().reverseWords(s)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<h3 id="simplification">simplification</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseWords</span>(<span class="params">self, s</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot; &quot;</span>.join([i[::-<span class="number">1</span>] <span class="keyword">for</span> i <span class="keyword">in</span> s.split()])</span><br></pre></td></tr></table></figure>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time Complexity: <em>O</em>(<em>n</em>), where <em>n</em> is the
+total words of <code>s</code>.</li>
+<li>Space Complexity: <em>O</em>(<em>1</em>).</li>
+<li>Runtime: 20 ms, faster than 94.03% of Python online submissions for
+Reverse Words in a String III.</li>
+<li>Memory Usage: 13 MB, less than 43.54% of Python online submissions
+for Reverse Words in a String III.</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/06/05/2019-06-05-Q657-Robot-Return-to-Origin/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -980,131 +1114,6 @@ submissions for Merge Two Sorted Lists.</li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/05/24/2019-05-24-Q237-Delete-Node-in-a-Linked-List/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/24/2019-05-24-Q237-Delete-Node-in-a-Linked-List/" class="post-title-link" itemprop="url">Q237 Delete Node in a Linked List</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-05-24 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-24T00:00:00+08:00">2019-05-24</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.3k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="delete-node-in-a-linked-list"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/delete-node-in-a-linked-list/">Delete
-Node in a Linked List</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>We are given <code>head</code>, the head node of a linked list
-containing <strong>unique integer values</strong>.</p>
-<p>We are also given the list <code>G</code>, a subset of the values in
-the linked list.</p>
-<p>Return the number of connected components in <code>head</code>, where
-two values are connected if they appear consecutively in the linked
-list.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong> Input: head: 0-&gt;1-&gt;2-&gt;3 G = [0,
-1, 3] Output: 2 Explanation: 0 and 1 are connected, so [0, 1] and [3]
-are the two connected components.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong> Input: head: 0-&gt;1-&gt;2-&gt;3-&gt;4 G
-= [0, 3, 1, 4] Output: 2 Explanation: 0 and 1 are connected, 3 and 4 are
-connected, so [0, 1] and [3, 4] are the two connected components.</p>
-</blockquote>
-<h3 id="approach-1-grouping">Approach 1: Grouping</h3>
-<blockquote>
-<p>Note: There is something wrong in the problem description. The test
-cases online are confusing.</p>
-<p><strong>Example:</strong></p>
-<p>input: [0] and [0]</p>
-<p>expected output: [1]</p>
-</blockquote>
-<p><strong>Intuition</strong></p>
-<p>Instead of thinking about connected components in <code>G</code>,
-think about them in the linked list. Connected components in
-<code>G</code> must occur consecutively in the linked list.</p>
-<p><strong>Algorithm</strong></p>
-<p>Scanning through the list, if <code>node.val</code> is in
-<code>G</code> and <code>node.next.val</code> isn't (including if
-<code>node.next</code> is <code>null</code>), then this must be the end
-of a connected component.</p>
-<p>For example, if the list is
-<code>0 -&gt; 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; 6 -&gt; 7</code>,
-and <code>G = [0, 2, 3, 5, 7]</code>, then when scanning through the
-list, we fulfill the above condition at <code>0, 3, 5, 7</code>, for a
-total answer of <code>4</code>.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">deleteNode</span>(<span class="params">self, node</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type node: ListNode</span></span><br><span class="line"><span class="string">        :rtype: void Do not return anything, modify node in-place instead.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> node.<span class="built_in">next</span> <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            node.val = node.<span class="built_in">next</span>.val</span><br><span class="line">            node.<span class="built_in">next</span> = node.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    head=stringToListNode([<span class="number">4</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">9</span>])<span class="comment"># 将输入的元组转换为链表</span></span><br><span class="line">    dele=head.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">    Solution().deleteNode(dele)</span><br><span class="line">    <span class="built_in">print</span>(listNodeToString(head))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li><p>Time and space complexity are both <em>O</em>(1).</p></li>
-<li><p>Runtime: 36 ms, faster than 99.70% of Python3 online submissions
-forDelete Node in a Linked List.</p></li>
-<li><p>Memory Usage: 13.5 MB, less than 55.73% of Python3 online
-submissions for Delete Node in a Linked List.</p></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1176,14 +1185,14 @@ submissions for Delete Node in a Linked List.</p></li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-count">234</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1243,12 +1252,12 @@ submissions for Delete Node in a Linked List.</p></li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">568k</span>
+    <span title="Symbols count total">572k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:36</span>
+    <span title="Reading time total">8:40</span>
 </div>
 
         

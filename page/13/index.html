@@ -198,6 +198,143 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/04/01/2021-04-01-Q92-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8%20II-%E4%B8%AD%E7%AD%89-%E9%93%BE%E8%A1%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/01/2021-04-01-Q92-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8%20II-%E4%B8%AD%E7%AD%89-%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">Q92-反转链表 II-中等-链表</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-04-01 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-01T00:00:00+08:00">2021-04-01</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.1k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="反转链表-ii"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-linked-list-ii/">92.
+反转链表 II</a></h4>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>给你单链表的头指针 head 和两个整数 left 和 right ，其中 left &lt;=
+right 。请你反转从位置 left 到位置 right 的链表节点，返回 反转后的链表
+。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>输入：head = [1,2,3,4,5], left = 2, right = 4 输出：[1,4,3,2,5]</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>输入：head = [5], left = 1, right = 1 输出：[5]</p>
+</blockquote>
+<blockquote>
+<p><strong>提示：</strong></p>
+<ul>
+<li>链表中节点数目为 n</li>
+<li>1 &lt;= n &lt;= 500</li>
+<li>-500 &lt;= Node.val &lt;= 500</li>
+<li>1 &lt;= left &lt;= right &lt;= n</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>进阶：</strong> 你可以使用一趟扫描完成反转吗？</p>
+</blockquote>
+<h3 id="approach-1-穿针引线">Approach 1: 穿针引线</h3>
+<p>一定要先想清楚思路，并且必要的时候在草稿纸上画图，理清「穿针引线」的先后步骤，然后再编码。</p>
+<p>使用<a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-linked-list/">「206.
+反转链表」</a>的解法，反转 left 到 right
+部分以后，再拼接起来。我们还需要记录 left 的前一个节点，和 right
+的后一个节点。</p>
+<ul>
+<li>第 1 步：先将待反转的区域反转；</li>
+<li>第 2 步：把 pre 的 next
+指针指向反转以后的链表头节点，把反转以后的链表的尾节点的 next 指针指向
+succ。</li>
+</ul>
+<p>说明：编码细节我们不在题解中介绍了，请见下方代码。思路想明白以后，编码不是一件很难的事情。这里要提醒大家的是，链接什么时候切断，什么时候补上去，先后顺序一定要想清楚，如果想不清楚，可以在纸上模拟，让思路清晰。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseBetween</span>(<span class="params">self, head: ListNode, left: <span class="built_in">int</span>, right: <span class="built_in">int</span></span>) -&gt; ListNode:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">reverse_linked_list</span>(<span class="params">head: ListNode</span>):</span><br><span class="line">            <span class="comment"># 也可以使用递归反转一个链表</span></span><br><span class="line">            pre = <span class="literal">None</span></span><br><span class="line">            cur = head</span><br><span class="line">            <span class="keyword">while</span> cur:</span><br><span class="line">                <span class="built_in">next</span> = cur.<span class="built_in">next</span></span><br><span class="line">                cur.<span class="built_in">next</span> = pre</span><br><span class="line">                pre = cur</span><br><span class="line">                cur = <span class="built_in">next</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 因为头节点有可能发生变化，使用虚拟头节点可以避免复杂的分类讨论</span></span><br><span class="line">        dummy_node = ListNode(-<span class="number">1</span>)</span><br><span class="line">        dummy_node.<span class="built_in">next</span> = head</span><br><span class="line">        pre = dummy_node</span><br><span class="line">        <span class="comment"># 第 1 步：从虚拟头节点走 left - 1 步，来到 left 节点的前一个节点</span></span><br><span class="line">        <span class="comment"># 建议写在 for 循环里，语义清晰</span></span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(left - <span class="number">1</span>):</span><br><span class="line">            pre = pre.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 第 2 步：从 pre 再走 right - left + 1 步，来到 right 节点</span></span><br><span class="line">        right_node = pre</span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(right - left + <span class="number">1</span>):</span><br><span class="line">            right_node = right_node.<span class="built_in">next</span></span><br><span class="line">        <span class="comment"># 第 3 步：切断出一个子链表（截取链表）</span></span><br><span class="line">        left_node = pre.<span class="built_in">next</span></span><br><span class="line">        curr = right_node.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 注意：切断链接</span></span><br><span class="line">        pre.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line">        right_node.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 第 4 步：同第 206 题，反转链表的子区间</span></span><br><span class="line">        reverse_linked_list(left_node)</span><br><span class="line">        <span class="comment"># 第 5 步：接回到原来的链表中</span></span><br><span class="line">        pre.<span class="built_in">next</span> = right_node</span><br><span class="line">        left_node.<span class="built_in">next</span> = curr</span><br><span class="line">        <span class="keyword">return</span> dummy_node.<span class="built_in">next</span></span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(N)，其中
+N是链表总节点数。最坏情况下，需要遍历整个链表。</li>
+<li>空间复杂度：O(1)。只使用到常数个变量。</li>
+</ul>
+<h3 id="approach-2-一次遍历穿针引线反转链表头插法">Approach 2:
+一次遍历「穿针引线」反转链表（头插法）</h3>
+<p>配图解释：https://leetcode-cn.com/problems/reverse-linked-list-ii/solution/fan-zhuan-lian-biao-ii-by-leetcode-solut-teyq/</p>
+<p>方法一的缺点是：如果 left 和 right
+的区域很大，恰好是链表的头节点和尾节点时，找到 left 和 right
+需要遍历一次，反转它们之间的链表还需要遍历一次，虽然总的时间复杂度为
+O(N)，但遍历了链表 2
+次，可不可以只遍历一次呢？答案是可以的。我们依然画图进行说明。</p>
+<p>整体思想是：在需要反转的区间里，每遍历到一个节点，让这个新节点来到反转部分的起始位置。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseBetween</span>(<span class="params">self, head: ListNode, left: <span class="built_in">int</span>, right: <span class="built_in">int</span></span>) -&gt; ListNode:</span><br><span class="line">        <span class="comment"># 设置 dummyNode 是这一类问题的一般做法</span></span><br><span class="line">        dummy_node = ListNode(-<span class="number">1</span>)</span><br><span class="line">        dummy_node.<span class="built_in">next</span> = head</span><br><span class="line">        pre = dummy_node</span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(left - <span class="number">1</span>):</span><br><span class="line">            pre = pre.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line">        cur = pre.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(right - left):</span><br><span class="line">            <span class="built_in">next</span> = cur.<span class="built_in">next</span></span><br><span class="line">            cur.<span class="built_in">next</span> = <span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">            <span class="built_in">next</span>.<span class="built_in">next</span> = pre.<span class="built_in">next</span></span><br><span class="line">            pre.<span class="built_in">next</span> = <span class="built_in">next</span></span><br><span class="line">        <span class="keyword">return</span> dummy_node.<span class="built_in">next</span></span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(N)，其中 N
+是链表总节点数。最多只遍历了链表一次，就完成了反转。</li>
+<li>空间复杂度：O(1)。只使用到常数个变量。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/31/2021-03-31-Neuroscience%20-%20Adaptation%20to%20Visuomotor%20Rotation%20Through%20Interaction%20Between%20Posterior/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1117,111 +1254,6 @@ Intrinsic and Extrinsic Action Representations</p>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/28/2021-03-28-Neuroscience%20-%20Neuronal%20Correlates%20of%20Motor%20Performance%20and%20Motor%20Learning%20in%20the%20Primary%20Motor%20Cortex%20of%20Monkeys%20Adapting%20to%20an%20External%20Force%20Field/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/28/2021-03-28-Neuroscience%20-%20Neuronal%20Correlates%20of%20Motor%20Performance%20and%20Motor%20Learning%20in%20the%20Primary%20Motor%20Cortex%20of%20Monkeys%20Adapting%20to%20an%20External%20Force%20Field/" class="post-title-link" itemprop="url">Neuroscience | Neuronal Correlates of Motor Performance and Motor Learning in the Primary Motor Cortex of Monkeys Adapting to an External Force Field</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-03-28 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-28T00:00:00+08:00">2021-03-28</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>848</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1
-id="neuronal-correlates-of-motor-performance-and-motor-learning-in-the-primary-motor-cortex-of-monkeys-adapting-to-an-external-force-field">Neuronal
-Correlates of Motor Performance and Motor Learning in the Primary Motor
-Cortex of Monkeys Adapting to an External Force Field</h1>
-<p>论文链接：https://www.cell.com/neuron/fulltext/S0896-6273(01)00301-4</p>
-<h2 id="背景">背景</h2>
-<p>初级运动皮层（M1）在手臂的力场适应任务中的神经活动。</p>
-<h2 id="主要工作">主要工作</h2>
-<ul>
-<li><p>存储神经元分为两类：</p>
-<ul>
-<li>关于优选方向（Pd）的变化，这两个类别在重新适应后彼此互补。</li>
-<li>与肌肉相关性：对于整个神经元群体，Pd的变化与肌肉观察到的变化相匹配。</li>
-</ul></li>
-<li><p>运动轨迹的扰动减小并最终消失，因为对象适应了这些力场。当移除力场时，运动轨迹沿与首次施加力场时观察到的方向相反的方向弯曲。这种<strong>后效应</strong>的存在表明，受试者在适应力场的情况下建立了运动环境动力学的内部模型。（The
-existence of this aftereffect suggested that subjects developed an
-internal model of the dynamics of the motor environment as they adapted
-to the force field）</p></li>
-<li><p>The <strong>curl fields</strong> used in the adaptation paradigm
-provided <strong>an isotropic (rotation-invariant)
-perturbation</strong>, in that the external force was always orthogonal
-to the movement for all eight directions</p></li>
-<li><p>实验分为三个阶段：</p>
-<ul>
-<li>基准baseline：直线的点到点运动</li>
-<li>力场Force：受到力场干扰，适应新的动力学</li>
-<li>恢复washout：去掉力场干扰，重新变成基准状态。</li>
-</ul></li>
-<li><p>实验中发现了两类记忆细胞，第一类细胞的偏好方向没有发生改变，第二类的偏好方向发生了改变</p></li>
-</ul>
-<h2 id="总结">总结</h2>
-<ul>
-<li>这篇文章可以作为证明皮层参与力场适应实验的生物证据，但实质上没有说明作用。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1293,14 +1325,14 @@ to the movement for all eight directions</p></li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-count">234</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1360,12 +1392,12 @@ to the movement for all eight directions</p></li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">568k</span>
+    <span title="Symbols count total">572k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:36</span>
+    <span title="Reading time total">8:40</span>
 </div>
 
         

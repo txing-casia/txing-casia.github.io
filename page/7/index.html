@@ -198,6 +198,121 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/01/16/2022-01-16-CoppeliaSim%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/16/2022-01-16-CoppeliaSim%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">CoppeliaSim入门指南</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-01-16 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-16T00:00:00+08:00">2022-01-16</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>3.2k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>3 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="coppeliasim入门指南">CoppeliaSim入门指南</h1>
+<h3 id="软件安装">1 软件安装</h3>
+<p>CoppeliaSim 以前叫做
+V-rep，是一款广泛使用的机器人仿真软件环境。在本指南中，尝试在 python
+中实现对 CoppeliaSim 的调用。</p>
+<blockquote>
+<p>CoppeliaSim下载地址：https://www.coppeliarobotics.com/</p>
+</blockquote>
+<p>下载完成后按照默认引导完成安装。</p>
+<h3 id="环境配置">2 环境配置</h3>
+<p>然后新建 python 工程环境，在工程文件夹内需要添加三个 CoppeliaSim
+相关的文件，分别为：</p>
+<ul>
+<li><p>sim.py（原vrep.py）</p>
+<blockquote>
+<p>位置：C:Files</p>
+</blockquote></li>
+<li><p>simConst.py（原vrepConst.py）</p>
+<blockquote>
+<p>位置：C:Files</p>
+</blockquote></li>
+<li><p>remoteApi.dll</p>
+<blockquote>
+<p>位置：C:Files</p>
+</blockquote></li>
+</ul>
+<p>在 CoppeliaSim 窗口中，双击 main
+文件，添加如下所示第三行代码。帮助实现与 python 的远程连接</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220117-1.png"
+alt="main文件位置" />
+<figcaption aria-hidden="true">main文件位置</figcaption>
+</figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-- The main script is not supposed to be modified, except in special cases.</span><br><span class="line">require(&#x27;defaultMainScript&#x27;)</span><br><span class="line">simRemoteApi.start(19999)</span><br></pre></td></tr></table></figure>
+<h3 id="程序代码">3 程序代码</h3>
+<p>在 python 窗口中，添加如下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Make sure to have the server side running in CoppeliaSim: </span></span><br><span class="line"><span class="comment"># in a child script of a CoppeliaSim scene, add following command</span></span><br><span class="line"><span class="comment"># to be executed just once, at simulation start:</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># simRemoteApi.start(19997)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># then start simulation, and run this program.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># IMPORTANT: for each successful call to simxStart, there</span></span><br><span class="line"><span class="comment"># should be a corresponding call to simxFinish at the end!</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">import</span> sim</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;--------------------------------------------------------------&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;&quot;sim.py&quot; could not be imported. This means very probably that&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;either &quot;sim.py&quot; or the remoteApi library could not be found.&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;Make sure both are in the same folder as this file,&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;or appropriately adjust the file &quot;sim.py&quot;&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;--------------------------------------------------------------&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> (<span class="string">&#x27;Program started&#x27;</span>)</span><br><span class="line">sim.simxFinish(-<span class="number">1</span>) <span class="comment"># just in case, close all opened connections</span></span><br><span class="line">clientID=sim.simxStart(<span class="string">&#x27;127.0.0.1&#x27;</span>,<span class="number">19999</span>,<span class="literal">True</span>,<span class="literal">True</span>,<span class="number">5000</span>,<span class="number">5</span>) <span class="comment"># Connect to CoppeliaSim</span></span><br><span class="line"><span class="keyword">if</span> clientID!=-<span class="number">1</span>:</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;Connected to remote API server&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Now try to retrieve data in a blocking fashion (i.e. a service call):</span></span><br><span class="line">    res,objs=sim.simxGetObjects(clientID,sim.sim_handle_all,sim.simx_opmode_blocking)</span><br><span class="line">    <span class="keyword">if</span> res==sim.simx_return_ok:</span><br><span class="line">        <span class="built_in">print</span> (<span class="string">&#x27;Number of objects in the scene: &#x27;</span>,<span class="built_in">len</span>(objs))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span> (<span class="string">&#x27;Remote API function call returned with error code: &#x27;</span>,res)</span><br><span class="line"></span><br><span class="line">    time.sleep(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Now retrieve streaming data (i.e. in a non-blocking fashion):</span></span><br><span class="line">    startTime=time.time()</span><br><span class="line">    sim.simxGetIntegerParameter(clientID,sim.sim_intparam_mouse_x,sim.simx_opmode_streaming) <span class="comment"># Initialize streaming</span></span><br><span class="line">    <span class="keyword">while</span> time.time()-startTime &lt; <span class="number">5</span>:</span><br><span class="line">        returnCode,data=sim.simxGetIntegerParameter(clientID,sim.sim_intparam_mouse_x,sim.simx_opmode_buffer) <span class="comment"># Try to retrieve the streamed data</span></span><br><span class="line">        <span class="keyword">if</span> returnCode==sim.simx_return_ok: <span class="comment"># After initialization of streaming, it will take a few ms before the first value arrives, so check the return code</span></span><br><span class="line">            <span class="built_in">print</span> (<span class="string">&#x27;Mouse position x: &#x27;</span>,data) <span class="comment"># Mouse position x is actualized when the cursor is over CoppeliaSim&#x27;s window</span></span><br><span class="line">        time.sleep(<span class="number">0.005</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Now send some data to CoppeliaSim in a non-blocking fashion:</span></span><br><span class="line">    sim.simxAddStatusbarMessage(clientID,<span class="string">&#x27;Hello CoppeliaSim!&#x27;</span>,sim.simx_opmode_oneshot)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Before closing the connection to CoppeliaSim, make sure that the last command sent out had time to arrive. You can guarantee this with (for example):</span></span><br><span class="line">    sim.simxGetPingTime(clientID)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Now close the connection to CoppeliaSim:</span></span><br><span class="line">    sim.simxFinish(clientID)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&#x27;Failed connecting to remote API server&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span> (<span class="string">&#x27;Program ended&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>代码来自于样例程序simpleTest.py (C:Files)</p>
+<h3 id="功能实现">4 功能实现</h3>
+<p>功能大致是：获取 CoppeliaSim 窗口中鼠标的 x 坐标，并返回到 python
+窗口输出。</p>
+<p>运行方式为：先点击 CoppeliaSim 的 start simulation
+按键运行仿真，再运行 python 程序，会自动实现通信。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/01/06/2022-01-06-Pytorch-%E6%89%8B%E5%8A%A8%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%9A%84%E6%9B%B2%E7%BA%BF%E6%8B%9F%E5%90%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1064,131 +1179,6 @@ class="math display">\[O(1)\]</span>。除了输出数组以外，空间复杂�
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/09/07/2021-09-07-Q329-%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E8%B7%AF%E5%BE%84-%E5%9B%B0%E9%9A%BE-%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/07/2021-09-07-Q329-%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E8%B7%AF%E5%BE%84-%E5%9B%B0%E9%9A%BE-%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" class="post-title-link" itemprop="url">Q329-矩阵中的最长递增路径-困难-深度优先搜索</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-09-07 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-07T00:00:00+08:00">2021-09-07</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.7k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="矩阵中的最长递增路径"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-increasing-path-in-a-matrix/">329.
-矩阵中的最长递增路径</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>给定一个 m x n 整数矩阵 matrix ，找出其中 最长递增路径 的长度。</p>
-<p>对于每个单元格，你可以往上，下，左，右四个方向移动。 你 不能 在
-对角线 方向上移动或移动到 边界外（即不允许环绕）。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入：matrix = [[9,9,4],[6,6,8],[2,1,1]] 输出：4 解释：最长递增路径为
-[1, 2, 6, 9]。</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li>m == matrix.length</li>
-<li>n == matrix[i].length</li>
-<li>1 &lt;= m, n &lt;= 200</li>
-<li>0 &lt;= <span class="math display">\[matrix[i][j]\]</span> &lt;= 231
-- 1</li>
-</ul>
-</blockquote>
-<h3 id="approach-1-记忆化深度优先搜索">Approach 1:
-记忆化深度优先搜索</h3>
-<p>将矩阵看成一个有向图，每个单元格对应图中的一个节点，如果相邻的两个单元格的值不相等，则在相邻的两个单元格之间存在一条从较小值指向较大值的有向边。问题转化成在有向图中寻找最长路径。</p>
-<p>深度优先搜索是非常直观的方法。从一个单元格开始进行深度优先搜索，即可找到从该单元格开始的最长递增路径。对每个单元格分别进行深度优先搜索之后，即可得到矩阵中的最长递增路径的长度。</p>
-<p>但是如果使用朴素深度优先搜索，时间复杂度是指数级，会超出时间限制，因此必须加以优化。</p>
-<p>朴素深度优先搜索的时间复杂度过高的原因是进行了大量的重复计算，同一个单元格会被访问多次，每次访问都要重新计算。由于同一个单元格对应的最长递增路径的长度是固定不变的，因此可以使用记忆化的方法进行优化。用矩阵
-<span class="math display">\[\textit{memo}\]</span>
-作为缓存矩阵，已经计算过的单元格的结果存储到缓存矩阵中。</p>
-<p>使用记忆化深度优先搜索，当访问到一个单元格 <span
-class="math display">\[(i,j)\]</span> 时，如果 <span
-class="math display">\[\textit{memo}[i][j] \neq
-0\]</span>，说明该单元格的结果已经计算过，则直接从缓存中读取结果，如果
-<span
-class="math display">\[\textit{memo}[i][j]=0\]</span>，说明该单元格的结果尚未被计算过，则进行搜索，并将计算得到的结果存入缓存中。</p>
-<p>遍历完矩阵中的所有单元格之后，即可得到矩阵中的最长递增路径的长度。</p>
-<p>python中使用@lru_cache(None)可以缓存之前的计算结果，避免重复计算，提高计算效率（参考：https://www.cnblogs.com/sfencs-hcy/p/10171457.html）</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    </span><br><span class="line">    DIRS = [(-<span class="number">1</span>, <span class="number">0</span>), (<span class="number">1</span>, <span class="number">0</span>), (<span class="number">0</span>, -<span class="number">1</span>), (<span class="number">0</span>, <span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">longestIncreasingPath</span>(<span class="params">self, matrix: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> matrix:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line"><span class="meta">        @lru_cache(<span class="params"><span class="literal">None</span></span>)</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">row: <span class="built_in">int</span>, column: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">            best = <span class="number">1</span></span><br><span class="line">            <span class="keyword">for</span> dx, dy <span class="keyword">in</span> Solution.DIRS:</span><br><span class="line">                newRow, newColumn = row + dx, column + dy</span><br><span class="line">                <span class="keyword">if</span> <span class="number">0</span> &lt;= newRow &lt; rows <span class="keyword">and</span> <span class="number">0</span> &lt;= newColumn &lt; columns <span class="keyword">and</span> matrix[newRow][newColumn] &gt; matrix[row][column]:</span><br><span class="line">                    best = <span class="built_in">max</span>(best, dfs(newRow, newColumn) + <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> best</span><br><span class="line"></span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        rows, columns = <span class="built_in">len</span>(matrix), <span class="built_in">len</span>(matrix[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(rows):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(columns):</span><br><span class="line">                ans = <span class="built_in">max</span>(ans, dfs(i, j))</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：<span class="math display">\[O(mn)\]</span>，其中 m 和 n
-分别是矩阵的行数和列数。深度优先搜索的时间复杂度是 <span
-class="math display">\[O(V+E)\]</span>，其中 V 是节点数，E
-是边数。在矩阵中，<span
-class="math display">\[O(V)=O(mn)\]</span>，<span
-class="math display">\[O(E)\approx O(4mn) = O(mn)\]</span></li>
-<li>空间复杂度：<span class="math display">\[O(mn)\]</span>，其中 m 和 n
-分别是矩阵的行数和列数。空间复杂度主要取决于缓存和递归调用深度，缓存的空间复杂度是
-<span class="math display">\[O(mn)\]</span>，递归调用深度不会超过
-mn。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1260,14 +1250,14 @@ mn。</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-count">234</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1327,12 +1317,12 @@ mn。</li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">568k</span>
+    <span title="Symbols count total">572k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:36</span>
+    <span title="Reading time total">8:40</span>
 </div>
 
         

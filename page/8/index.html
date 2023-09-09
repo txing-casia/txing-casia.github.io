@@ -198,6 +198,131 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/09/07/2021-09-07-Q329-%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E8%B7%AF%E5%BE%84-%E5%9B%B0%E9%9A%BE-%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/07/2021-09-07-Q329-%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E8%B7%AF%E5%BE%84-%E5%9B%B0%E9%9A%BE-%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" class="post-title-link" itemprop="url">Q329-矩阵中的最长递增路径-困难-深度优先搜索</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-09-07 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-07T00:00:00+08:00">2021-09-07</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="矩阵中的最长递增路径"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-increasing-path-in-a-matrix/">329.
+矩阵中的最长递增路径</a></h4>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>给定一个 m x n 整数矩阵 matrix ，找出其中 最长递增路径 的长度。</p>
+<p>对于每个单元格，你可以往上，下，左，右四个方向移动。 你 不能 在
+对角线 方向上移动或移动到 边界外（即不允许环绕）。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>输入：matrix = [[9,9,4],[6,6,8],[2,1,1]] 输出：4 解释：最长递增路径为
+[1, 2, 6, 9]。</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ul>
+<li>m == matrix.length</li>
+<li>n == matrix[i].length</li>
+<li>1 &lt;= m, n &lt;= 200</li>
+<li>0 &lt;= <span class="math display">\[matrix[i][j]\]</span> &lt;= 231
+- 1</li>
+</ul>
+</blockquote>
+<h3 id="approach-1-记忆化深度优先搜索">Approach 1:
+记忆化深度优先搜索</h3>
+<p>将矩阵看成一个有向图，每个单元格对应图中的一个节点，如果相邻的两个单元格的值不相等，则在相邻的两个单元格之间存在一条从较小值指向较大值的有向边。问题转化成在有向图中寻找最长路径。</p>
+<p>深度优先搜索是非常直观的方法。从一个单元格开始进行深度优先搜索，即可找到从该单元格开始的最长递增路径。对每个单元格分别进行深度优先搜索之后，即可得到矩阵中的最长递增路径的长度。</p>
+<p>但是如果使用朴素深度优先搜索，时间复杂度是指数级，会超出时间限制，因此必须加以优化。</p>
+<p>朴素深度优先搜索的时间复杂度过高的原因是进行了大量的重复计算，同一个单元格会被访问多次，每次访问都要重新计算。由于同一个单元格对应的最长递增路径的长度是固定不变的，因此可以使用记忆化的方法进行优化。用矩阵
+<span class="math display">\[\textit{memo}\]</span>
+作为缓存矩阵，已经计算过的单元格的结果存储到缓存矩阵中。</p>
+<p>使用记忆化深度优先搜索，当访问到一个单元格 <span
+class="math display">\[(i,j)\]</span> 时，如果 <span
+class="math display">\[\textit{memo}[i][j] \neq
+0\]</span>，说明该单元格的结果已经计算过，则直接从缓存中读取结果，如果
+<span
+class="math display">\[\textit{memo}[i][j]=0\]</span>，说明该单元格的结果尚未被计算过，则进行搜索，并将计算得到的结果存入缓存中。</p>
+<p>遍历完矩阵中的所有单元格之后，即可得到矩阵中的最长递增路径的长度。</p>
+<p>python中使用@lru_cache(None)可以缓存之前的计算结果，避免重复计算，提高计算效率（参考：https://www.cnblogs.com/sfencs-hcy/p/10171457.html）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    </span><br><span class="line">    DIRS = [(-<span class="number">1</span>, <span class="number">0</span>), (<span class="number">1</span>, <span class="number">0</span>), (<span class="number">0</span>, -<span class="number">1</span>), (<span class="number">0</span>, <span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">longestIncreasingPath</span>(<span class="params">self, matrix: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> matrix:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line"><span class="meta">        @lru_cache(<span class="params"><span class="literal">None</span></span>)</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">row: <span class="built_in">int</span>, column: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">            best = <span class="number">1</span></span><br><span class="line">            <span class="keyword">for</span> dx, dy <span class="keyword">in</span> Solution.DIRS:</span><br><span class="line">                newRow, newColumn = row + dx, column + dy</span><br><span class="line">                <span class="keyword">if</span> <span class="number">0</span> &lt;= newRow &lt; rows <span class="keyword">and</span> <span class="number">0</span> &lt;= newColumn &lt; columns <span class="keyword">and</span> matrix[newRow][newColumn] &gt; matrix[row][column]:</span><br><span class="line">                    best = <span class="built_in">max</span>(best, dfs(newRow, newColumn) + <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> best</span><br><span class="line"></span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        rows, columns = <span class="built_in">len</span>(matrix), <span class="built_in">len</span>(matrix[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(rows):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(columns):</span><br><span class="line">                ans = <span class="built_in">max</span>(ans, dfs(i, j))</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：<span class="math display">\[O(mn)\]</span>，其中 m 和 n
+分别是矩阵的行数和列数。深度优先搜索的时间复杂度是 <span
+class="math display">\[O(V+E)\]</span>，其中 V 是节点数，E
+是边数。在矩阵中，<span
+class="math display">\[O(V)=O(mn)\]</span>，<span
+class="math display">\[O(E)\approx O(4mn) = O(mn)\]</span></li>
+<li>空间复杂度：<span class="math display">\[O(mn)\]</span>，其中 m 和 n
+分别是矩阵的行数和列数。空间复杂度主要取决于缓存和递归调用深度，缓存的空间复杂度是
+<span class="math display">\[O(mn)\]</span>，递归调用深度不会超过
+mn。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/09/06/2021-09-06-Neuroscience%20-%20Integration%20of%20Reinforcement%20Learning%20and%20Optimal%20Decision-Making%20Theories%20of%20the%20Basal%20Ganglia/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1122,266 +1247,6 @@ class="math display">\[O(nm)\]</span>。</li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/22/2021-07-22-Reinforcement%20Learning%20-%20Intrinsically%20Motivated%20Reinforcement%20Learning%20An%20Evolutionary%20Perspective/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/22/2021-07-22-Reinforcement%20Learning%20-%20Intrinsically%20Motivated%20Reinforcement%20Learning%20An%20Evolutionary%20Perspective/" class="post-title-link" itemprop="url">Reinforcement Learning | Intrinsically Motivated Reinforcement Learning: An Evolutionary Perspective</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-07-22 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-22T00:00:00+08:00">2021-07-22</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>5.8k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>5 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1
-id="intrinsically-motivated-reinforcement-learning-an-evolutionary-perspective">Intrinsically
-Motivated Reinforcement Learning: An Evolutionary Perspective</h1>
-<p>论文链接：https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=5471106</p>
-<h2 id="主要内容">主要内容</h2>
-<ul>
-<li><p>intrinsically motivated
-这个词最开始是在1950年的文章中提出的，文章认为需要有一种内在的操纵驱动力来解释为什么猴子会在没有任何外在奖励的情况下精力充沛地持续工作数小时来解决复杂的机械难题。内在动机行为对智力增长至关重要</p></li>
-<li><p>本文解决了如何在人工系统中实现类似于内在动机的过程的问题，特别关注可能会或可能不会区分内在动机和外在动机的因素，其中外在动机是指由行为的特定奖励结果产生的动机，而不是行为本身。</p></li>
-<li><p>相关工作：</p>
-<ul>
-<li><p>定义有趣度：Lenat's AM system [18], for example, focused on
-heuristic definitions of “interestingness,”</p></li>
-<li><p>建立好奇心框架：Schmidhuber [32] [33] [34] [35] [36] [37]
-introduced methods for implementing forms of curiosity using the
-framework of computational reinforcement learning (RL)1 [47].</p></li>
-<li><p>奖励函数设计：Other researchers have reported interesting results
-of computational experiments involving evolutionary search for RL reward
-functions [1], [8], [19], [31], [43], but they did not directly address
-the motivational issues on which we focus.</p></li>
-<li><p>寻找本质奖励：Uchibe and Doya [51] do address intrinsic reward in
-an evolutionary context, but their aim and approach differ significantly
-from ours.</p>
-<p>[51]. E. Uchibe and K. Doya, "Finding intrinsic rewards by embodied
-evolution and constrained reinforcement learning", <em>Neural
-Netw.</em>, vol. 21, no. 10, pp. 1447-1455, 2008.</p></li>
-<li><p>与我们最接近的研究是 Elfwing
-等人的研究。[11]其中使用遗传算法来搜索塑造奖励[23]和其他提高 RL
-学习系统性能的学习算法参数。</p>
-<p>[11]. S. Elfwing, E. Uchibe, K. Doya and H. I. Christensen,
-"Co-evolution of shaping rewards and meta-parameters in reinforcement
-learning", <em>Adapt. Behav.</em>, vol. 16, pp. 400-412, 2008.</p></li>
-</ul></li>
-<li><p>使用RL的模型结构示意图</p></li>
-</ul>
-<figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210722-1.png"
-alt="Agent–environment interactions in reinforcement learning" />
-<figcaption aria-hidden="true">Agent–environment interactions in
-reinforcement learning</figcaption>
-</figure>
-<ul>
-<li><p>这篇文章[3]使用属于内部奖励（intrinsic
-reward），并将其与强化学习框架结合。所谓内部奖励，就是内部动机生成的奖励函数；外部奖励就是常规的强化学习框架的奖励函数。</p>
-<p>[3]. A. G. Barto, S. Singh and N. Chentanez, "Intrinsically motivated
-learning of hierarchical collections of skills", <em>Proc. Int. Conf.
-Develop. Learn.</em>, 2004.</p></li>
-<li><p>目前的方法基本都是构建特殊的内部奖励函数，并且将其与一般的强化学习算法结合。例如基于好奇心的内部驱动方法[32]。</p>
-<p>[32]. J. Schmidhuber, <em>Adaptive Confidence and Adaptive
-Curiosity</em>, 1991.</p></li>
-<li><p>这种内部动机的RL框架更加符合生物实际。并且奖励和奖励信号是不同的概念，RL模型中使用的更类似于奖励信号。</p>
-<ul>
-<li><p>奖励（Reward）指的是获得的好处；</p></li>
-<li><p>奖励信号（Reward signal）指的是大脑中奖励神经元发放的信号；</p>
-<p>Schultz [38], [39] writes that “Rewards are objects or events that
-make us come back for more,” whereas reward signals are produced by
-reward neurons in the brain.</p></li>
-</ul></li>
-<li><p>RL中的环境应该分为an external environment 和 an internal
-environment.</p></li>
-<li><p>但是并不能从行为上区分是否使用了内部奖励[25]。但是内部动机是通过外部奖励形成的。</p>
-<p>[25]. P.-Y. Oudeyer and F. Kaplan, "What is intrinsic motivation? A
-typology of computational approaches", <em>Frontiers Neurorobot.</em>,
-2007.</p></li>
-<li><p>Primary and Secondary
-Reward：使用内部动机意义在于作为一种次要的奖励信号，配合主要的外部奖励信号完成行为</p></li>
-<li><p>生物动机心理学依据：</p>
-<p>Among the most influential theories of motivation in psychology is
-the drive theory of Hull [13] [14] [15]. According to Hull's theory, all
-behavior is motivated either by an organism's survival and reproductive
-needs giving rise to primary drives (such as hunger, thirst, sex, and
-the avoidance of pain), or by derivative drives that have acquired their
-motivational significance through learning. Primary drives are the
-result of physiological deficits—“tissue needs”— and they energize
-behavior whose result is to reduce the deficit. A key additional feature
-of Hull's theory is that a need reduction, and hence a drive reduction,
-acts as a primary reinforcer for learning: behavior that reduces a
-primary drive is reinforced. Additionally, through the process of
-secondary reinforcement in which a neutral stimulus is paired with a
-primary reinforcer, the formerly neutral stimulus becomes a secondary
-reinforcer, i.e., acquires the reinforcing power of the primary
-reinforcer. In this way, stimuli that predict primary reward, i.e.,
-predict a reduction in a primary drive, become rewarding themselves.
-According to this influential theory (in its several variants), all
-behavior is energized and directed by its relevance to primal drives,
-either directly or as the result of learning through secondary
-reinforcement.</p></li>
-<li><p>一些驱动力对行为影响的例子，在某些条件下，饥饿的老鼠宁愿探索不熟悉的空间，也不愿进食；他们忍受穿越电网的痛苦，去探索新的空间。</p></li>
-<li><p>但是饥饿、口渴、繁衍这些驱动都伴随着满足的状态，他们是否能作为次要驱动还是有待研究。下面介绍基于进化的观点。</p></li>
-<li><p>使用一个适应度函数和一些环境兴趣的分布（an explicit fitness
-function and some distribution of environments of
-interest），这个适应度可以是累积的外部奖励和等形式。</p></li>
-<li><p><strong>实验1：</strong></p></li>
-<li><p>一个6x6的格子空间中分割了4个3x3的子空间，格子之间的墙壁不是全部封闭的，其中2个子格子空间中分别有一个打开的盒子和一个封闭的盒子（盒子位置在智能体生命周期内是不再变化的），一个打开的盒子在每个时间步以
-0.1
-的概率关闭，密闭的盒子里总是装着食物。智能体在这样的格子迷宫中要找到打开的盒子，并在封闭的盒子中寻找食物。智能体的行动分为上下左右4个方向。</p></li>
-<li><p>当代理食用食物时，它会在一个时间步长内感到饱足。代理在所有其他时间步都饥饿。智能体每吃一次食物，它的适应度就会增加
-1</p></li>
-<li><p>在格子迷宫环境中假设了两只钟情况：</p>
-<ol type="1">
-<li>constant condition:
-食物总是智能体10000步生命周期中，在封闭的盒子中出现；</li>
-<li>step condition:
-智能体的生命周期是20000步，食物总是出现在10000步之后出现在封闭盒子中；</li>
-</ol></li>
-<li><p>符号说明：</p>
-<ul>
-<li>agent <span class="math display">\[\mathcal{A}\]</span></li>
-<li>a space of reward function <span
-class="math display">\[R_\mathcal{A}\]</span></li>
-<li>a specific reward function <span
-class="math display">\[r_\mathcal{A} \in R_\mathcal{A}\]</span></li>
-<li>a sampled environment <span class="math display">\[E \sim
-P(\varepsilon)\]</span></li>
-<li>history of agent <span class="math display">\[\mathcal{A}\]</span>
-adapting to environment <span class="math display">\[E\]</span> over its
-lifetime using the reward function <span
-class="math display">\[r_\mathcal{A}\]</span>, i.e., <span
-class="math display">\[h \sim \langle
-\mathcal{A}(r_\mathcal{A}),E\rangle\]</span></li>
-<li>fitness function <span class="math display">\[\mathcal{F}\]</span>
-produces a scalar evaluation <span
-class="math display">\[\mathcal{F}(h)\]</span> for each history <span
-class="math display">\[h\]</span></li>
-<li>optimal reward function <span
-class="math display">\[r^*_{\mathcal{A}} \in
-R_{\mathcal{A}}\]</span></li>
-</ul></li>
-</ul>
-<p><span class="math display">\[
-r^*_{\mathcal{A}}=\arg \max_{r_\mathcal{A} \in R_\mathcal{A}}
-\mathbb{E}_{E\sim P(\varepsilon)} \mathbb{E}_{h \sim \langle
-\mathcal{A}(r_\mathcal{A}),E\rangle}[\mathcal{F}(h)]
-\]</span></p>
-<ul>
-<li><p>使用的算法 the lookup-table -greedy Q-learning [52].</p>
-<p>[52]. C. J. C. H. Watkins, “Learning from Delayed Rewards,” Ph.D.
-dissertation, Cambridge Univ., Cambridge, U.K., 1989</p></li>
-</ul>
-<p><span class="math display">\[
-Q_{t+1}(s_t,a_t)=(1-\alpha)Q_t(s_t,a_t)+\alpha[r_t + \gamma \max_b
-(Q_t(s_{t+1},b))]
-\]</span></p>
-<p>之后通过实验验证了<span
-class="math display">\[r*\]</span>的奖励函数趋近最优奖励函数</p>
-<ul>
-<li><p><strong>实验2</strong></p>
-<ul>
-<li>一个三走廊的觅食环境，虫子每次随机出现正在其中一个走廊的尽头。由于每次虫子的位置是随机且未知的，智能体过去的经验不能直接直到新的觅食，所以这个环境是非马尔科夫的。</li>
-<li>实验要求智能体在固定的10000步之内尽可能多地吃到虫子。</li>
-</ul>
-<p><span class="math display">\[
-Q_d(s,a)=r_{\mathcal{A}}(s,a)+\gamma\sum_{s&#39;\in \mathcal{S}}
-\hat{T}(s&#39;|s,a)\max_{a&#39;} Q_{d-1}(s&#39;,a&#39;)\\
-\hat{T}(s&#39;|s,a)=\frac{n_{s,a,s&#39;}}{n_{s,a}}
-\]</span></p>
-<p>其中 <span class="math display">\[n_{s,a,s&#39;}\]</span> 表示在
-<span class="math display">\[s\]</span> 状态下，选择 <span
-class="math display">\[a\]</span> 后转移到 <span
-class="math display">\[s&#39;\]</span> 的次数。 <span
-class="math display">\[n_{s,a}\]</span> 表示在 <span
-class="math display">\[s\]</span> 状态下，选择 <span
-class="math display">\[a\]</span> 的次数。</p></li>
-<li><p>奖励函数：<span
-class="math display">\[r_{\mathcal{A}}(s,a)=\beta_F\varPhi_F(s) +
-\beta_c\varPhi_c(s,a,h)\]</span> ，其中 <span
-class="math display">\[\beta_F\]</span> 和 <span
-class="math display">\[\beta_c\]</span> 是权重系数。特征 <span
-class="math display">\[\varPhi_F(s)\]</span> 在智能体饱的时候是 1
-，其他时候是 0 。特征 <span class="math display">\[\varPhi_c(s,a,h) =
-1-\frac{1}{c(s,a,h)}\]</span> ，其中 <span
-class="math display">\[c(s,a,h)\]</span> 是智能体在历史 <span
-class="math display">\[h\]</span> 中执行行为的时间步数。</p></li>
-<li><p>当参数 <span class="math display">\[\beta_c\]</span>
-为正时，智能体会因为最近没有从当前状态采取的行动而获得奖励。这种奖励不是外部环境的固定函数.
-feature <span class="math display">\[\varPhi_F(s)\]</span> is a
-hunger-status feature, and thus when <span
-class="math display">\[\beta_F=1\]</span> and <span
-class="math display">\[\beta_c=0\]</span>, the reward function is the
-fitness-based reward function</p></li>
-</ul>
-<p>最终基于适应度的奖励函数表现次于最优奖励函数2个数量级。因此利用内在奖励
-<span class="math display">\[\varPhi_c(s,a,h)\]</span>
-对提升探索能力很有意义。</p>
-<h2 id="总结">总结</h2>
-<p>视角很独特，实验很新奇。</p>
-<p>但是文章发表在自主心理发展IEEE TRANSACTIONS ON AUTONOMOUS MENTAL
-DEVELOPMENT，因此作为一篇概念文章比较好。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1453,14 +1318,14 @@ DEVELOPMENT，因此作为一篇概念文章比较好。</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-count">234</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1520,12 +1385,12 @@ DEVELOPMENT，因此作为一篇概念文章比较好。</p>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">568k</span>
+    <span title="Symbols count total">572k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:36</span>
+    <span title="Reading time total">8:40</span>
 </div>
 
         

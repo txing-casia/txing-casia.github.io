@@ -198,6 +198,117 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/05/20/2021-05-20-%E5%AE%89%E8%A3%85Atari%E7%8E%AF%E5%A2%83%E7%9B%B8%E5%85%B3%E6%8A%A5%E9%94%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/20/2021-05-20-%E5%AE%89%E8%A3%85Atari%E7%8E%AF%E5%A2%83%E7%9B%B8%E5%85%B3%E6%8A%A5%E9%94%99/" class="post-title-link" itemprop="url">安装Atari环境报错缺少ale_c.dll解决办法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-05-20 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-20T00:00:00+08:00">2021-05-20</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.5k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2
+id="安装atari环境报错缺少ale_c.dll解决办法">安装Atari环境报错缺少ale_c.dll解决办法</h2>
+<h3 id="背景"><strong>背景：</strong></h3>
+<p>在Atari游戏环境中做RL测试。通过anaconda新建了环境，配置好torch，numpy，gym等环境。运行中报错如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FileNotFoundError: Could not find module &#x27;D:\Anaconda3\envs\PPOenv\lib\site-packages\atari_py\ale_interface\ale_c.dll&#x27; (or one of its dependencies). Try using the full path with constructor syntax.</span><br></pre></td></tr></table></figure>
+<p>意思是所显示路径下缺少ale_c.dll</p>
+<h3 id="处理方法"><strong>处理方法：</strong></h3>
+<h4
+id="方法1对我情况无效但点赞很多">方法1（对我情况无效，但点赞很多）</h4>
+<p>首先检索到了这个方案（作者@razzzu）</p>
+<p>https://github.com/openai/gym/issues/1726</p>
+<p><strong>Step1:</strong> 卸载相关库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip uninstall atari-py</span><br><span class="line">pip uninstall gym[atari]</span><br></pre></td></tr></table></figure>
+<p><strong>Step2:</strong> 安装 VS build tools工具</p>
+<p>Download VS build tools here:
+https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools&amp;rel=16</p>
+<p>运行后勾选左侧“C++ build tools”以及右侧的</p>
+<ul>
+<li>MSVC v142-VS 2019 C++ x64/x86 build tools</li>
+<li>windows 10 SDK</li>
+<li>C++ CMaKer</li>
+<li>Testing tools core features - build tools</li>
+</ul>
+<p><strong>Step3:</strong> 重启电脑</p>
+<p><strong>Step4:</strong> 重新安装库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Install cmake, atari-py and gym</span><br><span class="line">pip install cmake</span><br><span class="line">pip install atari-py</span><br><span class="line">pip install gym[atari]</span><br></pre></td></tr></table></figure>
+<p>Step5: 运行测试</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Now run the following code:</span><br><span class="line"><span class="keyword">import</span> atari_py</span><br><span class="line"><span class="built_in">print</span>(atari_py.list_games())</span><br></pre></td></tr></table></figure>
+<p>and if everything worked then it should return a list of all games as
+shown below</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">&#x27;adventure&#x27;</span>, <span class="string">&#x27;air_raid&#x27;</span>, <span class="string">&#x27;alien&#x27;</span>, <span class="string">&#x27;amidar&#x27;</span>, <span class="string">&#x27;assault&#x27;</span>, <span class="string">&#x27;asterix&#x27;</span>, <span class="string">&#x27;asteroids&#x27;</span>, <span class="string">&#x27;atlantis&#x27;</span>, <span class="string">&#x27;bank_heist&#x27;</span>, <span class="string">&#x27;battle_zone&#x27;</span>, <span class="string">&#x27;beam_rider&#x27;</span>, <span class="string">&#x27;berzerk&#x27;</span>, <span class="string">&#x27;bowling&#x27;</span>, <span class="string">&#x27;boxing&#x27;</span>, <span class="string">&#x27;breakout&#x27;</span>, <span class="string">&#x27;carnival&#x27;</span>, <span class="string">&#x27;centipede&#x27;</span>, <span class="string">&#x27;chopper_command&#x27;</span>, <span class="string">&#x27;crazy_climber&#x27;</span>, <span class="string">&#x27;defender&#x27;</span>, <span class="string">&#x27;demon_attack&#x27;</span>, <span class="string">&#x27;double_dunk&#x27;</span>, <span class="string">&#x27;elevator_action&#x27;</span>, <span class="string">&#x27;enduro&#x27;</span>, <span class="string">&#x27;fishing_derby&#x27;</span>, <span class="string">&#x27;freeway&#x27;</span>, <span class="string">&#x27;frostbite&#x27;</span>, <span class="string">&#x27;gopher&#x27;</span>, <span class="string">&#x27;gravitar&#x27;</span>, <span class="string">&#x27;hero&#x27;</span>, <span class="string">&#x27;ice_hockey&#x27;</span>, <span class="string">&#x27;jamesbond&#x27;</span>, <span class="string">&#x27;journey_escape&#x27;</span>, <span class="string">&#x27;kaboom&#x27;</span>, <span class="string">&#x27;kangaroo&#x27;</span>, <span class="string">&#x27;krull&#x27;</span>, <span class="string">&#x27;kung_fu_master&#x27;</span>, <span class="string">&#x27;montezuma_revenge&#x27;</span>, <span class="string">&#x27;ms_pacman&#x27;</span>, <span class="string">&#x27;name_this_game&#x27;</span>, <span class="string">&#x27;phoenix&#x27;</span>, <span class="string">&#x27;pitfall&#x27;</span>, <span class="string">&#x27;pong&#x27;</span>, <span class="string">&#x27;pooyan&#x27;</span>, <span class="string">&#x27;private_eye&#x27;</span>, <span class="string">&#x27;qbert&#x27;</span>, <span class="string">&#x27;riverraid&#x27;</span>, <span class="string">&#x27;road_runner&#x27;</span>, <span class="string">&#x27;robotank&#x27;</span>, <span class="string">&#x27;seaquest&#x27;</span>, <span class="string">&#x27;skiing&#x27;</span>, <span class="string">&#x27;solaris&#x27;</span>, <span class="string">&#x27;space_invaders&#x27;</span>, <span class="string">&#x27;star_gunner&#x27;</span>, <span class="string">&#x27;tennis&#x27;</span>, <span class="string">&#x27;time_pilot&#x27;</span>, <span class="string">&#x27;tutankham&#x27;</span>, <span class="string">&#x27;up_n_down&#x27;</span>, <span class="string">&#x27;venture&#x27;</span>, <span class="string">&#x27;video_pinball&#x27;</span>, <span class="string">&#x27;wizard_of_wor&#x27;</span>, <span class="string">&#x27;yars_revenge&#x27;</span>, <span class="string">&#x27;zaxxon&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p>我在完成上述步骤后发现还是缺少ale_c.dll，于是打算直接下载一个ale_c.dll</p>
+<h4 id="方法2-有效">方法2 （有效）</h4>
+<p>根据<a
+target="_blank" rel="noopener" href="https://stackoverflow.com/questions/63080326/could-not-find-module-atari-py-ale-interface-ale-c-dll-or-one-of-its-dependenc/64104353#64104353">stackoverflow上的方法</a></p>
+<p><strong>Step1:</strong> Download ale_c.dll from <a
+target="_blank" rel="noopener" href="https://drive.google.com/file/d/1WQrEBliYbASwNDyyVIlPFSZHRwAa7sPp/view?usp=sharing">here</a>.(下载需要梯子，我在博客img中放了文件备份)
+<strong>Step2:</strong> Copy it in C:Raval-packages_py_interface (Your
+path can be different).</p>
+<p>成功解决问题！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/05/07/2021-05-07-Q1685-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E5%B7%AE%E7%BB%9D%E5%AF%B9%E5%80%BC%E4%B9%8B%E5%92%8C-%E4%B8%AD%E7%AD%89-%E8%B4%AA%E5%BF%83/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1190,174 +1301,6 @@ N，因此空间复杂度为 O(N)。</p></li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/04/19/2021-04-19-Q94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86-%E4%B8%AD%E7%AD%89-%E6%A0%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/19/2021-04-19-Q94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86-%E4%B8%AD%E7%AD%89-%E6%A0%91/" class="post-title-link" itemprop="url">Q94-二叉树的中序遍历-中等-树</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-04-19 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-19T00:00:00+08:00">2021-04-19</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.4k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="二叉树的中序遍历"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/">94.
-二叉树的中序遍历</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>给定一个二叉树的根节点 <code>root</code> ，返回它的
-<strong>中序</strong> 遍历。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入：root = [1,null,2,3] 输出：[1,3,2]</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>输入：root = [1,null,2] 输出：[1,2]</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li>树中节点数目在范围 <code>[0, 100]</code> 内</li>
-<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
-</ul>
-</blockquote>
-<blockquote>
-<p><strong>进阶：</strong>
-递归算法很简单，你可以通过迭代算法完成吗？</p>
-</blockquote>
-<h3 id="approach-1-递归">Approach 1: 递归</h3>
-<p>思路与算法</p>
-<p>首先我们需要了解什么是二叉树的中序遍历：按照访问左子树——根节点——右子树的方式遍历这棵树，而在访问左子树或者右子树的时候我们按照同样的方式遍历，直到遍历完整棵树。因此整个遍历过程天然具有递归的性质，我们可以直接用递归函数来模拟这一过程。</p>
-<p>定义 inorder(root) 表示当前遍历到 <span
-class="math display">\[\textit{root}\]</span>节点的答案，那么按照定义，我们只要递归调用
-inorder(root.left) 来遍历 <span
-class="math display">\[\textit{root}\]</span> 节点的左子树，然后将 <span
-class="math display">\[\textit{root}\]</span>
-节点的值加入答案，再递归调用inorder(root.right) 来遍历 <span
-class="math display">\[\textit{root}\]</span>
-节点的右子树即可，递归终止的条件为碰到空节点。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">inorder</span>(<span class="params">root: TreeNode</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span> </span><br><span class="line">            inorder(root.left)</span><br><span class="line">            res.append(root.val)</span><br><span class="line">            inorder(root.right)</span><br><span class="line">        res=<span class="built_in">list</span>()</span><br><span class="line">        inorder(root)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(n)，其中 n
-为二叉树节点的个数。二叉树的遍历中每个节点会被访问一次且只会被访问一次</li>
-<li>空间复杂度：O(n)。空间复杂度取决于递归的栈深度，而栈深度在二叉树为一条链的情况下会达到
-O(n) 的级别。</li>
-<li></li>
-</ul>
-<h3 id="approach-2-迭代">Approach 2: 迭代</h3>
-<p>思路与算法</p>
-<p>方法一的递归函数我们也可以用迭代的方式实现，两种方式是等价的，区别在于递归的时候隐式地维护了一个栈，而我们在迭代的时候需要显式地将这个栈模拟出来，其他都相同，具体实现可以看下面的代码。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        res = <span class="built_in">list</span>()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">        p1 = root</span><br><span class="line">        <span class="keyword">while</span> p1:</span><br><span class="line">            p2 = p1.left</span><br><span class="line">            <span class="keyword">if</span> p2:</span><br><span class="line">                <span class="keyword">while</span> p2.right <span class="keyword">and</span> p2.right != p1:</span><br><span class="line">                    p2 = p2.right</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> p2.right:</span><br><span class="line">                    p2.right = p1</span><br><span class="line">                    p1 = p1.left</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    res.append(p1.val)</span><br><span class="line">                    p2.right = <span class="literal">None</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res.append(p1.val)</span><br><span class="line">            p1 = p1.right</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(n)，其中 n
-为二叉树节点的个数。二叉树的遍历中每个节点会被访问一次且只会被访问一次。</li>
-<li>空间复杂度：O(n)。空间复杂度取决于栈深度，而栈深度在二叉树为一条链的情况下会达到
-O(n) 的级别。</li>
-</ul>
-<h3 id="approach-3-morris-遍历">Approach 3: Morris 遍历</h3>
-<p>思路与算法</p>
-<p>Morris
-遍历算法是另一种遍历二叉树的方法，它能将非递归的中序遍历空间复杂度降为
-O(1)。</p>
-<p>Morris 遍历算法整体步骤如下（假设当前遍历到的节点为 x）：</p>
-<ul>
-<li>如果 x 无左孩子，先将 x 的值加入答案数组，再访问 x 的右孩子，即
-<span class="math display">\[x = x.\textit{right}\]</span>。</li>
-<li>如果 x 有左孩子，则找到 x
-左子树上最右的节点（即左子树中序遍历的最后一个节点，x
-在中序遍历中的前驱节点），我们记为 <span
-class="math display">\[p2\]</span>。根据 <span
-class="math display">\[\textit{p2}\]</span>
-的右孩子是否为空，进行如下操作。
-<ul>
-<li>如果 <span class="math display">\[\textit{p2}\]</span>
-的右孩子为空，则将其右孩子指向 x，然后访问 x 的左孩子，即 <span
-class="math display">\[x = x.\textit{left}\]</span></li>
-<li>如果 <span class="math display">\[\textit{p2}\]</span>
-的右孩子不为空，则此时其右孩子指向 x，说明我们已经遍历完 x
-的左子树，我们将 <span class="math display">\[\textit{p2}\]</span>
-的右孩子置空，将 x 的值加入答案数组，然后访问 x 的右孩子，即 <span
-class="math display">\[x = x.\textit{right}\]</span>。</li>
-</ul></li>
-<li>重复上述操作，直至访问完整棵树。</li>
-</ul>
-<p>其实整个过程我们就多做一步：假设当前遍历到的节点为 x，将 x
-的左子树中最右边的节点的右孩子指向
-x，这样在左子树遍历完成后我们通过这个指向走回了
-x，且能通过这个指向知晓我们已经遍历完成了左子树，而不用再通过栈来维护，省去了栈的空间复杂度。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">preorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        res = <span class="built_in">list</span>()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">        p1 = root</span><br><span class="line">        <span class="keyword">while</span> p1:</span><br><span class="line">            p2 = p1.left</span><br><span class="line">            <span class="keyword">if</span> p2:</span><br><span class="line">                <span class="keyword">while</span> p2.right <span class="keyword">and</span> p2.right != p1:</span><br><span class="line">                    p2 = p2.right</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> p2.right:</span><br><span class="line">                    </span><br><span class="line">                    p2.right = p1</span><br><span class="line">                    p1 = p1.left</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    res.append(p1.val)</span><br><span class="line">                    p2.right = <span class="literal">None</span></span><br><span class="line">                    p1 = p1.right</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res.append(p1.val)</span><br><span class="line">                p1 = p1.right</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(n)，其中 nn 为二叉搜索树的节点个数。Morris
-遍历中每个节点会被访问两次，因此总时间复杂度为 <span
-class="math display">\[O(2n)=O(n)\]</span>。</li>
-<li>空间复杂度：O(1)。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1429,14 +1372,14 @@ class="math display">\[O(2n)=O(n)\]</span>。</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-count">234</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1496,12 +1439,12 @@ class="math display">\[O(2n)=O(n)\]</span>。</li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">568k</span>
+    <span title="Symbols count total">572k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:36</span>
+    <span title="Reading time total">8:40</span>
 </div>
 
         

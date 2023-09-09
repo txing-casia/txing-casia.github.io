@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="在Github Page上搭建Blog主要有两种主流方案，一种基于Jekyll，另一种基于Hexo，本文将对其进行介绍。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Github Page | 基于Jekyll&#x2F;Hexo的Github Page搭建方法">
+<meta property="og:url" content="https://txing-casia.github.io/2023/09/09/2023-09-09-Github%20Page%20-%20%E5%9F%BA%E4%BA%8EJekyll%E5%92%8CHexo%E7%9A%84Github%20Page%E6%90%AD%E5%BB%BA%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="Txing">
+<meta property="og:description" content="在Github Page上搭建Blog主要有两种主流方案，一种基于Jekyll，另一种基于Hexo，本文将对其进行介绍。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-09-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-09T15:07:17.021Z">
+<meta property="article:author" content="Txing">
+<meta property="article:tag" content="Github Page">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://txing-casia.github.io/2023/09/09/2023-09-09-Github%20Page%20-%20%E5%9F%BA%E4%BA%8EJekyll%E5%92%8CHexo%E7%9A%84Github%20Page%E6%90%AD%E5%BB%BA%E6%96%B9%E6%B3%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Github Page | 基于Jekyll/Hexo的Github Page搭建方法 | Txing</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Txing</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到 | 伽蓝之堂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2023/09/09/2023-09-09-Github%20Page%20-%20%E5%9F%BA%E4%BA%8EJekyll%E5%92%8CHexo%E7%9A%84Github%20Page%E6%90%AD%E5%BB%BA%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Github Page | 基于Jekyll/Hexo的Github Page搭建方法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-09-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-09-09T00:00:00+08:00">2023-09-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Methods/" itemprop="url" rel="index"><span itemprop="name">Methods</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>4.1k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>4 mins.</span>
+            </span>
+            <div class="post-description">在Github Page上搭建Blog主要有两种主流方案，一种基于Jekyll，另一种基于Hexo，本文将对其进行介绍。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="框架介绍">1 框架介绍</h2>
+<p>在Github
+Page上搭建Blog主要有两种主流方案，一种基于Jekyll，另一种基于Hexo。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://jekyllcn.com/docs/home/">Jekyll</a>
+是一个简单的博客形态的静态站点生产机器。它有一个模版目录，其中包含原始文本格式的文档，通过一个转换器（如
+Markdown）和我们的 <a target="_blank" rel="noopener" href="https://github.com/Shopify/liquid/wiki">Liquid</a>
+渲染器转化成一个完整的可发布的静态网站，你可以发布在任何你喜爱的服务器上。</li>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>
+是一个快速、简洁且高效的博客框架。Hexo 使用 <a target="_blank" rel="noopener" href="http://daringfireball.net/projects/markdown/">Markdown</a>（或其他标记语言）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</li>
+</ul>
+<p>考虑到风格和便利性，本博客使用Hexo框架。</p>
+<h2 id="搭建步骤">2 搭建步骤</h2>
+<p>无论哪一种方案，第一步都是相同的，创建一个特定名称（账号名称）的仓库：</p>
+<blockquote>
+<p><username>.github.io</username></p>
+</blockquote>
+<h3 id="通过-jekyll-搭建-github-page">2.1 通过 Jekyll 搭建 Github
+Page</h3>
+<p>Github Page配置说明，这个和多页的博客配置是不一样的：<a target="_blank" rel="noopener" href="https://docs.github.com/zh/pages/setting-up-a-github-pages-site-with-jekyll/about-github-pages-and-jekyll">关于
+GitHub 页面和 Jekyll</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/87225594">具体步骤</a>如下</p>
+<ul>
+<li><p>step 1: 安装Ruby，网址
+https://rubyinstaller.org/downloads/</p></li>
+<li><p>step2：安装RubyGems，网址
+https://rubygems.org/pages/download</p></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd D:\下载\rubygems-3.0.6\rubygems-3.0.6	#切换文件目录 </span><br><span class="line">ruby setup.rb        #安装</span><br><span class="line">rubygems ruby -v     #查看rubygems版本号</span><br></pre></td></tr></table></figure>
+<ul>
+<li>step 3：安装Jekyll</li>
+</ul>
+<p>以上两个步骤操作完成后，在 CMD 窗口执行如下命令安装Jekyll：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gem install jekyll   #安装jekyll </span><br><span class="line">jekyll -v    #查看jekyll版本号</span><br></pre></td></tr></table></figure>
+<ul>
+<li>step 4：搭建博客，启动项目</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jekyll new restlessManBlog   #新建博客 </span><br><span class="line">cd restlessManBlog           #切换目录 </span><br><span class="line">jekyll server                #启动项目</span><br></pre></td></tr></table></figure>
+<p>在浏览器访问：localhost:4000/</p>
+<ul>
+<li><p>step 5：添加 MarkDown 文档 在项目根目录下的 _posts 目录创建
+markdown 文档。这里注意 md 文档命名要添加 “yyyy-mm-dd”的前缀。
+例如：2019-10-11-5分钟搭建博客.md</p></li>
+<li><p>step 6：部署到Github</p></li>
+</ul>
+<p>要求仓库名称：账号名称.github.io</p>
+<h3 id="遇到的问题和解决方案">2.2 遇到的问题和解决方案</h3>
+<ul>
+<li><strong>问题1：到底推送哪个目录下的文件到远端?</strong></li>
+</ul>
+<p>将_site目录下的文件提交到GitHub上](https://blog.csdn.net/qq_43328313/article/details/124066785)；</p>
+<ul>
+<li><strong>问题2：报错sass
+2.0之后没有了'/'操作符，需要使用替代方案?</strong></li>
+</ul>
+<p>因为 sass 新版本目前弃用“/”的用法，sass自定义element
+theme时会报warnning</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36657291/article/details/121995360">处理步骤</a>：</p>
+<ol type="1">
+<li>npm install -g sass-migrator</li>
+<li>进入项目node_modules文件</li>
+<li>执行sass-migrator division **/*.scss</li>
+</ol>
+<hr>
+<h3 id="通过-hexo-搭建-github-page推荐">2.3 通过 Hexo 搭建 Github
+Page（推荐）</h3>
+<p>如果使用Hexo框架建立博客，这里推荐几个博客模板网站，</p>
+<p>一些挺好的hexo博客主题：</p>
+<p>https://theme-next.js.org/</p>
+<p>https://github.com/Kaijun/hexo-theme-huxblog</p>
+<p><strong>搭建步骤：</strong></p>
+<p>官方资料：https://hexo.io/zh-cn/docs/commands</p>
+<p>一些步骤参考：https://www.jianshu.com/p/eadeddb792c5</p>
+<p>https://github.com/hexojs/hexo</p>
+<p>https://zhuanlan.zhihu.com/p/28321740</p>
+<p>添加新文章后的操作指令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br><span class="line">hexo serve</span><br><span class="line">hexo clean </span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+<p>写新文章https://hexo.io/docs/writing.html</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="遇到的问题和解决方案-1">2.4 遇到的问题和解决方案</h3>
+<p><strong>问题1：ERROR Deployer not found: git</strong></p>
+<p>缺少了hexo针对git的deploy组件</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/jigetage/article/details/96877832">解决方法</a>：<code>npm install --save hexo-deployer-git</code></p>
+<p>搞定，运行成功之后提示：INFO Deploy done: git</p>
+<p><strong>问题2：hexo serve WARN No layout: index.html</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Robot_Starscream/article/details/95590573">解决方法</a>：运行git
+clone
+指令获得主题后（假设是NEXT主题），在theme主题下保存文件夹的名称为：hexo-theme-next-0.4.0，如果在config里设置的是next，就会出现这样的WARN，http://localhost:4000/显示的是空白。</p>
+<p>只要把theme下的文件夹名称改为next就显示正常了</p>
+<p><strong>问题3：hexo : 无法加载文件
+C:.ps1，因为在此系统上禁止运行脚本。</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/a12355556/article/details/115856367">解决方法</a>：</p>
+<p>在默认情况下，我们是无法执行powershell脚本的， 需要更改执行策略。</p>
+<p>win10下更改执行策略；打开设置，搜索power；选择选项：允许本地powershell在不签名的情况下运行；勾选，点击应用就可以了；</p>
+<p><strong>问题4：公式不显示：</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/gorray/article/details/122398901">解决方法</a></p>
+<p>目前Next支持两种数学公式渲染引擎，分别为Mathjax和Katex。由于Mathjax支持的更为全面，因此我们选择Mathjax。</p>
+<ol type="1">
+<li><strong>卸载hexo-math和hexo-renderer-marked。在git
+bash中输入如下命令：</strong></li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm un hexo-math</span><br><span class="line">npm un hexo-renderer-marked</span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li>安装hexo-renderer-pandoc渲染器，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-renderer-pandoc</span><br></pre></td></tr></table></figure>
+<ol start="3" type="1">
+<li><strong>修改配置文件，修改<code>next/_config.yml</code>中<code>mathjax</code>的设置，如下：</strong></li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># Math Formulas Render Support</span><br><span class="line">math:</span><br><span class="line">  # Default (true) will load mathjax / katex script on demand.</span><br><span class="line">  # That is it only render those page which has `mathjax: true` in Front-matter.</span><br><span class="line">  # If you set it to false, it will load mathjax / katex srcipt EVERY PAGE.</span><br><span class="line">  per_page: true</span><br><span class="line"> </span><br><span class="line">  # hexo-renderer-pandoc (or hexo-renderer-kramed) required for full MathJax support.</span><br><span class="line">  mathjax:</span><br><span class="line">    enable: true</span><br><span class="line">    # See: https://mhchem.github.io/MathJax-mhchem/</span><br><span class="line">    mhchem: false</span><br><span class="line"> </span><br><span class="line">  # hexo-renderer-markdown-it-plus (or hexo-renderer-markdown-it with markdown-it-katex plugin) required for full Katex support.</span><br><span class="line">  katex:</span><br><span class="line">    enable: false</span><br><span class="line">    # See: https://github.com/KaTeX/KaTeX/tree/master/contrib/copy-tex</span><br><span class="line">    copy_tex: false</span><br></pre></td></tr></table></figure>
+<p>将mathjax下的enable设置为true，需要注意的是mathjax和katex两者同时只能使能一个。</p>
+<p>另外，per_page建议设置为true（表示为所有文章进行渲染）,
+否则，需要在每个md文件前面都要加上mathjax:true。</p>
+<p>在这里我遇到一个坑，当我设置per_page为true后, 通过hexo
+s预览，发现还是无法正确显示latex公式。于是，我在我的markdown文档前面加了mathjax:true就正常了，如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: XXX</span><br><span class="line">categories:</span><br><span class="line">tags: XXX</span><br><span class="line">mathjax: true</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>不知道为什么per_page设置为true后还是要在文档前加mathjax:true。总之，如果跟我一样出现per_page:true未生效，在文档前加mathjax:true应该能解决。</p>
+<ol start="4" type="1">
+<li><strong>本地安装pandoc</strong></li>
+</ol>
+<p>这一步很重要，这是我遇到的一个坑，如果没有安装，hexo
+g的时候就会报错：pandoc exited with code
+null。至于pandoc安装很简单，只要在官网上下载pandoc，直接安装即可，注意安装完要重启电脑。</p>
+<p>完成以上步骤后，hexo clean &amp;&amp; hexo g &amp;&amp; hexo
+s，本地预览就可以看到公式能正常显示了。</p>
+<p><code>$s$</code>表示行内公式</p>
+<p><code>$$s$$</code>表示行间公式</p>
+<p><strong>问题5：图片不显示</strong></p>
+<p>https://blog.csdn.net/weixin_42030522/article/details/123075824</p>
+<p>https://blog.csdn.net/u010996565/article/details/89196612?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-89196612-blog-123075824.235%5Ev27%5Epc_relevant_landingrelevant&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-89196612-blog-123075824.235%5Ev27%5Epc_relevant_landingrelevant&amp;utm_relevant_index=1</p>
+<p>npm install hexo-asset-image --save</p>
+<p>other ref：</p>
+<p>https://blog.csdn.net/qq_43328313/article/details/124066785</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Github-Page/" rel="tag"># Github Page</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/05/09/2023-05-05-Autonomous%20Driving%20-%20MTR-A%201st%20Place%20Solution%20for%202022%20Waymo%20Open%20Dataset%20Challenge%20-%20Motion%20Prediction/" rel="prev" title="Autonomous Driving | MTR-A: 1st Place Solution for 2022 Waymo Open Dataset Challenge - Motion Prediction">
+      <i class="fa fa-chevron-left"></i> Autonomous Driving | MTR-A: 1st Place Solution for 2022 Waymo Open Dataset Challenge - Motion Prediction
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">1 框架介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%AD%E5%BB%BA%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.</span> <span class="nav-text">2 搭建步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87-jekyll-%E6%90%AD%E5%BB%BA-github-page"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 通过 Jekyll 搭建 Github
+Page</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 遇到的问题和解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87-hexo-%E6%90%AD%E5%BB%BA-github-page%E6%8E%A8%E8%8D%90"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 通过 Hexo 搭建 Github
+Page（推荐）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-1"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 遇到的问题和解决方案</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Txing"
+      src="/images/my_photo.jpg">
+  <p class="site-author-name" itemprop="name">Txing</p>
+  <div class="site-description" itemprop="description">泛用人形决战型机器人博士</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">234</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/txing-casia" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;txing-casia" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.uomi.moe/" title="https:&#x2F;&#x2F;blog.uomi.moe" rel="noopener" target="_blank">驱逐舰患者</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://m.mepai.me/photographyer/u_5a68085ba15aa.html?tdsourcetag=s_pctim_aiomsg" title="https:&#x2F;&#x2F;m.mepai.me&#x2F;photographyer&#x2F;u_5a68085ba15aa.html?tdsourcetag&#x3D;s_pctim_aiomsg" rel="noopener" target="_blank">隐之-INF</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Txing</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">572k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">8:40</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

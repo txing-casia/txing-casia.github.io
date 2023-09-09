@@ -198,6 +198,174 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/04/19/2021-04-19-Q94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86-%E4%B8%AD%E7%AD%89-%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/19/2021-04-19-Q94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86-%E4%B8%AD%E7%AD%89-%E6%A0%91/" class="post-title-link" itemprop="url">Q94-二叉树的中序遍历-中等-树</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-04-19 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-19T00:00:00+08:00">2021-04-19</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.4k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="二叉树的中序遍历"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/">94.
+二叉树的中序遍历</a></h4>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>给定一个二叉树的根节点 <code>root</code> ，返回它的
+<strong>中序</strong> 遍历。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>输入：root = [1,null,2,3] 输出：[1,3,2]</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>输入：root = [1,null,2] 输出：[1,2]</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ul>
+<li>树中节点数目在范围 <code>[0, 100]</code> 内</li>
+<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>进阶：</strong>
+递归算法很简单，你可以通过迭代算法完成吗？</p>
+</blockquote>
+<h3 id="approach-1-递归">Approach 1: 递归</h3>
+<p>思路与算法</p>
+<p>首先我们需要了解什么是二叉树的中序遍历：按照访问左子树——根节点——右子树的方式遍历这棵树，而在访问左子树或者右子树的时候我们按照同样的方式遍历，直到遍历完整棵树。因此整个遍历过程天然具有递归的性质，我们可以直接用递归函数来模拟这一过程。</p>
+<p>定义 inorder(root) 表示当前遍历到 <span
+class="math display">\[\textit{root}\]</span>节点的答案，那么按照定义，我们只要递归调用
+inorder(root.left) 来遍历 <span
+class="math display">\[\textit{root}\]</span> 节点的左子树，然后将 <span
+class="math display">\[\textit{root}\]</span>
+节点的值加入答案，再递归调用inorder(root.right) 来遍历 <span
+class="math display">\[\textit{root}\]</span>
+节点的右子树即可，递归终止的条件为碰到空节点。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">inorder</span>(<span class="params">root: TreeNode</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span> </span><br><span class="line">            inorder(root.left)</span><br><span class="line">            res.append(root.val)</span><br><span class="line">            inorder(root.right)</span><br><span class="line">        res=<span class="built_in">list</span>()</span><br><span class="line">        inorder(root)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)，其中 n
+为二叉树节点的个数。二叉树的遍历中每个节点会被访问一次且只会被访问一次</li>
+<li>空间复杂度：O(n)。空间复杂度取决于递归的栈深度，而栈深度在二叉树为一条链的情况下会达到
+O(n) 的级别。</li>
+<li></li>
+</ul>
+<h3 id="approach-2-迭代">Approach 2: 迭代</h3>
+<p>思路与算法</p>
+<p>方法一的递归函数我们也可以用迭代的方式实现，两种方式是等价的，区别在于递归的时候隐式地维护了一个栈，而我们在迭代的时候需要显式地将这个栈模拟出来，其他都相同，具体实现可以看下面的代码。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        res = <span class="built_in">list</span>()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">        p1 = root</span><br><span class="line">        <span class="keyword">while</span> p1:</span><br><span class="line">            p2 = p1.left</span><br><span class="line">            <span class="keyword">if</span> p2:</span><br><span class="line">                <span class="keyword">while</span> p2.right <span class="keyword">and</span> p2.right != p1:</span><br><span class="line">                    p2 = p2.right</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> p2.right:</span><br><span class="line">                    p2.right = p1</span><br><span class="line">                    p1 = p1.left</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    res.append(p1.val)</span><br><span class="line">                    p2.right = <span class="literal">None</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res.append(p1.val)</span><br><span class="line">            p1 = p1.right</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)，其中 n
+为二叉树节点的个数。二叉树的遍历中每个节点会被访问一次且只会被访问一次。</li>
+<li>空间复杂度：O(n)。空间复杂度取决于栈深度，而栈深度在二叉树为一条链的情况下会达到
+O(n) 的级别。</li>
+</ul>
+<h3 id="approach-3-morris-遍历">Approach 3: Morris 遍历</h3>
+<p>思路与算法</p>
+<p>Morris
+遍历算法是另一种遍历二叉树的方法，它能将非递归的中序遍历空间复杂度降为
+O(1)。</p>
+<p>Morris 遍历算法整体步骤如下（假设当前遍历到的节点为 x）：</p>
+<ul>
+<li>如果 x 无左孩子，先将 x 的值加入答案数组，再访问 x 的右孩子，即
+<span class="math display">\[x = x.\textit{right}\]</span>。</li>
+<li>如果 x 有左孩子，则找到 x
+左子树上最右的节点（即左子树中序遍历的最后一个节点，x
+在中序遍历中的前驱节点），我们记为 <span
+class="math display">\[p2\]</span>。根据 <span
+class="math display">\[\textit{p2}\]</span>
+的右孩子是否为空，进行如下操作。
+<ul>
+<li>如果 <span class="math display">\[\textit{p2}\]</span>
+的右孩子为空，则将其右孩子指向 x，然后访问 x 的左孩子，即 <span
+class="math display">\[x = x.\textit{left}\]</span></li>
+<li>如果 <span class="math display">\[\textit{p2}\]</span>
+的右孩子不为空，则此时其右孩子指向 x，说明我们已经遍历完 x
+的左子树，我们将 <span class="math display">\[\textit{p2}\]</span>
+的右孩子置空，将 x 的值加入答案数组，然后访问 x 的右孩子，即 <span
+class="math display">\[x = x.\textit{right}\]</span>。</li>
+</ul></li>
+<li>重复上述操作，直至访问完整棵树。</li>
+</ul>
+<p>其实整个过程我们就多做一步：假设当前遍历到的节点为 x，将 x
+的左子树中最右边的节点的右孩子指向
+x，这样在左子树遍历完成后我们通过这个指向走回了
+x，且能通过这个指向知晓我们已经遍历完成了左子树，而不用再通过栈来维护，省去了栈的空间复杂度。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">preorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        res = <span class="built_in">list</span>()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">        p1 = root</span><br><span class="line">        <span class="keyword">while</span> p1:</span><br><span class="line">            p2 = p1.left</span><br><span class="line">            <span class="keyword">if</span> p2:</span><br><span class="line">                <span class="keyword">while</span> p2.right <span class="keyword">and</span> p2.right != p1:</span><br><span class="line">                    p2 = p2.right</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> p2.right:</span><br><span class="line">                    </span><br><span class="line">                    p2.right = p1</span><br><span class="line">                    p1 = p1.left</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    res.append(p1.val)</span><br><span class="line">                    p2.right = <span class="literal">None</span></span><br><span class="line">                    p1 = p1.right</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res.append(p1.val)</span><br><span class="line">                p1 = p1.right</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)，其中 nn 为二叉搜索树的节点个数。Morris
+遍历中每个节点会被访问两次，因此总时间复杂度为 <span
+class="math display">\[O(2n)=O(n)\]</span>。</li>
+<li>空间复杂度：O(1)。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/04/15/2021-04-15-JZOffer%2028-%E5%AF%B9%E7%A7%B0%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91-%E7%AE%80%E5%8D%95-%E6%A0%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1314,143 +1482,6 @@ n 是链表的长度。</li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/04/01/2021-04-01-Q92-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8%20II-%E4%B8%AD%E7%AD%89-%E9%93%BE%E8%A1%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/01/2021-04-01-Q92-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8%20II-%E4%B8%AD%E7%AD%89-%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">Q92-反转链表 II-中等-链表</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-04-01 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-01T00:00:00+08:00">2021-04-01</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.1k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="反转链表-ii"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-linked-list-ii/">92.
-反转链表 II</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>给你单链表的头指针 head 和两个整数 left 和 right ，其中 left &lt;=
-right 。请你反转从位置 left 到位置 right 的链表节点，返回 反转后的链表
-。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入：head = [1,2,3,4,5], left = 2, right = 4 输出：[1,4,3,2,5]</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>输入：head = [5], left = 1, right = 1 输出：[5]</p>
-</blockquote>
-<blockquote>
-<p><strong>提示：</strong></p>
-<ul>
-<li>链表中节点数目为 n</li>
-<li>1 &lt;= n &lt;= 500</li>
-<li>-500 &lt;= Node.val &lt;= 500</li>
-<li>1 &lt;= left &lt;= right &lt;= n</li>
-</ul>
-</blockquote>
-<blockquote>
-<p><strong>进阶：</strong> 你可以使用一趟扫描完成反转吗？</p>
-</blockquote>
-<h3 id="approach-1-穿针引线">Approach 1: 穿针引线</h3>
-<p>一定要先想清楚思路，并且必要的时候在草稿纸上画图，理清「穿针引线」的先后步骤，然后再编码。</p>
-<p>使用<a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-linked-list/">「206.
-反转链表」</a>的解法，反转 left 到 right
-部分以后，再拼接起来。我们还需要记录 left 的前一个节点，和 right
-的后一个节点。</p>
-<ul>
-<li>第 1 步：先将待反转的区域反转；</li>
-<li>第 2 步：把 pre 的 next
-指针指向反转以后的链表头节点，把反转以后的链表的尾节点的 next 指针指向
-succ。</li>
-</ul>
-<p>说明：编码细节我们不在题解中介绍了，请见下方代码。思路想明白以后，编码不是一件很难的事情。这里要提醒大家的是，链接什么时候切断，什么时候补上去，先后顺序一定要想清楚，如果想不清楚，可以在纸上模拟，让思路清晰。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseBetween</span>(<span class="params">self, head: ListNode, left: <span class="built_in">int</span>, right: <span class="built_in">int</span></span>) -&gt; ListNode:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">reverse_linked_list</span>(<span class="params">head: ListNode</span>):</span><br><span class="line">            <span class="comment"># 也可以使用递归反转一个链表</span></span><br><span class="line">            pre = <span class="literal">None</span></span><br><span class="line">            cur = head</span><br><span class="line">            <span class="keyword">while</span> cur:</span><br><span class="line">                <span class="built_in">next</span> = cur.<span class="built_in">next</span></span><br><span class="line">                cur.<span class="built_in">next</span> = pre</span><br><span class="line">                pre = cur</span><br><span class="line">                cur = <span class="built_in">next</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 因为头节点有可能发生变化，使用虚拟头节点可以避免复杂的分类讨论</span></span><br><span class="line">        dummy_node = ListNode(-<span class="number">1</span>)</span><br><span class="line">        dummy_node.<span class="built_in">next</span> = head</span><br><span class="line">        pre = dummy_node</span><br><span class="line">        <span class="comment"># 第 1 步：从虚拟头节点走 left - 1 步，来到 left 节点的前一个节点</span></span><br><span class="line">        <span class="comment"># 建议写在 for 循环里，语义清晰</span></span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(left - <span class="number">1</span>):</span><br><span class="line">            pre = pre.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 第 2 步：从 pre 再走 right - left + 1 步，来到 right 节点</span></span><br><span class="line">        right_node = pre</span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(right - left + <span class="number">1</span>):</span><br><span class="line">            right_node = right_node.<span class="built_in">next</span></span><br><span class="line">        <span class="comment"># 第 3 步：切断出一个子链表（截取链表）</span></span><br><span class="line">        left_node = pre.<span class="built_in">next</span></span><br><span class="line">        curr = right_node.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 注意：切断链接</span></span><br><span class="line">        pre.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line">        right_node.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 第 4 步：同第 206 题，反转链表的子区间</span></span><br><span class="line">        reverse_linked_list(left_node)</span><br><span class="line">        <span class="comment"># 第 5 步：接回到原来的链表中</span></span><br><span class="line">        pre.<span class="built_in">next</span> = right_node</span><br><span class="line">        left_node.<span class="built_in">next</span> = curr</span><br><span class="line">        <span class="keyword">return</span> dummy_node.<span class="built_in">next</span></span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(N)，其中
-N是链表总节点数。最坏情况下，需要遍历整个链表。</li>
-<li>空间复杂度：O(1)。只使用到常数个变量。</li>
-</ul>
-<h3 id="approach-2-一次遍历穿针引线反转链表头插法">Approach 2:
-一次遍历「穿针引线」反转链表（头插法）</h3>
-<p>配图解释：https://leetcode-cn.com/problems/reverse-linked-list-ii/solution/fan-zhuan-lian-biao-ii-by-leetcode-solut-teyq/</p>
-<p>方法一的缺点是：如果 left 和 right
-的区域很大，恰好是链表的头节点和尾节点时，找到 left 和 right
-需要遍历一次，反转它们之间的链表还需要遍历一次，虽然总的时间复杂度为
-O(N)，但遍历了链表 2
-次，可不可以只遍历一次呢？答案是可以的。我们依然画图进行说明。</p>
-<p>整体思想是：在需要反转的区间里，每遍历到一个节点，让这个新节点来到反转部分的起始位置。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseBetween</span>(<span class="params">self, head: ListNode, left: <span class="built_in">int</span>, right: <span class="built_in">int</span></span>) -&gt; ListNode:</span><br><span class="line">        <span class="comment"># 设置 dummyNode 是这一类问题的一般做法</span></span><br><span class="line">        dummy_node = ListNode(-<span class="number">1</span>)</span><br><span class="line">        dummy_node.<span class="built_in">next</span> = head</span><br><span class="line">        pre = dummy_node</span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(left - <span class="number">1</span>):</span><br><span class="line">            pre = pre.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line">        cur = pre.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(right - left):</span><br><span class="line">            <span class="built_in">next</span> = cur.<span class="built_in">next</span></span><br><span class="line">            cur.<span class="built_in">next</span> = <span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">            <span class="built_in">next</span>.<span class="built_in">next</span> = pre.<span class="built_in">next</span></span><br><span class="line">            pre.<span class="built_in">next</span> = <span class="built_in">next</span></span><br><span class="line">        <span class="keyword">return</span> dummy_node.<span class="built_in">next</span></span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(N)，其中 N
-是链表总节点数。最多只遍历了链表一次，就完成了反转。</li>
-<li>空间复杂度：O(1)。只使用到常数个变量。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1522,14 +1553,14 @@ O(N)，但遍历了链表 2
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-count">234</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1589,12 +1620,12 @@ O(N)，但遍历了链表 2
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">568k</span>
+    <span title="Symbols count total">572k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:36</span>
+    <span title="Reading time total">8:40</span>
 </div>
 
         
