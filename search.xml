@@ -15,15 +15,15 @@ Markdown）和我们的 <a href="https://github.com/Shopify/liquid/wiki">Liquid<
 是一个快速、简洁且高效的博客框架。Hexo 使用 <a href="http://daringfireball.net/projects/markdown/">Markdown</a>（或其他标记语言）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</li>
 </ul>
 <p>考虑到风格和便利性，本博客使用Hexo框架。</p>
-<h2 id="搭建步骤">2 搭建步骤</h2>
 <p>无论哪一种方案，第一步都是相同的，创建一个特定名称（账号名称）的仓库：</p>
 <blockquote>
 <p><username>.github.io</username></p>
 </blockquote>
-<h3 id="通过-jekyll-搭建-github-page">2.1 通过 Jekyll 搭建 Github
-Page</h3>
+<h2 id="通过-jekyll-搭建-github-page">2 通过 Jekyll 搭建 Github
+Page</h2>
 <p>Github Page配置说明，这个和多页的博客配置是不一样的：<a href="https://docs.github.com/zh/pages/setting-up-a-github-pages-site-with-jekyll/about-github-pages-and-jekyll">关于
 GitHub 页面和 Jekyll</a></p>
+<h3 id="步骤说明">2.1 步骤说明</h3>
 <p><a href="https://zhuanlan.zhihu.com/p/87225594">具体步骤</a>如下</p>
 <ul>
 <li><p>step 1: 安装Ruby，网址
@@ -66,9 +66,9 @@ theme时会报warnning</p>
 <li>进入项目node_modules文件</li>
 <li>执行sass-migrator division **/*.scss</li>
 </ol>
-<hr>
-<h3 id="通过-hexo-搭建-github-page推荐">2.3 通过 Hexo 搭建 Github
-Page（推荐）</h3>
+<h2 id="通过-hexo-搭建-github-page推荐">3 通过 Hexo 搭建 Github
+Page（推荐）</h2>
+<h3 id="步骤说明-1">3.1 步骤说明</h3>
 <p>如果使用Hexo框架建立博客，这里推荐几个博客模板网站，</p>
 <p>一些挺好的hexo博客主题：</p>
 <p>https://theme-next.js.org/</p>
@@ -82,7 +82,7 @@ Page（推荐）</h3>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install</span><br><span class="line">hexo serve</span><br><span class="line">hexo clean </span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
 <p>写新文章https://hexo.io/docs/writing.html</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="遇到的问题和解决方案-1">2.4 遇到的问题和解决方案</h3>
+<h3 id="遇到的问题和解决方案-1">3.2 遇到的问题和解决方案</h3>
 <p><strong>问题1：ERROR Deployer not found: git</strong></p>
 <p>缺少了hexo针对git的deploy组件</p>
 <p><a href="https://blog.csdn.net/jigetage/article/details/96877832">解决方法</a>：<code>npm install --save hexo-deployer-git</code></p>
