@@ -22,17 +22,17 @@
     var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="使用VSCode调试带参数的Python脚本 1 问题描述 linux系统上执行带参数的python程序直接添加-arg xxx即可。但在VSCode调试模式（Debug）下该执行方式不可行。那么是否有办法在VSCode上调试带参数的python脚本呢？ 这里提供三种方案：  2.1 方案1 pbd命令的Debug 2.2 方案2 在launch.json中设置参数的Debug 2">
+  <meta name="description" content="linux系统上执行带参数的python程序直接添加-arg xxx即可。但在VSCode调试模式（Debug）下该执行方式不可行。那么是否有办法在VSCode上调试带参数的python脚本呢？">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用VSCode调试带参数的Python脚本">
 <meta property="og:url" content="https://txing-casia.github.io/2022/07/23/2022-07-23-%E4%BD%BF%E7%94%A8VSCode%E8%B0%83%E8%AF%95%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84Python%E8%84%9A%E6%9C%AC/index.html">
 <meta property="og:site_name" content="Txing">
-<meta property="og:description" content="使用VSCode调试带参数的Python脚本 1 问题描述 linux系统上执行带参数的python程序直接添加-arg xxx即可。但在VSCode调试模式（Debug）下该执行方式不可行。那么是否有办法在VSCode上调试带参数的python脚本呢？ 这里提供三种方案：  2.1 方案1 pbd命令的Debug 2.2 方案2 在launch.json中设置参数的Debug 2">
+<meta property="og:description" content="linux系统上执行带参数的python程序直接添加-arg xxx即可。但在VSCode调试模式（Debug）下该执行方式不可行。那么是否有办法在VSCode上调试带参数的python脚本呢？">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-07-22T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-25T01:54:15.014Z">
+<meta property="article:modified_time" content="2023-10-07T07:56:29.944Z">
 <meta property="article:author" content="Txing">
-<meta property="article:tag" content="VScode">
+<meta property="article:tag" content="Code Techniques">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://txing-casia.github.io/2022/07/23/2022-07-23-%E4%BD%BF%E7%94%A8VSCode%E8%B0%83%E8%AF%95%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84Python%E8%84%9A%E6%9C%AC/">
@@ -83,7 +83,119 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -242,6 +354,7 @@
                 <span class="post-meta-item-text">Reading time &asymp;</span>
               <span>3 mins.</span>
             </span>
+            <div class="post-description">linux系统上执行带参数的python程序直接添加-arg xxx即可。但在VSCode调试模式（Debug）下该执行方式不可行。那么是否有办法在VSCode上调试带参数的python脚本呢？</div>
 
         </div>
       </header>
@@ -252,8 +365,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2
-id="使用vscode调试带参数的python脚本">使用VSCode调试带参数的Python脚本</h2>
+        <h2 id="使用vscode调试带参数的python脚本">使用VSCode调试带参数的Python脚本</h2>
 <h3 id="问题描述">1 问题描述</h3>
 <p>linux系统上执行带参数的python程序直接添加-arg
 xxx即可。但在VSCode调试模式（Debug）下该执行方式不可行。那么是否有办法在VSCode上调试带参数的python脚本呢？</p>
@@ -277,7 +389,7 @@ xxx即可。但在VSCode调试模式（Debug）下该执行方式不可行。那
 在launch.json中设置参数的Debug</h4>
 <p><strong>Step1：</strong>VSCode菜单栏-运行-打开配置，出现launch.json文件。</p>
 <p><strong>Step2：</strong>在configurations中添加”args”参数形式如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">      <span class="string">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">      <span class="string">&quot;configurations&quot;</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                  <span class="string">&quot;name&quot;</span>: <span class="string">&quot;Python: Current File&quot;</span></span><br><span class="line">                  <span class="string">&quot;type&quot;</span>: <span class="string">&quot;python&quot;</span>,</span><br><span class="line">                  <span class="string">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">                  <span class="string">&quot;program&quot;</span>: <span class="string">&quot;<span class="variable">$&#123;file&#125;</span>&quot;</span>,</span><br><span class="line">                  <span class="string">&quot;console&quot;</span>: <span class="string">&quot;integratedTerminal&quot;</span>,</span><br><span class="line">                  <span class="string">&quot;args&quot;</span>: [</span><br><span class="line">                        <span class="string">&quot;arg1&quot;</span>, <span class="string">&quot;xxx&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;arg2&quot;</span>, <span class="string">&quot;xxx&quot;</span>,</span><br><span class="line">                   ]</span><br><span class="line">            &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">      <span class="string">"version"</span>: <span class="string">"0.2.0"</span>,</span><br><span class="line">      <span class="string">"configurations"</span>: [</span><br><span class="line">            {</span><br><span class="line">                  <span class="string">"name"</span>: <span class="string">"Python: Current File"</span></span><br><span class="line">                  <span class="string">"type"</span>: <span class="string">"python"</span>,</span><br><span class="line">                  <span class="string">"request"</span>: <span class="string">"launch"</span>,</span><br><span class="line">                  <span class="string">"program"</span>: <span class="string">"<span class="variable">${file}</span>"</span>,</span><br><span class="line">                  <span class="string">"console"</span>: <span class="string">"integratedTerminal"</span>,</span><br><span class="line">                  <span class="string">"args"</span>: [</span><br><span class="line">                        <span class="string">"arg1"</span>, <span class="string">"xxx"</span>,</span><br><span class="line">                        <span class="string">"arg2"</span>, <span class="string">"xxx"</span>,</span><br><span class="line">                   ]</span><br><span class="line">            }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 <p><strong>Step3：</strong>添加完成后，设置断点，按F5执行即可开始调试。</p>
 <p>该方式需要预先写入参数，在实际项目中参数数量和名称可能常常发生变化，这种方式在调整时还不够灵活，效率不够高。</p>
 <h4 id="方案3-终端命令行中写入参数的debug">2.3 方案3
@@ -287,7 +399,7 @@ xxx即可。但在VSCode调试模式（Debug）下该执行方式不可行。那
 State显示为LISTEN即为未占用，记该端口号为xxxx</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">关于State的说明：</span><br><span class="line">- LISTEN: The socket is listening for incoming connections. Foreign address is not relevant for this line</span><br><span class="line">- ESTABLISHED: The socket has an established connection. Foreign address in the address of the remote end point of the socket.</span><br><span class="line">- CLOSE_WAIT: The remote end has shut down, waiting for the socket to close.</span><br></pre></td></tr></table></figure>
 <p><strong>Step3：</strong>修改launch.json中内容为：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;version&quot;: &quot;0.2.0&quot;,</span><br><span class="line">	&quot;configurations&quot;: [</span><br><span class="line">		&#123;</span><br><span class="line">			&quot;name&quot;: &quot;Python: Attach&quot;,</span><br><span class="line">			&quot;type&quot;: &quot;python&quot;,</span><br><span class="line">			&quot;request&quot;: &quot;attach&quot;,</span><br><span class="line">			&quot;connect&quot;: &#123;</span><br><span class="line">				&quot;host&quot;: &quot;localhost&quot;,</span><br><span class="line">				&quot;port&quot;: xxxx</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">	"version": "0.2.0",</span><br><span class="line">	"configurations": [</span><br><span class="line">		{</span><br><span class="line">			"name": "Python: Attach",</span><br><span class="line">			"type": "python",</span><br><span class="line">			"request": "attach",</span><br><span class="line">			"connect": {</span><br><span class="line">				"host": "localhost",</span><br><span class="line">				"port": xxxx</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">	]</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 <p>其中，xxxx表示使用的端口号。</p>
 <p><strong>Step4：</strong>假设run
 该Python脚本的命令为：<code>python xxx.py -arg1 ARG1 -arg2 ARG2</code>。即脚本有两个参数输入。在进行调试之前，在VSCode终端命令行中键入：</p>
@@ -307,7 +419,7 @@ State显示为LISTEN即为未占用，记该端口号为xxxx</p>
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/VScode/" rel="tag"># VScode</a>
+              <a href="/tags/Code-Techniques/" rel="tag"># Code Techniques</a>
           </div>
 
         
@@ -412,7 +524,7 @@ State显示为LISTEN即为未占用，记该端口号为xxxx</p>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-count">60</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -528,6 +640,59 @@ State显示为LISTEN即为未占用，记该端口号为xxxx</p>
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

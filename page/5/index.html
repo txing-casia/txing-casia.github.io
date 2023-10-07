@@ -81,7 +81,119 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -250,411 +362,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="a-review-of-motion-planning-for-highway-autonomous-driving">A
-Review of Motion Planning for Highway Autonomous Driving</h2>
-<ul>
-<li>高速路具有路径高速（high speed）、路径曲率小（small curvature
-roads）、规则具体（specific driver rules）的几项特点。</li>
-<li>主要面临的问题：变道（Lane change），避障（obstacle
-avoidance），跟车（car following）合并道路（merging）</li>
-</ul>
-<h3 id="introduction">1 Introduction</h3>
-<ul>
-<li><p>automakers now try to personalize Advanced Driving Assistance
-Systems (ADAS) to the driver’s style [7].</p>
-<ul>
-<li>[7]. M. Hasenjager and H. Wersing, “Personalization in advanced
-driver "assistance systems and autonomous vehicles: A review," in IEEE
-Int. Conf. on Intelligent Transportation Systems (ITSC), 2017.</li>
-</ul></li>
-<li><p>现有的一些辅助技术：</p>
-<ul>
-<li>巡航控制中的纵向合/横向舒适度和安全性（longitudinal and lateral
-comfort and security with the Cruise Control (CC)）</li>
-<li>智能速度自适应（Intelligent Speed Adaptation (ISA)）</li>
-<li>道路保持辅助（Lane Keeping Assist (LKA)）</li>
-<li>离道警报（Lane Departure Warning (LDW)）</li>
-</ul></li>
-<li><p>自动驾驶分类标准：（With such an evolution in the automotive
-field, the Society of Automotive Engineers (SAE) published a standard
-classification for autonomous vehicles with a 6-level system, from 0 (no
-control but active safety systems) to 5 (no human intervention for
-driving) [10]）</p>
-<ul>
-<li>SAE International J3016, accessed 2018-11-03. [Online]. Available:
-https://www.sae.org/standards/content/j3016 201401/</li>
-</ul></li>
-<li><p>2007 DARPA城市挑战赛：since the Defense Advanced Research
-Projects Agency (DARPA) organized autonomous vehicle competitions in
-2004, 2005, and 2007, and thanks to new technologies, autonomous
-functions are evolving quickly and treat more complex scenarios in real
-environments. The 11 finalist teams of the DARPA Urban Challenge 2007
-[11] succeeded in navigating through a city environment.</p></li>
-<li><p>Furthermore, highways seem to be the first environment where
-drivers would be confident driving in a fully autonomous mode
-[26]</p></li>
-</ul>
-<h3 id="considerations-for-highway-motion-planning">2 Considerations for
-highway motion planning</h3>
-<h4 id="a.-terminology">A. Terminology</h4>
-<ul>
-<li><p><strong>ego
-vehicle</strong>表示被掌控（mastered）并装备传感器（sensors-equipped）的车辆</p></li>
-<li><p><strong>obstacles
-vehicle</strong>表示其它车辆，都被视为障碍物。</p></li>
-<li><p>车辆的states包括：</p>
-<ul>
-<li>position</li>
-<li>orientation</li>
-<li>and their</li>
-<li>time derivatives (position, speed, and acceleration, linear and
-angular)</li>
-</ul></li>
-<li><p>The <strong>geometric state space</strong> is called the
-<strong>configuration space</strong></p></li>
-<li><p>The <strong>evolution space</strong> identifies the
-<strong>configuration space-time</strong> in which the ego vehicle can
-navigate.</p></li>
-<li><p>configuration 和 evolution 空间被分为三个子空间：</p>
-<ul>
-<li>the <strong>collision space</strong>, in which the ego vehicle
-collides with obstacles;</li>
-<li>the <strong>uncertain space</strong>, in which there exists a
-probability for the ego vehicle to be in collision;</li>
-<li>the <strong>free space</strong>, in which there is no
-collision.</li>
-<li><strong>free-space</strong> (spatial geometric zones)</li>
-<li><strong>path</strong> (sequence of spacerelated states in the free
-space, i.e. geometric waypoints)</li>
-<li><strong>trajectory</strong> (sequence of spatiotemporal states in
-the free space, i.e. time-varying waypoints)</li>
-<li><strong>maneuver</strong> (predefined motion, considered as a
-subspace of paths or trajectories, i.e. motion primitives)</li>
-<li><strong>generation</strong>, which builds sequences of paths,
-trajectories, maneuvers, or actions</li>
-<li><strong>planning</strong>, meaning the selection of one sequence
-among the generated motions</li>
-<li><strong>prediction horizon</strong> denotes the space or/and time
-horizon limit for the simulation of motion</li>
-</ul></li>
-</ul>
-<h4 id="b.-motion-planning-scheme">B. Motion Planning Scheme</h4>
-<ul>
-<li>分层的自动驾驶算法框架</li>
-</ul>
-<figure>
-<img src="\images\20220731-1.png"
-alt="A hierarchical scheme of Autonomous Ground Vehicle systems." />
-<figcaption aria-hidden="true">A hierarchical scheme of Autonomous
-Ground Vehicle systems.</figcaption>
-</figure>
-<ul>
-<li>行为规划包括：(i) route planning, (ii) prediction, (iii) decision
-making, (iv) generation, and (v) deformation.</li>
-</ul>
-<figure>
-<img src="\images\20220731-2.png"
-alt="Motion planning functions. Motion planning acts as a global, local, and reactive motion strategy." />
-<figcaption aria-hidden="true">Motion planning functions. Motion
-planning acts as a global, local, and reactive motion
-strategy.</figcaption>
-</figure>
-<p>其中，decision making, generation, and
-deformation是核心。参考[32][33]两篇文章，总结的方法如下：</p>
-<ul>
-<li><p><strong>A high-level predictive planning</strong> built around
-three objectives: risk evaluation, criteria minimization, and constraint
-ubmission (see II-D). Those are used for decision making (iii), i.e. to
-select the best solution out of the candidates’ generation (iv). One
-either generates a set of motions and then makes a decision on the
-behavior motion, or, defines the behavior to adopt and then fits a set
-of motions. This high-level stage benefits from a longer predicted
-motion but is time-consuming.</p></li>
-<li><p><strong>A low-level reactive planning</strong> deforming the
-generated motion from the high-level planning according to a reactive
-approach, i.e. the deformation function (v). This acts on a shorter
-range of actions and thus has faster computation.</p></li>
-</ul>
-<p>[32]. L. Claussmann, A. Carvalho, and G. Schildbach, “A path planner
-for autonomous driving on highways using a human mimicry approach with
-binary decision diagrams,” in IEEE European Control Conference (ECC),
-2015. [33]. X. Li, Z. Sun, Q. Zhu, and D. Liu, “A unified approach to
-local trajectory planning and control for autonomous driving along a
-reference path,” in IEEE Int. Conf. on Mechatronics and Automation
-(ICMA), 2014.</p>
-<ul>
-<li>空间和时间约束：</li>
-</ul>
-<figure>
-<img src="\images\20220731-3.png"
-alt="Motion planning functions. Motion planning acts as a global, local, and reactive motion strategy." />
-<figcaption aria-hidden="true">Motion planning functions. Motion
-planning acts as a global, local, and reactive motion
-strategy.</figcaption>
-</figure>
-<h4 id="c.-specificities-of-highway-driving">C. Specificities of Highway
-Driving</h4>
-<ul>
-<li><p>特点：</p>
-<ul>
-<li>单向车流</li>
-<li>高速a dynamic speed over 60km/h</li>
-<li>道路形状简单：直线道路（straight
-lines），回旋曲线道路（clothoids），小曲率的环形道路（circles with small
-curvature）</li>
-</ul></li>
-<li><p>障碍车的行为预测分为以下几个：</p>
-<ul>
-<li>one-direction</li>
-<li>two-lane changes – right or left</li>
-<li>and to accelerate, maintain speed, or brake</li>
-</ul></li>
-<li><p>高速路的一些通常境况：</p>
-<ul>
-<li><p><strong>Lane keeping</strong></p>
-<p>纵向安全的情况下保持期望的速度行驶</p></li>
-<li><p><strong>Car following</strong></p>
-<p>跟随自己前方的车辆，保持安全距离</p></li>
-<li><p><strong>Lane changing</strong></p>
-<p>受到方向和障碍物的约束，规划需要保证目标车道由充足的空间和合适的行驶速度</p></li>
-<li><p><strong>Lateral-most lane changing</strong></p>
-<p>一些情况下的交规要求只能在最左/右的车道行驶，因此agent会一直寻求变道的机会，直到到达目标车道</p></li>
-<li><p><strong>Passing</strong></p>
-<p>在侧向有障碍物的时候遵守lane keeping或者car
-following决策的情况，需要保证侧向的安全距离</p></li>
-<li><p><strong>Overtaking</strong></p>
-<p>超车上复杂的机动动作，包括变道、pass、变道三个过程</p></li>
-<li><p><strong>Merging</strong></p>
-<p>两个车道合并为一个车道</p></li>
-<li><p><strong>Highway toll</strong></p>
-<p>高速收费站，先并入虚拟的车道线，进入收费站，之后再加速驶出，并入实际的车道线</p></li>
-<li><p>高速场景特点总结：The main differences between highway, except
-for platooning, and city driving consist in a further look-ahead time,
-with a stronger focus towards the ahead direction of the road, whereas
-city driving involves a closer range but in all directions. The highway
-vehicle dynamics is also simpler with lower turn-angle, no reverse, and
-less braking/acceleration, but higher and more constant speed. Thus,
-even if there are less hazards, the risk due to high speed is stronger.
-Moreover, the higher distances imply poorer sensors capacities. Finally,
-less traffic insures more stable scenario. The algorithms which consider
-all these specificities in real-time will be favored for a practical
-application on highways.</p></li>
-<li><p>[34]. L. Claussmann, M. Revilloud, S. Glaser, and D. Gruyer, “A
-study on ai-based approaches for high-level decision making in highway
-autonomous driving,” in IEEE. Int. Conf. on Systems, Man, and
-Cybernetics (SMC), 2017.</p></li>
-</ul></li>
-</ul>
-<h4 id="d.-constraints-on-highway-driving">D. Constraints on Highway
-Driving</h4>
-<ul>
-<li><p><strong>硬约束</strong>（hard
-constraints）：环境约束、交规、安全约束、避免碰撞。</p></li>
-<li><p><strong>软约束</strong>（soft
-constraints）：时间/距离/能耗最小化，舒适性最大化等乘坐优化约束。</p></li>
-<li><p>其他可行性约束依赖于车辆的运动学限制，即非完整动力学，即车辆在只有两个自由度的三维空间中发展，平滑路径，即轨迹应该可微分且其曲率连续，以及车辆的动力学限制。</p></li>
-<li><p>作者在文献[27]中认为，生成运动的质量要求应该为：可行、安全、最优、可用、自适应、高效、渐进和交互（feasible,
-safe, optimal, usable, adaptive, efficient, progressive, and
-interactive）</p></li>
-<li><p>[27]. M. Rodrigues, A. McGordon, G. Gest, and J. Marco, “Adaptive
-tactical behaviour planner for autonomous ground vehicle,” in IEEE Int.
-Conf. on Control, 2016.</p></li>
-</ul>
-<h3 id="state-of-the-art">3 State of the art</h3>
-<ul>
-<li><p>运动规划包含了5个方面：</p></li>
-<li><ol type="i">
-<li>state estimation</li>
-</ol></li>
-<li><ol start="2" type="i">
-<li>time evolution</li>
-</ol></li>
-<li><ol start="3" type="i">
-<li>actions planning</li>
-</ol></li>
-<li><ol start="4" type="i">
-<li>criteria optimization</li>
-</ol></li>
-<li><ol start="22" type="a">
-<li>compliance with constraints</li>
-</ol></li>
-<li><p>一个争论：是否要区分驾驶模式（distinguishing and not
-distinguishing the driving
-modes），不同模式下使用不同的数据进行学习。</p></li>
-<li><p><strong>分类1：空间构造算法</strong>（Space Configuration）</p>
-<ul>
-<li><p>总述：sampling points, connected cells, and
-lattice这些方法的核心思想在于：（1）对进化空间进行采样或离散化；（2）排除与障碍物冲突或不可行的点、单元或网格；（3）将这些空间分解作为自由空间约束发送，或者用寻路算法(见III-B2)或曲线规划器(见III-B4)求解结果空间配置，以直接将路点、连接单元集或点阵集发送到控制块。</p></li>
-<li><p>Sampling-Based Decomposition：</p>
-<ul>
-<li>Probabilistic RoadMap (PRM) [41]（The most popular random
-method），配合Dijkstra算法[42]，先选择路径点，再分配速度曲线</li>
-<li>spatiotemporal sampling points predictive
-algorithm[43]，采样5维的车辆状态点（车的位置、速度、角度、到达时间），考虑空间分辨率的因素，还可以结合自适应分辨率采样方法[44]</li>
-</ul></li>
-<li><p>Connected Cells
-Decomposition：网格化道路，赋予格子随机权重，然后避障寻路，该方法的缺点在于要求大的记忆容量、较高的计算速度、具有移动障碍物的虚假指示性占领，以及随空间和时间变化的分辨率。</p>
-<p>依据不同的速度和形状，障碍物通常表示为凸多边形（convex polygons）
-、矩形、 三角形、圆形、椭圆形。</p>
-<ul>
-<li><strong>非基于障碍物表征的方法</strong>，格子组织可以离线觉得在线填充，网格可以快速获得但没有使用环境特性。eg：exact
-decomposition（正在淘汰）</li>
-<li><strong>基于障碍物表征的方法</strong>，考虑动态变化的环境，建立在线的网格，更加方便计算和重规划。</li>
-</ul></li>
-<li><p>Lattice Representation（晶格表征）构建reachability graph of
-maneuvers，多用于predictive planning。calculated offline for a quick
-replanning [76]. Unfortunately, their application to reactive planning
-is mostly limited due to the fixed structure.</p>
-<p>经典的晶格表征算法基于maximum turn strategy [13,
-76]，只变化车的角度，调整路径。引入速度后的改进方法curvature velocity
-method[77],[72], [78]
-。方法的缺点在于需要预先定义的运动集，以及高密度的运动图。</p></li>
-</ul></li>
-<li><p><strong>分类2：路径搜索算法</strong>（Pathfinding
-Algorithms）</p>
-<p>这类算法属于图论中的一部分，代表算法为Dijkstra and
-A*等，主要问题在于图的尺寸和复杂度，以及进一步的动态环境的处理上，总之这些方法不是太适应高速的环境条件。</p></li>
-<li><p><strong>分类3：吸引力和排斥力</strong>（Attractive and Repulsive
-Forces）</p>
-<p>目的地是吸引力，障碍物产生排斥力，由此构建引力图产生规划的轨迹。其优点是方便适应动态的环境。其问题在于局部最优和震荡现象。</p>
-<p>Virtual Force Field (VFF) [56]</p>
-<p>elastic band algorithm [102]</p></li>
-<li><p><strong>分类4：参数化和半参数化曲线</strong>（Parametric and
-Semi-parametric Curves）</p>
-<p>考虑（1）高速路本省就是由简单的曲线构成的；（2）预先定义的曲线几何很容易实施和测试；曲线路径和速度可以解耦考虑。这里介绍两类算法：</p>
-<ul>
-<li><p><strong>point-free
-curves算法</strong>：首先构建运动学上可行的轨迹，作为一组候选解；然后基于点的子类使用曲线来拟合一组选择的路点(采样点或单元)</p>
-<p>该方法也可以参考基于晶格的方法，用一些基本曲线构建可能的运动路径，形成“触手”，以加快求解的速度。但是这些简单曲线的二阶导数不连续</p></li>
-<li><p><strong>point-based
-curves算法</strong>：能很好适应约束环境的几何特征，各种曲线的选择依赖对环境的认知。</p></li>
-</ul></li>
-<li><p><strong>分类5：数值优化</strong>（Numerical Optimization）</p>
-<p>数值优化方法在运动规划中被广泛使用。一类算法简化求解的复杂度，提高效率；一类算法探索数学上的性质，以在受限的空间（restrictive
-space）中推断出预测解。对于第二类方法，其基础的算法是the Linear
-Programming (LP) （most popular one: Simplex algorithm[81]）</p>
-<p>具体的预测上，使用Model Predictive Control (MPC)，Dynamic Programming
-(DP)等</p></li>
-<li><p><strong>分类6：人工智能方法</strong>（Artificial
-Intelligence）</p>
-<p>需要复制并模拟司机的推断和学习能力。本文将这些方法分为两类：<strong>cognitive/rational</strong>
-and <strong>rules/learning</strong>，– based on [125]’s distinction
-between thinking and acting humanly or rationally</p>
-<figure>
-<img src="\images\20220801-1.png" alt="A map of AI-based algorithms." />
-<figcaption aria-hidden="true">A map of AI-based
-algorithms.</figcaption>
-</figure>
-<ul>
-<li><p>人工智能基于逻辑的方法（AI Logic-Based Approach）</p>
-<p>依赖专家知识库和规则的专家推理系统。主要缺点在于处理循环推理和枚举所有规则</p>
-<ul>
-<li><p>决策树：不确定性和近似值增加了计算困难，行为必须被解释为安全合法的。</p></li>
-<li><p>有限状态机（Finite State Machine (FSM)）：
-只能在已知的知识范围内运行，不能在未知的环境中做生成。</p>
-<figure>
-<img src="\images\20220808-1.png"
-alt="Illustration of an FSM for highway" />
-<figcaption aria-hidden="true">Illustration of an FSM for
-highway</figcaption>
-</figure></li>
-<li><p>Bayesian networks：依赖马尔科夫模型的状态转移因果链。The authors
-in [50] develop a Markov Decision Process (MDP) on the <strong>choice of
-tentacle trajectories</strong>, and the one in [130] for a
-<strong>lane-staying or -changing decision.</strong></p>
-<ul>
-<li>[50]. H. Mouhagir, R. Talj, V. Cherfaoui, F. Aioun, and F.
-Guillemard, “Integrating safety distances with trajectory planning by
-modifying the occupancy grid for autonomous vehicle navigation,” in IEEE
-Int. Conf. on Intelligent Transportation Systems (ITSC), 2016.</li>
-<li>[130]. S. Zhou, Y. Wang, M. Zheng, and M. Tomizuka, “A hierarchical
-planning and control framework for structured highway driving,”
-IFACPapersOnLine, vol. 50, no. 1, pp. 9101–9107, 2017.</li>
-</ul>
-<p>POMDP：</p>
-<ul>
-<li>[131] S. Ulbrich and M. Maurer, “Towards tactical lane change
-behavior planning for automated vehicles,” in IEEE Int. Conf. on
-Intelligent Transportation Systems (ITSC), 2015.</li>
-<li>[132] E. Galceran, A. G. Cunningham, R. M. Eustice, and E. Olson,
-“Multipolicy decision-making for autonomous driving via
-changepoint-based behavior prediction: Theory and experiment,”
-Autonomous Robots, vol. 41, no. 6, pp. 1367–1382, 2017.</li>
-<li>[133] N. Li, D. W. Oyler, M. Zhang, Y. Yildiz, I. Kolmanovsky, and
-A. R. Girard, “Game theoretic modeling of driver and vehicle
-interactions for verification and validation of autonomous vehicle
-control systems,” IEEE Trans. on Control Systems Technology, vol. 26,
-no. 5, pp. 1782– 1797, 2018.</li>
-</ul></li>
-<li><p>人工智能启发式算法（AI Heuristic Algorithms）</p>
-<p>优势在于相对快速高效，但是具有启发式算法的通病，即陷入局部最优，无法保证得到全局最优。</p>
-<ul>
-<li>基于Support Vector Machines (SVM)的个性化变道决策：
-<ul>
-<li>C. Vallon, Z. Ercan, A. Carvalho, and F. Borrelli, “A machine
-learning approach for personalized autonomous lane change initiation and
-control,” in IEEE Intelligent Vehicles Symposium (IV), 2017.</li>
-</ul></li>
-<li>演化算法（Evolutionary
-methods）。在高速场景，最优解并不是必须的，演化算法的高计算效率，获得近似次优解，足以满足要求。</li>
-</ul></li>
-</ul></li>
-<li><p>人工智能近似推理（AI Approximate Reasoning）</p>
-<p>该方法与logic approach的区别在于其知识是非boolean形式表示的。
-方法的优势在于其灵活，可拓展到非确定性数据中。缺点在于缺少可追踪性和系统性的设计方法</p>
-<ul>
-<li><p>Artificial Neural Networks (ANN)</p>
-<p>主要可分为三类方法：supervised, unsupervised, and reinforcement
-learning。他们的缺点在于缺少因果解释</p>
-<p>使用卷积网络变道</p>
-<ul>
-<li>E. Rehder, J. Quehl, and C. Stiller, “Driving like a human:
-Imitation learning for path planning using convolutional neural
-networks,” in IEEE Int. Conf. on Intelligent Robots and Systems (IROS)
-Workshops, 2017.</li>
-</ul>
-<p>multi-goal overtaking maneuvers[144]</p>
-<ul>
-<li>D. C. K. Ngai and N. H. C. Yung, “A multiple-goal reinforcement
-learning method for complex vehicle overtaking maneuvers,” IEEE Trans.
-on Intelligent Transportation Systems, vol. 12, no. 2, pp. 509–522,
-2011.</li>
-</ul>
-<p>automated lane change maneuvers[145]</p>
-<ul>
-<li>P. Wang, C.-Y. Chan, and A. de La Fortelle, “A reinforcement
-learning based approach for automated lane change maneuvers,” IEEE
-Intelligent Vehicles Symposium (IV), 2018.</li>
-</ul></li>
-</ul></li>
-<li><p>人工智能类人的方法（AI Human-Like Methods）</p>
-<p>类人的驾驶模型的完整描述，参考这篇文章</p>
-<ul>
-<li>D. D. Salvucci, “Modeling driver behavior in a cognitive
-architecture,” Human factors, vol. 48, no. 2, pp. 362–380, 2006</li>
-</ul>
-<p>可以分解为风险、任务和博弈三类：</p>
-<ul>
-<li><strong>Risk
-estimators</strong>：执行可接受风险和目标安全之间的权衡。</li>
-<li><strong>Taxonomic models</strong>：场景和状况细分分类。</li>
-<li><strong>Game
-theory</strong>：把所有车辆看做agent参与博弈，缺点是假设所有人准守规则，一些文章进行了改进：
-<ul>
-<li>N. Li, D. W. Oyler, M. Zhang, Y. Yildiz, I. Kolmanovsky, and A. R.
-Girard, “Game theoretic modeling of driver and vehicle interactions for
-verification and validation of autonomous vehicle control systems,” IEEE
-Trans. on Control Systems Technology, vol. 26, no. 5, pp. 1782–1797,
-2018.</li>
-</ul></li>
-</ul>
-<p>人工智能类似人类的方法非常适合在高速公路场景中进行决策，由于这种环境的基本规则，司机的行为更容易预测。也易于理解并与驾驶员分享。但目前还没有统一的处理框架。</p></li>
-</ul></li>
-</ul>
-<h3 id="总结">总结</h3>
-<p>这篇文章介绍的范围太大，涵盖的研究方向和方法过多，受篇幅限制，讲的东西又很浅显，价值不大。</p>
-<p>​</p>
-
+          <p>高速路具有路径高速（high speed）、路径曲率小（small curvature roads）、规则具体（specific driver rules）的几项特点。</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -725,53 +436,10 @@ Trans. on Control Systems Technology, vol. 26, no. 5, pp. 1782–1797,
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2
-id="使用vscode调试带参数的python脚本">使用VSCode调试带参数的Python脚本</h2>
-<h3 id="问题描述">1 问题描述</h3>
-<p>linux系统上执行带参数的python程序直接添加-arg
-xxx即可。但在VSCode调试模式（Debug）下该执行方式不可行。那么是否有办法在VSCode上调试带参数的python脚本呢？</p>
-<p>这里提供三种方案：</p>
-<ul>
-<li>2.1 方案1 pbd命令的Debug</li>
-<li>2.2 方案2 在launch.json中设置参数的Debug</li>
-<li>2.3 方案3 终端命令行中写入参数的Debug</li>
-</ul>
-<h3 id="解决方案">2 解决方案</h3>
-<h4 id="方案1-pbd命令的debug">2.1 方案1 pbd命令的Debug</h4>
-<p>终端窗口执行命令</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pdb xxx.py</span><br></pre></td></tr></table></figure>
-<p>开启Debug模式，在断点处暂停，可输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">h：（<span class="built_in">help</span>）帮助</span><br><span class="line">w：（<span class="built_in">where</span>）打印当前执行堆栈</span><br><span class="line">d：（down）执行跳转到在当前堆栈的深一层（个人没觉得有什么用处）</span><br><span class="line">u：（up）执行跳转到当前堆栈的上一层</span><br><span class="line">b：（<span class="built_in">break</span>）添加断点</span><br><span class="line">	b 列出当前所有断点，和断点执行到统计次数</span><br><span class="line">	b line_no：当前脚本的line_no行添加断点</span><br><span class="line">	b filename:line_no：脚本filename的line_no行添加断点</span><br><span class="line">	b <span class="keyword">function</span>：在函数<span class="keyword">function</span>的第一条可执行语句处添加断点</span><br><span class="line">tbreak：（temporary <span class="built_in">break</span>）临时断点</span><br><span class="line">	在第一次执行到这个断点之后，就自动删除这个断点，用法和b一样</span><br><span class="line">cl：（clear）清除断点</span><br><span class="line">	cl 清除所有断点</span><br><span class="line">	cl bpnumber1 bpnumber2… 清除断点号为bpnumber1,bpnumber2…的断点</span><br><span class="line">	cl lineno 清除当前脚本lineno行的断点</span><br><span class="line">	cl filename:line_no 清除脚本filename的line_no行的断点</span><br><span class="line"><span class="built_in">disable</span>：停用断点，参数为bpnumber，和cl的区别是，断点依然存在，只是不启用</span><br><span class="line"><span class="built_in">enable</span>：激活断点，参数为bpnumber</span><br><span class="line">s：（step）执行下一条命令</span><br><span class="line">	如果本句是函数调用，则s会执行到函数的第一句</span><br><span class="line">n：（next）执行下一条语句</span><br><span class="line">	如果本句是函数调用，则执行函数，接着执行当前执行语句的下一条。</span><br><span class="line">r：（<span class="built_in">return</span>）执行当前运行函数到结束</span><br><span class="line">c：（<span class="built_in">continue</span>）继续执行，直到遇到下一条断点</span><br><span class="line">l：（list）列出源码</span><br><span class="line">	l 列出当前执行语句周围11条代码</span><br><span class="line">	l first 列出first行周围11条代码</span><br><span class="line">	l first second 列出first–second范围的代码，如果second&lt;first，second将被解析为行数</span><br><span class="line">a：（args）列出当前执行函数的函数</span><br><span class="line">p expression：（<span class="built_in">print</span>）输出expression的值</span><br><span class="line">pp expression：好看一点的p expression</span><br><span class="line">run：重新启动debug，相当于restart</span><br><span class="line">q：（quit）退出debug</span><br><span class="line">j lineno：（jump）设置下条执行的语句函数</span><br><span class="line">	只能在堆栈的最底层跳转，向后重新执行，向前可直接执行到行号</span><br><span class="line">unt：（until）执行到下一行（跳出循环），或者当前堆栈结束</span><br><span class="line">condition bpnumber conditon，给断点设置条件，当参数condition返回True的时候bpnumber断点有效，否则bpnumber断点无效</span><br></pre></td></tr></table></figure>
-<p><strong>Note：</strong>
-<code>1：直接输入Enter，会执行上一条命令；</code>
-<code>2：输入PDB不认识的命令，PDB会把他当做Python语句在当前环境下执行；</code></p>
-<p>但这种方式不依赖VSCode，并且是在命令行中调试，并不方便。</p>
-<h4 id="方案2-在launch.json中设置参数的debug">2.2 方案2
-在launch.json中设置参数的Debug</h4>
-<p><strong>Step1：</strong>VSCode菜单栏-运行-打开配置，出现launch.json文件。</p>
-<p><strong>Step2：</strong>在configurations中添加”args”参数形式如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">      <span class="string">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">      <span class="string">&quot;configurations&quot;</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                  <span class="string">&quot;name&quot;</span>: <span class="string">&quot;Python: Current File&quot;</span></span><br><span class="line">                  <span class="string">&quot;type&quot;</span>: <span class="string">&quot;python&quot;</span>,</span><br><span class="line">                  <span class="string">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">                  <span class="string">&quot;program&quot;</span>: <span class="string">&quot;<span class="variable">$&#123;file&#125;</span>&quot;</span>,</span><br><span class="line">                  <span class="string">&quot;console&quot;</span>: <span class="string">&quot;integratedTerminal&quot;</span>,</span><br><span class="line">                  <span class="string">&quot;args&quot;</span>: [</span><br><span class="line">                        <span class="string">&quot;arg1&quot;</span>, <span class="string">&quot;xxx&quot;</span>,</span><br><span class="line">                        <span class="string">&quot;arg2&quot;</span>, <span class="string">&quot;xxx&quot;</span>,</span><br><span class="line">                   ]</span><br><span class="line">            &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>Step3：</strong>添加完成后，设置断点，按F5执行即可开始调试。</p>
-<p>该方式需要预先写入参数，在实际项目中参数数量和名称可能常常发生变化，这种方式在调整时还不够灵活，效率不够高。</p>
-<h4 id="方案3-终端命令行中写入参数的debug">2.3 方案3
-终端命令行中写入参数的Debug</h4>
-<p><strong>Step1：</strong>安装debugpy库，<code>pip install debugpy</code></p>
-<p><strong>Step2：</strong>打开本地终端，找到一个未占用的端口号。输入<code>netstat -a</code>
-State显示为LISTEN即为未占用，记该端口号为xxxx</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">关于State的说明：</span><br><span class="line">- LISTEN: The socket is listening for incoming connections. Foreign address is not relevant for this line</span><br><span class="line">- ESTABLISHED: The socket has an established connection. Foreign address in the address of the remote end point of the socket.</span><br><span class="line">- CLOSE_WAIT: The remote end has shut down, waiting for the socket to close.</span><br></pre></td></tr></table></figure>
-<p><strong>Step3：</strong>修改launch.json中内容为：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;version&quot;: &quot;0.2.0&quot;,</span><br><span class="line">	&quot;configurations&quot;: [</span><br><span class="line">		&#123;</span><br><span class="line">			&quot;name&quot;: &quot;Python: Attach&quot;,</span><br><span class="line">			&quot;type&quot;: &quot;python&quot;,</span><br><span class="line">			&quot;request&quot;: &quot;attach&quot;,</span><br><span class="line">			&quot;connect&quot;: &#123;</span><br><span class="line">				&quot;host&quot;: &quot;localhost&quot;,</span><br><span class="line">				&quot;port&quot;: xxxx</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中，xxxx表示使用的端口号。</p>
-<p><strong>Step4：</strong>假设run
-该Python脚本的命令为：<code>python xxx.py -arg1 ARG1 -arg2 ARG2</code>。即脚本有两个参数输入。在进行调试之前，在VSCode终端命令行中键入：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m debugpy --listen xxxx --wait-for-client xxx.py -arg1 ARG1 -arg2 ARG2</span><br></pre></td></tr></table></figure>
-<p>注意这里监听的端口xxxx即为上一步找到的未占用端口（这里输入的端口号需要和launch.json中设置的端口号一致）</p>
-<p>执行上述命令，终端处于执行中，没有任何返回。接下来在程序中设置断点，按下F5键，即可进入VSCode的调试模式。调试方式与不带参数的情况相同。</p>
-<h3 id="ref">Ref:</h3>
-<p>https://blog.csdn.net/weixin_37251044/article/details/107471459</p>
-<p>https://www.cnblogs.com/JavicxhloWong/p/14356814.html（重要参考，感谢）</p>
-<p>https://blog.csdn.net/qq_37837061/article/details/124561317</p>
-
+          <p>linux系统上执行带参数的python程序直接添加-arg xxx即可。但在VSCode调试模式（Debug）下该执行方式不可行。那么是否有办法在VSCode上调试带参数的python脚本呢？</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -842,170 +510,10 @@ State显示为LISTEN即为未占用，记该端口号为xxxx</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2
-id="motioncnn-a-strong-baseline-for-motion-prediction-in-autonomous-driving">MotionCNN:
-A Strong Baseline for Motion Prediction in Autonomous Driving</h2>
-<h3 id="introduction">1 Introduction</h3>
-<ul>
-<li>Motion prediction
-目前仍然是一个困难的任务，本文提出了一个可以进行多模式的行为预测（multimodal
-motion prediction）的较强的baseline (based purely on Convolutional
-Neural Networks (CNNs)</li>
-<li>算法在 2021 Waymo Open Dataset Motion Prediction Challenge
-取得第三名。相关代码见<a
-target="_blank" rel="noopener" href="https://github.com/kbrodt/waymo-motion-prediction-2021">Github</a></li>
-<li>运动预测任务最重要的一些方法：
-<ul>
-<li>birds-eye-view rasterized scene representations [15, 6, 4, 11, 18,
-14]</li>
-<li>methods incarnated using graph neural networks [2, 8, 25]</li>
-</ul></li>
-</ul>
-<h3 id="method">2 Method</h3>
-<h4 id="rasterization">2.1 Rasterization</h4>
-<ul>
-<li>栅格化历史轨迹获得标准化的数据输入</li>
-<li>agent 始终位于图像中心</li>
-<li>agent 速度方向与x轴对齐</li>
-</ul>
-<h4 id="model">2.2 Model</h4>
-<ul>
-<li>在ImageNet上预训练</li>
-<li>真实的行为难以预测，因此输出K个不同的行为假设</li>
-<li>输入：多通道栅格化图像</li>
-<li>输出：预测的K条轨迹，并带有可信度<span
-class="math display">\[c_1,c_2,...,c_k\]</span>，可信度用softmax归一化，满足<span
-class="math display">\[\sum_k c_k=1\]</span></li>
-</ul>
-<h4 id="loss-function">2.3 Loss function</h4>
-<ul>
-<li><p>使用k个高斯分布，网络输出高斯分布的均值，将每个高斯的协方差固定为单位矩阵<span
-class="math display">\[I\]</span></p></li>
-<li><p>损失函数使用混合高斯分布的负的log似然度negative log-likelihood
-(NLL)，混合高斯由真实轨迹坐标定义</p></li>
-<li><p>给定ground truth轨迹：<span
-class="math display">\[X^{gt}=[(x_1,y_1),...,(x_T,y_T)]\]</span></p></li>
-<li><p>给定K个预测的假设轨迹：<span
-class="math display">\[X_k=[(x_{k,1},y_{k,1}),...,(x_{k,T},y_{k,T})],k=1,...,K\]</span></p></li>
-<li><p>计算预测高斯混合下真实轨迹的负对数概率，其均值等于预测轨迹，单位矩阵I为协方差:compute
-negative log probability of the ground truth trajectory under the
-predicted mixture of Gaussians with the means equal to the predicted
-trajectories and the identity matrix I as covariance: <span
-class="math display">\[
-L=-\log P(X^{gt})=-\log\sum_k c_k \mathcal{N}(X^{gt};\mu=X_k,\Sigma=I)
-\]</span></p></li>
-<li><p>损失函数可以进一步分解为1维高斯的乘积： <span
-class="math display">\[
-L=-\log \sum_k c_k\prod
-\mathcal{N}(x_t^{gt};x_{k,t},1)\mathcal{N}(y_t^{gt};y_{k,t},1)\\
-=-\log \sum_k \exp \bigg(\log(c_k)-\frac{1}{2}\sum_{t=1}^T
-(x_t^{gt}-x_{k,t})^2+(y_t^{gt}-y_{k,t})^2 \bigg)
-\]</span></p></li>
-<li><p>建议的损失函数没有明确地惩罚产生非常接近的轨迹的模型。然而，根据经验，我们没有观察到模式崩溃，因为将所有的概率质量组合到一个模式中会导致更高的风险策略和更高的预测失误损失值。因此，优化建议的损失产生足够的多模态。</p></li>
-</ul>
-<h4 id="inference">2.4 Inference</h4>
-<ul>
-<li>为未来轨迹提供了6个假设</li>
-</ul>
-<h3 id="experiments">3 Experiments</h3>
-<h4 id="dataset">3.1 Dataset</h4>
-<ul>
-<li>Waymo Open Motion Dataset [22, 7]
-<ul>
-<li>[22]. Pei Sun, Henrik Kretzschmar, Xerxes Dotiwalla, Aurelien
-Chouard, Vijaysai Patnaik, Paul Tsui, James Guo, Yin Zhou, Yuning Chai,
-Benjamin Caine, Vijay Vasudevan, Wei Han, Jiquan Ngiam, Hang Zhao,
-Aleksei Timofeev, Scott Ettinger, Maxim Krivokon, Amy Gao, Aditya Joshi,
-Sheng Zhao, Shuyang Cheng, Yu Zhang, Jonathon Shlens, Zhifeng Chen, and
-Dragomir Anguelov. Scalability in perception for autonomous driving:
-Waymo open dataset, 2020. 3, 4</li>
-<li>[7]. Scott Ettinger, Shuyang Cheng, Benjamin Caine, Chenxi Liu, Hang
-Zhao, Sabeek Pradhan, Yuning Chai, Ben Sapp, Charles Qi, Yin Zhou, et
-al. Large scale interactive motion forecasting for autonomous driving:
-The waymo open motion dataset. arXiv preprint arXiv:2104.10133, 2021. 1,
-2, 3, 4</li>
-</ul></li>
-<li>Waymo数据包括：
-<ul>
-<li>object trajectories</li>
-<li>3D maps for 103354 segments</li>
-<li>Each segment is a 20 seconds recording of an object trajectory at
-10Hz</li>
-<li>map data for the area covered by the segment</li>
-<li>A single sample comprises 1 second of history and 8 seconds of
-future data obtained by breaking the segments into 9-second windows with
-5 second overlap</li>
-<li>每个这样的样本包含多达8个标记为“有效”的代理，模型需要预测它们在未来8秒内的位置。Every
-such sample contains up to 8 agents marked as ”valid” for which the
-model needs to predict their positions for 8 seconds into the
-future.</li>
-</ul></li>
-<li>Rasterisation details
-<ul>
-<li>栅格尺寸：224 × 224 × (3 + 2T )，<span
-class="math display">\[T=11\]</span>​是快照（snapshot）数，3是RGB图像的3个通道，包括road
-lines, crosswalks, traffic
-lights等；每个历史快照通过两个额外通道表示：（1）The mask representing
-the location of the target agent. （2）the mask representing all other
-agents nearby</li>
-<li>智能体位于坐标<span
-class="math display">\[[61,112]\]</span>，其速度与图像的X轴对齐</li>
-</ul></li>
-</ul>
-<h4 id="metrics">3.2 Metrics</h4>
-<ul>
-<li>预测的轨迹点下采样至2Hz。从预测的80个点产生16个2维坐标的子集被用于计算测试和验证度量</li>
-<li>最小化Average Displacement Error：<span
-class="math display">\[minADE=\min_k \frac{1}{T} \mid\mid X^{gt} -X
-\mid\mid_2\]</span></li>
-<li>最小化Final Displacement Error (FDE): <span
-class="math display">\[minFDE=\min_k \mid\mid x_T^{gt}- x_T
-\mid\mid_2\]</span></li>
-<li>Miss Rate(MR) and mean average precision (mAP) in [7]
-<ul>
-<li>[7]. Scott Ettinger, Shuyang Cheng, Benjamin Caine, Chenxi Liu, Hang
-Zhao, Sabeek Pradhan, Yuning Chai, Ben Sapp, Charles Qi, Yin Zhou, et
-al. Large scale interactive motion forecasting for autonomous driving:
-The waymo open motion dataset. arXiv preprint arXiv:2104.10133, 2021. 1,
-2, 3, 4</li>
-</ul></li>
-</ul>
-<h4 id="implementation-details">3.3 Implementation details</h4>
-<p>Results from the final leaderboard of the Waymo open dataset motion
-prediction challenge [1] are presented in Tab. 1. Despite the simplicity
-of the proposed approach we secured the 3rd place according to the mAP
-metric. Moreover, our model is superior to the other competing methods
-according to Min ADE, Min FDE, and Overlap Rate metrics. Note that in
-contrast to methods [12, 9], our simple model achieves such impressive
-results without any use of advanced deep learning techniques or complex
-architectures.</p>
-<p>To test a more lightweight architecture, we also trained our model
-using ResNet18 [10] as the backbone and evaluated it on the validation
-set (see Tab. 1). This architecture is 3x times faster to train than the
-one with Xception71 backbone, but it does not reach the same high
-performance showing that a sufficiently deep model is necessary for
-attaining good results. In Fig. 4 we show plots with train and
-validation loss values during training.</p>
-<p>In Tab. 2 we also provide more detailed evaluation results for
-different object types separately.</p>
-<figure>
-<img src="\images\20220722-1.png"
-alt="Quantitative evaluation on test and validation sets of Waymo Open Motion Dataset" />
-<figcaption aria-hidden="true">Quantitative evaluation on test and
-validation sets of Waymo Open Motion Dataset</figcaption>
-</figure>
-<figure>
-<img src="\images\20220722-2.png"
-alt="Detailed evaluation of our MotionCNN-Xception71 model on test and validation sets of Waymo Open Motion Dataset" />
-<figcaption aria-hidden="true">Detailed evaluation of our
-MotionCNN-Xception71 model on test and validation sets of Waymo Open
-Motion Dataset</figcaption>
-</figure>
-<h3 id="总结">总结</h3>
-<p>作者也承认整个模型在结构和设计上比较简单，但是结果上是取得了waymo比赛的第三名。这是否意味着他们做了更多的工程化调整才取得如此的成绩？</p>
-<p>如果follow这项工作，其他人是否也能实现这样的性能是一个问题。</p>
-<p>​</p>
-
+          <p>MotionCNN</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1076,50 +584,10 @@ Motion Dataset</figcaption>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="a-convnet-for-the-2020s">A ConvNet for the 2020s</h2>
-<ul>
-<li>纯卷积的网络堪比transformer。</li>
-</ul>
-<p>Vision Transformers (ViTs)
-的引入迅速取代了ConvNets，成为最先进的图像分类模型。另一方面，普通的 ViT
-在应用于目标检测和语义分割等一般计算机视觉任务时面临困难。分层
-Transformers（例如，Swin Transformers）重新引入了几个 ConvNet 先验，使
-Transformers
-作为通用视觉骨干实际上可行，并在各种视觉任务上表现出卓越的性能。然而，这种混合方法的有效性在很大程度上仍归功于
-Transformer
-的内在优势，而不是卷积固有的归纳偏差。在这项工作中，我们重新检查了设计空间并测试了纯
-ConvNet 所能达到的极限。</p>
-<p>我们逐渐将标准 ResNet “现代化”为视觉 Transformer
-的设计，并在此过程中发现了导致性能差异的几个关键组件。这一探索的结果是一系列纯
-ConvNet 模型，称为 ConvNeXt。ConvNeXts 完全由标准 ConvNet
-模块构建，在准确性和可扩展性方面与 Transformer 竞争，实现 87.8% ImageNet
-top-1 准确率，在 COCO 检测和 ADE20K 分割方面优于 Swin
-Transformers，同时保持标准 ConvNet 的简单性和效率。</p>
-<h3 id="introduction">1. Introduction</h3>
-<ul>
-<li><p>过去的十年视觉认知领域的研究从特征工程转移到了网络结构设计。</p></li>
-<li><p>solutions to numerous computer vision tasks in the past decade
-depended significantly on a sliding-window, fully- convolutional
-paradigm</p></li>
-<li><p>The <strong>biggest challenge</strong> is ViT’s global attention
-design, which has a <strong>quadratic complexity</strong> with respect
-to the input size. This might be acceptable for ImageNet classification,
-but quickly becomes intractable with higher-resolution inputs.</p></li>
-<li><p><strong>Swin Transformer</strong> [45] is a milestone work in
-this direction, demonstrating for the first time that Transformers can
-be adopted as a generic vision backbone and achieve state-of-the-art
-performance across a range of computer vision tasks beyond image
-classification</p>
-<ul>
-<li>[45]. Ze Liu, Yutong Lin, Yue Cao, Han Hu, Yixuan Wei, Zheng Zhang,
-Stephen Lin, and Baining Guo. Swin transformer: Hierarchical vision
-transformer using shifted windows. 2021.</li>
-</ul></li>
-</ul>
-<h3 id="总结">总结</h3>
-<p>写作语言非常高级的一篇介绍网络结构的文章，介绍了如何构建超越transformer的纯卷积网络。并在计算机视觉多项任务中取得了成功，包括ImageNet
-top-1。文章值得一看，但由于这不是我重点关注方向，不详细介绍了。</p>
-
+          <p>纯卷积的网络堪比transformer</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1190,298 +658,10 @@ top-1。文章值得一看，但由于这不是我重点关注方向，不详细
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2
-id="chauffeurnet-learning-to-drive-by-imitating-the-best-and-synthesizing-the-worst">ChauffeurNet:
-Learning to Drive by Imitating the Best and Synthesizing the Worst</h2>
-<h3 id="introduction">1. Introduction</h3>
-<ul>
-<li><p>提出通过扰动专家的驾驶数据创建更多有趣的驾驶情景，例如碰撞和off-road等。</p></li>
-<li><p>在模仿学习中，并不是模仿所有的数据，而是利imitation
-loss惩罚不期望的情况。</p></li>
-<li><p>数据：30 million real-world expert driving examples,
-corresponding to about 60 days of continual driving</p></li>
-<li><p>由于无论是原始传感器输入还是直接的控制器输出都很难产生扰动，因此在mid-level的输入输出数据上实施扰动。</p></li>
-</ul>
-<h3 id="related-work">2. Related Work</h3>
-<p>Decades-old work on ALVINN (Pomerleau (1989)) showed how a shallow
-neural network could follow the road by directly consuming camera and
-laser range data. Learning to drive in an end-to-end manner has seen a
-resurgence in recent years. Recent work by Chen et al. (2015)
-demonstrated a convolutional net to estimate affordances such as
-distance to the preceding car that could be used to program a controller
-to control the car on the highway. Researchers at NVIDIA (Bojarski et
-al. (2016, 2017)) showed how to train an end-to-end deep convolutional
-neural network that steers a car by consuming camera input. Xu et al.
-(2017) trained a neural network for predicting discrete or continuous
-actions also based on camera inputs. Codevilla et al. (2018) also train
-a network using camera inputs and conditioned on high-level commands to
-output steering and acceleration. Kuefler et al. (2017) use Generative
-Adversarial Imitation Learning (GAIL) with simple affordance-style
-features as inputs to overcome cascading errors typically present in
-behavior cloned policies so that they are more robust to perturbations.
-Recent work from Hecker et al. (2018) learns a driving model using
-360-degree camera inputs and desired route planner to predict steering
-and speed. The CARLA simulator (Dosovitskiy et al. (2017)) has enabled
-recent work such as Sauer et al. (2018), which estimates several
-affordances from sensor inputs to drive a car in a simulated urban
-environment. Using mid-level representations in a spirit similar to our
-own, M¨uller et al. (2018) train a system in simulation using CARLA by
-training a driving policy from a scene segmentation network to output
-high-level control, thereby enabling transfer learning to the real world
-using a different segmentation network trained on real data. Pan et al.
-(2017) also describes achieving transfer of an agent trained in
-simulation to the real world using a learned intermediate scene labeling
-representation. Reinforcement learning may also be used in a simulator
-to train drivers on difficult interactive tasks such as merging which
-require a lot of exploration, as shown in Shalev-Shwartz et al. (2016).
-A convolutional network operating on a space-time volume of bird’s
-eye-view representations is also employed by Luo et al. (2018); Djuric
-et al. (2018); Lee et al. (2017) for tasks like 3D detection, tracking
-and motion forecasting. Finally, there exists a large volume of work on
-vehicle motion planning outside the machine learning context and Paden
-et al. (2016) present a notable survey.</p>
-<h3 id="model-architecture">3. Model Architecture</h3>
-<h4 id="input-output-representation">3.1 Input Output
-Representation</h4>
-<ul>
-<li>a top-down coordinate system：
-<ul>
-<li>agent位姿<span class="math display">\[P_t=(x_t,y_t)\]</span></li>
-<li>方向角<span class="math display">\[\theta_t\]</span></li>
-<li>速度<span class="math display">\[s_t\]</span></li>
-<li>图像大小：W × H pixels, <span
-class="math display">\[\varphi\]</span> meters/pixel</li>
-<li>因此agent只能看见前方的 <span
-class="math display">\[R_{forward}=(H-v_0)\phi\]</span> 米</li>
-</ul></li>
-<li>表征内容：
-<ul>
-<li><ol type="a">
-<li>Roadmap:
-3通道彩色图片，包含车道线、停止信号、人行道、路边等等。</li>
-</ol></li>
-<li><ol start="2" type="a">
-<li>Traffic
-lights：灰度图像的时间序列，其中该序列的每一帧表示在每个过去的时间步交通灯的已知状态。在每一帧中，我们用一个灰度级给每一个车道中心着色，最亮的灰度级代表红灯，中间灰度级代表黄灯，较暗的灰度级代表绿灯或未知灯。</li>
-</ol></li>
-<li><ol start="3" type="a">
-<li>Speed
-limit：单通道图像，并且车道中心的颜色与其速度限制成比例对应。</li>
-</ol></li>
-<li><ol start="4" type="a">
-<li>Route：生成的希望行驶的预定路线。</li>
-</ol></li>
-<li><ol start="5" type="a">
-<li>Current agent box：显示agent在当前时间步的完整边界框。</li>
-</ol></li>
-<li><ol start="6" type="a">
-<li>Dynamic objects in the
-environment：一个时序的图像序列，展示所有潜在的动态物体。（车辆、自行车、行人等）</li>
-</ol></li>
-<li><ol start="7" type="a">
-<li>Past agent
-poses：agent过去的姿态被渲染成一个单一的灰度图像，显示为位置点轨迹。</li>
-</ol></li>
-</ul></li>
-</ul>
-<figure>
-<img src="\images\20220716-1.png"
-alt="Driving model inputs (a-g) and output (h)" />
-<figcaption aria-hidden="true">Driving model inputs (a-g) and output
-(h)</figcaption>
-</figure>
-<ul>
-<li>用<span
-class="math display">\[I\]</span>表示上述枚举的各种输入，ChauffeurNet模型循环地预测未来的自车姿态，并用绿色点表示。
-<span class="math display">\[
-P_{t+\delta t} = \text{ChauffeurNet}(I,P_t)
-\]</span></li>
-</ul>
-<h4 id="model-design">3.2 Model Design</h4>
-<figure>
-<img src="\images\20220716-2.png" alt="Training the driving model" />
-<figcaption aria-hidden="true">Training the driving model</figcaption>
-</figure>
-<ul>
-<li><p><strong>a convolutional feature network
-(FeatureNet)：</strong></p>
-<ul>
-<li>输入：input data</li>
-<li>输出：处理后的上下文特征表征（a digested contextual feature
-representation）</li>
-</ul></li>
-<li><p><strong>a recurrent agent network (AgentRNN)：</strong></p>
-<ul>
-<li><p>输入：处理后的特征（consumed features）</p></li>
-<li><p>输出：迭代地预测连续的路径点（iteratively predicts successive
-points）以及其它信息</p></li>
-<li><p>AgentRNN还将车辆的边界框预测为每个未来时间步的空间热图。（The
-AgentRNN also predicts the bounding box of the vehicle as a spatial
-heatmap at each future timestep）</p></li>
-<li><p>point <span class="math display">\[P_k\]</span></p></li>
-<li><p>the agent bounding box heatmap <span
-class="math display">\[B_k\]</span></p></li>
-<li><p>memory <span class="math display">\[M_k\]</span></p></li>
-<li><p>FeatureNet 输出的特征<span
-class="math display">\[F\]</span></p></li>
-<li><p><span class="math display">\[P_k,B_k =
-\text{AgentRNN}(k,F,M_{k-1},B_{k-1})\]</span></p></li>
-</ul></li>
-<li><p><strong>Road Mask Network：</strong></p>
-<ul>
-<li><p>输入：feature representation</p></li>
-<li><p>输出：预测可行驶的区域（predicts the drivable areas of the field
-of view (on-road vs. off-road)）</p></li>
-</ul></li>
-<li><p><strong>recurrent perception network
-(PerceptionRNN)：</strong></p>
-<ul>
-<li><p>输入：feature representation</p></li>
-<li><p>输出：迭代预测空间热图（iteratively predicts a spatial heatmap
-(of every other agent in the scene))</p></li>
-</ul></li>
-</ul>
-<h4 id="system-architecture">3.3 System Architecture</h4>
-<figure>
-<img src="\images\20220718-1.png"
-alt="Software architecture for the end-to-end driving pipeline" />
-<figcaption aria-hidden="true">Software architecture for the end-to-end
-driving pipeline</figcaption>
-</figure>
-<h3 id="imitating-the-expert">4. Imitating the Expert</h3>
-<ul>
-<li><p>AgentRNN在每次迭代中预测三个输出：</p>
-<ul>
-<li>概率分布<span class="math display">\[P_k(x,y)\]</span></li>
-<li>预测边界的热图<span class="math display">\[B_k(x,y)\]</span></li>
-<li>回归边界朝向输出<span class="math display">\[\theta_k\]</span> (a
-regressed box heading output <span
-class="math display">\[\theta_k\]</span>)</li>
-</ul></li>
-<li><p>定义上述三个变量响应的损失函数：(上标<span
-class="math display">\[gt\]</span>表示相应的ground-truth值；<span
-class="math display">\[H(a,b)\]</span>表示交叉熵函数；<span
-class="math display">\[P^{gt}_k\]</span>是二值图像，并且只有ground-truth目标坐标取值为1)</p>
-<ul>
-<li><span class="math display">\[L_p=H(P_k,P^{gt}_k)\]</span></li>
-<li><span class="math display">\[L_B=\frac{1}{WH}\sum_x \sum_y
-H(B_k(x,y),B_k^{gt}(x,y))\]</span></li>
-<li><span class="math display">\[L_{\theta}=\mid\mid \theta_k -
-\theta_k^{gt} \mid\mid_1\]</span></li>
-</ul></li>
-<li><p>精细的位置预测用<span class="math display">\[\delta
-P_k^{gt}\]</span>表示，并用<span
-class="math display">\[L_1\]</span>损失计算误差：</p>
-<p><span class="math display">\[L_{p-subpixel} = \mid\mid \delta
-P_k-\delta P_k^{gt} \mid\mid_1\]</span></p>
-<p><span class="math display">\[L_{speed}=\mid\mid s_k-s_k^{gt}
-\mid\mid_1\]</span></p>
-<p>其中，<span class="math display">\[\delta P^{gt}_k = P^{gt}_k-\lfloor
-P^{gt}_k \rfloor\]</span>是ground-truth位置坐标的小数部分（the
-fractional part）</p></li>
-</ul>
-<h3 id="beyond-pure-imitation">5. Beyond Pure Imitation</h3>
-<ul>
-<li><p>合成扰动（Synthesizing
-Perturbations），路径的起始点和终点不变，晃动中间某个点的位置，幅度是<span
-class="math display">\[[-0.5,0.5]\]</span>米，扰动的车头朝向角度为<span
-class="math display">\[[-\pi/3,\pi/3]\]</span>弧度。最后结合扰动点和端点，拟合出一条平滑的轨迹，让车能在干扰之后回到原来的轨迹。</p></li>
-<li><p>通过与最大曲率阈值比较，去除生成的一些不切实际的轨迹</p></li>
-<li><p>允许生成的轨迹与其它车辆发生碰撞的情况，这些cases可以帮助训练避免这些情况。</p></li>
-<li><p>Beyond the Imitation Loss：</p>
-<ul>
-<li><p><strong>Collision Loss</strong></p>
-<p>直接测量预测的智能体边框<span
-class="math display">\[B_k\]</span>和ground-truth场景中其它目标边框的重叠区域（directly
-measures the overlap of the predicted agent box Bk with the ground-truth
-boxes of all the scene objects at each timestep） <span
-class="math display">\[
-L_{collosion}=\frac{1}{WH}\sum_x \sum_y B_{k}(x,y)\cdot Obj^{gt}_k (x,y)
-\]</span> 其中，<span
-class="math display">\[B_k\]</span>是输出的预测的智能体边框似然度地图，<span
-class="math display">\[Obj^{gt}_k\]</span>是一个二值掩码图，其中其它的动态目标用1表示</p></li>
-<li><p><strong>On road loss</strong></p>
-<p>避免agent冲出道路边界 <span class="math display">\[
-L_{onroad}=\frac{1}{WH}\sum_x \sum_y B_k(x,y)\cdot (1-Road^{gt}(x,y))
-\]</span></p></li>
-<li><p><strong>Geometry loss</strong></p>
-<p>不与目标几何位置重叠的区域作为一个惩罚项损失 <span
-class="math display">\[
-L_{geom}=\frac{1}{WH}\sum_x \sum_yB_k(x,y)\cdot(1-Geom^{gt}(x,y))
-\]</span></p></li>
-<li><p><strong>Auxiliary losses</strong></p>
-<p>使用a recurrent perception network PerceptionRNN预测他车轨迹 <span
-class="math display">\[
-L_{objects}=\frac{1}{WH}\sum_x \sum_y H(Obj_k (x,y),obj^{gt}_k(x,y))
-\]</span></p></li>
-</ul></li>
-<li><p>本文使用的损失函数用两组损失组成：模仿损失（imitation
-losses）和环境损失（environment losses）：</p>
-<ul>
-<li>模仿损失：<span
-class="math display">\[L_{imit}=\{L_p,L_B,L_{\theta},L_{p-subpixel},L_{speed}\}\]</span></li>
-<li>环境损失：<span
-class="math display">\[L_{env}=\{L_{collision},L_{onroad},L_{geom},L_{objects},L_{road}\}\]</span></li>
-<li>总损失：<span class="math display">\[L=\omega_{imit}\sum_{l\in
-L_{imit}}l +\omega_{env}\sum_{l \in L_{env}} l\]</span></li>
-</ul>
-<p>模仿损失导致模型模仿专家的演示，而环境损失阻止不期望的行为，例如碰撞。(The
-imitation losses cause the model to imitate the expert’s demonstrations,
-while the environment losses discourage undesirable behavior such as
-collisions.)</p>
-<figure>
-<img src="\images\20220718-2.png"
-alt="Visualization of predictions and loss functions on an example input" />
-<figcaption aria-hidden="true">Visualization of predictions and loss
-functions on an example input</figcaption>
-</figure></li>
-<li><p>参数情况：</p></li>
-</ul>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: center;"><span
-class="math display">\[T_{scene}\]</span></th>
-<th style="text-align: center;"><span
-class="math display">\[T_{pose}\]</span></th>
-<th style="text-align: center;"><span class="math display">\[\delta
-t\]</span></th>
-<th style="text-align: center;"><span
-class="math display">\[N\]</span></th>
-<th style="text-align: center;"><span
-class="math display">\[\Delta\]</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">1.0 s</td>
-<td style="text-align: center;">8.0 s</td>
-<td style="text-align: center;">0.2 s</td>
-<td style="text-align: center;">10</td>
-<td style="text-align: center;">25 deg</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span
-class="math display">\[W\]</span></td>
-<td style="text-align: center;"><span
-class="math display">\[H\]</span></td>
-<td style="text-align: center;"><span
-class="math display">\[u_0\]</span></td>
-<td style="text-align: center;"><span
-class="math display">\[v_0\]</span></td>
-<td style="text-align: center;"><span
-class="math display">\[\phi\]</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">400 px</td>
-<td style="text-align: center;">400 px</td>
-<td style="text-align: center;">200 px</td>
-<td style="text-align: center;">320 px</td>
-<td style="text-align: center;">0.2 m/px</td>
-</tr>
-</tbody>
-</table>
-
+          <p>ChauffeurNet</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1552,337 +732,10 @@ class="math display">\[\phi\]</span></td>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2
-id="exploring-imitation-learning-for-autonomous-driving-with-feedback-synthesizer-and-differentiable-rasterization-2021-apollo-6.0">Exploring
-Imitation Learning for Autonomous Driving with Feedback Synthesizer and
-Differentiable Rasterization (2021, Apollo 6.0)</h2>
-<h3 id="introduction">Introduction</h3>
-<ul>
-<li><p>our work adopts a <strong>mid-to-mid approach</strong>
-(mid2mid允许便利地增加数据，并且通过任务依赖的loss超过单纯地模仿。allows
-us to augment data handily and go beyond pure imitation by having
-task-specific losses) where our system’s input is constructed by
-building a top-down image representation of the environment that
-incorporates both static and dynamic information from our <strong>HD
-Map</strong> and <strong>perception system</strong>.</p></li>
-<li><p>Following the philosophy of <strong>DAgger</strong> [2], we
-introduce a <strong>feedback synthesizer</strong>（反馈合成器）that
-generates and perturbs on-policy data based on the current policy. Then
-we train the next policy on the aggregate of collected datasets. The
-feedback synthesizer addresses the <strong>distributional shift
-issue</strong>, thus improving the overall performance shown in Section
-IV.</p>
-<ul>
-<li>[2]. S. Ross, G. Gordon, and D. Bagnell, “A reduction of imitation
-learning and structured prediction to no-regret online learning,” in
-AISTATS, 2011, pp. 627–635.</li>
-</ul></li>
-<li><p>启发本文的文章：</p>
-<ul>
-<li>V. Blukis, N. Brukhim, A. Bennett, R. Knepper, and Y. Artzi,
-“Following high-level navigation instructions on a simulated quadcopter
-with imitation learning,” in RSS, June 2018.</li>
-<li>M. Bansal, A. Krizhevsky, and A. Ogale, “ChauffeurNet: Learning to
-drive by imitating the best and synthesizing the worst,” in RSS,
-2019.</li>
-<li>A. Buhler, A. Gaidon, A. Cramariuc, R. Ambrus, G. Rosman, and W.
-Burgard, “Driving through ghosts: Behavioral cloning with false
-positives,” in IROS, 2020.</li>
-<li>D. Chen, B. Zhou, V. Koltun, and P. Krahenbuhl, “Learning by
-cheating,” in CoRL, 2020, pp. 66–75.</li>
-</ul></li>
-<li><p>单纯的模仿学习没有关于任务的明确的重要目标和约束，因此难免会学习到非期望的行为。通过引入task
-losses可以控制这些非期望的行为。</p></li>
-<li><p>task losses直接映射到输出轨迹到车辆光栅图像中。The task losses
-are implemented by directly projecting the output trajectories into
-top-down images using a differentiable vehicle rasterizer.</p></li>
-<li><p>They（task losses） effectively penalize behaviors, such as
-<strong>obstacle collision</strong>（障碍碰撞）, <strong>traffic rule
-violation</strong>（违反交规）, and so on, by building losses between
-<strong>rasterized images</strong> and <strong>specific object
-masks</strong>.</p></li>
-<li><p>Inspired by recent works [9], our output trajectories are
-produced by a <strong>trajectory decoding module</strong> that includes
-an <strong>LSTM</strong> [10] and a <strong>kinematic layer</strong>
-that assures our output trajectories’ feasibility. On the whole, these
-designs help us avoid using the heavy AgentRNN network in Chauffeurnet
-[5], which functions similarly to a Convolutional-LSTM network [11].</p>
-<ul>
-<li><p>[5]. M. Bansal, A. Krizhevsky, and A. Ogale, “ChauffeurNet:
-Learning to drive by imitating the best and synthesizing the worst,” in
-RSS, 2019.</p></li>
-<li><p>[9]. H. Cui, T. Nguyen, F.-C. Chou, T.-H. Lin, J. Schneider, D.
-Bradley, and N. Djuric, “Deep kinematic models for kinematically
-feasible vehicle trajectory predictions,” in ICRA, 2020, pp. 10 563–10
-569.</p></li>
-<li><p>[11]. X. Shi, Z. Chen, H. Wang, D.-Y. Yeung, W.-k. Wong, and
-W.-c. Woo, “Convolutional LSTM network: A machine learning approach for
-precipitation nowcasting,” in NeurIPS, vol. 28, 2015, pp.
-802–810.</p></li>
-</ul></li>
-<li><p>Moreover, to further improve the performance, similar to recent
-works [12], [13], we introduce a <strong>spatial attention
-module</strong>（空间注意力机制） in our network design.</p>
-<ul>
-<li>[12]. S. Hecker, D. Dai, A. Liniger, and L. Van Gool, “Learning
-accurate and human-like driving using semantic maps and attention,” in
-IROS, 2020, pp. 2346–2353.</li>
-<li>[13]. J. Kim and M. Bansal, “Attentional bottleneck: Towards an
-interpretable deep driving network,” in CVPR Workshops, 2020.</li>
-</ul></li>
-<li><p>为了提高舒适度，提出了可选择的后处理规划器作为看门人，进行高级别的决策引导和组成新的轨迹。we
-propose to add an <strong>optional post-processing planner</strong> as a
-gatekeeper which manages to interpret them as high-level decision
-guidance and composes a new trajectory that offers better
-comfort.</p></li>
-<li><p>Our models are trained with <strong>400 hours of human driving
-data</strong>. We evaluated our system using <strong>70 autonomous
-driving test scenarios (ADS)</strong> that are specifically created for
-evaluating the fundamental driving capabilities of a self-driving
-vehicle.</p></li>
-<li><p>We show that our <strong>learning-based planner (M2)</strong>
-trained via imitation learning achieves <strong>70.0% ADS</strong>
-<strong>pass rate</strong> and can intelligently handle different
-challenging scenarios, including <strong>overtaking a dynamic
-vehicle</strong>, <strong>stopping for a red traffic light</strong>, and
-so on, as shown in Figure 1.</p></li>
-</ul>
-<h3 id="related-works">Related works</h3>
-<ul>
-<li><p><strong>Imitation Learning</strong>：</p>
-<p>一般遵循end-to-end philosophy，本文采取mid-to-mid
-approach提高数据增强便利性和任务依赖的loss</p></li>
-<li><p><strong>Loss and Differentiable Rasterization</strong>：</p>
-<p>Imitation learning for motion planning typically applies a loss
-between <strong>inferred</strong> and <strong>ground truth
-trajectories</strong>. Therefore, the ideas of avoiding collisions or
-off-road situations are implicit and don’t generalize well.</p>
-<p>Wang et al. [8] leverage a differentiable rasterizer, and it allows
-gradients to flow from a discriminator to a generator, enhancing a
-trajectory prediction network powered by GANs [21].</p>
-<p><strong>General-purpose differentiable mesh renderers</strong> [23],
-[24] have also been employed to solve other computer vision
-tasks.</p></li>
-<li><p><strong>Attention</strong>：</p>
-<p>by providing spatial attention heatmaps highlighting image areas that
-the network attends to in their tasks. In this work, we introduce the
-Atrous Spatial Attentional Bottleneck from [13], providing easily
-interpretable attention heatmaps while also enhancing the network’s
-performance.</p>
-<ul>
-<li>[13]. J. Kim and M. Bansal, “Attentional bottleneck: Towards an
-interpretable deep driving network,” in CVPR Workshops, 2020.</li>
-</ul></li>
-<li><p><strong>Data Augmentation</strong>：</p>
-<p>DAgger及其变体提出通过拥有更多关于代理可能遇到的状态的数据来解决分布转移问题。特别是，他们基于从当前策略推断的动作在每次迭代中采样新状态，让专家代理演示他们在这些新状态下将采取的动作，并在收集的数据集的集合上训练下一个策略。DAgger
-[2] and its variants [32], [4], [3] propose to address the
-distributional shift issue by having more data with states that the
-agent is likely to encounter. In particular, they sample new states at
-each iteration based on the actions inferred from the current policy,
-let expert agents demonstrate the actions they would take under these
-new states, and train the next policy on the aggregate of collected
-datasets.</p>
-<ul>
-<li>S. Ross, G. Gordon, and D. Bagnell, “A reduction of imitation
-learning and structured prediction to no-regret online learning,” in
-AISTATS, 2011, pp. 627–635.</li>
-</ul>
-<p>ChauffeurNet引入了一个随机合成器，通过合成轨迹的扰动来增加演示数据。ChauffeurNet
-[5] introduces a random synthesizer that augments the demonstration data
-by synthesizing perturbations to the trajectories. In this work, we
-explore both ideas and propose a feedback synthesizer improving the
-overall performance.</p></li>
-</ul>
-<h3 id="model-architecture">Model Architecture</h3>
-<p>B-CNN（branched CNN）</p>
-<ul>
-<li><p>refence：Zhu X , Bain M . B-CNN: Branch Convolutional Neural
-Network for Hierarchical Classification[J]. 2017.</p></li>
-<li><p><strong>Model Input</strong>：</p>
-<ul>
-<li>使用栅格化的多通道鸟瞰图。bird‘s eye view (BEV) representation with
-multiple channels by scene rasterization</li>
-<li>The image size is W × H with ρ meters per pixel in resolution.</li>
-<li>agent汽车的位置永远在图像的中心位置 <span class="math display">\[p_0
-= [i_0,j_0]^T\]</span> ，这种图片模式称为ego-centered</li>
-<li>模型输入<span
-class="math display">\[\mathcal{I}\]</span>是多通道图像，不仅包括ego-vehicle、路况信息、还有车辆速度信息<span
-class="math display">\[v_0\]</span></li>
-</ul></li>
-<li><p><strong>Model Design</strong>：</p>
-<ul>
-<li><p>整个模型分为三个部分：</p>
-<ul>
-<li>A. 一个带空间注意力分支的CNN模型</li>
-<li>B. 一个LSTM decoder</li>
-<li>C. 一个可微分的光栅化模块（加在LSTM decoder上）</li>
-</ul></li>
-<li><p><strong>A.</strong> CNN骨架模型使用MobileNetV2
-[37]以平衡输出精度和推断速度。输出特征是<span
-class="math display">\[F_h\]</span>，经过一个MLP（multilayer
-perceptron）层之后，输出扁平的特征<span
-class="math display">\[h_0\]</span>。该特征作为同时作为LSTM
-decoder的初始隐藏状态被使用。</p>
-<p>为了减轻计算量，主干CNN的中间特征<span
-class="math display">\[F_I\]</span>传递给空间注意力模块。注意力使用的是Atrous
-Spatial Attentional Bottleneck from [13] （J. Kim and M. Bansal,
-“Attentional bottleneck: Towards an interpretable deep driving network,”
-in CVPR Workshops, 2020）</p></li>
-<li><p><strong>B.</strong> LSTM的 cell state <span
-class="math display">\[c_0\]</span> is initialized by the Glorot
-initialization [38]</p>
-<p>模型输出是汽车的转向角序列（steering angle）和加速度序列，记为<span
-class="math display">\[(\delta_{t-1},a_{t-1})\]</span>。</p>
-<p>动力学层： <span class="math display">\[
-\begin{align}
-\begin{cases}
-    x_t=v_{t-1}\sin (\phi_{t-1})\Delta t + y_{t-1}\\
-    y_t=v_{t-1}\cos (\phi_{t-1})\Delta t + x_{t-1}\\
-    \phi_t=v_{t-1}\frac{\tan (\delta_{t-1})}{L} \Delta t + \phi_{t-1}\\
-    v_t=a_{t-1}\Delta t + v_{t-1}
-\end{cases}
-\end{align}
-\]</span></p></li>
-<li><p><strong>C.</strong> Differentiable
-Rasterizer使用三个高斯基函数来描述汽车的形状。</p>
-<p>光栅化函数：<span class="math display">\[g_{i,j}(s_t)=\max_{k=1,2,3}
-(N(\mu^k,\Sigma^k))\]</span> <span class="math display">\[
-\begin{align}
-\begin{cases}
-\mu^k=\frac{1}{\rho}(x_t^k-x_0)+P_0\\
-\Sigma^k=R(\phi_t)^T \text{diag}(\sigma_l,\sigma_{\omega})R(\phi_t)
-\end{cases}
-\end{align}
-\]</span> 其中，<span
-class="math display">\[(\sigma_l,sigma_{\omega})=(\frac{1}{3}\alpha
-l,\alpha \omega)\]</span>，<span
-class="math display">\[\alpha\]</span>是固定的比例系数，<span
-class="math display">\[l\]</span>和<span
-class="math display">\[\omega\]</span>是车辆的长度和宽度。<span
-class="math display">\[R(\phi_t)\]</span>表示旋转矩阵。</p></li>
-</ul></li>
-<li><p><strong>Loss：</strong></p>
-<p>trajectory imitation loss：<span
-class="math display">\[L_{imit}=\sum^{N-1}_{t=0}\lambda\mid\mid s_t -
-\hat{s}_t\mid\mid_2\]</span></p>
-<p>four task losses：</p>
-<ul>
-<li><p>obstacle collision：<span
-class="math display">\[L_{obs}=\sum^{N-1}_{t=0}\frac{1}{WH}\sum_i\sum_j
-g_{i,j} \tau_{i,j}^{obs}\]</span></p></li>
-<li><p>off-route：<span
-class="math display">\[L_{route}=\sum^{N-1}_{t=0}\frac{1}{WH}\sum_i\sum_j
-g_{i,j} \tau_{i,j}^{route}\]</span></p></li>
-<li><p>off-road：<span
-class="math display">\[L_{road}=\sum^{N-1}_{t=0}\frac{1}{WH}\sum_i\sum_j
-g_{i,j} \tau_{i,j}^{road}\]</span></p></li>
-<li><p>traffic signal violation：<span
-class="math display">\[L_{signal}=\sum^{N-1}_{t=0}\frac{1}{WH}\sum_i\sum_j
-g_{i,j} \tau_{i,j}^{signal}\]</span> 其中，<span
-class="math display">\[\tau^{obs}\]</span>, <span
-class="math display">\[\tau^{route}\]</span>, <span
-class="math display">\[\tau^{road}\]</span>, and <span
-class="math display">\[\tau^{signal}\]</span> 是响应的二值掩码（binary
-masks）</p></li>
-<li><p>总的损失函数：</p>
-<p><span
-class="math display">\[L=L_{imit}+\lambda_{task}(L_{obs}+L_{route}+L_{road}+L_{signal})\]</span></p></li>
-</ul></li>
-</ul>
-<h3 id="data-augmentation">Data Augmentation</h3>
-<ul>
-<li><p><strong>Random
-Synthesizer</strong>：随机扰动轨迹，产生off-road和碰撞的场景。起始点和终止点保持不变，扰动中间过程的<strong>一个</strong>点，并平滑路径轨迹，通过对最大曲率进行阈值处理，仅保留真实的扰动轨迹。</p></li>
-<li><p><strong>Feedback
-Synthesizer</strong>：学习一个驾驶策略帮助生成新的轨迹数据。用上一次迭代的策略<span
-class="math display">\[\pi_{t-1}\]</span>生成轨迹数据，用于训练策略<span
-class="math display">\[\pi_t\]</span>。具体算法如下：</p>
-<figure>
-<img src="\images\20220714-1.png" alt="Feedback Synthesizer" />
-<figcaption aria-hidden="true">Feedback Synthesizer</figcaption>
-</figure></li>
-<li><p><strong>Post-processing
-Planner</strong>：保证舒适和安全。相关实现在 Apollo 6.0
-中（https://github.com/ApolloAuto/apollo/tree/master/modules/planning）
-<span class="math display">\[
-\text{Quadratic Optimization} \leftarrow
-\begin{cases}
-\text{Safety Bounds}\\
-\text{Learning-based Objective}\\
-\text{Comfort Constrains}
-\end{cases}
-\]</span></p></li>
-</ul>
-<h3 id="experiments">Experiments</h3>
-<ul>
-<li><p><strong>Implementation Details</strong></p>
-<p>方形的BEV图（俯瞰图）宽度<span class="math display">\[W\times
-H=200\times200\]</span>，<span
-class="math display">\[\rho=0.2m/pixel\]</span>。ego-vehicle位于图片的<span
-class="math display">\[i_0=100,j_0=160\]</span>的位置。使用Apollo的感知模块（“Baidu
-Apollo open platform,”
-http://apollo.auto/）光栅化2秒的历史数据或者预测数据。使用Adam
-optimizer，且初始学习率为<span
-class="math display">\[0.0003\]</span>。</p></li>
-<li><p><strong>Dataset and Augmented Data</strong></p>
-<ul>
-<li><p>400 hours’ driving data demonstrated by human-drivers in southern
-San Francisco bay area。</p></li>
-<li><p>经过数据预处理后，保留了250k帧作为原始的训练数据<span
-class="math display">\[D_0\]</span></p></li>
-<li><p>利用random synthesizer生成400k帧数据，记为<span
-class="math display">\[D_r\]</span></p></li>
-<li><p>设置feedback steps T = 5，feedback
-synthesizer生成465k帧数据，记为<span
-class="math display">\[D_f\]</span></p></li>
-</ul>
-<figure>
-<img src="\images\20220714-2.png" alt="不同模型配置的性能对比" />
-<figcaption aria-hidden="true">不同模型配置的性能对比</figcaption>
-</figure>
-<figure>
-<img src="\images\20220714-3.png"
-alt="offroad,speeding,collision,and failed to arrive性能对比" />
-<figcaption aria-hidden="true">offroad,speeding,collision,and failed to
-arrive性能对比</figcaption>
-</figure></li>
-<li><p><strong>Evaluation Scenarios</strong></p>
-<p>使用Apollo Dreamland simulator。主要包括4类场景：</p>
-<ul>
-<li><strong>巡航 Cruising</strong>: normal cruising in straight or
-curved roads without other traffic participants.</li>
-<li><strong>岔道口 Junction</strong>: junction related scenarios
-including left or right turns, U-turns, stop before a traffic signal,
-etc.</li>
-<li><strong>静态交互 Static Interaction</strong>: interaction with
-static obstacles, such as overtaking a stopped car.</li>
-<li><strong>动态交互 Dynamic Interaction</strong>: interaction with
-dynamic obstacles, for example, overtaking a slow vehicle.</li>
-</ul></li>
-<li><p><strong>Evaluation Metrics</strong></p>
-<p>除了通过率和成功率以外，还使用了舒适度评分。舒适度评分是根据自动驾驶状态和人类驾驶状态的相识度计算得到的。</p>
-<p>在人驾数据集<span
-class="math display">\[D_0\]</span>中还包括了角速度和角加加速度<span
-class="math display">\[(\omega,j)\]</span>，使用这两个数据，可得舒适度评分为：<span
-class="math display">\[c=\frac{\sum_{i=1}^N P(\omega,j\mid
-D_0)}{n}\]</span>。其中，<span class="math display">\[P(\omega,j\mid
-D_0)\]</span>表示状态<span
-class="math display">\[(\omega,j)\]</span>在人驾数据<span
-class="math display">\[D_0\]</span>中出现的概率，<span
-class="math display">\[n\]</span>表示帧数。<span
-class="math display">\[\omega\]</span>和<span
-class="math display">\[j\]</span>都经过离散化处理（0.1 and
-1.0），直接查表读取响应的概率。</p>
-<p>agent被要求在时间限制之内到达目的地，同时避免碰撞等事故（出现则判定失败）。</p></li>
-<li><p><strong>Runtime Analysis</strong></p>
-<p>an Nvidia Titan-V GPU, Intel Core i7-9700K CPU, and 16GB Memory.</p>
-<p>The online inference time per frame is <strong>10ms</strong> in
-rendering, <strong>22 ms</strong> in model inference, and <strong>15
-ms</strong> (optional) in the post-processing planner. Note that our
-model inference time is much shorter than the prior work [5]</p></li>
-</ul>
-<p>模型出现的主要问题是超速、不能到达和碰撞。超速可以通过添加速度损失来解决，不能到达是由于速度过慢，碰撞多是出现了追尾，因此发生被动碰撞。值得注意的是，实验中其它的车辆都是按照既定轨迹运动的，不会避让ego车辆，因此容易出现追尾风险。</p>
-
+          <p>2021, Apollo 6.0</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1953,160 +806,10 @@ model inference time is much shorter than the prior work [5]</p></li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1
-id="a-survey-of-deep-rl-and-il-for-autonomous-driving-policy-learning">A
-survey of deep RL and IL for autonomous driving policy learning</h1>
-<p>论文链接：https://arxiv.org/abs/2101.01993v1</p>
-<h2 id="背景">背景</h2>
-<ul>
-<li><p>首先介绍5类结合了IL和RL的自动驾驶模型。First, a taxonomy of the
-literature studies is constructed from the system perspective, among
-which five modes of integration of DRL/DIL models into an AD
-architecture are identified.</p></li>
-<li><p>其次介绍自动驾驶中具体的RL和IL任务和公式。Second, the
-formulations of DRL/DIL models for conducting specified AD tasks are
-comprehensively reviewed, where various designs on the model state and
-action spaces and the reinforcement learning rewards are
-covered.</p></li>
-<li><p>最后介绍RL和IL如何解决自动驾驶模型与参与者和环境交互的安全问题。Finally,
-an in-depth review is conducted on how the critical issues of AD
-applications regarding driving safety, interaction with other traffic
-participants and uncertainty of the environment are addressed by the
-DRL/DIL models.</p></li>
-<li><p><strong>task-driven</strong> and <strong>problem-driven</strong>
-perspectives</p></li>
-<li><p>代表性文章：</p>
-<ul>
-<li>[1] C. Urmson and W. Whittaker, “Self-driving cars and the urban
-challenge,” IEEE Intelligent Systems, vol. 23, no. 2, pp. 66–68,
-2008.</li>
-<li>[2] S. Thrun, “Toward robotic cars,” Communications of the ACM, vol.
-53, no. 4, pp. 99–106, 2010.</li>
-<li>[3] A. Eskandarian, Handbook of intelligent vehicles. Springer,
-2012, vol. 2.</li>
-<li>[4] S. M. Grigorescu, B. Trasnea, T. T. Cocias, and G. Macesanu, “A
-survey of deep learning techniques for autonomous driving,” J. Field
-Robotics, vol. 37, no. 3, pp. 362–386, 2020.</li>
-</ul></li>
-<li><p>驾驶策略基于多个等级的抽象（multiple levels of
-abstraction），例如行为规划、运动规划和控制（behavior planning, motion
-planning and control）</p></li>
-<li><p>典型的自动驾驶模型结构图：</p>
-<p><img src="\images\20220602-1.png" /></p></li>
-<li><p>相关综述的调研：</p>
-<ul>
-<li>[13, 15] survey the motion planning and control methods of automated
-vehicles before the era of DL.</li>
-<li>[29–33] review general DRL/DIL methods without considering any
-particular applications.</li>
-<li>[4] addresses the deep learning techniques for AD with a focus on
-perception and control, while [34] addresses control only.</li>
-<li>[35] provides a taxonomy of AD tasks to which DRL models have been
-applied and highlights the key challenges.</li>
-</ul></li>
-<li><p>pomdp相关参考文献：</p>
-<ul>
-<li>G. Shani, J. Pineau, and R. Kaplow, “A survey of point-based pomdp
-solvers,” Autonomous Agents and Multi-Agent Systems, vol. 27, no. 1, pp.
-1–51, 2013.</li>
-<li>W. S. Lovejoy, “A survey of algorithmic methods for partially
-observed markov decision processes,” Annals of Operations Research, vol.
-28, no. 1, pp. 47–65, 1991.</li>
-</ul></li>
-<li><p>强化学习（reinforcement learning）和模仿学习（imitation
-learning）算法分类示意图：</p>
-<p><img src="\images\20220620-1.png" /></p></li>
-<li><p>learning from demonstrations (LfD)</p></li>
-<li><p><strong>模仿学习</strong>的形式：</p>
-<ul>
-<li>A demonstration dataset <span class="math display">\[D=\{\xi_i
-\}_{i=0,...,N}\]</span>,表示一系列的轨迹</li>
-<li><span
-class="math display">\[\xi_i=\{(s^i_t,a^i_t)\}_{t=1,...,T}\]</span>是state-action
-pairs（状态行为对）的序列</li>
-<li>专家策略<span class="math display">\[\pi_E\]</span></li>
-<li>待优化的模仿策略<span class="math display">\[\pi^*\]</span></li>
-<li><span class="math display">\[\pi^*=\arg\min_{\pi}
-\mathbb{D}(\pi_E,\pi)\]</span></li>
-<li><span
-class="math display">\[\mathbb{D}\]</span>是策略间的相似性度量函数</li>
-</ul></li>
-<li><p>模仿学习的三个分类：</p>
-<ul>
-<li><p><strong>Behavior Clone (BC) :</strong></p>
-<ul>
-<li><p><span class="math display">\[\min_{\theta}
-\mathbb{E}\mid\mid\pi_{\theta}-\pi_E\mid\mid_2\]</span></p></li>
-<li><p><span class="math display">\[J(\theta)=\mathbb{E}_{(s,a)\sim
-D}[(\pi_{\theta}(s)-a)^2]\]</span></p></li>
-<li><p>BC在训练集中表现良好，但在泛化性上表现差，covariate shift [66,
-67]</p></li>
-<li><p>代表方法：</p>
-<ul>
-<li><p><strong>DAgger</strong>——S. Ross, G. J. Gordon, and D. Bagnell,
-“A reduction of imitation learning and structured prediction to
-no-regret online learning,” in International Conference on Artificial
-Intelligence and Statistics, ser. JMLR Proceedings, vol. 15, 2011, pp.
-627–635.</p></li>
-<li><p><strong>SafeDAgger</strong>——J. Zhang and K. Cho,
-“Query-efficient imitation learning for end-to-end autonomous driving,”
-arXiv preprint arXiv:1605.06450, 2016.</p></li>
-</ul></li>
-</ul></li>
-<li><p><strong>Inverse Reinforcement Learning (IRL)：</strong></p>
-<ul>
-<li><p><span class="math display">\[\max_{\theta}
-\mathbb{E}_{\pi_E}[G_t|r_{\theta}]-\mathbb{E}_{\pi}[G_t|r_{\theta}]\]</span></p></li>
-<li><p><span class="math display">\[J(\theta)=\mathbb{E}_{\xi_i \sim
-D}[\log P(\xi_i|r_{\theta})]\]</span></p></li>
-<li><p>代表方法：</p>
-<ul>
-<li><p><strong>guided cost learning (GCL)</strong>——C. Finn, S. Levine,
-and P. Abbeel, “Guided cost learning: Deep inverse optimal control via
-policy optimization,” in International Conference on Machine Learning,
-2016, pp. 49–58.</p>
-<p>（it handles unknown dynamics in high-dimensional complex systems and
-learns complex neural network cost functions through an efficient
-sample-based approximation.）</p></li>
-</ul></li>
-</ul></li>
-<li><p><strong>Generative Adversarial Imitation Learning
-(GAIL):</strong></p></li>
-<li><p>Generative adversarial imitation learning (GAIL) [81] directly
-learns a policy from expert demonstrations while requiring neither the
-<strong>reward design</strong> in RL nor the <strong>expensive RL
-process</strong> in the inner loop of IRL.</p></li>
-<li><p><span class="math display">\[\min_{\pi_{\theta}}\max_{D_{\omega}}
-\mathbb{E}_{\pi_{\theta}}[\log
-D_{\omega}(s,a)]+\mathbb{E}_{\pi_E}[\log(1-D_{\omega}(s,a))]-\lambda
-H(\pi_{\theta})\]</span>，其中<span
-class="math display">\[H(\pi)\]</span>是一个正则熵项，生成器和判别器通过下式更新：</p></li>
-<li><p><span
-class="math display">\[\nabla_{\theta}J(\theta)=\mathbb{E}_{\pi}[\nabla_{\theta}
-\log \pi_{\theta}(a\mid
-s)Q(s,a)]-\lambda\nabla_{\theta}H(\pi_{\theta})\]</span></p></li>
-<li><p><span
-class="math display">\[\nabla_{\omega}J(\omega)=\mathbb{E}_{\pi}[\nabla_{\omega}
-\log D_{\omega}(s,a)]+\mathbb{E}_{\pi_E}[\nabla_{\omega}
-\log(1-D_{\omega}(s,a))]\]</span></p></li>
-<li><p>Fu et al.[84] proposed adversarial inverse reinforcement learning
-(AIRL) based on an adversarial reward learning formulation, which can
-recover reward functions that are robust to dynamics changes.</p>
-<ul>
-<li>J. Fu, K. Luo, and S. Levine, “Learning robust rewards with
-adversarial inverse reinforcement learning,” CoRR, vol. abs/1710.11248,
-2017.</li>
-</ul></li>
-</ul></li>
-<li><h2 id="adautonomous-driving系统的几个模块">AD（Autonomous
-driving）系统的几个模块：</h2></li>
-</ul>
-<h2 id="主要内容">主要内容</h2>
-<ul>
-<li></li>
-</ul>
-<h2 id="总结">总结</h2>
-
+          <p>RL和IL结合做自动驾驶策略</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -2177,25 +880,10 @@ driving）系统的几个模块：</h2></li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1
-id="利用patch制作的对象在animation以及生成gif文件时显示错误的问题">利用patch制作的对象在animation以及生成Gif文件时显示错误的问题</h1>
-<h2 id="problems">Problems：</h2>
-<p>animation制作动画的时候，用patch制作的对象（例如Circle）在背景层，即使设置为返回值来清除，在下一帧更新的时候，上一帧也不会消失，从而造层残影的效果。而且由于图形的利用ax.add_patch()直接添加，没办法单个删除，很让人头痛。</p>
-<p>而这一现象在plt.show()的时候，如果animation.FuncAnimation( blit=True)
-则不会在预览时出现问题，在保存为gif时候才会暴露。</p>
-<h2 id="solutions">Solutions：</h2>
-<h3 id="method-1惹不起躲得起法">Method 1：惹不起躲得起法</h3>
-<p>不使用patch制作Circle等对象，而通过lines在描点连线制作，这种方法比较笨重，想要精确表达图形每一帧都需要大量的点，而在动态时候，点的运动也是一个难题。</p>
-<h3 id="method-2将错就错法">Method 2：将错就错法</h3>
-<p>既然patch制作的对象难以删除，我们可以将错就错，每一帧更新的时候都用一个背景色（白色）的图形盖住上一帧的的图形，从而达到删除的效果。</p>
-<p>值得注意的是，白色图形需要比原图形略大一点，以免留下上一帧的边框。</p>
-<p>在设定每一帧的返回值的时候，图形名称的排序决定了图层的顺序。利用此方法需要将原白色图形放在这一帧的图形之前。</p>
-<h2 id="conclusions">Conclusions：</h2>
-<p>目前找到的两个方法都各自存在问题，方法1太笨重，若非迫不得已肯定不会使用。方法2是间接的方法，有点小聪明，但没有直接解决问题，以后还需要继续探索更好的解决方法。</p>
-<p>问题处理时长：2天</p>
-<p>2019年8月29日</p>
-<p>Txing</p>
-
+          <p>animation制作动画的时候，用patch制作的对象（例如Circle）在背景层，即使设置为返回值来清除，在下一帧更新的时候，上一帧也不会消失，从而造层残影的效果。而且由于图形的利用ax.add_patch()直接添加，没办法单个删除，很让人头痛。</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -2294,7 +982,7 @@ id="利用patch制作的对象在animation以及生成gif文件时显示错误�
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-count">60</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -2410,6 +1098,59 @@ id="利用patch制作的对象在animation以及生成gif文件时显示错误�
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
