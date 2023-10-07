@@ -336,6 +336,15 @@ mjx-container[display="true"] + br {
 
               <time title="Created: 2022-09-29 00:00:00" itemprop="dateCreated datePublished" datetime="2022-09-29T00:00:00+08:00">2022-09-29</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -409,6 +418,15 @@ mjx-container[display="true"] + br {
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2022-09-28 00:00:00" itemprop="dateCreated datePublished" datetime="2022-09-28T00:00:00+08:00">2022-09-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
             </span>
 
           <br>
@@ -484,6 +502,15 @@ mjx-container[display="true"] + br {
 
               <time title="Created: 2022-09-23 00:00:00" itemprop="dateCreated datePublished" datetime="2022-09-23T00:00:00+08:00">2022-09-23</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -557,6 +584,15 @@ mjx-container[display="true"] + br {
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2022-09-20 00:00:00" itemprop="dateCreated datePublished" datetime="2022-09-20T00:00:00+08:00">2022-09-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
             </span>
 
           <br>
@@ -632,6 +668,15 @@ mjx-container[display="true"] + br {
 
               <time title="Created: 2022-09-05 00:00:00" itemprop="dateCreated datePublished" datetime="2022-09-05T00:00:00+08:00">2022-09-05</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Code-Techniques/" itemprop="url" rel="index"><span itemprop="name">Code Techniques</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -658,33 +703,10 @@ mjx-container[display="true"] + br {
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2
-id="python报错libgl-error-mesa-loader-failed-to-open-iris">Python报错libGL
-error: MESA-LOADER: failed to open iris</h2>
-<h3 id="问题背景">1 问题背景</h3>
-<p>执行gym-like环境代码时，渲染动画输出时报错无法找到系统显卡驱动（笔记本，核显，Ubuntu），报错信息：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">libGL error: MESA-LOADER: failed to open iris: /usr/lib/dri/iris_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$$&#123;ORIGIN&#125;/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: iris</span><br><span class="line">libGL error: MESA-LOADER: failed to open iris: /usr/lib/dri/iris_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$$&#123;ORIGIN&#125;/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: iris</span><br><span class="line">libGL error: MESA-LOADER: failed to open swrast: /usr/lib/dri/swrast_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$$&#123;ORIGIN&#125;/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: swrast</span><br></pre></td></tr></table></figure>
-<p>然而，根据提示，在<code>/usr/lib/x86_64-linux-gnu/dri</code>路径下是可以找<code>iris_dri.so</code>驱动的。</p>
-<h3 id="处理办法">2 处理办法</h3>
-<p><a
-target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/538877347">这篇博客</a>提供了一个有效解决方法：</p>
-<p>Step 1: 建立一个 /usr/lib/dri/iris_dri.so 的软连接</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(base) pcon@pcon-ThinkPad-L14-Gen-2:/usr/lib$ sudo mkdir dri</span><br><span class="line">(base) pcon@pcon-ThinkPad-L14-Gen-2:/usr/lib$ cd dri </span><br><span class="line">(base) pcon@pcon-ThinkPad-L14-Gen-2:/usr/lib/dri$ sudo ln -s /usr/lib/x86_64-linux-gnu/dri/iris_dri.so iris_dri.so</span><br></pre></td></tr></table></figure>
-<p>Step 2: 再次python执行代码，报错变为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">libGL error: MESA-LOADER: failed to open iris: /home/pcon/anaconda3/bin/../lib/libstdc++.so.6: version `GLIBCXX_3.4.29&#x27; not found (required by /usr/lib/dri/iris_dri.so) (search paths /usr/lib/x86_64-linux-gnu/dri:\$$&#123;ORIGIN&#125;/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: iris</span><br><span class="line">libGL error: MESA-LOADER: failed to open iris: /home/pcon/anaconda3/bin/../lib/libstdc++.so.6: version `GLIBCXX_3.4.29&#x27; not found (required by /usr/lib/dri/iris_dri.so) (search paths /usr/lib/x86_64-linux-gnu/dri:\$$&#123;ORIGIN&#125;/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: iris</span><br><span class="line">libGL error: MESA-LOADER: failed to open swrast: /usr/lib/dri/swrast_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$$&#123;ORIGIN&#125;/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: swrast</span><br></pre></td></tr></table></figure>
-<p>这是由于 conda 里的 libstdcxx-ng 版本不够高造成的。</p>
-<p>Step 3：执行以下命令查看GLIBCXX版本信息</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(base) pcon@pcon-ThinkPad-L14-Gen-2:~/anaconda3$ strings /home/pcon/anaconda3//lib/libstdc++.so.6 | grep GLIBCXX</span><br></pre></td></tr></table></figure>
-<p>Step 4：升级 conda 里的 libstdcxx-ng (根据<a
-target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/538877347">博客</a>)
-。（截至2022.09该版本号有效）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(base) pcon@pcon-ThinkPad-L14-Gen-2:~/anaconda3$ conda install libstdcxx-ng=12.1.0</span><br></pre></td></tr></table></figure>
-<p>再次查看版本号</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(base) pcon@pcon-ThinkPad-L14-Gen-2:~/anaconda3$ strings /home/pcon/anaconda3//lib/libstdc++.so.6 | grep GLIBCXX</span><br></pre></td></tr></table></figure>
-<p>执行Python代码，成功运行！</p>
-<p>ref</p>
-<p>https://zhuanlan.zhihu.com/p/538877347</p>
-
+          <p>执行gym-like环境代码时，渲染动画输出时报错无法找到系统显卡驱动</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -728,6 +750,15 @@ target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/538877347">博
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2022-08-25 00:00:00" itemprop="dateCreated datePublished" datetime="2022-08-25T00:00:00+08:00">2022-08-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
             </span>
 
           <br>
@@ -803,6 +834,15 @@ target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/538877347">博
 
               <time title="Created: 2022-08-24 00:00:00" itemprop="dateCreated datePublished" datetime="2022-08-24T00:00:00+08:00">2022-08-24</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -876,6 +916,15 @@ target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/538877347">博
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2022-08-23 00:00:00" itemprop="dateCreated datePublished" datetime="2022-08-23T00:00:00+08:00">2022-08-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Thinking/" itemprop="url" rel="index"><span itemprop="name">Thinking</span></a>
+                </span>
             </span>
 
           <br>
@@ -1005,7 +1054,7 @@ target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/538877347">博
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-count">57</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

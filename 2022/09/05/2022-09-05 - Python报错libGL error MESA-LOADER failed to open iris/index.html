@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Python报错libGL error: MESA-LOADER: failed to open iris 1 问题背景 执行gym-like环境代码时，渲染动画输出时报错无法找到系统显卡驱动（笔记本，核显，Ubuntu），报错信息： 123456libGL error: MESA-LOADER: failed to open iris: &#x2F;usr&#x2F;lib&#x2F;dri&#x2F;iris_dri.so:">
+  <meta name="description" content="执行gym-like环境代码时，渲染动画输出时报错无法找到系统显卡驱动">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python报错libGL error: MESA-LOADER: failed to open iris">
 <meta property="og:url" content="https://txing-casia.github.io/2022/09/05/2022-09-05%20-%20Python%E6%8A%A5%E9%94%99libGL%20error%20MESA-LOADER%20failed%20to%20open%20iris/index.html">
 <meta property="og:site_name" content="Txing">
-<meta property="og:description" content="Python报错libGL error: MESA-LOADER: failed to open iris 1 问题背景 执行gym-like环境代码时，渲染动画输出时报错无法找到系统显卡驱动（笔记本，核显，Ubuntu），报错信息： 123456libGL error: MESA-LOADER: failed to open iris: &#x2F;usr&#x2F;lib&#x2F;dri&#x2F;iris_dri.so:">
+<meta property="og:description" content="执行gym-like环境代码时，渲染动画输出时报错无法找到系统显卡驱动">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-09-04T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-25T01:54:15.019Z">
+<meta property="article:modified_time" content="2023-10-07T08:26:38.701Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
@@ -83,7 +83,119 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -226,6 +338,15 @@
 
               <time title="Created: 2022-09-05 00:00:00" itemprop="dateCreated datePublished" datetime="2022-09-05T00:00:00+08:00">2022-09-05</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Code-Techniques/" itemprop="url" rel="index"><span itemprop="name">Code Techniques</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -242,6 +363,7 @@
                 <span class="post-meta-item-text">Reading time &asymp;</span>
               <span>2 mins.</span>
             </span>
+            <div class="post-description">执行gym-like环境代码时，渲染动画输出时报错无法找到系统显卡驱动</div>
 
         </div>
       </header>
@@ -252,25 +374,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2
-id="python报错libgl-error-mesa-loader-failed-to-open-iris">Python报错libGL
+        <h2 id="python报错libgl-error-mesa-loader-failed-to-open-iris">Python报错libGL
 error: MESA-LOADER: failed to open iris</h2>
 <h3 id="问题背景">1 问题背景</h3>
 <p>执行gym-like环境代码时，渲染动画输出时报错无法找到系统显卡驱动（笔记本，核显，Ubuntu），报错信息：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">libGL error: MESA-LOADER: failed to open iris: /usr/lib/dri/iris_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$$&#123;ORIGIN&#125;/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: iris</span><br><span class="line">libGL error: MESA-LOADER: failed to open iris: /usr/lib/dri/iris_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$$&#123;ORIGIN&#125;/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: iris</span><br><span class="line">libGL error: MESA-LOADER: failed to open swrast: /usr/lib/dri/swrast_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$$&#123;ORIGIN&#125;/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: swrast</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">libGL error: MESA-LOADER: failed to open iris: /usr/lib/dri/iris_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$${ORIGIN}/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: iris</span><br><span class="line">libGL error: MESA-LOADER: failed to open iris: /usr/lib/dri/iris_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$${ORIGIN}/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: iris</span><br><span class="line">libGL error: MESA-LOADER: failed to open swrast: /usr/lib/dri/swrast_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$${ORIGIN}/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: swrast</span><br></pre></td></tr></table></figure>
 <p>然而，根据提示，在<code>/usr/lib/x86_64-linux-gnu/dri</code>路径下是可以找<code>iris_dri.so</code>驱动的。</p>
 <h3 id="处理办法">2 处理办法</h3>
-<p><a
-target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/538877347">这篇博客</a>提供了一个有效解决方法：</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/538877347">这篇博客</a>提供了一个有效解决方法：</p>
 <p>Step 1: 建立一个 /usr/lib/dri/iris_dri.so 的软连接</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(base) pcon@pcon-ThinkPad-L14-Gen-2:/usr/lib$ sudo mkdir dri</span><br><span class="line">(base) pcon@pcon-ThinkPad-L14-Gen-2:/usr/lib$ cd dri </span><br><span class="line">(base) pcon@pcon-ThinkPad-L14-Gen-2:/usr/lib/dri$ sudo ln -s /usr/lib/x86_64-linux-gnu/dri/iris_dri.so iris_dri.so</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(base) pcon@pcon-ThinkPad-L14-Gen-2:/usr/lib$ sudo mkdir dri</span><br><span class="line">(base) pcon@pcon-ThinkPad-L14-Gen-2:/usr/lib$ cd dri</span><br><span class="line">(base) pcon@pcon-ThinkPad-L14-Gen-2:/usr/lib/dri$ sudo ln -s /usr/lib/x86_64-linux-gnu/dri/iris_dri.so iris_dri.so</span><br></pre></td></tr></table></figure>
 <p>Step 2: 再次python执行代码，报错变为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">libGL error: MESA-LOADER: failed to open iris: /home/pcon/anaconda3/bin/../lib/libstdc++.so.6: version `GLIBCXX_3.4.29&#x27; not found (required by /usr/lib/dri/iris_dri.so) (search paths /usr/lib/x86_64-linux-gnu/dri:\$$&#123;ORIGIN&#125;/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: iris</span><br><span class="line">libGL error: MESA-LOADER: failed to open iris: /home/pcon/anaconda3/bin/../lib/libstdc++.so.6: version `GLIBCXX_3.4.29&#x27; not found (required by /usr/lib/dri/iris_dri.so) (search paths /usr/lib/x86_64-linux-gnu/dri:\$$&#123;ORIGIN&#125;/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: iris</span><br><span class="line">libGL error: MESA-LOADER: failed to open swrast: /usr/lib/dri/swrast_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$$&#123;ORIGIN&#125;/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: swrast</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">libGL error: MESA-LOADER: failed to open iris: /home/pcon/anaconda3/bin/../lib/libstdc++.so.6: version `GLIBCXX_3.4.29' not found (required by /usr/lib/dri/iris_dri.so) (search paths /usr/lib/x86_64-linux-gnu/dri:\$${ORIGIN}/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: iris</span><br><span class="line">libGL error: MESA-LOADER: failed to open iris: /home/pcon/anaconda3/bin/../lib/libstdc++.so.6: version `GLIBCXX_3.4.29' not found (required by /usr/lib/dri/iris_dri.so) (search paths /usr/lib/x86_64-linux-gnu/dri:\$${ORIGIN}/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: iris</span><br><span class="line">libGL error: MESA-LOADER: failed to open swrast: /usr/lib/dri/swrast_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$${ORIGIN}/dri:/usr/lib/dri, suffix _dri)</span><br><span class="line">libGL error: failed to load driver: swrast</span><br></pre></td></tr></table></figure>
 <p>这是由于 conda 里的 libstdcxx-ng 版本不够高造成的。</p>
 <p>Step 3：执行以下命令查看GLIBCXX版本信息</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(base) pcon@pcon-ThinkPad-L14-Gen-2:~/anaconda3$ strings /home/pcon/anaconda3//lib/libstdc++.so.6 | grep GLIBCXX</span><br></pre></td></tr></table></figure>
-<p>Step 4：升级 conda 里的 libstdcxx-ng (根据<a
-target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/538877347">博客</a>)
+<p>Step 4：升级 conda 里的 libstdcxx-ng (根据<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/538877347">博客</a>)
 。（截至2022.09该版本号有效）</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(base) pcon@pcon-ThinkPad-L14-Gen-2:~/anaconda3$ conda install libstdcxx-ng=12.1.0</span><br></pre></td></tr></table></figure>
 <p>再次查看版本号</p>
@@ -391,7 +510,7 @@ error: MESA-LOADER: failed to open iris</span></a><ol class="nav-child"><li clas
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-count">57</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -507,6 +626,59 @@ error: MESA-LOADER: failed to open iris</span></a><ol class="nav-child"><li clas
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
