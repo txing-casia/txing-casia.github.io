@@ -213,16 +213,16 @@ https://rubyinstaller.org/downloads/</p></li>
 <li><p>step2：安装RubyGems，网址
 https://rubygems.org/pages/download</p></li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd D:\下载\rubygems-3.0.6\rubygems-3.0.6	#切换文件目录 </span><br><span class="line">ruby setup.rb        #安装</span><br><span class="line">rubygems ruby -v     #查看rubygems版本号</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd D:\下载\rubygems-3.0.6\rubygems-3.0.6	#切换文件目录</span><br><span class="line">ruby setup.rb        #安装</span><br><span class="line">rubygems ruby -v     #查看rubygems版本号</span><br></pre></td></tr></table></figure>
 <ul>
 <li>step 3：安装Jekyll</li>
 </ul>
 <p>以上两个步骤操作完成后，在 CMD 窗口执行如下命令安装Jekyll：</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">gem install jekyll   #安装jekyll </span><br><span class="line">jekyll -v    #查看jekyll版本号</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">gem install jekyll   #安装jekyll</span><br><span class="line">jekyll -v    #查看jekyll版本号</span><br></pre></td></tr></table></figure>
 <ul>
 <li>step 4：搭建博客，启动项目</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">jekyll new restlessManBlog   #新建博客 </span><br><span class="line">cd restlessManBlog           #切换目录 </span><br><span class="line">jekyll server                #启动项目</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">jekyll new restlessManBlog   #新建博客</span><br><span class="line">cd restlessManBlog           #切换目录</span><br><span class="line">jekyll server                #启动项目</span><br></pre></td></tr></table></figure>
 <p>在浏览器访问：localhost:4000/</p>
 <ul>
 <li><p>step 5：添加 MarkDown 文档 在项目根目录下的 _posts 目录创建
@@ -261,9 +261,10 @@ Page（推荐）</h2>
 <p>https://github.com/hexojs/hexo</p>
 <p>https://zhuanlan.zhihu.com/p/28321740</p>
 <p>部署hexo服务：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install</span><br><span class="line">hexo serve</span><br><span class="line">hexo clean </span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install</span><br><span class="line">hexo serve</span><br><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
 <p>新文章添加后上传云端：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+<p>然后再Github仓库中设置自定义域名，等待部署完成即可</p>
 <p>写新文章https://hexo.io/docs/writing.html</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
 <h3 id="遇到的问题和解决方案-1">3.2 遇到的问题和解决方案</h3>
@@ -296,7 +297,7 @@ bash中输入如下命令：</strong></li>
 <ol start="3" type="1">
 <li><strong>修改配置文件，修改<code>next/_config.yml</code>中<code>mathjax</code>的设置，如下：</strong></li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Math Formulas Render Support</span><br><span class="line">math:</span><br><span class="line">  # Default (true) will load mathjax / katex script on demand.</span><br><span class="line">  # That is it only render those page which has `mathjax: true` in Front-matter.</span><br><span class="line">  # If you set it to false, it will load mathjax / katex srcipt EVERY PAGE.</span><br><span class="line">  per_page: true</span><br><span class="line"> </span><br><span class="line">  # hexo-renderer-pandoc (or hexo-renderer-kramed) required for full MathJax support.</span><br><span class="line">  mathjax:</span><br><span class="line">    enable: true</span><br><span class="line">    # See: https://mhchem.github.io/MathJax-mhchem/</span><br><span class="line">    mhchem: false</span><br><span class="line"> </span><br><span class="line">  # hexo-renderer-markdown-it-plus (or hexo-renderer-markdown-it with markdown-it-katex plugin) required for full Katex support.</span><br><span class="line">  katex:</span><br><span class="line">    enable: false</span><br><span class="line">    # See: https://github.com/KaTeX/KaTeX/tree/master/contrib/copy-tex</span><br><span class="line">    copy_tex: false</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Math Formulas Render Support</span><br><span class="line">math:</span><br><span class="line">  # Default (true) will load mathjax / katex script on demand.</span><br><span class="line">  # That is it only render those page which has `mathjax: true` in Front-matter.</span><br><span class="line">  # If you set it to false, it will load mathjax / katex srcipt EVERY PAGE.</span><br><span class="line">  per_page: true</span><br><span class="line"></span><br><span class="line">  # hexo-renderer-pandoc (or hexo-renderer-kramed) required for full MathJax support.</span><br><span class="line">  mathjax:</span><br><span class="line">    enable: true</span><br><span class="line">    # See: https://mhchem.github.io/MathJax-mhchem/</span><br><span class="line">    mhchem: false</span><br><span class="line"></span><br><span class="line">  # hexo-renderer-markdown-it-plus (or hexo-renderer-markdown-it with markdown-it-katex plugin) required for full Katex support.</span><br><span class="line">  katex:</span><br><span class="line">    enable: false</span><br><span class="line">    # See: https://github.com/KaTeX/KaTeX/tree/master/contrib/copy-tex</span><br><span class="line">    copy_tex: false</span><br></pre></td></tr></table></figure>
 <p>将mathjax下的enable设置为true，需要注意的是mathjax和katex两者同时只能使能一个。</p>
 <p>另外，per_page建议设置为true（表示为所有文章进行渲染）,
 否则，需要在每个md文件前面都要加上mathjax:true。</p>
@@ -315,10 +316,12 @@ s，本地预览就可以看到公式能正常显示了。</p>
 <p><code>$s$</code>表示行内公式</p>
 <p><code>$$s$$</code>表示行间公式</p>
 <p><strong>问题5：图片不显示</strong></p>
-<p>https://blog.csdn.net/weixin_42030522/article/details/123075824</p>
-<p>https://blog.csdn.net/u010996565/article/details/89196612?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-89196612-blog-123075824.235%5Ev27%5Epc_relevant_landingrelevant&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-89196612-blog-123075824.235%5Ev27%5Epc_relevant_landingrelevant&amp;utm_relevant_index=1</p>
-<p>npm install hexo-asset-image --save</p>
-<p>other ref：</p>
+<ul>
+<li><p>https://blog.csdn.net/weixin_42030522/article/details/123075824</p></li>
+<li><p>https://blog.csdn.net/u010996565/article/details/89196612?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-89196612-blog-123075824.235%5Ev27%5Epc_relevant_landingrelevant&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-89196612-blog-123075824.235%5Ev27%5Epc_relevant_landingrelevant&amp;utm_relevant_index=1</p></li>
+<li><p>npm install hexo-asset-image --save</p></li>
+<li><p>other ref：</p></li>
+</ul>
 <p>https://blog.csdn.net/qq_43328313/article/details/124066785</p>
 ]]></content>
       <categories>
@@ -936,8 +939,8 @@ strategy预测多模态轨迹，导致相同场景有多个agent的时候会将�
         <category>Manuscript Reader</category>
       </categories>
       <tags>
-        <tag>Imitation Learning</tag>
         <tag>Autonomous Driving</tag>
+        <tag>Multimodal Trajectory Prediction</tag>
       </tags>
   </entry>
   <entry>
@@ -997,8 +1000,8 @@ Network (GAN)</h4>
         <category>Manuscript Reader</category>
       </categories>
       <tags>
-        <tag>Imitation Learning</tag>
         <tag>Autonomous Driving</tag>
+        <tag>Multimodal Trajectory Prediction</tag>
       </tags>
   </entry>
   <entry>
@@ -1415,7 +1418,7 @@ motion dataset, 2021.</li>
         <category>Manuscript Reader</category>
       </categories>
       <tags>
-        <tag>Imitation Learning</tag>
+        <tag>Multimodal Trajectory Prediction</tag>
       </tags>
   </entry>
   <entry>
@@ -1442,7 +1445,7 @@ loss为： <span class="math display"><mjx-container class="MathJax" jax="SVG" d
         <category>Manuscript Reader</category>
       </categories>
       <tags>
-        <tag>Reinforcement Learning</tag>
+        <tag>Multimodal Trajectory Prediction</tag>
       </tags>
   </entry>
   <entry>
