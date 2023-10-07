@@ -198,6 +198,122 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/06/10/2019-06-10-Q557-Reverse-Words-in-a-String-III/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/10/2019-06-10-Q557-Reverse-Words-in-a-String-III/" class="post-title-link" itemprop="url">Q557 Reverse Words in a String III</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-10 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-10T00:00:00+08:00">2019-06-10</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.5k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="reverse-words-in-a-string-iii"><a
+target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-words-in-a-string-iii/">Reverse
+Words in a String III</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>Given a string, you need to reverse the order of characters in each
+word within a sentence while still preserving whitespace and initial
+word order.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>Input: "Let's take LeetCode contest" Output: "s'teL ekat edoCteeL
+tsetnoc"</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<p>In the string, each word is separated by single space and there will
+not be any extra space in the string.</p>
+</blockquote>
+<h2 id="approach-1-canonical-form">Approach 1: Canonical Form</h2>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>For each email address, convert it to the <em>canonical</em> address
+that actually receives the mail. This involves a few steps:</p>
+<ul>
+<li>Separate the email address into a <code>local</code> part and the
+<code>rest</code> of the address.</li>
+<li>If the <code>local</code> part has a <code>'+'</code> character,
+remove it and everything beyond it from the <code>local</code>
+part.</li>
+<li>Remove all the zeros from the <code>local</code> part.</li>
+<li>The canonical address is <code>local + rest</code>.</li>
+</ul>
+<p>After, we can count the number of unique canonical addresses with a
+<code>Set</code> structure.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numUniqueEmails</span>(<span class="params">self, emails</span>):</span><br><span class="line">        seen = <span class="built_in">set</span>()</span><br><span class="line">        <span class="keyword">for</span> email <span class="keyword">in</span> emails:</span><br><span class="line">            local, domain = email.split(<span class="string">&#x27;@&#x27;</span>)</span><br><span class="line">            <span class="keyword">if</span> <span class="string">&#x27;+&#x27;</span> <span class="keyword">in</span> local:</span><br><span class="line">                local = local[:local.index(<span class="string">&#x27;+&#x27;</span>)]</span><br><span class="line">            seen.add(local.replace(<span class="string">&#x27;.&#x27;</span>,<span class="string">&#x27;&#x27;</span>) + <span class="string">&#x27;@&#x27;</span> + domain)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(seen)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    Emails=[<span class="string">&quot;test.email+alex@leetcode.com&quot;</span>,</span><br><span class="line">            <span class="string">&quot;test.e.mail+bob.cathy@leetcode.com&quot;</span>,</span><br><span class="line">            <span class="string">&quot;testemail+david@lee.tcode.com&quot;</span>]</span><br><span class="line">    solution=Solution().numUniqueEmails(Emails)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time Complexity: <em>O</em>(<em>n</em>), where <em>n</em> is the
+total content of <code>emails</code>.</li>
+<li>Space Complexity: <em>O</em>(<em>n</em>).</li>
+<li>Runtime: 28 ms, faster than 99.72% of Python online submissions for
+Unique Email Addresses.</li>
+<li>Memory Usage: 11.7 MB, less than 92.68% of Python online submissions
+for Unique Email Addresses.</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/06/06/2019-06-06-Q929-Unique-Email-Addresses/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1018,102 +1134,6 @@ submissions for Remove Duplicates from Sorted List.</p></li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/05/27/2019-05-27-Q21-Merge-Two-Sorted-Lists/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/27/2019-05-27-Q21-Merge-Two-Sorted-Lists/" class="post-title-link" itemprop="url">Q21 Merge Two Sorted Lists</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-05-27 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-27T00:00:00+08:00">2019-05-27</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.7k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="merge-two-sorted-lists"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/merge-two-sorted-lists/">Merge Two
-Sorted Lists</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Merge two sorted linked lists and return it as a new list. The new
-list should be made by splicing together the nodes of the first two
-lists.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong> Input: 1-&gt;2-&gt;4, 1-&gt;3-&gt;4
-Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4</p>
-</blockquote>
-<h3 id="approach-1-dummy-list">Approach 1: dummy list</h3>
-<p>This is a straightforward method for our problem. Setting two linked
-list newNode and out with the same memory location. Then use them to
-note the merged list.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">mergeTwoLists</span>(<span class="params">self, l1: ListNode, l2: ListNode</span>):</span><br><span class="line">        </span><br><span class="line">        newNode=out=ListNode(<span class="number">0</span>) <span class="comment"># newNode与out节点为起始位置相同</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> l1 <span class="keyword">and</span> l2: <span class="comment"># 直到两个链表都遍历完</span></span><br><span class="line">            <span class="keyword">if</span> l1 <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">                newNode.<span class="built_in">next</span> = l2</span><br><span class="line">                l2 = l2.<span class="built_in">next</span></span><br><span class="line">            <span class="keyword">elif</span> l2 <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">                newNode.<span class="built_in">next</span> = l1</span><br><span class="line">                l1 = l1.<span class="built_in">next</span></span><br><span class="line">            <span class="keyword">elif</span> l1.val&lt;=l2.val:</span><br><span class="line">                newNode.<span class="built_in">next</span>=l1</span><br><span class="line">                l1 = l1.<span class="built_in">next</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                newNode.<span class="built_in">next</span> = l2</span><br><span class="line">                l2 = l2.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line">            newNode=newNode.<span class="built_in">next</span></span><br><span class="line">        newNode.<span class="built_in">next</span> = l1 <span class="keyword">or</span> l2</span><br><span class="line">        <span class="keyword">return</span> out.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    L1=stringToListNode([<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>])<span class="comment"># 将输入的元组转换为链表</span></span><br><span class="line">    L2=stringToListNode([<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>])<span class="comment"># 将输入的元组转换为链表</span></span><br><span class="line">    solution=Solution().mergeTwoLists(L1,L2)</span><br><span class="line">    <span class="built_in">print</span>(listNodeToString(solution))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li>Runtime: 36 ms, faster than 98.96% of Python3 online submissions
-forMerge Two Sorted Lists.</li>
-<li>Memory Usage: 13.2 MB, less than 41.08% of Python3 online
-submissions for Merge Two Sorted Lists.</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1185,7 +1205,7 @@ submissions for Merge Two Sorted Lists.</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">234</span>
+          <span class="site-state-item-count">235</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1198,7 +1218,7 @@ submissions for Merge Two Sorted Lists.</li>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1252,12 +1272,12 @@ submissions for Merge Two Sorted Lists.</li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">572k</span>
+    <span title="Symbols count total">577k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:40</span>
+    <span title="Reading time total">8:45</span>
 </div>
 
         

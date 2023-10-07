@@ -198,6 +198,134 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/29/2021-03-29-Memristor%E2%80%90Based%20Biologically%20Plausible%20Memory%20Based%20on%20Discrete%20and%20Continuous%20Attractor%20Networks%20for%20Neuromorphic%20Systems/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/29/2021-03-29-Memristor%E2%80%90Based%20Biologically%20Plausible%20Memory%20Based%20on%20Discrete%20and%20Continuous%20Attractor%20Networks%20for%20Neuromorphic%20Systems/" class="post-title-link" itemprop="url">Memristor‐Based Biologically Plausible Memory Based on Discrete and Continuous Attractor Networks for Neuromorphic Systems</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-03-29 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-29T00:00:00+08:00">2021-03-29</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1
+id="memristorbased-biologically-plausible-memory-based-on-discrete-and-continuous-attractor-networks-for-neuromorphic-systems">Memristor‐Based
+Biologically Plausible Memory Based on Discrete and Continuous Attractor
+Networks for Neuromorphic Systems</h1>
+<p>论文链接：https://onlinelibrary.wiley.com/doi/10.1002/aisy.202000001</p>
+<p>## 背景</p>
+<ul>
+<li><p>神经形态计算是1990年代提出的一个新概念，它表明未来的计算机系统可以通过直接在物理水平上并行处理模拟信号来模仿人脑的操作原理。</p></li>
+<li><p>s按个优势：</p>
+<ul>
+<li>高并行性 high parallelism</li>
+<li>低功耗 low power consumption</li>
+<li>内存计算 in‐memory computing</li>
+</ul></li>
+<li><p><strong>忆阻器</strong>可以根据内部状态和外部刺激（例如电压脉冲）来改变其电阻。基于忆阻器的纵横制结构可以通过依赖欧姆定律和基尔霍夫定律直接将向量矩阵乘法（VMM）（一种最密集的计算组件）映射到电参数来加速各种人工神经网络（ANN）</p></li>
+<li><p>VMM计算过程直接在原地发生，从而避免了从内存中获取数据而导致的内存墙（<strong>冯·诺伊曼·瓶颈</strong>）</p></li>
+<li><p>如果吸引子是离散的，则初始状态将落入最近的吸引子。这是联想记忆的模型，该记忆先前已在忆阻器交叉开关上执行</p></li>
+<li><p>然而，这些先前的研究使用称为Hebbian规则的离线学习，这意味着突触的权重已在软件中计算出来，并简单地映射到忆阻器交叉开关上。Hebbian
+rule的表现很差，无法支持大规模的吸引网络。</p></li>
+<li><p>通过引入平移不变的钟形连接模式，网络吸引子可以奇妙地形成一个平面。这称为<strong>连续吸引子神经网络（CANN）</strong></p></li>
+<li><p>在记忆方面，人们认为大脑可以在动态分配过程中暂时记住当前状态，并随后使用此信息进行计算。这称为工作存储器，可以由CANN自然实现。</p></li>
+<li><p>通过引入神经元之间的竞争与合作，一种名为<strong>Oja规则</strong>的有效的在线在线学习方法被应用到基于无监督学习的联想记忆中，表明该方法可以将性能提高至少10倍，这将大大减少芯片面积并增强硬件的健壮性。</p></li>
+</ul>
+<h2 id="工作内容">工作内容</h2>
+<h3 id="离散吸引子网络">1. 离散吸引子网络</h3>
+<ul>
+<li>离散吸引子神经网络，也称为Hopfield神经网络，是完全连接的网络，其中每个神经元与其他神经元都有连接，但没有自连接</li>
+</ul>
+<p><span class="math display">\[
+X_i^{i+1}=sgn\bigg(\sum_j W_{ij}X_i^t+b_i\bigg)
+\]</span></p>
+<h3 id="oja学习规则">2. Oja学习规则</h3>
+<p><span class="math display">\[
+Y=X&#39;\times W\\
+\Delta W&#39;=\alpha (X-W&#39;\times Y&#39;)\times Y
+\]</span></p>
+<ul>
+<li><p>其中<em>W</em>是权重矩阵，<em>α</em>是学习率</p></li>
+<li><p>与以前使用软件计算权重的工作不同，此规则可以在交叉开关中在线训练网络，因此可以显着提高性能。该规则的主要原理是利用神经元之间的竞争，这种竞争也用在局部竞争算法（LCA）中，<a
+target="_blank" rel="noopener" href="https://onlinelibrary.wiley.com/doi/10.1002/aisy.202000001#aisy202000001-bib-0027">27</a>解释为Winner
+Takes All（WTA）。</p></li>
+<li><p>Oja规则的存储容量大约是Hebbian规则的10倍，并且由Oja规则训练的神经形态存储系统也具有更好的鲁棒性，这表现为更高的噪声容忍度，显示了整体上显着的性能提升。</p></li>
+</ul>
+<h3 id="连续吸引子网络">3. 连续吸引子网络</h3>
+<p><span class="math display">\[
+\tau\frac{\partial U(x,t)}{\partial t}=-U(x,t)+\rho \int_{x&#39;}
+J(x,x&#39;)r(x&#39;,t) dx&#39;+I^{ext}(x,t)\\
+r(x,t)=\frac{[U(x,t)]^2_+}{1+k\rho\int_{x&#39;}[U(x&#39;,t)]^2_+dx&#39;}
+\]</span></p>
+<h2 id="总结">总结</h2>
+<p>想看看吸引子网络的，但它是Hopfield Neural Networks，激活函数是<span
+class="math display">\[sgn()\]</span>，和运动基元、增益场还是不一样的。</p>
+<p>基于忆阻器的神经形态系统可以加速吸引子网络的计算效率，而这种计算方式在初级运动皮层和前额叶皮层的感觉-运动映射中都有使用。这为将忆阻器与类脑运动决策算法的结合提供了合理性和理论基础，两者的结合有望大幅提高类脑决策算法的计算效率，在行为层面使机器人表现出强大的动态环境适应能力和运动迁移能力。</p>
+<p>相关文章：Motor Memory Is Encoded as a Gain-Field Combination of
+Intrinsic and Extrinsic Action Representations</p>
+<p>论文链接：https://www.jneurosci.org/content/32/43/14951.long</p>
+<p>blog：https://txing-z.gitee.io/txing-casia.github.io/2021/03/26/Neuroscience-Motor-Memory-Is-Encoded-as-a-Gain-Field-Combination-of-Intrinsic-and-Extrinsic-Action-Representations/</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/28/2021-03-28-Neuroscience%20-%20Neuronal%20Correlates%20of%20Motor%20Performance%20and%20Motor%20Learning%20in%20the%20Primary%20Motor%20Cortex%20of%20Monkeys%20Adapting%20to%20an%20External%20Force%20Field/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1136,106 +1264,6 @@ Offer 06. 从尾到头打印链表</a></h4>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/23/2021-03-23-Neuroscience%20-%20Learning%20of%20action%20through%20adaptive%20combination%20of%20motor%20primitives/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/23/2021-03-23-Neuroscience%20-%20Learning%20of%20action%20through%20adaptive%20combination%20of%20motor%20primitives/" class="post-title-link" itemprop="url">Neuroscience | Learning of action through adaptive combination of motor primitives (Nature)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-03-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-23T00:00:00+08:00">2021-03-23</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>902</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1
-id="learning-of-action-through-adaptive-combination-of-motor-primitives">Learning
-of action through adaptive combination of motor primitives</h1>
-<p>论文链接：https://www.nature.com/articles/35037588</p>
-<h2 id="背景">背景</h2>
-<p>理解大脑如何构造运动仍然是神经科学领域的一项基本挑战。</p>
-<p>大脑可以通过运动基元灵活组合来控制复杂的运动，其中每个基元都是感觉运动地图中的计算元素，它将所需的肢体轨迹转换为运动命令。</p>
-<h2 id="主要工作">主要工作</h2>
-<ul>
-<li><p>人在运动之前，通过预测力或者力矩，构建运动指令。然后不断调整预测，使得形成的轨迹近似期望的路径。</p></li>
-<li><p>训练区域外的运动会被训练区域内的训练影响，说明大脑构建了一个状态依赖的近似外部力的<strong>内部模型</strong>（internal
-model）</p></li>
-<li><p>内部模型的泛化性能通过“抓取实验”来量化验证</p>
-<p>Shadmehr, R. &amp; Mussa-Ivaldi, F. A. Adaptive representation of
-dynamics during learning of a motor task. J. Neurosci. 14, 3208–3224
-(1994).</p>
-<p>Ghez, C., Krakauer, J. W., Sainburg, R. L. &amp; Ghilardi, M. F. in
-The New Cognitive Neurosciences (ed. Gazzaniga, M. S.) 501–514 (MIT
-Press, Cambridge, Massachusetts, 2000).</p></li>
-<li><p><strong>本文主要介绍了如何通过灵活地组合运动基元构建内部模型，形成感觉-运动地图（sensorimotor
-map），构建从轨迹到运动指令的具有泛化能力的转换。</strong></p></li>
-<li><p>学习粘滞力场（viscous forces）<span
-class="math display">\[f=B\dot{x}\]</span></p></li>
-<li><p>随着场空间频率的增加，对于所有基函数宽度，内部模型的精度都会下降。但是，更广泛的基础的学习能力在较低的频率下崩溃了。这与最近的发现是一致的，即人类在较高的空间频率力场中表现出的适应能力较弱。</p>
-<p>Matsouka, Y. Models of generalization in motor control. PhD thesis,
-MIT ( 1998).</p></li>
-</ul>
-<h2 id="总结">总结</h2>
-<p>算是运动基元的比较早的也是比较权威的工作（Nature）</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1307,7 +1335,7 @@ MIT ( 1998).</p></li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">234</span>
+          <span class="site-state-item-count">235</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1320,7 +1348,7 @@ MIT ( 1998).</p></li>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1374,12 +1402,12 @@ MIT ( 1998).</p></li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">572k</span>
+    <span title="Symbols count total">577k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:40</span>
+    <span title="Reading time total">8:45</span>
 </div>
 
         

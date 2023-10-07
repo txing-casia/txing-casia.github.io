@@ -198,6 +198,160 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/14/2021-07-14-Reinforcement%20Learning%20-%20Hierarchical%20Deep%20Reinforcement%20Learning%20Integrating%20Temporal%20Abstraction%20and%20Intrinsic%20Motivation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/14/2021-07-14-Reinforcement%20Learning%20-%20Hierarchical%20Deep%20Reinforcement%20Learning%20Integrating%20Temporal%20Abstraction%20and%20Intrinsic%20Motivation/" class="post-title-link" itemprop="url">Reinforcement Learning | Hierarchical Deep Reinforcement Learning: Integrating Temporal Abstraction and Intrinsic Motivation</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-07-14 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-14T00:00:00+08:00">2021-07-14</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.6k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1
+id="hierarchical-deep-reinforcement-learning-integrating-temporal-abstraction-and-intrinsic-motivation">Hierarchical
+Deep Reinforcement Learning: Integrating Temporal Abstraction and
+Intrinsic Motivation</h1>
+<p>论文链接：https://proceedings.neurips.cc/paper/2016/file/f442d33fa06832082290ad8544a8da27-Paper.pdf</p>
+<h2 id="主要内容">主要内容</h2>
+<ul>
+<li><p>稀疏反馈下，不充分的探索使得agent很难学习到鲁棒的行为策略。本文通过设计本质动机来驱动行为探索，并结合分层的结构来完成行为，最后在奖励稀疏和延迟的任务中进行了实验。</p></li>
+<li><p>结构分为两层，顶层的meta-controller学习定义子目标，底层的controller学习根据状态和子目标执行行动，直到目标完成或者情节结束。</p></li>
+<li><p>这项工作是基于 option 框架完成的。相关的分层强化学习框架还有 MAXQ
+等。这篇文章没有对每个option单独使用Q函数。这一点和 [21]
+是一致的，这会带来两个好处：（1）不同选项之间存在共享学习；（2）该模型可扩展到大量options的情况；</p>
+<p>[21]. T. Schaul, D. Horgan, K. Gregor, and D. Silver. Universal value
+function approximators. In Proceedings of the 32nd International
+Conference on Machine Learning (ICML-15), pages 1312–1320,
+2015.</p></li>
+<li><p>In another paper, Singh et al. [26] take an evolutionary
+perspective to optimize over the space of reward functions for the
+agent, leading to a notion of extrinsically and intrinsically motivated
+behavior.</p></li>
+<li><p>Cognitive Science and Neuroscience The nature and origin of
+intrinsic goals in humans is a thorny issue but there are some notable
+insights from existing literature. There is converging evidence in
+developmental psychology that human infants, primates, children, and
+adults in diverse cultures base their core knowledge on certain
+cognitive systems including – entities, agents and their actions,
+numerical quantities, space, social-structures and intuitive theories
+[29]. During curiositydriven activities, toddlers use this knowledge to
+generate intrinsic goals such as building physically stable block
+structures. In order to accomplish these goals, toddlers seem to
+construct subgoals in the space of their core knowledge. Knowledge of
+space can also be utilized to learn a hierarchical decomposition of
+spatial environments. This has been explored in Neuroscience with the
+successor representation, which represents value functions in terms of
+the expected future state occupancy. Decomposition of the successor
+representation have shown to yield reasonable subgoals for spatial
+navigation problems [5, 30].</p></li>
+<li><p>MDP过程中的高效探索是一个难题。<span
+class="math display">\[\epsilon-greedy\]</span>
+在局部探索中表现还好，但是对于整个状态空间不同区域的探索比较失败。这里通过设计本质目标
+<span class="math display">\[g\]</span> 和本质奖励intrinsic
+rewards</p></li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210714-1.png" /></p>
+<ul>
+<li><p>agent设置：</p>
+<ul>
+<li>meta-controller: 接收状态 <span class="math display">\[s_t\]</span>
+然后选择子目标 <span class="math display">\[g_t\]</span>.</li>
+<li>controller: 根据 <span class="math display">\[s_t\]</span> 和 <span
+class="math display">\[g_t\]</span> 选择行为 <span
+class="math display">\[a_t\]</span>.</li>
+</ul></li>
+<li><p>一个内部的critic用来为 controller 评估 <span
+class="math display">\[r_t(g)\]</span>
+（这篇文章使用的是一个二值的奖励）。controller
+的目标就是最大化累积的本质奖励intrinsic reward <span
+class="math display">\[R_t(g)=\sum_{t&#39;=t}^{\infty}
+\gamma^{t&#39;-t}r_{t&#39;}(g)\]</span></p></li>
+<li><p>meta-controller 的目标是最大化累积的外部奖励 extrinsic reward
+<span class="math display">\[F_t=\sum_{t&#39;=t}^{\infty}
+\gamma^{t&#39;-t}f_{t&#39;}\]</span>，其中<span
+class="math display">\[f_{t&#39;}\]</span>是从环境中收到的奖励信号，并且<span
+class="math display">\[F_{t}\]</span>和<span
+class="math display">\[R_{t}\]</span>的时间尺度是不同的。</p></li>
+<li><p>Controller: <span class="math display">\[
+Q_1^*(s,a;g)=\max_{\pi_{a,g}} \mathbb{E} \Big[r_t+\gamma
+\max_{a_{t+1}}Q_1^*(s_{t+1},a_{t+1};g)\Big]
+\]</span></p></li>
+<li><p>meta-controller: <span class="math display">\[
+Q_2^*(s,g)=\max_{\pi_{g}} \mathbb{E} \Big[\sum_{t&#39;=t}^{t+N}
+f_{t&#39;}+\gamma \max_{g&#39;}Q_2^*(s_{t+N},g&#39;)\Big]
+\]</span> N 代表当控制器停止时所经过的步数。</p></li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210714-2.png"
+alt="算法步骤" />
+<figcaption aria-hidden="true">算法步骤</figcaption>
+</figure>
+<h2 id="总结">总结</h2>
+<p>很简单直接的思路，直接在DQN上做出了分层的改进，但是感觉和option的结合并不是很紧密，比如终止函数没有单独设计，时间缩放步数N可能需要预设等等。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/13/2021-07-13-Q130-%E8%A2%AB%E5%9B%B4%E7%BB%95%E7%9A%84%E5%8C%BA%E5%9F%9F-%E4%B8%AD%E7%AD%89-%E6%B7%B1%E5%BA%A6and%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1438,105 +1592,6 @@ that can only be achieved by combining different patterns.</p></li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/06/29/2021-06-28-Reinforcement%20Learning%20-%20Proximal%20Policy%20Optimization%20Algorithms/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/29/2021-06-28-Reinforcement%20Learning%20-%20Proximal%20Policy%20Optimization%20Algorithms/" class="post-title-link" itemprop="url">Reinforcement Learning | Proximal Policy Optimization Algorithms</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-06-29 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-29T00:00:00+08:00">2021-06-29</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>759</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="proximal-policy-optimization-algorithms">Proximal Policy
-Optimization Algorithms</h1>
-<p>论文链接：https://arxiv.org/pdf/1707.06347.pdf</p>
-<h2 id="背景">背景</h2>
-<p>基于策略梯度和 trust region policy optimization
-(TRPO)方法，提出multiple epochs of minibatch updates的方式，解决了Policy
-Gradient算法中步长难以确定的问题。而一般策略梯度方法 perform one
-gradient update per data sample。</p>
-<h2 id="主要内容">主要内容</h2>
-<ul>
-<li>目的是实现数据高效和鲁棒性（data efficient, and robust）</li>
-<li>使用 first-order optimization</li>
-<li>PPO有两种主要变体：PPO-penalty和PPO-clip。
-<ul>
-<li>PPO-Penalty
-近似解决了像TRPO这样的受KL约束的更新，但是对目标函数中的KL偏离进行了惩罚，而不是使其成为硬约束，并且在训练过程中自动调整了惩罚系数，以便对其进行适当缩放。</li>
-<li>PPO-Clip 在目标中没有KL散度项，也没有任何约束。
-取而代之的是依靠对目标函数的专门裁剪来消除新政策消除旧政策的激励。</li>
-</ul></li>
-</ul>
-<p><span class="math display">\[
-L(s,a,\theta_k,\theta)=\min
-\Bigg(\frac{\pi_{\theta}(a|s)}{\pi_{\theta_k}(a|s)}A^{\pi_k}(s,a),
-\text{clip}\bigg(\frac{\pi_{\theta}(a|s)}{\pi_{\theta_k}(a|s)},1-\epsilon,1+\epsilon
-\bigg)A^{\pi_k}(s,a) \Bigg)
-\]</span></p>
-<h2 id="总结">总结</h2>
-<p>相比于TRPO，PPO缺失比较简单、直接，特别是PPO2（PPO-Clip），通过裁减损失哈数的方式保证了更新的稳定。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1608,7 +1663,7 @@ L(s,a,\theta_k,\theta)=\min
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">234</span>
+          <span class="site-state-item-count">235</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1621,7 +1676,7 @@ L(s,a,\theta_k,\theta)=\min
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1675,12 +1730,12 @@ L(s,a,\theta_k,\theta)=\min
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">572k</span>
+    <span title="Symbols count total">577k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:40</span>
+    <span title="Reading time total">8:45</span>
 </div>
 
         

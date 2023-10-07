@@ -198,6 +198,117 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/10/06/2020-10-06-Q1603%20Design%20Parking%20System-%E7%AE%80%E5%8D%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/06/2020-10-06-Q1603%20Design%20Parking%20System-%E7%AE%80%E5%8D%95/" class="post-title-link" itemprop="url">Q1603 Design Parking System-简单</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-10-06 00:00:00" itemprop="dateCreated datePublished" datetime="2020-10-06T00:00:00+08:00">2020-10-06</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="design-parking-system"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/design-parking-system/">Design
+Parking System</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>Design a parking system for a parking lot. The parking lot has three
+kinds of parking spaces: big, medium, and small, with a fixed number of
+slots for each size.</p>
+<p>Implement the ParkingSystem class:</p>
+<p>ParkingSystem(int big, int medium, int small) Initializes object of
+the ParkingSystem class. The number of slots for each parking space are
+given as part of the constructor. bool addCar(int carType) Checks
+whether there is a parking space of carType for the car that wants to
+get into the parking lot. carType can be of three kinds: big, medium, or
+small, which are represented by 1, 2, and 3 respectively. A car can only
+park in a parking space of its carType. If there is no space available,
+return false, else park the car in that size space and return true.</p>
+<p><strong>Constraints:</strong></p>
+<p>0 &lt;= big, medium, small &lt;= 1000 carType is 1, 2, or 3 At most
+1000 calls will be made to addCar</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>Input ["ParkingSystem", "addCar", "addCar", "addCar", "addCar"] [[1,
+1, 0], [1], [2], [3], [1]] Output [null, true, true, false, false]</p>
+<p>Explanation ParkingSystem parkingSystem = new ParkingSystem(1, 1, 0);
+parkingSystem.addCar(1); // return true because there is 1 available
+slot for a big car parkingSystem.addCar(2); // return true because there
+is 1 available slot for a medium car parkingSystem.addCar(3); // return
+false because there is no available slot for a small car
+parkingSystem.addCar(1); // return false because there is no available
+slot for a big car. It is already occupied.</p>
+</blockquote>
+<h3 id="approach-1-直接处理">Approach 1: 直接处理</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ParkingSystem</span>:</span><br><span class="line">    carslots = [<span class="number">0</span>] * <span class="number">4</span> </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, big: <span class="built_in">int</span>, medium: <span class="built_in">int</span>, small: <span class="built_in">int</span></span>):</span><br><span class="line">        self.carslots[<span class="number">1</span>] = big</span><br><span class="line">        self.carslots[<span class="number">2</span>] = medium</span><br><span class="line">        self.carslots[<span class="number">3</span>] = small</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">addCar</span>(<span class="params">self, carType: <span class="built_in">int</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">if</span> self.carslots[carType] &gt; <span class="number">0</span>:</span><br><span class="line">            self.carslots[carType] -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"><span class="comment"># Your ParkingSystem object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"># obj = ParkingSystem(big, medium, small)</span></span><br><span class="line"><span class="comment"># param_1 = obj.addCar(carType)</span></span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：<span class="math display">\[ O(n) \]</span></p></li>
+<li><p>空间复杂度：<span class="math display">\[ O(1) \]</span></p></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/10/02/2020-10-02-Python%20import%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1100,128 +1211,6 @@ class="math display">\[O(\min(m,n))\]</span>，其中 m 和 n
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/22/2020-09-22-Q1512%20Number%20of%20Good%20Pairs-%E7%AE%80%E5%8D%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/22/2020-09-22-Q1512%20Number%20of%20Good%20Pairs-%E7%AE%80%E5%8D%95/" class="post-title-link" itemprop="url">Q1470 Shuffle the Array-简单</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-09-22 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-22T00:00:00+08:00">2020-09-22</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.1k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="number-of-good-pairs"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-good-pairs/">Number of
-Good Pairs</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given an array of integers nums.</p>
-<p>A pair (i,j) is called good if nums[i] == nums[j] and i &lt; j.</p>
-<p>Return the number of good pairs.</p>
-<p><strong>Constraints:</strong></p>
-<ul>
-<li><code>1 &lt;= nums.length &lt;= 100</code></li>
-<li><code>1 &lt;= nums[i] &lt;= 100</code></li>
-</ul>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input: nums = [1,2,3,1,1,3] Output: 4 Explanation: There are 4 good
-pairs (0,3), (0,4), (3,4), (2,5) 0-indexed.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>Input: nums = [1,1,1,1] Output: 6 Explanation: Each pair in the array
-are good.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 3:</strong></p>
-<p>Input: nums = [1,2,3] Output: 0</p>
-</blockquote>
-<h3 id="approach-1-循环嵌套">Approach 1: 循环嵌套</h3>
-<p>过于简单，直接上代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numIdenticalPairs</span>(<span class="params">self, nums</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        n=<span class="built_in">len</span>(nums)</span><br><span class="line">        ans=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>,n):</span><br><span class="line">                <span class="keyword">if</span> nums[i]==nums[j]:</span><br><span class="line">                    ans+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums =[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>]</span><br><span class="line">    solution=Solution().numIdenticalPairs(nums)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：<span
-class="math display">\[O(\frac{N(N+1)}{2})\]</span></p></li>
-<li><p>空间复杂度：O(1)</p></li>
-</ul>
-<h2 id="approach-2-组合计数">Approach 2: 组合计数</h2>
-<p>用哈希表统计每个数在序列中出现的次数，假设数字 k 在序列中出现的次数为
-v，那么满足题目中所说的 <span class="math display">\[{\rm nums}[i] =
-{\rm nums}[j] = k(i &lt; j)\]</span> 的 <span class="math display">\[(i,
-j)\]</span> 的数量就是 <span class="math display">\[\frac{v(v - 1)}{2}
-\]</span>，即 k 这个数值对答案的贡献是 <span
-class="math display">\[\frac{v(v -
-1)}{2}\]</span>。我们只需要把所有数值的贡献相加，即可得到答案。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numIdenticalPairs</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        m = collections.Counter(nums)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(v * (v - <span class="number">1</span>) // <span class="number">2</span> <span class="keyword">for</span> k, v <span class="keyword">in</span> m.items())</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O<em>(</em>n)。</li>
-<li>空间复杂度：O<em>(</em>n)，即哈希表使用到的辅助空间的空间代价。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1293,7 +1282,7 @@ class="math display">\[\frac{v(v -
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">234</span>
+          <span class="site-state-item-count">235</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1306,7 +1295,7 @@ class="math display">\[\frac{v(v -
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1360,12 +1349,12 @@ class="math display">\[\frac{v(v -
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">572k</span>
+    <span title="Symbols count total">577k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:40</span>
+    <span title="Reading time total">8:45</span>
 </div>
 
         

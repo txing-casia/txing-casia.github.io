@@ -198,6 +198,140 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/08/14/2019-08-14-Q704-Binary%20Search/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/14/2019-08-14-Q704-Binary%20Search/" class="post-title-link" itemprop="url">Q704 Binary Search</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-08-14 00:00:00" itemprop="dateCreated datePublished" datetime="2019-08-14T00:00:00+08:00">2019-08-14</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="binary-search"><a
+target="_blank" rel="noopener" href="https://leetcode.com/problems/binary-search/">Binary
+Search</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>Given a <strong>sorted</strong> (in ascending order) integer array
+<code>nums</code> of <code>n</code> elements and a <code>target</code>
+value, write a function to search <code>target</code> in
+<code>nums</code>. If <code>target</code> exists, then return its index,
+otherwise return <code>-1</code>.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>Input: nums = [-1,0,3,5,9,12], target = 9 Output: 4 Explanation: 9
+exists in nums and its index is 4</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>Input: nums = [-1,0,3,5,9,12], target = 2 Output: -1 Explanation: 2
+does not exist in nums so return -1</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ul>
+<li>You may assume that all elements in <code>nums</code> are
+unique.</li>
+<li><code>n</code> will be in the range <code>[1, 10000]</code>.</li>
+<li>The value of each element in <code>nums</code> will be in the range
+<code>[-9999, 9999]</code>.s</li>
+</ul>
+</blockquote>
+<h2 id="approach-1-binary-search">Approach 1: Binary Search</h2>
+<p><strong>Intuition and Algorithm</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">search</span>(<span class="params">self, nums, target</span>):</span><br><span class="line">        left, right = <span class="number">0</span>, <span class="built_in">len</span>(nums) - <span class="number">1</span> <span class="comment"># left和right分别是首末两个元素</span></span><br><span class="line">        <span class="keyword">while</span> left &lt;= right: <span class="comment"># 不断移动左右边界</span></span><br><span class="line">            pivot = (left + right) // <span class="number">2</span> <span class="comment"># 取中间序号并观察大小</span></span><br><span class="line">            <span class="keyword">if</span> nums[pivot] == target:</span><br><span class="line">                <span class="keyword">return</span> pivot</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> target &lt; nums[pivot]:</span><br><span class="line">                    right = pivot - <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    left = pivot + <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums = [-<span class="number">1</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">9</span>, <span class="number">12</span>]</span><br><span class="line">    target = <span class="number">9</span></span><br><span class="line">    solution=Solution().search(nums,target)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <span class="math display">\[\mathcal{O}(\log
+N)\]</span>.</li>
+<li>Let's compute time complexity with the help of <a
+target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)">master
+theorem</a> <span class="math display">\[T(N) =
+aT\left(\frac{N}{b}\right) + \Theta(N^d)\]</span>. The equation
+represents dividing the problem up into <span
+class="math display">\[a\]</span> subproblems of size <span
+class="math display">\[\frac{N}{b}\]</span> in <span
+class="math display">\[\Theta(N^d)\]</span> time. Here at step there is
+only one subproblem <code>a = 1</code>, its size is a half of the
+initial problem <code>b = 2</code>, and all this happens in a constant
+time <code>d = 0</code>. That means that <span
+class="math display">\[\log_b{a} = d\]</span> and hence we're dealing
+with <a
+target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)#Case_2_example">case
+2</a> that results in <span
+class="math display">\[\mathcal{O}(n^{\log_b{a}} \log^{d + 1} N)=O(\log
+N) \]</span>time complexity.</li>
+<li>Space complexity : <span
+class="math display">\[\mathcal{O}(1)\]</span> since it's a constant
+space solution.</li>
+<li>Runtime: 236 ms, faster than 11.72% of Python online submissions for
+Binary Search.</li>
+<li>Memory Usage: 12.8 MB, less than 33.33% of Python online submissions
+for Binary Search.</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/08/13/2019-08-13-Q167-Two%20Sum%20II%20-%20Input%20array%20is%20sorted/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1108,122 +1242,6 @@ submissions for Goat Latin.</p>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/06/10/2019-06-10-Q557-Reverse-Words-in-a-String-III/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/10/2019-06-10-Q557-Reverse-Words-in-a-String-III/" class="post-title-link" itemprop="url">Q557 Reverse Words in a String III</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-06-10 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-10T00:00:00+08:00">2019-06-10</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.5k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="reverse-words-in-a-string-iii"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-words-in-a-string-iii/">Reverse
-Words in a String III</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given a string, you need to reverse the order of characters in each
-word within a sentence while still preserving whitespace and initial
-word order.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input: "Let's take LeetCode contest" Output: "s'teL ekat edoCteeL
-tsetnoc"</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<p>In the string, each word is separated by single space and there will
-not be any extra space in the string.</p>
-</blockquote>
-<h2 id="approach-1-canonical-form">Approach 1: Canonical Form</h2>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>For each email address, convert it to the <em>canonical</em> address
-that actually receives the mail. This involves a few steps:</p>
-<ul>
-<li>Separate the email address into a <code>local</code> part and the
-<code>rest</code> of the address.</li>
-<li>If the <code>local</code> part has a <code>'+'</code> character,
-remove it and everything beyond it from the <code>local</code>
-part.</li>
-<li>Remove all the zeros from the <code>local</code> part.</li>
-<li>The canonical address is <code>local + rest</code>.</li>
-</ul>
-<p>After, we can count the number of unique canonical addresses with a
-<code>Set</code> structure.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numUniqueEmails</span>(<span class="params">self, emails</span>):</span><br><span class="line">        seen = <span class="built_in">set</span>()</span><br><span class="line">        <span class="keyword">for</span> email <span class="keyword">in</span> emails:</span><br><span class="line">            local, domain = email.split(<span class="string">&#x27;@&#x27;</span>)</span><br><span class="line">            <span class="keyword">if</span> <span class="string">&#x27;+&#x27;</span> <span class="keyword">in</span> local:</span><br><span class="line">                local = local[:local.index(<span class="string">&#x27;+&#x27;</span>)]</span><br><span class="line">            seen.add(local.replace(<span class="string">&#x27;.&#x27;</span>,<span class="string">&#x27;&#x27;</span>) + <span class="string">&#x27;@&#x27;</span> + domain)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(seen)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    Emails=[<span class="string">&quot;test.email+alex@leetcode.com&quot;</span>,</span><br><span class="line">            <span class="string">&quot;test.e.mail+bob.cathy@leetcode.com&quot;</span>,</span><br><span class="line">            <span class="string">&quot;testemail+david@lee.tcode.com&quot;</span>]</span><br><span class="line">    solution=Solution().numUniqueEmails(Emails)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li>Time Complexity: <em>O</em>(<em>n</em>), where <em>n</em> is the
-total content of <code>emails</code>.</li>
-<li>Space Complexity: <em>O</em>(<em>n</em>).</li>
-<li>Runtime: 28 ms, faster than 99.72% of Python online submissions for
-Unique Email Addresses.</li>
-<li>Memory Usage: 11.7 MB, less than 92.68% of Python online submissions
-for Unique Email Addresses.</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1295,7 +1313,7 @@ for Unique Email Addresses.</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">234</span>
+          <span class="site-state-item-count">235</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1308,7 +1326,7 @@ for Unique Email Addresses.</li>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1362,12 +1380,12 @@ for Unique Email Addresses.</li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">572k</span>
+    <span title="Symbols count total">577k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:40</span>
+    <span title="Reading time total">8:45</span>
 </div>
 
         

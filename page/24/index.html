@@ -198,6 +198,94 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/07/11/2020-07-11-%E6%96%B0%E8%AE%BE%E5%A4%87%E4%B8%8A%E4%BD%BF%E7%94%A8Git%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/11/2020-07-11-%E6%96%B0%E8%AE%BE%E5%A4%87%E4%B8%8A%E4%BD%BF%E7%94%A8Git%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/" class="post-title-link" itemprop="url">新设备上使用Git连接远程仓库</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-11 00:00:00" itemprop="dateCreated datePublished" datetime="2020-07-11T00:00:00+08:00">2020-07-11</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>559</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="新设备上使用git连接远程仓库">新设备上使用Git连接远程仓库</h1>
+<p>疫情期间，想起来Blog已经很久没更新了。在Freenom上申请的txing.tk免费域名也过期了，重新申请一直确认不了订单，据说是免费域名被滥用，现在不批准.tk的域名了。在阿里云和腾讯上看了看，正常点后缀的域名都好贵（十年期），暂时还是用原始网址吧。</p>
+<p>由于此前Blog是基于github
+page建立的，一直是使用实验室的电脑更新的远程仓库。现在需要在新设备上更新仓库，按一下方式处理可以尽量避免问题。</p>
+<p><strong>Step 1:</strong> 在本地打算放仓库的位置右键，选择Git Bush
+Here，然后先把仓库克隆到本地</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/txing-casia/txing-casia.github.io.git </span><br></pre></td></tr></table></figure>
+<p>完成后，打开文件夹</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd txing-casia.github.io</span><br></pre></td></tr></table></figure>
+<p>过程中应该不需要使用git
+init。此时可以对文件进行修改，之后是上传步骤。</p>
+<p><strong>Step 2: </strong> 上传三连</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git add .</span><br><span class="line">$ git commit -m <span class="string">&quot;Changes&quot;</span></span><br><span class="line">$ git push origin master</span><br><span class="line"><span class="comment"># 如果失败，最后一行可替换为</span></span><br><span class="line">$ git push origin master:master -f</span><br></pre></td></tr></table></figure>
+<p>通过git status查看修改内容</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br></pre></td></tr></table></figure>
+<p>Txing</p>
+<p>2020年7月11日</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/03/10/2020-03-10-LaTeX%E7%9A%84PDF%E9%A2%84%E8%A7%88%E4%B8%AD%EF%BC%8C%E6%97%A0%E6%B3%95%E6%AD%A3%E5%90%91%E5%8F%8D%E5%90%91%E5%AE%9A%E4%BD%8D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1021,140 +1109,6 @@ for Find Smallest Letter Greater Than Target.</li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/08/14/2019-08-14-Q704-Binary%20Search/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/08/14/2019-08-14-Q704-Binary%20Search/" class="post-title-link" itemprop="url">Q704 Binary Search</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-08-14 00:00:00" itemprop="dateCreated datePublished" datetime="2019-08-14T00:00:00+08:00">2019-08-14</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.7k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="binary-search"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/binary-search/">Binary
-Search</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given a <strong>sorted</strong> (in ascending order) integer array
-<code>nums</code> of <code>n</code> elements and a <code>target</code>
-value, write a function to search <code>target</code> in
-<code>nums</code>. If <code>target</code> exists, then return its index,
-otherwise return <code>-1</code>.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input: nums = [-1,0,3,5,9,12], target = 9 Output: 4 Explanation: 9
-exists in nums and its index is 4</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>Input: nums = [-1,0,3,5,9,12], target = 2 Output: -1 Explanation: 2
-does not exist in nums so return -1</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li>You may assume that all elements in <code>nums</code> are
-unique.</li>
-<li><code>n</code> will be in the range <code>[1, 10000]</code>.</li>
-<li>The value of each element in <code>nums</code> will be in the range
-<code>[-9999, 9999]</code>.s</li>
-</ul>
-</blockquote>
-<h2 id="approach-1-binary-search">Approach 1: Binary Search</h2>
-<p><strong>Intuition and Algorithm</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">search</span>(<span class="params">self, nums, target</span>):</span><br><span class="line">        left, right = <span class="number">0</span>, <span class="built_in">len</span>(nums) - <span class="number">1</span> <span class="comment"># left和right分别是首末两个元素</span></span><br><span class="line">        <span class="keyword">while</span> left &lt;= right: <span class="comment"># 不断移动左右边界</span></span><br><span class="line">            pivot = (left + right) // <span class="number">2</span> <span class="comment"># 取中间序号并观察大小</span></span><br><span class="line">            <span class="keyword">if</span> nums[pivot] == target:</span><br><span class="line">                <span class="keyword">return</span> pivot</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> target &lt; nums[pivot]:</span><br><span class="line">                    right = pivot - <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    left = pivot + <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums = [-<span class="number">1</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">9</span>, <span class="number">12</span>]</span><br><span class="line">    target = <span class="number">9</span></span><br><span class="line">    solution=Solution().search(nums,target)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li>Time complexity : <span class="math display">\[\mathcal{O}(\log
-N)\]</span>.</li>
-<li>Let's compute time complexity with the help of <a
-target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)">master
-theorem</a> <span class="math display">\[T(N) =
-aT\left(\frac{N}{b}\right) + \Theta(N^d)\]</span>. The equation
-represents dividing the problem up into <span
-class="math display">\[a\]</span> subproblems of size <span
-class="math display">\[\frac{N}{b}\]</span> in <span
-class="math display">\[\Theta(N^d)\]</span> time. Here at step there is
-only one subproblem <code>a = 1</code>, its size is a half of the
-initial problem <code>b = 2</code>, and all this happens in a constant
-time <code>d = 0</code>. That means that <span
-class="math display">\[\log_b{a} = d\]</span> and hence we're dealing
-with <a
-target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)#Case_2_example">case
-2</a> that results in <span
-class="math display">\[\mathcal{O}(n^{\log_b{a}} \log^{d + 1} N)=O(\log
-N) \]</span>time complexity.</li>
-<li>Space complexity : <span
-class="math display">\[\mathcal{O}(1)\]</span> since it's a constant
-space solution.</li>
-<li>Runtime: 236 ms, faster than 11.72% of Python online submissions for
-Binary Search.</li>
-<li>Memory Usage: 12.8 MB, less than 33.33% of Python online submissions
-for Binary Search.</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1226,7 +1180,7 @@ for Binary Search.</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">234</span>
+          <span class="site-state-item-count">235</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1239,7 +1193,7 @@ for Binary Search.</li>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1293,12 +1247,12 @@ for Binary Search.</li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">572k</span>
+    <span title="Symbols count total">577k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:40</span>
+    <span title="Reading time total">8:45</span>
 </div>
 
         

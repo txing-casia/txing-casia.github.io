@@ -198,6 +198,105 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/06/29/2021-06-28-Reinforcement%20Learning%20-%20Proximal%20Policy%20Optimization%20Algorithms/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/29/2021-06-28-Reinforcement%20Learning%20-%20Proximal%20Policy%20Optimization%20Algorithms/" class="post-title-link" itemprop="url">Reinforcement Learning | Proximal Policy Optimization Algorithms</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-06-29 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-29T00:00:00+08:00">2021-06-29</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>759</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="proximal-policy-optimization-algorithms">Proximal Policy
+Optimization Algorithms</h1>
+<p>论文链接：https://arxiv.org/pdf/1707.06347.pdf</p>
+<h2 id="背景">背景</h2>
+<p>基于策略梯度和 trust region policy optimization
+(TRPO)方法，提出multiple epochs of minibatch updates的方式，解决了Policy
+Gradient算法中步长难以确定的问题。而一般策略梯度方法 perform one
+gradient update per data sample。</p>
+<h2 id="主要内容">主要内容</h2>
+<ul>
+<li>目的是实现数据高效和鲁棒性（data efficient, and robust）</li>
+<li>使用 first-order optimization</li>
+<li>PPO有两种主要变体：PPO-penalty和PPO-clip。
+<ul>
+<li>PPO-Penalty
+近似解决了像TRPO这样的受KL约束的更新，但是对目标函数中的KL偏离进行了惩罚，而不是使其成为硬约束，并且在训练过程中自动调整了惩罚系数，以便对其进行适当缩放。</li>
+<li>PPO-Clip 在目标中没有KL散度项，也没有任何约束。
+取而代之的是依靠对目标函数的专门裁剪来消除新政策消除旧政策的激励。</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+L(s,a,\theta_k,\theta)=\min
+\Bigg(\frac{\pi_{\theta}(a|s)}{\pi_{\theta_k}(a|s)}A^{\pi_k}(s,a),
+\text{clip}\bigg(\frac{\pi_{\theta}(a|s)}{\pi_{\theta_k}(a|s)},1-\epsilon,1+\epsilon
+\bigg)A^{\pi_k}(s,a) \Bigg)
+\]</span></p>
+<h2 id="总结">总结</h2>
+<p>相比于TRPO，PPO缺失比较简单、直接，特别是PPO2（PPO-Clip），通过裁减损失哈数的方式保证了更新的稳定。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/05/20/2021-05-20-%E5%AE%89%E8%A3%85Atari%E7%8E%AF%E5%A2%83%E7%9B%B8%E5%85%B3%E6%8A%A5%E9%94%99/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1137,170 +1236,6 @@ path.pop() 。</li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/04/20/2021-04-20-Q236-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88-%E4%B8%AD%E7%AD%89-%E6%A0%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/20/2021-04-20-Q236-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88-%E4%B8%AD%E7%AD%89-%E6%A0%91/" class="post-title-link" itemprop="url">Q236-二叉树的最近公共祖先-中等-树</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-04-20 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-20T00:00:00+08:00">2021-04-20</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.5k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="二叉树的最近公共祖先"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/">236.
-二叉树的最近公共祖先</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p>
-<p>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个节点
-p、q，最近公共祖先表示为一个节点 x，满足 x 是 p、q 的祖先且 x
-的深度尽可能大（一个节点也可以是它自己的祖先）。”</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入：root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1 输出：3
-解释：节点 5 和节点 1 的最近公共祖先是节点 3 。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>输入：root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4 输出：5
-解释：节点 5 和节点 4 的最近公共祖先是节点 5
-。因为根据定义最近公共祖先节点可以为节点本身。</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li>树中节点数目在范围 [2, 105] 内。</li>
-<li>-109 &lt;= Node.val &lt;= 109</li>
-<li>所有 Node.val 互不相同 。</li>
-<li>p != q</li>
-<li>p 和 q 均存在于给定的二叉树中。</li>
-</ul>
-</blockquote>
-<h3 id="apporach-1-直接递归方法">Apporach 1: 直接递归方法</h3>
-<p>对每个结点的 left / right 两个子节点递归判断是否包含 p 和 q</p>
-<ul>
-<li>当 left 和 right 同时为空 ：说明 root 的左 / 右子树中都不包含 p,q
-，返回 null ；</li>
-<li>当 left 和 right 同时不为空 ：说明 p, q 分列在 root 的 异侧 （分别在
-左 / 右子树），因此 root 为最近公共祖先，返回 root ；</li>
-<li>当 left 为空 ，right 不为空 ：p,q 都不在 root 的左子树中，直接返回
-right 。具体可分为两种情况：
-<ul>
-<li>p,q 其中一个在 root 的 右子树 中，此时 right 指向 p（假设为 p
-）；</li>
-<li>p,q 两节点都在 root 的 右子树 中，此时的 right 指向 最近公共祖先节点
-；</li>
-</ul></li>
-<li>当 left 不为空 ， right 为空 ：与情况 3. 同理；</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">lowestCommonAncestor</span>(<span class="params">self, root: <span class="string">&#x27;TreeNode&#x27;</span>, p: <span class="string">&#x27;TreeNode&#x27;</span>, q: <span class="string">&#x27;TreeNode&#x27;</span></span>) -&gt; <span class="string">&#x27;TreeNode&#x27;</span>:     </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root <span class="keyword">or</span> root == p <span class="keyword">or</span> root == q: <span class="keyword">return</span> root</span><br><span class="line">        left = self.lowestCommonAncestor(root.left, p, q)</span><br><span class="line">        right = self.lowestCommonAncestor(root.right, p, q)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> left: <span class="keyword">return</span> right</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> right: <span class="keyword">return</span> left</span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度 O(N) ： 其中 N
-为二叉树节点数；最差情况下，需要递归遍历树的所有节点.</li>
-<li>空间复杂度 O(N) ： 最差情况下，递归深度达到 N，系统使用 O(N)
-大小的额外空间。</li>
-</ul>
-<h3 id="approach-2-递归">Approach 2: 递归</h3>
-<p>我们递归遍历整棵二叉树，定义 <span
-class="math display">\[f_x\]</span> 表示 x 节点的子树中是否包含 p 节点或
-q 节点，如果包含为 true，否则为 false。那么符合条件的最近公共祖先 x
-一定满足如下条件：</p>
-<p><span class="math display">\[(f_{\text{lson}}\ \&amp;\&amp;\
-f_{\text{rson}})\ ||\ ((x\ =\ p\ ||\ x\ =\ q)\ \&amp;\&amp;\
-(f_{\text{lson}}\ ||\ f_{\text{rson}}))\]</span> 其中 <span
-class="math display">\[\text{lson}\]</span> 和 <span
-class="math display">\[\text{rson}\]</span> 分别代表 x
-节点的左孩子和右孩子。初看可能会感觉条件判断有点复杂，我们来一条条看，<span
-class="math display">\[f_{\text{lson}}\ \&amp;\&amp;\
-f_{\text{rson}}\]</span> 说明左子树和右子树均包含 p 节点或 q
-节点，如果左子树包含的是 p 节点，那么右子树只能包含 q
-节点，反之亦然，因为 p 节点和 q
-节点都是不同且唯一的节点，因此如果满足这个判断条件即可说明 x
-就是我们要找的最近公共祖先。再来看第二条判断条件，这个判断条件即是考虑了
-x 恰好是 p 节点或 q
-节点且它的左子树或右子树有一个包含了另一个节点的情况，因此如果满足这个判断条件亦可说明
-xx 就是我们要找的最近公共祖先。</p>
-<p>你可能会疑惑这样找出来的公共祖先深度是否是最大的。其实是最大的，因为我们是自底向上从叶子节点开始更新的，所以在所有满足条件的公共祖先中一定是深度最大的祖先先被访问到，且由于
-<span
-class="math display">\[f_x\]</span>本身的定义很巧妙，在找到最近公共祖先
-x 以后，<span class="math display">\[f_x\]</span> 按定义被设置为 true
-，即假定了这个子树中只有一个 p 节点或 q
-节点，因此其他公共祖先不会再被判断为符合条件。</p>
-<p>下图展示了一个示例，搜索树中两个节点 9 和 11 的最近公共祖先。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    TreeNode* ans;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">dfs</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="type">bool</span> lson = <span class="built_in">dfs</span>(root-&gt;left, p, q);</span><br><span class="line">        <span class="type">bool</span> rson = <span class="built_in">dfs</span>(root-&gt;right, p, q);</span><br><span class="line">        <span class="keyword">if</span> ((lson &amp;&amp; rson) || ((root-&gt;val == p-&gt;val || root-&gt;val == q-&gt;val) &amp;&amp; (lson || rson))) &#123;</span><br><span class="line">            ans = root;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">return</span> lson || rson || (root-&gt;val == p-&gt;val || root-&gt;val == q-&gt;val);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">TreeNode* <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">dfs</span>(root, p, q);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;        </span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(N)，其中 N
-是二叉树的节点数。二叉树的所有节点有且只会被访问一次，因此时间复杂度为
-O(N)。</p></li>
-<li><p>空间复杂度：O(N) ，其中 N
-是二叉树的节点数。递归调用的栈深度取决于二叉树的高度，二叉树最坏情况下为一条链，此时高度为
-N，因此空间复杂度为 O(N)。</p></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1372,7 +1307,7 @@ N，因此空间复杂度为 O(N)。</p></li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">234</span>
+          <span class="site-state-item-count">235</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1385,7 +1320,7 @@ N，因此空间复杂度为 O(N)。</p></li>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1439,12 +1374,12 @@ N，因此空间复杂度为 O(N)。</p></li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">572k</span>
+    <span title="Symbols count total">577k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:40</span>
+    <span title="Reading time total">8:45</span>
 </div>
 
         

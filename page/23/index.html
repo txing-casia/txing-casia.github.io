@@ -198,6 +198,132 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/04/2020-09-04-Q257%20Binary%20Tree%20Paths-%E7%AE%80%E5%8D%95-%E6%B7%B1%E5%BA%A6and%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/04/2020-09-04-Q257%20Binary%20Tree%20Paths-%E7%AE%80%E5%8D%95-%E6%B7%B1%E5%BA%A6and%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" class="post-title-link" itemprop="url">Q257 Binary Tree Paths-简单-深度/广度优先搜索</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-09-04 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-04T00:00:00+08:00">2020-09-04</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.1k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="binary-tree-paths"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-paths/">Binary Tree
+Paths</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>Given a binary tree, return all root-to-leaf paths.</p>
+<p>Note: A leaf is a node with no children.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>Input:</p>
+<pre><code>1</code></pre>
+<p>/<br />
+2 3<br />
+5</p>
+<p>Output: ["1-&gt;2-&gt;5", "1-&gt;3"]</p>
+<p>Explanation: All root-to-leaf paths are: 1-&gt;2-&gt;5, 1-&gt;3</p>
+</blockquote>
+<h3 id="approach-1-深度优先搜索">Approach 1: 深度优先搜索</h3>
+<p>最直观的方法是使用深度优先搜索。在深度优先搜索遍历二叉树时，我们需要考虑当前的节点以及它的孩子节点。</p>
+<p>如果当前节点不是叶子节点，则在当前的路径末尾添加该节点，并继续递归遍历该节点的每一个叶子节点。
+如果当前节点是叶子节点，则在当前路径末尾添加该节点后我们就得到了一条从根节点到叶子节点的路径，将该路径加入到答案即可。
+如此，当遍历完整棵二叉树以后我们就得到了所有从根节点到叶子节点的路径。当然，深度优先搜索也可以使用非递归的方式实现，这里不再赘述。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">binaryTreePaths</span>(<span class="params">self, root</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: List[str]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">construct_paths</span>(<span class="params">root, path</span>):</span><br><span class="line">            <span class="keyword">if</span> root:</span><br><span class="line">                path += <span class="built_in">str</span>(root.val)</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> root.left <span class="keyword">and</span> <span class="keyword">not</span> root.right:  <span class="comment"># 当前节点是叶子节点</span></span><br><span class="line">                    paths.append(path)  <span class="comment"># 把路径加入到答案中</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    path += <span class="string">&#x27;-&gt;&#x27;</span>  <span class="comment"># 当前节点不是叶子节点，继续递归遍历</span></span><br><span class="line">                    construct_paths(root.left, path)</span><br><span class="line">                    construct_paths(root.right, path)</span><br><span class="line"></span><br><span class="line">        paths = []</span><br><span class="line">        construct_paths(root, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span> paths</span><br></pre></td></tr></table></figure>
+<h3 id="复杂度分析">复杂度分析</h3>
+<ul>
+<li><p>时间复杂度：<span class="math display">\[O(N^2)\]</span>，其中 N
+表示节点数目。在深度优先搜索中每个节点会被访问一次且只会被访问一次，每一次会对
+path 变量进行拷贝构造，时间代价为 O(N)，故时间复杂度为 <span
+class="math display">\[ O(N^2)\]</span>。</p></li>
+<li><p>空间复杂度：<span class="math display">\[O(N^2)\]</span>，其中 N
+表示节点数目。除答案数组外我们需要考虑递归调用的栈空间。在最坏情况下，当二叉树中每个节点只有一个孩子节点时，即整棵二叉树呈一个链状，此时递归的层数为
+N，此时每一层的 path 变量的空间代价的总和为 <span
+class="math display">\[O(\sum_{i = 1}^{N} i) = O(N^2)\]</span>
+空间复杂度为 <span
+class="math display">\[O(N^2)\]</span>。最好情况下，当二叉树为平衡二叉树时，它的高度为
+<span class="math display">\[\log N\]</span>，此时空间复杂度为 <span
+class="math display">\[O((\log {N})^2)\]</span>。</p></li>
+<li><p><strong>平衡二叉树</strong>（Balanced Binary
+Tree）又被称为AVL树（有别于AVL算法），且具有以下性质：它是一
+棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树。</p></li>
+</ul>
+<h3 id="approach-2-广度优先搜索">Approach 2: 广度优先搜索</h3>
+<p>我们也可以用广度优先搜索来实现。我们维护一个队列，存储节点以及根到该节点的路径。一开始这个队列里只有根节点。在每一步迭代中，我们取出队列中的首节点，如果它是叶子节点，则将它对应的路径加入到答案中。如果它不是叶子节点，则将它的所有孩子节点加入到队列的末尾。当队列为空时广度优先搜索结束，我们即能得到答案。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">binaryTreePaths</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">str</span>]:</span><br><span class="line">        paths = <span class="built_in">list</span>()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> paths</span><br><span class="line"></span><br><span class="line">        node_queue = collections.deque([root])</span><br><span class="line">        path_queue = collections.deque([<span class="built_in">str</span>(root.val)])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> node_queue:</span><br><span class="line">            node = node_queue.popleft()</span><br><span class="line">            path = path_queue.popleft()</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> node.left <span class="keyword">and</span> <span class="keyword">not</span> node.right:</span><br><span class="line">                paths.append(path)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> node.left:</span><br><span class="line">                    node_queue.append(node.left)</span><br><span class="line">                    path_queue.append(path + <span class="string">&#x27;-&gt;&#x27;</span> + <span class="built_in">str</span>(node.left.val))</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> node.right:</span><br><span class="line">                    node_queue.append(node.right)</span><br><span class="line">                    path_queue.append(path + <span class="string">&#x27;-&gt;&#x27;</span> + <span class="built_in">str</span>(node.right.val))</span><br><span class="line">        <span class="keyword">return</span> paths</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="复杂度分析-1">复杂度分析</h3>
+<ul>
+<li>时间复杂度：<span class="math display">\[O(N^2)\]</span>，其中 N
+表示节点数目。分析同方法一。</li>
+<li>空间复杂度：<span class="math display">\[O(N^2)\]</span>，其中 N
+表示节点数目。在最坏情况下，队列中会存在 N
+个节点，保存字符串的队列中每个节点的最大长度为 N，故空间复杂度为 <span
+class="math display">\[O(N^2)\]</span></li>
+</ul>
+<h3 id="section"></h3>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/03/2020-09-03-Q51-N%E7%9A%87%E5%90%8E-%E5%9B%B0%E9%9A%BE-%E6%8E%92%E5%88%97%E6%9E%9A%E4%B8%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1165,94 +1291,6 @@ Page不翻墙也能打开。那么应该是我的网络有问题。</li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/07/11/2020-07-11-%E6%96%B0%E8%AE%BE%E5%A4%87%E4%B8%8A%E4%BD%BF%E7%94%A8Git%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/11/2020-07-11-%E6%96%B0%E8%AE%BE%E5%A4%87%E4%B8%8A%E4%BD%BF%E7%94%A8Git%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/" class="post-title-link" itemprop="url">新设备上使用Git连接远程仓库</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-11 00:00:00" itemprop="dateCreated datePublished" datetime="2020-07-11T00:00:00+08:00">2020-07-11</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>559</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="新设备上使用git连接远程仓库">新设备上使用Git连接远程仓库</h1>
-<p>疫情期间，想起来Blog已经很久没更新了。在Freenom上申请的txing.tk免费域名也过期了，重新申请一直确认不了订单，据说是免费域名被滥用，现在不批准.tk的域名了。在阿里云和腾讯上看了看，正常点后缀的域名都好贵（十年期），暂时还是用原始网址吧。</p>
-<p>由于此前Blog是基于github
-page建立的，一直是使用实验室的电脑更新的远程仓库。现在需要在新设备上更新仓库，按一下方式处理可以尽量避免问题。</p>
-<p><strong>Step 1:</strong> 在本地打算放仓库的位置右键，选择Git Bush
-Here，然后先把仓库克隆到本地</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/txing-casia/txing-casia.github.io.git </span><br></pre></td></tr></table></figure>
-<p>完成后，打开文件夹</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd txing-casia.github.io</span><br></pre></td></tr></table></figure>
-<p>过程中应该不需要使用git
-init。此时可以对文件进行修改，之后是上传步骤。</p>
-<p><strong>Step 2: </strong> 上传三连</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git add .</span><br><span class="line">$ git commit -m <span class="string">&quot;Changes&quot;</span></span><br><span class="line">$ git push origin master</span><br><span class="line"><span class="comment"># 如果失败，最后一行可替换为</span></span><br><span class="line">$ git push origin master:master -f</span><br></pre></td></tr></table></figure>
-<p>通过git status查看修改内容</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br></pre></td></tr></table></figure>
-<p>Txing</p>
-<p>2020年7月11日</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1324,7 +1362,7 @@ init。此时可以对文件进行修改，之后是上传步骤。</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">234</span>
+          <span class="site-state-item-count">235</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1337,7 +1375,7 @@ init。此时可以对文件进行修改，之后是上传步骤。</p>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1391,12 +1429,12 @@ init。此时可以对文件进行修改，之后是上传步骤。</p>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">572k</span>
+    <span title="Symbols count total">577k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:40</span>
+    <span title="Reading time total">8:45</span>
 </div>
 
         

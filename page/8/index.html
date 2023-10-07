@@ -198,6 +198,156 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/09/08/2021-09-08-JZOffer%2029-%E9%A1%BA%E6%97%B6%E9%92%88%E6%89%93%E5%8D%B0%E7%9F%A9%E9%98%B5-%E7%AE%80%E5%8D%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/08/2021-09-08-JZOffer%2029-%E9%A1%BA%E6%97%B6%E9%92%88%E6%89%93%E5%8D%B0%E7%9F%A9%E9%98%B5-%E7%AE%80%E5%8D%95/" class="post-title-link" itemprop="url">JZOffer 29-顺时针打印矩阵-简单</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-09-08 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-08T00:00:00+08:00">2021-09-08</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.8k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>3 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="剑指-offer-29.-顺时针打印矩阵"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/">剑指
+Offer 29. 顺时针打印矩阵</a></h4>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
+输出：[1,2,3,6,9,8,7,4,5]</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ul>
+<li><code>0 &lt;= matrix.length &lt;= 100</code></li>
+<li><code>0 &lt;= matrix[i].length &lt;= 100</code></li>
+</ul>
+</blockquote>
+<h3 id="approach-1-模拟">Approach 1: 模拟</h3>
+<p>可以模拟打印矩阵的路径。初始位置是矩阵的左上角，初始方向是向右，当路径超出界限或者进入之前访问过的位置时，顺时针旋转，进入下一个方向。</p>
+<p>判断路径是否进入之前访问过的位置需要使用一个与输入矩阵大小相同的辅助矩阵
+<span
+class="math display">\[\textit{visited}\]</span>，其中的每个元素表示该位置是否被访问过。当一个元素被访问时，将
+<span class="math display">\[\textit{visited}\]</span>
+中的对应位置的元素设为已访问。</p>
+<p>如何判断路径是否结束？由于矩阵中的每个元素都被访问一次，因此路径的长度即为矩阵中的元素数量，当路径的长度达到矩阵中的元素数量时即为完整路径，将该路径返回。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">spiralOrder</span>(<span class="params">self, matrix: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> matrix <span class="keyword">or</span> <span class="keyword">not</span> matrix[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">list</span>()</span><br><span class="line">        </span><br><span class="line">        rows, columns = <span class="built_in">len</span>(matrix), <span class="built_in">len</span>(matrix[<span class="number">0</span>])</span><br><span class="line">        visited = [[<span class="literal">False</span>] * columns <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(rows)]</span><br><span class="line">        total = rows * columns</span><br><span class="line">        order = [<span class="number">0</span>] * total</span><br><span class="line"></span><br><span class="line">        directions = [[<span class="number">0</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">0</span>], [<span class="number">0</span>, -<span class="number">1</span>], [-<span class="number">1</span>, <span class="number">0</span>]]</span><br><span class="line">        row, column = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        directionIndex = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(total):</span><br><span class="line">            order[i] = matrix[row][column]</span><br><span class="line">            visited[row][column] = <span class="literal">True</span></span><br><span class="line">            nextRow, nextColumn = row + directions[directionIndex][<span class="number">0</span>], column + directions[directionIndex][<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> (<span class="number">0</span> &lt;= nextRow &lt; rows <span class="keyword">and</span> <span class="number">0</span> &lt;= nextColumn &lt; columns <span class="keyword">and</span> <span class="keyword">not</span> visited[nextRow][nextColumn]):</span><br><span class="line">                directionIndex = (directionIndex + <span class="number">1</span>) % <span class="number">4</span></span><br><span class="line">            row += directions[directionIndex][<span class="number">0</span>]</span><br><span class="line">            column += directions[directionIndex][<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">return</span> order</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：<span class="math display">\[O(mn)\]</span>，其中 m
+和 n
+分别是输入矩阵的行数和列数。矩阵中的每个元素都要被访问一次。</p></li>
+<li><p>空间复杂度：<span
+class="math display">\[O(mn)\]</span>。需要创建一个大小为 <span
+class="math display">\[m \times n\]</span> 的矩阵 <span
+class="math display">\[\textit{visited}\]</span>
+记录每个位置是否被访问过。</p></li>
+</ul>
+<h3 id="approach-2-按层模拟">Approach 2: 按层模拟</h3>
+<p>可以将矩阵看成若干层，首先打印最外层的元素，其次打印次外层的元素，直到打印最内层的元素。</p>
+<p>定义矩阵的第 k 层是到最近边界距离为 k
+的所有顶点。例如，下图矩阵最外层元素都是第 1 层，次外层元素都是第 2
+层，剩下的元素都是第 3 层。</p>
+<p>对于每层，从左上方开始以顺时针的顺序遍历所有元素。假设当前层的左上角位于
+(<span class="math display">\[\textit{top},
+\textit{left})\]</span>，右下角位于 <span
+class="math display">\[(\textit{bottom},
+\textit{right})\]</span>，按照如下顺序遍历当前层的元素。</p>
+<p>从左到右遍历上侧元素，依次为 <span
+class="math display">\[(\textit{top}, \textit{left})\]</span> 到 <span
+class="math display">\[(\textit{top}, \textit{right})\]</span>.</p>
+<p>从上到下遍历右侧元素，依次为 <span
+class="math display">\[(\textit{top} + 1, \textit{right}) \]</span>到
+<span class="math display">\[(\textit{bottom},
+\textit{right})\]</span>。</p>
+<p>如果 <span class="math display">\[\textit{left} &lt;
+\textit{right}\]</span> 且 <span class="math display">\[\textit{top}
+&lt; \textit{bottom}\]</span>，则从右到左遍历下侧元素，依次为 <span
+class="math display">\[(\textit{bottom}, \textit{right} - 1)\]</span> 到
+<span class="math display">\[(\textit{bottom}, \textit{left} +
+1)\]</span> ，以及从下到上遍历左侧元素，依次为 <span
+class="math display">\[(\textit{bottom}, \textit{left})\]</span> 到
+<span class="math display">\[(\textit{top} + 1,
+\textit{left})\]</span>。</p>
+<p>遍历完当前层的元素之后，将 <span class="math display">\[\textit{left}
+\]</span>和 <span class="math display">\[\textit{top}\]</span> 分别增加
+1，将 <span class="math display">\[\textit{right}\]</span> 和 <span
+class="math display">\[\textit{bottom}\]</span> 分别减少
+1，进入下一层继续遍历，直到遍历完所有元素为止。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">spiralOrder</span>(<span class="params">self, matrix: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> matrix <span class="keyword">or</span> <span class="keyword">not</span> matrix[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">list</span>()</span><br><span class="line">        </span><br><span class="line">        rows, columns = <span class="built_in">len</span>(matrix), <span class="built_in">len</span>(matrix[<span class="number">0</span>])</span><br><span class="line">        order = <span class="built_in">list</span>()</span><br><span class="line">        left, right, top, bottom = <span class="number">0</span>, columns - <span class="number">1</span>, <span class="number">0</span>, rows - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> left &lt;= right <span class="keyword">and</span> top &lt;= bottom:</span><br><span class="line">            <span class="keyword">for</span> column <span class="keyword">in</span> <span class="built_in">range</span>(left, right + <span class="number">1</span>):</span><br><span class="line">                order.append(matrix[top][column])</span><br><span class="line">            <span class="keyword">for</span> row <span class="keyword">in</span> <span class="built_in">range</span>(top + <span class="number">1</span>, bottom + <span class="number">1</span>):</span><br><span class="line">                order.append(matrix[row][right])</span><br><span class="line">            <span class="keyword">if</span> left &lt; right <span class="keyword">and</span> top &lt; bottom:</span><br><span class="line">                <span class="keyword">for</span> column <span class="keyword">in</span> <span class="built_in">range</span>(right - <span class="number">1</span>, left, -<span class="number">1</span>):</span><br><span class="line">                    order.append(matrix[bottom][column])</span><br><span class="line">                <span class="keyword">for</span> row <span class="keyword">in</span> <span class="built_in">range</span>(bottom, top, -<span class="number">1</span>):</span><br><span class="line">                    order.append(matrix[row][left])</span><br><span class="line">            left, right, top, bottom = left + <span class="number">1</span>, right - <span class="number">1</span>, top + <span class="number">1</span>, bottom - <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> order</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析：</strong></p>
+<ul>
+<li><p>时间复杂度：<span class="math display">\[O(mn)\]</span>，其中 m
+和 n
+分别是输入矩阵的行数和列数。矩阵中的每个元素都要被访问一次。</p></li>
+<li><p>空间复杂度：<span
+class="math display">\[O(1)\]</span>。除了输出数组以外，空间复杂度是常数。</p></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/09/07/2021-09-07-Q329-%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E8%B7%AF%E5%BE%84-%E5%9B%B0%E9%9A%BE-%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1068,185 +1218,6 @@ class="math display">\[O(n^2)\]</span>的算法，
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/22/2021-07-22-Q994-%E8%85%90%E7%83%82%E7%9A%84%E6%A9%98%E5%AD%90-%E4%B8%AD%E7%AD%89-%E6%B7%B1%E5%BA%A6and%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/22/2021-07-22-Q994-%E8%85%90%E7%83%82%E7%9A%84%E6%A9%98%E5%AD%90-%E4%B8%AD%E7%AD%89-%E6%B7%B1%E5%BA%A6and%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" class="post-title-link" itemprop="url">Q994-腐烂的橘子-中等-深度/宽度优先搜索</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-07-22 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-22T00:00:00+08:00">2021-07-22</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>3.9k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>4 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="腐烂的橘子"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/rotting-oranges/">994.
-腐烂的橘子</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>在给定的网格中，每个单元格可以有以下三个值之一：</p>
-<ul>
-<li><p>值 0 代表空单元格；</p></li>
-<li><p>值 1 代表新鲜橘子；</p></li>
-<li><p>值 2 代表腐烂的橘子。</p></li>
-</ul>
-<p>每分钟，任何与腐烂的橘子（在 4
-个正方向上）相邻的新鲜橘子都会腐烂。</p>
-<p>返回直到单元格中没有新鲜橘子为止所必须经过的最小分钟数。如果不可能，返回
--1。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入：[[2,1,1],[1,1,0],[0,1,1]] 输出：4</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>输入：[[2,1,1],[0,1,1],[1,0,1]] 输出：-1 解释：左下角的橘子（第 2
-行， 第 0 列）永远不会腐烂，因为腐烂只会发生在 4 个正向上。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 3:</strong></p>
-<p>输入：[[0,2]] 输出：0 解释：因为 0
-分钟时已经没有新鲜橘子了，所以答案就是 0 。</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li><code>1 &lt;= grid.length &lt;= 10</code></li>
-<li><code>1 &lt;= grid[0].length &lt;= 10</code></li>
-<li><code>grid[i][j]</code> 仅为 <code>0</code>、<code>1</code> 或
-<code>2</code></li>
-</ul>
-</blockquote>
-<h3 id="approach-1-宽度优先搜索">Approach 1: 宽度优先搜索</h3>
-<h4 id="什么情况应当用-bfs">什么情况应当用 BFS</h4>
-<p>我们都知道 DFS（深度优先搜索）和
-BFS（广度优先搜索）。它们各有不同的适应场景。</p>
-<p>BFS 可以看成是层序遍历。从某个结点出发，BFS 首先遍历到距离为 1
-的结点，然后是距离为 2、3、4…… 的结点。因此，BFS
-可以用来求最短路径问题。BFS 先搜索到的结点，一定是距离最近的结点。</p>
-<p>再看看这道题的题目要求：返回直到单元格中没有新鲜橘子为止所必须经过的最小分钟数。翻译一下，实际上就是求腐烂橘子到所有新鲜橘子的最短路径。那么这道题使用
-BFS，应该是毫无疑问的了。</p>
-<h4 id="如何写最短路径的-bfs-代码">如何写（最短路径的） BFS 代码</h4>
-<p>我们都知道 BFS 需要使用队列，代码框架是这样子的（伪代码）：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> queue 非空:</span><br><span class="line">	node = queue.pop()</span><br><span class="line">    <span class="keyword">for</span> node 的所有相邻结点 m:</span><br><span class="line">        <span class="keyword">if</span> m 未访问过:</span><br><span class="line">            queue.push(m)</span><br></pre></td></tr></table></figure>
-<p>但是用 BFS 来求最短路径的话，这个队列中第 1 层和第 2
-层的结点会紧挨在一起，无法区分。因此，我们需要稍微修改一下代码，在每一层遍历开始前，记录队列中的结点数量
-n ，然后一口气处理完这一层的 n 个结点。代码框架是这样的：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">depth = <span class="number">0</span> <span class="comment"># 记录遍历到第几层</span></span><br><span class="line"><span class="keyword">while</span> queue 非空:</span><br><span class="line">    depth++</span><br><span class="line">    n = queue 中的元素个数</span><br><span class="line">    循环 n 次:</span><br><span class="line">        node = queue.pop()</span><br><span class="line">        <span class="keyword">for</span> node 的所有相邻结点 m:</span><br><span class="line">            <span class="keyword">if</span> m 未访问过:</span><br><span class="line">                queue.push(m)</span><br></pre></td></tr></table></figure>
-<h4 id="本题题解">本题题解</h4>
-<p>有了计算最短路径的层序 BFS
-代码框架，写这道题就很简单了。这道题的主要思路是：</p>
-<p>一开始，我们找出所有腐烂的橘子，将它们放入队列，作为第 0 层的结点。
-然后进行 BFS
-遍历，每个结点的相邻结点可能是上、下、左、右四个方向的结点，注意判断结点位于网格边界的特殊情况。
-由于可能存在无法被污染的橘子，我们需要记录新鲜橘子的数量。在 BFS
-中，每遍历到一个橘子（污染了一个橘子），就将新鲜橘子的数量减一。如果 BFS
-结束后这个数量仍未减为零，说明存在无法被污染的橘子。 以下是 Python
-版的题解代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">orangesRotting</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    M = <span class="built_in">len</span>(grid)</span><br><span class="line">    N = <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line">    queue = []</span><br><span class="line">    </span><br><span class="line">    count = <span class="number">0</span> <span class="comment"># count 表示新鲜橘子的数量</span></span><br><span class="line">    <span class="keyword">for</span> r <span class="keyword">in</span> <span class="built_in">range</span>(M):</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">            <span class="keyword">if</span> grid[r][c] == <span class="number">1</span>:</span><br><span class="line">                count += <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> grid[r][c] == <span class="number">2</span>:</span><br><span class="line">                queue.append((r, c))</span><br><span class="line">                </span><br><span class="line">    <span class="built_in">round</span> = <span class="number">0</span> <span class="comment"># round 表示腐烂的轮数，或者分钟数</span></span><br><span class="line">    <span class="keyword">while</span> count &gt; <span class="number">0</span> <span class="keyword">and</span> <span class="built_in">len</span>(queue) &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">round</span> += <span class="number">1</span> </span><br><span class="line">        n = <span class="built_in">len</span>(queue)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            r, c = queue.pop(<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">if</span> r-<span class="number">1</span> &gt;= <span class="number">0</span> <span class="keyword">and</span> grid[r-<span class="number">1</span>][c] == <span class="number">1</span>:</span><br><span class="line">                grid[r-<span class="number">1</span>][c] = <span class="number">2</span></span><br><span class="line">                count -= <span class="number">1</span></span><br><span class="line">                queue.append((r-<span class="number">1</span>, c))</span><br><span class="line">            <span class="keyword">if</span> r+<span class="number">1</span> &lt; M <span class="keyword">and</span> grid[r+<span class="number">1</span>][c] == <span class="number">1</span>:</span><br><span class="line">                grid[r+<span class="number">1</span>][c] = <span class="number">2</span></span><br><span class="line">                count -= <span class="number">1</span></span><br><span class="line">                queue.append((r+<span class="number">1</span>, c))</span><br><span class="line">            <span class="keyword">if</span> c-<span class="number">1</span> &gt;= <span class="number">0</span> <span class="keyword">and</span> grid[r][c-<span class="number">1</span>] == <span class="number">1</span>:</span><br><span class="line">                grid[r][c-<span class="number">1</span>] = <span class="number">2</span></span><br><span class="line">                count -= <span class="number">1</span></span><br><span class="line">                queue.append((r, c-<span class="number">1</span>))</span><br><span class="line">            <span class="keyword">if</span> c+<span class="number">1</span> &lt; N <span class="keyword">and</span> grid[r][c+<span class="number">1</span>] == <span class="number">1</span>:</span><br><span class="line">                grid[r][c+<span class="number">1</span>] = <span class="number">2</span></span><br><span class="line">                count -= <span class="number">1</span></span><br><span class="line">                queue.append((r, c+<span class="number">1</span>))</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> count &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">round</span></span><br></pre></td></tr></table></figure>
-<h3 id="approach-2-多源广度优先搜索">Approach 2: 多源广度优先搜索</h3>
-<p>由题目我们可以知道每分钟每个腐烂的橘子都会使上下左右相邻的新鲜橘子腐烂，这其实是一个模拟广度优先搜索的过程。<strong>所谓广度优先搜索，就是从起点出发，每次都尝试访问同一层的节点，如果同一层都访问完了，再访问下一层，最后广度优先搜索找到的路径就是从起点开始的最短合法路径。</strong></p>
-<p>回到题目中，假设图中只有一个腐烂的橘子，它每分钟向外拓展，腐烂上下左右相邻的新鲜橘子，那么下一分钟，就是这些被腐烂的橘子再向外拓展腐烂相邻的新鲜橘子，这与广度优先搜索的过程均一一对应，<strong>上下左右相邻的新鲜橘子就是该腐烂橘子尝试访问的同一层的节点，路径长度就是新鲜橘子被腐烂的时间。</strong>我们记录下每个新鲜橘子被腐烂的时间，最后如果单元格中没有新鲜橘子，腐烂所有新鲜橘子所必须经过的最小分钟数就是新鲜橘子被腐烂的时间的最大值。</p>
-<p>以上是基于图中只有一个腐烂的橘子的情况，可实际题目中腐烂的橘子数不止一个，看似与广度优先搜索有所区别，不能直接套用，但其实有两个方向的思路。</p>
-<p>一个是耗时比较大且不推荐的做法：我们对每个腐烂橘子为起点都进行一次广度优先搜索，用
-dis[x][y][i]dis[x][y][i] 表示只考虑第 ii
-个腐烂橘子为起点的广度优先搜索，坐标位于 (x, y)
-的新鲜橘子被腐烂的时间，设没有被腐烂的新鲜橘子的
-dis[x][y][i]=infdis[x][y][i]=inf
-，即无限大，表示没有被腐烂，那么每个新鲜橘子被腐烂的最短时间即为 <span
-class="math display">\[
-\min_i dis[x][y][i]
-\]</span>
-最后的答案就是所有新鲜橘子被腐烂的最短时间的最大值，如果是无限大，说明有新鲜橘子没有被腐烂，输出
--1 即可。</p>
-<p>无疑上面的方法需要枚举每个腐烂橘子，所以时间复杂度需要在原先广度优先搜索遍历的时间复杂度上再乘以腐烂橘子数，这在整个网格范围变大的时候十分耗时，所以需要另寻他路。</p>
-<p><strong>多源广度优先搜索</strong></p>
-<p>思路</p>
-<p>观察到对于所有的腐烂橘子，其实它们<strong>在广度优先搜索上是等价于同一层的节点的</strong>。</p>
-<p>假设这些腐烂橘子刚开始是新鲜的，而有一个腐烂橘子（<strong>我们令其为超级源点</strong>）会在下一秒把这些橘子都变腐烂，而这个腐烂橘子刚开始在的时间是
--1 ，那么按照广度优先搜索的算法，下一分钟也就是第 0
-分钟的时候，这个腐烂橘子会把它们都变成腐烂橘子，然后继续向外拓展，所以其实这些腐烂橘子是同一层的节点。那么在广度优先搜索的时候，我们将这些腐烂橘子都放进队列里进行广度优先搜索即可，最后每个新鲜橘子被腐烂的最短时间
-<code>dis[x][y]</code>
-其实是以这个超级源点的腐烂橘子为起点的广度优先搜索得到的结果。</p>
-<p>为了确认是否所有新鲜橘子都被腐烂，可以记录一个变量 cnt
-表示当前网格中的新鲜橘子数，广度优先搜索的时候如果有新鲜橘子被腐烂，则
-cnt-=1 ，最后搜索结束时如果 cnt 大于 0 ，说明有新鲜橘子没被腐烂，返回 -1
-，否则返回所有新鲜橘子被腐烂的时间的最大值即可，也可以在广度优先搜索的过程中把已腐烂的新鲜橘子的值由
-11 改为 22，最后看网格中是否由值为 11 即新鲜的橘子即可。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">orangesRotting</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        R, C = <span class="built_in">len</span>(grid), <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">        <span class="comment"># queue - all starting cells with rotting oranges</span></span><br><span class="line">        queue = collections.deque()</span><br><span class="line">        <span class="keyword">for</span> r, row <span class="keyword">in</span> <span class="built_in">enumerate</span>(grid):</span><br><span class="line">            <span class="keyword">for</span> c, val <span class="keyword">in</span> <span class="built_in">enumerate</span>(row):</span><br><span class="line">                <span class="keyword">if</span> val == <span class="number">2</span>:</span><br><span class="line">                    queue.append((r, c, <span class="number">0</span>))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">neighbors</span>(<span class="params">r, c</span>) -&gt; (<span class="built_in">int</span>, <span class="built_in">int</span>):</span><br><span class="line">            <span class="keyword">for</span> nr, nc <span class="keyword">in</span> ((r - <span class="number">1</span>, c), (r, c - <span class="number">1</span>), (r + <span class="number">1</span>, c), (r, c + <span class="number">1</span>)):</span><br><span class="line">                <span class="keyword">if</span> <span class="number">0</span> &lt;= nr &lt; R <span class="keyword">and</span> <span class="number">0</span> &lt;= nc &lt; C:</span><br><span class="line">                    <span class="keyword">yield</span> nr, nc</span><br><span class="line"></span><br><span class="line">        d = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            r, c, d = queue.popleft()</span><br><span class="line">            <span class="keyword">for</span> nr, nc <span class="keyword">in</span> neighbors(r, c):</span><br><span class="line">                <span class="keyword">if</span> grid[nr][nc] == <span class="number">1</span>:</span><br><span class="line">                    grid[nr][nc] = <span class="number">2</span></span><br><span class="line">                    queue.append((nr, nc, d + <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">any</span>(<span class="number">1</span> <span class="keyword">in</span> row <span class="keyword">for</span> row <span class="keyword">in</span> grid):</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> d</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：<span class="math display">\[O(nm)\]</span>
-即进行一次广度优先搜索的时间，其中 <code>n=grid.length</code>,
-<code>m=grid[0].length</code> 。</li>
-<li>空间复杂度：<span class="math display">\[O(nm)\]</span> 需要额外的
-<code>disdis</code> 数组记录每个新鲜橘子被腐烂的最短时间，大小为 <span
-class="math display">\[O(nm)\]</span>，且广度优先搜索中队列里存放的状态最多不会超过
-nm 个，最多需要 <span class="math display">\[O(nm)\]</span>
-的空间，所以最后的空间复杂度为 <span
-class="math display">\[O(nm)\]</span>。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1318,7 +1289,7 @@ class="math display">\[O(nm)\]</span>。</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">234</span>
+          <span class="site-state-item-count">235</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1331,7 +1302,7 @@ class="math display">\[O(nm)\]</span>。</li>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1385,12 +1356,12 @@ class="math display">\[O(nm)\]</span>。</li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">572k</span>
+    <span title="Symbols count total">577k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8:40</span>
+    <span title="Reading time total">8:45</span>
 </div>
 
         
