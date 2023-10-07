@@ -29,12 +29,17 @@
 <meta property="og:site_name" content="Txing">
 <meta property="og:description" content="ChauffeurNet: Learning to Drive by Imitating the Best and Synthesizing the Worst 1. Introduction  提出通过扰动专家的驾驶数据创建更多有趣的驾驶情景，例如碰撞和off-road等。 在模仿学习中，并不是模仿所有的数据，而是利imitation loss惩罚不期望的情况。 数据：30 mil">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220716-1.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220716-2.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220718-1.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220718-2.png">
 <meta property="article:published_time" content="2022-07-15T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-25T01:54:15.012Z">
+<meta property="article:modified_time" content="2023-10-07T07:31:29.491Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Imitation Learning">
 <meta property="article:tag" content="Autonomous Driving">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://txing-casia.github.io/images/20220716-1.png">
 
 <link rel="canonical" href="https://txing-casia.github.io/2022/07/16/2022-07-16-Autonomous%20Driving%20-%20ChauffeurNet%20Learning%20to%20Drive%20by%20Imitating%20the%20Best%20and%20Synthesizing%20the%20Worst/">
 
@@ -262,8 +267,7 @@ Learning to Drive by Imitating the Best and Synthesizing the Worst</h2>
 <li><p>在模仿学习中，并不是模仿所有的数据，而是利imitation
 loss惩罚不期望的情况。</p></li>
 <li><p>数据：30 million real-world expert driving examples,
-corresponding to about 60 days of continual driving<br />
-</p></li>
+corresponding to about 60 days of continual driving</p></li>
 <li><p>由于无论是原始传感器输入还是直接的控制器输出都很难产生扰动，因此在mid-level的输入输出数据上实施扰动。</p></li>
 </ul>
 <h3 id="related-work">2. Related Work</h3>
@@ -314,8 +318,7 @@ Representation</h4>
 <li>方向角<span class="math display">\[\theta_t\]</span></li>
 <li>速度<span class="math display">\[s_t\]</span></li>
 <li>图像大小：W × H pixels, <span
-class="math display">\[\varphi\]</span> meters/pixel<br />
-</li>
+class="math display">\[\varphi\]</span> meters/pixel</li>
 <li>因此agent只能看见前方的 <span
 class="math display">\[R_{forward}=(H-v_0)\phi\]</span> 米</li>
 </ul></li>
@@ -350,8 +353,7 @@ poses：agent过去的姿态被渲染成一个单一的灰度图像，显示为�
 </ul></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220716-1.png"
+<img src="\images\20220716-1.png"
 alt="Driving model inputs (a-g) and output (h)" />
 <figcaption aria-hidden="true">Driving model inputs (a-g) and output
 (h)</figcaption>
@@ -365,9 +367,7 @@ P_{t+\delta t} = \text{ChauffeurNet}(I,P_t)
 </ul>
 <h4 id="model-design">3.2 Model Design</h4>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220716-2.png"
-alt="Training the driving model" />
+<img src="\images\20220716-2.png" alt="Training the driving model" />
 <figcaption aria-hidden="true">Training the driving model</figcaption>
 </figure>
 <ul>
@@ -385,12 +385,10 @@ representation）</li>
 points）以及其它信息</p></li>
 <li><p>AgentRNN还将车辆的边界框预测为每个未来时间步的空间热图。（The
 AgentRNN also predicts the bounding box of the vehicle as a spatial
-heatmap at each future timestep）<br />
-</p></li>
+heatmap at each future timestep）</p></li>
 <li><p>point <span class="math display">\[P_k\]</span></p></li>
 <li><p>the agent bounding box heatmap <span
-class="math display">\[B_k\]</span><br />
-</p></li>
+class="math display">\[B_k\]</span></p></li>
 <li><p>memory <span class="math display">\[M_k\]</span></p></li>
 <li><p>FeatureNet 输出的特征<span
 class="math display">\[F\]</span></p></li>
@@ -413,8 +411,7 @@ of view (on-road vs. off-road)）</p></li>
 </ul>
 <h4 id="system-architecture">3.3 System Architecture</h4>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220718-1.png"
+<img src="\images\20220718-1.png"
 alt="Software architecture for the end-to-end driving pipeline" />
 <figcaption aria-hidden="true">Software architecture for the end-to-end
 driving pipeline</figcaption>
@@ -501,8 +498,7 @@ imitation losses cause the model to imitate the expert’s demonstrations,
 while the environment losses discourage undesirable behavior such as
 collisions.)</p>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220718-2.png"
+<img src="\images\20220718-2.png"
 alt="Visualization of predictions and loss functions on an example input" />
 <figcaption aria-hidden="true">Visualization of predictions and loss
 functions on an example input</figcaption>

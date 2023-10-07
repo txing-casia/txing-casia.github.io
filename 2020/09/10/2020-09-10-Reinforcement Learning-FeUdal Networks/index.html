@@ -29,12 +29,15 @@
 <meta property="og:site_name" content="Txing">
 <meta property="og:description" content="FeUdal Networks for Hierarchical Reinforcement learning 论文链接：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1703.01161 背景 利用分层强化学习将一个复杂任务拆分为不同维度的问题被认为是一种更自然、更类人的模式。例如人在吃饭的时候，人在宏观的维度作出决策要吃哪个菜，然后身体处于低维的层次，调动肌肉产生运动，完成夹菜和吃菜的动">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://txing-casia.github.io/images/20200910-1.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20200910-2.png">
 <meta property="article:published_time" content="2020-09-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-25T01:54:14.969Z">
+<meta property="article:modified_time" content="2023-10-07T07:31:29.499Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Reinforcement Learning">
 <meta property="article:tag" content="HRL">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://txing-casia.github.io/images/20200910-1.png">
 
 <link rel="canonical" href="https://txing-casia.github.io/2020/09/10/2020-09-10-Reinforcement%20Learning-FeUdal%20Networks/">
 
@@ -262,11 +265,9 @@ Networks for Hierarchical Reinforcement learning</h1>
 <p>FuN是在feudal reinforcement
 learning基础上的延展性工作，利用Manger学习子状态空间，设定子目标，将任务进行拆分；然后Worker处理子任务，完成Manger设置的子目标。</p>
 <p>其主体框架如下：</p>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200910-1.png" /></p>
+<p><img src="\images\20200910-1.png" /></p>
 <p>其中，Manger和Worker都是RNN，只不过处理问题的时间分辨率不一样。Worker的c步被看做Manger的一步。网络动力学关系如下：</p>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200910-2.png" /></p>
+<p><img src="\images\20200910-2.png" /></p>
 <p><span class="math display">\[x_t\]</span>是图像输入，<span
 class="math display">\[z_t\]</span>是提取的特征，<span
 class="math display">\[s_t\]</span>是输入给Manger RNN的状态。<span

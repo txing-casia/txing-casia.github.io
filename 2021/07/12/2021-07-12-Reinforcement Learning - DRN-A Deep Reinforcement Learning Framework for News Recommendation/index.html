@@ -29,12 +29,18 @@
 <meta property="og:site_name" content="Txing">
 <meta property="og:description" content="DRN: A Deep Reinforcement Learning Framework for News Recommendation 论文链接：http:&#x2F;&#x2F;www.personal.psu.edu&#x2F;~gjz5038&#x2F;paper&#x2F;www2018_reinforceRec&#x2F;www2018_reinforceRec.pdf 主要内容  针对新闻和用户动态特征的问题，目前的方法主要存在三个">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://txing-casia.github.io/images/20210712-1.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20210712-3.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20210712-4.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20210712-3.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20210712-2.png">
 <meta property="article:published_time" content="2021-07-11T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-25T01:54:14.999Z">
+<meta property="article:modified_time" content="2023-10-07T07:31:29.483Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Reinforcement Learning">
 <meta property="article:tag" content="Recommendation">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://txing-casia.github.io/images/20210712-1.png">
 
 <link rel="canonical" href="https://txing-casia.github.io/2021/07/12/2021-07-12-Reinforcement%20Learning%20-%20DRN-A%20Deep%20Reinforcement%20Learning%20Framework%20for%20News%20Recommendation/">
 
@@ -295,8 +301,7 @@ Bound (UCB) 方法增加推荐的探索能力。</p>
 <li><p>通过使用 Dueling Bandit Gradient Descent (DBGD)
 算法作为探索策略，它会随机从候选项的邻域或者候选项中选择推荐对象。这个探索策略可以避免推荐完全无关的信息，因此可以保持当前策略的精度。</p></li>
 <li><p>模型框图：</p>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-1.png" /></p></li>
+<p><img src="\images\20210712-1.png" /></p></li>
 <li><p>算法每1小时更新一次。Every one hour, the agent will use the log
 in the memory to update its recommendation algorithm.</p></li>
 <li><p>主要贡献：</p>
@@ -373,22 +378,18 @@ news publish time).</p></li>
 <li><p>模型框架，包含离线和在线部分</p></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-3.png"
-alt="Model framework" />
+<img src="\images\20210712-3.png" alt="Model framework" />
 <figcaption aria-hidden="true">Model framework</figcaption>
 </figure>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-4.png"
-alt="Q network" /> <span class="math display">\[
+<p><img src="\images\20210712-4.png" alt="Q network" /> <span
+class="math display">\[
 y_{s,a}=Q(s,a)=r_{immediate}+\gamma r_{future}\\
 y_{s,a,t}=r_{a,t+1}+\gamma Q\big(s_{a,t+1},\arg \max_{a&#39;}
 Q(s_{a,t+1},a&#39;;W_t);W_t&#39;\big)
 \]</span></p>
 <h3 id="user-activeness">User Activeness</h3>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-3.png"
-alt="User activeness estimation" /> <span class="math display">\[
+<p><img src="\images\20210712-3.png" alt="User activeness estimation" />
+<span class="math display">\[
 \lambda(t)=\lim_{dt\rightarrow 0} \frac{\Pr\{t \leq T&lt;t+dt\mid T\geq
 t \}}{d t}\\
 S(t)=e^{-\int_0^\infty \lambda(x)dx}\\
@@ -404,8 +405,7 @@ r_{total}=r_{click}+\beta r_{active}
 <li>网络框架</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-2.png"
+<img src="\images\20210712-2.png"
 alt="Exploration by Dueling Bandit Gradient Descent" />
 <figcaption aria-hidden="true">Exploration by Dueling Bandit Gradient
 Descent</figcaption>

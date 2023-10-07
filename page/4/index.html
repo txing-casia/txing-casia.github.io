@@ -81,7 +81,119 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -250,112 +362,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2
-id="off-policy-deep-reinforcement-learning-without-exploration-2019">Off-Policy
-Deep Reinforcement Learning without Exploration (2019)</h2>
-<p>类似DQN和DDPG的off-policy
-RL算法在被禁止探索，并在没有数据策略分布修正的的情况下，难以取得好的效果。本文通过限制off-policy
-agent的行为空间，使其行为类似与on-policy算法，最后提出了一个较为通用的，针对连续控制的deep
-reinforcement learning algorithm。</p>
-<h3 id="introduction">1 Introduction</h3>
-<ul>
-<li><p><strong>batch reinforcement
-learning</strong>：在一些数据收集面临costly, risky, or
-time-consuming的情境时，智能体只能从固定的数据集中学习策略，并且其对数据质量的要求较低。</p></li>
-<li><p>当数据集中的分布与当前算法策略的分布不同时，标准的off-policy
-RL算法将会失败。</p></li>
-<li><p>extrapolation
-error：未见过的状态-动作对被错误地估计为具有不现实的价值的现象。</p></li>
-<li><p>引入了batch-constrained reinforcement learning来克服extrapolation
-error，最大化奖励的同时，最小化批量数据中状态-行为对和策略访问的状态行为对的误匹配。</p></li>
-<li><p>本文提出算法：<strong>Batch-Constrained deep Q-learning</strong>
-(BCQ)，利用一个与Q-network结合的条件状态生成模型，只生成过去见过的行为。在较弱的假设下，证明了这种批约束范式对于有限确定MDP的不完全数据集的无偏估计是必要的。</p></li>
-<li><p>代码开源：https://github.com/sfujim/BCQ</p></li>
-</ul>
-<h3 id="background">2 Background</h3>
-<ul>
-<li>贝尔曼算子（Bellman operator）<span
-class="math display">\[\Tau^{\pi}\]</span>： <span
-class="math display">\[
-\Tau^{\pi}Q(s,a)=\mathbb{E}_{s&#39;}[r+\gamma Q(s&#39;,\pi(s&#39;))]
-\]</span></li>
-</ul>
-<h3 id="extrapolation-error-外推误差">3 Extrapolation Error
-(外推误差)</h3>
-<ul>
-<li><p>Extrapolation error is an error in off-policy value learning
-which is introduced by the mismatch between the dataset and true
-state-action visitation of the current policy，或者<span
-class="math display">\[(s,a)\]</span>在数据集中不存在</p></li>
-<li><p>外推误差的成因：</p>
-<ul>
-<li><p><strong>数据缺省</strong>（Absent Data）：state-action pair (s,
-a) is unavailable，因此在估计状态-行为价值Q的时候会引入误差。</p></li>
-<li><p><strong>模型偏置</strong>（Model Bias）：when performing
-off-policy Q-learning with a batch B，状态转移动力学的有偏估计为：</p>
-<p><span class="math display">\[\Tau^{\pi}Q(s,a) \approx
-\mathbb{E}_{s&#39;\sim B}[r+\gamma Q(s&#39;,\pi(s&#39;))]\]</span>
-其中，状态转移依据buffer B，而不是真实的MDP。</p></li>
-<li><p><strong>训练误匹配</strong>（Training
-Mismatch）：当数据的分布和当前策略的分布不匹配，对action的估计会有误差</p></li>
-</ul></li>
-<li><p>As a result, learning a value estimate with off-policy data can
-result in large amounts of extrapolation error if the policy selects
-actions which are not similar to the data found in the batch.</p></li>
-</ul>
-<h4 id="extrapolation-error-in-deep-reinforcement-learning">3.1
-Extrapolation Error in Deep Reinforcement Learning</h4>
-<ul>
-<li>本节使用SOTA Actor-Critic off-policy RL
-算法DDPG，在与策略无关的数据集上学习，观察到性能迅速恶化。</li>
-<li>These results suggest that off-policy deep reinforcement learning
-algorithms are ineffective when learning truly off-policy.</li>
-<li>训练环境：OpenAI gym’s Hopper-v1 environment</li>
-<li>train an off-policy DDPG agent with no interaction with the
-environment.</li>
-<li>三个batch：
-<ul>
-<li><strong>Batch 1 (Final buffer)</strong>：1 million time
-steps，行为加上（0,0.5）的高斯噪声，store all experienced
-transitions。</li>
-<li><strong>Batch 2 (Concurrent)</strong>：训练behavioral DDPG agents，1
-million time
-steps，行为加上（0,0.1）的高斯噪声，每一次转移经验都放入buffer，即该情况下每个behavioral和off-policy智能体使用同一的数据集训练。</li>
-<li><strong>Batch 3 (Imitation)</strong>：使用一个完全训练的DDPG，收集1
-million time steps数据作为专家数据。</li>
-</ul></li>
-<li>实验中的off-policy DDPG完全使用离线数据训练，behavioral
-DDPG与环境交互正常训练。</li>
-</ul>
-<figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220820-1.png"
-alt="Figure 1" />
-<figcaption aria-hidden="true">Figure 1</figcaption>
-</figure>
-<p>Even in the concurrent experiment, where both agents are trained with
-the same dataset, there is a large gap in performance in every single
-trial.</p>
-<ul>
-<li>结论：
-<ul>
-<li>Batch 1中，即使有了充足的探索，agent依然难以具有稳定的value
-estimation</li>
-<li>Batch
-2中，即使使用相同的数据训练，agent之间的差异巨大。说明policy初始化的不同足以引入外推误差。</li>
-<li>Batch
-3中，尽管有了专家数据，agent仍快速学习非专家策略，最终导致效果很差。</li>
-</ul></li>
-<li>外推误差提供了一个噪声源，可导致持续高估偏差。extrapolation error
-provides a source of noise that can induce a persistent overestimation
-bias (Thrun &amp; Schwartz, 1993; Van Hasselt et al., 2016; Fujimoto et
-al.,2018).</li>
-<li>在完全off-policy情况下，外推误差无法通过与环境交互获得新数据来消除</li>
-</ul>
-<h3 id="batch-constrained-reinforcement-learning">4 Batch-Constrained
-Reinforcement Learning</h3>
-<h3 id="总结">总结</h3>
-
+          <p>类似DQN和DDPG的off-policy RL算法在被禁止探索，并在没有数据策略分布修正的的情况下，难以取得好的效果。本文通过限制off-policy agent的行为空间，使其行为类似与on-policy算法，最后提出了一个较为通用的，针对连续控制的deep reinforcement learning algorithm。</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -434,8 +444,7 @@ architecture和注意力的循环网络框架，增加了语义信息来预测�
 inD, ETH/UCY上部分取得了SOTA的成绩，还简化了模型。</p>
 <h3 id="introduction">1 Introduction</h3>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220817-2.png"
+<img src="\images\20220817-2.png"
 alt="Levels of multi-agent learning in autonomous driving" />
 <figcaption aria-hidden="true">Levels of multi-agent learning in
 autonomous driving</figcaption>
@@ -554,8 +563,7 @@ merge道路场景（即&gt;--&lt;形道路）是多智能体交互的难点，�
 <li><p>Key Features：</p></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220817-1.png"
+<img src="\images\20220817-1.png"
 alt="Levels of multi-agent learning in autonomous driving" />
 <figcaption aria-hidden="true">Levels of multi-agent learning in
 autonomous driving</figcaption>
@@ -564,8 +572,7 @@ autonomous driving</figcaption>
 <li>场景：</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220817-2.png"
+<img src="\images\20220817-2.png"
 alt="Levels of multi-agent learning in autonomous driving" />
 <figcaption aria-hidden="true">Levels of multi-agent learning in
 autonomous driving</figcaption>
@@ -752,8 +759,7 @@ Learning</h3>
 <li><p>offline的模式分离了模型对经验的利用、生成能力（exploit） vs
 探索效率（explore）</p></li>
 <li><p>offline RL面临的挑战是<strong>distribution
-mismatch</strong>：错误匹配当前使用的策略和固定的离线数据集。例如，当采取了数据集中不存在的行为时，并不知道响应的奖励是多少。<br />
-</p></li>
+mismatch</strong>：错误匹配当前使用的策略和固定的离线数据集。例如，当采取了数据集中不存在的行为时，并不知道响应的奖励是多少。</p></li>
 <li><p>本文尝试在不解决distribution
 mismatch的基础上，训练高性能的agent</p></li>
 </ul>
@@ -768,11 +774,9 @@ DQN和REM两个采取该思想的方法。</li>
 <li><p>该方法是对DQN算法的简单扩展，使用集成多个参数化的Q函数来近视Q值。</p>
 <ul>
 <li>Faußer, S. and Schwenker, F. Neural network ensembles in
-reinforcement learning. Neural Processing Letters, 2015<br />
-</li>
+reinforcement learning. Neural Processing Letters, 2015</li>
 <li>Osband, I., Blundell, C., Pritzel, A., and Van Roy, B. Deep
-exploration via bootstrapped DQN. NeurIPS, 2016.<br />
-</li>
+exploration via bootstrapped DQN. NeurIPS, 2016.</li>
 <li>Anschel, O., Baram, N., and Shimkin, N. Averaged-dqn: Variance
 reduction and stabilization for deep reinforcement learning. ICML,
 2017.</li>
@@ -784,9 +788,7 @@ Pritzel, A., and Van Roy, B. Deep exploration via bootstrapped DQN.
 NeurIPS, 2016.</li>
 </ul></li>
 <li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220812-2.png"
-alt="损失函数" />
+<img src="\images\20220812-2.png" alt="损失函数" />
 <figcaption aria-hidden="true">损失函数</figcaption>
 </figure>
 <p>其中，<span
@@ -806,9 +808,7 @@ combination），将多个Q 函数近似器作为1个近似器使用。使用(K 
 1)-simplex计算混合的概率。</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220812-3.png"
-alt="模型结构" />
+<img src="\images\20220812-3.png" alt="模型结构" />
 <figcaption aria-hidden="true">模型结构</figcaption>
 </figure>
 <ul>
@@ -816,9 +816,7 @@ alt="模型结构" />
 distribution）<span
 class="math display">\[\alpha\]</span>，它定义了一个逼近最优Q-函数的K个估计器的凸组合</p></li>
 <li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220817-3.png"
-alt="REM的loss形式" />
+<img src="\images\20220817-3.png" alt="REM的loss形式" />
 <figcaption aria-hidden="true">REM的loss形式</figcaption>
 </figure>
 <p>其中，<span
@@ -843,29 +841,24 @@ replay数据集，每个游戏2亿帧（200 million frames）</li>
 <li>ofline RL算法性能对比：</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220812-1.png"
-alt="Offline RL on Atari 2600." />
+<img src="\images\20220812-1.png" alt="Offline RL on Atari 2600." />
 <figcaption aria-hidden="true">Offline RL on Atari 2600.</figcaption>
 </figure>
 <ul>
 <li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220818-1.png"
+<img src="\images\20220818-1.png"
 alt="Offline QR-DQN vs. DQN (Nature)" />
 <figcaption aria-hidden="true">Offline QR-DQN vs. DQN
 (Nature)</figcaption>
 </figure></li>
 <li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220818-2.png"
+<img src="\images\20220818-2.png"
 alt="Offline Agents on DQN Replay Dataset" />
 <figcaption aria-hidden="true">Offline Agents on DQN Replay
 Dataset</figcaption>
 </figure></li>
 <li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220818-3.png"
+<img src="\images\20220818-3.png"
 alt="Asymptotic performance of offline agents" />
 <figcaption aria-hidden="true">Asymptotic performance of offline
 agents</figcaption>
@@ -876,8 +869,7 @@ TD3，offline BCQ等算法</p>
 <li><p>Fujimoto, S., Meger, D., and Precup, D. Off-policy deep
 reinforcement learning without exploration. ICML, 2019b.</p>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220818-4.png"
+<img src="\images\20220818-4.png"
 alt="Asymptotic performance of offline agents" />
 <figcaption aria-hidden="true">Asymptotic performance of offline
 agents</figcaption>
@@ -972,8 +964,7 @@ Planning</h2>
 <li><p>主要贡献：</p>
 <ul>
 <li>提出了一个基于模型的离线规划算法UMBRELLA，在观测上考虑了认知和偶然的不确定性（epistemic
-和 aleatoric）<br />
-</li>
+和 aleatoric）</li>
 <li>引入了一个消融实验，优化最坏情况模型</li>
 <li>实验中，在稠密车流（with dense
 traffic）的城市和高速场景中，胜过了BC行为克隆方法和MBOP算法</li>
@@ -999,8 +990,7 @@ Welling,
 <li>Mikael Henaff, Alfredo Canziani, and Yann LeCun. Model-predictive
 policy learning with uncertainty regularization for driving in dense
 traffic. In International Conference on Learning Representations,
-\2019.<br />
-</li>
+\2019.</li>
 <li>Diederik P. Kingma and Max Welling. Auto-Encoding Variational Bayes.
 In International Conference on Learning Representations, 2014.</li>
 </ul></li>
@@ -1013,8 +1003,7 @@ and prediction）的行为交互</p>
 <ul>
 <li>Jerry Liu, Wenyuan Zeng, Raquel Urtasun, and Ersin Yumer. Deep
 structured reactive planning. In IEEE International Conference on
-Robotics and Automation, 2021.<br />
-</li>
+Robotics and Automation, 2021.</li>
 <li>Nicholas Rhinehart, Jeff He, Charles Packer, Matthew A. Wright,
 Rowan McAllister, Joseph E. Gonzalez, and Sergey Levine. Contingencies
 from observations: Tractable contingency planning with learned behavior
@@ -1100,29 +1089,25 @@ A^{n_c}\rightarrow \mathbb{R}\]</span> 估计H个时间步后的期望回报<spa
 class="math display">\[\hat{R}_H\]</span></p></li>
 </ul></li>
 <li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-3.png"
+<img src="\images\20220804-3.png"
 alt="Simplified network architecture of the stochastic forward dynamics model during training" />
 <figcaption aria-hidden="true">Simplified network architecture of the
 stochastic forward dynamics model during training</figcaption>
 </figure></li>
 <li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-4.png"
+<img src="\images\20220804-4.png"
 alt="Behavior-cloned policy network architecture" />
 <figcaption aria-hidden="true">Behavior-cloned policy network
 architecture</figcaption>
 </figure></li>
 <li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-5.png"
+<img src="\images\20220804-5.png"
 alt="Truncated value function network architecture" />
 <figcaption aria-hidden="true">Truncated value function network
 architecture</figcaption>
 </figure></li>
 <li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-6.png"
+<img src="\images\20220804-6.png"
 alt="Signal flow of the stochastic forward dynamics model" />
 <figcaption aria-hidden="true">Signal flow of the stochastic forward
 dynamics model</figcaption>
@@ -1141,9 +1126,7 @@ Journal of Guidance, Control, and Dynamics, 40(2): 344–357, 2017.</li>
 T^*_t = \frac{\sum_{n=1}^N e^{kR_n} A_{n,t+1}}{\sum_{n=1}^N e^{kR_n}}
 \]</span></p>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-1.png"
-alt="UMBRELLA Planning" />
+<img src="\images\20220804-1.png" alt="UMBRELLA Planning" />
 <figcaption aria-hidden="true">UMBRELLA Planning</figcaption>
 </figure>
 <ul>
@@ -1154,8 +1137,7 @@ alt="UMBRELLA Planning" />
 <ul>
 <li>环境：
 <ul>
-<li><strong>NGSIM</strong>：多智能体自动驾驶环境<br />
-</li>
+<li><strong>NGSIM</strong>：多智能体自动驾驶环境</li>
 <li><strong>CARLA</strong>：城市多智能体自动驾驶场景</li>
 </ul></li>
 <li>基线方法：
@@ -1165,16 +1147,14 @@ alt="UMBRELLA Planning" />
 <ul>
 <li>Arthur Argenson and Gabriel Dulac-Arnold. Model-based offline
 planning. In International Conference on Learning Representations,
-2021.<br />
-</li>
+2021.</li>
 </ul></li>
 <li><strong>MPUR</strong>：最好的基于模型策略学习方法
 <ul>
 <li>Mikael Henaff, Alfredo Canziani, and Yann LeCun. Model-predictive
 policy learning with uncertainty regularization for driving in dense
 traffic. In International Conference on Learning Representations,
-2019.<br />
-</li>
+2019.</li>
 </ul></li>
 </ul></li>
 <li>指标：
@@ -1182,23 +1162,18 @@ traffic. In International Conference on Learning Representations,
 <li>Success rate (SR)：The rate of collision-free
 episodes，并要求在时间内到达目标位置</li>
 <li>Mean distance (MD)：NGSIM中的纵向行驶距离</li>
-<li>mean successful time (MST)<br />
-</li>
+<li>mean successful time (MST)</li>
 <li>mean proximity reward <span
 class="math display">\[\overline{r}_{prox}\]</span></li>
 <li>mean lane reward <span
-class="math display">\[\overline{r}_{lane}\]</span><br />
-</li>
+class="math display">\[\overline{r}_{lane}\]</span></li>
 <li>mean final reward <span
-class="math display">\[\overline{r}\]</span><br />
-</li>
+class="math display">\[\overline{r}\]</span></li>
 </ul></li>
 <li>实验结果：</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-2.png"
-alt="性能对比" />
+<img src="\images\20220804-2.png" alt="性能对比" />
 <figcaption aria-hidden="true">性能对比</figcaption>
 </figure>
 <h3 id="总结">总结</h3>
@@ -1295,9 +1270,7 @@ Gradients</h2>
 </ul>
 <h3 id="introduction">Introduction</h3>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220803-1.png"
-alt="本文的闭环训练算法概览" />
+<img src="\images\20220803-1.png" alt="本文的闭环训练算法概览" />
 <figcaption aria-hidden="true">本文的闭环训练算法概览</figcaption>
 </figure>
 <ul>
@@ -1325,8 +1298,7 @@ H. Li, and Q. Kong. Baidu apollo em motion planner. ArXiv, 2018.</li>
 <li>A* [11]</li>
 <li>RRTs [12]</li>
 <li>POMDP with solver [13]</li>
-<li>dynamic programming [14]<br />
-</li>
+<li>dynamic programming [14]</li>
 </ul></li>
 <li><p>整体上是依赖human engineering，而不是数据驱动</p></li>
 </ul></li>
@@ -1335,8 +1307,7 @@ H. Li, and Q. Kong. Baidu apollo em motion planner. ArXiv, 2018.</li>
 <li>依赖仿真器的构造、精确编码和优化的奖励信号
 <ul>
 <li>S. Shalev-Shwartz, S. Shammah, and A. Shashua. Safe, multi-agent,
-reinforcement learning for autonomous driving. ArXiv, 2016.<br />
-</li>
+reinforcement learning for autonomous driving. ArXiv, 2016.</li>
 </ul></li>
 <li>手工编程的仿真器，不能还原真实的长尾场景</li>
 <li>本文直接通过 mid-level representations 从真实世界的 log
@@ -1356,8 +1327,7 @@ cloning）面临协变量偏移问题（covariate shift）</li>
 <ul>
 <li>W. Zeng, W. Luo, S. Suo, A. Sadat, B. Yang, S. Casas, and R.
 Urtasun. End-to-end interpretable neural motion planner. Int. Conference
-on Computer Vision and Pattern Recognition (CVPR), \2019.<br />
-</li>
+on Computer Vision and Pattern Recognition (CVPR), \2019.</li>
 <li>S. Casas, A. Sadat, and R. Urtasun. Mp3: A unified model to map,
 perceive, predict and plan. In Proceedings of the IEEE/CVF Conference on
 Computer Vision and Pattern Recognition, pages 14403–14412, 2021.</li>
@@ -1373,8 +1343,7 @@ motion prediction dataset. Conference on Robot Learning (CoRL),
 <li>M.-F. Chang, J. Lambert, P. Sangkloy, J. Singh, S. Bak, A. Hartnett,
 P. C. De Wang, S. Lucey, D. Ramanan, and J. Hays. Argoverse: 3d tracking
 and forecasting with rich maps supplementary material. Int. Conf. on
-Computer Vision and Pattern Recognition (CVPR).<br />
-</li>
+Computer Vision and Pattern Recognition (CVPR).</li>
 <li>state-of-the-art solutions for motion forecasting [8, 9]
 <ul>
 <li>[8] J. Gao, C. Sun, H. Zhao, Y. Shen, D. Anguelov, C. Li, and C.
@@ -1383,8 +1352,7 @@ representation. In Int. Conf. on Computer Vision and Pattern Recognition
 (CVPR), 2020.</li>
 <li>[9] M. Liang, B. Yang, R. Hu, Y. Chen, R. Liao, S. Feng, and R.
 Urtasun. Learning lane graph representations for motion forecasting.
-2020.<br />
-</li>
+2020.</li>
 </ul></li>
 </ul></li>
 <li><p><strong>Data-driven simulation</strong>：</p>
@@ -1422,8 +1390,7 @@ class="math display">\[\pi_E\]</span>是专家策略，<span
 class="math display">\[\pi\]</span>是模型的策略，希望两个策略接近</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220803-2.png"
+<img src="\images\20220803-2.png"
 alt="Imitation learning from expert demonstrations" />
 <figcaption aria-hidden="true">Imitation learning from expert
 demonstrations</figcaption>
@@ -1441,27 +1408,23 @@ L_a\pi_{\theta}+\gamma(J_s^{t+1}S_a\pi_{\theta}+J_{\theta}^{t+1})
 \]</span> &gt; Ref: N. Heess, G. Wayne, D. Silver, T. Lillicrap, T.
 Erez, and Y. Tassa. Learning continuous control policies by stochastic
 value gradients. In Advances in Neural Information Processing Systems,
-\2015.<br />
-### Experiments</p></li>
+\2015. ### Experiments</p></li>
 <li><p>Lyft Motion Prediction Dataset
 [6]：数据采集自加利福尼亚州帕洛阿尔托的复杂城市路线。数据集捕捉各种真实世界的情况，例如在多车道交通中驾驶、转弯、在十字路口与车辆互动等。</p>
 <ul>
 <li>J. Houston, G. Zuidhof, L. Bergamini, Y. Ye, A. Jain, S. Omari, V.
 Iglovikov, and P. Ondruska. One thousand and one hours: Self-driving
 motion prediction dataset. Conference on Robot Learning (CoRL),
-2020.<br />
-</li>
+2020.</li>
 </ul></li>
 <li><p>模型在100小时子集上训练，并在25小时子集上测试。</p></li>
 <li><p>three state-of-the-art baselines：</p>
 <ul>
-<li>Naive Behavioral Cloning (BC)<br />
-</li>
+<li>Naive Behavioral Cloning (BC)</li>
 <li>Behavioral Cloning + Perturbations (BC-perturb)
 <ul>
 <li>M. Bansal, A. Krizhevsky, and A. Ogale. Chauffeurnet: Learning to
-drive by imitating the best and synthesizing the worst. 12 2018.<br />
-</li>
+drive by imitating the best and synthesizing the worst. 12 2018.</li>
 </ul></li>
 <li>Multi-step Prediction (MS Prediction)
 <ul>
@@ -1471,9 +1434,7 @@ prediction of learned time series models. In AAAI, 2015.</li>
 </ul></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220803-3.png"
-alt="性能对比" />
+<img src="\images\20220803-3.png" alt="性能对比" />
 <figcaption aria-hidden="true">性能对比</figcaption>
 </figure>
 <blockquote>
@@ -1498,9 +1459,7 @@ comparison, namely Interventions per 1000 Miles (I1K)</li>
 </ul></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220803-4.png"
-alt="仿真结果" />
+<img src="\images\20220803-4.png" alt="仿真结果" />
 <figcaption aria-hidden="true">仿真结果</figcaption>
 </figure>
 <h3 id="总结">总结</h3>
@@ -1588,20 +1547,16 @@ data训练和高效地验证RL算法。</li>
 <li>与Gym兼容（OpenAI Gym-compatible environment specifically
 tailored）</li>
 <li>超过1000小时专家记录数据（more than 1000 hours of expert logged
-data）<br />
-</li>
+data）</li>
 <li>灵活的闭环评估协议（flexible closed-loop evaluation protocol）</li>
 <li>提供行为克隆baselines（provide behavior cloning baselines using
-supervised learning and RL）<br />
-</li>
+supervised learning and RL）</li>
 <li>代码：https://lyft.github.io/l5kit/ （已失效）</li>
 </ul></li>
 <li>环境结构：</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220801-2.png"
-alt="DriverGym" />
+<img src="\images\20220801-2.png" alt="DriverGym" />
 <figcaption aria-hidden="true">DriverGym</figcaption>
 </figure>
 <blockquote>
@@ -1619,9 +1574,7 @@ trained policies.</p>
 <li>自动驾驶开源RL仿真环境的对比</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220801-3.png"
-alt="自动驾驶开源RL仿真环境的对比" />
+<img src="\images\20220801-3.png" alt="自动驾驶开源RL仿真环境的对比" />
 <figcaption aria-hidden="true">自动驾驶开源RL仿真环境的对比</figcaption>
 </figure>
 <ul>
@@ -1651,8 +1604,7 @@ community,</li>
 <li>J. Houston, G. Zuidhof, L. Bergamini, Y. Ye, A. Jain, S. Omari, V.
 Iglovikov, and P. Ondruska. One thousand and one hours: Self-driving
 motion prediction dataset. https://level-5.global/level5/data/,
-2020.<br />
-</li>
+2020.</li>
 </ul></li>
 <li><p>支持反应式的行为仿真</p>
 <ul>
@@ -1682,14 +1634,12 @@ training code.</li>
 <ul>
 <li>E. Espié, Christophe Guionneau, Bernhard Wymann, Christos
 Dimitrakakis, Rémi Coulom, and Andrew Sumner. Torcs, the open racing car
-simulator. 2005.<br />
-</li>
+simulator. 2005.</li>
 </ul></li>
 <li><strong>Highway-Env</strong>：环境与Gym兼容，但缺少交通灯、评估协议和专家数据
 <ul>
 <li>Edouard Leurent. An environment for autonomous driving
-decision-making. https://github.com/eleurent/highway-env, 2018.<br />
-</li>
+decision-making. https://github.com/eleurent/highway-env, 2018.</li>
 </ul></li>
 </ul></li>
 <li><strong>交通仿真环境（Traffic simulators）</strong>：
@@ -1699,8 +1649,7 @@ rules），真实性有限。
 <ul>
 <li>A. Dosovitskiy, G. Ros, Felipe Codevilla, Antonio M. López, and V.
 Koltun. Carla: An open urban driving simulator. ArXiv, abs/1711.03938,
-2017.<br />
-</li>
+2017.</li>
 </ul></li>
 <li><strong>SUMO</strong>：支持多变的交通情况训练和测试，但周围车辆使用手写规则（hand-coded
 rules），真实性有限。
@@ -1710,8 +1659,7 @@ Erdmann, Yun-Pang Flötteröd, Robert Hilbrich, Leonhard Lücken, Johannes
 Rummel, Peter Wagner, and Evamarie Wießner. Microscopic traffic
 simulation using sumo. In The 21st IEEE International Conference on
 Intelligent Transportation Systems. IEEE, 2018. URL
-https://elib.dlr.de/124092/.<br />
-</li>
+https://elib.dlr.de/124092/.</li>
 </ul></li>
 <li><strong>SMARTS</strong>
 ：有<code>Social Agent Zoo</code>支持数据驱动周围车辆行为。
@@ -1725,8 +1673,7 @@ Yadmellat, Mohsen Rohani, Nicolas Perez Nieves, Yihan Ni, Seyedershad
 Banijamali, Alexander Cowen Rivers, Zheng Tian, Daniel Palenicek,
 Haitham Ammar, Hongbo Zhang, Wulong Liu, Jianye Hao, and Jintao Wang.
 Smarts: Scalable multi-agent reinforcement learning training school for
-autonomous driving. ArXiv, abs/2010.09776, 2020.<br />
-</li>
+autonomous driving. ArXiv, abs/2010.09776, 2020.</li>
 </ul></li>
 <li><strong>CRTS</strong>：提供了logs数据接口，使用64小时的真实驾驶数据（real-world
 logs）训练周围车辆的行为。集成在Carla中。
@@ -1734,8 +1681,7 @@ logs）训练周围车辆的行为。集成在Carla中。
 <li>Blazej Osinski, Piotr Milos, Adam Jakubowski, Pawel Ziecina, Michal
 Martyniak, Christopher Galias, Antonia Breuer, Silviu Homoceanu, and
 Henryk Michalewski. Carla real traffic scenarios - novel training ground
-and benchmark for autonomous driving. ArXiv, abs/2012.11329, 2020.<br />
-</li>
+and benchmark for autonomous driving. ArXiv, abs/2012.11329, 2020.</li>
 </ul></li>
 <li><strong>DriverGym</strong>：支持反应式的agent使用数据驱动模型学习真实世界的数据，并提供了1000小时真实的驾驶记录可用于仿真agent</li>
 </ul></li>
@@ -1752,8 +1698,7 @@ Baselines</a>的下一个主要版本。
 <ul>
 <li>Antonin Raffin, Ashley Hill, Maximilian Ernestus, Adam Gleave, Anssi
 Kanervisto, and Noah Dormann. Stable baselines3.
-https://github.com/DLR-RM/stable-baselines3, 2019.<br />
-</li>
+https://github.com/DLR-RM/stable-baselines3, 2019.</li>
 </ul></li>
 <li><strong>RLlib</strong>：RLlib是一个开源强化学习库,提供了高度可扩展能力和不同应用的统一的<a
 target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=API&amp;spm=1001.2101.3001.7020">API</a>。RLlib原生支持Tensorflow，Tensorflow
@@ -1767,8 +1712,7 @@ Rllib: Abstractions for distributed reinforcement learning. In ICML,
 </ul></li>
 <li><p>例子场景：绿线是策略预测的轨迹</p>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220801-4.png"
+<img src="\images\20220801-4.png"
 alt="Visualization of an episode rollout (ego in red, agents in blue) in DriverGym. The policy prediction (green line) is scaled by factor of 10 and shown at 2 second intervals for better viewing" />
 <figcaption aria-hidden="true">Visualization of an episode rollout (ego
 in red, agents in blue) in DriverGym. The policy prediction (green line)
@@ -1876,21 +1820,17 @@ model-based ofline planning (MBOP)。</li>
 <ul>
 <li>Yifan Wu, George Tucker, and Ofir Nachum. Behavior regularized
 offline reinforcement learning. CoRR, abs/1911.11361, 2019. URL
-http://arxiv.org/abs/1911.11361.<br />
-</li>
+http://arxiv.org/abs/1911.11361.</li>
 <li>Xue Bin Peng, Aviral Kumar, Grace Zhang, and Sergey Levine.
 Advantage-weighted regression: Simple and scalable off-policy
-reinforcement learning. arXiv preprint arXiv:1910.00177, 2019.<br />
-</li>
+reinforcement learning. arXiv preprint arXiv:1910.00177, 2019.</li>
 <li>Scott Fujimoto, David Meger, and Doina Precup. Off-policy deep
 reinforcement learning without exploration. In International Conference
-on Machine Learning, pp. 2052–2062, 2019.<br />
-</li>
+on Machine Learning, pp. 2052–2062, 2019.</li>
 <li>Ziyu Wang, Alexander Novikov, Konrad Zolna, Josh S Merel, Jost
 Tobias Springenberg, Scott E Reed, Bobak Shahriari, Noah Siegel, Caglar
 Gulcehre, Nicolas Heess, et al. Critic regularized regression. Advances
-in Neural Information Processing Systems, 33, 2020.<br />
-</li>
+in Neural Information Processing Systems, 33, 2020.</li>
 </ul></li>
 <li>model-based方法：MOPO,
 MoREL学习一个模型，然后用于训练一个无模型策略，这种模式和Dyna模式类似。
@@ -1898,12 +1838,10 @@ MoREL学习一个模型，然后用于训练一个无模型策略，这种模式
 <li><strong>MOPO</strong>: Tianhe Yu, Garrett Thomas, Lantao Yu, Stefano
 Ermon, James Zou, Sergey Levine, Chelsea Finn, and Tengyu Ma. Mopo:
 Model-based offline policy optimization. arXiv preprint
-arXiv:2005.13239, 2020.<br />
-</li>
+arXiv:2005.13239, 2020.</li>
 <li><strong>MoREL</strong>: Rahul Kidambi, Aravind Rajeswaran, Praneeth
 Netrapalli, and Thorsten Joachims. Morel: Modelbased offline
-reinforcement learning. arXiv preprint arXiv:2005.05951, 2020.<br />
-</li>
+reinforcement learning. arXiv preprint arXiv:2005.05951, 2020.</li>
 <li><strong>Dyna</strong>: Richard S Sutton and Andrew G Barto.
 Reinforcement learning: An introduction. MIT press, 2018.</li>
 </ul></li>
@@ -1921,8 +1859,7 @@ Conference on Robotics and Automation (ICRA), pp. 1714–1721. IEEE,
 <ul>
 <li>a learnt <strong>world model</strong>,</li>
 <li>a learnt <strong>behavior-cloning policy</strong>,</li>
-<li>a learnt <strong>fixed-horizon value-function</strong>.<br />
-</li>
+<li>a learnt <strong>fixed-horizon value-function</strong>.</li>
 </ul></li>
 <li>MBOP的核心优势是<strong>数据高效</strong>和<strong>自适应</strong>。只需仅100秒就可以训练出一个和奖励函数、目标状态、基于状态的约束相适应的策略。</li>
 <li>MBOP能够对非平稳目标和约束执行zero-shot自适应，但是没有处理非平稳动力学特性的机制。</li>
@@ -1963,9 +1900,7 @@ class="math display">\[a_t\]</span>并返回。</li>
 </ul></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-1.png"
-alt="High-Level MBOP-Policy" />
+<img src="\images\20220802-1.png" alt="High-Level MBOP-Policy" />
 <figcaption aria-hidden="true">High-Level MBOP-Policy</figcaption>
 </figure>
 <ul>
@@ -1977,9 +1912,7 @@ class="math display">\[f_R\]</span></li>
 </ul></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-2.png"
-alt="MBOP-Trajopt" />
+<img src="\images\20220802-2.png" alt="MBOP-Trajopt" />
 <figcaption aria-hidden="true">MBOP-Trajopt</figcaption>
 </figure>
 <blockquote>
@@ -1993,8 +1926,7 @@ class="math display">\[\beta\]</span>可被视为学习率。第17行给出多�
 tasks中：</p>
 <ul>
 <li><strong>goal-conditioned tasks</strong> (that ignore the original
-reward function)<br />
-</li>
+reward function)</li>
 <li><strong>constrained tasks</strong> (that require optimising for the
 original reward under some state constraint)</li>
 </ul></li>
@@ -2057,9 +1989,7 @@ constraint，然后探索合适的 <span class="math display">\[k\]</span> 和
 </ul></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-3.png"
-alt="ZERO-SHOT TASK ADAPTATION" />
+<img src="\images\20220802-3.png" alt="ZERO-SHOT TASK ADAPTATION" />
 <figcaption aria-hidden="true">ZERO-SHOT TASK ADAPTATION</figcaption>
 </figure>
 <h3 id="总结">总结</h3>
@@ -2281,6 +2211,59 @@ alt="ZERO-SHOT TASK ADAPTATION" />
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

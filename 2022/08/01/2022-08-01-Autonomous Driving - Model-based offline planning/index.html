@@ -29,12 +29,16 @@
 <meta property="og:site_name" content="Txing">
 <meta property="og:description" content="Model-based offline planning  由于成本、安全性等因素，很多情况下不能够直接与系统交互来学习控制策略，因此，只能从记录的log数据中学习控制策略（offline reinforcement learning）。本文介绍了一种从log数据中学到超越成圣log数据的原策略的新策略的方法，命名为 model-based ofline planning (MBOP)。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220802-1.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220802-2.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220802-3.png">
 <meta property="article:published_time" content="2022-07-31T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-25T01:54:15.014Z">
+<meta property="article:modified_time" content="2023-10-07T07:31:29.491Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Imitation Learning">
 <meta property="article:tag" content="Autonomous Driving">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://txing-casia.github.io/images/20220802-1.png">
 
 <link rel="canonical" href="https://txing-casia.github.io/2022/08/01/2022-08-01-Autonomous%20Driving%20-%20Model-based%20offline%20planning/">
 
@@ -268,21 +272,17 @@ model-based ofline planning (MBOP)。</li>
 <ul>
 <li>Yifan Wu, George Tucker, and Ofir Nachum. Behavior regularized
 offline reinforcement learning. CoRR, abs/1911.11361, 2019. URL
-http://arxiv.org/abs/1911.11361.<br />
-</li>
+http://arxiv.org/abs/1911.11361.</li>
 <li>Xue Bin Peng, Aviral Kumar, Grace Zhang, and Sergey Levine.
 Advantage-weighted regression: Simple and scalable off-policy
-reinforcement learning. arXiv preprint arXiv:1910.00177, 2019.<br />
-</li>
+reinforcement learning. arXiv preprint arXiv:1910.00177, 2019.</li>
 <li>Scott Fujimoto, David Meger, and Doina Precup. Off-policy deep
 reinforcement learning without exploration. In International Conference
-on Machine Learning, pp. 2052–2062, 2019.<br />
-</li>
+on Machine Learning, pp. 2052–2062, 2019.</li>
 <li>Ziyu Wang, Alexander Novikov, Konrad Zolna, Josh S Merel, Jost
 Tobias Springenberg, Scott E Reed, Bobak Shahriari, Noah Siegel, Caglar
 Gulcehre, Nicolas Heess, et al. Critic regularized regression. Advances
-in Neural Information Processing Systems, 33, 2020.<br />
-</li>
+in Neural Information Processing Systems, 33, 2020.</li>
 </ul></li>
 <li>model-based方法：MOPO,
 MoREL学习一个模型，然后用于训练一个无模型策略，这种模式和Dyna模式类似。
@@ -290,12 +290,10 @@ MoREL学习一个模型，然后用于训练一个无模型策略，这种模式
 <li><strong>MOPO</strong>: Tianhe Yu, Garrett Thomas, Lantao Yu, Stefano
 Ermon, James Zou, Sergey Levine, Chelsea Finn, and Tengyu Ma. Mopo:
 Model-based offline policy optimization. arXiv preprint
-arXiv:2005.13239, 2020.<br />
-</li>
+arXiv:2005.13239, 2020.</li>
 <li><strong>MoREL</strong>: Rahul Kidambi, Aravind Rajeswaran, Praneeth
 Netrapalli, and Thorsten Joachims. Morel: Modelbased offline
-reinforcement learning. arXiv preprint arXiv:2005.05951, 2020.<br />
-</li>
+reinforcement learning. arXiv preprint arXiv:2005.05951, 2020.</li>
 <li><strong>Dyna</strong>: Richard S Sutton and Andrew G Barto.
 Reinforcement learning: An introduction. MIT press, 2018.</li>
 </ul></li>
@@ -313,8 +311,7 @@ Conference on Robotics and Automation (ICRA), pp. 1714–1721. IEEE,
 <ul>
 <li>a learnt <strong>world model</strong>,</li>
 <li>a learnt <strong>behavior-cloning policy</strong>,</li>
-<li>a learnt <strong>fixed-horizon value-function</strong>.<br />
-</li>
+<li>a learnt <strong>fixed-horizon value-function</strong>.</li>
 </ul></li>
 <li>MBOP的核心优势是<strong>数据高效</strong>和<strong>自适应</strong>。只需仅100秒就可以训练出一个和奖励函数、目标状态、基于状态的约束相适应的策略。</li>
 <li>MBOP能够对非平稳目标和约束执行zero-shot自适应，但是没有处理非平稳动力学特性的机制。</li>
@@ -355,9 +352,7 @@ class="math display">\[a_t\]</span>并返回。</li>
 </ul></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-1.png"
-alt="High-Level MBOP-Policy" />
+<img src="\images\20220802-1.png" alt="High-Level MBOP-Policy" />
 <figcaption aria-hidden="true">High-Level MBOP-Policy</figcaption>
 </figure>
 <ul>
@@ -369,9 +364,7 @@ class="math display">\[f_R\]</span></li>
 </ul></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-2.png"
-alt="MBOP-Trajopt" />
+<img src="\images\20220802-2.png" alt="MBOP-Trajopt" />
 <figcaption aria-hidden="true">MBOP-Trajopt</figcaption>
 </figure>
 <blockquote>
@@ -385,8 +378,7 @@ class="math display">\[\beta\]</span>可被视为学习率。第17行给出多�
 tasks中：</p>
 <ul>
 <li><strong>goal-conditioned tasks</strong> (that ignore the original
-reward function)<br />
-</li>
+reward function)</li>
 <li><strong>constrained tasks</strong> (that require optimising for the
 original reward under some state constraint)</li>
 </ul></li>
@@ -449,9 +441,7 @@ constraint，然后探索合适的 <span class="math display">\[k\]</span> 和
 </ul></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220802-3.png"
-alt="ZERO-SHOT TASK ADAPTATION" />
+<img src="\images\20220802-3.png" alt="ZERO-SHOT TASK ADAPTATION" />
 <figcaption aria-hidden="true">ZERO-SHOT TASK ADAPTATION</figcaption>
 </figure>
 <h3 id="总结">总结</h3>

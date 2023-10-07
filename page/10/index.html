@@ -293,8 +293,7 @@ class="math display">\[\epsilon-greedy\]</span>
 <span class="math display">\[g\]</span> 和本质奖励intrinsic
 rewards</p></li>
 </ul>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210714-1.png" /></p>
+<p><img src="\images\20210714-1.png" /></p>
 <ul>
 <li><p>agent设置：</p>
 <ul>
@@ -326,9 +325,7 @@ f_{t&#39;}+\gamma \max_{g&#39;}Q_2^*(s_{t+N},g&#39;)\Big]
 \]</span> N 代表当控制器停止时所经过的步数。</p></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210714-2.png"
-alt="算法步骤" />
+<img src="\images\20210714-2.png" alt="算法步骤" />
 <figcaption aria-hidden="true">算法步骤</figcaption>
 </figure>
 <h2 id="总结">总结</h2>
@@ -604,8 +601,7 @@ Bound (UCB) 方法增加推荐的探索能力。</p>
 <li><p>通过使用 Dueling Bandit Gradient Descent (DBGD)
 算法作为探索策略，它会随机从候选项的邻域或者候选项中选择推荐对象。这个探索策略可以避免推荐完全无关的信息，因此可以保持当前策略的精度。</p></li>
 <li><p>模型框图：</p>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-1.png" /></p></li>
+<p><img src="\images\20210712-1.png" /></p></li>
 <li><p>算法每1小时更新一次。Every one hour, the agent will use the log
 in the memory to update its recommendation algorithm.</p></li>
 <li><p>主要贡献：</p>
@@ -682,22 +678,18 @@ news publish time).</p></li>
 <li><p>模型框架，包含离线和在线部分</p></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-3.png"
-alt="Model framework" />
+<img src="\images\20210712-3.png" alt="Model framework" />
 <figcaption aria-hidden="true">Model framework</figcaption>
 </figure>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-4.png"
-alt="Q network" /> <span class="math display">\[
+<p><img src="\images\20210712-4.png" alt="Q network" /> <span
+class="math display">\[
 y_{s,a}=Q(s,a)=r_{immediate}+\gamma r_{future}\\
 y_{s,a,t}=r_{a,t+1}+\gamma Q\big(s_{a,t+1},\arg \max_{a&#39;}
 Q(s_{a,t+1},a&#39;;W_t);W_t&#39;\big)
 \]</span></p>
 <h3 id="user-activeness">User Activeness</h3>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-3.png"
-alt="User activeness estimation" /> <span class="math display">\[
+<p><img src="\images\20210712-3.png" alt="User activeness estimation" />
+<span class="math display">\[
 \lambda(t)=\lim_{dt\rightarrow 0} \frac{\Pr\{t \leq T&lt;t+dt\mid T\geq
 t \}}{d t}\\
 S(t)=e^{-\int_0^\infty \lambda(x)dx}\\
@@ -713,8 +705,7 @@ r_{total}=r_{click}+\beta r_{active}
 <li>网络框架</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210712-2.png"
+<img src="\images\20210712-2.png"
 alt="Exploration by Dueling Bandit Gradient Descent" />
 <figcaption aria-hidden="true">Exploration by Dueling Bandit Gradient
 Descent</figcaption>
@@ -979,18 +970,14 @@ P(s_{t+1}=s,\omega_t=\omega|s_1,\omega_0)
 <li>算法结构：</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210709-1.png"
-alt="算法结构" />
+<img src="\images\20210709-1.png" alt="算法结构" />
 <figcaption aria-hidden="true">算法结构</figcaption>
 </figure>
 <ul>
 <li>算法伪代码：</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210709-2.png"
-alt="算法伪代码" />
+<img src="\images\20210709-2.png" alt="算法伪代码" />
 <figcaption aria-hidden="true">算法伪代码</figcaption>
 </figure>
 <ul>

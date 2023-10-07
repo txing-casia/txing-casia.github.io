@@ -29,12 +29,18 @@
 <meta property="og:site_name" content="Txing">
 <meta property="og:description" content="A Review of Motion Planning for Highway Autonomous Driving  高速路具有路径高速（high speed）、路径曲率小（small curvature roads）、规则具体（specific driver rules）的几项特点。 主要面临的问题：变道（Lane change），避障（obstacle avoidance），跟车">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220731-1.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220731-2.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220731-3.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220801-1.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220808-1.png">
 <meta property="article:published_time" content="2022-07-22T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-25T01:54:15.013Z">
+<meta property="article:modified_time" content="2023-10-07T07:31:29.491Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Imitation Learning">
 <meta property="article:tag" content="Autonomous Driving">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://txing-casia.github.io/images/20220731-1.png">
 
 <link rel="canonical" href="https://txing-casia.github.io/2022/07/23/2022-07-23-Autonomous%20Driving%20-%20A%20Review%20of%20Motion%20Planning%20for%20Highway%20Autonomous%20Driving/">
 
@@ -285,8 +291,7 @@ control but active safety systems) to 5 (no human intervention for
 driving) [10]）</p>
 <ul>
 <li>SAE International J3016, accessed 2018-11-03. [Online]. Available:
-https://www.sae.org/standards/content/j3016 201401/<br />
-</li>
+https://www.sae.org/standards/content/j3016 201401/</li>
 </ul></li>
 <li><p>2007 DARPA城市挑战赛：since the Defense Advanced Research
 Projects Agency (DARPA) organized autonomous vehicle competitions in
@@ -326,23 +331,18 @@ collides with obstacles;</li>
 <li>the <strong>uncertain space</strong>, in which there exists a
 probability for the ego vehicle to be in collision;</li>
 <li>the <strong>free space</strong>, in which there is no
-collision.<br />
-</li>
+collision.</li>
 <li><strong>free-space</strong> (spatial geometric zones)</li>
 <li><strong>path</strong> (sequence of spacerelated states in the free
 space, i.e. geometric waypoints)</li>
 <li><strong>trajectory</strong> (sequence of spatiotemporal states in
-the free space, i.e. time-varying waypoints)<br />
-</li>
+the free space, i.e. time-varying waypoints)</li>
 <li><strong>maneuver</strong> (predefined motion, considered as a
-subspace of paths or trajectories, i.e. motion primitives)<br />
-</li>
+subspace of paths or trajectories, i.e. motion primitives)</li>
 <li><strong>generation</strong>, which builds sequences of paths,
-trajectories, maneuvers, or actions<br />
-</li>
+trajectories, maneuvers, or actions</li>
 <li><strong>planning</strong>, meaning the selection of one sequence
-among the generated motions<br />
-</li>
+among the generated motions</li>
 <li><strong>prediction horizon</strong> denotes the space or/and time
 horizon limit for the simulation of motion</li>
 </ul></li>
@@ -352,8 +352,7 @@ horizon limit for the simulation of motion</li>
 <li>分层的自动驾驶算法框架</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220731-1.png"
+<img src="\images\20220731-1.png"
 alt="A hierarchical scheme of Autonomous Ground Vehicle systems." />
 <figcaption aria-hidden="true">A hierarchical scheme of Autonomous
 Ground Vehicle systems.</figcaption>
@@ -363,8 +362,7 @@ Ground Vehicle systems.</figcaption>
 making, (iv) generation, and (v) deformation.</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220731-2.png"
+<img src="\images\20220731-2.png"
 alt="Motion planning functions. Motion planning acts as a global, local, and reactive motion strategy." />
 <figcaption aria-hidden="true">Motion planning functions. Motion
 planning acts as a global, local, and reactive motion
@@ -397,8 +395,7 @@ reference path,” in IEEE Int. Conf. on Mechatronics and Automation
 <li>空间和时间约束：</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220731-3.png"
+<img src="\images\20220731-3.png"
 alt="Motion planning functions. Motion planning acts as a global, local, and reactive motion strategy." />
 <figcaption aria-hidden="true">Motion planning functions. Motion
 planning acts as a global, local, and reactive motion
@@ -553,9 +550,7 @@ Intelligence）</p>
 and <strong>rules/learning</strong>，– based on [125]’s distinction
 between thinking and acting humanly or rationally</p>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220801-1.png"
-alt="A map of AI-based algorithms." />
+<img src="\images\20220801-1.png" alt="A map of AI-based algorithms." />
 <figcaption aria-hidden="true">A map of AI-based
 algorithms.</figcaption>
 </figure>
@@ -567,8 +562,7 @@ algorithms.</figcaption>
 <li><p>有限状态机（Finite State Machine (FSM)）：
 只能在已知的知识范围内运行，不能在未知的环境中做生成。</p>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220808-1.png"
+<img src="\images\20220808-1.png"
 alt="Illustration of an FSM for highway" />
 <figcaption aria-hidden="true">Illustration of an FSM for
 highway</figcaption>
@@ -581,8 +575,7 @@ tentacle trajectories</strong>, and the one in [130] for a
 <li>[50]. H. Mouhagir, R. Talj, V. Cherfaoui, F. Aioun, and F.
 Guillemard, “Integrating safety distances with trajectory planning by
 modifying the occupancy grid for autonomous vehicle navigation,” in IEEE
-Int. Conf. on Intelligent Transportation Systems (ITSC), 2016.<br />
-</li>
+Int. Conf. on Intelligent Transportation Systems (ITSC), 2016.</li>
 <li>[130]. S. Zhou, Y. Wang, M. Zheng, and M. Tomizuka, “A hierarchical
 planning and control framework for structured highway driving,”
 IFACPapersOnLine, vol. 50, no. 1, pp. 9101–9107, 2017.</li>
@@ -609,8 +602,7 @@ no. 5, pp. 1782– 1797, 2018.</li>
 <ul>
 <li>C. Vallon, Z. Ercan, A. Carvalho, and F. Borrelli, “A machine
 learning approach for personalized autonomous lane change initiation and
-control,” in IEEE Intelligent Vehicles Symposium (IV), 2017.<br />
-</li>
+control,” in IEEE Intelligent Vehicles Symposium (IV), 2017.</li>
 </ul></li>
 <li>演化算法（Evolutionary
 methods）。在高速场景，最优解并不是必须的，演化算法的高计算效率，获得近似次优解，足以满足要求。</li>
@@ -654,8 +646,7 @@ architecture,” Human factors, vol. 48, no. 2, pp. 362–380, 2006</li>
 <ul>
 <li><strong>Risk
 estimators</strong>：执行可接受风险和目标安全之间的权衡。</li>
-<li><strong>Taxonomic models</strong>：场景和状况细分分类。<br />
-</li>
+<li><strong>Taxonomic models</strong>：场景和状况细分分类。</li>
 <li><strong>Game
 theory</strong>：把所有车辆看做agent参与博弈，缺点是假设所有人准守规则，一些文章进行了改进：
 <ul>

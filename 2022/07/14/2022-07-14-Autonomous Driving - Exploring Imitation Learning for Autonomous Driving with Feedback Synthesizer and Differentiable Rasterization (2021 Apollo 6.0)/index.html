@@ -29,12 +29,16 @@
 <meta property="og:site_name" content="Txing">
 <meta property="og:description" content="Exploring Imitation Learning for Autonomous Driving with Feedback Synthesizer and Differentiable Rasterization (2021, Apollo 6.0) Introduction  our work adopts a mid-to-mid approach (mid2mid允许便利">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220714-1.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220714-2.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220714-3.png">
 <meta property="article:published_time" content="2022-07-13T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-25T01:54:15.012Z">
+<meta property="article:modified_time" content="2023-10-07T07:31:29.491Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Imitation Learning">
 <meta property="article:tag" content="Autonomous Driving">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://txing-casia.github.io/images/20220714-1.png">
 
 <link rel="canonical" href="https://txing-casia.github.io/2022/07/14/2022-07-14-Autonomous%20Driving%20-%20Exploring%20Imitation%20Learning%20for%20Autonomous%20Driving%20with%20Feedback%20Synthesizer%20and%20Differentiable%20Rasterization%20(2021%20Apollo%206.0)/">
 
@@ -265,8 +269,7 @@ us to augment data handily and go beyond pure imitation by having
 task-specific losses) where our system’s input is constructed by
 building a top-down image representation of the environment that
 incorporates both static and dynamic information from our <strong>HD
-Map</strong> and <strong>perception system</strong>.<br />
-</p></li>
+Map</strong> and <strong>perception system</strong>.</p></li>
 <li><p>Following the philosophy of <strong>DAgger</strong> [2], we
 introduce a <strong>feedback synthesizer</strong>（反馈合成器）that
 generates and perturbs on-policy data based on the current policy. Then
@@ -277,8 +280,7 @@ IV.</p>
 <ul>
 <li>[2]. S. Ross, G. Gordon, and D. Bagnell, “A reduction of imitation
 learning and structured prediction to no-regret online learning,” in
-AISTATS, 2011, pp. 627–635.<br />
-</li>
+AISTATS, 2011, pp. 627–635.</li>
 </ul></li>
 <li><p>启发本文的文章：</p>
 <ul>
@@ -292,8 +294,7 @@ drive by imitating the best and synthesizing the worst,” in RSS,
 Burgard, “Driving through ghosts: Behavioral cloning with false
 positives,” in IROS, 2020.</li>
 <li>D. Chen, B. Zhou, V. Koltun, and P. Krahenbuhl, “Learning by
-cheating,” in CoRL, 2020, pp. 66–75.<br />
-</li>
+cheating,” in CoRL, 2020, pp. 66–75.</li>
 </ul></li>
 <li><p>单纯的模仿学习没有关于任务的明确的重要目标和约束，因此难免会学习到非期望的行为。通过引入task
 losses可以控制这些非期望的行为。</p></li>
@@ -332,8 +333,7 @@ module</strong>（空间注意力机制） in our network design.</p>
 accurate and human-like driving using semantic maps and attention,” in
 IROS, 2020, pp. 2346–2353.</li>
 <li>[13]. J. Kim and M. Bansal, “Attentional bottleneck: Towards an
-interpretable deep driving network,” in CVPR Workshops, 2020.<br />
-</li>
+interpretable deep driving network,” in CVPR Workshops, 2020.</li>
 </ul></li>
 <li><p>为了提高舒适度，提出了可选择的后处理规划器作为看门人，进行高级别的决策引导和组成新的轨迹。we
 propose to add an <strong>optional post-processing planner</strong> as a
@@ -503,9 +503,7 @@ Synthesizer</strong>：学习一个驾驶策略帮助生成新的轨迹数据。
 class="math display">\[\pi_{t-1}\]</span>生成轨迹数据，用于训练策略<span
 class="math display">\[\pi_t\]</span>。具体算法如下：</p>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220714-1.png"
-alt="Feedback Synthesizer" />
+<img src="\images\20220714-1.png" alt="Feedback Synthesizer" />
 <figcaption aria-hidden="true">Feedback Synthesizer</figcaption>
 </figure></li>
 <li><p><strong>Post-processing
@@ -544,14 +542,11 @@ synthesizer生成465k帧数据，记为<span
 class="math display">\[D_f\]</span></p></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220714-2.png"
-alt="不同模型配置的性能对比" />
+<img src="\images\20220714-2.png" alt="不同模型配置的性能对比" />
 <figcaption aria-hidden="true">不同模型配置的性能对比</figcaption>
 </figure>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220714-3.png"
+<img src="\images\20220714-3.png"
 alt="offroad,speeding,collision,and failed to arrive性能对比" />
 <figcaption aria-hidden="true">offroad,speeding,collision,and failed to
 arrive性能对比</figcaption>

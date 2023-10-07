@@ -29,11 +29,17 @@
 <meta property="og:site_name" content="Txing">
 <meta property="og:description" content="Vector-based navigation using grid-like representations in artificial agent 论文链接：https:&#x2F;&#x2F;www.nature.com&#x2F;articles&#x2F;s41586-018-0102-6&#x2F; 背景 RL在许多方面取得了好的成绩，但在哺乳动物的空间行为（mammalian spatial behaviour）的熟练度上">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://txing-casia.github.io/images/20200914-1.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20200914-2.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20200914-3.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20200915-1.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20200915-2.png">
 <meta property="article:published_time" content="2020-09-14T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-25T01:54:14.970Z">
+<meta property="article:modified_time" content="2023-10-07T07:31:29.483Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Neuroscience">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://txing-casia.github.io/images/20200914-1.png">
 
 <link rel="canonical" href="https://txing-casia.github.io/2020/09/15/2020-09-14-Neuroscience%20-%20Vector-based%20navigation%20using%20grid-like%20representations/">
 
@@ -283,8 +289,7 @@ time。LSTM映射位置和方向到一个线性层，在线性层中使用dropou
 <li><p>entorhinal network内嗅皮层网络帮助形成稳定的空间活动</p></li>
 <li><p>实验效果如下图：</p></li>
 </ul>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200914-1.png" /></p>
+<p><img src="\images\20200914-1.png" /></p>
 <ul>
 <li>vector-based navigation:
 内嗅网格细胞产生目标驱动向量度量欧式空间，使得动物能够沿着一条直接路径到达目标。文中利用监督学习来实现这一能力。</li>
@@ -301,8 +306,7 @@ cell distribution</h4>
 <ul>
 <li>地图直径为<span class="math display">\[L\]</span></li>
 </ul>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200914-2.png" /></p>
+<p><img src="\images\20200914-2.png" /></p>
 <ul>
 <li>符号说明：
 <ul>
@@ -319,8 +323,7 @@ class="math display">\[\sigma^{(c)}\]</span></li>
 </ul>
 <h4 id="ground-truth-head-direction-cell-distribution">1.2 Ground truth
 head-direction cell distribution</h4>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200914-3.png" /></p>
+<p><img src="\images\20200914-3.png" /></p>
 <ul>
 <li>参数说明：
 <ul>
@@ -370,8 +373,7 @@ class="math display">\[\overrightarrow{g}_t\in
 <li>第二组：从线性激活层<span
 class="math display">\[\overrightarrow{g}_t\]</span>映射到预测的头部朝向<span
 class="math display">\[\overrightarrow{z}_t\]</span>的权重和偏置通过softmax
-functions<br />
-</li>
+functions</li>
 <li>第三组：从线性激活层<span
 class="math display">\[\overrightarrow{g}_t\]</span>映射到预测的位置细胞输出<span
 class="math display">\[\overrightarrow{y}_t\]</span>的权重和偏置通过softmax
@@ -390,11 +392,9 @@ L(\overrightarrow{y},\overrightarrow{z},\overrightarrow{c},\overrightarrow{h})=-
 c_i \log(y_i)-\sum_{j=1}^{M} h_j \log(z_j)
 \]</span></p>
 <p>监督学习部分的结构:</p>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200915-1.png" /></p>
+<p><img src="\images\20200915-1.png" /></p>
 <p>Grid cell agent整体结构：</p>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200915-2.png" /></p>
+<p><img src="\images\20200915-2.png" /></p>
 <h2 id="总结">总结</h2>
 <p>grid cells的相关生物学研究获得过<a
 href="https://link.zhihu.com/?target=https%3A//www.nobelprize.org/nobel_prizes/medicine/laureates/2014/">2014年诺贝尔生理学奖</a>for

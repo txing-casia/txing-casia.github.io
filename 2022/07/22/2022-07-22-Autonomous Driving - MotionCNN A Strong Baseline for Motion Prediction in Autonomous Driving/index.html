@@ -29,12 +29,15 @@
 <meta property="og:site_name" content="Txing">
 <meta property="og:description" content="MotionCNN: A Strong Baseline for Motion Prediction in Autonomous Driving 1 Introduction  Motion prediction 目前仍然是一个困难的任务，本文提出了一个可以进行多模式的行为预测（multimodal motion prediction）的较强的baseline (based purel">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220722-1.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220722-2.png">
 <meta property="article:published_time" content="2022-07-21T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-25T01:54:15.013Z">
+<meta property="article:modified_time" content="2023-10-07T07:31:29.491Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Imitation Learning">
 <meta property="article:tag" content="Autonomous Driving">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://txing-casia.github.io/images/20220722-1.png">
 
 <link rel="canonical" href="https://txing-casia.github.io/2022/07/22/2022-07-22-Autonomous%20Driving%20-%20MotionCNN%20A%20Strong%20Baseline%20for%20Motion%20Prediction%20in%20Autonomous%20Driving/">
 
@@ -261,8 +264,7 @@ A Strong Baseline for Motion Prediction in Autonomous Driving</h2>
 <li>Motion prediction
 目前仍然是一个困难的任务，本文提出了一个可以进行多模式的行为预测（multimodal
 motion prediction）的较强的baseline (based purely on Convolutional
-Neural Networks (CNNs)<br />
-</li>
+Neural Networks (CNNs)</li>
 <li>算法在 2021 Waymo Open Dataset Motion Prediction Challenge
 取得第三名。相关代码见<a
 target="_blank" rel="noopener" href="https://github.com/kbrodt/waymo-motion-prediction-2021">Github</a></li>
@@ -294,8 +296,7 @@ class="math display">\[\sum_k c_k=1\]</span></li>
 <li><p>使用k个高斯分布，网络输出高斯分布的均值，将每个高斯的协方差固定为单位矩阵<span
 class="math display">\[I\]</span></p></li>
 <li><p>损失函数使用混合高斯分布的负的log似然度negative log-likelihood
-(NLL)，混合高斯由真实轨迹坐标定义<br />
-</p></li>
+(NLL)，混合高斯由真实轨迹坐标定义</p></li>
 <li><p>给定ground truth轨迹：<span
 class="math display">\[X^{gt}=[(x_1,y_1),...,(x_T,y_T)]\]</span></p></li>
 <li><p>给定K个预测的假设轨迹：<span
@@ -331,28 +332,23 @@ Benjamin Caine, Vijay Vasudevan, Wei Han, Jiquan Ngiam, Hang Zhao,
 Aleksei Timofeev, Scott Ettinger, Maxim Krivokon, Amy Gao, Aditya Joshi,
 Sheng Zhao, Shuyang Cheng, Yu Zhang, Jonathon Shlens, Zhifeng Chen, and
 Dragomir Anguelov. Scalability in perception for autonomous driving:
-Waymo open dataset, 2020. 3, 4<br />
-</li>
+Waymo open dataset, 2020. 3, 4</li>
 <li>[7]. Scott Ettinger, Shuyang Cheng, Benjamin Caine, Chenxi Liu, Hang
 Zhao, Sabeek Pradhan, Yuning Chai, Ben Sapp, Charles Qi, Yin Zhou, et
 al. Large scale interactive motion forecasting for autonomous driving:
 The waymo open motion dataset. arXiv preprint arXiv:2104.10133, 2021. 1,
-2, 3, 4<br />
-</li>
+2, 3, 4</li>
 </ul></li>
 <li>Waymo数据包括：
 <ul>
-<li>object trajectories<br />
-</li>
+<li>object trajectories</li>
 <li>3D maps for 103354 segments</li>
 <li>Each segment is a 20 seconds recording of an object trajectory at
-10Hz<br />
-</li>
+10Hz</li>
 <li>map data for the area covered by the segment</li>
 <li>A single sample comprises 1 second of history and 8 seconds of
 future data obtained by breaking the segments into 9-second windows with
-5 second overlap<br />
-</li>
+5 second overlap</li>
 <li>每个这样的样本包含多达8个标记为“有效”的代理，模型需要预测它们在未来8秒内的位置。Every
 such sample contains up to 8 agents marked as ”valid” for which the
 model needs to predict their positions for 8 seconds into the
@@ -365,8 +361,7 @@ class="math display">\[T=11\]</span>​是快照（snapshot）数，3是RGB图�
 lines, crosswalks, traffic
 lights等；每个历史快照通过两个额外通道表示：（1）The mask representing
 the location of the target agent. （2）the mask representing all other
-agents nearby<br />
-</li>
+agents nearby</li>
 <li>智能体位于坐标<span
 class="math display">\[[61,112]\]</span>，其速度与图像的X轴对齐</li>
 </ul></li>
@@ -408,15 +403,13 @@ validation loss values during training.</p>
 <p>In Tab. 2 we also provide more detailed evaluation results for
 different object types separately.</p>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220722-1.png"
+<img src="\images\20220722-1.png"
 alt="Quantitative evaluation on test and validation sets of Waymo Open Motion Dataset" />
 <figcaption aria-hidden="true">Quantitative evaluation on test and
 validation sets of Waymo Open Motion Dataset</figcaption>
 </figure>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220722-2.png"
+<img src="\images\20220722-2.png"
 alt="Detailed evaluation of our MotionCNN-Xception71 model on test and validation sets of Waymo Open Motion Dataset" />
 <figcaption aria-hidden="true">Detailed evaluation of our
 MotionCNN-Xception71 model on test and validation sets of Waymo Open

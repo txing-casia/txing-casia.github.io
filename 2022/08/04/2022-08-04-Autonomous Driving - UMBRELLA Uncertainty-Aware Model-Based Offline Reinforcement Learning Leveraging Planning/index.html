@@ -29,12 +29,19 @@
 <meta property="og:site_name" content="Txing">
 <meta property="og:description" content="UMBRELLA: Uncertainty-Aware Model-Based Offline Reinforcement Learning Leveraging Planning  在学习过程中考虑了随机不确定性的影响，提高了模型的可迁移性和可解释性  1 Introduction  目前的模型考虑到多智能体之间的交互和复杂行为，多采用工程设计的驾驶策略，但这样难以适用更复杂的任">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220804-3.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220804-4.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220804-5.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220804-6.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220804-1.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220804-2.png">
 <meta property="article:published_time" content="2022-08-03T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-25T01:54:15.016Z">
+<meta property="article:modified_time" content="2023-10-07T07:31:29.491Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Imitation Learning">
 <meta property="article:tag" content="Autonomous Driving">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://txing-casia.github.io/images/20220804-3.png">
 
 <link rel="canonical" href="https://txing-casia.github.io/2022/08/04/2022-08-04-Autonomous%20Driving%20-%20UMBRELLA%20Uncertainty-Aware%20Model-Based%20Offline%20Reinforcement%20Learning%20Leveraging%20Planning/">
 
@@ -266,8 +273,7 @@ Planning</h2>
 <li><p>主要贡献：</p>
 <ul>
 <li>提出了一个基于模型的离线规划算法UMBRELLA，在观测上考虑了认知和偶然的不确定性（epistemic
-和 aleatoric）<br />
-</li>
+和 aleatoric）</li>
 <li>引入了一个消融实验，优化最坏情况模型</li>
 <li>实验中，在稠密车流（with dense
 traffic）的城市和高速场景中，胜过了BC行为克隆方法和MBOP算法</li>
@@ -293,8 +299,7 @@ Welling,
 <li>Mikael Henaff, Alfredo Canziani, and Yann LeCun. Model-predictive
 policy learning with uncertainty regularization for driving in dense
 traffic. In International Conference on Learning Representations,
-\2019.<br />
-</li>
+\2019.</li>
 <li>Diederik P. Kingma and Max Welling. Auto-Encoding Variational Bayes.
 In International Conference on Learning Representations, 2014.</li>
 </ul></li>
@@ -307,8 +312,7 @@ and prediction）的行为交互</p>
 <ul>
 <li>Jerry Liu, Wenyuan Zeng, Raquel Urtasun, and Ersin Yumer. Deep
 structured reactive planning. In IEEE International Conference on
-Robotics and Automation, 2021.<br />
-</li>
+Robotics and Automation, 2021.</li>
 <li>Nicholas Rhinehart, Jeff He, Charles Packer, Matthew A. Wright,
 Rowan McAllister, Joseph E. Gonzalez, and Sergey Levine. Contingencies
 from observations: Tractable contingency planning with learned behavior
@@ -394,29 +398,25 @@ A^{n_c}\rightarrow \mathbb{R}\]</span> 估计H个时间步后的期望回报<spa
 class="math display">\[\hat{R}_H\]</span></p></li>
 </ul></li>
 <li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-3.png"
+<img src="\images\20220804-3.png"
 alt="Simplified network architecture of the stochastic forward dynamics model during training" />
 <figcaption aria-hidden="true">Simplified network architecture of the
 stochastic forward dynamics model during training</figcaption>
 </figure></li>
 <li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-4.png"
+<img src="\images\20220804-4.png"
 alt="Behavior-cloned policy network architecture" />
 <figcaption aria-hidden="true">Behavior-cloned policy network
 architecture</figcaption>
 </figure></li>
 <li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-5.png"
+<img src="\images\20220804-5.png"
 alt="Truncated value function network architecture" />
 <figcaption aria-hidden="true">Truncated value function network
 architecture</figcaption>
 </figure></li>
 <li><figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-6.png"
+<img src="\images\20220804-6.png"
 alt="Signal flow of the stochastic forward dynamics model" />
 <figcaption aria-hidden="true">Signal flow of the stochastic forward
 dynamics model</figcaption>
@@ -435,9 +435,7 @@ Journal of Guidance, Control, and Dynamics, 40(2): 344–357, 2017.</li>
 T^*_t = \frac{\sum_{n=1}^N e^{kR_n} A_{n,t+1}}{\sum_{n=1}^N e^{kR_n}}
 \]</span></p>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-1.png"
-alt="UMBRELLA Planning" />
+<img src="\images\20220804-1.png" alt="UMBRELLA Planning" />
 <figcaption aria-hidden="true">UMBRELLA Planning</figcaption>
 </figure>
 <ul>
@@ -448,8 +446,7 @@ alt="UMBRELLA Planning" />
 <ul>
 <li>环境：
 <ul>
-<li><strong>NGSIM</strong>：多智能体自动驾驶环境<br />
-</li>
+<li><strong>NGSIM</strong>：多智能体自动驾驶环境</li>
 <li><strong>CARLA</strong>：城市多智能体自动驾驶场景</li>
 </ul></li>
 <li>基线方法：
@@ -459,16 +456,14 @@ alt="UMBRELLA Planning" />
 <ul>
 <li>Arthur Argenson and Gabriel Dulac-Arnold. Model-based offline
 planning. In International Conference on Learning Representations,
-2021.<br />
-</li>
+2021.</li>
 </ul></li>
 <li><strong>MPUR</strong>：最好的基于模型策略学习方法
 <ul>
 <li>Mikael Henaff, Alfredo Canziani, and Yann LeCun. Model-predictive
 policy learning with uncertainty regularization for driving in dense
 traffic. In International Conference on Learning Representations,
-2019.<br />
-</li>
+2019.</li>
 </ul></li>
 </ul></li>
 <li>指标：
@@ -476,23 +471,18 @@ traffic. In International Conference on Learning Representations,
 <li>Success rate (SR)：The rate of collision-free
 episodes，并要求在时间内到达目标位置</li>
 <li>Mean distance (MD)：NGSIM中的纵向行驶距离</li>
-<li>mean successful time (MST)<br />
-</li>
+<li>mean successful time (MST)</li>
 <li>mean proximity reward <span
 class="math display">\[\overline{r}_{prox}\]</span></li>
 <li>mean lane reward <span
-class="math display">\[\overline{r}_{lane}\]</span><br />
-</li>
+class="math display">\[\overline{r}_{lane}\]</span></li>
 <li>mean final reward <span
-class="math display">\[\overline{r}\]</span><br />
-</li>
+class="math display">\[\overline{r}\]</span></li>
 </ul></li>
 <li>实验结果：</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220804-2.png"
-alt="性能对比" />
+<img src="\images\20220804-2.png" alt="性能对比" />
 <figcaption aria-hidden="true">性能对比</figcaption>
 </figure>
 <h3 id="总结">总结</h3>

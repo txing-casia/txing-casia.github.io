@@ -29,12 +29,17 @@
 <meta property="og:site_name" content="Txing">
 <meta property="og:description" content="Urban Driver: Learning to Drive from Real-world Demonstrations Using Policy Gradients  取得了城市驾驶场景中最好的效果（Urban driving scenarios） 数据：使用100小时的城市道路专家示教数据 不必添加复杂的状态扰动； 不必在训练中收集额外的同策略数据；  Introduct">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220803-1.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220803-2.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220803-3.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20220803-4.png">
 <meta property="article:published_time" content="2022-08-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-25T01:54:15.016Z">
+<meta property="article:modified_time" content="2023-10-07T07:31:29.491Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Imitation Learning">
 <meta property="article:tag" content="Autonomous Driving">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://txing-casia.github.io/images/20220803-1.png">
 
 <link rel="canonical" href="https://txing-casia.github.io/2022/08/03/2022-08-03-Autonomous%20Driving%20-%20Urban%20Driver%20Learning%20to%20Drive%20from%20Real-world%20Demonstrations%20Using%20Policy%20Gradients/">
 
@@ -265,9 +270,7 @@ Gradients</h2>
 </ul>
 <h3 id="introduction">Introduction</h3>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220803-1.png"
-alt="本文的闭环训练算法概览" />
+<img src="\images\20220803-1.png" alt="本文的闭环训练算法概览" />
 <figcaption aria-hidden="true">本文的闭环训练算法概览</figcaption>
 </figure>
 <ul>
@@ -295,8 +298,7 @@ H. Li, and Q. Kong. Baidu apollo em motion planner. ArXiv, 2018.</li>
 <li>A* [11]</li>
 <li>RRTs [12]</li>
 <li>POMDP with solver [13]</li>
-<li>dynamic programming [14]<br />
-</li>
+<li>dynamic programming [14]</li>
 </ul></li>
 <li><p>整体上是依赖human engineering，而不是数据驱动</p></li>
 </ul></li>
@@ -305,8 +307,7 @@ H. Li, and Q. Kong. Baidu apollo em motion planner. ArXiv, 2018.</li>
 <li>依赖仿真器的构造、精确编码和优化的奖励信号
 <ul>
 <li>S. Shalev-Shwartz, S. Shammah, and A. Shashua. Safe, multi-agent,
-reinforcement learning for autonomous driving. ArXiv, 2016.<br />
-</li>
+reinforcement learning for autonomous driving. ArXiv, 2016.</li>
 </ul></li>
 <li>手工编程的仿真器，不能还原真实的长尾场景</li>
 <li>本文直接通过 mid-level representations 从真实世界的 log
@@ -326,8 +327,7 @@ cloning）面临协变量偏移问题（covariate shift）</li>
 <ul>
 <li>W. Zeng, W. Luo, S. Suo, A. Sadat, B. Yang, S. Casas, and R.
 Urtasun. End-to-end interpretable neural motion planner. Int. Conference
-on Computer Vision and Pattern Recognition (CVPR), \2019.<br />
-</li>
+on Computer Vision and Pattern Recognition (CVPR), \2019.</li>
 <li>S. Casas, A. Sadat, and R. Urtasun. Mp3: A unified model to map,
 perceive, predict and plan. In Proceedings of the IEEE/CVF Conference on
 Computer Vision and Pattern Recognition, pages 14403–14412, 2021.</li>
@@ -343,8 +343,7 @@ motion prediction dataset. Conference on Robot Learning (CoRL),
 <li>M.-F. Chang, J. Lambert, P. Sangkloy, J. Singh, S. Bak, A. Hartnett,
 P. C. De Wang, S. Lucey, D. Ramanan, and J. Hays. Argoverse: 3d tracking
 and forecasting with rich maps supplementary material. Int. Conf. on
-Computer Vision and Pattern Recognition (CVPR).<br />
-</li>
+Computer Vision and Pattern Recognition (CVPR).</li>
 <li>state-of-the-art solutions for motion forecasting [8, 9]
 <ul>
 <li>[8] J. Gao, C. Sun, H. Zhao, Y. Shen, D. Anguelov, C. Li, and C.
@@ -353,8 +352,7 @@ representation. In Int. Conf. on Computer Vision and Pattern Recognition
 (CVPR), 2020.</li>
 <li>[9] M. Liang, B. Yang, R. Hu, Y. Chen, R. Liao, S. Feng, and R.
 Urtasun. Learning lane graph representations for motion forecasting.
-2020.<br />
-</li>
+2020.</li>
 </ul></li>
 </ul></li>
 <li><p><strong>Data-driven simulation</strong>：</p>
@@ -392,8 +390,7 @@ class="math display">\[\pi_E\]</span>是专家策略，<span
 class="math display">\[\pi\]</span>是模型的策略，希望两个策略接近</li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220803-2.png"
+<img src="\images\20220803-2.png"
 alt="Imitation learning from expert demonstrations" />
 <figcaption aria-hidden="true">Imitation learning from expert
 demonstrations</figcaption>
@@ -411,27 +408,23 @@ L_a\pi_{\theta}+\gamma(J_s^{t+1}S_a\pi_{\theta}+J_{\theta}^{t+1})
 \]</span> &gt; Ref: N. Heess, G. Wayne, D. Silver, T. Lillicrap, T.
 Erez, and Y. Tassa. Learning continuous control policies by stochastic
 value gradients. In Advances in Neural Information Processing Systems,
-\2015.<br />
-### Experiments</p></li>
+\2015. ### Experiments</p></li>
 <li><p>Lyft Motion Prediction Dataset
 [6]：数据采集自加利福尼亚州帕洛阿尔托的复杂城市路线。数据集捕捉各种真实世界的情况，例如在多车道交通中驾驶、转弯、在十字路口与车辆互动等。</p>
 <ul>
 <li>J. Houston, G. Zuidhof, L. Bergamini, Y. Ye, A. Jain, S. Omari, V.
 Iglovikov, and P. Ondruska. One thousand and one hours: Self-driving
 motion prediction dataset. Conference on Robot Learning (CoRL),
-2020.<br />
-</li>
+2020.</li>
 </ul></li>
 <li><p>模型在100小时子集上训练，并在25小时子集上测试。</p></li>
 <li><p>three state-of-the-art baselines：</p>
 <ul>
-<li>Naive Behavioral Cloning (BC)<br />
-</li>
+<li>Naive Behavioral Cloning (BC)</li>
 <li>Behavioral Cloning + Perturbations (BC-perturb)
 <ul>
 <li>M. Bansal, A. Krizhevsky, and A. Ogale. Chauffeurnet: Learning to
-drive by imitating the best and synthesizing the worst. 12 2018.<br />
-</li>
+drive by imitating the best and synthesizing the worst. 12 2018.</li>
 </ul></li>
 <li>Multi-step Prediction (MS Prediction)
 <ul>
@@ -441,9 +434,7 @@ prediction of learned time series models. In AAAI, 2015.</li>
 </ul></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220803-3.png"
-alt="性能对比" />
+<img src="\images\20220803-3.png" alt="性能对比" />
 <figcaption aria-hidden="true">性能对比</figcaption>
 </figure>
 <blockquote>
@@ -468,9 +459,7 @@ comparison, namely Interventions per 1000 Miles (I1K)</li>
 </ul></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20220803-4.png"
-alt="仿真结果" />
+<img src="\images\20220803-4.png" alt="仿真结果" />
 <figcaption aria-hidden="true">仿真结果</figcaption>
 </figure>
 <h3 id="总结">总结</h3>

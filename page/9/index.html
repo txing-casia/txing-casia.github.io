@@ -465,8 +465,7 @@ learning", <em>Adapt. Behav.</em>, vol. 16, pp. 400-412, 2008.</p></li>
 <li><p>使用RL的模型结构示意图</p></li>
 </ul>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210722-1.png"
+<img src="\images\20210722-1.png"
 alt="Agent–environment interactions in reinforcement learning" />
 <figcaption aria-hidden="true">Agent–environment interactions in
 reinforcement learning</figcaption>
@@ -1495,8 +1494,8 @@ Learning of Intrinsic Rewards: A Derivation</h3>
 class="math display">\[J(\theta)=E[\sum^{\infty}_{t=0}
 \gamma^tr_t]\]</span></p></li>
 <li><p>the gradient of the value <span
-class="math display">\[J(\theta)\]</span> is<br />
-<span class="math display">\[
+class="math display">\[J(\theta)\]</span> is <span
+class="math display">\[
 \nabla_{\theta} J(\theta)=E_{\theta}[G(s_t,a_t) \nabla_{\theta} \log
 \pi_{\theta}(a_t|s_t)]\\
 G(s_t,a_t)=\sum^{\infty}_{i=t} \gamma^{i-t}r_i
@@ -1505,15 +1504,13 @@ G(s_t,a_t)=\sum^{\infty}_{i=t} \gamma^{i-t}r_i
 <h4 id="lirpg-learning-intrinsic-rewards-for-policy-gradient">LIRPG:
 Learning Intrinsic Rewards for Policy Gradient</h4>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210719-1.png"
+<img src="\images\20210719-1.png"
 alt="Learning Intrinsic Rewards for Policy Gradient" />
 <figcaption aria-hidden="true">Learning Intrinsic Rewards for Policy
 Gradient</figcaption>
 </figure>
 <figure>
-<img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20210719-2.png"
+<img src="\images\20210719-2.png"
 alt="Algorithm 1 LIRPG: Learning Intrinsic Reward for Policy Gradient" />
 <figcaption aria-hidden="true">Algorithm 1 LIRPG: Learning Intrinsic
 Reward for Policy Gradient</figcaption>
@@ -1521,8 +1518,7 @@ Reward for Policy Gradient</figcaption>
 <ul>
 <li><p><strong>Updating Policy Parameters (θ)</strong></p>
 <p>使用内部和外部奖励之和来更新 <span
-class="math display">\[\theta\]</span><br />
-<span class="math display">\[
+class="math display">\[\theta\]</span> <span class="math display">\[
 \begin{align}
 \theta&#39;&amp;=\theta+\alpha\nabla_{\theta} J^{ex+in}(\theta)\\
 &amp;\approx \theta +\alpha G^{ex+in}(s_t,a_t) \nabla_{\theta} \log
@@ -1534,8 +1530,7 @@ class="math display">\[\theta\]</span><br />
 </ul>
 <p>Given an episode and the updated policy parameters <span
 class="math display">\[\theta&#39;\]</span> , we update intrinsic reward
-parameters.<br />
-<span class="math display">\[
+parameters. <span class="math display">\[
 \begin{align}
 \nabla_{\eta}
 J^{ex}&amp;=\nabla_{\theta&#39;}J^{ex}\nabla_{\eta}\theta&#39;\\
@@ -1549,12 +1544,11 @@ G^{ex+in}(s_t,a_t)\nabla_{\theta}\log \pi_{\theta}(a_t|s_t))\\
 \pi_{\theta}(a_t|s_t)))\\
 &amp;= \alpha \lambda \sum^{\infty}_{i=t} \gamma^{i-t}\nabla_{\eta}
 r^{in}_{\eta}(s_i,a_i)\nabla_{\theta} \log \pi_{\theta}(a_t\mid s_t)
-\end{align}  
-\]</span> The importance sampling:<br />
-<span class="math display">\[
+\end{align}
+\]</span> The importance sampling: <span class="math display">\[
 \nabla_{\theta&#39;}
 J^{ex}=G^{ex}(s_t,a_t)\frac{\nabla_{\theta&#39;}\pi_{\theta&#39;}(a_t\mid
-s_t)}{\pi_{\theta}(a_t\mid s_t)}\\  
+s_t)}{\pi_{\theta}(a_t\mid s_t)}\\
 \]</span>
 重要性采样就是假设数据属于p(x)分布，但是实际采样是以q(x)分布采样的，需要乘以一个权重，把数据转换到p(x)分布，也就是重要性权重。</p>
 <h2 id="总结">总结</h2>

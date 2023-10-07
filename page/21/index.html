@@ -267,8 +267,7 @@ Efficient Use of Demonstrations to Solve Hard Exploration Problems</h1>
 <li></li>
 </ul>
 <h2 id="方法">方法</h2>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200912-1.png" /></p>
+<p><img src="\images\20200912-1.png" /></p>
 <h2 id="总结">总结</h2>
 
       
@@ -372,8 +371,7 @@ time。LSTM映射位置和方向到一个线性层，在线性层中使用dropou
 <li><p>entorhinal network内嗅皮层网络帮助形成稳定的空间活动</p></li>
 <li><p>实验效果如下图：</p></li>
 </ul>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200914-1.png" /></p>
+<p><img src="\images\20200914-1.png" /></p>
 <ul>
 <li>vector-based navigation:
 内嗅网格细胞产生目标驱动向量度量欧式空间，使得动物能够沿着一条直接路径到达目标。文中利用监督学习来实现这一能力。</li>
@@ -390,8 +388,7 @@ cell distribution</h4>
 <ul>
 <li>地图直径为<span class="math display">\[L\]</span></li>
 </ul>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200914-2.png" /></p>
+<p><img src="\images\20200914-2.png" /></p>
 <ul>
 <li>符号说明：
 <ul>
@@ -408,8 +405,7 @@ class="math display">\[\sigma^{(c)}\]</span></li>
 </ul>
 <h4 id="ground-truth-head-direction-cell-distribution">1.2 Ground truth
 head-direction cell distribution</h4>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200914-3.png" /></p>
+<p><img src="\images\20200914-3.png" /></p>
 <ul>
 <li>参数说明：
 <ul>
@@ -459,8 +455,7 @@ class="math display">\[\overrightarrow{g}_t\in
 <li>第二组：从线性激活层<span
 class="math display">\[\overrightarrow{g}_t\]</span>映射到预测的头部朝向<span
 class="math display">\[\overrightarrow{z}_t\]</span>的权重和偏置通过softmax
-functions<br />
-</li>
+functions</li>
 <li>第三组：从线性激活层<span
 class="math display">\[\overrightarrow{g}_t\]</span>映射到预测的位置细胞输出<span
 class="math display">\[\overrightarrow{y}_t\]</span>的权重和偏置通过softmax
@@ -479,11 +474,9 @@ L(\overrightarrow{y},\overrightarrow{z},\overrightarrow{c},\overrightarrow{h})=-
 c_i \log(y_i)-\sum_{j=1}^{M} h_j \log(z_j)
 \]</span></p>
 <p>监督学习部分的结构:</p>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200915-1.png" /></p>
+<p><img src="\images\20200915-1.png" /></p>
 <p>Grid cell agent整体结构：</p>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200915-2.png" /></p>
+<p><img src="\images\20200915-2.png" /></p>
 <h2 id="总结">总结</h2>
 <p>grid cells的相关生物学研究获得过<a
 href="https://link.zhihu.com/?target=https%3A//www.nobelprize.org/nobel_prizes/medicine/laureates/2014/">2014年诺贝尔生理学奖</a>for
@@ -833,8 +826,7 @@ experience for training</li>
 <p>针对这两个问题，本文建立了<strong>off-policy修正模型</strong>，re-label过去的经验，并用高级策略选择可能获得最大奖励的行为。</p></li>
 </ul>
 <h2 id="方法">方法</h2>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200912-1.png" /></p>
+<p><img src="\images\20200912-1.png" /></p>
 <ul>
 <li><p>两层策略：a lower-level policy <span
 class="math display">\[\mu^{lo}\]</span> and a higher-level policy <span
@@ -1219,11 +1211,9 @@ Networks for Hierarchical Reinforcement learning</h1>
 <p>FuN是在feudal reinforcement
 learning基础上的延展性工作，利用Manger学习子状态空间，设定子目标，将任务进行拆分；然后Worker处理子任务，完成Manger设置的子目标。</p>
 <p>其主体框架如下：</p>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200910-1.png" /></p>
+<p><img src="\images\20200910-1.png" /></p>
 <p>其中，Manger和Worker都是RNN，只不过处理问题的时间分辨率不一样。Worker的c步被看做Manger的一步。网络动力学关系如下：</p>
-<p><img
-src="https://raw.githubusercontent.com/txing-casia/txing-casia.github.io/master/img/20200910-2.png" /></p>
+<p><img src="\images\20200910-2.png" /></p>
 <p><span class="math display">\[x_t\]</span>是图像输入，<span
 class="math display">\[z_t\]</span>是提取的特征，<span
 class="math display">\[s_t\]</span>是输入给Manger RNN的状态。<span
