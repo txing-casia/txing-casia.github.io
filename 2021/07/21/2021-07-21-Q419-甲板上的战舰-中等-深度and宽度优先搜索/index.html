@@ -30,7 +30,7 @@
 <meta property="og:description" content="419. 甲板上的战舰 Question  给定一个二维的甲板， 请计算其中有多少艘战舰。 战舰用 &#39;X&#39;表示，空位用 &#39;.&#39;表示。 你需要遵守以下规则： 给你一个有效的甲板，仅由战舰或者空位组成。 战舰只能水平或者垂直放置。换句话说,战舰只能由 1xN (1 行, N 列)组成，或者 Nx1 (N 行, 1 列)组成，其中N可以是任意大小。 两艘战舰之间至少有一个水平或垂直的空">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-07-20T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-25T01:54:15.001Z">
+<meta property="article:modified_time" content="2023-10-08T13:30:54.664Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Algorithm">
@@ -229,6 +229,15 @@
 
               <time title="Created: 2021-07-21 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-21T00:00:00+08:00">2021-07-21</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -281,7 +290,7 @@ Nx1 (N 行, 1 列)组成，其中N可以是任意大小。
 </blockquote>
 <h3 id="approach-1-深度优先搜索递归">Approach 1: 深度优先搜索+递归</h3>
 <p>简单处理，DFS越来越熟练了</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">countBattleships</span>(<span class="params">self, board: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">str</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">DFS</span>(<span class="params">cur_i,cur_j</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="number">0</span>&lt;=cur_i <span class="keyword">and</span> cur_i&lt;r <span class="keyword">and</span> <span class="number">0</span>&lt;=cur_j <span class="keyword">and</span> cur_j&lt;c <span class="keyword">and</span> board[cur_i][cur_j] == <span class="string">&#x27;X&#x27;</span>:</span><br><span class="line">                board[cur_i][cur_j] = <span class="string">&quot;.&quot;</span></span><br><span class="line">                <span class="keyword">for</span> di,dj <span class="keyword">in</span> [(-<span class="number">1</span>,<span class="number">0</span>),(<span class="number">1</span>,<span class="number">0</span>),(<span class="number">0</span>,-<span class="number">1</span>),(<span class="number">0</span>,<span class="number">1</span>)]:</span><br><span class="line">                    DFS(cur_i+di,cur_j+dj)</span><br><span class="line">            </span><br><span class="line">        r,c = <span class="built_in">len</span>(board),<span class="built_in">len</span>(board[<span class="number">0</span>])</span><br><span class="line">        ans=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(c):</span><br><span class="line">                <span class="keyword">if</span> board[i][j] == <span class="string">&#x27;X&#x27;</span>:</span><br><span class="line">                    ans+=<span class="number">1</span></span><br><span class="line">                    DFS(i,j)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans </span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">countBattleships</span>(<span class="params">self, board: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">str</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">DFS</span>(<span class="params">cur_i,cur_j</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="number">0</span>&lt;=cur_i <span class="keyword">and</span> cur_i&lt;r <span class="keyword">and</span> <span class="number">0</span>&lt;=cur_j <span class="keyword">and</span> cur_j&lt;c <span class="keyword">and</span> board[cur_i][cur_j] == <span class="string">&#x27;X&#x27;</span>:</span><br><span class="line">                board[cur_i][cur_j] = <span class="string">&quot;.&quot;</span></span><br><span class="line">                <span class="keyword">for</span> di,dj <span class="keyword">in</span> [(-<span class="number">1</span>,<span class="number">0</span>),(<span class="number">1</span>,<span class="number">0</span>),(<span class="number">0</span>,-<span class="number">1</span>),(<span class="number">0</span>,<span class="number">1</span>)]:</span><br><span class="line">                    DFS(cur_i+di,cur_j+dj)</span><br><span class="line"></span><br><span class="line">        r,c = <span class="built_in">len</span>(board),<span class="built_in">len</span>(board[<span class="number">0</span>])</span><br><span class="line">        ans=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(c):</span><br><span class="line">                <span class="keyword">if</span> board[i][j] == <span class="string">&#x27;X&#x27;</span>:</span><br><span class="line">                    ans+=<span class="number">1</span></span><br><span class="line">                    DFS(i,j)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：<span class="math display">\[O(R \times
@@ -392,14 +401,14 @@ C)\]</span>。其中 R 是给定网格中的行数，C
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">236</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -459,7 +468,7 @@ C)\]</span>。其中 R 是给定网格中的行数，C
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">577k</span>
+    <span title="Symbols count total">578k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>

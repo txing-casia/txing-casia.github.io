@@ -198,6 +198,210 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/05/2020-09-05-Q60%20Permutation%20Sequence-%E4%B8%AD%E7%AD%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/05/2020-09-05-Q60%20Permutation%20Sequence-%E4%B8%AD%E7%AD%89/" class="post-title-link" itemprop="url">Q60 Permutation Sequence-中等</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-09-05 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-05T00:00:00+08:00">2020-09-05</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.6k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="permutation-sequence"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/permutation-sequence/">Permutation
+Sequence</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>The set [1,2,3,...,n] contains a total of n! unique permutations.</p>
+<p>By listing and labeling all of the permutations in order, we get the
+following sequence for n = 3:</p>
+<p>"123" "132" "213" "231" "312" "321" Given n and k, return the kth
+permutation sequence.</p>
+<p><strong>Note:</strong></p>
+<p>Given n will be between 1 and 9 inclusive. Given k will be between 1
+and n! inclusive.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>Input: n = 3, k = 3 Output: "213"</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>Input: n = 4, k = 9 Output: "2314"</p>
+</blockquote>
+<h3 id="approach-1-缩小问题规模">Approach 1: 缩小问题规模</h3>
+<p>要想解决本题，首先需要了解一个简单的结论：</p>
+<blockquote>
+<p>对于 n 个不同的元素（例如数 1, 2, <span
+class="math display">\[\cdots\]</span>, n），它们可以组成的排列总数目为
+n!。</p>
+</blockquote>
+<p>对于给定的 n 和 k，我们不妨从左往右确定第 k
+个排列中的每一个位置上的元素到底是什么。</p>
+<p>我们首先确定排列中的首个元素 <span
+class="math display">\[a_1\]</span> 。根据上述的结论，我们可以知道：</p>
+<ul>
+<li><p>以 1 为 <span class="math display">\[a_1\]</span> 的排列一共有
+<span class="math display">\[(n-1)!\]</span> 个；</p></li>
+<li><p>以 2 为 <span class="math display">\[a_1\]</span>的排列一共有
+<span class="math display">\[(n-1)!\]</span> 个；</p></li>
+<li><p>以 n 为 <span class="math display">\[a_1\]</span> 的排列一共有
+<span class="math display">\[(n-1)!\]</span> 个。</p></li>
+</ul>
+<p>由于我们需要求出从小到大的第 k 个排列，因此：</p>
+<ul>
+<li>如果 <span class="math display">\[k \leq
+(n-1)!\]</span>，我们就可以确定排列的首个元素为 1；</li>
+<li>如果 <span class="math display">\[(n-1)! &lt; k \leq 2 \cdot
+(n-1)!\]</span>，我们就可以确定排列的首个元素为 2；</li>
+<li>如果 <span class="math display">\[(n-1) \cdot (n-1)! &lt; k \leq n
+\cdot (n-1)!\]</span>，我们就可以确定排列的首个元素为 n。 因此，第 k
+个排列的首个元素就是：</li>
+</ul>
+<p><span class="math display">\[
+a_1=\frac{k−1}{(n−1)!}+1
+\]</span></p>
+<p>当我们确定了 <span class="math display">\[a_1\]</span>
+后，如何使用相似的思路，确定下一个元素 <span
+class="math display">\[a_2\]</span> 呢？实际上，我们考虑以 <span
+class="math display">\[a_1\]</span> 为首个元素的所有排列：</p>
+<ul>
+<li>以 <span class="math display">\[[1,n] \backslash
+a_1\]</span>最小的元素为 <span class="math display">\[a_2\]</span>
+的排列一共有 <span class="math display">\[(n-2)!\]</span>个；</li>
+<li>以 <span class="math display">\[[1,n] \backslash a_1\]</span>
+次小的元素为 <span class="math display">\[a_2\]</span>的排列一共有 <span
+class="math display">\[(n-2)!\]</span>个；</li>
+<li>以 <span class="math display">\[[1,n] \backslash
+a_1\]</span>最大的元素为 <span
+class="math display">\[a_2\]</span>的排列一共有 <span
+class="math display">\[(n-2)!\]</span> 个；</li>
+</ul>
+<p>其中 <span class="math display">\[[1,n] \backslash
+a_1\]</span>表示包含 <span class="math display">\[1, 2, \cdots
+n\]</span>中除去 <span
+class="math display">\[a_1\]</span>以外元素的集合。这些排列从编号 <span
+class="math display">\[(a_1-1) \cdot (n-1)!\]</span>开始，到 <span
+class="math display">\[a_1 \cdot (n-1)!\]</span>结束，总计 <span
+class="math display">\[(n-1)!\]</span>个，因此第 k
+个排列实际上就对应着这其中的第 <span class="math display">\[
+k&#39; = (k-1) \bmod (n-1)! + 1
+\]</span> 个排列。这样一来，我们就把原问题转化成了一个完全相同但规模减少
+1 的子问题：</p>
+<p>求 <span class="math display">\[[1, n] \backslash a_1\]</span>这 n-1
+个元素组成的排列中，第 <span class="math display">\[k&#39;\]</span>
+小的排列。</p>
+<h4 id="算法">算法</h4>
+<p>设第 k 个排列为 <span class="math display">\[a_1, a_2, \cdots,
+a_n\]</span>，我们从左往右地确定每一个元素 <span
+class="math display">\[a_i\]</span>。我们用数组 <span
+class="math display">\[\textit{valid}\]</span>记录每一个元素是否被使用过。</p>
+<p>我们从小到大枚举 i：</p>
+<ul>
+<li><p>我们已经使用过了 i-1 个元素，剩余 n-i+1
+个元素未使用过，每一个元素作为 a_i 都对应着 (n-i)!个排列，总计 (n-i+1)!
+个排列；</p></li>
+<li><p>因此在第 k 个排列中，<span class="math display">\[a_i\]</span>
+即为剩余未使用过的元素中第 <span class="math display">\[\lfloor
+\frac{k-1}{(n-i)!}\rfloor + 1\]</span>小的元素；</p></li>
+<li><p>在确定了 <span class="math display">\[a_i\]</span>后，这 <span
+class="math display">\[n-i+1\]</span> 个元素的第 k 个排列，就等于 <span
+class="math display">\[a_i\]</span>之后跟着剩余 n-i 个元素的第 <span
+class="math display">\[(k-1) \bmod (n-i)! + 1\]</span>个排列。</p></li>
+</ul>
+<p>在实际的代码中，我们可以首先将 k 的值减少
+1，这样可以减少运算，降低代码出错的概率。对应上述的后两步，即为：</p>
+<ul>
+<li><p>因此在第 k 个排列中，<span
+class="math display">\[a_i\]</span>即为剩余未使用过的元素中第 <span
+class="math display">\[\lfloor \frac{k}{(n-i)!} \rfloor +
+1\]</span>小的元素；</p></li>
+<li><p>在确定了 <span class="math display">\[a_i\]</span> 后，这 n-i+1
+个元素的第 k 个排列，就等于 <span class="math display">\[a_i\]</span>
+之后跟着剩余 n-i个元素的第 <span class="math display">\[k \bmod
+(n-i)!\]</span>个排列。</p></li>
+</ul>
+<p>实际上，这相当于我们将所有的排列从 0 开始进行编号。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getPermutation</span>(<span class="params">self, n: <span class="built_in">int</span>, k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        factorial = [<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            factorial.append(factorial[-<span class="number">1</span>] * i)</span><br><span class="line">        </span><br><span class="line">        k -= <span class="number">1</span></span><br><span class="line">        ans = <span class="built_in">list</span>()</span><br><span class="line">        valid = [<span class="number">1</span>] * (n + <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n + <span class="number">1</span>):</span><br><span class="line">            order = k // factorial[n - i] + <span class="number">1</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n + <span class="number">1</span>):</span><br><span class="line">                order -= valid[j]</span><br><span class="line">                <span class="keyword">if</span> order == <span class="number">0</span>:</span><br><span class="line">                    ans.append(<span class="built_in">str</span>(j))</span><br><span class="line">                    valid[j] = <span class="number">0</span></span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">            k %= factorial[n - i]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;&quot;</span>.join(ans)</span><br></pre></td></tr></table></figure>
+<h3 id="复杂度分析">复杂度分析</h3>
+<ul>
+<li><p>时间复杂度：<span
+class="math display">\[O(n^2)\]</span>。</p></li>
+<li><p>空间复杂度：<span class="math display">\[O(n)\]</span>。</p></li>
+</ul>
+<h3 id="思考题">思考题</h3>
+<p>对于给定的排列 <span class="math display">\[a_1, a_2, \cdots,
+a_n\]</span> ，你能求出 k 吗？</p>
+<p>解答： <span class="math display">\[
+k = \left( \sum_{i=1}^n \textit{order}(a_i) \cdot (n-i)! \right) + 1
+\]</span> 其中 <span
+class="math display">\[\textit{order}(a_i)\]</span>表示 <span
+class="math display">\[a_{i+1}, \cdots, a_n\]</span>中小于 <span
+class="math display">\[a_i\]</span>的元素个数。</p>
+<h3 id="反思">反思</h3>
+<p>我在分析这个问题的时候只考虑到了第一项怎么确定，然后就用递归来求解问题，中间忽略了n和k的取值特例。分析不够完备，代码看着比较乱，可读性不强。今后分析的时候还是要把问题分析完整了再编代码，比如推出这道题的通项公式后再写代码。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/04/2020-09-04-Q257%20Binary%20Tree%20Paths-%E7%AE%80%E5%8D%95-%E6%B7%B1%E5%BA%A6and%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1196,101 +1400,6 @@ class="math display">\[O(1)\]</span>，我们只需要常数的空间来存放�
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/08/17/2020-08-17-Github%20Page%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/17/2020-08-17-Github%20Page%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" class="post-title-link" itemprop="url">Github Page无法访问解决办法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-08-17 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-17T00:00:00+08:00">2020-08-17</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>473</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="github-page无法访问解决办法">Github Page无法访问解决办法</h1>
-<p>###问题描述：</p>
-<p>在2020年5月份左右，我的Github
-Page打不开了，之前都是刻意正常访问的。</p>
-<p>###解决思路：</p>
-<ul>
-<li>刚开始以为是自己的新上传的修改有问题，做了回调，但是依然打不开。</li>
-<li>尝试网上搜索类似情况，有人说是页面从http改为https了。但这个消息是2017年的，所以也不是原因。</li>
-<li>以为是我申请的域名过期了，于是设置取消了自定义的域名，但依旧打不开。</li>
-<li>以为是Github被墙了，但Github主页和其它仓库都能打开。</li>
-<li>有人说是Github在国内功能做了阉割，去掉了Github
-Page功能。但是我能打开别的一些Github Page（不能保证都能打开）。</li>
-<li>尝试翻墙打开我的Github Page，能够打开。而有些Github
-Page不翻墙也能打开。那么应该是我的网络有问题。</li>
-<li>尝试修改host，没什么用。</li>
-<li>看到有人说是电信的DNS的问题，尝试换成阿里的，成功解决问题。</li>
-</ul>
-<h3 id="具体步骤">具体步骤：</h3>
-<ul>
-<li>Step1：修改路由器的自动配置DNS为手动；</li>
-<li>Step2：填入阿里的DNS：223.5.5.5和223.6.6.6；</li>
-</ul>
-<p>Txing</p>
-<p>2020年8月17日</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1362,14 +1471,14 @@ Page不翻墙也能打开。那么应该是我的网络有问题。</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">236</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1429,7 +1538,7 @@ Page不翻墙也能打开。那么应该是我的网络有问题。</li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">577k</span>
+    <span title="Symbols count total">578k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>

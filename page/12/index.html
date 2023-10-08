@@ -198,6 +198,140 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/04/21/2021-04-21-JZOffer%2034-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%92%8C%E4%B8%BA%E6%9F%90%E4%B8%80%E5%80%BC%E7%9A%84%E8%B7%AF%E5%BE%84-%E4%B8%AD%E7%AD%89-%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/21/2021-04-21-JZOffer%2034-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%92%8C%E4%B8%BA%E6%9F%90%E4%B8%80%E5%80%BC%E7%9A%84%E8%B7%AF%E5%BE%84-%E4%B8%AD%E7%AD%89-%E6%A0%91/" class="post-title-link" itemprop="url">JZOffer 34-二叉树中和为某一值的路径-中等-树</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-04-21 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-21T00:00:00+08:00">2021-04-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="jzoffer-34.-二叉树中和为某一值的路径"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/">JZOffer
+34. 二叉树中和为某一值的路径</a></h4>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>输入一棵二叉树和一个整数，打印出二叉树中节点值的和为输入整数的所有路径。从树的根节点开始往下一直到叶节点所经过的节点形成一条路径。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>输入：给定如下二叉树，以及目标和 <code>target = 22</code>，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">      5</span><br><span class="line">     / \</span><br><span class="line">    4   8</span><br><span class="line">   /   / \</span><br><span class="line">  11  13  4</span><br><span class="line"> /  \    / \</span><br><span class="line">7    2  5   1</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">   [5,4,11,2],</span><br><span class="line">   [5,8,4,5]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ul>
+<li><code>节点总数 &lt;= 10000</code></li>
+<li>注意：本题与主站 113
+题相同：https://leetcode-cn.com/problems/path-sum-ii/</li>
+</ul>
+</blockquote>
+<h3 id="approach-1-先序遍历">Approach 1: 先序遍历</h3>
+<p>本问题是典型的二叉树方案搜索问题，使用回溯法解决，其包含
+<strong>先序遍历 + 路径记录</strong> 两部分。</p>
+<p><strong>算法流程：</strong> pathSum(root, sum) 函数：</p>
+<ul>
+<li>初始化： 结果列表 res ，路径列表 path 。</li>
+<li>返回值： 返回 res 即可。</li>
+</ul>
+<p>recur(root, tar) 函数：</p>
+<ul>
+<li>递推参数： 当前节点 root ，当前目标值 tar 。</li>
+<li>终止条件： 若节点 root 为空，则直接返回。</li>
+<li>递推工作：
+<ul>
+<li>路径更新： 将当前节点值 root.val 加入路径 path ；</li>
+<li>目标值更新： tar = tar - root.val（即目标值 tar 从 sum 减至 00
+）；</li>
+<li>路径记录： 当 ① root 为叶节点 且 ② 路径和等于目标值 ，则将此路径
+path 加入 res 。</li>
+<li>先序遍历： 递归左 / 右子节点。</li>
+<li>路径恢复： 向上回溯前，需要将当前节点从路径 path 中删除，即执行
+path.pop() 。</li>
+</ul></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">pathSum</span>(<span class="params">self, root: TreeNode, <span class="built_in">sum</span>: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">        res, path = [], []</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">recur</span>(<span class="params">root, tar</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root: <span class="keyword">return</span></span><br><span class="line">            path.append(root.val)</span><br><span class="line">            tar -= root.val</span><br><span class="line">            <span class="keyword">if</span> tar == <span class="number">0</span> <span class="keyword">and</span> <span class="keyword">not</span> root.left <span class="keyword">and</span> <span class="keyword">not</span> root.right:</span><br><span class="line">                res.append(<span class="built_in">list</span>(path))</span><br><span class="line">            recur(root.left, tar)</span><br><span class="line">            recur(root.right, tar)</span><br><span class="line">            path.pop()</span><br><span class="line"></span><br><span class="line">        recur(root, <span class="built_in">sum</span>)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度 O(N) ： N
+为二叉树的节点数，先序遍历需要遍历所有节点。</li>
+<li>空间复杂度 O(N) ： 最差情况下，即树退化为链表时，path
+存储所有树节点，使用 O(N) 额外空间。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/04/20/2021-04-20-Q236-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88-%E4%B8%AD%E7%AD%89-%E6%A0%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -223,6 +357,15 @@
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2021-04-20 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-20T00:00:00+08:00">2021-04-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
             </span>
 
           <br>
@@ -298,7 +441,7 @@ right 。具体可分为两种情况：
 </ul></li>
 <li>当 left 不为空 ， right 为空 ：与情况 3. 同理；</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">lowestCommonAncestor</span>(<span class="params">self, root: <span class="string">&#x27;TreeNode&#x27;</span>, p: <span class="string">&#x27;TreeNode&#x27;</span>, q: <span class="string">&#x27;TreeNode&#x27;</span></span>) -&gt; <span class="string">&#x27;TreeNode&#x27;</span>:     </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root <span class="keyword">or</span> root == p <span class="keyword">or</span> root == q: <span class="keyword">return</span> root</span><br><span class="line">        left = self.lowestCommonAncestor(root.left, p, q)</span><br><span class="line">        right = self.lowestCommonAncestor(root.right, p, q)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> left: <span class="keyword">return</span> right</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> right: <span class="keyword">return</span> left</span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">lowestCommonAncestor</span>(<span class="params">self, root: <span class="string">&#x27;TreeNode&#x27;</span>, p: <span class="string">&#x27;TreeNode&#x27;</span>, q: <span class="string">&#x27;TreeNode&#x27;</span></span>) -&gt; <span class="string">&#x27;TreeNode&#x27;</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root <span class="keyword">or</span> root == p <span class="keyword">or</span> root == q: <span class="keyword">return</span> root</span><br><span class="line">        left = self.lowestCommonAncestor(root.left, p, q)</span><br><span class="line">        right = self.lowestCommonAncestor(root.right, p, q)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> left: <span class="keyword">return</span> right</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> right: <span class="keyword">return</span> left</span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度 O(N) ： 其中 N
@@ -333,7 +476,7 @@ x 以后，<span class="math display">\[f_x\]</span> 按定义被设置为 true
 ，即假定了这个子树中只有一个 p 节点或 q
 节点，因此其他公共祖先不会再被判断为符合条件。</p>
 <p>下图展示了一个示例，搜索树中两个节点 9 和 11 的最近公共祖先。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    TreeNode* ans;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">dfs</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="type">bool</span> lson = <span class="built_in">dfs</span>(root-&gt;left, p, q);</span><br><span class="line">        <span class="type">bool</span> rson = <span class="built_in">dfs</span>(root-&gt;right, p, q);</span><br><span class="line">        <span class="keyword">if</span> ((lson &amp;&amp; rson) || ((root-&gt;val == p-&gt;val || root-&gt;val == q-&gt;val) &amp;&amp; (lson || rson))) &#123;</span><br><span class="line">            ans = root;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">return</span> lson || rson || (root-&gt;val == p-&gt;val || root-&gt;val == q-&gt;val);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">TreeNode* <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">dfs</span>(root, p, q);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;        </span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    TreeNode* ans;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">dfs</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="type">bool</span> lson = <span class="built_in">dfs</span>(root-&gt;left, p, q);</span><br><span class="line">        <span class="type">bool</span> rson = <span class="built_in">dfs</span>(root-&gt;right, p, q);</span><br><span class="line">        <span class="keyword">if</span> ((lson &amp;&amp; rson) || ((root-&gt;val == p-&gt;val || root-&gt;val == q-&gt;val) &amp;&amp; (lson || rson))) &#123;</span><br><span class="line">            ans = root;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> lson || rson || (root-&gt;val == p-&gt;val || root-&gt;val == q-&gt;val);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">TreeNode* <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">dfs</span>(root, p, q);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li><p>时间复杂度：O(N)，其中 N
@@ -387,6 +530,15 @@ N，因此空间复杂度为 O(N)。</p></li>
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2021-04-19 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-19T00:00:00+08:00">2021-04-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
             </span>
 
           <br>
@@ -452,7 +604,7 @@ class="math display">\[\textit{root}\]</span>
 节点的值加入答案，再递归调用inorder(root.right) 来遍历 <span
 class="math display">\[\textit{root}\]</span>
 节点的右子树即可，递归终止的条件为碰到空节点。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">inorder</span>(<span class="params">root: TreeNode</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span> </span><br><span class="line">            inorder(root.left)</span><br><span class="line">            res.append(root.val)</span><br><span class="line">            inorder(root.right)</span><br><span class="line">        res=<span class="built_in">list</span>()</span><br><span class="line">        inorder(root)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">inorder</span>(<span class="params">root: TreeNode</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            inorder(root.left)</span><br><span class="line">            res.append(root.val)</span><br><span class="line">            inorder(root.right)</span><br><span class="line">        res=<span class="built_in">list</span>()</span><br><span class="line">        inorder(root)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：O(n)，其中 n
@@ -464,7 +616,7 @@ O(n) 的级别。</li>
 <h3 id="approach-2-迭代">Approach 2: 迭代</h3>
 <p>思路与算法</p>
 <p>方法一的递归函数我们也可以用迭代的方式实现，两种方式是等价的，区别在于递归的时候隐式地维护了一个栈，而我们在迭代的时候需要显式地将这个栈模拟出来，其他都相同，具体实现可以看下面的代码。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        res = <span class="built_in">list</span>()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">        p1 = root</span><br><span class="line">        <span class="keyword">while</span> p1:</span><br><span class="line">            p2 = p1.left</span><br><span class="line">            <span class="keyword">if</span> p2:</span><br><span class="line">                <span class="keyword">while</span> p2.right <span class="keyword">and</span> p2.right != p1:</span><br><span class="line">                    p2 = p2.right</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> p2.right:</span><br><span class="line">                    p2.right = p1</span><br><span class="line">                    p1 = p1.left</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    res.append(p1.val)</span><br><span class="line">                    p2.right = <span class="literal">None</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res.append(p1.val)</span><br><span class="line">            p1 = p1.right</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        res = <span class="built_in">list</span>()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">        p1 = root</span><br><span class="line">        <span class="keyword">while</span> p1:</span><br><span class="line">            p2 = p1.left</span><br><span class="line">            <span class="keyword">if</span> p2:</span><br><span class="line">                <span class="keyword">while</span> p2.right <span class="keyword">and</span> p2.right != p1:</span><br><span class="line">                    p2 = p2.right</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> p2.right:</span><br><span class="line">                    p2.right = p1</span><br><span class="line">                    p1 = p1.left</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    res.append(p1.val)</span><br><span class="line">                    p2.right = <span class="literal">None</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res.append(p1.val)</span><br><span class="line">            p1 = p1.right</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：O(n)，其中 n
@@ -503,7 +655,7 @@ class="math display">\[x = x.\textit{right}\]</span>。</li>
 的左子树中最右边的节点的右孩子指向
 x，这样在左子树遍历完成后我们通过这个指向走回了
 x，且能通过这个指向知晓我们已经遍历完成了左子树，而不用再通过栈来维护，省去了栈的空间复杂度。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">preorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        res = <span class="built_in">list</span>()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">        p1 = root</span><br><span class="line">        <span class="keyword">while</span> p1:</span><br><span class="line">            p2 = p1.left</span><br><span class="line">            <span class="keyword">if</span> p2:</span><br><span class="line">                <span class="keyword">while</span> p2.right <span class="keyword">and</span> p2.right != p1:</span><br><span class="line">                    p2 = p2.right</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> p2.right:</span><br><span class="line">                    </span><br><span class="line">                    p2.right = p1</span><br><span class="line">                    p1 = p1.left</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    res.append(p1.val)</span><br><span class="line">                    p2.right = <span class="literal">None</span></span><br><span class="line">                    p1 = p1.right</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res.append(p1.val)</span><br><span class="line">                p1 = p1.right</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">preorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        res = <span class="built_in">list</span>()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">        p1 = root</span><br><span class="line">        <span class="keyword">while</span> p1:</span><br><span class="line">            p2 = p1.left</span><br><span class="line">            <span class="keyword">if</span> p2:</span><br><span class="line">                <span class="keyword">while</span> p2.right <span class="keyword">and</span> p2.right != p1:</span><br><span class="line">                    p2 = p2.right</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> p2.right:</span><br><span class="line"></span><br><span class="line">                    p2.right = p1</span><br><span class="line">                    p1 = p1.left</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    res.append(p1.val)</span><br><span class="line">                    p2.right = <span class="literal">None</span></span><br><span class="line">                    p1 = p1.right</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res.append(p1.val)</span><br><span class="line">                p1 = p1.right</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：O(n)，其中 nn 为二叉搜索树的节点个数。Morris
@@ -555,6 +707,15 @@ class="math display">\[O(2n)=O(n)\]</span>。</li>
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2021-04-15 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-15T00:00:00+08:00">2021-04-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
             </span>
 
           <br>
@@ -702,6 +863,15 @@ O(N)大小的栈空间。</li>
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2021-04-14 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-14T00:00:00+08:00">2021-04-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
             </span>
 
           <br>
@@ -902,6 +1072,15 @@ O<em>(</em>N*) 的栈空间。</p></li>
 
               <time title="Created: 2021-04-09 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-09T00:00:00+08:00">2021-04-09</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -1057,6 +1236,15 @@ tmp；</li>
 
               <time title="Created: 2021-04-08 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-08T00:00:00+08:00">2021-04-08</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -1109,7 +1297,7 @@ target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tre
 root 节点的左子树，然后递归调用 postorder(root-&gt;right) 来遍历 root
 节点的右子树，最后将 root
 节点的值加入答案即可，递归终止的条件为碰到空节点。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">postorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">postorder</span>(<span class="params">root: TreeNode</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            postorder(root.left)</span><br><span class="line">            postorder(root.right)</span><br><span class="line">            res.append(root.val)</span><br><span class="line">        </span><br><span class="line">        res = <span class="built_in">list</span>()</span><br><span class="line">        postorder(root)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">postorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">postorder</span>(<span class="params">root: TreeNode</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            postorder(root.left)</span><br><span class="line">            postorder(root.right)</span><br><span class="line">            res.append(root.val)</span><br><span class="line"></span><br><span class="line">        res = <span class="built_in">list</span>()</span><br><span class="line">        postorder(root)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li><p>时间复杂度：O(n)，其中 n
@@ -1120,7 +1308,7 @@ O(n)。</p></li>
 </ul>
 <h3 id="approach-2-迭代">Approach 2: 迭代</h3>
 <p>我们也可以用迭代的方式实现方法一的递归函数，两种方式是等价的，区别在于递归的时候隐式地维护了一个栈，而我们在迭代的时候需要显式地将这个栈模拟出来，其余的实现与细节都相同，具体可以参考下面的代码。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">postorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">list</span>()</span><br><span class="line">        </span><br><span class="line">        res = <span class="built_in">list</span>()</span><br><span class="line">        stack = <span class="built_in">list</span>()</span><br><span class="line">        prev = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> root <span class="keyword">or</span> stack:</span><br><span class="line">            <span class="keyword">while</span> root:</span><br><span class="line">                stack.append(root)</span><br><span class="line">                root = root.left</span><br><span class="line">            root = stack.pop()</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root.right <span class="keyword">or</span> root.right == prev:</span><br><span class="line">                res.append(root.val)</span><br><span class="line">                prev = root</span><br><span class="line">                root = <span class="literal">None</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                stack.append(root)</span><br><span class="line">                root = root.right</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">postorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">list</span>()</span><br><span class="line"></span><br><span class="line">        res = <span class="built_in">list</span>()</span><br><span class="line">        stack = <span class="built_in">list</span>()</span><br><span class="line">        prev = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> root <span class="keyword">or</span> stack:</span><br><span class="line">            <span class="keyword">while</span> root:</span><br><span class="line">                stack.append(root)</span><br><span class="line">                root = root.left</span><br><span class="line">            root = stack.pop()</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root.right <span class="keyword">or</span> root.right == prev:</span><br><span class="line">                res.append(root.val)</span><br><span class="line">                prev = root</span><br><span class="line">                root = <span class="literal">None</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                stack.append(root)</span><br><span class="line">                root = root.right</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：O(n)，其中 n
@@ -1146,7 +1334,7 @@ Cheaply」中首次提出，因此被称为 Morris 遍历。</p>
 </ul>
 <p>这样我们利用 Morris
 遍历的方法，后序遍历该二叉搜索树，即可实现线性时间与常数空间的遍历。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">postorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">addPath</span>(<span class="params">node: TreeNode</span>):</span><br><span class="line">            count = <span class="number">0</span></span><br><span class="line">            <span class="keyword">while</span> node:</span><br><span class="line">                count += <span class="number">1</span></span><br><span class="line">                res.append(node.val)</span><br><span class="line">                node = node.right</span><br><span class="line">            i, j = <span class="built_in">len</span>(res) - count, <span class="built_in">len</span>(res) - <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> i &lt; j:</span><br><span class="line">                res[i], res[j] = res[j], res[i]</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">                j -= <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">list</span>()</span><br><span class="line">        </span><br><span class="line">        res = <span class="built_in">list</span>()</span><br><span class="line">        p1 = root</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> p1:</span><br><span class="line">            p2 = p1.left</span><br><span class="line">            <span class="keyword">if</span> p2:</span><br><span class="line">                <span class="keyword">while</span> p2.right <span class="keyword">and</span> p2.right != p1:</span><br><span class="line">                    p2 = p2.right</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> p2.right:</span><br><span class="line">                    p2.right = p1</span><br><span class="line">                    p1 = p1.left</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    p2.right = <span class="literal">None</span></span><br><span class="line">                    addPath(p1.left)</span><br><span class="line">            p1 = p1.right</span><br><span class="line">        </span><br><span class="line">        addPath(root)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">postorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">addPath</span>(<span class="params">node: TreeNode</span>):</span><br><span class="line">            count = <span class="number">0</span></span><br><span class="line">            <span class="keyword">while</span> node:</span><br><span class="line">                count += <span class="number">1</span></span><br><span class="line">                res.append(node.val)</span><br><span class="line">                node = node.right</span><br><span class="line">            i, j = <span class="built_in">len</span>(res) - count, <span class="built_in">len</span>(res) - <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> i &lt; j:</span><br><span class="line">                res[i], res[j] = res[j], res[i]</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">                j -= <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">list</span>()</span><br><span class="line"></span><br><span class="line">        res = <span class="built_in">list</span>()</span><br><span class="line">        p1 = root</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> p1:</span><br><span class="line">            p2 = p1.left</span><br><span class="line">            <span class="keyword">if</span> p2:</span><br><span class="line">                <span class="keyword">while</span> p2.right <span class="keyword">and</span> p2.right != p1:</span><br><span class="line">                    p2 = p2.right</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> p2.right:</span><br><span class="line">                    p2.right = p1</span><br><span class="line">                    p1 = p1.left</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    p2.right = <span class="literal">None</span></span><br><span class="line">                    addPath(p1.left)</span><br><span class="line">            p1 = p1.right</span><br><span class="line"></span><br><span class="line">        addPath(root)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：O(n)，其中 n
@@ -1197,6 +1385,15 @@ Cheaply」中首次提出，因此被称为 Morris 遍历。</p>
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2021-04-07 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-07T00:00:00+08:00">2021-04-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
             </span>
 
           <br>
@@ -1259,7 +1456,7 @@ target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tre
 preorder(root.left) 来遍历 root 节点的左子树，最后递归调用
 preorder(root.right) 来遍历 root
 节点的右子树即可，递归终止的条件为碰到空节点。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">preorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">preorder</span>(<span class="params">root: TreeNode</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            res.append(root.val)</span><br><span class="line">            preorder(root.left)</span><br><span class="line">            preorder(root.right)</span><br><span class="line">        </span><br><span class="line">        res = <span class="built_in">list</span>()</span><br><span class="line">        preorder(root)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">preorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">preorder</span>(<span class="params">root: TreeNode</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            res.append(root.val)</span><br><span class="line">            preorder(root.left)</span><br><span class="line">            preorder(root.right)</span><br><span class="line"></span><br><span class="line">        res = <span class="built_in">list</span>()</span><br><span class="line">        preorder(root)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：<span class="math display">\[O(n)\]</span>，其中 n
@@ -1272,7 +1469,7 @@ class="math display">\[O(n)\]</span>。</li>
 </ul>
 <h3 id="approach-2-迭代">Approach 2: 迭代</h3>
 <p>我们也可以用迭代的方式实现方法一的递归函数，两种方式是等价的，区别在于递归的时候隐式地维护了一个栈，而我们在迭代的时候需要显式地将这个栈模拟出来，其余的实现与细节都相同，具体可以参考下面的代码。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">preorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        res = <span class="built_in">list</span>()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">        stack = []</span><br><span class="line">        node = root</span><br><span class="line">        <span class="keyword">while</span> stack <span class="keyword">or</span> node:</span><br><span class="line">            <span class="keyword">while</span> node:</span><br><span class="line">                res.append(node.val)</span><br><span class="line">                stack.append(node)</span><br><span class="line">                node = node.left</span><br><span class="line">            node = stack.pop()</span><br><span class="line">            node = node.right</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">preorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        res = <span class="built_in">list</span>()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">        stack = []</span><br><span class="line">        node = root</span><br><span class="line">        <span class="keyword">while</span> stack <span class="keyword">or</span> node:</span><br><span class="line">            <span class="keyword">while</span> node:</span><br><span class="line">                res.append(node.val)</span><br><span class="line">                stack.append(node)</span><br><span class="line">                node = node.left</span><br><span class="line">            node = stack.pop()</span><br><span class="line">            node = node.right</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：O(n)，其中 n
@@ -1298,150 +1495,12 @@ Cheaply」中首次提出，因此被称为 Morris 遍历。</p>
 </ul>
 <p>这样我们利用 Morris
 遍历的方法，前序遍历该二叉树，即可实现线性时间与常数空间的遍历。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">preorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        res = <span class="built_in">list</span>()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">        p1 = root</span><br><span class="line">        <span class="keyword">while</span> p1:</span><br><span class="line">            p2 = p1.left</span><br><span class="line">            <span class="keyword">if</span> p2:</span><br><span class="line">                <span class="keyword">while</span> p2.right <span class="keyword">and</span> p2.right != p1:</span><br><span class="line">                    p2 = p2.right</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> p2.right:</span><br><span class="line">                    res.append(p1.val)</span><br><span class="line">                    p2.right = p1</span><br><span class="line">                    p1 = p1.left</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    p2.right = <span class="literal">None</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res.append(p1.val)</span><br><span class="line">            p1 = p1.right</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">preorderTraversal</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        res = <span class="built_in">list</span>()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">        p1 = root</span><br><span class="line">        <span class="keyword">while</span> p1:</span><br><span class="line">            p2 = p1.left</span><br><span class="line">            <span class="keyword">if</span> p2:</span><br><span class="line">                <span class="keyword">while</span> p2.right <span class="keyword">and</span> p2.right != p1:</span><br><span class="line">                    p2 = p2.right</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> p2.right:</span><br><span class="line">                    res.append(p1.val)</span><br><span class="line">                    p2.right = p1</span><br><span class="line">                    p1 = p1.left</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    p2.right = <span class="literal">None</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res.append(p1.val)</span><br><span class="line">            p1 = p1.right</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：O(n)，其中 n
 是二叉树的节点数。没有左子树的节点只被访问一次，有左子树的节点被访问两次。</li>
 <li>空间复杂度：O(1)。只操作已经存在的指针（树的空闲指针），因此只需要常数的额外空间。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/04/06/2021-04-06-Q25-K%20%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8-%E5%9B%B0%E9%9A%BE-%E9%93%BE%E8%A1%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/06/2021-04-06-Q25-K%20%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8-%E5%9B%B0%E9%9A%BE-%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">Q25-K 个一组翻转链表-困难-链表</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-04-06 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-06T00:00:00+08:00">2021-04-06</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.8k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="k-个一组翻转链表"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-nodes-in-k-group/">25. K
-个一组翻转链表</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>给你一个链表，每 k 个节点一组进行翻转，请你返回翻转后的链表。</p>
-<p>k 是一个正整数，它的值小于或等于链表的长度。</p>
-<p>如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序。</p>
-<p><strong>进阶：</strong></p>
-<p>你可以设计一个只使用常数额外空间的算法来解决此问题吗？
-你不能只是单纯的改变节点内部的值，而是需要实际进行节点交换。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入：head = [1,2,3,4,5], k = 2 输出：[2,1,4,3,5]</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>输入：head = [1,2,3,4,5], k = 3 输出：[3,2,1,4,5]</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 3:</strong></p>
-<p>输入：head = [1,2,3,4,5], k = 1 输出：[1,2,3,4,5]</p>
-</blockquote>
-<blockquote>
-<p><strong>提示：</strong></p>
-<ul>
-<li>列表中节点的数量在范围 sz 内</li>
-<li>1 &lt;= sz &lt;= 5000</li>
-<li>0 &lt;= Node.val &lt;= 1000</li>
-<li>1 &lt;= k &lt;= sz</li>
-</ul>
-</blockquote>
-<h3 id="approach-1-自顶向下归并排序">Approach 1: 自顶向下归并排序</h3>
-<p>思路与算法</p>
-<p>本题的目标非常清晰易懂，不涉及复杂的算法，但是实现过程中需要考虑的细节比较多，容易写出冗长的代码。主要考查面试者设计的能力。</p>
-<p>我们需要把链表节点按照 k 个一组分组，所以可以使用一个指针 head
-依次指向每组的头节点。这个指针每次向前移动 k
-步，直至链表结尾。对于每个分组，我们先判断它的长度是否大于等于
-k。若是，我们就翻转这部分链表，否则不需要翻转。</p>
-<p>接下来的问题就是如何翻转一个分组内的子链表。翻转一个链表并不难，过程可以参考「206.
-反转链表」。但是对于一个子链表，除了翻转其本身之外，还需要将子链表的头部与上一个子链表连接，以及子链表的尾部与下一个子链表连接。</p>
-<p>因此，在翻转子链表的时候，我们不仅需要子链表头节点 head，还需要有
-head 的上一个节点 pre，以便翻转完后把子链表再接回 pre。</p>
-<p>但是对于第一个子链表，它的头节点 head 前面是没有节点 pre
-的。太麻烦了！难道只能特判了吗？答案是否定的。没有条件，我们就创造条件；没有节点，我们就创建一个节点。我们新建一个节点，把它接到链表的头部，让它作为
-pre 的初始值，这样 head
-前面就有了一个节点，我们就可以避开链表头部的边界条件。这么做还有一个好处，下面我们会看到。</p>
-<p>反复移动指针 head 与 pre，对 head
-所指向的子链表进行翻转，直到结尾，我们就得到了答案。下面我们该返回函数值了。</p>
-<p>有的同学可能发现这又是一件麻烦事：链表翻转之后，链表的头节点发生了变化，那么应该返回哪个节点呢？照理来说，前
-k 个节点翻转之后，链表的头节点应该是第 k
-个节点。那么要在遍历过程中记录第 k 个节点吗？但是如果链表里面没有 k
-个节点，答案又还是原来的头节点。我们又多了一大堆循环和判断要写，太崩溃了！</p>
-<p>等等！还记得我们创建了节点 pre
-吗？这个节点一开始被连接到了头节点的前面，而无论之后链表有没有翻转，它的
-next
-指针都会指向正确的头节点。那么我们只要返回它的下一个节点就好了。至此，问题解决。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="comment"># 翻转一个子链表，并且返回新的头与尾</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverse</span>(<span class="params">self, head: ListNode, tail: ListNode</span>):</span><br><span class="line">        prev = tail.<span class="built_in">next</span></span><br><span class="line">        p = head</span><br><span class="line">        <span class="keyword">while</span> prev != tail:</span><br><span class="line">            nex = p.<span class="built_in">next</span></span><br><span class="line">            p.<span class="built_in">next</span> = prev</span><br><span class="line">            prev = p</span><br><span class="line">            p = nex</span><br><span class="line">        <span class="keyword">return</span> tail, head</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseKGroup</span>(<span class="params">self, head: ListNode, k: <span class="built_in">int</span></span>) -&gt; ListNode:</span><br><span class="line">        hair = ListNode(<span class="number">0</span>)</span><br><span class="line">        hair.<span class="built_in">next</span> = head</span><br><span class="line">        pre = hair</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> head:</span><br><span class="line">            tail = pre</span><br><span class="line">            <span class="comment"># 查看剩余部分长度是否大于等于 k</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(k):</span><br><span class="line">                tail = tail.<span class="built_in">next</span></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> tail:</span><br><span class="line">                    <span class="keyword">return</span> hair.<span class="built_in">next</span></span><br><span class="line">            nex = tail.<span class="built_in">next</span></span><br><span class="line">            head, tail = self.reverse(head, tail)</span><br><span class="line">            <span class="comment"># 把子链表重新接回原链表</span></span><br><span class="line">            pre.<span class="built_in">next</span> = head</span><br><span class="line">            tail.<span class="built_in">next</span> = nex</span><br><span class="line">            pre = tail</span><br><span class="line">            head = tail.<span class="built_in">next</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> hair.<span class="built_in">next</span></span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 为链表的长度。head 指针会在 <span
-class="math display">\[O(\lfloor \frac{n}{k}
-\rfloor)\]</span>个节点上停留，每次停留需要进行一次 O(k)
-的翻转操作。</p>
-<p>空间复杂度：O(1)，我们只需要建立常数个变量。</p></li>
 </ul>
 
       
@@ -1529,14 +1588,14 @@ class="math display">\[O(\lfloor \frac{n}{k}
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">236</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1596,7 +1655,7 @@ class="math display">\[O(\lfloor \frac{n}{k}
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">577k</span>
+    <span title="Symbols count total">578k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>

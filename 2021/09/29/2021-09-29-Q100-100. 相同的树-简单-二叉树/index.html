@@ -30,7 +30,7 @@
 <meta property="og:description" content="100. 相同的树 Question  给你两棵二叉树的根节点 p 和 q ，编写一个函数来检验这两棵树是否相同。 如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。   Example 1: 输入：p &#x3D; [1,2,3], q &#x3D; [1,2,3] 输出：true   Example 2: 输入：p &#x3D; [1,2], q &#x3D; [1,null,2] 输出：">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-09-28T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-25T01:54:15.007Z">
+<meta property="article:modified_time" content="2023-10-08T13:28:16.126Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Algorithm">
@@ -229,6 +229,15 @@
 
               <time title="Created: 2021-09-29 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-29T00:00:00+08:00">2021-09-29</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -302,7 +311,7 @@ m 和 n
 <li><p>如果两个节点的子节点的结构相同，则将两个节点的非空子节点分别加入两个队列，子节点加入队列时需要注意顺序，如果左右子节点都不为空，则先加入左子节点，后加入右子节点。</p></li>
 </ul>
 <p>如果搜索结束时两个队列同时为空，则两个二叉树相同。如果只有一个队列为空，则两个二叉树的结构不同，因此两个二叉树不同。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isSameTree</span>(<span class="params">self, p: TreeNode, q: TreeNode</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> p <span class="keyword">and</span> <span class="keyword">not</span> q:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> p <span class="keyword">or</span> <span class="keyword">not</span> q:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line">        queue1 = collections.deque([p])</span><br><span class="line">        queue2 = collections.deque([q])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> queue1 <span class="keyword">and</span> queue2:</span><br><span class="line">            node1 = queue1.popleft()</span><br><span class="line">            node2 = queue2.popleft()</span><br><span class="line">            <span class="keyword">if</span> node1.val != node2.val:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            left1, right1 = node1.left, node1.right</span><br><span class="line">            left2, right2 = node2.left, node2.right</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">not</span> left1) ^ (<span class="keyword">not</span> left2):</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">not</span> right1) ^ (<span class="keyword">not</span> right2):</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> left1:</span><br><span class="line">                queue1.append(left1)</span><br><span class="line">            <span class="keyword">if</span> right1:</span><br><span class="line">                queue1.append(right1)</span><br><span class="line">            <span class="keyword">if</span> left2:</span><br><span class="line">                queue2.append(left2)</span><br><span class="line">            <span class="keyword">if</span> right2:</span><br><span class="line">                queue2.append(right2)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">not</span> queue1 <span class="keyword">and</span> <span class="keyword">not</span> queue2</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isSameTree</span>(<span class="params">self, p: TreeNode, q: TreeNode</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> p <span class="keyword">and</span> <span class="keyword">not</span> q:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> p <span class="keyword">or</span> <span class="keyword">not</span> q:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">        queue1 = collections.deque([p])</span><br><span class="line">        queue2 = collections.deque([q])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> queue1 <span class="keyword">and</span> queue2:</span><br><span class="line">            node1 = queue1.popleft()</span><br><span class="line">            node2 = queue2.popleft()</span><br><span class="line">            <span class="keyword">if</span> node1.val != node2.val:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            left1, right1 = node1.left, node1.right</span><br><span class="line">            left2, right2 = node2.left, node2.right</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">not</span> left1) ^ (<span class="keyword">not</span> left2):</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">not</span> right1) ^ (<span class="keyword">not</span> right2):</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> left1:</span><br><span class="line">                queue1.append(left1)</span><br><span class="line">            <span class="keyword">if</span> right1:</span><br><span class="line">                queue1.append(right1)</span><br><span class="line">            <span class="keyword">if</span> left2:</span><br><span class="line">                queue2.append(left2)</span><br><span class="line">            <span class="keyword">if</span> right2:</span><br><span class="line">                queue2.append(right2)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">not</span> queue1 <span class="keyword">and</span> <span class="keyword">not</span> queue2</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：<span class="math display">\[O(\min(m,n))\]</span>，其中
@@ -415,14 +424,14 @@ m 和 n
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">236</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -482,7 +491,7 @@ m 和 n
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">577k</span>
+    <span title="Symbols count total">578k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>

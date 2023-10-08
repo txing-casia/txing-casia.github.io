@@ -198,6 +198,111 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/01/03/2021-01-03-%E5%9C%A8VS%20Code%E9%85%8D%E7%BD%AELaTeX%E7%8E%AF%E5%A2%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/03/2021-01-03-%E5%9C%A8VS%20Code%E9%85%8D%E7%BD%AELaTeX%E7%8E%AF%E5%A2%83/" class="post-title-link" itemprop="url">在VS Code配置编译LaTeX环境</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-01-03 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-03T00:00:00+08:00">2021-01-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Code-Techniques/" itemprop="url" rel="index"><span itemprop="name">Code Techniques</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.5k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="在vs-code配置编译latex环境">在VS Code配置编译LaTeX环境</h1>
+<h2 id="实施步骤">实施步骤</h2>
+<ul>
+<li><p>Step 1：下载<a target="_blank" rel="noopener" href="https://code.visualstudio.com/">VS
+Code</a>，<a
+target="_blank" rel="noopener" href="https://www.sumatrapdfreader.org/free-pdf-reader.html">SumatraPDF</a>，<a
+target="_blank" rel="noopener" href="https://mirrors.aliyun.com/CTAN/systems/texlive/Images/">texlive
+(阿里云)</a>或者<a
+target="_blank" rel="noopener" href="https://mirrors.huaweicloud.com/CTAN/systems/texlive/Images/">texlive
+(华为云)</a>，texlive只下载texlive.iso文件，安装参考网上教程</p></li>
+<li><p>Step 2：VS Code中安装 LaTeX Workshop 插件</p></li>
+<li><p>Step 3：修改 user setting</p></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    &quot;latex-workshop.latex.tools&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            // 编译工具和命令</span><br><span class="line">            &quot;name&quot;: &quot;latexmk&quot;,</span><br><span class="line">            &quot;command&quot;: &quot;latexmk&quot;,</span><br><span class="line">            &quot;args&quot;: [</span><br><span class="line">                &quot;-synctex=1&quot;,</span><br><span class="line">                &quot;-interaction=nonstopmode&quot;,</span><br><span class="line">                &quot;-file-line-error&quot;,</span><br><span class="line">                &quot;-pdf&quot;,</span><br><span class="line">                &quot;%DOCFILE%&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            // 编译工具和命令</span><br><span class="line">            &quot;name&quot;: &quot;xelatex&quot;,</span><br><span class="line">            &quot;command&quot;: &quot;xelatex&quot;,</span><br><span class="line">            &quot;args&quot;: [</span><br><span class="line">                &quot;-synctex=1&quot;,</span><br><span class="line">                &quot;-interaction=nonstopmode&quot;,</span><br><span class="line">                &quot;-file-line-error&quot;,</span><br><span class="line">                &quot;-pdf&quot;,</span><br><span class="line">                &quot;%DOCFILE%&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;pdflatex&quot;,</span><br><span class="line">            &quot;command&quot;: &quot;pdflatex&quot;,</span><br><span class="line">            &quot;args&quot;: [</span><br><span class="line">                &quot;-synctex=1&quot;,</span><br><span class="line">                &quot;-interaction=nonstopmode&quot;,</span><br><span class="line">                &quot;-file-line-error&quot;,</span><br><span class="line">                &quot;%DOCFILE%&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;bibtex&quot;,</span><br><span class="line">            &quot;command&quot;: &quot;bibtex&quot;,</span><br><span class="line">            &quot;args&quot;: [</span><br><span class="line">                &quot;%DOCFILE%&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    &quot;latex-workshop.latex.recipes&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;xelatex&quot;,</span><br><span class="line">            &quot;tools&quot;: [</span><br><span class="line">                &quot;xelatex&quot;</span><br><span class="line">            ],</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;pdflatex&quot;,</span><br><span class="line">            &quot;tools&quot;: [</span><br><span class="line">                &quot;pdflatex&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;xe-&gt;bib-&gt;xe-&gt;xe&quot;,</span><br><span class="line">            &quot;tools&quot;: [</span><br><span class="line">                &quot;xelatex&quot;,</span><br><span class="line">                &quot;bibtex&quot;,</span><br><span class="line">                &quot;xelatex&quot;,</span><br><span class="line">                &quot;xelatex&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;pdf-&gt;bib-&gt;pdf-&gt;pdf&quot;,</span><br><span class="line">            &quot;tools&quot;: [</span><br><span class="line">                &quot;pdflatex&quot;,</span><br><span class="line">                &quot;bibtex&quot;,</span><br><span class="line">                &quot;pdflatex&quot;,</span><br><span class="line">                &quot;pdflatex&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    &quot;latex-workshop.view.pdf.viewer&quot;: &quot;external&quot;,</span><br><span class="line"></span><br><span class="line">    &quot;latex-workshop.view.pdf.external.viewer.command&quot;: &quot;D:/Program Files (x86)/SumatraPDF/SumatraPDF.exe&quot;,</span><br><span class="line">    &quot;latex-workshop.view.pdf.external.viewer.args&quot;: [</span><br><span class="line">        &quot;-forward-search&quot;,</span><br><span class="line">        &quot;%TEX%&quot;,</span><br><span class="line">        &quot;%LINE%&quot;,</span><br><span class="line">        &quot;-reuse-instance&quot;,</span><br><span class="line">        &quot;-inverse-search&quot;,</span><br><span class="line">        &quot;\&quot;D:/Program Files (x86)/Microsoft VS Code/Code.exe\&quot; \&quot;D:/Program Files (x86)/Microsoft VS Code/resources/app/out/cli.js\&quot; -gr \&quot;%f\&quot;:\&quot;%l\&quot;&quot;,</span><br><span class="line">        &quot;%PDF%&quot;</span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>*<strong>记住修改VS Code位置和SumatraPDF位置</strong></p>
+<ul>
+<li><p>Step 4：在新建文件夹中，新建.tex文件，输入</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>&#123;article&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">hello,world</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<p>Ctrl+S编译，也可以在左侧Tex一栏设置编译方式</p></li>
+</ul>
+<h2 id="参考资料">参考资料</h2>
+<ul>
+<li><a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/38178015">使用VSCode编写LaTeX</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/01/03/2021-01-04-ThirdWork%20Reference/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -223,6 +328,15 @@
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2021-01-03 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-03T00:00:00+08:00">2021-01-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Thinking/" itemprop="url" rel="index"><span itemprop="name">Thinking</span></a>
+                </span>
             </span>
 
           <br>
@@ -310,6 +424,15 @@ Model of Arm Dynamics</li>
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2020-12-31 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-31T00:00:00+08:00">2020-12-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
             </span>
 
           <br>
@@ -530,6 +653,15 @@ Q(s_i,a_i)\\
 
               <time title="Created: 2020-12-23 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-23T00:00:00+08:00">2020-12-23</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -592,8 +724,7 @@ Model for Collective Intelligence</h1>
 <li>是否可以开发形式化理论来解决基于人类的进化问题。这方面研究可以发现CI系统的局限性，提供效率上的理论保证</li>
 </ul></li>
 </ul>
-<p><img
-src="https://github.com/txing-casia/txing-casia.github.io/blob/master/img/20201223-1.png" /></p>
+<p><img src="/images/20201223-1.png" /></p>
 
       
     </div>
@@ -638,6 +769,15 @@ src="https://github.com/txing-casia/txing-casia.github.io/blob/master/img/202012
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2020-12-17 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-17T00:00:00+08:00">2020-12-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
             </span>
 
           <br>
@@ -935,6 +1075,15 @@ interfaces.</p></li>
 
               <time title="Created: 2020-11-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-19T00:00:00+08:00">2020-11-19</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -1035,6 +1184,15 @@ cells接收外部刺激，结合内部生成模型形成对新的连续快速内
 
               <time title="Created: 2020-11-18 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-18T00:00:00+08:00">2020-11-18</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -1082,8 +1240,7 @@ anchoring</strong> and <strong>route planning</strong>:</p>
 an effort to explain navigational behaviors in rodents that could not be
 logically reduced to associations between specific stimuli and rewarded
 behavioral responses.</p></li>
-<li><p>快速切换a roundabout route到直接路径<br />
-</p></li>
+<li><p>快速切换a roundabout route到直接路径</p></li>
 <li><p>Grieves, R.M. &amp; Jeffery, K.J. The representation of space in
 the brain.<em>Behav. Processes</em> 135, 113–131
 (2017).这篇文章支持多种细胞共同构建了认知地图：</p>
@@ -1174,6 +1331,15 @@ Area）</li>
 
               <time title="Created: 2020-11-02 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-02T00:00:00+08:00">2020-11-02</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -1229,128 +1395,6 @@ populations产生的</p></li>
 </ul></li>
 <li>主要说明了海马体对于路径的记忆与预测，预测方式为比较过去路径和未来平均路径、未来实际路径和未来平均路径的相关性，这种相关性体现出了一种预测的能力。（定性比较，没有精确模型）</li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/10/12/2020-10-12-Q530%20Minimum%20Absolute%20Difference%20in%20BST-%E7%AE%80%E5%8D%95-%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/12/2020-10-12-Q530%20Minimum%20Absolute%20Difference%20in%20BST-%E7%AE%80%E5%8D%95-%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/" class="post-title-link" itemprop="url">Q530 Minimum Absolute Difference in BST-简单-中序遍历</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2020-10-12T00:00:00+08:00">2020-10-12</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.6k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="minimum-absolute-difference-in-bst"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-absolute-difference-in-bst/">Minimum
-Absolute Difference in BST</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given a binary search tree with non-negative values, find the minimum
-absolute difference between values of any two nodes.</p>
-<p><strong>Note:</strong></p>
-<p>There are at least two nodes in this BST. This question is the same
-as 783:
-https://leetcode.com/problems/minimum-distance-between-bst-nodes/</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input:</p>
-<p>1<br />
-3 / 2</p>
-<p>Output: 1</p>
-<p>Explanation: The minimum absolute difference is 1, which is the
-difference between 2 and 1 (or between 2 and 3).</p>
-</blockquote>
-<h3 id="approach-1-中序遍历">Approach 1: 中序遍历</h3>
-<p>考虑对升序数组 a
-求任意两个元素之差的绝对值的最小值，答案一定为相邻两个元素之差的最小值，即</p>
-<p><span
-class="math display">\[\textit{ans}=\min_{i=0}^{n-2}\left\{a[i+1]-a[i]\right\}\]</span></p>
-<p>其中 n 为数组 a 的长度。其他任意间隔距离大于等于 2 的下标对 (i,j)
-的元素之差一定大于下标对 (i,i+1) 的元素之差，故不需要再被考虑。</p>
-<p>回到本题，本题要求二叉搜索树任意两节点差的绝对值的最小值，而我们知道二叉搜索树有个性质为<strong>二叉搜索树中序遍历得到的值序列是递增有序的</strong>，因此我们只要得到中序遍历后的值序列即能用上文提及的方法来解决。</p>
-<p>朴素的方法是经过一次中序遍历将值保存在一个数组中再进行遍历求解，我们也可以在中序遍历的过程中用
-<span class="math display">\[\textit{pre}\]</span>
-变量保存前驱节点的值，这样即能边遍历边更新答案，不再需要显式创建数组来保存，需要注意的是
-<span class="math display">\[\textit{pre}\]</span>
-的初始值需要设置成任意负数标记开头，下文代码中设置为 -1。</p>
-<p>二叉树的中序遍历有多种方式，包括递归、栈、Morris
-遍历等，读者可选择自己最擅长的来实现。下文代码提供最普遍的递归方法来实现，其他遍历方法的介绍可以详细看<a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/">「94.
-二叉树的中序遍历」</a>的题解，这里不再赘述。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getMinimumDifference</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">root</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            dfs(root.left)</span><br><span class="line">            nums.append(root.val)</span><br><span class="line">            dfs(root.right)</span><br><span class="line"></span><br><span class="line">        nums = []</span><br><span class="line">        dfs(root)</span><br><span class="line">        res = <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(nums)):</span><br><span class="line">            res = <span class="built_in">min</span>(res, nums[i] - nums[i - <span class="number">1</span>])</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(n)，其中 n
-为二叉搜索树节点的个数。每个节点在中序遍历中都会被访问一次且只会被访问一次，因此总时间复杂度为
-O(n)。</li>
-<li>空间复杂度：O(n)。递归函数的空间复杂度取决于递归的栈深度，而栈深度在二叉搜索树为一条链的情况下会达到
-O(n) 级别。</li>
-</ul>
-<h3 id="approach-2-中序遍历空间优化">Approach 2:
-中序遍历（空间优化）</h3>
-<p>保留前驱结点，滚动式更新结果</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getMinimumDifference</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">root</span>):</span><br><span class="line">            <span class="keyword">nonlocal</span> res, pre</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span> </span><br><span class="line">            dfs(root.left)</span><br><span class="line">            <span class="keyword">if</span> pre != -<span class="number">1</span>:</span><br><span class="line">                res = <span class="built_in">min</span>(res, root.val-pre)</span><br><span class="line">            pre = root.val</span><br><span class="line">            dfs(root.right)</span><br><span class="line">        </span><br><span class="line">        pre = -<span class="number">1</span></span><br><span class="line">        res = <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)</span><br><span class="line">        dfs(root)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -1437,14 +1481,14 @@ O(n) 级别。</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">236</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1504,7 +1548,7 @@ O(n) 级别。</li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">577k</span>
+    <span title="Symbols count total">578k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>

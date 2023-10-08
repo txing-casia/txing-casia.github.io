@@ -30,7 +30,7 @@
 <meta property="og:description" content="688. “马”在棋盘上的概率 Question  已知一个 NxN 的国际象棋棋盘，棋盘的行号和列号都是从 0 开始。即最左上角的格子记为 (0, 0)，最右下角的记为 (N-1, N-1)。 现有一个 “马”（也译作 “骑士”）位于 (r, c) ，并打算进行 K 次移动。 如下图所示，国际象棋的 “马” 每一步先沿水平或垂直方向移动 2 个格子，然后向与之相垂直的方向再移动">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-07-17T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-25T01:54:15.000Z">
+<meta property="article:modified_time" content="2023-10-08T13:31:01.651Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Algorithm">
@@ -229,6 +229,15 @@
 
               <time title="Created: 2021-07-18 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-18T00:00:00+08:00">2021-07-18</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -303,7 +312,7 @@ f[r][c][steps]=\sum_{dr,dc} f[r+dr][c+dc][steps-1]\cdot \frac{1}{8}
 <li><code>dp</code> 代表 <code>f[][][steps-1]</code>；</li>
 </ul></li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">knightProbability</span>(<span class="params">self, N, K, r, c</span>):</span><br><span class="line">        dp = [[<span class="number">0</span>] * N <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(N)]</span><br><span class="line">        dp[r][c] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(K): <span class="comment"># 走k步还在棋盘内的概率</span></span><br><span class="line">            dp2 = [[<span class="number">0</span>] * N <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(N)]</span><br><span class="line">            <span class="keyword">for</span> r, row <span class="keyword">in</span> <span class="built_in">enumerate</span>(dp):</span><br><span class="line">                <span class="keyword">for</span> c, val <span class="keyword">in</span> <span class="built_in">enumerate</span>(row):</span><br><span class="line">                    <span class="keyword">for</span> dr, dc <span class="keyword">in</span> ((<span class="number">2</span>,<span class="number">1</span>),(<span class="number">2</span>,-<span class="number">1</span>),(-<span class="number">2</span>,<span class="number">1</span>),(-<span class="number">2</span>,-<span class="number">1</span>),</span><br><span class="line">                                   (<span class="number">1</span>,<span class="number">2</span>),(<span class="number">1</span>,-<span class="number">2</span>),(-<span class="number">1</span>,<span class="number">2</span>),(-<span class="number">1</span>,-<span class="number">2</span>)):</span><br><span class="line">                        <span class="comment"># 走了一步之后还在棋盘内</span></span><br><span class="line">                        <span class="keyword">if</span> <span class="number">0</span> &lt;= r + dr &lt; N <span class="keyword">and</span> <span class="number">0</span> &lt;= c + dc &lt; N:</span><br><span class="line">                            dp2[r+dr][c+dc] += val / <span class="number">8.0</span></span><br><span class="line">            dp = dp2</span><br><span class="line">        <span class="comment"># map()函数把sum依次作用在dp的每一项上，在map()外再使用sum()完成二维数组的求和</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(<span class="built_in">map</span>(<span class="built_in">sum</span>, dp))</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    N, K, r, c = <span class="number">3</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    solution=Solution().solve(N, K, r, c)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">knightProbability</span>(<span class="params">self, N, K, r, c</span>):</span><br><span class="line">        dp = [[<span class="number">0</span>] * N <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(N)]</span><br><span class="line">        dp[r][c] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(K): <span class="comment"># 走k步还在棋盘内的概率</span></span><br><span class="line">            dp2 = [[<span class="number">0</span>] * N <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(N)]</span><br><span class="line">            <span class="keyword">for</span> r, row <span class="keyword">in</span> <span class="built_in">enumerate</span>(dp):</span><br><span class="line">                <span class="keyword">for</span> c, val <span class="keyword">in</span> <span class="built_in">enumerate</span>(row):</span><br><span class="line">                    <span class="keyword">for</span> dr, dc <span class="keyword">in</span> ((<span class="number">2</span>,<span class="number">1</span>),(<span class="number">2</span>,-<span class="number">1</span>),(-<span class="number">2</span>,<span class="number">1</span>),(-<span class="number">2</span>,-<span class="number">1</span>),</span><br><span class="line">                                   (<span class="number">1</span>,<span class="number">2</span>),(<span class="number">1</span>,-<span class="number">2</span>),(-<span class="number">1</span>,<span class="number">2</span>),(-<span class="number">1</span>,-<span class="number">2</span>)):</span><br><span class="line">                        <span class="comment"># 走了一步之后还在棋盘内</span></span><br><span class="line">                        <span class="keyword">if</span> <span class="number">0</span> &lt;= r + dr &lt; N <span class="keyword">and</span> <span class="number">0</span> &lt;= c + dc &lt; N:</span><br><span class="line">                            dp2[r+dr][c+dc] += val / <span class="number">8.0</span></span><br><span class="line">            dp = dp2</span><br><span class="line">        <span class="comment"># map()函数把sum依次作用在dp的每一项上，在map()外再使用sum()完成二维数组的求和</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(<span class="built_in">map</span>(<span class="built_in">sum</span>, dp))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    N, K, r, c = <span class="number">3</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    solution=Solution().solve(N, K, r, c)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：<span class="math display">\[O(N^2 K)\]</span>。其中 N,
@@ -448,14 +457,14 @@ class="math display">\[\frac{N^4}{64}\]</span> 个元素。</p></li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">236</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -515,7 +524,7 @@ class="math display">\[\frac{N^4}{64}\]</span> 个元素。</p></li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">577k</span>
+    <span title="Symbols count total">578k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>

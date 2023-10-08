@@ -198,6 +198,127 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/05/06/2019-05-06-Q771-Jewels-and-Stones/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/05/06/2019-05-06-Q771-Jewels-and-Stones/" class="post-title-link" itemprop="url">Q771 Jewels and Stones</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-05-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-06T00:00:00+08:00">2019-05-06</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.5k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="jewels-and-stones"><a
+target="_blank" rel="noopener" href="https://leetcode.com/problems/jewels-and-stones/">Jewels and
+Stones</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>You're given strings <code>J</code> representing the types of stones
+that are jewels, and <code>S</code> representing the stones you have.
+Each character in <code>S</code> is a type of stone you have. You want
+to know how many of the stones you have are also jewels.</p>
+<p>The letters in <code>J</code> are guaranteed distinct, and all
+characters in <code>J</code> and <code>S</code> are letters. Letters are
+case sensitive, so <code>"a"</code> is considered a different type of
+stone from <code>"A"</code>.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1</strong>:</p>
+<p>Input: J = "aA", S = "aAAbbbb" Output: 3</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1</strong>:</p>
+<p>Input: J = "z", S = "ZZ" Output: 0</p>
+</blockquote>
+<blockquote>
+<p><strong>Note</strong>:</p>
+<p>S and J will consist of letters and have length at most 50. The
+characters in J are distinct.</p>
+</blockquote>
+<h3 id="approach-1-brute-force">Approach 1: Brute Force</h3>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>The brute force approach is simple. Loop through each element <em>i
+,j</em> and find if they are equal.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numJewelsInStones</span>(<span class="params">self, J: <span class="built_in">str</span>, S: <span class="built_in">str</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        num=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> J:</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> S:</span><br><span class="line">                <span class="keyword">if</span> i==j:</span><br><span class="line">                    num+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> num</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    J = <span class="string">&quot;aA&quot;</span></span><br><span class="line">    S=<span class="string">&quot;aAAbbbbb&quot;</span></span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.numJewelsInStones(J,S)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Runtime: 40 ms, faster than 68.64% of Python3 online submissions for
+Jewels and Stones.</li>
+<li>Memory Usage: 13.3 MB, less than 5.25% of Python3 online submissions
+for Jewels and Stones.</li>
+</ul>
+<hr />
+<h3 id="approach-2-hash-table">Approach 2: Hash Table</h3>
+<p>In my opinion, the second approach cancels the nested loop which
+should be much faster than the first approach. However, it has no effect
+at all. :worried:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numJewelsInStones</span>(<span class="params">self, J: <span class="built_in">str</span>, S: <span class="built_in">str</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        Hashmap=<span class="built_in">dict</span>()</span><br><span class="line">        num=<span class="number">0</span></span><br><span class="line">        <span class="comment"># 建立Hash Table</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(J)):</span><br><span class="line">            Hashmap[J[i]] = i <span class="comment">#键是数值，值是序号</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> S:</span><br><span class="line">            <span class="keyword">if</span> j <span class="keyword">in</span> Hashmap:</span><br><span class="line">                num+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> num</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Runtime: 40 ms, faster than 68.64% of Python3 online submissions for
+Jewels and Stones.</li>
+<li>Memory Usage: 13 MB, less than 5.25% of Python3 online submissions
+for Jewels and Stones.</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/05/06/2019-05-06-Markdown-Emoji/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3579,137 +3700,6 @@ elements.)</li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/04/24/2019-04-24-Q26-Remove-Duplicates-from-Sorted-Array/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/04/24/2019-04-24-Q26-Remove-Duplicates-from-Sorted-Array/" class="post-title-link" itemprop="url">Q26 Remove Duplicates from Sorted Array</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-04-24 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-24T00:00:00+08:00">2019-04-24</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="remove-duplicates-from-sorted-array"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/remove-duplicates-from-sorted-array/">Remove
-Duplicates from Sorted Array</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given a sorted array <em>nums</em>, remove the duplicates in-place
-such that each element appear only <em>once</em> and return the new
-length.</p>
-<p>Do not allocate extra space for another array, you must do this by
-<strong>modifying the input array in-place</strong> with O(1) extra
-memory.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1</strong>:</p>
-<p>Given nums = [1,1,2],</p>
-<p>Your function should return length = 2, with the first two elements
-of nums being 1 and 2 respectively.</p>
-<p>It doesn't matter what you leave beyond the returned length.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2</strong>:</p>
-<p>Given nums = [0,0,1,1,1,2,2,3,3,4],</p>
-<p>Your function should return length = 5, with the first five elements
-of nums being modified to 0, 1, 2, 3, and 4 respectively.</p>
-<p>It doesn't matter what values are set beyond the returned length.</p>
-</blockquote>
-<blockquote>
-<p><strong>Clarification:</strong></p>
-<p>Confused why the returned value is an integer but your answer is an
-array?</p>
-<p>Note that the input array is passed in by <strong>reference</strong>,
-which means modification to the input array will be known to the caller
-as well.</p>
-<p>Internally you can think of this:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">// nums is passed in by reference. (i.e., without making a copy)</span></span><br><span class="line">&gt;<span class="type">int</span> len = <span class="built_in">removeDuplicates</span>(nums);</span><br><span class="line"></span><br><span class="line">&gt;<span class="comment">// any modification to nums in your function would be known by the caller.</span></span><br><span class="line">&gt;<span class="comment">// using the length returned by your function, it prints the first len elements.</span></span><br><span class="line">&gt;<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">   <span class="built_in">print</span>(nums[i]);</span><br><span class="line">&gt;&#125;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h2 id="solution">Solution</h2>
-<h3 id="approach-1-two-pointers">Approach 1: Two Pointers</h3>
-<p>Since the array is already sorted, we can keep two pointers <span
-class="math inline">\(i\)</span> and <span
-class="math inline">\(j\)</span>, where <span
-class="math inline">\(i\)</span> is the slow-runner while <span
-class="math inline">\(j\)</span> is the fast-runner. As long as <span
-class="math display">\[nums[i] = nums[j]\]</span>, we increment <span
-class="math inline">\(j\)</span> to skip the duplicate.</p>
-<p>When we encounter <span class="math inline">\(nums[j]\neq
-nums[i]\)</span>, the duplicate run has ended so we must copy its value
-to <span class="math inline">\(nums[i + 1]\)</span>. <span
-class="math inline">\(i\)</span> is then incremented and we repeat the
-same process again <span class="math inline">\(j​\)</span> reaches the
-end of array.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">removeDuplicates</span>(<span class="params">self, nums: <span class="string">&#x27;List[int]&#x27;</span></span>) -&gt; <span class="string">&#x27;int&#x27;</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(nums)==<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            index=<span class="number">0</span></span><br><span class="line">            <span class="keyword">while</span>(index+<span class="number">1</span>&lt;<span class="built_in">len</span>(nums)):</span><br><span class="line">                <span class="keyword">if</span> nums[index]==nums[index+<span class="number">1</span>]:</span><br><span class="line">                    nums.remove(nums[index])</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    index+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(nums)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    nums = [<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.removeDuplicates(nums)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br><span class="line">   </span><br></pre></td></tr></table></figure>
-<ul>
-<li>Time complextiy : <em>O</em>(<em>n</em>). Assume that <em>n</em> is
-the length of array. Each of i<em>i</em> and <em>j</em> traverses at
-most n<em>n</em>steps.</li>
-<li>Space complexity : <em>O</em>(1).</li>
-</ul>
-<p>代码中使用了nums.remove() 来删除重复元素，.pop()
-也有类似效果，但在提交LeetCode时候超时未通过。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3781,14 +3771,14 @@ most n<em>n</em>steps.</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">236</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -3848,7 +3838,7 @@ most n<em>n</em>steps.</li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">577k</span>
+    <span title="Symbols count total">578k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>

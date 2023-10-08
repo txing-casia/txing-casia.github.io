@@ -30,7 +30,7 @@
 <meta property="og:description" content="695. 岛屿的最大面积 Question  给定一个包含了一些 0 和 1 的非空二维数组 grid 。 一个 岛屿 是由一些相邻的 1 (代表土地) 构成的组合，这里的「相邻」要求两个 1 必须在水平或者竖直方向上相邻。你可以假设 grid 的四个边缘都被 0（代表水）包围着。 找到给定的二维数组中最大的岛屿面积。(如果没有岛屿，则返回面积为 0 。)   Examp">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-07-20T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-25T01:54:15.001Z">
+<meta property="article:modified_time" content="2023-10-08T13:30:51.605Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Algorithm">
@@ -230,6 +230,15 @@
 
               <time title="Created: 2021-07-21 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-21T00:00:00+08:00">2021-07-21</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -301,7 +310,7 @@ target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/max-area-o
 <li>如果当前位置是1，那就置0，避免重复，在返回结果递归DFS，检测周围是否是岛屿</li>
 </ul></li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxAreaOfIsland</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">DFS</span>(<span class="params">grid,ci,cj</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="number">0</span>&lt;=ci <span class="keyword">and</span> ci&lt;r <span class="keyword">and</span> <span class="number">0</span>&lt;=cj <span class="keyword">and</span> cj&lt;c <span class="keyword">and</span> grid[ci][cj] == <span class="number">1</span>:</span><br><span class="line">                grid[ci][cj] = <span class="number">0</span></span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span> + DFS(grid,ci-<span class="number">1</span>,cj) + DFS(grid,ci+<span class="number">1</span>,cj) + DFS(grid,ci,cj-<span class="number">1</span>) + DFS(grid,ci,cj+<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">                </span><br><span class="line">        r , c = <span class="built_in">len</span>(grid),<span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line">        fin_res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(c):</span><br><span class="line">                fin_res = <span class="built_in">max</span>(DFS(grid,i,j),fin_res)</span><br><span class="line">        <span class="keyword">return</span> fin_res</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxAreaOfIsland</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">DFS</span>(<span class="params">grid,ci,cj</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="number">0</span>&lt;=ci <span class="keyword">and</span> ci&lt;r <span class="keyword">and</span> <span class="number">0</span>&lt;=cj <span class="keyword">and</span> cj&lt;c <span class="keyword">and</span> grid[ci][cj] == <span class="number">1</span>:</span><br><span class="line">                grid[ci][cj] = <span class="number">0</span></span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span> + DFS(grid,ci-<span class="number">1</span>,cj) + DFS(grid,ci+<span class="number">1</span>,cj) + DFS(grid,ci,cj-<span class="number">1</span>) + DFS(grid,ci,cj+<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        r , c = <span class="built_in">len</span>(grid),<span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line">        fin_res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(c):</span><br><span class="line">                fin_res = <span class="built_in">max</span>(DFS(grid,i,j),fin_res)</span><br><span class="line">        <span class="keyword">return</span> fin_res</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：<span class="math display">\[O(R \times
@@ -436,14 +445,14 @@ class="math display">\[O(R \times C)\]</span>。</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">236</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -503,7 +512,7 @@ class="math display">\[O(R \times C)\]</span>。</li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">577k</span>
+    <span title="Symbols count total">578k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>

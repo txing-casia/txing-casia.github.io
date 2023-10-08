@@ -198,6 +198,151 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/01/2021-07-01-Reinforcement%20Learning%20-%20Hierarchical%20Deep%20Reinforcement%20Learning%20for%20Continuous%20Action%20Control/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/01/2021-07-01-Reinforcement%20Learning%20-%20Hierarchical%20Deep%20Reinforcement%20Learning%20for%20Continuous%20Action%20Control/" class="post-title-link" itemprop="url">Reinforcement Learning | Hierarchical Deep Reinforcement Learning for Continuous Action Control</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-07-01 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-01T00:00:00+08:00">2021-07-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1
+id="hierarchical-deep-reinforcement-learning-for-continuous-action-control">Hierarchical
+Deep Reinforcement Learning for Continuous Action Control</h1>
+<p>论文链接：https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=8310962&amp;tag=1</p>
+<h2 id="背景">背景</h2>
+<p>机器人连续行为空间的控制是一个难题，尤其是在应对复合任务的时候。</p>
+<ul>
+<li>In addition, many works introduced linear function approximations to
+enhance the generalization ability of algorithms [5], [6] to handle more
+complex environments.</li>
+<li>Moreover, learning agents also need to consider many physical
+factors to keep the robot moving smoothly</li>
+</ul>
+<h2 id="主要内容">主要内容</h2>
+<ul>
+<li><p>hierarchical-deep deterministic policy gradient (h-DDPG)</p></li>
+<li><p>第一层使用多个actor网络学习基本技能，第二层学习复合的技能。</p></li>
+<li><p>Results show that the proposed algorithm can successfully learn
+high performance basic skills and compound skills simultaneously.
+Results also show that its performance in solving compound tasks in the
+three scenarios outperform discrete action deep reinforcement learning
+algorithm.</p></li>
+<li><p>Contributions:</p>
+<ul>
+<li><ol type="1">
+<li>learn multiple basic skills at the same time;</li>
+</ol></li>
+<li><ol start="2" type="1">
+<li>learn compound skills to solve compound tasks by reusing basic
+skills;</li>
+</ol></li>
+<li><ol start="3" type="1">
+<li>handle the above two kinds of skill learning within the same process
+and time scale.</li>
+</ol></li>
+</ul></li>
+<li><p>一些方法：</p>
+<ul>
+<li>deterministic policy gradients [18], [26], [27]</li>
+<li>stochastic policy gradients [28], [29]</li>
+<li>trust region policy optimization [30]</li>
+<li>Some work has also been done to integrate modelbased methods to
+accelerate learning in continuous action spaces [31]</li>
+</ul></li>
+<li><p>分层强化学习：</p>
+<ul>
+<li>Various works on hierarchical reinforcement learning exist [33],
+[34]</li>
+<li>including work considering deep architectures [35], [36]</li>
+<li>Work in <strong>[36]</strong> is focuses on finding the best
+hierarchical structure of the tasks with clustering methods, and is
+mainly concerned with how to decompose tasks</li>
+</ul></li>
+<li><p>Most recent work on deep hierarchical reinforcement learning can
+be found in [37] and [38].</p></li>
+<li><p>针对图像输入的DDPG，更改了conv网络的激活函数，思想来自the mlpconv
+layer。可以减少网络参数数量</p></li>
+<li><p>基本能力的定义：Basic tasks are fundamentally nontask specific
+and rather are tied to the physical capabilities of the robot, such as
+rotating a wheel or bending a joint to a specific direction.</p></li>
+<li><p>符合任务定义：Conversely, compound tasks are defined to be tasks
+that can only be achieved by combining different patterns.</p></li>
+</ul>
+<h2 id="总结">总结</h2>
+<p>这篇文章讲述并不是很清晰，也缺少理论证明，感觉最大的贡献就是使用了多个actor网络学习基础技能，但这个也是比较典型的分层强化学习思路，和option类似。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/06/29/2021-06-28-Reinforcement%20Learning%20-%20Proximal%20Policy%20Optimization%20Algorithms/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -223,6 +368,15 @@
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2021-06-29 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-29T00:00:00+08:00">2021-06-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
             </span>
 
           <br>
@@ -322,6 +476,15 @@ L(s,a,\theta_k,\theta)=\min
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2021-05-20 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-20T00:00:00+08:00">2021-05-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Code-Techniques/" itemprop="url" rel="index"><span itemprop="name">Code Techniques</span></a>
+                </span>
             </span>
 
           <br>
@@ -433,6 +596,15 @@ path can be different).</p>
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2021-05-07 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-07T00:00:00+08:00">2021-05-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
             </span>
 
           <br>
@@ -556,6 +728,15 @@ class="math display">\[O(1)\]</span>。常数个变量。</li>
 
               <time title="Created: 2021-05-06 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-06T00:00:00+08:00">2021-05-06</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -624,9 +805,9 @@ target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/wiggle-sub
 <p>后来发现可以删除元素，所以考虑第二层循环里面不同加break了，可以继续计数，同时考虑了几个特殊情况，例如<span
 class="math display">\[[0,0,0]\]</span> 输出 1, <span
 class="math display">\[[1,2,3,4,5]\]</span> 输出 2 等。代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wiggleMaxLength</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        N = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> N == <span class="number">1</span> <span class="keyword">or</span> (N == <span class="number">2</span> <span class="keyword">and</span> nums[<span class="number">0</span>] == nums[<span class="number">1</span>]):</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        ans = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,N-<span class="number">1</span>):</span><br><span class="line">            dif_old = nums[i] - nums[i-<span class="number">1</span>]</span><br><span class="line">            length = <span class="number">2</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>,N):</span><br><span class="line">                dif_new = nums[j] - nums[j-<span class="number">1</span>]</span><br><span class="line">                <span class="keyword">if</span> dif_old * dif_new &lt; <span class="number">0</span>:</span><br><span class="line">                    length += <span class="number">1</span></span><br><span class="line">                    ans = <span class="built_in">max</span>(length,ans) </span><br><span class="line">                    dif_old = dif_new</span><br><span class="line">                <span class="keyword">elif</span> dif_new != <span class="number">0</span>:</span><br><span class="line">                    ans = <span class="built_in">max</span>(length,ans) </span><br><span class="line">                    dif_old = dif_new</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wiggleMaxLength</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        N = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> N == <span class="number">1</span> <span class="keyword">or</span> (N == <span class="number">2</span> <span class="keyword">and</span> nums[<span class="number">0</span>] == nums[<span class="number">1</span>]):</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        ans = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,N-<span class="number">1</span>):</span><br><span class="line">            dif_old = nums[i] - nums[i-<span class="number">1</span>]</span><br><span class="line">            length = <span class="number">2</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>,N):</span><br><span class="line">                dif_new = nums[j] - nums[j-<span class="number">1</span>]</span><br><span class="line">                <span class="keyword">if</span> dif_old * dif_new &lt; <span class="number">0</span>:</span><br><span class="line">                    length += <span class="number">1</span></span><br><span class="line">                    ans = <span class="built_in">max</span>(length,ans)</span><br><span class="line">                    dif_old = dif_new</span><br><span class="line">                <span class="keyword">elif</span> dif_new != <span class="number">0</span>:</span><br><span class="line">                    ans = <span class="built_in">max</span>(length,ans)</span><br><span class="line">                    dif_old = dif_new</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
 <p>进一步补考虑，实际上由于删除机制，最长的子序列一定是从头开始计数的，所以可以去掉第一层循环，减小时间复杂度从O(n^2)到O(n)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wiggleMaxLength</span>(<span class="params">self, nums</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        N = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> N == <span class="number">1</span> <span class="keyword">or</span> (N == <span class="number">2</span> <span class="keyword">and</span> nums[<span class="number">0</span>] == nums[<span class="number">1</span>]):</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        ans = <span class="number">1</span></span><br><span class="line">       </span><br><span class="line">        dif_old = nums[<span class="number">1</span>] - nums[<span class="number">0</span>]</span><br><span class="line">        length = <span class="number">2</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,N):</span><br><span class="line">            dif_new = nums[j] - nums[j-<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">if</span> dif_old * dif_new &lt; <span class="number">0</span>:</span><br><span class="line">                length += <span class="number">1</span></span><br><span class="line">                ans = <span class="built_in">max</span>(length,ans) </span><br><span class="line">                dif_old = dif_new</span><br><span class="line">            <span class="keyword">elif</span> dif_new != <span class="number">0</span>:</span><br><span class="line">                ans = <span class="built_in">max</span>(length,ans) </span><br><span class="line">                dif_old = dif_new</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wiggleMaxLength</span>(<span class="params">self, nums</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        N = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> N == <span class="number">1</span> <span class="keyword">or</span> (N == <span class="number">2</span> <span class="keyword">and</span> nums[<span class="number">0</span>] == nums[<span class="number">1</span>]):</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        ans = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        dif_old = nums[<span class="number">1</span>] - nums[<span class="number">0</span>]</span><br><span class="line">        length = <span class="number">2</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,N):</span><br><span class="line">            dif_new = nums[j] - nums[j-<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">if</span> dif_old * dif_new &lt; <span class="number">0</span>:</span><br><span class="line">                length += <span class="number">1</span></span><br><span class="line">                ans = <span class="built_in">max</span>(length,ans)</span><br><span class="line">                dif_old = dif_new</span><br><span class="line">            <span class="keyword">elif</span> dif_new != <span class="number">0</span>:</span><br><span class="line">                ans = <span class="built_in">max</span>(length,ans)</span><br><span class="line">                dif_old = dif_new</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：<span
@@ -693,7 +874,7 @@ max(up[i-1]+1,down[i-1]) &amp; nums[i]&lt;nums[i−1]
 \]</span></p>
 <p>最终的答案即为 up[n−1] 和 down[n−1] 中的较大值，其中 n
 是序列的长度。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wiggleMaxLength</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> n</span><br><span class="line">        </span><br><span class="line">        up = [<span class="number">1</span>] + [<span class="number">0</span>] * (n - <span class="number">1</span>)</span><br><span class="line">        down = [<span class="number">1</span>] + [<span class="number">0</span>] * (n - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">if</span> nums[i] &gt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                up[i] = <span class="built_in">max</span>(up[i - <span class="number">1</span>], down[i - <span class="number">1</span>] + <span class="number">1</span>)</span><br><span class="line">                down[i] = down[i - <span class="number">1</span>]</span><br><span class="line">            <span class="keyword">elif</span> nums[i] &lt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                up[i] = up[i - <span class="number">1</span>]</span><br><span class="line">                down[i] = <span class="built_in">max</span>(up[i - <span class="number">1</span>] + <span class="number">1</span>, down[i - <span class="number">1</span>])</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                up[i] = up[i - <span class="number">1</span>]</span><br><span class="line">                down[i] = down[i - <span class="number">1</span>]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(up[n - <span class="number">1</span>], down[n - <span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wiggleMaxLength</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> n</span><br><span class="line"></span><br><span class="line">        up = [<span class="number">1</span>] + [<span class="number">0</span>] * (n - <span class="number">1</span>)</span><br><span class="line">        down = [<span class="number">1</span>] + [<span class="number">0</span>] * (n - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">if</span> nums[i] &gt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                up[i] = <span class="built_in">max</span>(up[i - <span class="number">1</span>], down[i - <span class="number">1</span>] + <span class="number">1</span>)</span><br><span class="line">                down[i] = down[i - <span class="number">1</span>]</span><br><span class="line">            <span class="keyword">elif</span> nums[i] &lt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                up[i] = up[i - <span class="number">1</span>]</span><br><span class="line">                down[i] = <span class="built_in">max</span>(up[i - <span class="number">1</span>] + <span class="number">1</span>, down[i - <span class="number">1</span>])</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                up[i] = up[i - <span class="number">1</span>]</span><br><span class="line">                down[i] = down[i - <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(up[n - <span class="number">1</span>], down[n - <span class="number">1</span>])</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li><p>时间复杂度：O(n)，其中 n
@@ -704,7 +885,7 @@ max(up[i-1]+1,down[i-1]) &amp; nums[i]&lt;nums[i−1]
 <h4 id="approach-3-优化的动态规划">Approach 3: 优化的动态规划</h4>
 <p><strong>思路及解法</strong></p>
 <p>注意到方法一中，我们仅需要前一个状态来进行转移，所以我们维护两个变量即可。这样我们可以写出如下的代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wiggleMaxLength</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> n</span><br><span class="line">        </span><br><span class="line">        up = down = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">if</span> nums[i] &gt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                up = <span class="built_in">max</span>(up, down + <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">elif</span> nums[i] &lt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                down = <span class="built_in">max</span>(up + <span class="number">1</span>, down)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(up, down)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wiggleMaxLength</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> n</span><br><span class="line"></span><br><span class="line">        up = down = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">if</span> nums[i] &gt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                up = <span class="built_in">max</span>(up, down + <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">elif</span> nums[i] &lt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                down = <span class="built_in">max</span>(up + <span class="number">1</span>, down)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(up, down)</span><br></pre></td></tr></table></figure>
 <p>注意到每有一个「峰」到「谷」的下降趋势，<span
 class="math display">\[\textit{down}\]</span>
 值才会增加，每有一个「谷」到「峰」的上升趋势，<span
@@ -717,7 +898,7 @@ class="math display">\[\textit{up}\]</span> 的差的绝对值值恒不大于 1�
 \textit{down} + 1) = \textit{down} + 1\]</span> 且 <span
 class="math display">\[\max(\textit{up} + 1, \textit{down}) =
 \textit{up} + 1\]</span>。这样我们可以省去不必要的比较大小的过程。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wiggleMaxLength</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> n</span><br><span class="line">        </span><br><span class="line">        up = down = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">if</span> nums[i] &gt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                up = down + <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> nums[i] &lt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                down = up + <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(up, down)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wiggleMaxLength</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> n</span><br><span class="line"></span><br><span class="line">        up = down = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">if</span> nums[i] &gt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                up = down + <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> nums[i] &lt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                down = up + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(up, down)</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <p>时间复杂度：O(n)，其中 n 是序列的长度。我们只需要遍历该序列一次。</p>
 <p>空间复杂度：O(1)。我们只需要常数空间来存放若干变量。</p>
@@ -765,6 +946,15 @@ class="math display">\[\max(\textit{up} + 1, \textit{down}) =
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2021-04-29 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-29T00:00:00+08:00">2021-04-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
             </span>
 
           <br>
@@ -830,7 +1020,7 @@ A 市，费用为 10。 第二个人去 A 市，费用为 30。 第三个人去 
 <li>按照 price_A - price_B 从小到大排序；</li>
 <li>将前 N 个人飞往 A 市，其余人飞往 B 市，并计算出总费用。</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">twoCitySchedCost</span>(<span class="params">self, costs: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="comment"># Sort by a gain which company has </span></span><br><span class="line">        <span class="comment"># by sending a person to city A and not to city B</span></span><br><span class="line">        costs.sort(key = <span class="keyword">lambda</span> x : x[<span class="number">0</span>] - x[<span class="number">1</span>])</span><br><span class="line">        </span><br><span class="line">        total = <span class="number">0</span></span><br><span class="line">        n = <span class="built_in">len</span>(costs) // <span class="number">2</span></span><br><span class="line">        <span class="comment"># To optimize the company expenses,</span></span><br><span class="line">        <span class="comment"># send the first n persons to the city A</span></span><br><span class="line">        <span class="comment"># and the others to the city B</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            total += costs[i][<span class="number">0</span>] + costs[i + n][<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">return</span> total</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">twoCitySchedCost</span>(<span class="params">self, costs: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="comment"># Sort by a gain which company has</span></span><br><span class="line">        <span class="comment"># by sending a person to city A and not to city B</span></span><br><span class="line">        costs.sort(key = <span class="keyword">lambda</span> x : x[<span class="number">0</span>] - x[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">        total = <span class="number">0</span></span><br><span class="line">        n = <span class="built_in">len</span>(costs) // <span class="number">2</span></span><br><span class="line">        <span class="comment"># To optimize the company expenses,</span></span><br><span class="line">        <span class="comment"># send the first n persons to the city A</span></span><br><span class="line">        <span class="comment"># and the others to the city B</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            total += costs[i][<span class="number">0</span>] + costs[i + n][<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">return</span> total</span><br></pre></td></tr></table></figure>
 <p>Or</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">twoCitySchedCost</span>(<span class="params">self, costs</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        N=<span class="built_in">len</span>(costs)</span><br><span class="line">        deltacost=[]</span><br><span class="line">        COSTAB=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):<span class="comment"># 改派i去A城，花费变动deltacost[i]</span></span><br><span class="line">            deltacost.append(costs[i][<span class="number">0</span>]-costs[i][<span class="number">1</span>])</span><br><span class="line">            COSTAB=COSTAB+costs[i][<span class="number">1</span>]</span><br><span class="line">        deltacost=<span class="built_in">sorted</span>(deltacost)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">round</span>(N/<span class="number">2</span>)):</span><br><span class="line">            COSTAB=COSTAB+deltacost[i]</span><br><span class="line">        <span class="keyword">return</span> COSTAB</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
@@ -883,6 +1073,15 @@ A 市，费用为 10。 第二个人去 A 市，费用为 30。 第三个人去 
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2021-04-27 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-27T00:00:00+08:00">2021-04-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
             </span>
 
           <br>
@@ -1018,6 +1217,15 @@ class="math display">\[\textit{low}\]</span>，故无需考虑左子树，返回
 
               <time title="Created: 2021-04-22 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-22T00:00:00+08:00">2021-04-22</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -1111,131 +1319,6 @@ O(N)</p>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/04/21/2021-04-21-JZOffer%2034-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%92%8C%E4%B8%BA%E6%9F%90%E4%B8%80%E5%80%BC%E7%9A%84%E8%B7%AF%E5%BE%84-%E4%B8%AD%E7%AD%89-%E6%A0%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/21/2021-04-21-JZOffer%2034-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%92%8C%E4%B8%BA%E6%9F%90%E4%B8%80%E5%80%BC%E7%9A%84%E8%B7%AF%E5%BE%84-%E4%B8%AD%E7%AD%89-%E6%A0%91/" class="post-title-link" itemprop="url">JZOffer 34-二叉树中和为某一值的路径-中等-树</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-04-21 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-21T00:00:00+08:00">2021-04-21</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="jzoffer-34.-二叉树中和为某一值的路径"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/">JZOffer
-34. 二叉树中和为某一值的路径</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>输入一棵二叉树和一个整数，打印出二叉树中节点值的和为输入整数的所有路径。从树的根节点开始往下一直到叶节点所经过的节点形成一条路径。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入：给定如下二叉树，以及目标和 <code>target = 22</code>，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">      5</span><br><span class="line">     / \</span><br><span class="line">    4   8</span><br><span class="line">   /   / \</span><br><span class="line">  11  13  4</span><br><span class="line"> /  \    / \</span><br><span class="line">7    2  5   1</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">   [5,4,11,2],</span><br><span class="line">   [5,8,4,5]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li><code>节点总数 &lt;= 10000</code></li>
-<li>注意：本题与主站 113
-题相同：https://leetcode-cn.com/problems/path-sum-ii/</li>
-</ul>
-</blockquote>
-<h3 id="approach-1-先序遍历">Approach 1: 先序遍历</h3>
-<p>本问题是典型的二叉树方案搜索问题，使用回溯法解决，其包含
-<strong>先序遍历 + 路径记录</strong> 两部分。</p>
-<p><strong>算法流程：</strong> pathSum(root, sum) 函数：</p>
-<ul>
-<li>初始化： 结果列表 res ，路径列表 path 。</li>
-<li>返回值： 返回 res 即可。</li>
-</ul>
-<p>recur(root, tar) 函数：</p>
-<ul>
-<li>递推参数： 当前节点 root ，当前目标值 tar 。</li>
-<li>终止条件： 若节点 root 为空，则直接返回。</li>
-<li>递推工作：
-<ul>
-<li>路径更新： 将当前节点值 root.val 加入路径 path ；</li>
-<li>目标值更新： tar = tar - root.val（即目标值 tar 从 sum 减至 00
-）；</li>
-<li>路径记录： 当 ① root 为叶节点 且 ② 路径和等于目标值 ，则将此路径
-path 加入 res 。</li>
-<li>先序遍历： 递归左 / 右子节点。</li>
-<li>路径恢复： 向上回溯前，需要将当前节点从路径 path 中删除，即执行
-path.pop() 。</li>
-</ul></li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">pathSum</span>(<span class="params">self, root: TreeNode, <span class="built_in">sum</span>: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">        res, path = [], []</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">recur</span>(<span class="params">root, tar</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root: <span class="keyword">return</span></span><br><span class="line">            path.append(root.val)</span><br><span class="line">            tar -= root.val</span><br><span class="line">            <span class="keyword">if</span> tar == <span class="number">0</span> <span class="keyword">and</span> <span class="keyword">not</span> root.left <span class="keyword">and</span> <span class="keyword">not</span> root.right:</span><br><span class="line">                res.append(<span class="built_in">list</span>(path))</span><br><span class="line">            recur(root.left, tar)</span><br><span class="line">            recur(root.right, tar)</span><br><span class="line">            path.pop()</span><br><span class="line"></span><br><span class="line">        recur(root, <span class="built_in">sum</span>)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度 O(N) ： N
-为二叉树的节点数，先序遍历需要遍历所有节点。</li>
-<li>空间复杂度 O(N) ： 最差情况下，即树退化为链表时，path
-存储所有树节点，使用 O(N) 额外空间。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1307,14 +1390,14 @@ path.pop() 。</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">236</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1374,7 +1457,7 @@ path.pop() 。</li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">577k</span>
+    <span title="Symbols count total">578k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>

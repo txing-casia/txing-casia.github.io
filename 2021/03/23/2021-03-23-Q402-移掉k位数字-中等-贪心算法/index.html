@@ -30,7 +30,7 @@
 <meta property="og:description" content="402. 移掉K位数字 Question  给定一个以字符串表示的非负整数 num，移除这个数中的 k 位数字，使得剩下的数字最小。 注意:  num 的长度小于 10002 且 ≥ k。 num 不会包含任何前导零。    Example 1: 输入: num &#x3D; &quot;1432219&quot;, k &#x3D; 3 输出: &quot;1219&quot; 解释: 移除掉三个数字 4, 3, 和 2 形">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-03-22T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-25T01:54:14.986Z">
+<meta property="article:modified_time" content="2023-10-08T13:37:31.537Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Algorithm">
@@ -229,6 +229,15 @@
 
               <time title="Created: 2021-03-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-23T00:00:00+08:00">2021-03-23</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -329,7 +338,7 @@ m&lt;k，这种情况下我们需要从序列尾部删除额外的 k-m 个数字
 <li><code>"".join(finalStack)</code>用双引号内的字符作为连接将finalstack变为字符串。</li>
 <li><code>finalStack.lstrip('0')</code>去掉finalStack左边的指定字符<code>0</code>。相对的，<code>finalStack.rstrip('0')</code>去掉finalStack右边的指定字符<code>0</code></li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">removeKdigits</span>(<span class="params">self, num: <span class="built_in">str</span>, k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        numStack = []</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 构建单调递增的数字串</span></span><br><span class="line">        <span class="keyword">for</span> digit <span class="keyword">in</span> num:</span><br><span class="line">            <span class="keyword">while</span> k <span class="keyword">and</span> numStack <span class="keyword">and</span> numStack[-<span class="number">1</span>] &gt; digit:</span><br><span class="line">                numStack.pop()</span><br><span class="line">                k -= <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">            numStack.append(digit)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 如果 K &gt; 0，删除末尾的 K 个字符</span></span><br><span class="line">        finalStack = numStack[:-k] <span class="keyword">if</span> k <span class="keyword">else</span> numStack</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 抹去前导零</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;&quot;</span>.join(finalStack).lstrip(<span class="string">&#x27;0&#x27;</span>) <span class="keyword">or</span> <span class="string">&quot;0&quot;</span></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    num = <span class="string">&quot;1432219&quot;</span></span><br><span class="line">    k = <span class="number">3</span></span><br><span class="line">    solution=Solution().removeKdigits(num,k)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">removeKdigits</span>(<span class="params">self, num: <span class="built_in">str</span>, k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        numStack = []</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 构建单调递增的数字串</span></span><br><span class="line">        <span class="keyword">for</span> digit <span class="keyword">in</span> num:</span><br><span class="line">            <span class="keyword">while</span> k <span class="keyword">and</span> numStack <span class="keyword">and</span> numStack[-<span class="number">1</span>] &gt; digit:</span><br><span class="line">                numStack.pop()</span><br><span class="line">                k -= <span class="number">1</span></span><br><span class="line"></span><br><span class="line">            numStack.append(digit)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 如果 K &gt; 0，删除末尾的 K 个字符</span></span><br><span class="line">        finalStack = numStack[:-k] <span class="keyword">if</span> k <span class="keyword">else</span> numStack</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 抹去前导零</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;&quot;</span>.join(finalStack).lstrip(<span class="string">&#x27;0&#x27;</span>) <span class="keyword">or</span> <span class="string">&quot;0&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    num = <span class="string">&quot;1432219&quot;</span></span><br><span class="line">    k = <span class="number">3</span></span><br><span class="line">    solution=Solution().removeKdigits(num,k)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：O(n)，其中 n
@@ -443,14 +452,14 @@ O(n)。</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">236</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -510,7 +519,7 @@ O(n)。</li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">577k</span>
+    <span title="Symbols count total">578k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>

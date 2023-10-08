@@ -198,6 +198,128 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/24/2021-03-24-JZOffer%2006-%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8-%E7%AE%80%E5%8D%95-%E9%93%BE%E8%A1%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/24/2021-03-24-JZOffer%2006-%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8-%E7%AE%80%E5%8D%95-%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">JZOffer 06-从尾到头打印链表-简单-链表</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-03-24 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-24T00:00:00+08:00">2021-03-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="剑指-offer-06.-从尾到头打印链表"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/">剑指
+Offer 06. 从尾到头打印链表</a></h4>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>输入：head = [1,3,2] 输出：[2,3,1]</p>
+</blockquote>
+<blockquote>
+<p><strong>提示：</strong></p>
+<ul>
+<li>0 &lt;= 链表长度 &lt;= 10000</li>
+</ul>
+</blockquote>
+<h3 id="approach-1-栈">Approach 1: 栈</h3>
+<p>栈的特点是后进先出，即最后压入栈的元素最先弹出。考虑到栈的这一特点，使用栈将链表元素顺序倒置。从链表的头节点开始，依次将每个节点压入栈内，然后依次弹出栈内的元素并存储到数组中。</p>
+<ul>
+<li><p>创建一个栈，用于存储链表的节点</p></li>
+<li><p>创建一个指针，初始时指向链表的头节点</p></li>
+<li><p>当指针指向的元素非空时，重复下列操作：</p>
+<ul>
+<li>将指针指向的节点压入栈内</li>
+<li>将指针移到当前节点的下一个节点</li>
+</ul></li>
+<li><p>获得栈的大小 size，创建一个数组 print，其大小为 size</p></li>
+<li><p>创建下标并初始化 index = 0</p></li>
+<li><p>重复 size 次下列操作：</p>
+<ul>
+<li><p>从栈内弹出一个节点，将该节点的值存到 print[index]</p></li>
+<li><p>将 index 的值加 1</p></li>
+</ul></li>
+<li><p>返回 print</p></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">from</span> enum <span class="keyword">import</span> Enum</span><br><span class="line"><span class="keyword">import</span> bisect</span><br><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reversePrint</span>(<span class="params">self, head: ListNode</span>):</span><br><span class="line">        resList = []</span><br><span class="line">        <span class="keyword">while</span> head:</span><br><span class="line">            resList.append(head.val)</span><br><span class="line">            head = head.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">return</span> resList[::-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    head = stringToListNode([<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>])</span><br><span class="line">    solution=Solution().reversePrint(head)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)。正向遍历一遍链表，然后从栈弹出全部节点，等于又反向遍历一遍链表。</p></li>
+<li><p>空间复杂度：O(n)。额外使用一个栈存储链表中的每个节点。</p></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/23/2021-03-23-Neuroscience%20-%20Learning%20of%20action%20through%20adaptive%20combination%20of%20motor%20primitives/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -223,6 +345,15 @@
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2021-03-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-23T00:00:00+08:00">2021-03-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
             </span>
 
           <br>
@@ -324,6 +455,15 @@ MIT ( 1998).</p></li>
 
               <time title="Created: 2021-03-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-23T00:00:00+08:00">2021-03-23</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -424,7 +564,7 @@ m&lt;k，这种情况下我们需要从序列尾部删除额外的 k-m 个数字
 <li><code>"".join(finalStack)</code>用双引号内的字符作为连接将finalstack变为字符串。</li>
 <li><code>finalStack.lstrip('0')</code>去掉finalStack左边的指定字符<code>0</code>。相对的，<code>finalStack.rstrip('0')</code>去掉finalStack右边的指定字符<code>0</code></li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">removeKdigits</span>(<span class="params">self, num: <span class="built_in">str</span>, k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        numStack = []</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 构建单调递增的数字串</span></span><br><span class="line">        <span class="keyword">for</span> digit <span class="keyword">in</span> num:</span><br><span class="line">            <span class="keyword">while</span> k <span class="keyword">and</span> numStack <span class="keyword">and</span> numStack[-<span class="number">1</span>] &gt; digit:</span><br><span class="line">                numStack.pop()</span><br><span class="line">                k -= <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">            numStack.append(digit)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 如果 K &gt; 0，删除末尾的 K 个字符</span></span><br><span class="line">        finalStack = numStack[:-k] <span class="keyword">if</span> k <span class="keyword">else</span> numStack</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 抹去前导零</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;&quot;</span>.join(finalStack).lstrip(<span class="string">&#x27;0&#x27;</span>) <span class="keyword">or</span> <span class="string">&quot;0&quot;</span></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    num = <span class="string">&quot;1432219&quot;</span></span><br><span class="line">    k = <span class="number">3</span></span><br><span class="line">    solution=Solution().removeKdigits(num,k)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">removeKdigits</span>(<span class="params">self, num: <span class="built_in">str</span>, k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        numStack = []</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 构建单调递增的数字串</span></span><br><span class="line">        <span class="keyword">for</span> digit <span class="keyword">in</span> num:</span><br><span class="line">            <span class="keyword">while</span> k <span class="keyword">and</span> numStack <span class="keyword">and</span> numStack[-<span class="number">1</span>] &gt; digit:</span><br><span class="line">                numStack.pop()</span><br><span class="line">                k -= <span class="number">1</span></span><br><span class="line"></span><br><span class="line">            numStack.append(digit)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 如果 K &gt; 0，删除末尾的 K 个字符</span></span><br><span class="line">        finalStack = numStack[:-k] <span class="keyword">if</span> k <span class="keyword">else</span> numStack</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 抹去前导零</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;&quot;</span>.join(finalStack).lstrip(<span class="string">&#x27;0&#x27;</span>) <span class="keyword">or</span> <span class="string">&quot;0&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    num = <span class="string">&quot;1432219&quot;</span></span><br><span class="line">    k = <span class="number">3</span></span><br><span class="line">    solution=Solution().removeKdigits(num,k)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：O(n)，其中 n
@@ -479,6 +619,15 @@ O(n)。</li>
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2021-03-22 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-22T00:00:00+08:00">2021-03-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
             </span>
 
           <br>
@@ -552,7 +701,7 @@ Java）中，没有无符号整数类型。在这种情况下，输入和输出�
 1。具体代码中，当检查第 i 位时，我们可以让 n 与 <span
 class="math display">\[2^i\]</span> 进行与运算，当且仅当 n 的第 i 位为 1
 时，运算结果不为 0。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">hammingWeight</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        ret = <span class="built_in">sum</span>(<span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">32</span>) <span class="keyword">if</span> n &amp; (<span class="number">1</span> &lt;&lt; i)) </span><br><span class="line">        <span class="keyword">return</span> ret</span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="built_in">input</span> = <span class="number">11111111111111111111111111111101</span></span><br><span class="line">    solution=Solution().hammingWeight(<span class="built_in">input</span>)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">hammingWeight</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        ret = <span class="built_in">sum</span>(<span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">32</span>) <span class="keyword">if</span> n &amp; (<span class="number">1</span> &lt;&lt; i))</span><br><span class="line">        <span class="keyword">return</span> ret</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="built_in">input</span> = <span class="number">11111111111111111111111111111101</span></span><br><span class="line">    solution=Solution().hammingWeight(<span class="built_in">input</span>)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li><p>时间复杂度：<span class="math display">\[O(k)\]</span>，其中 k 是
@@ -627,6 +776,15 @@ class="math display">\[O(1)\]</span>，我们只需要常数的空间保存若�
 
               <time title="Created: 2021-03-19 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-19T00:00:00+08:00">2021-03-19</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -689,7 +847,7 @@ class="math display">\[\textit{visited}\]</span>，其中的每个元素表示�
 <span class="math display">\[\textit{visited}\]</span>
 中的对应位置的元素设为已访问。</p>
 <p>如何判断路径是否结束？由于矩阵中的每个元素都被访问一次，因此路径的长度即为矩阵中的元素数量，当路径的长度达到矩阵中的元素数量时即为完整路径，将该路径返回。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">spiralOrder</span>(<span class="params">self, matrix</span>):</span><br><span class="line">        <span class="comment"># 判断输入矩阵是否正常</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> matrix <span class="keyword">or</span> <span class="keyword">not</span> matrix[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">list</span>()</span><br><span class="line">        </span><br><span class="line">        rows, columns = <span class="built_in">len</span>(matrix), <span class="built_in">len</span>(matrix[<span class="number">0</span>])</span><br><span class="line">        visited = [[<span class="literal">False</span>] * columns <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(rows)]</span><br><span class="line">        total = rows * columns</span><br><span class="line">        order = [<span class="number">0</span>] * total</span><br><span class="line"></span><br><span class="line">        directions = [[<span class="number">0</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">0</span>], [<span class="number">0</span>, -<span class="number">1</span>], [-<span class="number">1</span>, <span class="number">0</span>]]</span><br><span class="line">        row, column = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        directionIndex = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(total):</span><br><span class="line">            <span class="comment"># 元素逐个加入</span></span><br><span class="line">            order[i] = matrix[row][column]</span><br><span class="line">            visited[row][column] = <span class="literal">True</span></span><br><span class="line">            nextRow, nextColumn = row + directions[directionIndex][<span class="number">0</span>], column + directions[directionIndex][<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> (<span class="number">0</span> &lt;= nextRow &lt; rows <span class="keyword">and</span> <span class="number">0</span> &lt;= nextColumn &lt; columns <span class="keyword">and</span> <span class="keyword">not</span> visited[nextRow][nextColumn]):</span><br><span class="line">                directionIndex = (directionIndex + <span class="number">1</span>) % <span class="number">4</span></span><br><span class="line">            row += directions[directionIndex][<span class="number">0</span>]</span><br><span class="line">            column += directions[directionIndex][<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">return</span> order</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    matrix = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]]</span><br><span class="line">    solution=Solution().spiralOrder(matrix)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">spiralOrder</span>(<span class="params">self, matrix</span>):</span><br><span class="line">        <span class="comment"># 判断输入矩阵是否正常</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> matrix <span class="keyword">or</span> <span class="keyword">not</span> matrix[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">list</span>()</span><br><span class="line"></span><br><span class="line">        rows, columns = <span class="built_in">len</span>(matrix), <span class="built_in">len</span>(matrix[<span class="number">0</span>])</span><br><span class="line">        visited = [[<span class="literal">False</span>] * columns <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(rows)]</span><br><span class="line">        total = rows * columns</span><br><span class="line">        order = [<span class="number">0</span>] * total</span><br><span class="line"></span><br><span class="line">        directions = [[<span class="number">0</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">0</span>], [<span class="number">0</span>, -<span class="number">1</span>], [-<span class="number">1</span>, <span class="number">0</span>]]</span><br><span class="line">        row, column = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        directionIndex = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(total):</span><br><span class="line">            <span class="comment"># 元素逐个加入</span></span><br><span class="line">            order[i] = matrix[row][column]</span><br><span class="line">            visited[row][column] = <span class="literal">True</span></span><br><span class="line">            nextRow, nextColumn = row + directions[directionIndex][<span class="number">0</span>], column + directions[directionIndex][<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> (<span class="number">0</span> &lt;= nextRow &lt; rows <span class="keyword">and</span> <span class="number">0</span> &lt;= nextColumn &lt; columns <span class="keyword">and</span> <span class="keyword">not</span> visited[nextRow][nextColumn]):</span><br><span class="line">                directionIndex = (directionIndex + <span class="number">1</span>) % <span class="number">4</span></span><br><span class="line">            row += directions[directionIndex][<span class="number">0</span>]</span><br><span class="line">            column += directions[directionIndex][<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">return</span> order</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    matrix = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]]</span><br><span class="line">    solution=Solution().spiralOrder(matrix)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li><p>时间复杂度：<span class="math display">\[O(mn)\]</span>，其中 m
@@ -743,7 +901,7 @@ class="math display">\[\textit{top}\]</span> 分别增加 1，将 <span
 class="math display">\[\textit{right}\]</span> 和 <span
 class="math display">\[\textit{bottom}\]</span> 分别减少
 1，进入下一层继续遍历，直到遍历完所有元素为止。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">spiralOrder</span>(<span class="params">self, matrix: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> matrix <span class="keyword">or</span> <span class="keyword">not</span> matrix[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">list</span>()</span><br><span class="line">        </span><br><span class="line">        rows, columns = <span class="built_in">len</span>(matrix), <span class="built_in">len</span>(matrix[<span class="number">0</span>])</span><br><span class="line">        order = <span class="built_in">list</span>()</span><br><span class="line">        left, right, top, bottom = <span class="number">0</span>, columns - <span class="number">1</span>, <span class="number">0</span>, rows - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> left &lt;= right <span class="keyword">and</span> top &lt;= bottom:</span><br><span class="line">            <span class="keyword">for</span> column <span class="keyword">in</span> <span class="built_in">range</span>(left, right + <span class="number">1</span>):</span><br><span class="line">                order.append(matrix[top][column])</span><br><span class="line">            <span class="keyword">for</span> row <span class="keyword">in</span> <span class="built_in">range</span>(top + <span class="number">1</span>, bottom + <span class="number">1</span>):</span><br><span class="line">                order.append(matrix[row][right])</span><br><span class="line">            <span class="keyword">if</span> left &lt; right <span class="keyword">and</span> top &lt; bottom:</span><br><span class="line">                <span class="keyword">for</span> column <span class="keyword">in</span> <span class="built_in">range</span>(right - <span class="number">1</span>, left, -<span class="number">1</span>):</span><br><span class="line">                    order.append(matrix[bottom][column])</span><br><span class="line">                <span class="keyword">for</span> row <span class="keyword">in</span> <span class="built_in">range</span>(bottom, top, -<span class="number">1</span>):</span><br><span class="line">                    order.append(matrix[row][left])</span><br><span class="line">            left, right, top, bottom = left + <span class="number">1</span>, right - <span class="number">1</span>, top + <span class="number">1</span>, bottom - <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> order</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">spiralOrder</span>(<span class="params">self, matrix: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> matrix <span class="keyword">or</span> <span class="keyword">not</span> matrix[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">list</span>()</span><br><span class="line"></span><br><span class="line">        rows, columns = <span class="built_in">len</span>(matrix), <span class="built_in">len</span>(matrix[<span class="number">0</span>])</span><br><span class="line">        order = <span class="built_in">list</span>()</span><br><span class="line">        left, right, top, bottom = <span class="number">0</span>, columns - <span class="number">1</span>, <span class="number">0</span>, rows - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> left &lt;= right <span class="keyword">and</span> top &lt;= bottom:</span><br><span class="line">            <span class="keyword">for</span> column <span class="keyword">in</span> <span class="built_in">range</span>(left, right + <span class="number">1</span>):</span><br><span class="line">                order.append(matrix[top][column])</span><br><span class="line">            <span class="keyword">for</span> row <span class="keyword">in</span> <span class="built_in">range</span>(top + <span class="number">1</span>, bottom + <span class="number">1</span>):</span><br><span class="line">                order.append(matrix[row][right])</span><br><span class="line">            <span class="keyword">if</span> left &lt; right <span class="keyword">and</span> top &lt; bottom:</span><br><span class="line">                <span class="keyword">for</span> column <span class="keyword">in</span> <span class="built_in">range</span>(right - <span class="number">1</span>, left, -<span class="number">1</span>):</span><br><span class="line">                    order.append(matrix[bottom][column])</span><br><span class="line">                <span class="keyword">for</span> row <span class="keyword">in</span> <span class="built_in">range</span>(bottom, top, -<span class="number">1</span>):</span><br><span class="line">                    order.append(matrix[row][left])</span><br><span class="line">            left, right, top, bottom = left + <span class="number">1</span>, right - <span class="number">1</span>, top + <span class="number">1</span>, bottom - <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> order</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：<span class="math display">\[O(mn)\]</span>，其中 m 和 n
@@ -804,6 +962,15 @@ class="math display">\[O(mn)\]</span>。除了输出数组以外，空间复杂�
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2021-03-18 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-18T00:00:00+08:00">2021-03-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
             </span>
 
           <br>
@@ -897,7 +1064,7 @@ arr[0] + ... + arr[i - 1] + x \times (n - i)
 <p>bisect.bisect_right(L,x)</p>
 <p>bisect.insort_left(L,x)</p>
 <p>bisect.insort_right(L,x)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">findBestValue</span>(<span class="params">self, arr, target</span>):</span><br><span class="line">        arr.sort()</span><br><span class="line">        n = <span class="built_in">len</span>(arr)</span><br><span class="line">        prefix = [<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> arr:</span><br><span class="line">            prefix.append(prefix[-<span class="number">1</span>] + num)</span><br><span class="line">        </span><br><span class="line">        r, ans, diff = <span class="built_in">max</span>(arr), <span class="number">0</span>, target</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, r + <span class="number">1</span>):</span><br><span class="line">            it = bisect.bisect_left(arr, i)</span><br><span class="line">            cur = prefix[it] + (n - it) * i</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">abs</span>(cur - target) &lt; diff:</span><br><span class="line">                ans, diff = i, <span class="built_in">abs</span>(cur - target)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    arr = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>]</span><br><span class="line">    target = <span class="number">10</span></span><br><span class="line">    solution=Solution().findBestValue(arr, target)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">findBestValue</span>(<span class="params">self, arr, target</span>):</span><br><span class="line">        arr.sort()</span><br><span class="line">        n = <span class="built_in">len</span>(arr)</span><br><span class="line">        prefix = [<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> arr:</span><br><span class="line">            prefix.append(prefix[-<span class="number">1</span>] + num)</span><br><span class="line"></span><br><span class="line">        r, ans, diff = <span class="built_in">max</span>(arr), <span class="number">0</span>, target</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, r + <span class="number">1</span>):</span><br><span class="line">            it = bisect.bisect_left(arr, i)</span><br><span class="line">            cur = prefix[it] + (n - it) * i</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">abs</span>(cur - target) &lt; diff:</span><br><span class="line">                ans, diff = i, <span class="built_in">abs</span>(cur - target)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    arr = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>]</span><br><span class="line">    target = <span class="number">10</span></span><br><span class="line">    solution=Solution().findBestValue(arr, target)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：<span class="math display">\[O((N + C)\log
@@ -940,7 +1107,7 @@ target。由于数组的和随着 value 的增大是严格单调递增的，所�
 的值一定就是 value_lower + 1。因此我们只需要进行一次外层二分查找得到
 value_lower，并直接通过 value_lower + 1 计算出 value_upper
 的值就行了。这样我们就减少了一次外层二分查找，虽然时间复杂度没有变化，但降低了常数。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">findBestValue</span>(<span class="params">self, arr: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        arr.sort()</span><br><span class="line">        n = <span class="built_in">len</span>(arr)</span><br><span class="line">        prefix = [<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> arr:</span><br><span class="line">            prefix.append(prefix[-<span class="number">1</span>] + num)</span><br><span class="line">        </span><br><span class="line">        l, r, ans = <span class="number">0</span>, <span class="built_in">max</span>(arr), -<span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">            mid = (l + r) // <span class="number">2</span></span><br><span class="line">            it = bisect.bisect_left(arr, mid)</span><br><span class="line">            cur = prefix[it] + (n - it) * mid</span><br><span class="line">            <span class="keyword">if</span> cur &lt;= target:</span><br><span class="line">                ans = mid</span><br><span class="line">                l = mid + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                r = mid - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">check</span>(<span class="params">x</span>):</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">sum</span>(x <span class="keyword">if</span> num &gt;= x <span class="keyword">else</span> num <span class="keyword">for</span> num <span class="keyword">in</span> arr)</span><br><span class="line">        </span><br><span class="line">        choose_small = check(ans)</span><br><span class="line">        choose_big = check(ans + <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> ans <span class="keyword">if</span> <span class="built_in">abs</span>(choose_small - target) &lt;= <span class="built_in">abs</span>(choose_big - target) <span class="keyword">else</span> ans + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">findBestValue</span>(<span class="params">self, arr: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        arr.sort()</span><br><span class="line">        n = <span class="built_in">len</span>(arr)</span><br><span class="line">        prefix = [<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> arr:</span><br><span class="line">            prefix.append(prefix[-<span class="number">1</span>] + num)</span><br><span class="line"></span><br><span class="line">        l, r, ans = <span class="number">0</span>, <span class="built_in">max</span>(arr), -<span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">            mid = (l + r) // <span class="number">2</span></span><br><span class="line">            it = bisect.bisect_left(arr, mid)</span><br><span class="line">            cur = prefix[it] + (n - it) * mid</span><br><span class="line">            <span class="keyword">if</span> cur &lt;= target:</span><br><span class="line">                ans = mid</span><br><span class="line">                l = mid + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                r = mid - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">check</span>(<span class="params">x</span>):</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">sum</span>(x <span class="keyword">if</span> num &gt;= x <span class="keyword">else</span> num <span class="keyword">for</span> num <span class="keyword">in</span> arr)</span><br><span class="line"></span><br><span class="line">        choose_small = check(ans)</span><br><span class="line">        choose_big = check(ans + <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> ans <span class="keyword">if</span> <span class="built_in">abs</span>(choose_small - target) &lt;= <span class="built_in">abs</span>(choose_big - target) <span class="keyword">else</span> ans + <span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：<span class="math display">\[O(N\log N)\]</span>，其中 N
@@ -997,6 +1164,15 @@ class="math display">\[O(N)\]</span>。分析同方法一。</li>
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2021-03-17 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-17T00:00:00+08:00">2021-03-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
             </span>
 
           <br>
@@ -1125,6 +1301,15 @@ class="math display">\[O(N)\]</span>，建立roots数组</li>
 
               <time title="Created: 2021-03-16 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-16T00:00:00+08:00">2021-03-16</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -1225,180 +1410,6 @@ class="math display">\[O(N)\]</span> 个元素。</li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/16/2021-03-16-Q560-%E5%92%8C%E4%B8%BAK%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/16/2021-03-16-Q560-%E5%92%8C%E4%B8%BAK%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="post-title-link" itemprop="url">Q560-和为K的子数组-中等-动态规划</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-03-16 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-16T00:00:00+08:00">2021-03-16</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.2k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="和为k的子数组"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/subarray-sum-equals-k/">560.
-和为K的子数组</a></h4>
-<p>类似题目：Q1546-和为目标值的最大数目不重叠非空子数组数目</p>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>给定一个整数数组和一个整数 k，你需要找到该数组中和为 k
-的连续的子数组的个数。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入:nums = [1,1,1], k = 2 输出: 2 , [1,1] 与 [1,1]
-为两种不同的情况。</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li>数组的长度为 [1, 20,000]。</li>
-<li>数组中元素的范围是 [-1000, 1000] ，且整数 k 的范围是 [-1e7,
-1e7]。</li>
-</ul>
-</blockquote>
-<h3 id="approach-1-枚举">Approach 1: 枚举</h3>
-<p>考虑以 i 结尾和为 k 的连续子数组个数，我们需要统计符合条件的下标 j
-的个数，其中 <span class="math display">\[0\leq j\leq i \]</span> 且
-<span class="math display">\[[j..i]\]</span> 这个子数组的和恰好为 k
-。</p>
-<p>我们可以枚举 <span class="math display">\[[0..i]\]</span>
-里所有的下标 j
-来判断是否符合条件，可能有读者会认为假定我们确定了子数组的开头和结尾，还需要
-<span class="math display">\[O(n)\]</span>
-的时间复杂度遍历子数组来求和，那样复杂度就将达到 <span
-class="math display">\[O(n^3)\]</span>
-从而无法通过所有测试用例。但是如果我们知道 <span
-class="math display">\[[j,i]\]</span> 子数组的和，就能 <span
-class="math display">\[O(1)\]</span> 推出 <span
-class="math display">\[[j-1,i]\]</span>
-的和，因此这部分的遍历求和是不需要的，我们在枚举下标 j 的时候已经能
-<span class="math display">\[O(1)\]</span> 求出 <span
-class="math display">\[[j,i]\]</span> 的子数组之和。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">subarraySum</span>(<span class="params">self, nums, k</span>):</span><br><span class="line">        count=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> start <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">            <span class="built_in">sum</span>=<span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> end <span class="keyword">in</span> <span class="built_in">range</span>(start,-<span class="number">1</span>,-<span class="number">1</span>):</span><br><span class="line">                <span class="built_in">sum</span>+=nums[end]</span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">sum</span> == k:</span><br><span class="line">                    count+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> count</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums = [-<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">2</span>,-<span class="number">9</span>]</span><br><span class="line">    target = <span class="number">6</span></span><br><span class="line">    solution=Solution().subarraySum(nums,target)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p><strong>时间复杂度</strong>：<span
-class="math display">\[O(n^2)\]</span>，其中 n
-为数组的长度。枚举子数组开头和结尾需要 <span
-class="math display">\[O(n^2)\]</span>的时间，其中求和需要 <span
-class="math display">\[O(1)\]</span> 的时间复杂度，因此总时间复杂度为
-<span class="math display">\[O(n^2)\]</span>。</p></li>
-<li><p><strong>空间复杂度</strong>：<span
-class="math display">\[O(1)\]</span>。只需要常数空间存放若干变量。</p></li>
-</ul>
-<h3 id="approach-2-前缀和-哈希表优化">Approach 2: 前缀和 +
-哈希表优化</h3>
-<p>我们可以基于方法一利用数据结构进行进一步的优化，我们知道方法一的瓶颈在于对每个
-i，我们需要枚举所有的 j
-来判断是否符合条件，这一步是否可以优化呢？答案是可以的。</p>
-<p>我们定义 <span class="math display">\[\textit{pre}[i]\]</span> 为
-<span class="math display">\[[0..i]\]</span> 里所有数的和，则 <span
-class="math display">\[\textit{pre}[i]\]</span> 可以由 <span
-class="math display">\[\textit{pre}[i-1]\]</span> 递推而来，即：</p>
-<p><span class="math display">\[
-pre[i]=pre[i-1]+nums[i]
-\]</span> 那么「<span class="math display">\[[j..i]\]</span>
-这个子数组和为 <em>k</em> 」这个条件我们可以转化为 <span
-class="math display">\[
-pre[j-1]==pre[i]-k
-\]</span> 所以我们考虑以 i 结尾的和为 k
-的连续子数组个数时只要统计有多少个前缀和为 <span
-class="math display">\[\textit{pre}[i]-k\]</span> 的 <span
-class="math display">\[\textit{pre}[j]\]</span> 即可。我们建立哈希表
-<span
-class="math display">\[\textit{mp}\]</span>，以和为键，出现次数为对应的值，记录
-<span class="math display">\[\textit{pre}[i]\]</span>
-出现的次数，从左往右边更新 <span
-class="math display">\[\textit{mp}\]</span> 边计算答案，那么以 i
-结尾的答案 <span
-class="math display">\[\textit{mp}[\textit{pre}[i]-k]\]</span> 即可在
-<span class="math display">\[O(1)\]</span>
-时间内得到。最后的答案即为所有下标结尾的和为 k 的子数组个数之和。</p>
-<p>需要注意的是，从左往右边更新边计算的时候已经保证了<span
-class="math display">\[\textit{mp}[\textit{pre}[i]-k]\]</span>
-里记录的<span class="math display">\[ \textit{pre}[j]\]</span>
-的下标范围是 <span class="math display">\[0\leq j\leq i\]</span>
-。同时，由于<span class="math display">\[\textit{pre}[i]\]</span>
-的计算只与前一项的答案有关，因此我们可以不用建立 <span
-class="math display">\[\textit{pre}\]</span> 数组，直接用 <span
-class="math display">\[\textit{pre}\]</span> 变量来记录 <span
-class="math display">\[pre[i-1]\]</span> 的答案即可。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">subarraySum1</span>(<span class="params">self, nums, k</span>):</span><br><span class="line">        mp = &#123;<span class="number">0</span>: <span class="number">1</span>&#125;</span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        pre = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> nums:</span><br><span class="line">            pre+=x</span><br><span class="line">            <span class="keyword">if</span> (pre - k) <span class="keyword">in</span> mp:</span><br><span class="line">                count += mp[pre - k]</span><br><span class="line">            <span class="keyword">if</span> pre <span class="keyword">in</span> mp:</span><br><span class="line">                mp[pre] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                mp[pre] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> count</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums = [-<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">2</span>,-<span class="number">9</span>]</span><br><span class="line">    target = <span class="number">6</span></span><br><span class="line">    solution=Solution().subarraySum1(nums,target)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p><strong>时间复杂度</strong>：<span
-class="math display">\[O(n)\]</span>，其中 n
-为数组的长度。我们遍历数组的时间复杂度为 <span
-class="math display">\[O(n)\]</span>，中间利用哈希表查询删除的复杂度均为
-<span class="math display">\[O(1)\]</span>，因此总时间复杂度为 <span
-class="math display">\[O(n)\]</span>。</p></li>
-<li><p><strong>空间复杂度</strong>：<span
-class="math display">\[O(n)\]</span>，其中 n
-为数组的长度。哈希表在最坏情况下可能有 n 个不同的键值，因此需要 <span
-class="math display">\[O(n)\]</span> 的空间复杂度。</p></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1470,14 +1481,14 @@ class="math display">\[O(n)\]</span> 的空间复杂度。</p></li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">236</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1537,7 +1548,7 @@ class="math display">\[O(n)\]</span> 的空间复杂度。</p></li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">577k</span>
+    <span title="Symbols count total">578k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>

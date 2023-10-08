@@ -198,6 +198,168 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/29/2021-03-29-JZOffer%2035-%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6-%E4%B8%AD%E7%AD%89-%E9%93%BE%E8%A1%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/29/2021-03-29-JZOffer%2035-%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6-%E4%B8%AD%E7%AD%89-%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">JZOffer 35 复杂链表的复制-中等-链表</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-03-29 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-29T00:00:00+08:00">2021-03-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.8k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>3 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="剑指-offer-35.-复杂链表的复制"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof/">剑指
+Offer 35. 复杂链表的复制</a></h4>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>请实现 copyRandomList
+函数，复制一个复杂链表。在复杂链表中，每个节点除了有一个 next
+指针指向下一个节点，还有一个 random 指针指向链表中的任意节点或者
+null。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>输入：head = [[7,null],[13,0],[11,4],[10,2],[1,0]]
+输出：[[7,null],[13,0],[11,4],[10,2],[1,0]]</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>输入：head = [[1,1],[2,1]] 输出：[[1,1],[2,1]]</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 3:</strong></p>
+<p>输入：head = [[3,null],[3,0],[3,null]]
+输出：[[3,null],[3,0],[3,null]]</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 4:</strong></p>
+<p>输入：head = [] 输出：[] 解释：给定的链表为空（空指针），因此返回
+null。</p>
+</blockquote>
+<blockquote>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>-10000 &lt;= Node.val &lt;= 10000</code></li>
+<li><code>Node.random</code> 为空（null）或指向链表中的节点。</li>
+<li>节点数目不超过 1000 。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>本题与主站 138
+题相同：https://leetcode-cn.com/problems/copy-list-with-random-pointer/</p>
+</blockquote>
+<h3 id="approach-1-深度优先搜索">Approach 1: 深度优先搜索</h3>
+<p>图的基本单元是 <strong>顶点</strong>，顶点之间的关联关系称为
+<strong>边</strong>，我们可以将此链表看成一个图。由于图的遍历方式有深度优先搜索和广度优先搜索，同样地，对于此链表也可以使用深度优先搜索和广度优先搜索两种方法进行遍历。</p>
+<ul>
+<li>从头结点 head 开始拷贝；</li>
+<li>由于一个结点可能被多个指针指到，因此如果该结点已被拷贝，则不需要重复拷贝；</li>
+<li>如果还没拷贝该结点，则创建一个新的结点进行拷贝，并将拷贝过的结点保存在哈希表中；</li>
+<li>使用递归拷贝所有的 next 结点，再递归拷贝所有的 random 结点。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">copyRandomList</span>(<span class="params">self, head</span>) :</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">head</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> head: <span class="keyword">return</span> <span class="literal">None</span> <span class="comment"># 判断遍历链表结束</span></span><br><span class="line">            <span class="keyword">if</span> head <span class="keyword">in</span> visited: <span class="comment"># 结点已存在，返回结点避免重复复制</span></span><br><span class="line">                <span class="keyword">return</span> visited[head]</span><br><span class="line"></span><br><span class="line">            copy = Node(head.val, <span class="literal">None</span>, <span class="literal">None</span>) <span class="comment"># 创建新结点</span></span><br><span class="line">            visited[head] = copy <span class="comment"># hash中增加一个结点</span></span><br><span class="line">            copy.<span class="built_in">next</span> = dfs(head.<span class="built_in">next</span>)</span><br><span class="line">            copy.random = dfs(head.random)</span><br><span class="line">            <span class="keyword">return</span> copy</span><br><span class="line"></span><br><span class="line">        visited = &#123;&#125; <span class="comment"># 创建存放结点的链表</span></span><br><span class="line">        <span class="keyword">return</span> dfs(head) <span class="comment"># 最后返回头指针</span></span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)，其中 n 是链表的节点数量。</li>
+<li>空间复杂度：O(n）。</li>
+</ul>
+<h3 id="approach-2-广度有限搜索">Approach 2: 广度有限搜索</h3>
+<ul>
+<li>创建哈希表保存已拷贝结点，格式 {原结点：拷贝结点}</li>
+<li>创建队列，并将头结点入队；</li>
+<li>当队列不为空时，弹出一个结点，如果该结点的 next
+结点未被拷贝过，则拷贝 next 结点并加入队列；同理，如果该结点的 random
+结点未被拷贝过，则拷贝 random 结点并加入队列；</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">copyRandomList1</span>(<span class="params">self, head: <span class="string">&#x27;Node&#x27;</span></span>) -&gt; <span class="string">&#x27;Node&#x27;</span>:</span><br><span class="line">        visited = &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">bfs</span>(<span class="params">head</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> head: <span class="keyword">return</span> head <span class="comment"># 判断遍历链表结束</span></span><br><span class="line">            clone = Node(head.val, <span class="literal">None</span>, <span class="literal">None</span>) <span class="comment"># 创建新结点</span></span><br><span class="line">            queue = collections.deque() <span class="comment"># 双端数列</span></span><br><span class="line">            queue.append(head)</span><br><span class="line">            visited[head] = clone <span class="comment"># 结点存入hash</span></span><br><span class="line">            <span class="keyword">while</span> queue:</span><br><span class="line">                tmp = queue.pop() <span class="comment">#</span></span><br><span class="line">                <span class="keyword">if</span> tmp.<span class="built_in">next</span> <span class="keyword">and</span> tmp.<span class="built_in">next</span> <span class="keyword">not</span> <span class="keyword">in</span> visited: <span class="comment"># .next结点非空且未复制</span></span><br><span class="line">                    visited[tmp.<span class="built_in">next</span>] = Node(tmp.<span class="built_in">next</span>.val, [], [])</span><br><span class="line">                    queue.append(tmp.<span class="built_in">next</span>)</span><br><span class="line">                <span class="keyword">if</span> tmp.random <span class="keyword">and</span> tmp.random <span class="keyword">not</span> <span class="keyword">in</span> visited: <span class="comment"># .random结点非空且未复制</span></span><br><span class="line">                    visited[tmp.random] = Node(tmp.random.val, [], [])</span><br><span class="line">                    queue.append(tmp.random)</span><br><span class="line">                visited[tmp].<span class="built_in">next</span> = visited.get(tmp.<span class="built_in">next</span>) <span class="comment"># 字典get()函数返回指定键的值</span></span><br><span class="line">                visited[tmp].random = visited.get(tmp.random)</span><br><span class="line">            <span class="keyword">return</span> clone <span class="comment"># 返回头指针</span></span><br><span class="line">        <span class="keyword">return</span> bfs(head)</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)，其中 n 是链表的节点数量。</li>
+<li>空间复杂度：O(n）。</li>
+</ul>
+<h3 id="approach-3-迭代">Approach 3: 迭代</h3>
+<p>该方法的思路比较直接，对于一个结点，分别拷贝此结点、next
+指针指向的结点、random 指针指向的结点，
+然后进行下一个结点...如果遇到已经出现的结点，那么我们不用拷贝该结点，只需将
+next 或 random 指针指向该结点即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">copyRandomList</span>(<span class="params">self, head: <span class="string">&#x27;Node&#x27;</span></span>) -&gt; <span class="string">&#x27;Node&#x27;</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> head: <span class="keyword">return</span> head</span><br><span class="line">        cur = head</span><br><span class="line">        <span class="keyword">while</span> cur:</span><br><span class="line">            new_node = Node(cur.val,<span class="literal">None</span>,<span class="literal">None</span>)   <span class="comment"># 克隆新结点</span></span><br><span class="line">            new_node.<span class="built_in">next</span> = cur.<span class="built_in">next</span></span><br><span class="line">            cur.<span class="built_in">next</span> = new_node   <span class="comment"># 克隆新结点在cur 后面</span></span><br><span class="line">            cur = new_node.<span class="built_in">next</span>   <span class="comment"># 移动到下一个要克隆的点</span></span><br><span class="line">        cur = head</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> cur:  <span class="comment"># 链接random</span></span><br><span class="line">            cur.<span class="built_in">next</span>.random = cur.random.<span class="built_in">next</span> <span class="keyword">if</span> cur.random <span class="keyword">else</span> <span class="literal">None</span></span><br><span class="line">            cur = cur.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line">        cur_old_list = head <span class="comment"># 将两个链表分开</span></span><br><span class="line">        cur_new_list = head.<span class="built_in">next</span></span><br><span class="line">        new_head = head.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">while</span> cur_old_list:</span><br><span class="line">            cur_old_list.<span class="built_in">next</span> = cur_old_list.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">            cur_new_list.<span class="built_in">next</span> = cur_new_list.<span class="built_in">next</span>.<span class="built_in">next</span> <span class="keyword">if</span> cur_new_list.<span class="built_in">next</span> <span class="keyword">else</span> <span class="literal">None</span></span><br><span class="line">            cur_old_list = cur_old_list.<span class="built_in">next</span></span><br><span class="line">            cur_new_list = cur_new_list.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">return</span> new_head</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(N) 。 空间复杂度：O(1) 。</li>
+</ul>
+<p><strong>总结</strong>
+在对链表进行操作的时候，经常要记得把一个结点的指针域用另一个指针保存起来，这样返回的时候不容易出错。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/29/2021-03-29-Memristor%E2%80%90Based%20Biologically%20Plausible%20Memory%20Based%20on%20Discrete%20and%20Continuous%20Attractor%20Networks%20for%20Neuromorphic%20Systems/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -223,6 +385,15 @@
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2021-03-29 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-29T00:00:00+08:00">2021-03-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
             </span>
 
           <br>
@@ -352,6 +523,15 @@ Intrinsic and Extrinsic Action Representations</p>
 
               <time title="Created: 2021-03-28 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-28T00:00:00+08:00">2021-03-28</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -457,6 +637,15 @@ to the movement for all eight directions</p></li>
 
               <time title="Created: 2021-03-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-26T00:00:00+08:00">2021-03-26</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -557,6 +746,15 @@ transformations. <em>Nat. Neurosci.</em> 3, 1192–1198 (2000).</p></li>
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2021-03-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-26T00:00:00+08:00">2021-03-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
             </span>
 
           <br>
@@ -686,6 +884,15 @@ target="_blank" rel="noopener" href="https://www.jneurosci.org/content/32/43/149
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2021-03-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-26T00:00:00+08:00">2021-03-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
             </span>
 
           <br>
@@ -839,6 +1046,15 @@ target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/swap-nodes
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2021-03-25 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-25T00:00:00+08:00">2021-03-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
             </span>
 
           <br>
@@ -1063,6 +1279,15 @@ k=1
 
               <time title="Created: 2021-03-25 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-25T00:00:00+08:00">2021-03-25</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -1127,126 +1352,13 @@ target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-in-b
 <li>链表不像数组，赋值只管头尾指针，不用每个位置都重新赋值</li>
 <li>链表的遍历（计算长度），没有什么好方法</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">from</span> enum <span class="keyword">import</span> Enum</span><br><span class="line"><span class="keyword">import</span> bisect</span><br><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">mergeInBetween</span>(<span class="params">self, list1, a: <span class="built_in">int</span>, b: <span class="built_in">int</span>, list2</span>):</span><br><span class="line">        res = list1 <span class="comment"># 存放答案头指针，在list1基础上合并</span></span><br><span class="line">        num = <span class="number">0</span> <span class="comment"># 计数器</span></span><br><span class="line">        <span class="keyword">while</span> list1:</span><br><span class="line">            <span class="comment"># 找到 list1 的 a 处指针放入 start1</span></span><br><span class="line">            <span class="keyword">if</span> num == a-<span class="number">1</span>: </span><br><span class="line">                start1 = list1</span><br><span class="line">            <span class="comment"># 找到 list1 的 b 处指针放入 end1</span></span><br><span class="line">            <span class="keyword">if</span> num == b+<span class="number">1</span>:</span><br><span class="line">                end1 = list1</span><br><span class="line">                <span class="keyword">break</span> <span class="comment"># 之后的长度不用管了</span></span><br><span class="line">            list1 = list1.<span class="built_in">next</span></span><br><span class="line">            num += <span class="number">1</span></span><br><span class="line">        <span class="comment"># 找到 list2 的 尾部指针放入 end2</span></span><br><span class="line">        start1.<span class="built_in">next</span> = list2</span><br><span class="line">        <span class="keyword">while</span> list2.<span class="built_in">next</span>: </span><br><span class="line">            list2 = list2.<span class="built_in">next</span></span><br><span class="line">        list2.<span class="built_in">next</span> = end1</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    list1 = stringToListNode([<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line">    list2 = stringToListNode([<span class="number">1000000</span>,<span class="number">1000001</span>,<span class="number">1000002</span>])</span><br><span class="line">    a = <span class="number">3</span></span><br><span class="line">    b = <span class="number">4</span></span><br><span class="line">    solution=Solution().mergeInBetween(list1,a,b,list2)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">from</span> enum <span class="keyword">import</span> Enum</span><br><span class="line"><span class="keyword">import</span> bisect</span><br><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">mergeInBetween</span>(<span class="params">self, list1, a: <span class="built_in">int</span>, b: <span class="built_in">int</span>, list2</span>):</span><br><span class="line">        res = list1 <span class="comment"># 存放答案头指针，在list1基础上合并</span></span><br><span class="line">        num = <span class="number">0</span> <span class="comment"># 计数器</span></span><br><span class="line">        <span class="keyword">while</span> list1:</span><br><span class="line">            <span class="comment"># 找到 list1 的 a 处指针放入 start1</span></span><br><span class="line">            <span class="keyword">if</span> num == a-<span class="number">1</span>:</span><br><span class="line">                start1 = list1</span><br><span class="line">            <span class="comment"># 找到 list1 的 b 处指针放入 end1</span></span><br><span class="line">            <span class="keyword">if</span> num == b+<span class="number">1</span>:</span><br><span class="line">                end1 = list1</span><br><span class="line">                <span class="keyword">break</span> <span class="comment"># 之后的长度不用管了</span></span><br><span class="line">            list1 = list1.<span class="built_in">next</span></span><br><span class="line">            num += <span class="number">1</span></span><br><span class="line">        <span class="comment"># 找到 list2 的 尾部指针放入 end2</span></span><br><span class="line">        start1.<span class="built_in">next</span> = list2</span><br><span class="line">        <span class="keyword">while</span> list2.<span class="built_in">next</span>:</span><br><span class="line">            list2 = list2.<span class="built_in">next</span></span><br><span class="line">        list2.<span class="built_in">next</span> = end1</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    list1 = stringToListNode([<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line">    list2 = stringToListNode([<span class="number">1000000</span>,<span class="number">1000001</span>,<span class="number">1000002</span>])</span><br><span class="line">    a = <span class="number">3</span></span><br><span class="line">    b = <span class="number">4</span></span><br><span class="line">    solution=Solution().mergeInBetween(list1,a,b,list2)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li><p>时间复杂度：<em>O(n)</em>。其中<code>n</code>为 <span
 class="math display">\[\max(\text{链表1长度}, \text{链表2长度},
 b)\]</span>。</p></li>
 <li><p>空间复杂度：<em>O(1)</em>。解决问题需要常数大小的辅助空间。</p></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/24/2021-03-24-JZOffer%2006-%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8-%E7%AE%80%E5%8D%95-%E9%93%BE%E8%A1%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/24/2021-03-24-JZOffer%2006-%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8-%E7%AE%80%E5%8D%95-%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">JZOffer 06-从尾到头打印链表-简单-链表</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-03-24 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-24T00:00:00+08:00">2021-03-24</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.3k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="剑指-offer-06.-从尾到头打印链表"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/">剑指
-Offer 06. 从尾到头打印链表</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入：head = [1,3,2] 输出：[2,3,1]</p>
-</blockquote>
-<blockquote>
-<p><strong>提示：</strong></p>
-<ul>
-<li>0 &lt;= 链表长度 &lt;= 10000</li>
-</ul>
-</blockquote>
-<h3 id="approach-1-栈">Approach 1: 栈</h3>
-<p>栈的特点是后进先出，即最后压入栈的元素最先弹出。考虑到栈的这一特点，使用栈将链表元素顺序倒置。从链表的头节点开始，依次将每个节点压入栈内，然后依次弹出栈内的元素并存储到数组中。</p>
-<ul>
-<li><p>创建一个栈，用于存储链表的节点</p></li>
-<li><p>创建一个指针，初始时指向链表的头节点</p></li>
-<li><p>当指针指向的元素非空时，重复下列操作：</p>
-<ul>
-<li>将指针指向的节点压入栈内</li>
-<li>将指针移到当前节点的下一个节点</li>
-</ul></li>
-<li><p>获得栈的大小 size，创建一个数组 print，其大小为 size</p></li>
-<li><p>创建下标并初始化 index = 0</p></li>
-<li><p>重复 size 次下列操作：</p>
-<ul>
-<li><p>从栈内弹出一个节点，将该节点的值存到 print[index]</p></li>
-<li><p>将 index 的值加 1</p></li>
-</ul></li>
-<li><p>返回 print</p></li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">from</span> enum <span class="keyword">import</span> Enum</span><br><span class="line"><span class="keyword">import</span> bisect</span><br><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reversePrint</span>(<span class="params">self, head: ListNode</span>):</span><br><span class="line">        resList = []</span><br><span class="line">        <span class="keyword">while</span> head:</span><br><span class="line">            resList.append(head.val)</span><br><span class="line">            head = head.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">return</span> resList[::-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    head = stringToListNode([<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>])</span><br><span class="line">    solution=Solution().reversePrint(head)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)。正向遍历一遍链表，然后从栈弹出全部节点，等于又反向遍历一遍链表。</p></li>
-<li><p>空间复杂度：O(n)。额外使用一个栈存储链表中的每个节点。</p></li>
 </ul>
 
       
@@ -1334,14 +1446,14 @@ Offer 06. 从尾到头打印链表</a></h4>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">236</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1401,7 +1513,7 @@ Offer 06. 从尾到头打印链表</a></h4>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">577k</span>
+    <span title="Symbols count total">578k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>

@@ -198,6 +198,137 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/10/12/2020-10-12-Q530%20Minimum%20Absolute%20Difference%20in%20BST-%E7%AE%80%E5%8D%95-%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/12/2020-10-12-Q530%20Minimum%20Absolute%20Difference%20in%20BST-%E7%AE%80%E5%8D%95-%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/" class="post-title-link" itemprop="url">Q530 Minimum Absolute Difference in BST-简单-中序遍历</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2020-10-12T00:00:00+08:00">2020-10-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.6k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="minimum-absolute-difference-in-bst"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-absolute-difference-in-bst/">Minimum
+Absolute Difference in BST</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>Given a binary search tree with non-negative values, find the minimum
+absolute difference between values of any two nodes.</p>
+<p><strong>Note:</strong></p>
+<p>There are at least two nodes in this BST. This question is the same
+as 783:
+https://leetcode.com/problems/minimum-distance-between-bst-nodes/</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>Input:</p>
+<p>1<br />
+3 / 2</p>
+<p>Output: 1</p>
+<p>Explanation: The minimum absolute difference is 1, which is the
+difference between 2 and 1 (or between 2 and 3).</p>
+</blockquote>
+<h3 id="approach-1-中序遍历">Approach 1: 中序遍历</h3>
+<p>考虑对升序数组 a
+求任意两个元素之差的绝对值的最小值，答案一定为相邻两个元素之差的最小值，即</p>
+<p><span
+class="math display">\[\textit{ans}=\min_{i=0}^{n-2}\left\{a[i+1]-a[i]\right\}\]</span></p>
+<p>其中 n 为数组 a 的长度。其他任意间隔距离大于等于 2 的下标对 (i,j)
+的元素之差一定大于下标对 (i,i+1) 的元素之差，故不需要再被考虑。</p>
+<p>回到本题，本题要求二叉搜索树任意两节点差的绝对值的最小值，而我们知道二叉搜索树有个性质为<strong>二叉搜索树中序遍历得到的值序列是递增有序的</strong>，因此我们只要得到中序遍历后的值序列即能用上文提及的方法来解决。</p>
+<p>朴素的方法是经过一次中序遍历将值保存在一个数组中再进行遍历求解，我们也可以在中序遍历的过程中用
+<span class="math display">\[\textit{pre}\]</span>
+变量保存前驱节点的值，这样即能边遍历边更新答案，不再需要显式创建数组来保存，需要注意的是
+<span class="math display">\[\textit{pre}\]</span>
+的初始值需要设置成任意负数标记开头，下文代码中设置为 -1。</p>
+<p>二叉树的中序遍历有多种方式，包括递归、栈、Morris
+遍历等，读者可选择自己最擅长的来实现。下文代码提供最普遍的递归方法来实现，其他遍历方法的介绍可以详细看<a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/">「94.
+二叉树的中序遍历」</a>的题解，这里不再赘述。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getMinimumDifference</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">root</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            dfs(root.left)</span><br><span class="line">            nums.append(root.val)</span><br><span class="line">            dfs(root.right)</span><br><span class="line"></span><br><span class="line">        nums = []</span><br><span class="line">        dfs(root)</span><br><span class="line">        res = <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(nums)):</span><br><span class="line">            res = <span class="built_in">min</span>(res, nums[i] - nums[i - <span class="number">1</span>])</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)，其中 n
+为二叉搜索树节点的个数。每个节点在中序遍历中都会被访问一次且只会被访问一次，因此总时间复杂度为
+O(n)。</li>
+<li>空间复杂度：O(n)。递归函数的空间复杂度取决于递归的栈深度，而栈深度在二叉搜索树为一条链的情况下会达到
+O(n) 级别。</li>
+</ul>
+<h3 id="approach-2-中序遍历空间优化">Approach 2:
+中序遍历（空间优化）</h3>
+<p>保留前驱结点，滚动式更新结果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getMinimumDifference</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">root</span>):</span><br><span class="line">            <span class="keyword">nonlocal</span> res, pre</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            dfs(root.left)</span><br><span class="line">            <span class="keyword">if</span> pre != -<span class="number">1</span>:</span><br><span class="line">                res = <span class="built_in">min</span>(res, root.val-pre)</span><br><span class="line">            pre = root.val</span><br><span class="line">            dfs(root.right)</span><br><span class="line"></span><br><span class="line">        pre = -<span class="number">1</span></span><br><span class="line">        res = <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)</span><br><span class="line">        dfs(root)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/10/06/2020-10-06-Q1603%20Design%20Parking%20System-%E7%AE%80%E5%8D%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -223,6 +354,15 @@
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2020-10-06 00:00:00" itemprop="dateCreated datePublished" datetime="2020-10-06T00:00:00+08:00">2020-10-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
             </span>
 
           <br>
@@ -284,7 +424,7 @@ parkingSystem.addCar(1); // return false because there is no available
 slot for a big car. It is already occupied.</p>
 </blockquote>
 <h3 id="approach-1-直接处理">Approach 1: 直接处理</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ParkingSystem</span>:</span><br><span class="line">    carslots = [<span class="number">0</span>] * <span class="number">4</span> </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, big: <span class="built_in">int</span>, medium: <span class="built_in">int</span>, small: <span class="built_in">int</span></span>):</span><br><span class="line">        self.carslots[<span class="number">1</span>] = big</span><br><span class="line">        self.carslots[<span class="number">2</span>] = medium</span><br><span class="line">        self.carslots[<span class="number">3</span>] = small</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">addCar</span>(<span class="params">self, carType: <span class="built_in">int</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">if</span> self.carslots[carType] &gt; <span class="number">0</span>:</span><br><span class="line">            self.carslots[carType] -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"><span class="comment"># Your ParkingSystem object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"># obj = ParkingSystem(big, medium, small)</span></span><br><span class="line"><span class="comment"># param_1 = obj.addCar(carType)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ParkingSystem</span>:</span><br><span class="line">    carslots = [<span class="number">0</span>] * <span class="number">4</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, big: <span class="built_in">int</span>, medium: <span class="built_in">int</span>, small: <span class="built_in">int</span></span>):</span><br><span class="line">        self.carslots[<span class="number">1</span>] = big</span><br><span class="line">        self.carslots[<span class="number">2</span>] = medium</span><br><span class="line">        self.carslots[<span class="number">3</span>] = small</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">addCar</span>(<span class="params">self, carType: <span class="built_in">int</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">if</span> self.carslots[carType] &gt; <span class="number">0</span>:</span><br><span class="line">            self.carslots[carType] -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"><span class="comment"># Your ParkingSystem object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"># obj = ParkingSystem(big, medium, small)</span></span><br><span class="line"><span class="comment"># param_1 = obj.addCar(carType)</span></span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li><p>时间复杂度：<span class="math display">\[ O(n) \]</span></p></li>
@@ -334,6 +474,15 @@ slot for a big car. It is already occupied.</p>
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2020-10-02 00:00:00" itemprop="dateCreated datePublished" datetime="2020-10-02T00:00:00+08:00">2020-10-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Code-Techniques/" itemprop="url" rel="index"><span itemprop="name">Code Techniques</span></a>
+                </span>
             </span>
 
           <br>
@@ -448,6 +597,15 @@ uninstall会提示你连带删除很多其他的库，如果提示了，尽量�
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2020-09-28 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-28T00:00:00+08:00">2020-09-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
             </span>
 
           <br>
@@ -621,6 +779,15 @@ X_{res}(t_n)=\sigma_{res}(P_{res}(t_n);\Theta_{res}),\Theta_{res}=0,\sigma_{res}
 
               <time title="Created: 2020-09-28 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-28T00:00:00+08:00">2020-09-28</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -730,6 +897,15 @@ bitwise XOR operator.</p>
 
               <time title="Created: 2020-09-26 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-26T00:00:00+08:00">2020-09-26</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -814,6 +990,15 @@ in mice</h1>
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2020-09-25 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-25T00:00:00+08:00">2020-09-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
             </span>
 
           <br>
@@ -901,6 +1086,15 @@ w_C(t+1)=\frac{w_C(t)p(r_t|S_t,a_t,Color)}{w_C(t)p(r_t|S_t,a_t,Color)+(1-w_C(t))
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2020-09-24 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-24T00:00:00+08:00">2020-09-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
             </span>
 
           <br>
@@ -1080,127 +1274,6 @@ Rev. Neurosci. 33, 203–219 (2010) ）</p></li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2020/09/23/2020-09-23-Q617%20Merge%20Two%20Binary%20Trees-%E7%AE%80%E5%8D%95-%E6%B7%B1%E5%BA%A6and%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/23/2020-09-23-Q617%20Merge%20Two%20Binary%20Trees-%E7%AE%80%E5%8D%95-%E6%B7%B1%E5%BA%A6and%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" class="post-title-link" itemprop="url">Q617 Merge Two Binary Trees-简单-深度/广度优先搜索</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-09-23 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-23T00:00:00+08:00">2020-09-23</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.8k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>3 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="merge-two-binary-trees"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-two-binary-trees/">Merge
-Two Binary Trees</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given two binary trees and imagine that when you put one of them to
-cover the other, some nodes of the two trees are overlapped while the
-others are not.</p>
-<p>You need to merge them into a new binary tree. The merge rule is that
-if two nodes overlap, then sum node values up as the new value of the
-merged node. Otherwise, the NOT null node will be used as the node of
-new tree.</p>
-<p><strong>Note:</strong> The merging process must start from the root
-nodes of both trees.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Input: </span><br><span class="line">	Tree 1                     Tree 2                  </span><br><span class="line">          1                         2                             </span><br><span class="line">         / \                       / \                            </span><br><span class="line">        3   2                     1   3                        </span><br><span class="line">       /                           \   \                      </span><br><span class="line">      5                             4   7                  </span><br><span class="line">Output: </span><br><span class="line">Merged tree:</span><br><span class="line">	     3</span><br><span class="line">	    / \</span><br><span class="line">	   4   5</span><br><span class="line">	  / \   \ </span><br><span class="line">	 5   4   7</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="approach-1-dfs">Approach 1: DFS</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">mergeTrees</span>(<span class="params">self, t1: TreeNode, t2: TreeNode</span>) -&gt; TreeNode:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> t1:</span><br><span class="line">            <span class="keyword">return</span> t2</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> t2:</span><br><span class="line">            <span class="keyword">return</span> t1</span><br><span class="line"></span><br><span class="line">        merged = TreeNode(t1.val + t2.val)</span><br><span class="line">        merged.left = self.mergeTrees(t1.left, t2.left)</span><br><span class="line">        merged.right = self.mergeTrees(t1.right, t2.right)</span><br><span class="line">        <span class="keyword">return</span> merged</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：<span
-class="math display">\[O(\min(m,n))\]</span>，其中 m 和 n
-分别是两个二叉树的节点个数。对两个二叉树同时进行深度优先搜索，只有当两个二叉树中的对应节点都不为空时才会对该节点进行显性合并操作，因此被访问到的节点数不会超过较小的二叉树的节点数。</p></li>
-<li><p>空间复杂度：<span
-class="math display">\[O(\min(m,n))\]</span>，其中 m 和 n
-分别是两个二叉树的节点个数。空间复杂度取决于递归调用的层数，递归调用的层数不会超过较小的二叉树的最大高度，最坏情况下，二叉树的高度等于节点数。</p></li>
-</ul>
-<h2 id="approach-2-bfs">Approach 2: BFS</h2>
-<p>也可以使用广度优先搜索合并两个二叉树。首先判断两个二叉树是否为空，如果两个二叉树都为空，则合并后的二叉树也为空，如果只有一个二叉树为空，则合并后的二叉树为另一个非空的二叉树。</p>
-<p>如果两个二叉树都不为空，则首先计算合并后的根节点的值，然后从合并后的二叉树与两个原始二叉树的根节点开始广度优先搜索，从根节点开始同时遍历每个二叉树，并将对应的节点进行合并。</p>
-<p>使用三个队列分别存储合并后的二叉树的节点以及两个原始二叉树的节点。初始时将每个二叉树的根节点分别加入相应的队列。每次从每个队列中取出一个节点，判断两个原始二叉树的节点的左右子节点是否为空。如果两个原始二叉树的当前节点中至少有一个节点的左子节点不为空，则合并后的二叉树的对应节点的左子节点也不为空。对于右子节点同理。</p>
-<p>如果合并后的二叉树的左子节点不为空，则需要根据两个原始二叉树的左子节点计算合并后的二叉树的左子节点以及整个左子树。考虑以下两种情况：</p>
-<ul>
-<li><p>如果两个原始二叉树的左子节点都不为空，则合并后的二叉树的左子节点的值为两个原始二叉树的左子节点的值之和，在创建合并后的二叉树的左子节点之后，将每个二叉树中的左子节点都加入相应的队列；</p></li>
-<li><p>如果两个原始二叉树的左子节点有一个为空，即有一个原始二叉树的左子树为空，则合并后的二叉树的左子树即为另一个原始二叉树的左子树，此时也不需要对非空左子树继续遍历，因此不需要将左子节点加入队列。</p></li>
-</ul>
-<p>对于右子节点和右子树，处理方法与左子节点和左子树相同。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">mergeTrees</span>(<span class="params">self, t1: TreeNode, t2: TreeNode</span>) -&gt; TreeNode:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> t1:</span><br><span class="line">            <span class="keyword">return</span> t2</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> t2:</span><br><span class="line">            <span class="keyword">return</span> t1</span><br><span class="line">        </span><br><span class="line">        merged = TreeNode(t1.val + t2.val)</span><br><span class="line">        queue = collections.deque([merged])</span><br><span class="line">        queue1 = collections.deque([t1])</span><br><span class="line">        queue2 = collections.deque([t2])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> queue1 <span class="keyword">and</span> queue2:</span><br><span class="line">            node = queue.popleft()</span><br><span class="line">            node1 = queue1.popleft()</span><br><span class="line">            node2 = queue2.popleft()</span><br><span class="line">            left1, right1 = node1.left, node1.right</span><br><span class="line">            left2, right2 = node2.left, node2.right</span><br><span class="line">            <span class="keyword">if</span> left1 <span class="keyword">or</span> left2:</span><br><span class="line">                <span class="keyword">if</span> left1 <span class="keyword">and</span> left2:</span><br><span class="line">                    left = TreeNode(left1.val + left2.val)</span><br><span class="line">                    node.left = left</span><br><span class="line">                    queue.append(left)</span><br><span class="line">                    queue1.append(left1)</span><br><span class="line">                    queue2.append(left2)</span><br><span class="line">                <span class="keyword">elif</span> left1:</span><br><span class="line">                    node.left = left1</span><br><span class="line">                <span class="keyword">elif</span> left2:</span><br><span class="line">                    node.left = left2</span><br><span class="line">            <span class="keyword">if</span> right1 <span class="keyword">or</span> right2:</span><br><span class="line">                <span class="keyword">if</span> right1 <span class="keyword">and</span> right2:</span><br><span class="line">                    right = TreeNode(right1.val + right2.val)</span><br><span class="line">                    node.right = right</span><br><span class="line">                    queue.append(right)</span><br><span class="line">                    queue1.append(right1)</span><br><span class="line">                    queue2.append(right2)</span><br><span class="line">                <span class="keyword">elif</span> right1:</span><br><span class="line">                    node.right = right1</span><br><span class="line">                <span class="keyword">elif</span> right2:</span><br><span class="line">                    node.right = right2</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> merged</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：<span
-class="math display">\[O(\min(m,n))\]</span>，其中 m 和 n
-分别是两个二叉树的节点个数。对两个二叉树同时进行广度优先搜索，只有当两个二叉树中的对应节点都不为空时才会访问到该节点，因此被访问到的节点数不会超过较小的二叉树的节点数。</p></li>
-<li><p>空间复杂度：<span
-class="math display">\[O(\min(m,n))\]</span>，其中 m 和 n
-分别是两个二叉树的节点个数。空间复杂度取决于队列中的元素个数，队列中的元素个数不会超过较小的二叉树的节点数。</p></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1272,14 +1345,14 @@ class="math display">\[O(\min(m,n))\]</span>，其中 m 和 n
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">236</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1339,7 +1412,7 @@ class="math display">\[O(\min(m,n))\]</span>，其中 m 和 n
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">577k</span>
+    <span title="Symbols count total">578k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>

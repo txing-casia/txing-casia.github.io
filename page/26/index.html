@@ -198,6 +198,162 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/06/13/2019-06-13-Q824-Goat-Latin/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/13/2019-06-13-Q824-Goat-Latin/" class="post-title-link" itemprop="url">Q824 Goat Latin</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-13 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-13T00:00:00+08:00">2019-06-13</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.7k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="goat-latin"><a
+target="_blank" rel="noopener" href="https://leetcode.com/problems/goat-latin/">Goat Latin</a></h1>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>A sentence <code>S</code> is given, composed of words separated by
+spaces. Each word consists of lowercase and uppercase letters only.</p>
+<p>We would like to convert the sentence to "<em>Goat Latin"</em> (a
+made-up language similar to Pig Latin.)</p>
+<p>The rules of Goat Latin are as follows:</p>
+<ul>
+<li><p>If a word begins with a vowel (a, e, i, o, or u), append
+<code>"ma"</code> to the end of the word. For example, the word 'apple'
+becomes 'applema'.</p></li>
+<li><p>If a word begins with a consonant (i.e. not a vowel), remove the
+first letter and append it to the end, then add <code>"ma"</code>. For
+example, the word <code>"goat"</code> becomes
+<code>"oatgma"</code>.</p></li>
+<li><p>Add one letter <code>'a'</code> to the end of each word per its
+word index in the sentence, starting with 1. For example, the first word
+gets <code>"a"</code> added to the end, the second word gets
+<code>"aa"</code>added to the end and so on.</p></li>
+</ul>
+<p>Return the final sentence representing the conversion from
+<code>S</code> to Goat Latin.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>Input: "I speak Goat Latin" Output: "Imaa peaksmaaa oatGmaaaa
+atinLmaaaaa"</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2:</strong></p>
+<p>Input: "The quick brown fox jumped over the lazy dog" Output: "heTmaa
+uickqmaaa rownbmaaaa oxfmaaaaa umpedjmaaaaaa overmaaaaaaa hetmaaaaaaaa
+azylmaaaaaaaaa ogdmaaaaaaaaaa"</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ul>
+<li><code>S</code> contains only uppercase, lowercase and spaces.
+Exactly one space between each word.</li>
+<li><code>1 &lt;= S.length &lt;= 150</code>.</li>
+</ul>
+</blockquote>
+<h2 id="approach-1-direct-solution">Approach 1: Direct Solution</h2>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>Here, we use a direct idea to the problem.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">toGoatLatin</span>(<span class="params">self, S</span>):</span><br><span class="line">        out = []</span><br><span class="line">        <span class="keyword">for</span> i, w <span class="keyword">in</span> <span class="built_in">enumerate</span>(S.split(<span class="string">&#x27; &#x27;</span>)): <span class="comment"># 返回序号i和第i个单词</span></span><br><span class="line">            <span class="keyword">if</span> w[<span class="number">0</span>] <span class="keyword">not</span> <span class="keyword">in</span> <span class="built_in">list</span>(<span class="string">&#x27;aeiouAEIOU&#x27;</span>): <span class="comment"># Smart!</span></span><br><span class="line">                w = w[<span class="number">1</span>:] + w[<span class="number">0</span>]</span><br><span class="line">            out.append(w + <span class="string">&#x27;ma&#x27;</span> + <span class="string">&#x27;a&#x27;</span>*(i+<span class="number">1</span>))</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27; &#x27;</span>.join(out)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    S=<span class="string">&quot;I speak Goat Latin&quot;</span></span><br><span class="line">    solution=Solution().toGoatLatin(S)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time Complexity: <em>O</em>(<em>n</em>), where <em>n</em> is the
+total words of <code>S</code>.</li>
+<li>Space Complexity: <em>O</em>(<em>1</em>).</li>
+<li>Runtime: 28 ms, faster than 16.77% of Python online submissions for
+Goat Latin.</li>
+<li>Memory Usage: 11.7 MB, less than 85.71% of Python online submissions
+for Goat Latin.</li>
+</ul>
+<h2 id="approach-2-subfunction">Approach 2: Subfunction</h2>
+<p><strong>Intuition</strong></p>
+<p>We apply the steps given in the problem in a straightforward manner.
+The difficulty lies in the implementation.</p>
+<p><strong>Algorithm</strong></p>
+<p>For each <code>word</code> in the sentence split, if it is a vowel we
+consider the word, otherwise we consider the rotation of the word
+(either <code>word[1:] + word[:1]</code> in Python, otherwise
+<code>word.substring(1) + word.substring(0, 1)</code>in Java).</p>
+<p>Afterwards, we add <code>"ma"</code>, the desired number of
+<code>"a"</code>'s, and a space character.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">toGoatLatin</span>(<span class="params">self, S</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">convert</span>(<span class="params">word</span>):</span><br><span class="line">            <span class="keyword">if</span> word[<span class="number">0</span>] <span class="keyword">not</span> <span class="keyword">in</span> <span class="string">&#x27;aeiouAEIOU&#x27;</span>:</span><br><span class="line">                word = word[<span class="number">1</span>:] + word[:<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">return</span> word + <span class="string">&#x27;ma&#x27;</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot; &quot;</span>.join(convert(word) + <span class="string">&#x27;a&#x27;</span> * i</span><br><span class="line">                        <span class="keyword">for</span> i, word <span class="keyword">in</span> <span class="built_in">enumerate</span>(S.split(), <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li><p>Time Complexity: <em>O</em>(<span
+class="math display">\[N^2​\]</span>), where <em>N</em> is the length of
+<code>S</code>. This represents the complexity of rotating the word and
+adding extra <code>"a"</code> characters.</p></li>
+<li><p>Space Complexity: <em>O</em>(<span
+class="math display">\[N^2\]</span>), the space added to the answer by
+adding extra <code>"a"</code> characters.</p></li>
+<li><p>Runtime: 20 ms, faster than 71.17% of Python online submissions
+for Goat Latin.</p></li>
+<li><p>Memory Usage: 11.8 MB, less than 45.09% of Python online
+submissions for Goat Latin.</p>
+<p>Next challenges:</p></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/06/10/2019-06-10-Q557-Reverse-Words-in-a-String-III/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1014,126 +1170,6 @@ forLinked List Cycle.</li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2019/05/28/2019-05-28-Q83-Remove-Duplicates-from-Sorted-List/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/28/2019-05-28-Q83-Remove-Duplicates-from-Sorted-List/" class="post-title-link" itemprop="url">Q83 Remove Duplicates from Sorted List</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-05-28 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-28T00:00:00+08:00">2019-05-28</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.4k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="remove-duplicates-from-sorted-list"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/remove-duplicates-from-sorted-list/">Remove
-Duplicates from Sorted List</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given a sorted linked list, delete all duplicates such that each
-element appear only <em>once</em>.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong> Input: 1-&gt;1-&gt;2 Output: 1-&gt;2</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong> Input: 1-&gt;1-&gt;2-&gt;3-&gt;3 Output:
-1-&gt;2-&gt;3</p>
-</blockquote>
-<h3 id="approach-1-dummy-list">Approach 1: Dummy List</h3>
-<p>This problem is similar to Q21, because they both require traverse a
-linked list. In fact, the key point is to set <code>out=mid=head</code>.
-<code>out</code> is used in the iterations and <code>mid</code> is used
-as an output.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">deleteDuplicates</span>(<span class="params">self, head: ListNode</span>) -&gt; ListNode:</span><br><span class="line">        out=mid=head</span><br><span class="line">        <span class="keyword">while</span> head:</span><br><span class="line">            <span class="keyword">if</span> out.val!=head.val:</span><br><span class="line">                out.<span class="built_in">next</span>=head</span><br><span class="line">                out=out.<span class="built_in">next</span></span><br><span class="line">            head=head.<span class="built_in">next</span></span><br><span class="line">            out.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> mid</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    head=stringToListNode([<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>])<span class="comment"># 将输入的元组转换为链表</span></span><br><span class="line">    solution=Solution().deleteDuplicates(head)</span><br><span class="line">    <span class="built_in">print</span>(listNodeToString(solution))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li>Runtime: 48 ms, faster than 87.51% of Python3 online submissions
-forRemove Duplicates from Sorted List.</li>
-<li>Memory Usage: 13.3 MB, less than 22.63% of Python3 online
-submissions for Remove Duplicates from Sorted List.</li>
-</ul>
-<h3 id="approach-2-straight-forward">Approach 2: Straight-Forward</h3>
-<p>This is a simple problem that merely tests your ability to manipulate
-list node pointers. Because the input list is sorted, we can determine
-if a node is a duplicate by comparing its value to the node
-<em>after</em> it in the list. If it is a duplicate, we change the
-<code>next</code> pointer of the current node so that it skips the next
-node and points directly to the one after the next node.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">deleteDuplicates</span>(<span class="params">self, head: ListNode</span>) -&gt; ListNode:</span><br><span class="line">        out = head</span><br><span class="line">        <span class="keyword">while</span> out <span class="keyword">and</span> out.<span class="built_in">next</span>:</span><br><span class="line">            <span class="keyword">if</span> out.val==out.<span class="built_in">next</span>.val:</span><br><span class="line">                out.<span class="built_in">next</span> = out.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                out=out.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">return</span> head</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li><p>Time complexity : <em>O</em>(<em>n</em>). Because each node in
-the list is checked exactly once to determine if it is a duplicate or
-not, the total run time is <em>O</em>(<em>n</em>), where <em>n</em> is
-the number of nodes in the list.</p></li>
-<li><p>Space complexity : <em>O</em>(1). No additional space is
-used.</p></li>
-<li><p>Runtime: 48 ms, faster than 87.51% of Python3 online submissions
-forRemove Duplicates from Sorted List.</p></li>
-<li><p>Memory Usage: 13.3 MB, less than 22.63% of Python3 online
-submissions for Remove Duplicates from Sorted List.</p></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1205,14 +1241,14 @@ submissions for Remove Duplicates from Sorted List.</p></li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">236</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1272,7 +1308,7 @@ submissions for Remove Duplicates from Sorted List.</p></li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">577k</span>
+    <span title="Symbols count total">578k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>

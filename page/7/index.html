@@ -198,6 +198,130 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/02/08/2022-02-08-python%E7%8E%AF%E5%A2%83%E7%9A%84%E5%AF%BC%E5%87%BA%E4%B8%8E%E5%AF%BC%E5%85%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/08/2022-02-08-python%E7%8E%AF%E5%A2%83%E7%9A%84%E5%AF%BC%E5%87%BA%E4%B8%8E%E5%AF%BC%E5%85%A5/" class="post-title-link" itemprop="url">python环境的导出与导入</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-02-08 00:00:00" itemprop="dateCreated datePublished" datetime="2022-02-08T00:00:00+08:00">2022-02-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Code-Techniques/" itemprop="url" rel="index"><span itemprop="name">Code Techniques</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="python环境的导出与导入">python环境的导出与导入</h1>
+<h3 id="问题描述">1 问题描述</h3>
+<p>需要在多台电脑中安装python项目的环境，需要避免第三方库不同版本的影响，减少重复工作量。</p>
+<h3 id="解决方案">2 解决方案</h3>
+<p>本文提供两种环境复制方案，并提供了详细的步骤：</p>
+<ul>
+<li><p>不太好的方案：使用requirements.txt</p></li>
+<li><p>比较好的方案：使用requirements.yaml</p></li>
+</ul>
+<h4 id="不太好的方案使用requirements.txt">2.1
+不太好的方案：使用requirements.txt</h4>
+<p>使用
+<code>requirements.txt</code>导出环境中所有<strong>使用库</strong>的名称和版本号。注意，这里说的“使用库”是指导出的库不一定是当前python环境中所有的库，而是所在项目中使用了的库，这是不一样的。（查看所有的库可以通过
+<code>conda list</code> 实现）</p>
+<h5 id="step-1环境导出">step 1：环境导出</h5>
+<p>这里使用的是windows下的Anaconda3，先打开Anaconda
+Navigator窗口，选择所需导出的环境，在选项中选择Open
+Terminal打开终端窗口。输入语句，进入D盘，打开工程项目文件所在的窗口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">d:</span><br><span class="line">cd D:\Code\code_v2</span><br></pre></td></tr></table></figure>
+<p>输入</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip freeze &gt; requirements.txt</span><br></pre></td></tr></table></figure>
+<p>实现环境的导出，在项目文件目录中可以看到导出的<code>requirements.txt</code>文件，文件中包括了使用库的名称和版本号。如果该文件为空，则说明导出失败，检查上述步骤，是否是打开了所需环境的终端。</p>
+<h5 id="step-2环境导入">step 2：环境导入</h5>
+<p>环境定位到文件所在文件夹，通过代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
+<p>即可实现环境的导入。</p>
+<p>但是这种方法存在一些问题，一些通过pip方式安装的库会在requirements.txt文件中记录路径信息，但这个路径在新设备中不一定有，因此会报错，处理起来也比较麻烦（已放弃）。</p>
+<h4 id="比较好的方案使用requirements.yaml">2.2
+比较好的方案：使用requirements.yaml</h4>
+<p>.yaml是保存环境信息的专用文件，在不同机器间导入速度快，可靠性高。</p>
+<h5 id="step-1环境导出-1">step 1：环境导出</h5>
+<p>这里使用的是windows下的Anaconda3，先打开Anaconda
+Navigator窗口，选择所需导出的环境，在选项中选择Open
+Terminal打开终端窗口。输入语句，进入D盘，打开工程项目文件所在的窗口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">d:</span><br><span class="line">cd D:\Code\code_v2</span><br></pre></td></tr></table></figure>
+<p>输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda env export &gt; requirements.yaml</span><br></pre></td></tr></table></figure>
+<p>实现文件导出，.yaml文件保存在项目文件目录。</p>
+<h5 id="step-2环境导入-1">step 2：环境导入</h5>
+<p>打开anaconda终端，定位到.yaml文件所在目录，直接在base环境中输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda env create -f environment.yaml</span><br></pre></td></tr></table></figure>
+<p>即可完成新环境的创建，注意新环境的名称会默认和之前机器上环境的名称一致。</p>
+<p>2022年2月8日</p>
+<p>Pcon</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2022/01/17/2022-01-17-Gym%E6%A1%86%E6%9E%B6%E4%B8%8B%E7%9A%84CoppeliaSim%E5%80%92%E7%AB%8B%E6%91%86%E5%AE%9E%E7%8E%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -223,6 +347,15 @@
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2022-01-17 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-17T00:00:00+08:00">2022-01-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Code-Techniques/" itemprop="url" rel="index"><span itemprop="name">Code Techniques</span></a>
+                </span>
             </span>
 
           <br>
@@ -328,6 +461,15 @@ id="gym框架下的coppeliasim小车倒立摆实现">Gym框架下的CoppeliaSim�
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2022-01-16 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-16T00:00:00+08:00">2022-01-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Code-Techniques/" itemprop="url" rel="index"><span itemprop="name">Code Techniques</span></a>
+                </span>
             </span>
 
           <br>
@@ -442,6 +584,15 @@ V-rep，是一款广泛使用的机器人仿真软件环境。在本指南中，
 
               <time title="Created: 2022-01-06 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-06T00:00:00+08:00">2022-01-06</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Code-Techniques/" itemprop="url" rel="index"><span itemprop="name">Code Techniques</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -515,6 +666,15 @@ V-rep，是一款广泛使用的机器人仿真软件环境。在本指南中，
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2022-01-06 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-06T00:00:00+08:00">2022-01-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Code-Techniques/" itemprop="url" rel="index"><span itemprop="name">Code Techniques</span></a>
+                </span>
             </span>
 
           <br>
@@ -590,6 +750,15 @@ V-rep，是一款广泛使用的机器人仿真软件环境。在本指南中，
 
               <time title="Created: 2022-01-06 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-06T00:00:00+08:00">2022-01-06</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Code-Techniques/" itemprop="url" rel="index"><span itemprop="name">Code Techniques</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -618,7 +787,7 @@ V-rep，是一款广泛使用的机器人仿真软件环境。在本指南中，
       
           <h4 id="pytorch---自定义nn模块的曲线拟合程序">Pytorch -
 自定义nn模块的曲线拟合程序</h4>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##############################</span></span><br><span class="line"><span class="comment"># pytorch-自定义nn模块的曲线拟合程序</span></span><br><span class="line"><span class="comment">##############################</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Polynomial3</span>(torch.nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        In the constructor we instantiate four parameters and assign them as</span></span><br><span class="line"><span class="string">        member parameters.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.a = torch.nn.Parameter(torch.randn(()))</span><br><span class="line">        self.b = torch.nn.Parameter(torch.randn(()))</span><br><span class="line">        self.c = torch.nn.Parameter(torch.randn(()))</span><br><span class="line">        self.d = torch.nn.Parameter(torch.randn(()))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        In the forward function we accept a Tensor of input data and we must return</span></span><br><span class="line"><span class="string">        a Tensor of output data. We can use Modules defined in the constructor as</span></span><br><span class="line"><span class="string">        well as arbitrary operators on Tensors.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> self.a + self.b * x + self.c * x ** <span class="number">2</span> + self.d * x ** <span class="number">3</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">string</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Just like any class in Python, you can also define custom method on PyTorch modules</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">f&#x27;y = <span class="subst">&#123;self.a.item()&#125;</span> + <span class="subst">&#123;self.b.item()&#125;</span> x + <span class="subst">&#123;self.c.item()&#125;</span> x^2 + <span class="subst">&#123;self.d.item()&#125;</span> x^3&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create Tensors to hold input and outputs.</span></span><br><span class="line">x = torch.linspace(-math.pi, math.pi, <span class="number">2000</span>)</span><br><span class="line">y = torch.sin(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Construct our model by instantiating the class defined above</span></span><br><span class="line">model = Polynomial3()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Construct our loss function and an Optimizer. The call to model.parameters()</span></span><br><span class="line"><span class="comment"># in the SGD constructor will contain the learnable parameters (defined </span></span><br><span class="line"><span class="comment"># with torch.nn.Parameter) which are members of the model.</span></span><br><span class="line">criterion = torch.nn.MSELoss(reduction=<span class="string">&#x27;sum&#x27;</span>)</span><br><span class="line">optimizer = torch.optim.SGD(model.parameters(), lr=<span class="number">1e-6</span>)</span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2000</span>):</span><br><span class="line">    <span class="comment"># Forward pass: Compute predicted y by passing x to the model</span></span><br><span class="line">    y_pred = model(x)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Compute and print loss</span></span><br><span class="line">    loss = criterion(y_pred, y)</span><br><span class="line">    <span class="keyword">if</span> t % <span class="number">100</span> == <span class="number">99</span>:</span><br><span class="line">        <span class="built_in">print</span>(t, loss.item())</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Zero gradients, perform a backward pass, and update the weights.</span></span><br><span class="line">    optimizer.zero_grad()</span><br><span class="line">    loss.backward()</span><br><span class="line">    optimizer.step()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;Result: <span class="subst">&#123;model.string()&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##############################</span></span><br><span class="line"><span class="comment"># pytorch-自定义nn模块的曲线拟合程序</span></span><br><span class="line"><span class="comment">##############################</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Polynomial3</span>(torch.nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        In the constructor we instantiate four parameters and assign them as</span></span><br><span class="line"><span class="string">        member parameters.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.a = torch.nn.Parameter(torch.randn(()))</span><br><span class="line">        self.b = torch.nn.Parameter(torch.randn(()))</span><br><span class="line">        self.c = torch.nn.Parameter(torch.randn(()))</span><br><span class="line">        self.d = torch.nn.Parameter(torch.randn(()))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        In the forward function we accept a Tensor of input data and we must return</span></span><br><span class="line"><span class="string">        a Tensor of output data. We can use Modules defined in the constructor as</span></span><br><span class="line"><span class="string">        well as arbitrary operators on Tensors.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> self.a + self.b * x + self.c * x ** <span class="number">2</span> + self.d * x ** <span class="number">3</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">string</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Just like any class in Python, you can also define custom method on PyTorch modules</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">f&#x27;y = <span class="subst">&#123;self.a.item()&#125;</span> + <span class="subst">&#123;self.b.item()&#125;</span> x + <span class="subst">&#123;self.c.item()&#125;</span> x^2 + <span class="subst">&#123;self.d.item()&#125;</span> x^3&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create Tensors to hold input and outputs.</span></span><br><span class="line">x = torch.linspace(-math.pi, math.pi, <span class="number">2000</span>)</span><br><span class="line">y = torch.sin(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Construct our model by instantiating the class defined above</span></span><br><span class="line">model = Polynomial3()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Construct our loss function and an Optimizer. The call to model.parameters()</span></span><br><span class="line"><span class="comment"># in the SGD constructor will contain the learnable parameters (defined</span></span><br><span class="line"><span class="comment"># with torch.nn.Parameter) which are members of the model.</span></span><br><span class="line">criterion = torch.nn.MSELoss(reduction=<span class="string">&#x27;sum&#x27;</span>)</span><br><span class="line">optimizer = torch.optim.SGD(model.parameters(), lr=<span class="number">1e-6</span>)</span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2000</span>):</span><br><span class="line">    <span class="comment"># Forward pass: Compute predicted y by passing x to the model</span></span><br><span class="line">    y_pred = model(x)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Compute and print loss</span></span><br><span class="line">    loss = criterion(y_pred, y)</span><br><span class="line">    <span class="keyword">if</span> t % <span class="number">100</span> == <span class="number">99</span>:</span><br><span class="line">        <span class="built_in">print</span>(t, loss.item())</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Zero gradients, perform a backward pass, and update the weights.</span></span><br><span class="line">    optimizer.zero_grad()</span><br><span class="line">    loss.backward()</span><br><span class="line">    optimizer.step()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;Result: <span class="subst">&#123;model.string()&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -663,6 +832,15 @@ V-rep，是一款广泛使用的机器人仿真软件环境。在本指南中，
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2021-12-01 00:00:00" itemprop="dateCreated datePublished" datetime="2021-12-01T00:00:00+08:00">2021-12-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Code-Techniques/" itemprop="url" rel="index"><span itemprop="name">Code Techniques</span></a>
+                </span>
             </span>
 
           <br>
@@ -897,6 +1075,15 @@ https://www.bilibili.com/read/cv6680157/</p>
 
               <time title="Created: 2021-09-29 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-29T00:00:00+08:00">2021-09-29</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -970,7 +1157,7 @@ m 和 n
 <li><p>如果两个节点的子节点的结构相同，则将两个节点的非空子节点分别加入两个队列，子节点加入队列时需要注意顺序，如果左右子节点都不为空，则先加入左子节点，后加入右子节点。</p></li>
 </ul>
 <p>如果搜索结束时两个队列同时为空，则两个二叉树相同。如果只有一个队列为空，则两个二叉树的结构不同，因此两个二叉树不同。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isSameTree</span>(<span class="params">self, p: TreeNode, q: TreeNode</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> p <span class="keyword">and</span> <span class="keyword">not</span> q:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> p <span class="keyword">or</span> <span class="keyword">not</span> q:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line">        queue1 = collections.deque([p])</span><br><span class="line">        queue2 = collections.deque([q])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> queue1 <span class="keyword">and</span> queue2:</span><br><span class="line">            node1 = queue1.popleft()</span><br><span class="line">            node2 = queue2.popleft()</span><br><span class="line">            <span class="keyword">if</span> node1.val != node2.val:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            left1, right1 = node1.left, node1.right</span><br><span class="line">            left2, right2 = node2.left, node2.right</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">not</span> left1) ^ (<span class="keyword">not</span> left2):</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">not</span> right1) ^ (<span class="keyword">not</span> right2):</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> left1:</span><br><span class="line">                queue1.append(left1)</span><br><span class="line">            <span class="keyword">if</span> right1:</span><br><span class="line">                queue1.append(right1)</span><br><span class="line">            <span class="keyword">if</span> left2:</span><br><span class="line">                queue2.append(left2)</span><br><span class="line">            <span class="keyword">if</span> right2:</span><br><span class="line">                queue2.append(right2)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">not</span> queue1 <span class="keyword">and</span> <span class="keyword">not</span> queue2</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isSameTree</span>(<span class="params">self, p: TreeNode, q: TreeNode</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> p <span class="keyword">and</span> <span class="keyword">not</span> q:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> p <span class="keyword">or</span> <span class="keyword">not</span> q:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">        queue1 = collections.deque([p])</span><br><span class="line">        queue2 = collections.deque([q])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> queue1 <span class="keyword">and</span> queue2:</span><br><span class="line">            node1 = queue1.popleft()</span><br><span class="line">            node2 = queue2.popleft()</span><br><span class="line">            <span class="keyword">if</span> node1.val != node2.val:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            left1, right1 = node1.left, node1.right</span><br><span class="line">            left2, right2 = node2.left, node2.right</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">not</span> left1) ^ (<span class="keyword">not</span> left2):</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">not</span> right1) ^ (<span class="keyword">not</span> right2):</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> left1:</span><br><span class="line">                queue1.append(left1)</span><br><span class="line">            <span class="keyword">if</span> right1:</span><br><span class="line">                queue1.append(right1)</span><br><span class="line">            <span class="keyword">if</span> left2:</span><br><span class="line">                queue2.append(left2)</span><br><span class="line">            <span class="keyword">if</span> right2:</span><br><span class="line">                queue2.append(right2)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">not</span> queue1 <span class="keyword">and</span> <span class="keyword">not</span> queue2</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度：<span class="math display">\[O(\min(m,n))\]</span>，其中
@@ -979,107 +1166,6 @@ m 和 n
 <li>空间复杂度：<span class="math display">\[O(\min(m,n))\]</span>，其中
 m 和 n
 分别是两个二叉树的节点数。空间复杂度取决于队列中的元素个数，队列中的元素个数不会超过较小的二叉树的节点数。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/09/28/2021-09-28-%E6%9C%80%E5%B0%8F%E9%AB%98%E5%BA%A6%E6%A0%91-%E7%AE%80%E5%8D%95-%E4%BA%8C%E5%8F%89%E6%A0%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/28/2021-09-28-%E6%9C%80%E5%B0%8F%E9%AB%98%E5%BA%A6%E6%A0%91-%E7%AE%80%E5%8D%95-%E4%BA%8C%E5%8F%89%E6%A0%91/" class="post-title-link" itemprop="url">最小高度树-简单-二叉树</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-09-28 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-28T00:00:00+08:00">2021-09-28</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>687</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="最小高度树"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-height-tree-lcci/">最小高度树</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>给定一个有序整数数组，元素各不相同且按升序排列，编写一个算法，创建一棵高度最小的二叉搜索树。</p>
-<p>在二叉搜索树中：</p>
-<ol type="1">
-<li><p>若任意结点的左子树不空，则左子树上所有结点的值均不大于它的根结点的值。</p></li>
-<li><p>若任意结点的右子树不空，则右子树上所有结点的值均不小于它的根结点的值。</p></li>
-<li><p>任意结点的左、右子树也分别为二叉搜索树。</p></li>
-</ol>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>给定有序数组: [-10,-3,0,5,9],</p>
-<p>一个可能的答案是：[0,-3,9,-10,null,5]，它可以表示下面这个高度平衡二叉搜索树：</p>
-<pre><code>      0 
-     / \ 
-   -3   9 
-   /   / 
- -10  5 </code></pre>
-</blockquote>
-<h3 id="approach-1-迭代法">Approach 1: 迭代法</h3>
-<p>对于有序数组，我们寻找中间元素，将数组分为两段，每段再分别进行迭代；</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sortedArrayToBST</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; TreeNode:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> </span><br><span class="line">        mid = <span class="built_in">len</span>(nums) // <span class="number">2</span></span><br><span class="line">        root = TreeNode(nums[mid])</span><br><span class="line">        root.left = self.sortedArrayToBST(nums[: mid])</span><br><span class="line">        root.right = self.sortedArrayToBST(nums[mid + <span class="number">1</span>: ])</span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(n)，递归涉及到每一个元素。</li>
-<li>空间复杂度：O(n)。</li>
 </ul>
 
       
@@ -1167,14 +1253,14 @@ target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-he
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">236</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1234,7 +1320,7 @@ target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-he
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">577k</span>
+    <span title="Symbols count total">578k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>

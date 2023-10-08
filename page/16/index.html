@@ -198,6 +198,189 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/16/2021-03-16-Q560-%E5%92%8C%E4%B8%BAK%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/16/2021-03-16-Q560-%E5%92%8C%E4%B8%BAK%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="post-title-link" itemprop="url">Q560-和为K的子数组-中等-动态规划</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-03-16 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-16T00:00:00+08:00">2021-03-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.2k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="和为k的子数组"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/subarray-sum-equals-k/">560.
+和为K的子数组</a></h4>
+<p>类似题目：Q1546-和为目标值的最大数目不重叠非空子数组数目</p>
+<h2 id="question">Question</h2>
+<blockquote>
+<p>给定一个整数数组和一个整数 k，你需要找到该数组中和为 k
+的连续的子数组的个数。</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 1:</strong></p>
+<p>输入:nums = [1,1,1], k = 2 输出: 2 , [1,1] 与 [1,1]
+为两种不同的情况。</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong></p>
+<ul>
+<li>数组的长度为 [1, 20,000]。</li>
+<li>数组中元素的范围是 [-1000, 1000] ，且整数 k 的范围是 [-1e7,
+1e7]。</li>
+</ul>
+</blockquote>
+<h3 id="approach-1-枚举">Approach 1: 枚举</h3>
+<p>考虑以 i 结尾和为 k 的连续子数组个数，我们需要统计符合条件的下标 j
+的个数，其中 <span class="math display">\[0\leq j\leq i \]</span> 且
+<span class="math display">\[[j..i]\]</span> 这个子数组的和恰好为 k
+。</p>
+<p>我们可以枚举 <span class="math display">\[[0..i]\]</span>
+里所有的下标 j
+来判断是否符合条件，可能有读者会认为假定我们确定了子数组的开头和结尾，还需要
+<span class="math display">\[O(n)\]</span>
+的时间复杂度遍历子数组来求和，那样复杂度就将达到 <span
+class="math display">\[O(n^3)\]</span>
+从而无法通过所有测试用例。但是如果我们知道 <span
+class="math display">\[[j,i]\]</span> 子数组的和，就能 <span
+class="math display">\[O(1)\]</span> 推出 <span
+class="math display">\[[j-1,i]\]</span>
+的和，因此这部分的遍历求和是不需要的，我们在枚举下标 j 的时候已经能
+<span class="math display">\[O(1)\]</span> 求出 <span
+class="math display">\[[j,i]\]</span> 的子数组之和。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">subarraySum</span>(<span class="params">self, nums, k</span>):</span><br><span class="line">        count=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> start <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">            <span class="built_in">sum</span>=<span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> end <span class="keyword">in</span> <span class="built_in">range</span>(start,-<span class="number">1</span>,-<span class="number">1</span>):</span><br><span class="line">                <span class="built_in">sum</span>+=nums[end]</span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">sum</span> == k:</span><br><span class="line">                    count+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> count</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums = [-<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">2</span>,-<span class="number">9</span>]</span><br><span class="line">    target = <span class="number">6</span></span><br><span class="line">    solution=Solution().subarraySum(nums,target)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p><strong>时间复杂度</strong>：<span
+class="math display">\[O(n^2)\]</span>，其中 n
+为数组的长度。枚举子数组开头和结尾需要 <span
+class="math display">\[O(n^2)\]</span>的时间，其中求和需要 <span
+class="math display">\[O(1)\]</span> 的时间复杂度，因此总时间复杂度为
+<span class="math display">\[O(n^2)\]</span>。</p></li>
+<li><p><strong>空间复杂度</strong>：<span
+class="math display">\[O(1)\]</span>。只需要常数空间存放若干变量。</p></li>
+</ul>
+<h3 id="approach-2-前缀和-哈希表优化">Approach 2: 前缀和 +
+哈希表优化</h3>
+<p>我们可以基于方法一利用数据结构进行进一步的优化，我们知道方法一的瓶颈在于对每个
+i，我们需要枚举所有的 j
+来判断是否符合条件，这一步是否可以优化呢？答案是可以的。</p>
+<p>我们定义 <span class="math display">\[\textit{pre}[i]\]</span> 为
+<span class="math display">\[[0..i]\]</span> 里所有数的和，则 <span
+class="math display">\[\textit{pre}[i]\]</span> 可以由 <span
+class="math display">\[\textit{pre}[i-1]\]</span> 递推而来，即：</p>
+<p><span class="math display">\[
+pre[i]=pre[i-1]+nums[i]
+\]</span> 那么「<span class="math display">\[[j..i]\]</span>
+这个子数组和为 <em>k</em> 」这个条件我们可以转化为 <span
+class="math display">\[
+pre[j-1]==pre[i]-k
+\]</span> 所以我们考虑以 i 结尾的和为 k
+的连续子数组个数时只要统计有多少个前缀和为 <span
+class="math display">\[\textit{pre}[i]-k\]</span> 的 <span
+class="math display">\[\textit{pre}[j]\]</span> 即可。我们建立哈希表
+<span
+class="math display">\[\textit{mp}\]</span>，以和为键，出现次数为对应的值，记录
+<span class="math display">\[\textit{pre}[i]\]</span>
+出现的次数，从左往右边更新 <span
+class="math display">\[\textit{mp}\]</span> 边计算答案，那么以 i
+结尾的答案 <span
+class="math display">\[\textit{mp}[\textit{pre}[i]-k]\]</span> 即可在
+<span class="math display">\[O(1)\]</span>
+时间内得到。最后的答案即为所有下标结尾的和为 k 的子数组个数之和。</p>
+<p>需要注意的是，从左往右边更新边计算的时候已经保证了<span
+class="math display">\[\textit{mp}[\textit{pre}[i]-k]\]</span>
+里记录的<span class="math display">\[ \textit{pre}[j]\]</span>
+的下标范围是 <span class="math display">\[0\leq j\leq i\]</span>
+。同时，由于<span class="math display">\[\textit{pre}[i]\]</span>
+的计算只与前一项的答案有关，因此我们可以不用建立 <span
+class="math display">\[\textit{pre}\]</span> 数组，直接用 <span
+class="math display">\[\textit{pre}\]</span> 变量来记录 <span
+class="math display">\[pre[i-1]\]</span> 的答案即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">subarraySum1</span>(<span class="params">self, nums, k</span>):</span><br><span class="line">        mp = &#123;<span class="number">0</span>: <span class="number">1</span>&#125;</span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        pre = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> nums:</span><br><span class="line">            pre+=x</span><br><span class="line">            <span class="keyword">if</span> (pre - k) <span class="keyword">in</span> mp:</span><br><span class="line">                count += mp[pre - k]</span><br><span class="line">            <span class="keyword">if</span> pre <span class="keyword">in</span> mp:</span><br><span class="line">                mp[pre] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                mp[pre] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> count</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums = [-<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">2</span>,-<span class="number">9</span>]</span><br><span class="line">    target = <span class="number">6</span></span><br><span class="line">    solution=Solution().subarraySum1(nums,target)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p><strong>时间复杂度</strong>：<span
+class="math display">\[O(n)\]</span>，其中 n
+为数组的长度。我们遍历数组的时间复杂度为 <span
+class="math display">\[O(n)\]</span>，中间利用哈希表查询删除的复杂度均为
+<span class="math display">\[O(1)\]</span>，因此总时间复杂度为 <span
+class="math display">\[O(n)\]</span>。</p></li>
+<li><p><strong>空间复杂度</strong>：<span
+class="math display">\[O(n)\]</span>，其中 n
+为数组的长度。哈希表在最坏情况下可能有 n 个不同的键值，因此需要 <span
+class="math display">\[O(n)\]</span> 的空间复杂度。</p></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/15/2021-03-15-Q5-%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -223,6 +406,15 @@
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2021-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-15T00:00:00+08:00">2021-03-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
             </span>
 
           <br>
@@ -453,6 +645,15 @@ class="math display">\[O(n)\]</span>。</li>
 
               <time title="Created: 2021-03-12 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-12T00:00:00+08:00">2021-03-12</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -593,6 +794,15 @@ i-1]中最大的值赋值给一个变量，每次迭代都更新它，最后用�
 
               <time title="Created: 2021-03-11 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-11T00:00:00+08:00">2021-03-11</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -712,6 +922,15 @@ i-1]中最大的值赋值给一个变量，每次迭代都更新它，最后用�
 
               <time title="Created: 2021-03-10 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-10T00:00:00+08:00">2021-03-10</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -777,7 +996,7 @@ target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-
 target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/">含冷冻期</a>、<a
 target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/">含手续费</a>。本题是第一道，属于入门题目。</p>
 <p>考虑买入股票是在[0,i-1]天内的最低点买入，只用遍历一次，计算哪天卖出利润最大即可</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxProfit</span>(<span class="params">self, prices</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        inf = <span class="built_in">int</span>(<span class="number">1e9</span>)</span><br><span class="line">        minprice = inf</span><br><span class="line">        maxprofit = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> price <span class="keyword">in</span> prices:</span><br><span class="line">            maxprofit = <span class="built_in">max</span>(price - minprice, maxprofit)</span><br><span class="line">            minprice = <span class="built_in">min</span>(price, minprice)</span><br><span class="line">        <span class="keyword">return</span> maxprofit</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums = [<span class="number">7</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">4</span>]</span><br><span class="line">    solution=Solution().maxProfit(nums)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxProfit</span>(<span class="params">self, prices</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        inf = <span class="built_in">int</span>(<span class="number">1e9</span>)</span><br><span class="line">        minprice = inf</span><br><span class="line">        maxprofit = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> price <span class="keyword">in</span> prices:</span><br><span class="line">            maxprofit = <span class="built_in">max</span>(price - minprice, maxprofit)</span><br><span class="line">            minprice = <span class="built_in">min</span>(price, minprice)</span><br><span class="line">        <span class="keyword">return</span> maxprofit</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums = [<span class="number">7</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">4</span>]</span><br><span class="line">    solution=Solution().maxProfit(nums)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度 O(N)： 线性遍历数组 nums</li>
@@ -809,7 +1028,7 @@ class="math display">\[i\]</span>
 <p><span class="math display">\[
 dp[i]=max(dp[i−1],prices[i]−minprice)
 \]</span></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxProfit</span>(<span class="params">self, prices</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(prices)</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>: <span class="keyword">return</span> <span class="number">0</span> <span class="comment"># 边界条件</span></span><br><span class="line">        dp = [<span class="number">0</span>] * n</span><br><span class="line">        minprice = prices[<span class="number">0</span>] </span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            minprice = <span class="built_in">min</span>(minprice, prices[i])</span><br><span class="line">            dp[i] = <span class="built_in">max</span>(dp[i - <span class="number">1</span>], prices[i] - minprice)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxProfit</span>(<span class="params">self, prices</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(prices)</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>: <span class="keyword">return</span> <span class="number">0</span> <span class="comment"># 边界条件</span></span><br><span class="line">        dp = [<span class="number">0</span>] * n</span><br><span class="line">        minprice = prices[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">            minprice = <span class="built_in">min</span>(minprice, prices[i])</span><br><span class="line">            dp[i] = <span class="built_in">max</span>(dp[i - <span class="number">1</span>], prices[i] - minprice)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li>时间复杂度 O(N)</li>
@@ -859,6 +1078,15 @@ dp[i]=max(dp[i−1],prices[i]−minprice)
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2021-03-09 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-09T00:00:00+08:00">2021-03-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
             </span>
 
           <br>
@@ -1019,6 +1247,15 @@ nums[0]\]</span>，即以 <span class="math display">\[nums[0]\]</span>
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2021-03-08 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-08T00:00:00+08:00">2021-03-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
             </span>
 
           <br>
@@ -1211,6 +1448,15 @@ class="math display">\[O(n^2)\]</span></li>
 
               <time title="Created: 2021-03-05 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-05T00:00:00+08:00">2021-03-05</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -1302,7 +1548,7 @@ x，需要进行的操作次数为 x - v。</p></li>
 的两倍 80000。这是因为在最坏情况下，数组 A 中有 40000 个
 40000，这样要使得数组值唯一，需要将其递增为 [40000, 40001, ...,
 79999]，因此用来统计的数组需要开到 80000。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">minIncrementForUnique1</span>(<span class="params">self, A</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    count = [<span class="number">0</span>] * <span class="number">80000</span></span><br><span class="line">    <span class="comment"># 建立一个 Hash 表，记录每个元素出现的次数</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> A:</span><br><span class="line">        count[x] += <span class="number">1</span></span><br><span class="line">    <span class="comment"># taken记录从冗余数中取走了几个</span></span><br><span class="line">    ans = taken = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">80000</span>):</span><br><span class="line">        <span class="keyword">if</span> count[x] &gt;= <span class="number">2</span>:</span><br><span class="line">            taken += count[x] - <span class="number">1</span></span><br><span class="line">            ans -= x * (count[x] - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">elif</span> taken &gt; <span class="number">0</span> <span class="keyword">and</span> count[x] == <span class="number">0</span>:</span><br><span class="line">            taken -= <span class="number">1</span></span><br><span class="line">            ans += x</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">minIncrementForUnique1</span>(<span class="params">self, A</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    count = [<span class="number">0</span>] * <span class="number">80000</span></span><br><span class="line">    <span class="comment"># 建立一个 Hash 表，记录每个元素出现的次数</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> A:</span><br><span class="line">        count[x] += <span class="number">1</span></span><br><span class="line">    <span class="comment"># taken记录从冗余数中取走了几个</span></span><br><span class="line">    ans = taken = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">80000</span>):</span><br><span class="line">        <span class="keyword">if</span> count[x] &gt;= <span class="number">2</span>:</span><br><span class="line">            taken += count[x] - <span class="number">1</span></span><br><span class="line">            ans -= x * (count[x] - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">elif</span> taken &gt; <span class="number">0</span> <span class="keyword">and</span> count[x] == <span class="number">0</span>:</span><br><span class="line">            taken -= <span class="number">1</span></span><br><span class="line">            ans += x</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li><p>时间复杂度：O(L)，其中 L 的数量级是数组 A
@@ -1345,171 +1591,6 @@ N)\]</span>，其中 N 是数组 A 的长度，即排序的时间复杂度。</p
 <li><p>空间复杂度：<span class="math display">\[O(\log
 N)\]</span>，排序需要额外 <span class="math display">\[O(\log
 N)\]</span> 的栈空间。</p></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/03/04/2021-03-04-Q978-%E6%9C%80%E9%95%BF%E6%B9%8D%E6%B5%81%E5%AD%90%E6%95%B0%E7%BB%84-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/04/2021-03-04-Q978-%E6%9C%80%E9%95%BF%E6%B9%8D%E6%B5%81%E5%AD%90%E6%95%B0%E7%BB%84-%E4%B8%AD%E7%AD%89-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="post-title-link" itemprop="url">Q978 最长湍流子数组-中等-动态规划</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-03-04 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-04T00:00:00+08:00">2021-03-04</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.6k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="最长湍流子数组"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-turbulent-subarray/">978.
-最长湍流子数组</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>当 A 的子数组 A[i], A[i+1], ..., A[j]
-满足下列条件时，我们称其为湍流子数组：</p>
-<p>若 i &lt;= k &lt; j，当 k 为奇数时， A[k] &gt; A[k+1]，且当 k
-为偶数时，A[k] &lt; A[k+1]； 或 若 i &lt;= k &lt; j，当 k 为偶数时，A[k]
-&gt; A[k+1] ，且当 k 为奇数时， A[k] &lt; A[k+1]。
-也就是说，如果比较符号在子数组中的每个相邻元素对之间翻转，则该子数组是湍流子数组。</p>
-<p>返回 A 的最大湍流子数组的长度。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入：[9,4,2,10,7,8,8,1,9] 输出：5 解释：(A[1] &gt; A[2] &lt; A[3]
-&gt; A[4] &lt; A[5])</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>输入：[4,8,12,16] 输出：2</p>
-</blockquote>
-<blockquote>
-<p><strong>提示：</strong></p>
-<ul>
-<li>1 &lt;= A.length &lt;= 40000</li>
-<li>0 &lt;= A[i] &lt;= 10^9</li>
-</ul>
-</blockquote>
-<h3 id="approach-1-滑动窗口法">Approach 1: 滑动窗口法</h3>
-<p>本题目需要仔细考虑清楚集中边界条件的情况：</p>
-<ul>
-<li>左右边界相等；</li>
-<li>右边界元素等于右边界+1元素；</li>
-<li>右边界什么时候右移</li>
-<li>左边界什么时候右移，移动到哪个位置</li>
-</ul>
-<p>通过令边界left=right=0，设计一个滑动窗口，</p>
-<ul>
-<li>当左右边界相等时，此时子数组只包含一个元素，肯定是可以右边界右移的；</li>
-<li>当左右边界不相等时，如果右边界-1的元素、右边界元素、右边界+1的元素，三者满足<span
-class="math display">\[a&gt;b&lt;c\]</span>或者<span
-class="math display">\[a&lt;b&gt;c\]</span>时，右边界右移；</li>
-<li>当左右边界不相等时，如果右边界-1的元素、右边界元素、右边界+1的元素，三者不满足<span
-class="math display">\[a&gt;b&lt;c\]</span>或者<span
-class="math display">\[a&lt;b&gt;c\]</span>，则结束判断，left边界从right边界重新开始判断下一个子数组</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxTurbulenceSize</span>(<span class="params">self, arr</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(arr)</span><br><span class="line">        res = <span class="number">1</span></span><br><span class="line">        left,right=<span class="number">0</span>,<span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(right&lt;n-<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> left == right:</span><br><span class="line">                <span class="comment"># 右边界元素等于右边界+1的元素</span></span><br><span class="line">                <span class="keyword">if</span> arr[right] == arr[right+<span class="number">1</span>]:</span><br><span class="line">                    left+=<span class="number">1</span></span><br><span class="line">                right+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="comment"># 在扩展长度时候，只考虑验证右边界条件即可</span></span><br><span class="line">                <span class="keyword">if</span> (arr[right - <span class="number">1</span>] &lt; arr[right]) <span class="keyword">and</span> (arr[right] &gt; arr[right + <span class="number">1</span>]):</span><br><span class="line">                    right+=<span class="number">1</span>    </span><br><span class="line">                <span class="keyword">elif</span> (arr[right - <span class="number">1</span>] &gt; arr[right]) <span class="keyword">and</span> (arr[right] &lt; arr[right + <span class="number">1</span>]):</span><br><span class="line">                    right+=<span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                <span class="comment"># 右边界不符合条件则验证结束，将left右移，重新验证</span></span><br><span class="line">                    left = right</span><br><span class="line">            res = <span class="built_in">max</span>(res, right - left + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    inputs = [<span class="number">9</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">10</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">8</span>,<span class="number">1</span>,<span class="number">9</span>]</span><br><span class="line">    solution=Solution().maxTurbulenceSize(inputs)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：<span
-class="math display">\[O(n)\]</span>，窗口的左右端点最多各移动 n
-次。</li>
-<li>空间复杂度：<span
-class="math display">\[O(1)\]</span>，只需要维护常数额外空间。</li>
-</ul>
-<h3 id="approach-2-动态规划方法">Approach 2: 动态规划方法</h3>
-<p>也可以使用动态规划的方法计算最长湍流子数组的长度。</p>
-<p>利用二维数组记录相邻元素的信息：</p>
-<p><span
-class="math display">\[dp[i][0]\]</span>表示以arr[i]为结尾的，且<span
-class="math display">\[arr[i-1]&lt;arr[i]\]</span>的湍流子数组的最大长度。
-<span
-class="math display">\[dp[i][1]\]</span>表示以arr[i]为结尾的，且<span
-class="math display">\[arr[i-1]&lt;arr[i]\]</span>的湍流子数组的最大长度。
-每次记录湍流子数组应该从1开始，因为需要包含自身。 - 当<span
-class="math display">\[arr[i]&lt;arr[i-1]\]</span>时，湍流子数组长度为<span
-class="math display">\[dp[i][0]=dp[i-1][1]+1\]</span>，同时<span
-class="math display">\[dp[i][1]=1\]</span> - 当<span
-class="math display">\[arr[i]&gt;arr[i-1]\]</span>时，湍流子数组长度为<span
-class="math display">\[dp[i][1]=dp[i-1][0]+1\]</span>，同时<span
-class="math display">\[dp[i][0]=1\]</span> - 当<span
-class="math display">\[arr[i]=arr[i-1]\]</span>时，湍流子数组长度为<span
-class="math display">\[dp[i][0]=dp[i][1]=1\]</span> 最终，<span
-class="math display">\[dp\]</span>数组的最大值即为所求的答案。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">maxTurbulenceSize1</span>(<span class="params">self, arr</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    n = <span class="built_in">len</span>(arr)</span><br><span class="line">    dp = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>)] <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">    dp[<span class="number">0</span>][<span class="number">0</span>] = dp[<span class="number">0</span>][<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">if</span> arr[i-<span class="number">1</span>] &gt; arr[i]:</span><br><span class="line">            dp[i][<span class="number">0</span>] = dp[i-<span class="number">1</span>][<span class="number">1</span>] + <span class="number">1</span></span><br><span class="line">            dp[i][<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> arr[i-<span class="number">1</span>] &lt; arr[i]:</span><br><span class="line">            dp[i][<span class="number">1</span>] = dp[i-<span class="number">1</span>][<span class="number">0</span>] + <span class="number">1</span></span><br><span class="line">            dp[i][<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            dp[i][<span class="number">0</span>] = dp[i][<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    res = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        res = <span class="built_in">max</span>(res, dp[i][<span class="number">0</span>])</span><br><span class="line">        res = <span class="built_in">max</span>(res, dp[i][<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：<span
-class="math display">\[O(n)\]</span>，遍历一遍数组。</li>
-<li>空间复杂度：<span
-class="math display">\[O(n)\]</span>，只需要维护dp。</li>
-</ul>
-<p>其实还可以直接用两个变量<span
-class="math display">\[dp0\]</span>和<span
-class="math display">\[dp1\]</span>代替二维数组dp</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">maxTurbulenceSize2</span>(<span class="params">self, arr</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    n = <span class="built_in">len</span>(arr)</span><br><span class="line">    res = <span class="number">1</span></span><br><span class="line">    dp0 = dp1 = <span class="number">1</span></span><br><span class="line">    <span class="comment"># 注意要从1开始循环</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,n):</span><br><span class="line">        <span class="keyword">if</span> arr[i-<span class="number">1</span>] &gt; arr[i]:</span><br><span class="line">            dp0 = dp1 + <span class="number">1</span></span><br><span class="line">            dp1 = <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> arr[i-<span class="number">1</span>] &lt; arr[i]:</span><br><span class="line">            dp1 = dp0 + <span class="number">1</span></span><br><span class="line">            dp0 = <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            dp0 = dp1 = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        res = <span class="built_in">max</span>(res, dp0)</span><br><span class="line">        res = <span class="built_in">max</span>(res, dp1)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：<span
-class="math display">\[O(n)\]</span>，遍历一遍数组。</li>
-<li>空间复杂度：<span
-class="math display">\[O(1)\]</span>，只需要维护dp0和dp1两个变量。</li>
 </ul>
 
       
@@ -1597,14 +1678,14 @@ class="math display">\[O(1)\]</span>，只需要维护dp0和dp1两个变量。</
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">236</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1664,7 +1745,7 @@ class="math display">\[O(1)\]</span>，只需要维护dp0和dp1两个变量。</
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">577k</span>
+    <span title="Symbols count total">578k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>

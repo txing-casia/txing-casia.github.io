@@ -198,6 +198,269 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/16/2021-07-16-Reinforcement%20Learning%20-%20On%20Learning%20Intrinsic%20Rewards%20for%20Policy%20Gradient%20Methods/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/16/2021-07-16-Reinforcement%20Learning%20-%20On%20Learning%20Intrinsic%20Rewards%20for%20Policy%20Gradient%20Methods/" class="post-title-link" itemprop="url">Reinforcement Learning | On Learning Intrinsic Rewards for Policy Gradient Methods</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-07-16 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-16T00:00:00+08:00">2021-07-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>5.4k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>5 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="on-learning-intrinsic-rewards-for-policy-gradient-methods">On
+Learning Intrinsic Rewards for Policy Gradient Methods</h1>
+<p>论文链接：https://dl.acm.org/doi/pdf/10.5555/3327345.3327375</p>
+<h2 id="主要内容">主要内容</h2>
+<ul>
+<li>本文提出基于 <strong>optimal reward framework</strong> [Singh et
+al., 2010] 的本质奖励学习方法，并和 PPO 算法（Mujoco）结合</li>
+</ul>
+<p>Satinder Singh, Richard L Lewis, Andrew G Barto, and Jonathan Sorg.
+Intrinsically motivated reinforcement learning: An evolutionary
+perspective. IEEE Transactions on Autonomous Mental Development,
+2(2):70–82, 2010.</p>
+<ul>
+<li>在一些游戏场景中缺少清晰的奖励函数选择方式。有时候存在多个目标，最小化能量消耗，最大化吞吐量，最小化延时等（minimizing
+energy consumption and maximizing throughput and minimizing
+latency）</li>
+<li>早期的工作证明了最优策略的奖励函数并不唯一，例如使用一个势能函数（potential-based
+reward [Ng et al., 1999]）的奖励函数不会改变最优策略。</li>
+</ul>
+<p>Andrew Y Ng, Daishi Harada, and Stuart J Russell. Policy invariance
+under reward transformations: Theory and application to reward shaping.
+In Proceedings of the Sixteenth International Conference on Machine
+Learning, pages 278–287. Morgan Kaufmann Publishers Inc., 1999.</p>
+<ul>
+<li><p>另一方面，由于实际任务中的各种限制（e.g., inadequate memory,
+representational capacity, computation, training data,
+etc.），智能体很难学习到最优策略。因此，在解决奖励设计问题时，希望设计能改变最优策略的奖励函数变换方式。</p></li>
+<li><p>构造奖励函数的好处：</p>
+<ul>
+<li>比原始的奖励函数更少的稀疏性，加快学习过程 [Rajeswaran et al.,
+2017]；</li>
+<li>帮助探索状态边界的区域，例如count-based reward
+鼓励探索很少探索到的区域 [Bellemare et al., 2016, Ostrovski et al.,
+2017, Tang et al., 2017]；</li>
+</ul></li>
+<li><p>相关的方法：</p>
+<ul>
+<li>preference elicitation</li>
+<li>inverse RL</li>
+<li>intrinsically motivated RL</li>
+<li>optimal rewards</li>
+<li>potentialbased shaping rewards</li>
+<li>more general reward shaping</li>
+<li>mechanism design</li>
+</ul></li>
+<li><p>主要贡献：</p>
+<ul>
+<li>基于策略梯度的方法推导intrinsic rewards学习方法，并与
+task-specifying (hereafter extrinsic) reward
+相结合，最大化外部奖励。</li>
+<li>内部和外部奖励之和的参数通过策略梯度方法更新训练</li>
+</ul></li>
+<li><p>使用本质奖励的主要原因是对RL
+agent的训练都是有限的（表征能力，可得到的数据，计算能力限制等等），通过集合内部奖励可以环节这些限制。The
+main intuition is that in practice all RL agents are bounded
+(computationally, representationally, in terms of data availability,
+etc.) and the optimal intrinsic reward can help mitigate these
+bounds.</p></li>
+</ul>
+<h3 id="background-and-related-work">Background and Related Work</h3>
+<ul>
+<li><p><strong>Optimal rewards and reward design</strong></p>
+<p>Sorg et al.
+[2010]提出了PGRD算法，这是一种可扩展的算法，仅适用于基于前瞻搜索(例如，UCT)的规划agent(因此agent本身不是基于学习的agent；只学习与固定规划者一起使用的奖励)。Sorg
+et al. [2010] introduced PGRD (Policy Gradient for Reward Design), a
+scalable algorithm that only works with lookahead-search (e.g., UCT)
+based planning agents (and hence the agent itself is not a
+learning-based agent; only the reward to use with the fixed planner is
+learned).</p></li>
+<li><p><strong>Reward shaping and Auxiliary rewards</strong></p>
+<ul>
+<li><p>Reward shaping [Ng et al.,
+1999]提供了一个一般性的答案，说明什么样的奖励函数修改空间不会改变最优策略，特别是基于势能的奖励函数。Reward
+shaping [Ng et al., 1999] provides a general answer to what space of
+reward function modifications do not change the optimal policy,
+specifically potential-based rewards.</p></li>
+<li><p>The <strong>UNREAL</strong> agent <strong>[Jaderberg et al.,
+2016]</strong> used pseudo-reward computed from unsupervised auxiliary
+tasks to refine its internal representations.</p>
+<p>Max Jaderberg, Volodymyr Mnih, Wojciech Marian Czarnecki, Tom Schaul,
+Joel Z Leibo, David Silver, and Koray Kavukcuoglu. Reinforcement
+learning with unsupervised auxiliary tasks. arXiv preprint
+arXiv:1611.05397, 2016.</p></li>
+<li><p>In <strong>Bellemare et al. [2016]</strong>, <strong>Ostrovski et
+al. [2017]</strong>, and <strong>Tang et al. [2017]</strong>, a
+pseudo-count based reward bonus was given to the agent to encourage
+exploration</p></li>
+<li><p><strong>Pathak et al. [2017]</strong> used self-supervised
+prediction errors as intrinsic rewards to help the agent
+explore.</p></li>
+<li><p>本文的主要出发点是学习本质奖励，使其能够映射高维的观测和行为到奖励中。The
+main departure point in this paper is that we learn the parameters of an
+intrinsic reward function that maps high-dimensional observations and
+actions to rewards.</p></li>
+</ul></li>
+<li><p><strong>Hierarchical RL</strong></p>
+<ul>
+<li>另一类的的本质奖励在分层强化学习中使用，比如FeUdal
+Network通过manager和worker在不同时间尺度尽心学习，manager学习抽象的目标指挥worker最大化外部奖励</li>
+<li>Finally, another difference is that hierarchical RL typically treats
+the lower-level learner as a black box while we train the intrinsic
+reward using gradients through the policy module in our
+architecture.</li>
+</ul></li>
+<li><p><strong>Meta Learning for RL</strong></p>
+<ul>
+<li>这篇工作也可以被当做meta-RL方向的工作</li>
+<li>与之前工作的区别：在单个任务中元学习到内部奖励，而不是快速适应新的任务。However,
+a key distinction from the prior work on meta learning for RL [Finn et
+al., 2017, Duan et al., 2017, Wang et al., 2016, Duan et al., 2016b] is
+that our method aims to meta-learn intrinsic rewards within a single
+task, whereas much of the prior work is designed to quickly adapt to new
+tasks in a few-shot learning scenario.</li>
+</ul></li>
+</ul>
+<h3
+id="gradient-based-learning-of-intrinsic-rewards-a-derivation">Gradient-Based
+Learning of Intrinsic Rewards: A Derivation</h3>
+<h4 id="policy-gradient-based-rl">Policy Gradient based RL</h4>
+<ul>
+<li><p>The value of a policy <span
+class="math display">\[J(\theta)=E[\sum^{\infty}_{t=0}
+\gamma^tr_t]\]</span></p></li>
+<li><p>the gradient of the value <span
+class="math display">\[J(\theta)\]</span> is <span
+class="math display">\[
+\nabla_{\theta} J(\theta)=E_{\theta}[G(s_t,a_t) \nabla_{\theta} \log
+\pi_{\theta}(a_t|s_t)]\\
+G(s_t,a_t)=\sum^{\infty}_{i=t} \gamma^{i-t}r_i
+\]</span> G是到终点为止的return</p></li>
+</ul>
+<h4 id="lirpg-learning-intrinsic-rewards-for-policy-gradient">LIRPG:
+Learning Intrinsic Rewards for Policy Gradient</h4>
+<figure>
+<img src="\images\20210719-1.png"
+alt="Learning Intrinsic Rewards for Policy Gradient" />
+<figcaption aria-hidden="true">Learning Intrinsic Rewards for Policy
+Gradient</figcaption>
+</figure>
+<figure>
+<img src="\images\20210719-2.png"
+alt="Algorithm 1 LIRPG: Learning Intrinsic Reward for Policy Gradient" />
+<figcaption aria-hidden="true">Algorithm 1 LIRPG: Learning Intrinsic
+Reward for Policy Gradient</figcaption>
+</figure>
+<ul>
+<li><p><strong>Updating Policy Parameters (θ)</strong></p>
+<p>使用内部和外部奖励之和来更新 <span
+class="math display">\[\theta\]</span> <span class="math display">\[
+\begin{align}
+\theta&#39;&amp;=\theta+\alpha\nabla_{\theta} J^{ex+in}(\theta)\\
+&amp;\approx \theta +\alpha G^{ex+in}(s_t,a_t) \nabla_{\theta} \log
+\pi_{\theta}(a_t|s_t)
+\end{align}
+\]</span></p></li>
+<li><p><strong>Updating Intrinsic Reward Parameters
+(η)</strong></p></li>
+</ul>
+<p>Given an episode and the updated policy parameters <span
+class="math display">\[\theta&#39;\]</span> , we update intrinsic reward
+parameters. <span class="math display">\[
+\begin{align}
+\nabla_{\eta}
+J^{ex}&amp;=\nabla_{\theta&#39;}J^{ex}\nabla_{\eta}\theta&#39;\\
+\nabla_{\theta&#39;}J^{ex} &amp;\approx G^{ex}(s_t,a_t)
+\nabla_{\theta&#39;}\log \pi_{\theta&#39;}(a_t \mid s_t)\\
+\nabla_{\eta} \theta&#39; &amp; =\nabla_{\eta}(\theta+\alpha
+G^{ex+in}(s_t,a_t)\nabla_{\theta}\log \pi_{\theta}(a_t|s_t))\\
+&amp;= \nabla_{\eta}(\alpha G^{ex+in}(s_t,a_t) \nabla_{\theta}\log
+\pi_{\theta}(a_t|s_t)))\\
+&amp;= \nabla_{\eta}(\alpha \lambda G^{in}(s_t,a_t) \nabla_{\theta}\log
+\pi_{\theta}(a_t|s_t)))\\
+&amp;= \alpha \lambda \sum^{\infty}_{i=t} \gamma^{i-t}\nabla_{\eta}
+r^{in}_{\eta}(s_i,a_i)\nabla_{\theta} \log \pi_{\theta}(a_t\mid s_t)
+\end{align}
+\]</span> The importance sampling: <span class="math display">\[
+\nabla_{\theta&#39;}
+J^{ex}=G^{ex}(s_t,a_t)\frac{\nabla_{\theta&#39;}\pi_{\theta&#39;}(a_t\mid
+s_t)}{\pi_{\theta}(a_t\mid s_t)}\\
+\]</span>
+重要性采样就是假设数据属于p(x)分布，但是实际采样是以q(x)分布采样的，需要乘以一个权重，把数据转换到p(x)分布，也就是重要性权重。</p>
+<h2 id="总结">总结</h2>
+<p>整个工作还是很漂亮的，尤其的这两层的梯度推导（需要结合途中公式和文本中的公式来看）。后面考虑再看几篇本质reward的文章，看看还有什么构造方式。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/14/2021-07-14-Reinforcement%20Learning%20-%20Hierarchical%20Deep%20Reinforcement%20Learning%20Integrating%20Temporal%20Abstraction%20and%20Intrinsic%20Motivation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -223,6 +486,15 @@
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2021-07-14 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-14T00:00:00+08:00">2021-07-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
             </span>
 
           <br>
@@ -375,6 +647,15 @@ f_{t&#39;}+\gamma \max_{g&#39;}Q_2^*(s_{t+N},g&#39;)\Big]
 
               <time title="Created: 2021-07-13 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-13T00:00:00+08:00">2021-07-13</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -465,7 +746,7 @@ O，我们将其修改为字母 X。</li>
 <p><strong>深度优先搜索：</strong></p>
 <p>我们可以使用深度优先搜索实现标记操作。在下面的代码中，我们把标记过的字母
 <code>O</code> 修改为字母 <code>A</code>。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">solve</span>(<span class="params">self, board</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Do not return anything, modify board in-place instead.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> board:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        n, m = <span class="built_in">len</span>(board), <span class="built_in">len</span>(board[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">x, y</span>):</span><br><span class="line">            <span class="comment"># 如果board[x][y]不是位于矩阵边框，且字符为&#x27;x&#x27;，则返回为空</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> <span class="number">0</span> &lt;= x &lt; n <span class="keyword">or</span> <span class="keyword">not</span> <span class="number">0</span> &lt;= y &lt; m <span class="keyword">or</span> board[x][y] != <span class="string">&#x27;O&#x27;</span>:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="comment"># 对于位于矩阵边框，且字符为&#x27;0&#x27;的元素</span></span><br><span class="line">            board[x][y] = <span class="string">&quot;A&quot;</span></span><br><span class="line">            dfs(x + <span class="number">1</span>, y)</span><br><span class="line">            dfs(x - <span class="number">1</span>, y)</span><br><span class="line">            dfs(x, y + <span class="number">1</span>)</span><br><span class="line">            dfs(x, y - <span class="number">1</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 检测边框</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            dfs(i, <span class="number">0</span>)</span><br><span class="line">            dfs(i, m - <span class="number">1</span>)</span><br><span class="line">        <span class="comment"># 检测边框</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m - <span class="number">1</span>):</span><br><span class="line">            dfs(<span class="number">0</span>, i)</span><br><span class="line">            dfs(n - <span class="number">1</span>, i)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">                <span class="keyword">if</span> board[i][j] == <span class="string">&quot;A&quot;</span>:</span><br><span class="line">                    board[i][j] = <span class="string">&quot;O&quot;</span></span><br><span class="line">                <span class="keyword">elif</span> board[i][j] == <span class="string">&quot;O&quot;</span>:</span><br><span class="line">                    board[i][j] = <span class="string">&quot;X&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="comment"># [[&quot;X&quot;]] </span></span><br><span class="line">    <span class="comment"># [[&quot;X&quot;,&quot;X&quot;,&quot;X&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;O&quot;,&quot;O&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;X&quot;,&quot;O&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;O&quot;,&quot;X&quot;,&quot;X&quot;]]</span></span><br><span class="line">    board = [[<span class="string">&quot;X&quot;</span>,<span class="string">&quot;X&quot;</span>,<span class="string">&quot;X&quot;</span>,<span class="string">&quot;X&quot;</span>],[<span class="string">&quot;X&quot;</span>,<span class="string">&quot;O&quot;</span>,<span class="string">&quot;O&quot;</span>,<span class="string">&quot;X&quot;</span>],[<span class="string">&quot;X&quot;</span>,<span class="string">&quot;X&quot;</span>,<span class="string">&quot;O&quot;</span>,<span class="string">&quot;X&quot;</span>],[<span class="string">&quot;X&quot;</span>,<span class="string">&quot;O&quot;</span>,<span class="string">&quot;X&quot;</span>,<span class="string">&quot;X&quot;</span>]]</span><br><span class="line">    solution=Solution().solve(board)</span><br><span class="line">    <span class="built_in">print</span>(board)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">solve</span>(<span class="params">self, board</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Do not return anything, modify board in-place instead.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> board:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        n, m = <span class="built_in">len</span>(board), <span class="built_in">len</span>(board[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">x, y</span>):</span><br><span class="line">            <span class="comment"># 如果board[x][y]不是位于矩阵边框，且字符为&#x27;x&#x27;，则返回为空</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> <span class="number">0</span> &lt;= x &lt; n <span class="keyword">or</span> <span class="keyword">not</span> <span class="number">0</span> &lt;= y &lt; m <span class="keyword">or</span> board[x][y] != <span class="string">&#x27;O&#x27;</span>:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="comment"># 对于位于矩阵边框，且字符为&#x27;0&#x27;的元素</span></span><br><span class="line">            board[x][y] = <span class="string">&quot;A&quot;</span></span><br><span class="line">            dfs(x + <span class="number">1</span>, y)</span><br><span class="line">            dfs(x - <span class="number">1</span>, y)</span><br><span class="line">            dfs(x, y + <span class="number">1</span>)</span><br><span class="line">            dfs(x, y - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 检测边框</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            dfs(i, <span class="number">0</span>)</span><br><span class="line">            dfs(i, m - <span class="number">1</span>)</span><br><span class="line">        <span class="comment"># 检测边框</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m - <span class="number">1</span>):</span><br><span class="line">            dfs(<span class="number">0</span>, i)</span><br><span class="line">            dfs(n - <span class="number">1</span>, i)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">                <span class="keyword">if</span> board[i][j] == <span class="string">&quot;A&quot;</span>:</span><br><span class="line">                    board[i][j] = <span class="string">&quot;O&quot;</span></span><br><span class="line">                <span class="keyword">elif</span> board[i][j] == <span class="string">&quot;O&quot;</span>:</span><br><span class="line">                    board[i][j] = <span class="string">&quot;X&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="comment"># [[&quot;X&quot;]]</span></span><br><span class="line">    <span class="comment"># [[&quot;X&quot;,&quot;X&quot;,&quot;X&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;O&quot;,&quot;O&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;X&quot;,&quot;O&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;O&quot;,&quot;X&quot;,&quot;X&quot;]]</span></span><br><span class="line">    board = [[<span class="string">&quot;X&quot;</span>,<span class="string">&quot;X&quot;</span>,<span class="string">&quot;X&quot;</span>,<span class="string">&quot;X&quot;</span>],[<span class="string">&quot;X&quot;</span>,<span class="string">&quot;O&quot;</span>,<span class="string">&quot;O&quot;</span>,<span class="string">&quot;X&quot;</span>],[<span class="string">&quot;X&quot;</span>,<span class="string">&quot;X&quot;</span>,<span class="string">&quot;O&quot;</span>,<span class="string">&quot;X&quot;</span>],[<span class="string">&quot;X&quot;</span>,<span class="string">&quot;O&quot;</span>,<span class="string">&quot;X&quot;</span>,<span class="string">&quot;X&quot;</span>]]</span><br><span class="line">    solution=Solution().solve(board)</span><br><span class="line">    <span class="built_in">print</span>(board)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li><strong>时间复杂度</strong>：<span class="math display">\[O(n \times
@@ -478,7 +759,7 @@ m)\]</span>，其中 n 和 m
 <h3 id="approach-2-广度优先搜索">Approach 2: 广度优先搜索</h3>
 <p>我们可以使用广度优先搜索实现标记操作。在下面的代码中，我们把标记过的字母
 <code>O</code> 修改为字母 <code>A</code>。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">solve_BFS</span>(<span class="params">self, board </span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Do not return anything, modify board in-place instead.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> board:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        n, m = <span class="built_in">len</span>(board), <span class="built_in">len</span>(board[<span class="number">0</span>])</span><br><span class="line">        <span class="comment"># 边框有&#x27;0&#x27;就放入队列</span></span><br><span class="line">        que = collections.deque()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">if</span> board[i][<span class="number">0</span>] == <span class="string">&quot;O&quot;</span>:</span><br><span class="line">                que.append((i, <span class="number">0</span>))</span><br><span class="line">            <span class="keyword">if</span> board[i][m - <span class="number">1</span>] == <span class="string">&quot;O&quot;</span>:</span><br><span class="line">                que.append((i, m - <span class="number">1</span>))</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m - <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> board[<span class="number">0</span>][i] == <span class="string">&quot;O&quot;</span>:</span><br><span class="line">                que.append((<span class="number">0</span>, i))</span><br><span class="line">            <span class="keyword">if</span> board[n - <span class="number">1</span>][i] == <span class="string">&quot;O&quot;</span>:</span><br><span class="line">                que.append((n - <span class="number">1</span>, i))</span><br><span class="line">        <span class="comment"># 队列中的每个元素标记为&#x27;A&#x27;</span></span><br><span class="line">        <span class="keyword">while</span> que:</span><br><span class="line">            x, y = que.popleft()</span><br><span class="line">            board[x][y] = <span class="string">&quot;A&quot;</span></span><br><span class="line">        <span class="comment"># 检测周围的4个点是否为非边框，且值为&#x27;0&#x27;，如果是，则加入队列</span></span><br><span class="line">            <span class="keyword">for</span> mx, my <span class="keyword">in</span> [(x - <span class="number">1</span>, y), (x + <span class="number">1</span>, y), (x, y - <span class="number">1</span>), (x, y + <span class="number">1</span>)]:</span><br><span class="line">                <span class="keyword">if</span> <span class="number">0</span> &lt;= mx &lt; n <span class="keyword">and</span> <span class="number">0</span> &lt;= my &lt; m <span class="keyword">and</span> board[mx][my] == <span class="string">&quot;O&quot;</span>:</span><br><span class="line">                    que.append((mx, my))</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">                <span class="keyword">if</span> board[i][j] == <span class="string">&quot;A&quot;</span>:</span><br><span class="line">                    board[i][j] = <span class="string">&quot;O&quot;</span></span><br><span class="line">                <span class="keyword">elif</span> board[i][j] == <span class="string">&quot;O&quot;</span>:</span><br><span class="line">                    board[i][j] = <span class="string">&quot;X&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">solve_BFS</span>(<span class="params">self, board </span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Do not return anything, modify board in-place instead.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> board:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        n, m = <span class="built_in">len</span>(board), <span class="built_in">len</span>(board[<span class="number">0</span>])</span><br><span class="line">        <span class="comment"># 边框有&#x27;0&#x27;就放入队列</span></span><br><span class="line">        que = collections.deque()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">if</span> board[i][<span class="number">0</span>] == <span class="string">&quot;O&quot;</span>:</span><br><span class="line">                que.append((i, <span class="number">0</span>))</span><br><span class="line">            <span class="keyword">if</span> board[i][m - <span class="number">1</span>] == <span class="string">&quot;O&quot;</span>:</span><br><span class="line">                que.append((i, m - <span class="number">1</span>))</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m - <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> board[<span class="number">0</span>][i] == <span class="string">&quot;O&quot;</span>:</span><br><span class="line">                que.append((<span class="number">0</span>, i))</span><br><span class="line">            <span class="keyword">if</span> board[n - <span class="number">1</span>][i] == <span class="string">&quot;O&quot;</span>:</span><br><span class="line">                que.append((n - <span class="number">1</span>, i))</span><br><span class="line">        <span class="comment"># 队列中的每个元素标记为&#x27;A&#x27;</span></span><br><span class="line">        <span class="keyword">while</span> que:</span><br><span class="line">            x, y = que.popleft()</span><br><span class="line">            board[x][y] = <span class="string">&quot;A&quot;</span></span><br><span class="line">        <span class="comment"># 检测周围的4个点是否为非边框，且值为&#x27;0&#x27;，如果是，则加入队列</span></span><br><span class="line">            <span class="keyword">for</span> mx, my <span class="keyword">in</span> [(x - <span class="number">1</span>, y), (x + <span class="number">1</span>, y), (x, y - <span class="number">1</span>), (x, y + <span class="number">1</span>)]:</span><br><span class="line">                <span class="keyword">if</span> <span class="number">0</span> &lt;= mx &lt; n <span class="keyword">and</span> <span class="number">0</span> &lt;= my &lt; m <span class="keyword">and</span> board[mx][my] == <span class="string">&quot;O&quot;</span>:</span><br><span class="line">                    que.append((mx, my))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">                <span class="keyword">if</span> board[i][j] == <span class="string">&quot;A&quot;</span>:</span><br><span class="line">                    board[i][j] = <span class="string">&quot;O&quot;</span></span><br><span class="line">                <span class="keyword">elif</span> board[i][j] == <span class="string">&quot;O&quot;</span>:</span><br><span class="line">                    board[i][j] = <span class="string">&quot;X&quot;</span></span><br></pre></td></tr></table></figure>
 <p><strong>复杂度分析</strong></p>
 <ul>
 <li><strong>时间复杂度</strong>：<span class="math display">\[O(n \times
@@ -532,6 +813,15 @@ m)\]</span>，其中 n 和 m
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2021-07-12 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-12T00:00:00+08:00">2021-07-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
             </span>
 
           <br>
@@ -769,6 +1059,15 @@ network，输入的高维特征类比于输入的图像信息。</p>
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2021-07-08 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-08T00:00:00+08:00">2021-07-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
             </span>
 
           <br>
@@ -1033,6 +1332,15 @@ with code找出来看看，估计会比FuN的结构的HRL更容易复现吧。</
 
               <time title="Created: 2021-07-06 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-06T00:00:00+08:00">2021-07-06</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -1167,6 +1475,15 @@ Q(s,o)\leftarrow Q(s,o)+\alpha[r+\gamma^k \max_{a\in O} Q(s,a)-Q(s,o)]
 
               <time title="Created: 2021-07-05 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-05T00:00:00+08:00">2021-07-05</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -1240,7 +1557,7 @@ False。</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入多行字符串转换为二维矩阵</span></span><br><span class="line">num=<span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line"><span class="comment"># 创建已知大小的二维矩阵</span></span><br><span class="line">T = [[<span class="number">0</span>]*num <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num)]</span><br><span class="line">i=<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">	<span class="comment"># 字符串分割！！！</span></span><br><span class="line">    T[i][:]=<span class="built_in">list</span>(<span class="string">&#x27;&#x27;</span>.join(line.strip().split()))</span><br><span class="line">    i+=<span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p>读入一个二维矩阵：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 读取字符举证</span></span><br><span class="line">a = []</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin: </span><br><span class="line">    a.append(line.split())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取数字矩阵</span></span><br><span class="line">a = []</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin: </span><br><span class="line">    a.append(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>,line.split())))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 读取字符举证</span></span><br><span class="line">a = []</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    a.append(line.split())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取数字矩阵</span></span><br><span class="line">a = []</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    a.append(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>,line.split())))</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">num = <span class="built_in">input</span>()</span><br><span class="line"><span class="comment"># print(&#x27; &#x27;.join(sorted(input().split())))</span></span><br><span class="line"><span class="comment"># 连续的数字不被拆开</span></span><br><span class="line"><span class="comment"># a= list(input().split()) # 可以不加list()</span></span><br><span class="line">a = <span class="built_in">input</span>().split()</span><br><span class="line"><span class="comment"># 去除字符串数组中多余的括号</span></span><br><span class="line">a[<span class="number">0</span>]=a[<span class="number">0</span>].replace(<span class="string">&#x27;[&#x27;</span>,<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">a[-<span class="number">1</span>]=a[-<span class="number">1</span>].replace(<span class="string">&#x27;]&#x27;</span>,<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">int</span>(a[<span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
 <ul>
 <li><strong>已知数据行数，已知每行长度</strong>：外加循环或者判断条件</li>
@@ -1258,7 +1575,7 @@ False。</li>
 <p>下面给出了几个输入输出案例（包括<strong>数字</strong>和<strong>字符串</strong>部分）：</p>
 <h3 id="ab1">1. A+B(1)</h3>
 <p>输入包括两个正整数a,b(1 &lt;= a, b &lt;= 10^9),输入数据包括多组。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        a,b = <span class="built_in">map</span>(<span class="built_in">int</span>,<span class="built_in">input</span>().split(<span class="string">&#x27; &#x27;</span>))</span><br><span class="line">        <span class="comment"># a,b = map(int,input().split())</span></span><br><span class="line">        <span class="built_in">print</span>(a + b)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span> </span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        a,b = <span class="built_in">map</span>(<span class="built_in">int</span>,<span class="built_in">input</span>().split(<span class="string">&#x27; &#x27;</span>))</span><br><span class="line">        <span class="comment"># a,b = map(int,input().split())</span></span><br><span class="line">        <span class="built_in">print</span>(a + b)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
 <h3 id="ab2">2. A+B(2)</h3>
 <p>输入第一行包括一个数据组数t(1 &lt;= t &lt;= 100)
 接下来每行包括两个正整数a,b(1 &lt;= a, b &lt;= 10^9)</p>
@@ -1273,9 +1590,9 @@ False。</li>
 n &lt;= 100), n为0的时候结束输入。
 接下来n个正整数,即需要求和的每个正整数。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        a = <span class="built_in">input</span>().split(<span class="string">&#x27; &#x27;</span>) <span class="comment"># a是字符数组</span></span><br><span class="line">        <span class="comment"># a = sys.stdin.readline().split(&#x27; &#x27;)</span></span><br><span class="line">        <span class="built_in">sum</span> = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">int</span>(a[<span class="number">0</span>]) != <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(a)):</span><br><span class="line">                <span class="built_in">sum</span> += <span class="built_in">int</span>(a[i])</span><br><span class="line">            <span class="built_in">print</span>(<span class="built_in">sum</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        a = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split())) <span class="comment"># a直接就是整数数组</span></span><br><span class="line">        <span class="keyword">if</span> a[<span class="number">0</span>] != <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="built_in">sum</span>(a[<span class="number">1</span>:]))</span><br><span class="line">        <span class="keyword">else</span>: </span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        a = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split())) <span class="comment"># a直接就是整数数组</span></span><br><span class="line">        <span class="keyword">if</span> a[<span class="number">0</span>] != <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="built_in">sum</span>(a[<span class="number">1</span>:]))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
 <p>使用sys库</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, line.strip().split()))[<span class="number">0</span>]!=<span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">sum</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, line.strip().split()[<span class="number">1</span>:])))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, line.strip().split()))[<span class="number">0</span>]!=<span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">sum</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, line.strip().split()[<span class="number">1</span>:])))</span><br></pre></td></tr></table></figure>
 <h3 id="ab5">5. A+B(5)</h3>
 <p>输入的第一行包括一个正整数t(1 &lt;= t &lt;= 100), 表示数据组数。
 接下来t行, 每行一组数据。 每行的第一个整数为整数的个数n(1 &lt;= n &lt;=
@@ -1287,12 +1604,12 @@ n &lt;= 100), n为0的时候结束输入。
 <p>输入数据有多组, 每行表示一组输入数据。
 每行的第一个整数为整数的个数n(1 &lt;= n &lt;= 100)。 接下来n个正整数,
 即需要求和的每个正整数。 每组数据输出求和的结果</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">sum</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, line.strip().split()[<span class="number">1</span>:])))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">sum</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, line.strip().split()[<span class="number">1</span>:])))</span><br></pre></td></tr></table></figure>
 <h3 id="ab7">7. A+B(7)</h3>
 <p>输入数据有多组, 每行表示一组输入数据。
 每行不定有n个整数，空格隔开。(1 &lt;= n &lt;= 100)。
 每组数据输出求和的结果</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">sum</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, line.strip().split())))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">sum</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, line.strip().split())))</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">sum</span>(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().strip().split()))))</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
 <h3 id="字符串排序1">8. 字符串排序(1)</h3>
 <p>输入有两行，第一行n 第二行是n个空格隔开的字符串
@@ -1366,6 +1683,15 @@ https://ac.nowcoder.com/acm/contest/5657#question
 
               <time title="Created: 2021-07-05 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-05T00:00:00+08:00">2021-07-05</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -1428,142 +1754,6 @@ class="math display">\[O(N)\]</span>，N是序列长度。</li>
 <li>空间复杂度：<span
 class="math display">\[O(1)\]</span>。常数个变量。</li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2021/07/01/2021-07-01-Reinforcement%20Learning%20-%20Hierarchical%20Deep%20Reinforcement%20Learning%20for%20Continuous%20Action%20Control/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/my_photo.jpg">
-      <meta itemprop="name" content="Txing">
-      <meta itemprop="description" content="泛用人形决战型机器人博士">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Txing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/01/2021-07-01-Reinforcement%20Learning%20-%20Hierarchical%20Deep%20Reinforcement%20Learning%20for%20Continuous%20Action%20Control/" class="post-title-link" itemprop="url">Reinforcement Learning | Hierarchical Deep Reinforcement Learning for Continuous Action Control</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-07-01 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-01T00:00:00+08:00">2021-07-01</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.9k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1
-id="hierarchical-deep-reinforcement-learning-for-continuous-action-control">Hierarchical
-Deep Reinforcement Learning for Continuous Action Control</h1>
-<p>论文链接：https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=8310962&amp;tag=1</p>
-<h2 id="背景">背景</h2>
-<p>机器人连续行为空间的控制是一个难题，尤其是在应对复合任务的时候。</p>
-<ul>
-<li>In addition, many works introduced linear function approximations to
-enhance the generalization ability of algorithms [5], [6] to handle more
-complex environments.</li>
-<li>Moreover, learning agents also need to consider many physical
-factors to keep the robot moving smoothly</li>
-</ul>
-<h2 id="主要内容">主要内容</h2>
-<ul>
-<li><p>hierarchical-deep deterministic policy gradient (h-DDPG)</p></li>
-<li><p>第一层使用多个actor网络学习基本技能，第二层学习复合的技能。</p></li>
-<li><p>Results show that the proposed algorithm can successfully learn
-high performance basic skills and compound skills simultaneously.
-Results also show that its performance in solving compound tasks in the
-three scenarios outperform discrete action deep reinforcement learning
-algorithm.</p></li>
-<li><p>Contributions:</p>
-<ul>
-<li><ol type="1">
-<li>learn multiple basic skills at the same time;</li>
-</ol></li>
-<li><ol start="2" type="1">
-<li>learn compound skills to solve compound tasks by reusing basic
-skills;</li>
-</ol></li>
-<li><ol start="3" type="1">
-<li>handle the above two kinds of skill learning within the same process
-and time scale.</li>
-</ol></li>
-</ul></li>
-<li><p>一些方法：</p>
-<ul>
-<li>deterministic policy gradients [18], [26], [27]</li>
-<li>stochastic policy gradients [28], [29]</li>
-<li>trust region policy optimization [30]</li>
-<li>Some work has also been done to integrate modelbased methods to
-accelerate learning in continuous action spaces [31]</li>
-</ul></li>
-<li><p>分层强化学习：</p>
-<ul>
-<li>Various works on hierarchical reinforcement learning exist [33],
-[34]</li>
-<li>including work considering deep architectures [35], [36]</li>
-<li>Work in <strong>[36]</strong> is focuses on finding the best
-hierarchical structure of the tasks with clustering methods, and is
-mainly concerned with how to decompose tasks</li>
-</ul></li>
-<li><p>Most recent work on deep hierarchical reinforcement learning can
-be found in [37] and [38].</p></li>
-<li><p>针对图像输入的DDPG，更改了conv网络的激活函数，思想来自the mlpconv
-layer。可以减少网络参数数量</p></li>
-<li><p>基本能力的定义：Basic tasks are fundamentally nontask specific
-and rather are tied to the physical capabilities of the robot, such as
-rotating a wheel or bending a joint to a specific direction.</p></li>
-<li><p>符合任务定义：Conversely, compound tasks are defined to be tasks
-that can only be achieved by combining different patterns.</p></li>
-</ul>
-<h2 id="总结">总结</h2>
-<p>这篇文章讲述并不是很清晰，也缺少理论证明，感觉最大的贡献就是使用了多个actor网络学习基础技能，但这个也是比较典型的分层强化学习思路，和option类似。</p>
 
       
     </div>
@@ -1650,14 +1840,14 @@ that can only be achieved by combining different patterns.</p></li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">236</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1717,7 +1907,7 @@ that can only be achieved by combining different patterns.</p></li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">577k</span>
+    <span title="Symbols count total">578k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
