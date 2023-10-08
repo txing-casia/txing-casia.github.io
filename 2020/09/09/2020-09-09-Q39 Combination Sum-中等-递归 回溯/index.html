@@ -30,7 +30,7 @@
 <meta property="og:description" content="Combination Sum Question  Given a set of candidate numbers (candidates) (without duplicates) and a target number (target), find all unique combinations in candidates where the candidate numbers">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-09-08T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-25T01:54:14.968Z">
+<meta property="article:modified_time" content="2023-10-08T14:28:39.187Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Algorithm">
@@ -230,6 +230,15 @@
 
               <time title="Created: 2020-09-09 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-09T00:00:00+08:00">2020-09-09</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -298,7 +307,7 @@ combine。递归的终止条件为 target &lt;= 0 或者 candidates
 个数，即执行 dfs(target - candidates[idx], combine,
 idx)，注意到每个数字可以被无限制重复选取，因此搜索的下标仍为 idx。</p>
 <p>更形象化地说，如果我们将整个搜索过程用一个树来表达，即如下图呈现，每次的搜索都会延伸出两个分叉，直到递归的终止条件，这样我们就能不重复且不遗漏地找到所有可行解：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">combinationSum2</span>(<span class="params">self, candidates, target</span>):</span><br><span class="line">        ans=[] <span class="comment"># 汇总可行解</span></span><br><span class="line">        temp=[] <span class="comment"># 存放当前解</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">recursion</span>(<span class="params">idx,<span class="built_in">sum</span></span>):</span><br><span class="line">            <span class="keyword">if</span> idx &gt;= <span class="built_in">len</span>(candidates) <span class="keyword">or</span> <span class="built_in">sum</span> &gt;= target: <span class="comment"># 判断合法，不合法则检测是否满足target；合法则继续迭代</span></span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">sum</span> - target == <span class="number">0</span>:</span><br><span class="line">                    ans.append(temp[:])</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            temp.append(candidates[idx])</span><br><span class="line">            recursion(idx, <span class="built_in">sum</span> + candidates[idx])</span><br><span class="line">            temp.pop() <span class="comment"># 删除最后一个元素</span></span><br><span class="line">            recursion(idx + <span class="number">1</span>, <span class="built_in">sum</span>)</span><br><span class="line">        recursion(<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    candidates = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">7</span>]</span><br><span class="line">    target = <span class="number">7</span></span><br><span class="line">    solution=Solution().combinationSum(candidates,target)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">combinationSum2</span>(<span class="params">self, candidates, target</span>):</span><br><span class="line">        ans=[] <span class="comment"># 汇总可行解</span></span><br><span class="line">        temp=[] <span class="comment"># 存放当前解</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">recursion</span>(<span class="params">idx,<span class="built_in">sum</span></span>):</span><br><span class="line">            <span class="keyword">if</span> idx &gt;= <span class="built_in">len</span>(candidates) <span class="keyword">or</span> <span class="built_in">sum</span> &gt;= target: <span class="comment"># 判断合法，不合法则检测是否满足target；合法则继续迭代</span></span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">sum</span> - target == <span class="number">0</span>:</span><br><span class="line">                    ans.append(temp[:])</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            temp.append(candidates[idx])</span><br><span class="line">            recursion(idx, <span class="built_in">sum</span> + candidates[idx])</span><br><span class="line">            temp.pop() <span class="comment"># 删除最后一个元素</span></span><br><span class="line">            recursion(idx + <span class="number">1</span>, <span class="built_in">sum</span>)</span><br><span class="line">        recursion(<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    candidates = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">7</span>]</span><br><span class="line">    target = <span class="number">7</span></span><br><span class="line">    solution=Solution().combinationSum(candidates,target)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h3 id="复杂度分析">复杂度分析</h3>
 <ul>
 <li>时间复杂度：<span class="math display">\[O(S)\]</span>，其中 S
@@ -423,13 +432,13 @@ Sum</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="n
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-count">56</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

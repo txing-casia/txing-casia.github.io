@@ -224,6 +224,15 @@
 
               <time title="Created: 2019-05-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-06T00:00:00+08:00">2019-05-06</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -344,6 +353,15 @@ for Jewels and Stones.</li>
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2019-05-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-06T00:00:00+08:00">2019-05-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
             </span>
 
           <br>
@@ -2902,6 +2920,15 @@ style="text-align: center;"><code>:small_red_triangle_down:</code></td>
 
               <time title="Created: 2019-05-05 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-05T00:00:00+08:00">2019-05-05</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -2975,7 +3002,7 @@ order <code>[0, 2, 4, ...]</code> then we know we need to put the
 smallest card in index <code>0</code>, the second smallest card in index
 <code>2</code>, the third smallest card in index <code>4</code>,
 etc.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">deckRevealedIncreasing</span>(<span class="params">self, deck</span>):</span><br><span class="line">        N = <span class="built_in">len</span>(deck)</span><br><span class="line">        index = collections.deque(<span class="built_in">range</span>(N))</span><br><span class="line">        ans = [<span class="literal">None</span>] * N</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> card <span class="keyword">in</span> <span class="built_in">sorted</span>(deck):</span><br><span class="line">            ans[index.popleft()] = card</span><br><span class="line">            <span class="keyword">if</span> index:</span><br><span class="line">                index.append(index.popleft())</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    A = [<span class="number">17</span>,<span class="number">13</span>,<span class="number">11</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>]</span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.deckRevealedIncreasing(A)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">deque()是一种双向队列，同时具有队和栈的性质，可以旋转、移动等。具体用法如下</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">d = collections.deque([])</span></span><br><span class="line"><span class="string">d.append(&#x27;a&#x27;) # 在最右边添加一个元素，此时 d=deque(&#x27;a&#x27;)</span></span><br><span class="line"><span class="string">d.appendleft(&#x27;b&#x27;) # 在最左边添加一个元素，此时 d=deque([&#x27;b&#x27;, &#x27;a&#x27;])</span></span><br><span class="line"><span class="string">d.extend([&#x27;c&#x27;,&#x27;d&#x27;]) # 在最右边添加所有元素，此时 d=deque([&#x27;b&#x27;, &#x27;a&#x27;, &#x27;c&#x27;, &#x27;d&#x27;])</span></span><br><span class="line"><span class="string">d.extendleft([&#x27;e&#x27;,&#x27;f&#x27;]) # 在最左边添加所有元素，此时 d=deque([&#x27;f&#x27;, &#x27;e&#x27;, &#x27;b&#x27;, &#x27;a&#x27;, &#x27;c&#x27;, &#x27;d&#x27;])</span></span><br><span class="line"><span class="string">d.pop() # 将最右边的元素取出，返回 &#x27;d&#x27;，此时 d=deque([&#x27;f&#x27;, &#x27;e&#x27;, &#x27;b&#x27;, &#x27;a&#x27;, &#x27;c&#x27;])</span></span><br><span class="line"><span class="string">d.popleft() # 将最左边的元素取出，返回 &#x27;f&#x27;，此时 d=deque([&#x27;e&#x27;, &#x27;b&#x27;, &#x27;a&#x27;, &#x27;c&#x27;])</span></span><br><span class="line"><span class="string">d.rotate(-2) # 向左旋转两个位置（正数则向右旋转），此时 d=deque([&#x27;a&#x27;, &#x27;c&#x27;, &#x27;e&#x27;, &#x27;b&#x27;])</span></span><br><span class="line"><span class="string">d.count(&#x27;a&#x27;) # 队列中&#x27;a&#x27;的个数，返回 1</span></span><br><span class="line"><span class="string">d.remove(&#x27;c&#x27;) # 从队列中将&#x27;c&#x27;删除，此时 d=deque([&#x27;a&#x27;, &#x27;e&#x27;, &#x27;b&#x27;])</span></span><br><span class="line"><span class="string">d.reverse() # 将队列倒序，此时 d=deque([&#x27;b&#x27;, &#x27;e&#x27;, &#x27;a&#x27;])</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span>    </span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">deckRevealedIncreasing</span>(<span class="params">self, deck</span>):</span><br><span class="line">        N = <span class="built_in">len</span>(deck)</span><br><span class="line">        index = collections.deque(<span class="built_in">range</span>(N))</span><br><span class="line">        ans = [<span class="literal">None</span>] * N</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> card <span class="keyword">in</span> <span class="built_in">sorted</span>(deck):</span><br><span class="line">            ans[index.popleft()] = card</span><br><span class="line">            <span class="keyword">if</span> index:</span><br><span class="line">                index.append(index.popleft())</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    A = [<span class="number">17</span>,<span class="number">13</span>,<span class="number">11</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>]</span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.deckRevealedIncreasing(A)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">deque()是一种双向队列，同时具有队和栈的性质，可以旋转、移动等。具体用法如下</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">d = collections.deque([])</span></span><br><span class="line"><span class="string">d.append(&#x27;a&#x27;) # 在最右边添加一个元素，此时 d=deque(&#x27;a&#x27;)</span></span><br><span class="line"><span class="string">d.appendleft(&#x27;b&#x27;) # 在最左边添加一个元素，此时 d=deque([&#x27;b&#x27;, &#x27;a&#x27;])</span></span><br><span class="line"><span class="string">d.extend([&#x27;c&#x27;,&#x27;d&#x27;]) # 在最右边添加所有元素，此时 d=deque([&#x27;b&#x27;, &#x27;a&#x27;, &#x27;c&#x27;, &#x27;d&#x27;])</span></span><br><span class="line"><span class="string">d.extendleft([&#x27;e&#x27;,&#x27;f&#x27;]) # 在最左边添加所有元素，此时 d=deque([&#x27;f&#x27;, &#x27;e&#x27;, &#x27;b&#x27;, &#x27;a&#x27;, &#x27;c&#x27;, &#x27;d&#x27;])</span></span><br><span class="line"><span class="string">d.pop() # 将最右边的元素取出，返回 &#x27;d&#x27;，此时 d=deque([&#x27;f&#x27;, &#x27;e&#x27;, &#x27;b&#x27;, &#x27;a&#x27;, &#x27;c&#x27;])</span></span><br><span class="line"><span class="string">d.popleft() # 将最左边的元素取出，返回 &#x27;f&#x27;，此时 d=deque([&#x27;e&#x27;, &#x27;b&#x27;, &#x27;a&#x27;, &#x27;c&#x27;])</span></span><br><span class="line"><span class="string">d.rotate(-2) # 向左旋转两个位置（正数则向右旋转），此时 d=deque([&#x27;a&#x27;, &#x27;c&#x27;, &#x27;e&#x27;, &#x27;b&#x27;])</span></span><br><span class="line"><span class="string">d.count(&#x27;a&#x27;) # 队列中&#x27;a&#x27;的个数，返回 1</span></span><br><span class="line"><span class="string">d.remove(&#x27;c&#x27;) # 从队列中将&#x27;c&#x27;删除，此时 d=deque([&#x27;a&#x27;, &#x27;e&#x27;, &#x27;b&#x27;])</span></span><br><span class="line"><span class="string">d.reverse() # 将队列倒序，此时 d=deque([&#x27;b&#x27;, &#x27;e&#x27;, &#x27;a&#x27;])</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -3020,6 +3047,15 @@ etc.</p>
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2019-05-04 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-04T00:00:00+08:00">2019-05-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
             </span>
 
           <br>
@@ -3127,6 +3163,15 @@ answer. Then, we'll copy each entry of the matrix as appropriate.</p>
 
               <time title="Created: 2019-04-30 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-30T00:00:00+08:00">2019-04-30</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -3210,7 +3255,7 @@ diagonals.</p>
 it exists) is it's top-left neighbor. Thus, for the square
 <code>(r, c)</code>, we only need to check
 <code>r == 0 OR c == 0 OR matrix[r-1][c-1] == matrix[r][c]</code>.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isToeplitzMatrix</span>(<span class="params">self, matrix</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">all</span>(r == <span class="number">0</span> <span class="keyword">or</span> c == <span class="number">0</span> <span class="keyword">or</span> matrix[r-<span class="number">1</span>][c-<span class="number">1</span>] == val</span><br><span class="line">                   <span class="keyword">for</span> r, row <span class="keyword">in</span> <span class="built_in">enumerate</span>(matrix)</span><br><span class="line">                   <span class="keyword">for</span> c, val <span class="keyword">in</span> <span class="built_in">enumerate</span>(row))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># all(),相当于or的含义，括号中有元素就返回True，无元素返回False</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isToeplitzMatrix</span>(<span class="params">self, matrix</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">all</span>(r == <span class="number">0</span> <span class="keyword">or</span> c == <span class="number">0</span> <span class="keyword">or</span> matrix[r-<span class="number">1</span>][c-<span class="number">1</span>] == val</span><br><span class="line">                   <span class="keyword">for</span> r, row <span class="keyword">in</span> <span class="built_in">enumerate</span>(matrix)</span><br><span class="line">                   <span class="keyword">for</span> c, val <span class="keyword">in</span> <span class="built_in">enumerate</span>(row))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># all(),相当于or的含义，括号中有元素就返回True，无元素返回False</span></span><br></pre></td></tr></table></figure>
 <p>Runtime: 44 ms, faster than 98.04% of Python3 online submissions
 forToeplitz Matrix.</p>
 <p>Memory Usage: 13.1 MB, less than 6.86% of Python3 online submissions
@@ -3259,6 +3304,15 @@ for Toeplitz Matrix.</p>
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2019-04-29 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-29T00:00:00+08:00">2019-04-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
             </span>
 
           <br>
@@ -3408,6 +3462,15 @@ for Sum of Even Numbers After Queries.</li>
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2019-04-26 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-26T00:00:00+08:00">2019-04-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
             </span>
 
           <br>
@@ -3569,6 +3632,15 @@ equal.</p>
               <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2019-04-25 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-25T00:00:00+08:00">2019-04-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Code/" itemprop="url" rel="index"><span itemprop="name">Algorithm Code</span></a>
+                </span>
             </span>
 
           <br>
@@ -3778,13 +3850,13 @@ elements.)</li>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-count">56</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
