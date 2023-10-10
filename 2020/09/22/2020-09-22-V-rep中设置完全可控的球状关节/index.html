@@ -22,12 +22,12 @@
     var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="V-rep中设置完全可控的球状关节 背景 V-rep这软件好是好，就是功能太单一，一切都是对照现有工业机器人的功能进行设计的。因此，软件中无法实现可控的球状关节。  球关节：右键 - add - joint - spherical  双击关节图标，可以看到设置界面几乎就没有能设置的地方，该关节类型也被锁死，无法控制。 不仅如此，V-rep中，一个物体不能同时连接多余1个旋转关节。而且">
+  <meta name="description" content="V-rep这软件好是好，就是功能太单一，一切都是对照现有工业机器人的功能进行设计的。因此，软件中无法实现可控的球状关节。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="V-rep中设置完全可控的球状关节   ">
 <meta property="og:url" content="https://txing-casia.github.io/2020/09/22/2020-09-22-V-rep%E4%B8%AD%E8%AE%BE%E7%BD%AE%E5%AE%8C%E5%85%A8%E5%8F%AF%E6%8E%A7%E7%9A%84%E7%90%83%E7%8A%B6%E5%85%B3%E8%8A%82/index.html">
 <meta property="og:site_name" content="Txing">
-<meta property="og:description" content="V-rep中设置完全可控的球状关节 背景 V-rep这软件好是好，就是功能太单一，一切都是对照现有工业机器人的功能进行设计的。因此，软件中无法实现可控的球状关节。  球关节：右键 - add - joint - spherical  双击关节图标，可以看到设置界面几乎就没有能设置的地方，该关节类型也被锁死，无法控制。 不仅如此，V-rep中，一个物体不能同时连接多余1个旋转关节。而且">
+<meta property="og:description" content="V-rep这软件好是好，就是功能太单一，一切都是对照现有工业机器人的功能进行设计的。因此，软件中无法实现可控的球状关节。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://txing-casia.github.io/images/20200922-1.png">
 <meta property="og:image" content="https://txing-casia.github.io/images/20200922-2.png">
@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://txing-casia.github.io/images/20200922-5.png">
 <meta property="og:image" content="https://txing-casia.github.io/images/20200922-6.png">
 <meta property="article:published_time" content="2020-09-21T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-08T14:28:19.024Z">
+<meta property="article:modified_time" content="2023-10-10T11:23:54.032Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="V-rep">
 <meta name="twitter:card" content="summary">
@@ -90,7 +90,119 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -262,6 +374,7 @@
                 <span class="post-meta-item-text">Reading time &asymp;</span>
               <span>1 mins.</span>
             </span>
+            <div class="post-description">V-rep这软件好是好，就是功能太单一，一切都是对照现有工业机器人的功能进行设计的。因此，软件中无法实现可控的球状关节。</div>
 
         </div>
       </header>
@@ -272,8 +385,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1
-id="v-rep中设置完全可控的球状关节">V-rep中设置完全可控的球状关节</h1>
+        <h1 id="v-rep中设置完全可控的球状关节">V-rep中设置完全可控的球状关节</h1>
 <h2 id="背景">背景</h2>
 <p>V-rep这软件好是好，就是功能太单一，一切都是对照现有工业机器人的功能进行设计的。因此，软件中无法实现可控的球状关节。</p>
 <blockquote>
@@ -284,16 +396,16 @@ id="v-rep中设置完全可控的球状关节">V-rep中设置完全可控的球�
 <p>但真的就没有办法了吗？</p>
 <h3 id="plan-a-用小中介物体衔接">PLAN A: 用小中介物体衔接</h3>
 <p>该方法是利用三个分别平行于空间坐标轴的正交转动关节来构成球关节。尽管关节和关节之间不能直接连接，但我们可以设置比较小的中间介质来衔接不同的关节。</p>
-<p><img src="\images\20200922-1.png" /></p>
+<p><img src="\images\20200922-1.png"></p>
 <p>关节的层级结构如下：</p>
-<p><img src="\images\20200922-2.png" /></p>
+<p><img src="\images\20200922-2.png"></p>
 <p>下图中则是用两个球体衔接了3个关节，基本上实现了球关节的效果。准确地说是实现了一种“椭球”关节。</p>
 <p>但次方法还是存在缺点的。如果设置关节匀速转动会发现关节转动的角度和子物体转动的角度不一致（关节角度&gt;物体角度）。还容易造成关节中轴线的偏移等奇怪的情况。因此这个球关节只是“半可控”状态。</p>
 <h3 id="plan-b-修改中介物体属性">PLAN B: 修改中介物体属性</h3>
 <p>在后续的学习过程中逐渐接触到了关于物体属性的设置，其中有两项吸引力我的注意力。</p>
 <p>新建一个object，点开动力学设置，可以看到两个关键属性：Respondable 和
 Dynamic。</p>
-<p><img src="\images\20200922-3.png" /></p>
+<p><img src="\images\20200922-3.png"></p>
 <p>其中：</p>
 <ul>
 <li>Respondable:
@@ -304,10 +416,10 @@ Dynamic。</p>
 <p>注意上面标黑的关键字，你是否想到了我想到的东西？</p>
 <p><strong>Step 1:</strong>
 首先依然是搭建三个正交的转动关节，只不过这一次不用留出中介物体的空隙了。</p>
-<p><img src="\images\20200922-4.png" /></p>
+<p><img src="\images\20200922-4.png"></p>
 <p><strong>Step 2:</strong>
 可是这三个关节在功能上并没有连接上，现在我们添加中介物体。</p>
-<p><img src="\images\20200922-5.png" /></p>
+<p><img src="\images\20200922-5.png"></p>
 <p>在分层视图中，将中介物体拖到平行于z轴的关节下，设置物体的动力学为<strong>is
 not Respondable</strong>, <strong>Body is Dynamic</strong></p>
 <p>这样物体就通过平行于z轴的关节实现了与父物体的连接，并可以实现水平旋转，接下来设置第二个中介物体。</p>
@@ -322,7 +434,7 @@ not Respondable</strong>, <strong>Body is Dynamic</strong>。</p>
 <p>第一个关节本质上是带动中介物1转动，由于中介物2挂在中介物1下方，尽管中介物2是不可响应的静态物体，但也会受到父物体转动的影响，这相当于基坐标发生了改变。所以中介物2会受到关节1的控制。</p>
 <p>但此时中介物2已经不能再被其它关节控制了。我们在介物2所在的空间位置建立中介物3，并用关节2连接中介物2和3，中介物3是直接受到关节2控制的，但也会受中介物2运动的影响。</p>
 <p>这样一来，我们就实现了一个复合关节，接下来重复step3，建立好第三个关节，并把连杆放在第三个关节下。</p>
-<p><img src="\images\20200922-6.png" /></p>
+<p><img src="\images\20200922-6.png"></p>
 <p>这个关节中有4个中介物，并且是完全重合的，但由于设置了is not
 Respondable，因此不会受到碰撞的影响，而且还可以将这个关节放置在物体内部，也不会被排挤。</p>
 <p>至此，我们就完成了一个真正意义上的完全可控的球形关节！</p>
@@ -555,6 +667,59 @@ Respondable，因此不会受到碰撞的影响，而且还可以将这个关节
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

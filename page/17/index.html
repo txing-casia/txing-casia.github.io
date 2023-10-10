@@ -81,7 +81,119 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -259,101 +371,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="最长湍流子数组"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-turbulent-subarray/">978.
-最长湍流子数组</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>当 A 的子数组 A[i], A[i+1], ..., A[j]
-满足下列条件时，我们称其为湍流子数组：</p>
-<p>若 i &lt;= k &lt; j，当 k 为奇数时， A[k] &gt; A[k+1]，且当 k
-为偶数时，A[k] &lt; A[k+1]； 或 若 i &lt;= k &lt; j，当 k 为偶数时，A[k]
-&gt; A[k+1] ，且当 k 为奇数时， A[k] &lt; A[k+1]。
-也就是说，如果比较符号在子数组中的每个相邻元素对之间翻转，则该子数组是湍流子数组。</p>
-<p>返回 A 的最大湍流子数组的长度。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入：[9,4,2,10,7,8,8,1,9] 输出：5 解释：(A[1] &gt; A[2] &lt; A[3]
-&gt; A[4] &lt; A[5])</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>输入：[4,8,12,16] 输出：2</p>
-</blockquote>
-<blockquote>
-<p><strong>提示：</strong></p>
-<ul>
-<li>1 &lt;= A.length &lt;= 40000</li>
-<li>0 &lt;= A[i] &lt;= 10^9</li>
-</ul>
-</blockquote>
-<h3 id="approach-1-滑动窗口法">Approach 1: 滑动窗口法</h3>
-<p>本题目需要仔细考虑清楚集中边界条件的情况：</p>
-<ul>
-<li>左右边界相等；</li>
-<li>右边界元素等于右边界+1元素；</li>
-<li>右边界什么时候右移</li>
-<li>左边界什么时候右移，移动到哪个位置</li>
-</ul>
-<p>通过令边界left=right=0，设计一个滑动窗口，</p>
-<ul>
-<li>当左右边界相等时，此时子数组只包含一个元素，肯定是可以右边界右移的；</li>
-<li>当左右边界不相等时，如果右边界-1的元素、右边界元素、右边界+1的元素，三者满足<span
-class="math display">\[a&gt;b&lt;c\]</span>或者<span
-class="math display">\[a&lt;b&gt;c\]</span>时，右边界右移；</li>
-<li>当左右边界不相等时，如果右边界-1的元素、右边界元素、右边界+1的元素，三者不满足<span
-class="math display">\[a&gt;b&lt;c\]</span>或者<span
-class="math display">\[a&lt;b&gt;c\]</span>，则结束判断，left边界从right边界重新开始判断下一个子数组</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxTurbulenceSize</span>(<span class="params">self, arr</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(arr)</span><br><span class="line">        res = <span class="number">1</span></span><br><span class="line">        left,right=<span class="number">0</span>,<span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(right&lt;n-<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> left == right:</span><br><span class="line">                <span class="comment"># 右边界元素等于右边界+1的元素</span></span><br><span class="line">                <span class="keyword">if</span> arr[right] == arr[right+<span class="number">1</span>]:</span><br><span class="line">                    left+=<span class="number">1</span></span><br><span class="line">                right+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="comment"># 在扩展长度时候，只考虑验证右边界条件即可</span></span><br><span class="line">                <span class="keyword">if</span> (arr[right - <span class="number">1</span>] &lt; arr[right]) <span class="keyword">and</span> (arr[right] &gt; arr[right + <span class="number">1</span>]):</span><br><span class="line">                    right+=<span class="number">1</span></span><br><span class="line">                <span class="keyword">elif</span> (arr[right - <span class="number">1</span>] &gt; arr[right]) <span class="keyword">and</span> (arr[right] &lt; arr[right + <span class="number">1</span>]):</span><br><span class="line">                    right+=<span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                <span class="comment"># 右边界不符合条件则验证结束，将left右移，重新验证</span></span><br><span class="line">                    left = right</span><br><span class="line">            res = <span class="built_in">max</span>(res, right - left + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    inputs = [<span class="number">9</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">10</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">8</span>,<span class="number">1</span>,<span class="number">9</span>]</span><br><span class="line">    solution=Solution().maxTurbulenceSize(inputs)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：<span
-class="math display">\[O(n)\]</span>，窗口的左右端点最多各移动 n
-次。</li>
-<li>空间复杂度：<span
-class="math display">\[O(1)\]</span>，只需要维护常数额外空间。</li>
-</ul>
-<h3 id="approach-2-动态规划方法">Approach 2: 动态规划方法</h3>
-<p>也可以使用动态规划的方法计算最长湍流子数组的长度。</p>
-<p>利用二维数组记录相邻元素的信息：</p>
-<p><span
-class="math display">\[dp[i][0]\]</span>表示以arr[i]为结尾的，且<span
-class="math display">\[arr[i-1]&lt;arr[i]\]</span>的湍流子数组的最大长度。
-<span
-class="math display">\[dp[i][1]\]</span>表示以arr[i]为结尾的，且<span
-class="math display">\[arr[i-1]&lt;arr[i]\]</span>的湍流子数组的最大长度。
-每次记录湍流子数组应该从1开始，因为需要包含自身。 - 当<span
-class="math display">\[arr[i]&lt;arr[i-1]\]</span>时，湍流子数组长度为<span
-class="math display">\[dp[i][0]=dp[i-1][1]+1\]</span>，同时<span
-class="math display">\[dp[i][1]=1\]</span> - 当<span
-class="math display">\[arr[i]&gt;arr[i-1]\]</span>时，湍流子数组长度为<span
-class="math display">\[dp[i][1]=dp[i-1][0]+1\]</span>，同时<span
-class="math display">\[dp[i][0]=1\]</span> - 当<span
-class="math display">\[arr[i]=arr[i-1]\]</span>时，湍流子数组长度为<span
-class="math display">\[dp[i][0]=dp[i][1]=1\]</span> 最终，<span
-class="math display">\[dp\]</span>数组的最大值即为所求的答案。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">maxTurbulenceSize1</span>(<span class="params">self, arr</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    n = <span class="built_in">len</span>(arr)</span><br><span class="line">    dp = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>)] <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">    dp[<span class="number">0</span>][<span class="number">0</span>] = dp[<span class="number">0</span>][<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">if</span> arr[i-<span class="number">1</span>] &gt; arr[i]:</span><br><span class="line">            dp[i][<span class="number">0</span>] = dp[i-<span class="number">1</span>][<span class="number">1</span>] + <span class="number">1</span></span><br><span class="line">            dp[i][<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> arr[i-<span class="number">1</span>] &lt; arr[i]:</span><br><span class="line">            dp[i][<span class="number">1</span>] = dp[i-<span class="number">1</span>][<span class="number">0</span>] + <span class="number">1</span></span><br><span class="line">            dp[i][<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            dp[i][<span class="number">0</span>] = dp[i][<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    res = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        res = <span class="built_in">max</span>(res, dp[i][<span class="number">0</span>])</span><br><span class="line">        res = <span class="built_in">max</span>(res, dp[i][<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：<span
-class="math display">\[O(n)\]</span>，遍历一遍数组。</li>
-<li>空间复杂度：<span
-class="math display">\[O(n)\]</span>，只需要维护dp。</li>
-</ul>
-<p>其实还可以直接用两个变量<span
-class="math display">\[dp0\]</span>和<span
-class="math display">\[dp1\]</span>代替二维数组dp</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">maxTurbulenceSize2</span>(<span class="params">self, arr</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    n = <span class="built_in">len</span>(arr)</span><br><span class="line">    res = <span class="number">1</span></span><br><span class="line">    dp0 = dp1 = <span class="number">1</span></span><br><span class="line">    <span class="comment"># 注意要从1开始循环</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,n):</span><br><span class="line">        <span class="keyword">if</span> arr[i-<span class="number">1</span>] &gt; arr[i]:</span><br><span class="line">            dp0 = dp1 + <span class="number">1</span></span><br><span class="line">            dp1 = <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> arr[i-<span class="number">1</span>] &lt; arr[i]:</span><br><span class="line">            dp1 = dp0 + <span class="number">1</span></span><br><span class="line">            dp0 = <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            dp0 = dp1 = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        res = <span class="built_in">max</span>(res, dp0)</span><br><span class="line">        res = <span class="built_in">max</span>(res, dp1)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：<span
-class="math display">\[O(n)\]</span>，遍历一遍数组。</li>
-<li>空间复杂度：<span
-class="math display">\[O(1)\]</span>，只需要维护dp0和dp1两个变量。</li>
-</ul>
-
+          <p>Q978 最长湍流子数组-中等-动态规划</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -433,48 +454,10 @@ class="math display">\[O(1)\]</span>，只需要维护dp0和dp1两个变量。</
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="重新排列字符串"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shuffle-string/">1528.
-重新排列字符串</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>给你一个字符串 s 和一个 <strong>长度相同</strong> 的整数数组 indices
-。请你重新排列字符串 s ，其中第 i 个字符需要移动到 indices[i]
-指示的位置。返回重新排列后的字符串</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入：s = "codeleet", indices = [4,5,6,7,0,2,1,3] 输出："leetcode"
-解释：如图所示，"codeleet" 重新排列后变为 "leetcode" 。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>输入：s = "aiohn", indices = [3,1,4,2,0] 输出："nihao"</p>
-</blockquote>
-<blockquote>
-<p><strong>提示：</strong></p>
-<ul>
-<li>s.length == indices.length == n</li>
-<li>1 &lt;= n &lt;= 100</li>
-<li>s 仅包含小写英文字母。</li>
-<li>0 &lt;= indices[i] &lt; n</li>
-<li>indices 的所有的值都是唯一的（也就是说，indices 是整数 0 到 n - 1
-形成的一组排列）。</li>
-</ul>
-</blockquote>
-<h3 id="approach-1-编码排序">Approach 1: 编码排序</h3>
-<p>本题目的容易出现歧义，需要仔细对案例进行分析才能正确理解题目意思。</p>
-<p>本题目是先通过一种编码，把输入字符串中的每个字母对应上给定的序号。最后按照序号从小到大对字符串重排序。</p>
-<p>理解题目后，就比较简单了，这里尝试一下使用enumerate()，返回s中每个字符的下标和对应字符</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">restoreString</span>(<span class="params">self, s: <span class="built_in">str</span>, indices </span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        result = [<span class="string">&quot;&quot;</span>] * <span class="built_in">len</span>(s)</span><br><span class="line">        <span class="keyword">for</span> i, ch <span class="keyword">in</span> <span class="built_in">enumerate</span>(s):</span><br><span class="line">            result[indices[i]] = ch</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;&quot;</span>.join(result)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">restoreString1</span>(<span class="params">self, s: <span class="built_in">str</span>, indices </span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        res=[<span class="string">&#x27;&#x27;</span>]*<span class="built_in">len</span>(s)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(indices)):</span><br><span class="line">            res[indices[i]]=s[i]</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;&quot;</span>.join(res)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    s = <span class="string">&quot;codeleet&quot;</span></span><br><span class="line">    indices = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>]</span><br><span class="line">    solution=Solution().restoreString(s,indices)</span><br><span class="line">    solution=Solution().restoreString1(s,indices)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(n)，n是字符串长度，需要遍历一遍字符串</li>
-<li>空间复杂度：O(n)，n是字符串长度，只用申请一个长度为n的res数组。</li>
-</ul>
-<p>其实也可以尝试不用申请res数组，直接修改原字符串，把空间复杂度降到O(1)。不过Python中要先用
-s = list(s) 函数进行转化才能修改字符串。</p>
-
+          <p>Q1528 重新排列字符串-简单-编码排序</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -554,71 +537,10 @@ s = list(s) 函数进行转化才能修改字符串。</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="移动所有球到每个盒子所需的最小操作数"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-number-of-operations-to-move-all-balls-to-each-box/">1769.
-移动所有球到每个盒子所需的最小操作数</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>有 n 个盒子。给你一个长度为 n 的二进制字符串 boxes ，其中 boxes[i]
-的值为 '0' 表示第 i 个盒子是 空 的，而 boxes[i] 的值为 '1' 表示盒子里有
-一个 小球。</p>
-<p>在一步操作中，你可以将 一个
-小球从某个盒子移动到一个与之相邻的盒子中。第 i 个盒子和第 j
-个盒子相邻需满足 abs(i - j) == 1
-。注意，操作执行后，某些盒子中可能会存在不止一个小球。</p>
-<p>返回一个长度为 n 的数组 answer ，其中 answer[i] 是将所有小球移动到第
-i 个盒子所需的 最小 操作数。</p>
-<p>每个 answer[i] 都需要根据盒子的 初始状态 进行计算。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入：boxes = "110" 输出：[1,1,3]
-解释：每个盒子对应的最小操作数如下： 1) 第 1 个盒子：将一个小球从第 2
-个盒子移动到第 1 个盒子，需要 1 步操作。 2) 第 2 个盒子：将一个小球从第
-1 个盒子移动到第 2 个盒子，需要 1 步操作。 3) 第 3
-个盒子：将一个小球从第 1 个盒子移动到第 3 个盒子，需要 2
-步操作。将一个小球从第 2 个盒子移动到第 3 个盒子，需要 1 步操作。共计 3
-步操作。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>输入：boxes = "001011" 输出：[11,8,5,4,3,4]</p>
-</blockquote>
-<blockquote>
-<p><strong>提示：</strong></p>
-<ul>
-<li>n == boxes.length</li>
-<li>1 &lt;= n &lt;= 2000</li>
-<li>boxes[i] 为 '0' 或 '1'</li>
-</ul>
-</blockquote>
-<h3 id="approach-1-暴力方法">Approach 1: 暴力方法</h3>
-<p>题目的意思比较容易理解，可以直接求出每个球移动到第 i
-个格子的步数，形成一个二维数组，最后对这个数组每行求和获得答案。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minOperations</span>(<span class="params">self, boxes: <span class="built_in">str</span></span>):</span><br><span class="line">            stepnum = <span class="built_in">len</span>(boxes)</span><br><span class="line">            <span class="comment"># 浅拷贝创建二维数组，在赋值的时候，内存都指向同一位置，在赋值时会有问题</span></span><br><span class="line">            <span class="comment"># steps = [[0]*stepnum]*stepnum</span></span><br><span class="line">            <span class="comment"># 创建二维数组的正确方式</span></span><br><span class="line">            steps = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(stepnum)] <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(stepnum)]</span><br><span class="line">            ans=[]</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(stepnum):</span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(stepnum):</span><br><span class="line">                    <span class="keyword">if</span> boxes[j] == <span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">                        steps[i][j] = <span class="built_in">abs</span>(j-i)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(stepnum):</span><br><span class="line">                ans.append( <span class="built_in">sum</span>(steps[i][:]) )</span><br><span class="line">            <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">        s = <span class="string">&quot;codeleet&quot;</span></span><br><span class="line">        boxes = <span class="string">&quot;110&quot;</span></span><br><span class="line">        solution=Solution().minOperations(boxes)</span><br><span class="line">        <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">        main()</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：<span
-class="math display">\[O(n^2)\]</span>，n是盒子个数，需要有两重循环，在每个盒子都有球的情况下，计算量最大达到这个复杂度。空盒子可以减少复杂度。</li>
-<li>空间复杂度：<span
-class="math display">\[O(n^2)\]</span>，申请一个长度为nxn的数组。</li>
-</ul>
-<h2 id="approach-2-动态规划">Approach 2: 动态规划</h2>
-<p>方法2很取巧，利用一个for循环先统计第一个box右边有球盒子的个数。并且计算出所有球移动到第一个有球的盒子的移动次数dp[0]；</p>
-<p>在第二个for循环中遍历所有盒子，每个盒子所对应的最小移动步数可以通过以下形式计算：
-<span class="math display">\[
-dp[j]=dp[j-1]-right+left
-\]</span>
-接下来对右边的相邻盒子，相比刚刚的盒子，右边right个盒子都向左移动了一次（跑近了），总次数和刚刚的盒子相比减少right，左边n个盒子相比也向左移动了一次(跑远了)，总次数比刚刚的盒子增加left，所以这个盒子的操作个数是total-right+left。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minOperations1</span>(<span class="params">self, boxes: <span class="built_in">str</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        dp = [<span class="number">0</span>] * <span class="built_in">len</span>(boxes)</span><br><span class="line">        right = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(boxes)):</span><br><span class="line">            <span class="keyword">if</span> boxes[i] == <span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">                dp[<span class="number">0</span>] += i</span><br><span class="line">                right += <span class="number">1</span>   <span class="comment"># 当前及其右边的 1 的数量</span></span><br><span class="line"></span><br><span class="line">        left = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(boxes)):</span><br><span class="line">            <span class="keyword">if</span> boxes[j-<span class="number">1</span>] == <span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">                right -= <span class="number">1</span></span><br><span class="line">            dp[j] = dp[j-<span class="number">1</span>] - right + left</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：<span
-class="math display">\[O(n)\]</span>，n是盒子个数，在只有两个单层循环</li>
-<li>空间复杂度：<span
-class="math display">\[O(n)\]</span>，dp数组。</li>
-</ul>
-
+          <p>Q1769 移动所有球到每个盒子所需的最小操作数-中等-动态规划</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -698,51 +620,10 @@ class="math display">\[O(n)\]</span>，dp数组。</li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="分割平衡字符串"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/split-a-string-in-balanced-strings/">1221.
-分割平衡字符串</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>在一个 <strong>平衡字符串</strong> 中，'L' 和 'R'
-字符的数量是相同的。</p>
-<p>给你一个平衡字符串 s，请你将它分割成尽可能多的平衡字符串。</p>
-<p>返回可以通过分割得到的平衡字符串的 <strong>最大数量</strong> 。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入：s = "RLRRLLRLRL" 输出：4 解释：s 可以分割为
-"RL"、"RRLL"、"RL"、"RL" ，每个子字符串中都包含相同数量的 'L' 和 'R'
-。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>输入：s = "RLLLLRRRLR" 输出：3 解释：s 可以分割为
-"RL"、"LLLRRR"、"LR" ，每个子字符串中都包含相同数量的 'L' 和 'R' 。</p>
-</blockquote>
-<blockquote>
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= s.length &lt;= 1000</code></li>
-<li><code>s[i] = 'L' 或 'R'</code></li>
-<li><code>s</code> 是一个平衡字符串</li>
-<li>分割得到的每个字符串都必须是平衡字符串。</li>
-</ul>
-</blockquote>
-<h3 id="approach-1-前缀和">Approach 1: 前缀和</h3>
-<p>本题目的思路很简单，从以下几点分析：</p>
-<ul>
-<li>题目只考虑分割，意味着不打乱字母顺序，分割的序列必然上大序列的子序列；</li>
-<li>子序列不考虑是否要对称，因此自用考虑子序列内的字符数目相等；</li>
-<li>题目限定了字符串s中只包含“L”和“R”，所以不用考虑有意外的符号出现；</li>
-</ul>
-<p>代码如下，在for循环内考虑L与R个数相等时子序列个数加1：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">balancedStringSplit</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        res,L,R=<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(s)):</span><br><span class="line">            <span class="keyword">if</span> s[i] ==<span class="string">&#x27;L&#x27;</span>:</span><br><span class="line">                L+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> s[i]==<span class="string">&#x27;R&#x27;</span>:</span><br><span class="line">                R+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> L==R <span class="keyword">and</span> L!=<span class="number">0</span>:</span><br><span class="line">                res+=<span class="number">1</span></span><br><span class="line">                <span class="comment"># 如果s中不限定只包含字符LR，则需置零L和R</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    s = <span class="string">&quot;RLRRLLRLRL&quot;</span></span><br><span class="line">    solution=Solution().balancedStringSplit(s)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(n)，n是字符数量。</li>
-<li>空间复杂度：O(1)，只使用了几个变量。</li>
-</ul>
-
+          <p>Q1221 分割平衡字符串-简单-括号匹配</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -822,32 +703,10 @@ target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/split-a-st
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="剑指-offer-03.-数组中重复的数字"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/">剑指
-Offer 03. 数组中重复的数字</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>找出数组中重复的数字。</p>
-<p>在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1
-的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>输入： [2, 3, 1, 0, 2, 5, 3] 输出：2 或 3</p>
-</blockquote>
-<h3 id="approach-1-hash-table">Approach 1: Hash table</h3>
-<p>这道题目最直接的做法当然是在一个For循环中判断是否存在某个数字，将其移除后在判断一次。但是直接这样写会导致时间复杂度比较高，需要对执行判断这部分代码进行优化。</p>
-<p>最简单的应该就是使用 hash 表了，代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">findRepeatNumber</span>(<span class="params">self, nums</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        Hash=<span class="built_in">dict</span>()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">            <span class="keyword">if</span> nums[i] <span class="keyword">not</span> <span class="keyword">in</span> Hash:</span><br><span class="line">                Hash[nums[i]]=i</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> nums[i]</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 另一种方法</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">findRepeatNumber</span>(<span class="params">self, nums</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        temp_set = <span class="built_in">set</span>()</span><br><span class="line">        repeat = -<span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">            temp_set.add(nums[i])</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(temp_set) &lt; i + <span class="number">1</span>:</span><br><span class="line">                repeat = nums[i]</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">return</span> repeat</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    s = [<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">    solution=Solution().findRepeatNumber(s)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)</p>
-<p>遍历数组一遍。使用哈希集合（HashSet），添加元素的时间复杂度为
-O(1)，故总的时间复杂度是 O(n)。</p></li>
-<li><p>空间复杂度：O(n)</p>
-<p>不重复的每个元素都可能存入集合，因此占用 O(n) 额外空间。</p></li>
-</ul>
-
+          <p>JZOffer03-数组中重复的数字-简单-Hash Table</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -927,51 +786,10 @@ O(1)，故总的时间复杂度是 O(n)。</p></li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="range-sum-query---immutable"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/range-sum-query-immutable/">Range
-Sum Query - Immutable</a></h4>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given an integer array nums, find the sum of the elements between
-indices i and j (i ≤ j), inclusive.</p>
-<p>Implement the NumArray class:</p>
-<ul>
-<li>NumArray(int[] nums) Initializes the object with the integer array
-nums.</li>
-<li>int sumRange(int i, int j) Return the sum of the elements of the
-nums array in the range [i, j] inclusive (i.e., sum(nums[i], nums[i +
-1], ... , nums[j]))</li>
-</ul>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input ["NumArray", "sumRange", "sumRange", "sumRange"] [[[-2, 0, 3,
--5, 2, -1]], [0, 2], [2, 5], [0, 5]] Output [null, 1, -1, -3]</p>
-<p>Explanation NumArray numArray = new NumArray([-2, 0, 3, -5, 2, -1]);
-numArray.sumRange(0, 2); // return 1 ((-2) + 0 + 3) numArray.sumRange(2,
-5); // return -1 (3 + (-5) + 2 + (-1)) numArray.sumRange(0, 5); //
-return -3 ((-2) + 0 + 3 + (-5) + 2 + (-1))</p>
-</blockquote>
-<h3 id="approach-1-前缀和">Approach 1: 前缀和</h3>
-<p>这道题题目写得看不出重点，实际想考察的是在大量重复调用的情况下，怎么把时间复杂度降到最小<span
-class="math display">\[O(1)\]</span>。因此需要在初始化的时候就对数据进行预处理，计算出前<span
-class="math display">\[i\]</span>项和： <span class="math display">\[
-\begin{align}
-sumRange(i,j)&amp;=\sum_{k=i}^j nums[k]\\
-&amp;=\sum_{k=0}^j nums[k]-\sum_{k=0}^{i-1} nums[k]
-\end{align}
-\]</span></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">NumArray</span>:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>):</span><br><span class="line">        self.sums = [<span class="number">0</span>]</span><br><span class="line">        _sums = self.sums</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            _sums.append(_sums[-<span class="number">1</span>] + num)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sumRange</span>(<span class="params">self, i: <span class="built_in">int</span>, j: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        _sums = self.sums</span><br><span class="line">        <span class="keyword">return</span> _sums[j + <span class="number">1</span>] - _sums[i]</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：初始化 O(n)，每次检索 O(1)，其中 n 是数组 的长度。
-初始化需要遍历数组 计算前缀和，时间复杂度是 O(n)。
-每次检索只需要得到两个下标处的前缀和，然后计算差值，时间复杂度是
-O(1)。</p></li>
-<li><p>空间复杂度：O(n)，其中 n 是数组 的长度。需要创建一个长度为 n+1
-的前缀和数组。</p></li>
-</ul>
-
+          <p>Q303 Range Sum Query(Immutable)-简单-前缀和</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1051,15 +869,10 @@ O(1)。</p></li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2
-id="pip安装库太慢更换国内镜像源的方法">pip安装库太慢更换国内镜像源的方法</h2>
-<p>pip安装虽然方便，但是常常面临下载缓慢的问题。</p>
-<p>这里可以更换下载渠道为国内的镜像，加快下载</p>
-<p>一些国内镜像：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">清华：https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"></span><br><span class="line">阿里云：http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line"></span><br><span class="line">中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/</span><br><span class="line"></span><br><span class="line">华中理工大学：http://pypi.hustunique.com/</span><br><span class="line"></span><br><span class="line">山东理工大学：http://pypi.sdutlinux.org/</span><br><span class="line"></span><br><span class="line">豆瓣：http://pypi.douban.com/simple/</span><br></pre></td></tr></table></figure>
-<p>更换方法例子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -i https://pypi.tuna.tsinghua.edu.cn/simple gym</span><br></pre></td></tr></table></figure>
-
+          <p>pip安装虽然方便，但是常常面临下载缓慢的问题。可以更换下载渠道为国内的镜像，加快下载</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1139,38 +952,10 @@ id="pip安装库太慢更换国内镜像源的方法">pip安装库太慢更换�
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1
-id="小鼠趋利-避害机制的神经基础-曹鹏教授">小鼠趋利-避害机制的神经基础-曹鹏教授</h1>
-<h2 id="趋利">1、趋利</h2>
-<ul>
-<li>最先发现的是一种鸟类的“滚蛋行为”，即把在巢附近的物体（台球，立方块，套娃等）物体用嘴使其滚到自己的巢里，这是他们的<strong>本能行为</strong>。</li>
-<li>本能行为的触发上类似于钥匙开锁的模式，给出特征，直接反映出行为，特点是快速。</li>
-<li>捕食行为
-<ul>
-<li>触觉+视觉，信息在上丘整合</li>
-</ul></li>
-<li>刺激上丘某环路神经元，可触发小鼠捕食行为，促进食欲。可用于治疗抑郁症，但是会明显产生肥胖副作用。</li>
-</ul>
-<h2 id="避害">2、避害</h2>
-<ul>
-<li><p>小鼠躲避老鹰的袭击，触发恐惧逃跑反应，主要有两种方式：僵直和逃跑，相关神经环路在上丘。</p></li>
-<li><p>本能行为不需要基底神经节参与，该脑区主要参与探索行为</p></li>
-</ul>
-<h2 id="反抗">3、反抗</h2>
-<ul>
-<li>小鼠与蛇放在一起的三种表现：
-<ul>
-<li>逃跑（PMD），初步察觉到危险，尝试离开</li>
-<li>僵直（VMHDM），发现无法离开或者已被锁定</li>
-<li><strong>进攻</strong>（AHN），被咬住，产生了痛觉，触发反抗行为</li>
-</ul></li>
-<li>小鼠与伙伴小鼠放在一起，刺激AHN：异性触发性行为，同性触发嗅探。性刺激和暴力受到同一脑区调控。</li>
-<li>小鼠与领地入侵者小鼠放在一起，刺激AHN：产生攻击行为。</li>
-</ul>
-<h2 id="总结">总结</h2>
-<p>曹老师的报告挺精彩的，围绕趋利避害的行为表现，研究其神经基础。首先以捕食行为为例，研究了趋利行为；然后将小鼠与天敌放在一起，研究避害行为，发现恐惧逃跑机制；最后研究了在极度危险时，痛觉触发的反抗行为，小鼠甚至会攻击自己的天敌（咬蛇）。</p>
-<p>2021年1月22日</p>
-
+          <p>小鼠趋利-避害机制的神经基础-曹鹏教授</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1385,6 +1170,59 @@ id="小鼠趋利-避害机制的神经基础-曹鹏教授">小鼠趋利-避害�
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

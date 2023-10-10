@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="VScode的C++环境配置方法 近期想在本地配置一个在VScode上的C++编程环境，尝试了不同配置方式，有些虽然可以编译成功生成&#39;.exe&#39;文件，但并不支持debug。不能debug这点难以接受，于是尝试新的配置，实现完整的编译功能。 step1. 安装VScode 这一步非常简单，不赘述。 值得一提的是需要安装c&#x2F;c++插件，在插件栏搜索安装即可。 step2. 安装C++编译器m">
+  <meta name="description" content="近期想在本地配置一个在VScode上的C++编程环境，尝试了不同配置方式，有些虽然可以编译成功生成&#39;.exe&#39;文件，但并不支持debug。不能debug这点难以接受，于是尝试新的配置，实现完整的编译功能。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VScode的C++环境配置方法">
 <meta property="og:url" content="https://txing-casia.github.io/2022/04/06/2022-04-06-VScode%E7%9A%84C++%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="Txing">
-<meta property="og:description" content="VScode的C++环境配置方法 近期想在本地配置一个在VScode上的C++编程环境，尝试了不同配置方式，有些虽然可以编译成功生成&#39;.exe&#39;文件，但并不支持debug。不能debug这点难以接受，于是尝试新的配置，实现完整的编译功能。 step1. 安装VScode 这一步非常简单，不赘述。 值得一提的是需要安装c&#x2F;c++插件，在插件栏搜索安装即可。 step2. 安装C++编译器m">
+<meta property="og:description" content="近期想在本地配置一个在VScode上的C++编程环境，尝试了不同配置方式，有些虽然可以编译成功生成&#39;.exe&#39;文件，但并不支持debug。不能debug这点难以接受，于是尝试新的配置，实现完整的编译功能。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-04-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-08T13:26:03.295Z">
+<meta property="article:modified_time" content="2023-10-09T07:27:37.175Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="VScode">
 <meta name="twitter:card" content="summary">
@@ -83,7 +83,119 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -251,6 +363,7 @@
                 <span class="post-meta-item-text">Reading time &asymp;</span>
               <span>3 mins.</span>
             </span>
+            <div class="post-description">近期想在本地配置一个在VScode上的C++编程环境，尝试了不同配置方式，有些虽然可以编译成功生成'.exe'文件，但并不支持debug。不能debug这点难以接受，于是尝试新的配置，实现完整的编译功能。</div>
 
         </div>
       </header>
@@ -295,12 +408,12 @@ Win32API ，因此可以将源代码编译为可在 Windows
 <li><code>tasks.json</code></li>
 </ul>
 <p><code>tasks.json</code> 文件内容如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;version&quot;: &quot;0.1.0&quot;,</span><br><span class="line">    &quot;command&quot;: &quot;g++&quot;,</span><br><span class="line">    &quot;args&quot;: [</span><br><span class="line">        &quot;-g&quot;,</span><br><span class="line">        &quot;$&#123;file&#125;&quot;,</span><br><span class="line">        &quot;-o&quot;,</span><br><span class="line">        &quot;$&#123;file&#125;.exe&quot;</span><br><span class="line">    ], // 编译命令参数</span><br><span class="line">    &quot;problemMatcher&quot;: &#123;</span><br><span class="line">        &quot;owner&quot;: &quot;cpp&quot;,</span><br><span class="line">        &quot;fileLocation&quot;: [</span><br><span class="line">            &quot;relative&quot;,</span><br><span class="line">            &quot;$&#123;workspaceRoot&#125;&quot;</span><br><span class="line">        ],</span><br><span class="line">        &quot;pattern&quot;: &#123;</span><br><span class="line">            &quot;regexp&quot;: &quot;^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$&quot;,</span><br><span class="line">            &quot;file&quot;: 1,</span><br><span class="line">            &quot;line&quot;: 2,</span><br><span class="line">            &quot;column&quot;: 3,</span><br><span class="line">            &quot;severity&quot;: 4,</span><br><span class="line">            &quot;message&quot;: 5</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">    "version": "0.1.0",</span><br><span class="line">    "command": "g++",</span><br><span class="line">    "args": [</span><br><span class="line">        "-g",</span><br><span class="line">        "${file}",</span><br><span class="line">        "-o",</span><br><span class="line">        "${file}.exe"</span><br><span class="line">    ], // 编译命令参数</span><br><span class="line">    "problemMatcher": {</span><br><span class="line">        "owner": "cpp",</span><br><span class="line">        "fileLocation": [</span><br><span class="line">            "relative",</span><br><span class="line">            "${workspaceRoot}"</span><br><span class="line">        ],</span><br><span class="line">        "pattern": {</span><br><span class="line">            "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",</span><br><span class="line">            "file": 1,</span><br><span class="line">            "line": 2,</span><br><span class="line">            "column": 3,</span><br><span class="line">            "severity": 4,</span><br><span class="line">            "message": 5</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 <p>launch.json：一定要注意miDebuggerPath与安装路径保持一致，文件内容如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;version&quot;: &quot;0.2.0&quot;,</span><br><span class="line">    &quot;configurations&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;C++ Launch (GDB)&quot;, // 配置名称，将会在启动配置的下拉菜单中显示</span><br><span class="line">            &quot;type&quot;: &quot;cppdbg&quot;, // 配置类型，这里只能为cppdbg</span><br><span class="line">            &quot;request&quot;: &quot;launch&quot;, // 请求配置类型，可以为launch（启动）或attach（附加）</span><br><span class="line">            &quot;targetArchitecture&quot;: &quot;x86&quot;, // 生成目标架构，一般为x86或x64，可以为x86, arm, arm64, mips, x64, amd64, x86_64</span><br><span class="line">            &quot;program&quot;: &quot;$&#123;file&#125;.exe&quot;, // 将要进行调试的程序的路径</span><br><span class="line">            &quot;miDebuggerPath&quot;: &quot;c:\\Program Files (x86)\\mingw64\\bin\\gdb.exe&quot;, // miDebugger的路径，注意这里要与MinGw的路径对应</span><br><span class="line">            &quot;args&quot;: [</span><br><span class="line">                &quot;blackkitty&quot;,</span><br><span class="line">                &quot;1221&quot;,</span><br><span class="line">                &quot;# #&quot;</span><br><span class="line">            ], // 程序调试时传递给程序的命令行参数，一般设为空即可</span><br><span class="line">            &quot;stopAtEntry&quot;: false, // 设为true时程序将暂停在程序入口处，一般设置为false</span><br><span class="line">            &quot;cwd&quot;: &quot;$&#123;workspaceRoot&#125;&quot;, // 调试程序时的工作目录，一般为$&#123;workspaceRoot&#125;即代码所在目录</span><br><span class="line">            &quot;externalConsole&quot;: true, // 调试时是否显示控制台窗口，一般设置为true显示控制台</span><br><span class="line">            &quot;preLaunchTask&quot;: &quot;g++&quot; // 调试会话开始前执行的任务，一般为编译程序，c++为g++, c为gcc</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">    "version": "0.2.0",</span><br><span class="line">    "configurations": [</span><br><span class="line">        {</span><br><span class="line">            "name": "C++ Launch (GDB)", // 配置名称，将会在启动配置的下拉菜单中显示</span><br><span class="line">            "type": "cppdbg", // 配置类型，这里只能为cppdbg</span><br><span class="line">            "request": "launch", // 请求配置类型，可以为launch（启动）或attach（附加）</span><br><span class="line">            "targetArchitecture": "x86", // 生成目标架构，一般为x86或x64，可以为x86, arm, arm64, mips, x64, amd64, x86_64</span><br><span class="line">            "program": "${file}.exe", // 将要进行调试的程序的路径</span><br><span class="line">            "miDebuggerPath": "c:\\Program Files (x86)\\mingw64\\bin\\gdb.exe", // miDebugger的路径，注意这里要与MinGw的路径对应</span><br><span class="line">            "args": [</span><br><span class="line">                "blackkitty",</span><br><span class="line">                "1221",</span><br><span class="line">                "# #"</span><br><span class="line">            ], // 程序调试时传递给程序的命令行参数，一般设为空即可</span><br><span class="line">            "stopAtEntry": false, // 设为true时程序将暂停在程序入口处，一般设置为false</span><br><span class="line">            "cwd": "${workspaceRoot}", // 调试程序时的工作目录，一般为${workspaceRoot}即代码所在目录</span><br><span class="line">            "externalConsole": true, // 调试时是否显示控制台窗口，一般设置为true显示控制台</span><br><span class="line">            "preLaunchTask": "g++" // 调试会话开始前执行的任务，一般为编译程序，c++为g++, c为gcc</span><br><span class="line">        }</span><br><span class="line">    ]</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 <p>随后，在<code>codes</code>文件夹中创建一个<code>.cpp</code>文件即可验证环境了。</p>
 <p>main.cpp 样例程序如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;unordered_map&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">class Solution &#123;</span><br><span class="line">private:</span><br><span class="line">    unordered_map&lt;char, int&gt; symbolValues = &#123;</span><br><span class="line">        &#123;&#x27;I&#x27;, 1&#125;,</span><br><span class="line">        &#123;&#x27;V&#x27;, 5&#125;,</span><br><span class="line">        &#123;&#x27;X&#x27;, 10&#125;,</span><br><span class="line">        &#123;&#x27;L&#x27;, 50&#125;,</span><br><span class="line">        &#123;&#x27;C&#x27;, 100&#125;,</span><br><span class="line">        &#123;&#x27;D&#x27;, 500&#125;,</span><br><span class="line">        &#123;&#x27;M&#x27;, 1000&#125;,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    int romanToInt(string s) &#123;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        int n = s.length();</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            int value = symbolValues[s[i]];</span><br><span class="line">            if (i &lt; n - 1 &amp;&amp; value &lt; symbolValues[s[i + 1]]) &#123;</span><br><span class="line">                ans -= value;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                ans += value;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    Solution S;</span><br><span class="line">    // char a=&#x27;IX&#x27;;</span><br><span class="line">    cout &lt;&lt; S.romanToInt(&quot;IX&quot;);</span><br><span class="line">    system(&quot;pause&quot;);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;unordered_map&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">class Solution {</span><br><span class="line">private:</span><br><span class="line">    unordered_map&lt;char, int&gt; symbolValues = {</span><br><span class="line">        {'I', 1},</span><br><span class="line">        {'V', 5},</span><br><span class="line">        {'X', 10},</span><br><span class="line">        {'L', 50},</span><br><span class="line">        {'C', 100},</span><br><span class="line">        {'D', 500},</span><br><span class="line">        {'M', 1000},</span><br><span class="line">    };</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    int romanToInt(string s) {</span><br><span class="line">        int ans = 0;</span><br><span class="line">        int n = s.length();</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) {</span><br><span class="line">            int value = symbolValues[s[i]];</span><br><span class="line">            if (i &lt; n - 1 &amp;&amp; value &lt; symbolValues[s[i + 1]]) {</span><br><span class="line">                ans -= value;</span><br><span class="line">            } else {</span><br><span class="line">                ans += value;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        return ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">{</span><br><span class="line">    Solution S;</span><br><span class="line">    // char a='IX';</span><br><span class="line">    cout &lt;&lt; S.romanToInt("IX");</span><br><span class="line">    system("pause");</span><br><span class="line">    return 0;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>可以设置断点进行debug，程序暂停的时候也可以在debug
 console窗口输入新代码进行测试。</p>
 <h4 id="step4.-快捷键说明">step4. 快捷键说明</h4>
@@ -542,6 +655,59 @@ console窗口输入新代码进行测试。</p>
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

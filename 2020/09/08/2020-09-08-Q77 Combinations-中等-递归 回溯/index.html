@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Combinations Question  Given two integers n and k, return all possible combinations of k numbers out of 1 ... n. You may return the answer in any order. Constraints:  1 &lt;&#x3D; n &lt;&#x3D; 20 1 &amp;lt">
+  <meta name="description" content="Q77 Combinations-中等-递归 回溯">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Q77 Combinations-中等-递归 回溯">
 <meta property="og:url" content="https://txing-casia.github.io/2020/09/08/2020-09-08-Q77%20Combinations-%E4%B8%AD%E7%AD%89-%E9%80%92%E5%BD%92%20%E5%9B%9E%E6%BA%AF/index.html">
 <meta property="og:site_name" content="Txing">
-<meta property="og:description" content="Combinations Question  Given two integers n and k, return all possible combinations of k numbers out of 1 ... n. You may return the answer in any order. Constraints:  1 &lt;&#x3D; n &lt;&#x3D; 20 1 &amp;lt">
+<meta property="og:description" content="Q77 Combinations-中等-递归 回溯">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-09-07T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-08T14:28:42.074Z">
+<meta property="article:modified_time" content="2023-10-10T11:34:56.486Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Algorithm">
@@ -86,7 +86,119 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -254,6 +366,7 @@
                 <span class="post-meta-item-text">Reading time &asymp;</span>
               <span>4 mins.</span>
             </span>
+            <div class="post-description">Q77 Combinations-中等-递归 回溯</div>
 
         </div>
       </header>
@@ -264,8 +377,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="combinations"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/combinations/">Combinations</a></h1>
+        <h1 id="combinations"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/combinations/">Combinations</a></h1>
 <h2 id="question">Question</h2>
 <blockquote>
 <p>Given two integers n and k, return all possible combinations of k
@@ -288,9 +400,8 @@ numbers out of 1 ... n.</p>
 </blockquote>
 <h3 id="approach-1-递归调用">Approach 1: 递归调用</h3>
 <p>把选k个数的任务拆解为选2个数的任务，直到选完了k个数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">combine</span>(<span class="params">self, n, k</span>):</span><br><span class="line">        <span class="keyword">if</span> k&gt;n <span class="keyword">or</span> k==<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        <span class="keyword">if</span> k==<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> [[i] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,n+<span class="number">1</span>)]</span><br><span class="line">        <span class="keyword">if</span> k==n:</span><br><span class="line">            <span class="keyword">return</span> [[i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,n+<span class="number">1</span>)]]</span><br><span class="line"></span><br><span class="line">        answer=self.combine(n-<span class="number">1</span>,k)</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> self.combine(n-<span class="number">1</span>,k-<span class="number">1</span>):</span><br><span class="line">            item.append(n)</span><br><span class="line">            answer.append(item)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> answer</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    n = <span class="number">4</span></span><br><span class="line">    k = <span class="number">2</span></span><br><span class="line">    solution=Solution().combine(n,k)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="approach-2-回溯算法">Approach 2: <a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/combinations/solution/hui-su-suan-fa-jian-zhi-python-dai-ma-java-dai-ma-/">回溯算法</a></h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">combine</span>(<span class="params">self, n, k</span>):</span><br><span class="line">        <span class="keyword">if</span> k&gt;n <span class="keyword">or</span> k==<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        <span class="keyword">if</span> k==<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> [[i] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,n+<span class="number">1</span>)]</span><br><span class="line">        <span class="keyword">if</span> k==n:</span><br><span class="line">            <span class="keyword">return</span> [[i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,n+<span class="number">1</span>)]]</span><br><span class="line"></span><br><span class="line">        answer=self.combine(n-<span class="number">1</span>,k)</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> self.combine(n-<span class="number">1</span>,k-<span class="number">1</span>):</span><br><span class="line">            item.append(n)</span><br><span class="line">            answer.append(item)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> answer</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    n = <span class="number">4</span></span><br><span class="line">    k = <span class="number">2</span></span><br><span class="line">    solution=Solution().combine(n,k)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="approach-2-回溯算法">Approach 2: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/combinations/solution/hui-su-suan-fa-jian-zhi-python-dai-ma-java-dai-ma-/">回溯算法</a></h3>
 <h4 id="重点概括">重点概括：</h4>
 <ul>
 <li><p>如果解决一个问题有多个步骤，每一个步骤有多种方法，题目又要我们找出所有的方法，可以使用回溯算法；</p></li>
@@ -316,7 +427,7 @@ path，它是一个列表，特别地，path 是一个栈；
 ，表示在区间 [begin, n] 里选出若干个数的组合；
 可能有一些分支没有必要执行，我们放在优化中介绍。
 友情提示：对于这一类问题，画图帮助分析是非常重要的解题方法。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayDeque;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Deque;</span><br><span class="line"><span class="keyword">import</span> java.util.<span class="type">List</span>;</span><br><span class="line"></span><br><span class="line">public <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"></span><br><span class="line">    public <span class="type">List</span>&lt;<span class="type">List</span>&lt;Integer&gt;&gt; combine(<span class="built_in">int</span> n, <span class="built_in">int</span> k) &#123;</span><br><span class="line">        <span class="type">List</span>&lt;<span class="type">List</span>&lt;Integer&gt;&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (k &lt;= <span class="number">0</span> || n &lt; k) &#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        // 从 <span class="number">1</span> 开始是题目的设定</span><br><span class="line">        Deque&lt;Integer&gt; path = new ArrayDeque&lt;&gt;();</span><br><span class="line">        dfs(n, k, <span class="number">1</span>, path, res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void dfs(<span class="built_in">int</span> n, <span class="built_in">int</span> k, <span class="built_in">int</span> begin, Deque&lt;Integer&gt; path, <span class="type">List</span>&lt;<span class="type">List</span>&lt;Integer&gt;&gt; res) &#123;</span><br><span class="line">        // 递归终止条件是：path 的长度等于 k</span><br><span class="line">        <span class="keyword">if</span> (path.size() == k) &#123;</span><br><span class="line">            res.add(new ArrayList&lt;&gt;(path));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 遍历可能的搜索起点</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = begin; i &lt;= n; i++) &#123;</span><br><span class="line">            // 向路径变量里添加一个数</span><br><span class="line">            path.addLast(i);</span><br><span class="line">            // 下一轮搜索，设置的搜索起点要加 <span class="number">1</span>，因为组合数理不允许出现重复的元素</span><br><span class="line">            dfs(n, k, i + <span class="number">1</span>, path, res);</span><br><span class="line">            // 重点理解这里：深度优先遍历有回头的过程，因此递归之前做了什么，递归之后需要做相同操作的逆向操作</span><br><span class="line">            path.removeLast();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayDeque;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Deque;</span><br><span class="line"><span class="keyword">import</span> java.util.<span class="type">List</span>;</span><br><span class="line"></span><br><span class="line">public <span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line"></span><br><span class="line">    public <span class="type">List</span>&lt;<span class="type">List</span>&lt;Integer&gt;&gt; combine(<span class="built_in">int</span> n, <span class="built_in">int</span> k) {</span><br><span class="line">        <span class="type">List</span>&lt;<span class="type">List</span>&lt;Integer&gt;&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (k &lt;= <span class="number">0</span> || n &lt; k) {</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        }</span><br><span class="line">        // 从 <span class="number">1</span> 开始是题目的设定</span><br><span class="line">        Deque&lt;Integer&gt; path = new ArrayDeque&lt;&gt;();</span><br><span class="line">        dfs(n, k, <span class="number">1</span>, path, res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    private void dfs(<span class="built_in">int</span> n, <span class="built_in">int</span> k, <span class="built_in">int</span> begin, Deque&lt;Integer&gt; path, <span class="type">List</span>&lt;<span class="type">List</span>&lt;Integer&gt;&gt; res) {</span><br><span class="line">        // 递归终止条件是：path 的长度等于 k</span><br><span class="line">        <span class="keyword">if</span> (path.size() == k) {</span><br><span class="line">            res.add(new ArrayList&lt;&gt;(path));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        // 遍历可能的搜索起点</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = begin; i &lt;= n; i++) {</span><br><span class="line">            // 向路径变量里添加一个数</span><br><span class="line">            path.addLast(i);</span><br><span class="line">            // 下一轮搜索，设置的搜索起点要加 <span class="number">1</span>，因为组合数理不允许出现重复的元素</span><br><span class="line">            dfs(n, k, i + <span class="number">1</span>, path, res);</span><br><span class="line">            // 重点理解这里：深度优先遍历有回头的过程，因此递归之前做了什么，递归之后需要做相同操作的逆向操作</span><br><span class="line">            path.removeLast();</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h4 id="优化">优化</h4>
 <p>事实上，如果 n = 7, k = 4，从 55
 开始搜索就已经没有意义了，这是因为：即使把 55 选上，后面的数只有 66 和
@@ -344,7 +455,7 @@ path 的长度相关。我们举几个例子分析：</p>
 <p>搜索起点的上界 = n - (k - path.size()) + 1
 所以，我们的剪枝过程就是：把 i &lt;= n 改成 i &lt;= n - (k - pre.size())
 + 1 ：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayDeque;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Deque;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="title function_">combine</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (k &lt;= <span class="number">0</span> || n &lt; k) &#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        Deque&lt;Integer&gt; path = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();</span><br><span class="line">        dfs(n, k, <span class="number">1</span>, path, res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> k, <span class="type">int</span> index, Deque&lt;Integer&gt; path, List&lt;List&lt;Integer&gt;&gt; res)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (path.size() == k) &#123;</span><br><span class="line">            res.add(<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(path));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 只有这里 i &lt;= n - (k - path.size()) + 1 与参考代码 1 不同</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> index; i &lt;= n - (k - path.size()) + <span class="number">1</span>; i++) &#123;</span><br><span class="line">            path.addLast(i);</span><br><span class="line">            dfs(n, k, i + <span class="number">1</span>, path, res);</span><br><span class="line">            path.removeLast();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayDeque;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Deque;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="title function_">combine</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> k)</span> {</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (k &lt;= <span class="number">0</span> || n &lt; k) {</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        }</span><br><span class="line">        Deque&lt;Integer&gt; path = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();</span><br><span class="line">        dfs(n, k, <span class="number">1</span>, path, res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> k, <span class="type">int</span> index, Deque&lt;Integer&gt; path, List&lt;List&lt;Integer&gt;&gt; res)</span> {</span><br><span class="line">        <span class="keyword">if</span> (path.size() == k) {</span><br><span class="line">            res.add(<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(path));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 只有这里 i &lt;= n - (k - path.size()) + 1 与参考代码 1 不同</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> index; i &lt;= n - (k - path.size()) + <span class="number">1</span>; i++) {</span><br><span class="line">            path.addLast(i);</span><br><span class="line">            dfs(n, k, i + <span class="number">1</span>, path, res);</span><br><span class="line">            path.removeLast();</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 <h4 id="说明-1">说明：</h4>
 <p>一些边界条件比较绕的，用具体的例子分析就不容易出错，主要考察的是细心，没有太多技巧；
 为参考代码 3 添加 path 的打印输出语句，可以看到输出语句会更少。</p>
@@ -580,6 +691,59 @@ path 的长度相关。我们举几个例子分析：</p>
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

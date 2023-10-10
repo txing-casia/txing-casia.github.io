@@ -81,7 +81,119 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -259,58 +371,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="minimum-absolute-difference-in-bst"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-absolute-difference-in-bst/">Minimum
-Absolute Difference in BST</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given a binary search tree with non-negative values, find the minimum
-absolute difference between values of any two nodes.</p>
-<p><strong>Note:</strong></p>
-<p>There are at least two nodes in this BST. This question is the same
-as 783:
-https://leetcode.com/problems/minimum-distance-between-bst-nodes/</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input:</p>
-<p>1<br />
-3 / 2</p>
-<p>Output: 1</p>
-<p>Explanation: The minimum absolute difference is 1, which is the
-difference between 2 and 1 (or between 2 and 3).</p>
-</blockquote>
-<h3 id="approach-1-中序遍历">Approach 1: 中序遍历</h3>
-<p>考虑对升序数组 a
-求任意两个元素之差的绝对值的最小值，答案一定为相邻两个元素之差的最小值，即</p>
-<p><span
-class="math display">\[\textit{ans}=\min_{i=0}^{n-2}\left\{a[i+1]-a[i]\right\}\]</span></p>
-<p>其中 n 为数组 a 的长度。其他任意间隔距离大于等于 2 的下标对 (i,j)
-的元素之差一定大于下标对 (i,i+1) 的元素之差，故不需要再被考虑。</p>
-<p>回到本题，本题要求二叉搜索树任意两节点差的绝对值的最小值，而我们知道二叉搜索树有个性质为<strong>二叉搜索树中序遍历得到的值序列是递增有序的</strong>，因此我们只要得到中序遍历后的值序列即能用上文提及的方法来解决。</p>
-<p>朴素的方法是经过一次中序遍历将值保存在一个数组中再进行遍历求解，我们也可以在中序遍历的过程中用
-<span class="math display">\[\textit{pre}\]</span>
-变量保存前驱节点的值，这样即能边遍历边更新答案，不再需要显式创建数组来保存，需要注意的是
-<span class="math display">\[\textit{pre}\]</span>
-的初始值需要设置成任意负数标记开头，下文代码中设置为 -1。</p>
-<p>二叉树的中序遍历有多种方式，包括递归、栈、Morris
-遍历等，读者可选择自己最擅长的来实现。下文代码提供最普遍的递归方法来实现，其他遍历方法的介绍可以详细看<a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/">「94.
-二叉树的中序遍历」</a>的题解，这里不再赘述。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getMinimumDifference</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">root</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            dfs(root.left)</span><br><span class="line">            nums.append(root.val)</span><br><span class="line">            dfs(root.right)</span><br><span class="line"></span><br><span class="line">        nums = []</span><br><span class="line">        dfs(root)</span><br><span class="line">        res = <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(nums)):</span><br><span class="line">            res = <span class="built_in">min</span>(res, nums[i] - nums[i - <span class="number">1</span>])</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(n)，其中 n
-为二叉搜索树节点的个数。每个节点在中序遍历中都会被访问一次且只会被访问一次，因此总时间复杂度为
-O(n)。</li>
-<li>空间复杂度：O(n)。递归函数的空间复杂度取决于递归的栈深度，而栈深度在二叉搜索树为一条链的情况下会达到
-O(n) 级别。</li>
-</ul>
-<h3 id="approach-2-中序遍历空间优化">Approach 2:
-中序遍历（空间优化）</h3>
-<p>保留前驱结点，滚动式更新结果</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getMinimumDifference</span>(<span class="params">self, root: TreeNode</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">root</span>):</span><br><span class="line">            <span class="keyword">nonlocal</span> res, pre</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            dfs(root.left)</span><br><span class="line">            <span class="keyword">if</span> pre != -<span class="number">1</span>:</span><br><span class="line">                res = <span class="built_in">min</span>(res, root.val-pre)</span><br><span class="line">            pre = root.val</span><br><span class="line">            dfs(root.right)</span><br><span class="line"></span><br><span class="line">        pre = -<span class="number">1</span></span><br><span class="line">        res = <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)</span><br><span class="line">        dfs(root)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
+          <p>Q530 Minimum Absolute Difference in BST-简单-中序遍历</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -390,47 +454,10 @@ O(n) 级别。</li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="design-parking-system"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/design-parking-system/">Design
-Parking System</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Design a parking system for a parking lot. The parking lot has three
-kinds of parking spaces: big, medium, and small, with a fixed number of
-slots for each size.</p>
-<p>Implement the ParkingSystem class:</p>
-<p>ParkingSystem(int big, int medium, int small) Initializes object of
-the ParkingSystem class. The number of slots for each parking space are
-given as part of the constructor. bool addCar(int carType) Checks
-whether there is a parking space of carType for the car that wants to
-get into the parking lot. carType can be of three kinds: big, medium, or
-small, which are represented by 1, 2, and 3 respectively. A car can only
-park in a parking space of its carType. If there is no space available,
-return false, else park the car in that size space and return true.</p>
-<p><strong>Constraints:</strong></p>
-<p>0 &lt;= big, medium, small &lt;= 1000 carType is 1, 2, or 3 At most
-1000 calls will be made to addCar</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input ["ParkingSystem", "addCar", "addCar", "addCar", "addCar"] [[1,
-1, 0], [1], [2], [3], [1]] Output [null, true, true, false, false]</p>
-<p>Explanation ParkingSystem parkingSystem = new ParkingSystem(1, 1, 0);
-parkingSystem.addCar(1); // return true because there is 1 available
-slot for a big car parkingSystem.addCar(2); // return true because there
-is 1 available slot for a medium car parkingSystem.addCar(3); // return
-false because there is no available slot for a small car
-parkingSystem.addCar(1); // return false because there is no available
-slot for a big car. It is already occupied.</p>
-</blockquote>
-<h3 id="approach-1-直接处理">Approach 1: 直接处理</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ParkingSystem</span>:</span><br><span class="line">    carslots = [<span class="number">0</span>] * <span class="number">4</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, big: <span class="built_in">int</span>, medium: <span class="built_in">int</span>, small: <span class="built_in">int</span></span>):</span><br><span class="line">        self.carslots[<span class="number">1</span>] = big</span><br><span class="line">        self.carslots[<span class="number">2</span>] = medium</span><br><span class="line">        self.carslots[<span class="number">3</span>] = small</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">addCar</span>(<span class="params">self, carType: <span class="built_in">int</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">if</span> self.carslots[carType] &gt; <span class="number">0</span>:</span><br><span class="line">            self.carslots[carType] -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"><span class="comment"># Your ParkingSystem object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"># obj = ParkingSystem(big, medium, small)</span></span><br><span class="line"><span class="comment"># param_1 = obj.addCar(carType)</span></span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：<span class="math display">\[ O(n) \]</span></p></li>
-<li><p>空间复杂度：<span class="math display">\[ O(1) \]</span></p></li>
-</ul>
-
+          <p>Q1603 Design Parking System-简单</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -510,50 +537,10 @@ slot for a big car. It is already occupied.</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="python-import报错解决办法">Python import报错解决办法</h1>
-<h2 id="问题描述">问题描述</h2>
-<p>import torch报错：</p>
-<blockquote>
-<p>from torch._C import * ImportError: numpy.core.multiarray failed to
-import</p>
-</blockquote>
-<h2 id="问题分析">问题分析</h2>
-<p>这一类报错基本有一下几个原因：</p>
-<ul>
-<li>所安装的库版本号不对；</li>
-<li>说安装的库依赖于另一些未安装的库；</li>
-<li>相同库安装了多个版本，产生了冲突；</li>
-<li>错误版本的库通过uninstall操作未卸载干净；</li>
-</ul>
-<h2 id="处理办法">处理办法</h2>
-<p>知道了出错的可能原因，接下来只要慢慢排除就能确定准确的病因了。</p>
-<ul>
-<li><strong>Step 1：</strong></li>
-</ul>
-<p>在anaconda中打开所用环境，尝试</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda uninstall numpy</span><br><span class="line"><span class="comment"># Or</span></span><br><span class="line">pip uninstall numpy</span><br></pre></td></tr></table></figure>
-<p>注意：有时候conda
-uninstall会提示你连带删除很多其他的库，如果提示了，尽量就不要删除。使用pip方式，只删除一个库。</p>
-<ul>
-<li><strong>Step 2：</strong></li>
-</ul>
-<p>找到anaconda所用环境中各个库的安装文件夹site-packages（D:-rl-packages）</p>
-<ul>
-<li><strong>Step 3：</strong></li>
-</ul>
-<p>找到相关库的文件夹（我这里是找numpy），如果发现存在相同库的拨不通版本的文件夹，就可能是出现了重复安装，相互冲突的问题。删除重复安装的库的相关文件夹，如未重复安装，也可以删除并重新安装；</p>
-<ul>
-<li><strong>Step 4：</strong></li>
-</ul>
-<p>在anaconda中打开所用环境安装所需库</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda install numpy</span><br><span class="line"><span class="comment"># Or</span></span><br><span class="line">pip install numpy</span><br></pre></td></tr></table></figure>
-<p>如果需要安装指定的版本号（eg 1.14.5），可通过一下方式实现：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda install numpy==<span class="number">1.14</span><span class="number">.5</span></span><br><span class="line"><span class="comment"># Or</span></span><br><span class="line">pip install numpy==<span class="number">1.14</span><span class="number">.5</span></span><br></pre></td></tr></table></figure>
-<p>装好之后一般就不会报错了。</p>
-<p>今后其它的一些库的报错也可以采用类似的方式进行处理。</p>
-<p>2020年10月02日</p>
-<p>Txing</p>
-
+          <p>from torch._C import * ImportError: numpy.core.multiarray failed to import</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -633,108 +620,10 @@ uninstall会提示你连带删除很多其他的库，如果提示了，尽量�
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1
-id="reservoir-computing-model-of-prefrontal-cortex-creates-novel-combinations-of-previous-navigation-sequences-from-hippocampal-place-cell-replay-with-spatial-reward-propagation">Reservoir
-computing model of prefrontal cortex creates novel combinations of
-previous navigation sequences from hippocampal place-cell replay with
-spatial reward propagation</h1>
-<p>论文链接：https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1006624</p>
-<h2 id="背景">背景</h2>
-<p>小鼠在复杂空间导航的能力与海马体中位置细胞的回放有关。spatial
-navigation capacity involves the replay of hippocampal place-cells
-during awake states</p>
-<p>本文让小鼠学习TSP问题，学会了强化学习中的空间信用分配问题（spatial
-credit assignment）</p>
-<p>这篇工作基于两篇之前的工作：</p>
-<ul>
-<li>Gupta AS, van der Meer MA, Touretzky DS, Redish AD. Hippocampal
-replay is not a simple function of experience. Neuron. 2010;
-65(5):695–705. https://doi.org/10.1016/j.neuron.2010.01.034 PMID:
-20223204.</li>
-<li>Liu K, Sibille J, Dragoi G. Generative Predictive Codes by
-Multiplexed Hippocampal Neuronal Tuplets. Neuron. 2018; 99(6):1329–41.
-e6. https://doi.org/10.1016/j.neuron.2018.07.047 PMID: 30146305</li>
-</ul>
-<p>使用海马体的序列重放功能，实现对运动序列的优化，最优路径重放的频率会更高。</p>
-<h2 id="主要工作">主要工作</h2>
-<ul>
-<li>使用RNN模拟PFC，因为皮层连接大部分是局部而复发性的。</li>
-<li>解决TSP问题中的两个假设：
-<ul>
-<li>非最优轨迹（non-optimal
-trajectories）里，奖励之间的距离比近最优轨迹（near-optimal
-trajectories）中奖励之间的距离大。在重放中持有轨迹出现较少，以此规则获得最优轨迹。</li>
-<li>在最近激活的位置细胞重放中，正向和反向轨迹同时被编码。反向的重播允许模型在正方向和反方向上利用信息，但实际运动中，小鼠只会进行正向的运动。</li>
-</ul></li>
-<li>面对的挑战：
-<ul>
-<li>从无序的片段路径中学习全局的place cell激活序列</li>
-<li>将多个非最优的序列高效连接成一个通往目标位置的路径</li>
-<li>正向学习轨迹并反向生成它。</li>
-</ul></li>
-<li>海马和PFC的连接证据：Shin JD, Jadhav SP. Multiple modes of
-hippocampal–prefrontal interactions in memory-guided behavior. Current
-opinion in neurobiology. 2016; 40:161–9.
-https://doi.org/10.1016/j.conb.2016.07.015 PMID: 27543753</li>
-</ul>
-<h2 id="方法">方法</h2>
-<h3 id="place-cell">Place-cell</h3>
-<ul>
-<li>基本设置：
-<ul>
-<li>时间步N</li>
-<li>轨迹<span class="math display">\[L(t_1\rightarrow t_N)\]</span></li>
-<li>位置<span class="math display">\[S=(x,y)\]</span></li>
-<li>2D高斯位置场：<span class="math display">\[f_k(s)=e^{-\frac{\Vert
-s-c_k\Vert^2}{w_k}}\]</span> ，<span
-class="math display">\[k\]</span>是位置细胞序号，<span
-class="math display">\[f_k(s)\]</span>是第k个位置细胞的平均发放率，<span
-class="math display">\[w_k=\frac{r_k^2}{-\log(\Theta)}\]</span>是常数，用来约束位置神经元的最高激活大部分包含在以
-<span class="math display">\[$c_k\]</span>为中心，<span
-class="math display">\[r_k\]</span>为半径的圆中</li>
-<li><span class="math display">\[r_k\]</span>是第<span
-class="math display">\[k\]</span>个位置场的半径</li>
-<li><span
-class="math display">\[\Theta\]</span>是控制位置细胞空间选择半径阈值</li>
-</ul></li>
-<li>通过K个径向基函数来实现定位：<span
-class="math display">\[X_{in}(t_n)=\{f_k(L(t_n))\}_{k\in 1
-\cdot\cdot\cdot K}\]</span></li>
-<li>place cell可以进一步调研，这个跟脑内GPS有关（还有grid cell, head
-direction cell）</li>
-</ul>
-<h3 id="hippocampus-replay">Hippocampus replay</h3>
-<ul>
-<li><p>参考文献：Carr MF, Jadhav SP, Frank LM. Hippocampal replay in the
-awake state: a potential substrate for memory consolidation and
-retrieval. Nature neuroscience. 2011; 14(2):147–53.
-https://doi.org/10.1038/nn. 2732 PMID: 21270783</p></li>
-<li><p>random replay generative model</p></li>
-<li><p>a snippet <span class="math display">\[S(n;s)=X_{in}(t_n
-\rightarrow t_{n+s})\]</span></p></li>
-</ul>
-<h3 id="reward-propagation">Reward propagation</h3>
-<ul>
-<li>使用TD-<span
-class="math display">\[\lambda\]</span>算法更新预测奖励V</li>
-</ul>
-<h3 id="snippet-generation-during-replay">Snippet generation during
-replay</h3>
-<p><span class="math display">\[
-U_{ffwd}=W_{ffwd}*X_{in}(t_n)\\
-U_{rec}=W_{rec}*X_{res}(t_{n-1})\\
-S(N;k)=K\frac{1}{\sqrt{N}}\\
-U_{res}(t_n)=U_{ffwd}+U_{rec}\\
-\tau \frac{\partial P_{res}}{\partial
-t}=-P_{res}(t_{n-1})+U_{res}(t_n)\\
-P_{res}(t_n)=h*U_{res}(t_n)+(1-h)*P_{res}(t_{n-1})\\
-X_{res}(t_n)=\sigma_{res}(P_{res}(t_n);\Theta_{res}),\Theta_{res}=0,\sigma_{res}=\tanh
-\]</span></p>
-<p><img src="\images\20200925-1.png" /></p>
-<h2 id="结论">结论</h2>
-<p>上丘脑到丘脑底部回路superior colliculus–subthalamus (SC–S) pathway
-是决定hunting的神经基础</p>
-
+          <p>小鼠在复杂空间导航的能力与海马体中位置细胞的回放有关</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -814,45 +703,10 @@ X_{res}(t_n)=\sigma_{res}(P_{res}(t_n);\Theta_{res}),\Theta_{res}=0,\sigma_{res}
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="xor-operation-in-an-array"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/xor-operation-in-an-array/">XOR
-Operation in an Array</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given an integer n and an integer start.</p>
-<p>Define an array nums where nums[i] = start + 2*i (0-indexed) and n ==
-nums.length.</p>
-<p>Return the bitwise XOR of all elements of nums.</p>
-<p><strong>Constraints:</strong></p>
-<ul>
-<li><code>1 &lt;= n &lt;= 1000</code></li>
-<li><code>0 &lt;= start &lt;= 1000</code></li>
-<li><code>n == nums.length</code></li>
-</ul>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input: n = 5, start = 0 Output: 8 Explanation: Array nums is equal to
-[0, 2, 4, 6, 8] where (0 ^ 2 ^ 4 ^ 6 ^ 8) = 8. Where "^" corresponds to
-bitwise XOR operator.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>Input: n = 4, start = 3 Output: 8 Explanation: Array nums is equal to
-[3, 5, 7, 9] where (3 ^ 5 ^ 7 ^ 9) = 8.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 3:</strong></p>
-<p>Input: n = 1, start = 7 Output: 7</p>
-</blockquote>
-<h3 id="approach-1-位操作">Approach 1: 位操作</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">xorOperation</span>(<span class="params">self, n: <span class="built_in">int</span>, start: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        nums=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            nums ^= (start+<span class="number">2</span>*i)</span><br><span class="line">        <span class="keyword">return</span> nums</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    n=<span class="number">4</span></span><br><span class="line">    start=<span class="number">3</span></span><br><span class="line">    solution=Solution().xorOperation(n,start)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：<span class="math display">\[O(n)\]</span></p></li>
-<li><p>空间复杂度：<span class="math display">\[O(1)\]</span></p></li>
-</ul>
-
+          <p>Q1486 XOR Operation in an Array-简单-位操作</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -932,21 +786,10 @@ bitwise XOR operator.</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1
-id="a-subcortical-excitatory-circuit-for-sensory-triggered-predatory-hunting-in-mice">A
-subcortical excitatory circuit for sensory-triggered predatory hunting
-in mice</h1>
-<p>论文链接：https://www.nature.com/articles/s41593-019-0405-4</p>
-<h2 id="主要工作">主要工作</h2>
-<ul>
-<li>捕猎是动物生存的基本能力，本文讨论如何将感知线索转换为触发捕猎行为的神经信号转换回路。</li>
-<li>上丘脑到丘脑底部回路：该回路激活产生捕猎行为，在时间上与捕猎后的进食无关；该回路失活，捕猎行为抑制，其它能力不受影响。</li>
-</ul>
-<p><img src="\images\20200925-1.png" /></p>
-<h2 id="结论">结论</h2>
-<p>上丘脑到丘脑底部回路superior colliculus–subthalamus (SC–S) pathway
-是决定hunting的神经基础</p>
-
+          <p>捕猎是动物生存的基本能力，本文讨论如何将感知线索转换为触发捕猎行为的神经信号转换回路。</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1026,23 +869,10 @@ in mice</h1>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="motor-demands-constrain-cognitive-rule-structures">Motor Demands
-Constrain Cognitive Rule Structures</h1>
-<p>论文链接：https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004785</p>
-<h2 id="背景">背景</h2>
-<p>运动需求影响了实施抽象规则选择的结构。</p>
-<p>低层、高层认知之间的影响。</p>
-<h2 id="主要工作">主要工作</h2>
-<p>利用贝叶斯推断做规则结构的聚类。对每个输入维度单独用一个专家判别器判断sample是否属于本规则，输出为0或者1。</p>
-<p>最后用加权的形式综合各个专家的观点<span
-class="math display">\[\pi(a)=w_C(t)\pi_C(a)+(1-w_C(t))\pi_S(a)\]</span>（两个专家情况）</p>
-<p>然后对权重进行更新 <span class="math display">\[
-w_C(t+1)=\frac{w_C(t)p(r_t|S_t,a_t,Color)}{w_C(t)p(r_t|S_t,a_t,Color)+(1-w_C(t))p(r_t|S_t,a_t,Shape)}
-\]</span></p>
-<p>后文还引入了bias，具体公式见原文。</p>
-<h2 id="总结">总结</h2>
-<p>本文有点单薄，也只是考虑了2个输入维度的情况，有点简单了。</p>
-
+          <p>运动需求影响了实施抽象规则选择的结构。</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1122,144 +952,10 @@ w_C(t+1)=\frac{w_C(t)p(r_t|S_t,a_t,Color)}{w_C(t)p(r_t|S_t,a_t,Color)+(1-w_C(t))
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="emergence-of-abstract-rules-in-the-primate-brain">Emergence of
-abstract rules in the primate brain</h1>
-<p>论文链接：https://www.nature.com/articles/s41583-020-0364-5</p>
-<h2 id="背景">背景</h2>
-<p>抽象能力帮助学习规则，提升认知和决策能力，帮助避免潜在的环境危险，丰富人的社会行为和互动。</p>
-<p>人是如何抽象事物，把经验变成有意义的概念的？本文探索这背后的神经机制。进而揭示前额叶皮质对抽象规则的形成（formation）、维护（maintenance）以及修正（revision）上的作用。</p>
-<ul>
-<li><p>好处：通过抽象规则，帮助形成adaptive behaviour</p></li>
-<li><p>规则的出现是动态多阶段的过程（dynamic multistage processes
-），包括rule formation, maintenance and revision</p></li>
-<li><p>prefrontal cortex (PFC) is heavily involved in the representation
-and implementation of abstract
-rules。但只有前额叶皮层的部分区域对学习和实施抽象规则是必要的</p></li>
-</ul>
-<p><strong>结论：</strong>我们最终提出了一个统一的框架，将抽象规则的形成和执行与认知控制的神经架构联系起来</p>
-<p><strong>key words:</strong> rule-guided behaviour</p>
-<h2 id="主要工作">主要工作</h2>
-<h4 id="rules-definition-and-classification">1 Rules: definition and
-classification</h4>
-<ul>
-<li><p><strong>具体规则</strong>（concrete
-rules）描绘了对象、事件与行为之间的简单的时空关系。刺激-响应或者刺激-输出关系。</p>
-<p>具体的规则是依赖于经验的，通过大量的积极/消极的尝试逐渐强化形成（The
-formation of concrete rules is experience-dependent）</p></li>
-<li><p><strong>抽象规则</strong>（abstract
-rules）更加复杂和多样。一个特点是他们可以容易地生成新的示例。可能会要求选择性注意力。可以用在不熟悉的环境中的新刺激上。</p>
-<p>抽象规则描绘物体、事件和响应的交互和因果关系。用一刺激，目标不同，得到不同的响应。</p></li>
-<li><p><strong>Selective attention</strong>: Neural mechanisms involved
-in focusing cognitive resources on task-relevant sensoryperceptual
-processes and inhibiting goal-irrelevant stimuli to facilitate achieving
-goals.</p></li>
-</ul>
-<h4 id="concrete-and-multifaceted-categories">2 Concrete and
-multifaceted categories</h4>
-<ul>
-<li>对环境刺激分类的能力是天生的或者是依赖经验学习到的experience-dependent
-learning</li>
-<li>Multifaceted
-categories不取决于单个例子和传感特征，而是使用集成的刺激特征（形状、颜色、声音）。与抽象规则类似，能用于处理新的情况，指导复杂的目标导向的行为</li>
-</ul>
-<h4 id="abstract-rules-in-primates">3 Abstract rules in primates</h4>
-<h4 id="evidence-from-neuronal-recordings">4 Evidence from neuronal
-recordings</h4>
-<h5 id="matching-and-non-matching-rules">4.1 Matching and non-matching
-rules</h5>
-<ul>
-<li><p>Delayed matching to sample (DMS):
-延时匹配规则，给出example和cue，延时一段时间后，选根据cue选择test
-picture，要选择更example一致的为正确。</p></li>
-<li><p>Delayed non-matching to sample (DNMS):
-延时不匹配规则，给出example和cue，延时一段时间后，选根据cue选择test
-picture，要选择更example不一致的为正确。</p></li>
-<li><p>对猕猴的研究发现抽象规则在DLPFC (dorsolateral prefrontal cortex)
-and VLPFC (ventrolateral prefrontal
-cortex)被编码，对人的研究发现只在VLPFC</p></li>
-</ul>
-<h5 id="number-rules">4.2 Number rules</h5>
-<ul>
-<li><p>让猴子忽略物体的外表，只注意数量的关系</p></li>
-<li><p>顶叶皮层的顶内沟编码数字信息 intraparietal sulcus (IPS) of the
-parietal cortex encode numerical information</p></li>
-</ul>
-<h5 id="flexible-shifting-between-rules">4.3 Flexible shifting between
-rules</h5>
-<ul>
-<li>规则上的迁移和变换，以及自己探索未知的规则</li>
-</ul>
-<h5 id="abstract-response-strategies">4.4 Abstract response
-strategies</h5>
-<ul>
-<li>abstract response strategies</li>
-<li>working memory task（Sakai, K. &amp; Passingham, R. E. Prefrontal
-interactions reflect future task operations. Nat. Neurosci. 6, 75–81
-(2003). ）</li>
-</ul>
-<h5 id="interactions-of-rules-and-categories">4.5 Interactions of rules
-and categories</h5>
-<h5 id="insight-from-neuronal-recordings">4.6Insight from neuronal
-recordings</h5>
-<ul>
-<li>rule-based action selection</li>
-</ul>
-<h5 id="evidence-from-interventional-studies">4.7 Evidence from
-interventional studies</h5>
-<h5 id="stages-of-abstract-rule-development">4.8 Stages of abstract rule
-development</h5>
-<p><img src="\images\20200924-1.png" /></p>
-<ul>
-<li><p><strong>Rule formation</strong></p>
-<ul>
-<li><p>纹状体调制：</p>
-<ul>
-<li>Bunge, S. A. &amp; Wallis, J. D. Neuroscience of RuleGuided Behavior
-(Oxford Univ. Press, 2008).</li>
-<li>Nieder, A. &amp; Dehaene, S. Representation of number in the brain.
-Annu. Rev. Neurosci. 32, 185–208 (2009).</li>
-<li>Sleezer, B. J., Castagno, M. D. &amp; Hayden, B. Y. Rule encoding in
-orbitofrontal cortex and striatum guides selection. J. Neurosci. 36,
-11223–11237 (2016).</li>
-<li>Sleezer, B. J. &amp; Hayden, B. Y. Differential contributions of
-ventral and dorsal striatum to early and late phases of cognitive set
-reconfiguration. J. Cogn. Neurosci. 28, 1849–1864 (2016).</li>
-<li>Cools, R., Clark, L. &amp; Robbins, T. W. Differential responses in
-human striatum and prefrontal cortex to changes in object and rule
-relevance. J. Neurosci. 24, 1129–1135 (2004).</li>
-</ul></li>
-<li><p>海马调制：</p>
-<ul>
-<li><p>Zeithamova, D. et al. Brain mechanisms of concept learning. J.
-Neurosci. 39, 8259–8266 (2019).</p></li>
-<li><p>Bowman, C. R. &amp; Zeithamova, D. Abstract memory
-representations in the ventromedial prefrontal cortex and hippocampus
-support concept generalization. J. Neurosci. 38, 2605–2614
-(2018).</p></li>
-<li><p>Murray, E. A. &amp; Wise, S. P. Role of the hippocampus plus
-subjacent cortex but not amygdala in visuomotor conditional learning in
-rhesus monkeys. Behav. Neurosci. 110, 1261–1270 (1996).</p></li>
-<li><p>Orbach, J., Milner, B. &amp; Rasmussen, T. Learning and retention
-in monkeys after amygdala–hippocampus resection. Arch. Neurol. 3,
-230–251 (1960).</p></li>
-<li><p>Owen, A. M., Roberts, A. C., Polkey, C. E., Sahakian, B. J. &amp;
-Robbins, T. W. Extra-dimensional versus intra-dimensional set shifting
-performance following frontal lobe excisions, temporal lobe excisions or
-amygdalo-hippocampectomy in man. Neuropsychologia 29, 993–1006
-(1991).</p></li>
-</ul></li>
-<li><p>抽象规则的学习是依赖于海马和底层皮质。一旦学会动作，基于规则的任务随后的表现成为独立的内侧颞叶。PFC区域和纹状体之间的连接被认为形成了几个互补的并行网络，从而促进了通过反复试验学习规则所需的相互信息交换。</p></li>
-<li><p>慢的和目标导向的学习是在大FPC完成的，而快的和强化导向的学习发生在纹状体
-（Seger, C. A. &amp; Miller, E. K. Category learning in the brain. Annu.
-Rev. Neurosci. 33, 203–219 (2010) ）</p></li>
-</ul></li>
-<li><p><strong>Rule storage and retrieval</strong></p></li>
-<li><p><strong>Rule-guided behaviour</strong></p></li>
-</ul>
-<h2 id="总结">总结</h2>
-<p>这是一篇综述文章，介绍的工作比较偏神经科学的研究。本文介绍了与抽象规则相关的背景、定义、神经基础，主要在PFC附近，这部分不熟悉，以后可以继续调研看看。</p>
-<p>有几个关键词可以再去检索一下，看看有没有合适的文章。</p>
-
+          <p>抽象能力帮助学习规则，提升认知和决策能力，帮助避免潜在的环境危险，丰富人的社会行为和互动。</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1474,6 +1170,59 @@ Rev. Neurosci. 33, 203–219 (2010) ）</p></li>
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

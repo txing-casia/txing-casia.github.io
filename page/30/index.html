@@ -81,7 +81,119 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -259,67 +371,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="remove-duplicates-from-sorted-array"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/remove-duplicates-from-sorted-array/">Remove
-Duplicates from Sorted Array</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given a sorted array <em>nums</em>, remove the duplicates in-place
-such that each element appear only <em>once</em> and return the new
-length.</p>
-<p>Do not allocate extra space for another array, you must do this by
-<strong>modifying the input array in-place</strong> with O(1) extra
-memory.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1</strong>:</p>
-<p>Given nums = [1,1,2],</p>
-<p>Your function should return length = 2, with the first two elements
-of nums being 1 and 2 respectively.</p>
-<p>It doesn't matter what you leave beyond the returned length.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2</strong>:</p>
-<p>Given nums = [0,0,1,1,1,2,2,3,3,4],</p>
-<p>Your function should return length = 5, with the first five elements
-of nums being modified to 0, 1, 2, 3, and 4 respectively.</p>
-<p>It doesn't matter what values are set beyond the returned length.</p>
-</blockquote>
-<blockquote>
-<p><strong>Clarification:</strong></p>
-<p>Confused why the returned value is an integer but your answer is an
-array?</p>
-<p>Note that the input array is passed in by <strong>reference</strong>,
-which means modification to the input array will be known to the caller
-as well.</p>
-<p>Internally you can think of this:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">// nums is passed in by reference. (i.e., without making a copy)</span></span><br><span class="line">&gt;<span class="type">int</span> len = <span class="built_in">removeDuplicates</span>(nums);</span><br><span class="line"></span><br><span class="line">&gt;<span class="comment">// any modification to nums in your function would be known by the caller.</span></span><br><span class="line">&gt;<span class="comment">// using the length returned by your function, it prints the first len elements.</span></span><br><span class="line">&gt;<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">   <span class="built_in">print</span>(nums[i]);</span><br><span class="line">&gt;&#125;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h2 id="solution">Solution</h2>
-<h3 id="approach-1-two-pointers">Approach 1: Two Pointers</h3>
-<p>Since the array is already sorted, we can keep two pointers <span
-class="math inline">\(i\)</span> and <span
-class="math inline">\(j\)</span>, where <span
-class="math inline">\(i\)</span> is the slow-runner while <span
-class="math inline">\(j\)</span> is the fast-runner. As long as <span
-class="math display">\[nums[i] = nums[j]\]</span>, we increment <span
-class="math inline">\(j\)</span> to skip the duplicate.</p>
-<p>When we encounter <span class="math inline">\(nums[j]\neq
-nums[i]\)</span>, the duplicate run has ended so we must copy its value
-to <span class="math inline">\(nums[i + 1]\)</span>. <span
-class="math inline">\(i\)</span> is then incremented and we repeat the
-same process again <span class="math inline">\(j​\)</span> reaches the
-end of array.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">removeDuplicates</span>(<span class="params">self, nums: <span class="string">&#x27;List[int]&#x27;</span></span>) -&gt; <span class="string">&#x27;int&#x27;</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(nums)==<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            index=<span class="number">0</span></span><br><span class="line">            <span class="keyword">while</span>(index+<span class="number">1</span>&lt;<span class="built_in">len</span>(nums)):</span><br><span class="line">                <span class="keyword">if</span> nums[index]==nums[index+<span class="number">1</span>]:</span><br><span class="line">                    nums.remove(nums[index])</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    index+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(nums)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    nums = [<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.removeDuplicates(nums)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>Time complextiy : <em>O</em>(<em>n</em>). Assume that <em>n</em> is
-the length of array. Each of i<em>i</em> and <em>j</em> traverses at
-most n<em>n</em>steps.</li>
-<li>Space complexity : <em>O</em>(1).</li>
-</ul>
-<p>代码中使用了nums.remove() 来删除重复元素，.pop()
-也有类似效果，但在提交LeetCode时候超时未通过。</p>
-
+          <p>Q26 Remove Duplicates from Sorted Array</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -399,82 +454,10 @@ most n<em>n</em>steps.</li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="container-with-most-water"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/container-with-most-water/">Container
-With Most Water</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given <em>n</em> non-negative integers <span
-class="math inline">\(a_1, a_2, ..., a_n\)</span> , where each
-represents a point at coordinate (<span
-class="math inline">\(i\)</span>, <span
-class="math inline">\(a_i\)</span>). <span
-class="math inline">\(n\)</span> vertical lines are drawn such that the
-two endpoints of line <span class="math inline">\(i\)</span> is at
-(<span class="math inline">\(i\)</span>, <span
-class="math inline">\(a_i\)</span>) and (<span
-class="math inline">\(i\)</span>, <span
-class="math inline">\(0\)</span>). Find two lines, which together with
-x-axis forms a container, such that the container contains the most
-water.</p>
-<figure>
-<img src="\images\question_11.jpg" alt="question_11.jpg" />
-<figcaption aria-hidden="true">question_11.jpg</figcaption>
-</figure>
-<p>The above vertical lines are represented by array
-[1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section)
-the container can contain is 49.</p>
-</blockquote>
-<blockquote>
-<p>Example:</p>
-<p>Input: [1,8,6,2,5,4,8,3,7] Output: 49</p>
-</blockquote>
-<h2 id="solution">Solution</h2>
-<h3 id="approach-1-brute-force">Approach 1: Brute Force</h3>
-<p>In this case, we will simply consider the area for every possible
-pair of the lines and find out the maximum area out of those.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxArea</span>(<span class="params">self, height</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        maxarea=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(height)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>,<span class="built_in">len</span>(height)):</span><br><span class="line">                maxarea=<span class="built_in">max</span>(maxarea,<span class="built_in">min</span>(height[i],height[j])*(j-i))</span><br><span class="line">        <span class="keyword">return</span> maxarea</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    height = [<span class="number">1</span>,<span class="number">8</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">8</span>,<span class="number">3</span>,<span class="number">7</span>]</span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.maxArea(height)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>Time complexity : <span class="math inline">\(O(n^2)\)</span>.
-Calculating area for all <span
-class="math inline">\(\frac{n(n-1)}{2}\)</span> height pairs.</li>
-<li>Space complexity : $ O(1)$ Constant extra space is used.</li>
-</ul>
-<hr />
-<h3 id="approach-2-two-pointer-approach">Approach 2: Two Pointer
-Approach</h3>
-<p>The intuition behind this approach is that the area formed between
-the lines will always be limited by the height of the shorter line.
-Further, the farther the lines, the more will be the area obtained.</p>
-<p>We take two pointers, one at the beginning and one at the end of the
-array constituting the length of the lines. Futher, we maintain a
-variable maxarea to store the maximum area obtained till now. At every
-step, we find out the area formed between them, update maxarea and move
-the pointer pointing to the shorter line towards the other end by one
-step.</p>
-<p>How this approach works?</p>
-<p>Initially we consider the area constituting the exterior most lines.
-Now, to maximize the area, we need to consider the area between the
-lines of larger lengths. If we try to move the pointer at the longer
-line inwards, we won't gain any increase in area, since it is limited by
-the shorter line. But moving the shorter line's pointer could turn out
-to be beneficial, as per the same argument, despite the reduction in the
-width. This is done since a relatively longer line obtained by moving
-the shorter line's pointer might overcome the reduction in area caused
-by the width reduction.</p>
-<p>For further clarification click <a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/container-with-most-water/discuss/6099/yet-another-way-to-see-what-happens-in-the-on-algorithm">here</a>
-and for the proof click <a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/container-with-most-water/discuss/6089/Anyone-who-has-a-O(N)-algorithm/7268">here</a>.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxArea</span>(<span class="params">self, height</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        maxarea=<span class="number">0</span></span><br><span class="line">        x=<span class="built_in">len</span>(height)-<span class="number">1</span> <span class="comment"># 最远端的指针</span></span><br><span class="line">        y=<span class="number">0</span> <span class="comment"># 最近端的指针</span></span><br><span class="line">        <span class="keyword">while</span>(y&lt;x):</span><br><span class="line">            maxarea = <span class="built_in">max</span>(maxarea, <span class="built_in">min</span>(height[x], height[y]) * (x - y))</span><br><span class="line">            <span class="keyword">if</span> (height[y] &lt; height[x]):</span><br><span class="line">                y=y+<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                x=x-<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> maxarea</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    height = [<span class="number">1</span>,<span class="number">8</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">8</span>,<span class="number">3</span>,<span class="number">7</span>]</span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.maxArea(height)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li>Time complexity : <span class="math inline">\(O(n)\)</span>. Single
-pass.</li>
-<li>Space complexity : <span class="math inline">\(O(1)\)</span>.
-Constant space is used.</li>
-</ul>
-
+          <p>Q11 Container With Most Water</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -554,63 +537,10 @@ Constant space is used.</li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="two-sum"><a target="_blank" rel="noopener" href="https://leetcode.com/problems/two-sum/">Two
-sum</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given an array of integers, return <strong>indices</strong> of the
-two numbers such that they add up to a specific target. You may assume
-that each input would have <strong>exactly</strong> one solution, and
-you may not use the <em>same</em> element twice.</p>
-</blockquote>
-<blockquote>
-<p>Example:</p>
-<p>Given nums = [2, 7, 11, 15], target = 9,</p>
-<p>Because nums[0] + nums[1] = 2 + 7 = 9, return [0, 1].</p>
-</blockquote>
-<h2 id="solution">Solution</h2>
-<h3 id="approach-1-brute-force">Approach 1: Brute Force</h3>
-<p>The brute force approach is simple. Loop through each element
-x<em>x</em> and find if there is another value that equals to
-target.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">twoSum</span>(<span class="params">self, nums, target</span>):</span><br><span class="line">        results = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i + <span class="number">1</span>, <span class="built_in">len</span>(nums)):</span><br><span class="line">                <span class="keyword">if</span> nums[i] + nums[j] == target:</span><br><span class="line">                    <span class="comment"># if nums[i] not in results:</span></span><br><span class="line">                        results.append(i)</span><br><span class="line">                    <span class="comment"># if nums[j] not in results:</span></span><br><span class="line">                        results.append(j)</span><br><span class="line">        <span class="keyword">return</span> results</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    nums = [<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>]</span><br><span class="line">    target = <span class="number">9</span></span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.twoSum(nums, target)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br></pre></td></tr></table></figure>
-<hr />
-<h3 id="approach-2-two-pass-hash-table">Approach 2: Two-pass Hash
-Table</h3>
-<p>To improve our run time complexity, we need a more efficient way to
-check if the complement exists in the array. If the complement exists,
-we need to look up its index. What is the best way to maintain a mapping
-of each element in the array to its index? A hash table.</p>
-<p>We reduce the look up time from <em>O</em>(<em>n</em>) to
-<em>O</em>(1) by trading space for speed. A hash table is built exactly
-for this purpose, it supports fast look up in <em>near</em> constant
-time. I say "near" because if a collision occurred, a look up could
-degenerate to <em>O</em>(<em>n</em>) time. But look up in hash table
-should be amortized <em>O</em>(1) time as long as the hash function was
-chosen carefully.</p>
-<p>A simple implementation uses two iterations. In the first iteration,
-we add each element's value and its index to the table. Then, in the
-second iteration we check if each element's complement (target -
-nums[i]) exists in the table. Beware that the complement must not be
-nums[i] itself!</p>
-<p>The codes in some blogs are not preciseness enough. Here gives my
-Python code:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">twoSum</span>(<span class="params">self, nums, target</span>):</span><br><span class="line">        Hashmap = <span class="built_in">dict</span>()</span><br><span class="line">        results = []</span><br><span class="line">        <span class="comment"># 建立Hash表</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(nums)):</span><br><span class="line">            Hashmap[nums[i]] = i <span class="comment">#键是数值，值是序号</span></span><br><span class="line">        <span class="comment"># 查表</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(nums)):</span><br><span class="line">            complement = target - nums[i]</span><br><span class="line">            <span class="keyword">if</span> complement <span class="keyword">in</span> Hashmap <span class="keyword">and</span> Hashmap[complement] != i:</span><br><span class="line">            <span class="comment"># 确认target不等于同一个元素乘以2</span></span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">not</span>(<span class="built_in">set</span>([i,Hashmap[complement]])&lt;<span class="built_in">set</span>(results) <span class="keyword">or</span> [Hashmap[complement],i]==results <span class="keyword">or</span> [i,Hashmap[complement]]==results) <span class="keyword">or</span> results ==[]) :</span><br><span class="line">                <span class="comment"># 首先判断results是否是空集，是则添加[i,Hashmap[complement]]</span></span><br><span class="line">                <span class="comment"># 之后的判断中，把两个加数看成一对，判断是否是results的子集或者全集(注意元素顺序对查询的影响)，</span></span><br><span class="line">                <span class="comment"># 如果不是子集或者全集，results也不是空集，那么添加results</span></span><br><span class="line">                    results.append(i)</span><br><span class="line">                    results.append(Hashmap[complement])</span><br><span class="line">        <span class="keyword">return</span> results</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    nums = [<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>]</span><br><span class="line">    target = <span class="number">9</span></span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.twoSum(nums, target)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br></pre></td></tr></table></figure>
-<p><strong>Runtime: 40 ms, faster than 65.08% of Python online
-submissions for Two Sum.</strong></p>
-<p><strong>Memory Usage: 13.4 MB, less than 5.02% of Python online
-submissions for Two Sum.</strong></p>
-<hr />
-<h3 id="approach-3-one-pass-hash-table">Approach 3: One-pass Hash
-Table</h3>
-<p>It turns out we can do it in one-pass. While we iterate and inserting
-elements into the table, we also look back to check if current element's
-complement already exists in the table. If it exists, we have found a
-solution and return immediately.</p>
-<p><strong>Of cause, in this question, we assume that only one solution
-exists.</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">twoSum</span>(<span class="params">self, nums, target</span>):</span><br><span class="line">        results = <span class="built_in">dict</span>()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(nums)):  <span class="comment"># 一边将列表中的数添加到字典中，一边判断两数之差是否存在于字典中</span></span><br><span class="line">            temp = target - nums[i]</span><br><span class="line">            <span class="keyword">if</span> temp <span class="keyword">in</span> results:  <span class="comment"># 判断步骤</span></span><br><span class="line">                <span class="keyword">return</span> [results[temp], i]</span><br><span class="line">            results[nums[i]] = i  <span class="comment"># 添加步骤（切记先判断再添加，以免key冲突）</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;No Solution&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    nums = [<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>]</span><br><span class="line">    target = <span class="number">9</span></span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.twoSum(nums, target)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br></pre></td></tr></table></figure>
-
+          <p>Q1 Two Sum</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -690,42 +620,10 @@ exists.</strong></p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="在python中调用matlab的方法">在python中调用MATLAB的方法</h1>
-<p>网上有些是让你安装mlab库来实现调用的，这个方法已经淘汰不用了，这里介绍比较新的方法。</p>
-<h2 id="step-1-install-matlab-engine-api-for-python">Step 1: install
-MATLAB Engine API for Python</h2>
-<p>官网给出的方案：</p>
-<p><a
-target="_blank" rel="noopener" href="http://ww2.mathworks.cn/help/matlab/matlab_external/install-the-matlab-engine-for-python.html?ue">install
-MATLAB Engine API for Python</a></p>
-<p>在MATLAB中输入：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">matlabroot</span><br></pre></td></tr></table></figure>
-<p>得到返回的位置</p>
-<p>打开anaconda，输入下面语句进行安装</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd matlabroot\extern\engines\python</span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
-<p>注意要将matlabroot替换为之前返回的位置</p>
-<h2 id="step-2-call-user-script-and-function-from-python">Step 2: Call
-User Script and Function from Python</h2>
-<p>官网给出的方案：</p>
-<p><a
-target="_blank" rel="noopener" href="http://cn.mathworks.com/help/matlab/matlab_external/call-user-script-and-function-from-python.html">Call
-User Script and Function from Python</a></p>
-<p>###.m脚本的调用</p>
-<p>.m文件与.py文件需要放在同一目录下。在test.m文件中输入：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">b=<span class="number">2</span>;</span><br><span class="line">h=<span class="number">3</span>;</span><br><span class="line">a=b*h</span><br></pre></td></tr></table></figure>
-<p>在H.py文件中输入：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matlab.engine</span><br><span class="line">eng = matlab.engine.start_matlab()</span><br><span class="line">eng.test(nargout=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<p>其中指定 <code>nargout=0</code>。尽管脚本会打印输出，但它不会向
-Python 返回任何输出参数。</p>
-<h3 id="自定义函数的调用">自定义函数的调用</h3>
-<p>在time.m中输入：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span> = <span class="title">time</span><span class="params">(b,h)</span></span></span><br><span class="line">	a = b*h;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>在H.py中输入：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matlab.engine</span><br><span class="line">eng = matlab.engine.start_matlab()</span><br><span class="line">ret = eng.time(<span class="number">1.0</span>,<span class="number">5.0</span>)</span><br><span class="line"><span class="built_in">print</span>(ret)</span><br></pre></td></tr></table></figure>
-<p>可以实现函数的调用。由于函数仅返回一个输出参数，因此无需指定
-<code>nargout</code>。</p>
-<p>‎2018‎年‎8‎月‎15‎日</p>
-
+          <p>网上有些是让你安装mlab库来实现调用的，这个方法已经淘汰不用了，这里介绍比较新的方法。</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -940,6 +838,59 @@ Python 返回任何输出参数。</p>
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

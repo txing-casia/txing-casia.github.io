@@ -81,7 +81,119 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -259,20 +371,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1
-id="unconscious-reinforcement-learning-of-hidden-brain-states-supported-by-confidence">Unconscious
-reinforcement learning of hidden brain states supported by
-confidence</h1>
-<p>论文链接：https://www.nature.com/articles/s41467-020-17828-8</p>
-<h2 id="背景">背景</h2>
-<h2 id="主要工作">主要工作</h2>
-<ul>
-<li></li>
-</ul>
-<h2 id="方法">方法</h2>
-<p><img src="\images\20200912-1.png" /></p>
-<h2 id="总结">总结</h2>
-
+          <p>Unconscious RL of hidden brain states supported by confidence</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -352,26 +454,10 @@ confidence</h1>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1
-id="making-efficient-use-of-demonstrations-to-solve-hard-exploration-problems">Making
-Efficient Use of Demonstrations to Solve Hard Exploration Problems</h1>
-<p>论文链接：https://arxiv.org/abs/1909.01387</p>
-<h2 id="背景">背景</h2>
-<p>针对有困难探索的任务，通过示教实现高效的学习。</p>
-<p>探索上的困难包括三个方面：</p>
-<ul>
-<li>奖励稀疏（Sparse rewards）：</li>
-<li>部分可观测（Partial observability）：</li>
-<li>高度可变的初始条件（Highly variable initial conditions）：</li>
-</ul>
-<h2 id="主要工作">主要工作</h2>
-<ul>
-<li></li>
-</ul>
-<h2 id="方法">方法</h2>
-<p><img src="\images\20200912-1.png" /></p>
-<h2 id="总结">总结</h2>
-
+          <p>针对有困难探索的任务，通过示教实现高效的学习。</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -451,153 +537,10 @@ Efficient Use of Demonstrations to Solve Hard Exploration Problems</h1>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1
-id="vector-based-navigation-using-grid-like-representations-in-artificial-agent">Vector-based
-navigation using grid-like representations in artificial agent</h1>
-<p>论文链接：https://www.nature.com/articles/s41586-018-0102-6/</p>
-<h2 id="背景">背景</h2>
-<p>RL在许多方面取得了好的成绩，但在哺乳动物的空间行为（mammalian spatial
-behaviour）的熟练度上，人工agent的性能仍然不足。
-动物的空间感知由网格细胞（grid cell）支持，它提供了一种度量编码空间（a
-metric for coding space）的能力。本文模仿grid
-cell在DRL的基础上开发一种类哺乳动物的导航能力（mammal-like navigational
-abilities）。</p>
-<p>被赋予了grid-like
-representations的agent在导航任务上性能超过了人类专家in challenging,
-unfamiliar, and changeable environments，甚至有走捷径的能力。</p>
-<h3 id="概念">概念</h3>
-<ul>
-<li>路径整合（path
-integration）是指巡航者对与自身运动有关的信息进行整合来完成巡航任务的过程。例如agent在地图上绕了一圈到达目标位置，那么第二次出发的时候，能够整合之前的路径信息，得出更直接到达目标位置的路径。（He,
-Q., &amp; Mcnamara, T. P. (2018). Spatial Updating Strategy Affects the
-Reference Frame in Path Integration. <em>Psychonomic Bulletin &amp;
-Review</em>, 25(3), 1073-1079.）</li>
-</ul>
-<h2 id="主要工作">主要工作</h2>
-<ul>
-<li><p>把速度信息作为输入给到一个LSTM循环神经网络，网络更新通过Backpropagation
-through
-time。LSTM映射位置和方向到一个线性层，在线性层中使用dropout，每个时刻随机50%的神经元被沉默。</p></li>
-<li><p>foraging behaviour觅食行为涉及到路径集成能力</p></li>
-<li><p>entorhinal network内嗅皮层网络帮助形成稳定的空间活动</p></li>
-<li><p>实验效果如下图：</p></li>
-</ul>
-<p><img src="\images\20200914-1.png" /></p>
-<ul>
-<li>vector-based navigation:
-内嗅网格细胞产生目标驱动向量度量欧式空间，使得动物能够沿着一条直接路径到达目标。文中利用监督学习来实现这一能力。</li>
-<li>grid
-network输入是视觉信号，通过一个视觉网络实现。线性层输出是位置信息，相当于agent当前的位置。同时，线性层的信号（goal
-grid code）作为输入传入一个Policy
-LSTM网络，这个网络也是用于控制agent的行为。</li>
-</ul>
-<h2 id="方法">方法</h2>
-<h3 id="path-integration-supervised-learning-experiments">1 Path
-integration: supervised learning experiments</h3>
-<h4 id="ground-truth-place-cell-distribution">1.1 Ground truth place
-cell distribution</h4>
-<ul>
-<li>地图直径为<span class="math display">\[L\]</span></li>
-</ul>
-<p><img src="\images\20200914-2.png" /></p>
-<ul>
-<li>符号说明：
-<ul>
-<li>Place cell激活<span class="math display">\[\overrightarrow{c} \in
-[0,1]^N\]</span></li>
-<li>位置<span class="math display">\[\overrightarrow{x} \in
-R^2\]</span></li>
-<li>place cell centres <span
-class="math display">\[\overrightarrow{\mu}_i^{(c)} \in
-R^2\]</span></li>
-<li>place cell scale <span
-class="math display">\[\sigma^{(c)}\]</span></li>
-</ul></li>
-</ul>
-<h4 id="ground-truth-head-direction-cell-distribution">1.2 Ground truth
-head-direction cell distribution</h4>
-<p><img src="\images\20200914-3.png" /></p>
-<ul>
-<li>参数说明：
-<ul>
-<li>Head-direction cell激活<span
-class="math display">\[\overrightarrow{h} \in [0,1]^M\]</span></li>
-<li>给定面向角度<span class="math display">\[\varphi\]</span></li>
-<li>使用mixture of Von Mises distributions with concentration parameter
-<span class="math display">\[k^{(h)}\]</span></li>
-</ul></li>
-</ul>
-<h4 id="supervised-learning-inputs">1.3 Supervised learning inputs</h4>
-<ul>
-<li>每个时刻传入速度<span class="math display">\[v_t\in
-\mathbb{R}\]</span>以及the sine and cosine of its angular velocity <span
-class="math display">\[\varphi_t\]</span></li>
-</ul>
-<h4 id="grid-cell-network-architecture">1.4 Grid cell network
-architecture</h4>
-<ul>
-<li>consists of three layers: <strong>a recurrent layer</strong>(LSTM,
-128 hidden units ,with no peephole connections), <strong>a linear
-layer</strong>, and <strong>an output layer</strong> (Fig 1a).</li>
-<li>Input to the recurrent LSTM layer: <span
-class="math display">\[[v_t,\sin(\varphi_t),\cos(\varphi_t)]\]</span></li>
-<li>LSTM的初始<strong>细胞状态</strong>和<strong>隐层状态</strong>为
-<span class="math display">\[\overrightarrow{l}_0\]</span> and <span
-class="math display">\[\overrightarrow{m}_0\]</span></li>
-</ul>
-<p><span class="math display">\[
-\overrightarrow{l}_0=W^{cp}\overrightarrow{c}_0+W^{(cd)}\overrightarrow{h}_0\\
-\overrightarrow{m}_0=W^{hp}\overrightarrow{c}_0+W^{(hd)}\overrightarrow{h}_0
-\]</span></p>
-<p><span
-class="math display">\[(W^{cp},W^{cd},W^{hp},W^{hd})\]</span>是两个线性转换器的参数</p>
-<ul>
-<li>通过线性编码网络的均值，以及LSTM的输出<span
-class="math display">\[\overrightarrow{m}_t\]</span>，计算预测的place
-cells<span class="math display">\[\overrightarrow{y}_t\]</span>和head
-direction cells <span
-class="math display">\[\overrightarrow{z}_t\]</span></li>
-<li>线性编码网络包含三组权重和偏置。
-<ul>
-<li>第一组：从LSTM的隐层状态<span
-class="math display">\[\overrightarrow{m}_t\]</span>映射到线性激活层<span
-class="math display">\[\overrightarrow{g}_t\in
-\mathbb{R}^{512}\]</span>的权重和偏置</li>
-<li>第二组：从线性激活层<span
-class="math display">\[\overrightarrow{g}_t\]</span>映射到预测的头部朝向<span
-class="math display">\[\overrightarrow{z}_t\]</span>的权重和偏置通过softmax
-functions</li>
-<li>第三组：从线性激活层<span
-class="math display">\[\overrightarrow{g}_t\]</span>映射到预测的位置细胞输出<span
-class="math display">\[\overrightarrow{y}_t\]</span>的权重和偏置通过softmax
-functions</li>
-</ul></li>
-<li>dropout：线性激活层<span
-class="math display">\[\overrightarrow{g}_t\]</span>每个单元的沉默概率是0.5</li>
-<li>注意线性编码网络中间没有非线性层</li>
-</ul>
-<h4 id="supervised-learning-loss">1.5 Supervised learning loss</h4>
-<ul>
-<li>使用交叉熵损失函数</li>
-</ul>
-<p><span class="math display">\[
-L(\overrightarrow{y},\overrightarrow{z},\overrightarrow{c},\overrightarrow{h})=-\sum_{i=1}^{N}
-c_i \log(y_i)-\sum_{j=1}^{M} h_j \log(z_j)
-\]</span></p>
-<p>监督学习部分的结构:</p>
-<p><img src="\images\20200915-1.png" /></p>
-<p>Grid cell agent整体结构：</p>
-<p><img src="\images\20200915-2.png" /></p>
-<h2 id="总结">总结</h2>
-<p>grid cells的相关生物学研究获得过<a
-href="https://link.zhihu.com/?target=https%3A//www.nobelprize.org/nobel_prizes/medicine/laureates/2014/">2014年诺贝尔生理学奖</a>for
-their discoveries of cells that constitute a positioning system in the
-brain。Deepmind甚至请了这个诺贝尔奖获得者来为本文写<a
-href="https://link.zhihu.com/?target=https%3A//f1000.com/prime/733198068%3Fkey%3DnvlnlWetE8dlZTy">序言</a>。</p>
-<p>这项工作如果用在导航上是比较有意义的，利用grid
-cells的空间信息处理机制，agent可以自动寻路，还可以做路径整合，得到更优化的路径。</p>
-<p>当用在机器人运动轨迹的优化上时，由于机器人本体（基坐标）位置并没有发生变动，所以并不能像导航任务中那样自由自在地探索，可以仔细考虑一下其中的差别，制定一个新的实验范式。</p>
-
+          <p>被赋予了grid-like representations的agent在导航任务上性能超过了人类专家in challenging, unfamiliar, and changeable environments，甚至有走捷径的能力。</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -677,63 +620,10 @@ cells的空间信息处理机制，agent可以自动寻路，还可以做路径�
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="kids-with-the-greatest-number-of-candies"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/kids-with-the-greatest-number-of-candies/">Kids
-With the Greatest Number of Candies</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given the array candies and the integer extraCandies, where
-candies[i] represents the number of candies that the ith kid has.</p>
-<p>For each kid check if there is a way to distribute extraCandies among
-the kids such that he or she can have the greatest number of candies
-among them. Notice that multiple kids can have the greatest number of
-candies.</p>
-<p><strong>Constraints:</strong></p>
-<p>2 &lt;= candies.length &lt;= 100 1 &lt;= candies[i] &lt;= 100 1 &lt;=
-extraCandies &lt;= 50</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input: candies = [2,3,5,1,3], extraCandies = 3 Output:
-[true,true,true,false,true] Explanation: Kid 1 has 2 candies and if he
-or she receives all extra candies (3) will have 5 candies --- the
-greatest number of candies among the kids. Kid 2 has 3 candies and if he
-or she receives at least 2 extra candies will have the greatest number
-of candies among the kids. Kid 3 has 5 candies and this is already the
-greatest number of candies among the kids. Kid 4 has 1 candy and even if
-he or she receives all extra candies will only have 4 candies. Kid 5 has
-3 candies and if he or she receives at least 2 extra candies will have
-the greatest number of candies among the kids.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>Input: candies = [4,2,1,1,2], extraCandies = 1 Output:
-[true,false,false,false,false] Explanation: There is only 1 extra candy,
-therefore only kid 1 will have the greatest number of candies among the
-kids regardless of who takes the extra candy.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 3:</strong></p>
-<p>Input: candies = [12,1,12], extraCandies = 10 Output:
-[true,false,true]</p>
-</blockquote>
-<h3 id="approach-1-枚举法">Approach 1: 枚举法</h3>
-<p>这道题目关键点在于判断<em>candies[i] + extraCandies &gt;=
-max_candies</em>
-，因此需要先找出最大的糖果数，之后在一个for循环中诸葛对比。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">kidsWithCandies</span>(<span class="params">self, candies , extraCandies </span>) :</span><br><span class="line">        sort_candies=<span class="built_in">sorted</span>(candies)</span><br><span class="line">        ans=<span class="built_in">list</span>()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(candies)):</span><br><span class="line">            <span class="keyword">if</span> candies[i]+extraCandies&gt;=sort_candies[-<span class="number">1</span>]:</span><br><span class="line">                ans.append(<span class="built_in">bool</span>(<span class="number">1</span>))</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                ans.append(<span class="built_in">bool</span>(<span class="number">0</span>))</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    candies = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>]</span><br><span class="line">    extraCandies = <span class="number">3</span></span><br><span class="line">    solution=Solution().kidsWithCandies(candies,extraCandies)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p>上面的代码中使用了sorted排序，其实没有必要，因为只需求到最大值。for循环也可以使用简洁形式表达，使代码更加紧凑</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">kidsWithCandies</span>(<span class="params">self, candies , extraCandies </span>) :</span><br><span class="line">        maxCandies = <span class="built_in">max</span>(candies)</span><br><span class="line">        ret = [candy + extraCandies &gt;= maxCandies <span class="keyword">for</span> candy <span class="keyword">in</span> candies]</span><br><span class="line">        <span class="keyword">return</span> ret</span><br></pre></td></tr></table></figure>
-<h3 id="复杂度分析">复杂度分析</h3>
-<ul>
-<li><p>时间复杂度：我们首先使用
-O(n)的时间预处理出所有小朋友拥有的糖果数目最大值。对于每一个小朋友，我们需要
-O(1) 的时间判断这个小朋友是否可以拥有最多的糖果，故渐进时间复杂度为
-O(n)。</p></li>
-<li><p>空间复杂度：这里只用了常数个变量作为辅助空间，与 n
-的规模无关，故渐进空间复杂度为 O(1)。</p></li>
-</ul>
-
+          <p>Q1431 Kids With the Greatest Number of Candies-简单-枚举</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -813,46 +703,10 @@ O(n)。</p></li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="running-sum-of-1d-array"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/running-sum-of-1d-array/">Running
-Sum of 1d Array</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given an array nums. We define a running sum of an array as
-runningSum[i] = sum(nums[0]…nums[i]).</p>
-<p>Return the running sum of nums.</p>
-<p><strong>Constraints:</strong></p>
-<ul>
-<li><code>1 &lt;= nums.length &lt;= 1000</code></li>
-<li><code>-10^6 &lt;= nums[i] &lt;= 10^6</code></li>
-</ul>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input: nums = [1,2,3,4] Output: [1,3,6,10] Explanation: Running sum
-is obtained as follows: [1, 1+2, 1+2+3, 1+2+3+4].</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>Input: nums = [1,1,1,1,1] Output: [1,2,3,4,5] Explanation: Running
-sum is obtained as follows: [1, 1+1, 1+1+1, 1+1+1+1, 1+1+1+1+1].</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 3:</strong></p>
-<p>Input: nums = [3,1,2,10,1] Output: [3,4,6,16,17]</p>
-</blockquote>
-<h3 id="approach-1">Approach 1:</h3>
-<p>开始的时候想建立sum变量来储存前i项和，但这样造成了空间的浪费，可以直接改写input列表，将其作为输出。</p>
-<p><strong>Note:</strong>
-如果面试遇到这个问题，问清楚面试官，是否可以修改传来的 nums 数组！</p>
-<p>约束条件限制了nums非空，因此不用判断这点；限制了元素大小，因此不考虑传入错误字符的情况</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">runningSum</span>(<span class="params">self, nums</span>):</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(nums)):</span><br><span class="line">            nums[i]=nums[i-<span class="number">1</span>]+nums[i]</span><br><span class="line">        <span class="keyword">return</span> nums</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    nums = [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>]</span><br><span class="line">    solution=Solution().runningSum(nums)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<h3 id="复杂度分析">复杂度分析</h3>
-<ul>
-<li>时间复杂度O(n)</li>
-<li>空间复杂度O(n)</li>
-</ul>
-
+          <p>Q1480 Running Sum of 1d Array-简单</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -932,105 +786,10 @@ sum is obtained as follows: [1, 1+1, 1+1+1, 1+1+1+1, 1+1+1+1+1].</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1
-id="data-efficient-hierarchical-reinforcement-learning">Data-Efficient
-Hierarchical Reinforcement Learning</h1>
-<p>论文链接：http://papers.nips.cc/paper/7591-data-efficient-hierarchical-reinforcement-learning.pdf</p>
-<h2 id="背景">背景</h2>
-<p>HRL是处理复杂任务的有效方式，之前的方法大多需要针对具体任务进行特殊设计，并使用on-policy的方法进行训练，这些因素导致HRL很难被引用到真实的场景中。本文用off-policy的方式训练higher-
-and lower-level
-controllers，提高了模型的数据利用率，性能超过了之前SOTA的Option-Critic。</p>
-<p><strong>Option-Critic</strong>：Pierre-Luc Bacon, Jean Harb, and
-Doina Precup. The option-critic architecture. In AAAI, pages 1726–1734,
-2017.</p>
-<h2 id="主要工作">主要工作</h2>
-<ul>
-<li><p>首先需要明确的是什么是复杂的任务，文中定义的一个复杂任务是perform
-exploratory navigaive as well as complex sequences of interaction with
-ovjects inthe environment. 作者认为这些任务是unsolvable by
-non-HRL，主要是因为奖励稀疏，完成任务需要多个步骤；</p></li>
-<li><p>低级/高级策略如何定义并训练？之前的方法用人工设计来解决，因此方法没有一般性。</p></li>
-<li><p>Note that 本文只用的是state
-observation而不是高维图像输入，这个与FuN是不同的</p></li>
-<li><p>本文使用的是off-policy的学习方法（TD3, [<a
-href="https://link.zhihu.com/?target=http%3A//proceedings.mlr.press/v80/fujimoto18a/fujimoto18a.pdf">Addressing
-Function Approximation Error in Actor-Critic
-Methods</a>，它是DDPG的一种变体，同样针对连续的控制），试图提高sample的利用效率，但是这会带来两个问题：</p>
-<ul>
-<li>off-policy会带来学习上的不稳定，在多重policy的情况下这种影响还会更大。</li>
-<li>低级的policy在训练过程中会不断变化，因此之前收集到的samples就不再是valid
-experience for training</li>
-</ul>
-<p>针对这两个问题，本文建立了<strong>off-policy修正模型</strong>，re-label过去的经验，并用高级策略选择可能获得最大奖励的行为。</p></li>
-</ul>
-<h2 id="方法">方法</h2>
-<p><img src="\images\20200912-1.png" /></p>
-<ul>
-<li><p>两层策略：a lower-level policy <span
-class="math display">\[\mu^{lo}\]</span> and a higher-level policy <span
-class="math display">\[\mu^{hi}\]</span></p></li>
-<li><p><span
-class="math display">\[\mu^{hi}\]</span>以从环境获取的obs为输入，获得high-level
-action (goal) <span class="math display">\[g_t\in
-\mathbb{R}^d\]</span>。<span
-class="math display">\[g_t\]</span>要么用<span
-class="math display">\[\mu^{hi}\]</span>以<span
-class="math display">\[c\]</span>步为间隔进行采样<span
-class="math display">\[g_t\sim \mu^{hi}\  (when\ t\equiv
-0)\]</span>，要么使用一个固定目标的转换函数<span
-class="math display">\[g_t=h(s_{t-1},g_{t-1},s_t)\]</span>，获得的奖励为<span
-class="math display">\[R(s_t,a_t)\]</span>。</p></li>
-<li><p><span class="math display">\[\mu^{lo}\]</span>观测状态<span
-class="math display">\[s_t\]</span>和目标<span class="math display">\[
-g_t\]</span>，并产生低维的行为<span class="math display">\[a_t\sim
-\mu^{lo}(s_t, g_t)\]</span>，获得奖励<span
-class="math display">\[r_t=r(s_t,g_t,a_t,s_{t+1})\]</span></p></li>
-<li><p>低级策略储存经验<span
-class="math display">\[(s_t,g_t,a_t,r_t,s_{t+1},h(s_t,g_t,s_{s+1}))\]</span></p></li>
-<li><p>高级策略储存经验<span
-class="math display">\[(s_{t:t+c-1},g_{t:t+c-1},a_{t:t+c-1},R_{t:t+c-1},s_{t+c})\]</span></p></li>
-</ul>
-<h3 id="参数化rewards">参数化Rewards</h3>
-<ul>
-<li><p>goal transition model <span class="math display">\[h\]</span> is
-defined as: <span class="math display">\[h(s_t,g_t,s_{t+1}) = s_t + g_t
-- s_{t+1}\]</span></p></li>
-<li><p>intrinsic reward: <span class="math display">\[
-r(s_t,g_t,a_t,s_{t+1}) = -\parallel s_t + g_t - s_{t+1}\parallel _2
-\]</span> ，这里<span
-class="math display">\[g_t\]</span>相当于是一个状态增量，学习目标是使得
-<span class="math display">\[ s_t + g_t = s_{t+1} \]</span></p></li>
-<li><p>实验中<span class="math display">\[g_t\]</span>是期望的坐标<span
-class="math display">\[(x,y,z)\]</span>，obs也仅仅包含位置的观测</p></li>
-<li><p>高级策略state-action-reward transition <span
-class="math display">\[(s_t,g_t,\sum
-R_{t:t+c-1},s_{t+c})\]</span></p></li>
-<li><p>对于旧的经验，给定<span
-class="math display">\[\widetilde{g}_t\]</span>最大化<span
-class="math display">\[\mu^{lo}(a_{t:t+c-1}\mid
-s_{t:t+c-1},\widetilde{g}_{t:t+c-1})\]</span></p></li>
-<li><p>中间目标 <span
-class="math display">\[\widetilde{g}_{t+1:t+c-1}\]</span>
-用固定目标转移函数<span class="math display">\[h\]</span>生成</p></li>
-<li><p>log probability <span class="math display">\[ \log
-\mu^{lo}(a_{t:t+c-1}\mid s_{t:t+c-1},\widetilde{g}_{t:t+c-1}) \]</span>
-通过下式计算得到</p></li>
-</ul>
-<p><span class="math display">\[
-\log \mu^{lo}(a_{t:t+c-1}\mid
-s_{t:t+c-1},\widetilde{g}_{t:t+c-1})\propto
--\frac{1}{2}\sum_{i=t}^{t+c-1}\parallel
-a_i-\mu^{lo}(s_i,\widetilde{g}_i)\parallel^2_2+\text{const}
-\]</span></p>
-<h2 id="总结">总结</h2>
-<p>HIRO整体节奏还是很明快的，整体结构基于DDPG和TD3经验修正的地方稍微有些含糊。文中的目标
-<span class="math display">\[ g_t \]</span>
-就相当于是一个状态增量，修正就是用10个高斯分布在 <span
-class="math display">\[ [0,\mid s_{t+1}-s_t\mid] \]</span> 或者 <span
-class="math display">\[ [-\mid s_{t+1}-s_t\mid ,0] \]</span>
-之间取值目标 <span class="math display">\[ \widetilde{g}_t \]</span>
-。至于为什么是10个高斯，怎么取值，这些正文中没有说明，附录里面应该有，细看的时候可以找一找。</p>
-
+          <p>本文用off-policy的方式训练higher- and lower-level controllers，提高了模型的数据利用率，性能超过了之前SOTA的Option-Critic。</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1110,77 +869,10 @@ class="math display">\[ [-\mid s_{t+1}-s_t\mid ,0] \]</span>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="average-of-levels-in-binary-tree"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/average-of-levels-in-binary-tree/">Average
-of Levels in Binary Tree</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given a non-empty binary tree, return the average value of the nodes
-on each level in the form of an array. Example 1: Input:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  3</span><br><span class="line"> / \</span><br><span class="line">9  20</span><br><span class="line">  /  \</span><br><span class="line"> 15   7</span><br></pre></td></tr></table></figure>
-<p>Output: [3, 14.5, 11] Explanation: The average value of nodes on
-level 0 is 3, on level 1 is 14.5, and on level 2 is 11. Hence return [3,
-14.5, 11].</p>
-<p><strong>Note:</strong></p>
-<p>The range of node's value is in the range of 32-bit signed
-integer.</p>
-</blockquote>
-<h2 id="approach-1-深度优先搜索">Approach 1: 深度优先搜索</h2>
-<p>使用深度优先搜索计算二叉树的层平均值，需要维护两个数组，<span
-class="math display">\[\textit{counts}\]</span>
-用于存储二叉树的每一层的节点数，<span
-class="math display">\[\textit{sums}\]</span>
-用于存储二叉树的每一层的节点值之和。搜索过程中需要记录当前节点所在层，如果访问到的节点在第
-i 层，则将 <span class="math display">\[\textit{counts}[i]\]</span>
-的值加 1，并将该节点的值加到 <span
-class="math display">\[\textit{sums}[i]\]</span>。</p>
-<p>遍历结束之后，第 i 层的平均值即为 <span
-class="math display">\[\textit{sums}[i] /
-\textit{counts}[i]\]</span>。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">averageOfLevels_dfs</span>(<span class="params">self, root</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">root:TreeNode, level</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">if</span> level &lt; <span class="built_in">len</span>(totals):</span><br><span class="line">                totals[level] += root.val</span><br><span class="line">                counts[level] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                totals.append(root.val)</span><br><span class="line">                counts.append(<span class="number">1</span>)</span><br><span class="line">            dfs(root.left, level + <span class="number">1</span>)</span><br><span class="line">            dfs(root.right, level + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        counts = <span class="built_in">list</span>()</span><br><span class="line">        totals = <span class="built_in">list</span>()</span><br><span class="line">        dfs(root, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> [total / count <span class="keyword">for</span> total, count <span class="keyword">in</span> <span class="built_in">zip</span>(totals, counts)]</span><br></pre></td></tr></table></figure>
-<h3 id="复杂度分析">复杂度分析</h3>
-<ul>
-<li><p>时间复杂度：<span class="math display">\[O(n)\]</span>，其中 n
-是二叉树中的节点个数。
-深度优先搜索需要对每个节点访问一次，对于每个节点，维护两个数组的时间复杂度都是
-<span
-class="math display">\[O(1)\]</span>，因此深度优先搜索的时间复杂度是
-<span
-class="math display">\[O(n)\]</span>。遍历结束之后计算每层的平均值的时间复杂度是
-O(h)O(h)，其中 hh 是二叉树的高度，任何情况下都满足 <span
-class="math display">\[h \le n\]</span>。因此总时间复杂度是 <span
-class="math display">\[O(n)\]</span>。</p></li>
-<li><p>空间复杂度：<span class="math display">\[O(n)\]</span>，其中 n
-是二叉树中的节点个数。空间复杂度取决于两个数组的大小和递归调用的层数，两个数组的大小都等于二叉树的高度，递归调用的层数不会超过二叉树的高度，最坏情况下，二叉树的高度等于节点个数。</p></li>
-</ul>
-<h2 id="approach-2-广度优先搜索">Approach 2: 广度优先搜索</h2>
-<p>也可以使用广度优先搜索计算二叉树的层平均值。从根节点开始搜索，每一轮遍历同一层的全部节点，计算该层的节点数以及该层的节点值之和，然后计算该层的平均值。</p>
-<p>如何确保每一轮遍历的是同一层的全部节点呢？我们可以借鉴层次遍历的做法，广度优先搜索使用队列存储待访问节点，只要确保在每一轮遍历时，队列中的节点是同一层的全部节点即可。具体做法如下：</p>
-<ul>
-<li><p>初始时，将根节点加入队列；</p></li>
-<li><p>每一轮遍历时，将队列中的节点全部取出，计算这些节点的数量以及它们的节点值之和，并计算这些节点的平均值，然后将这些节点的全部非空子节点加入队列，重复上述操作直到队列为空，遍历结束。</p></li>
-</ul>
-<p>由于初始时队列中只有根节点，满足队列中的节点是同一层的全部节点，每一轮遍历时都会将队列中的当前层节点全部取出，并将下一层的全部节点加入队列，因此可以确保每一轮遍历的是同一层的全部节点。</p>
-<p>具体实现方面，可以在每一轮遍历之前获得队列中的节点数量 <span
-class="math display">\[\textit{size}\]</span>，遍历时只遍历 <span
-class="math display">\[size\]</span>
-个节点，即可满足每一轮遍历的是同一层的全部节点。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">averageOfLevels_dfs</span>(<span class="params">self, root</span>):</span><br><span class="line">        averages = <span class="built_in">list</span>()</span><br><span class="line">        queue = collections.deque([root])</span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            total = <span class="number">0</span></span><br><span class="line">            size = <span class="built_in">len</span>(queue)</span><br><span class="line">            <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(size):</span><br><span class="line">                node = queue.popleft()</span><br><span class="line">                total += node.val</span><br><span class="line">                left, right = node.left, node.right</span><br><span class="line">                <span class="keyword">if</span> left:</span><br><span class="line">                    queue.append(left)</span><br><span class="line">                <span class="keyword">if</span> right:</span><br><span class="line">                    queue.append(right)</span><br><span class="line">            averages.append(total / size)</span><br><span class="line">        <span class="keyword">return</span> averages</span><br></pre></td></tr></table></figure>
-<h3 id="复杂度分析-1">复杂度分析</h3>
-<ul>
-<li><p>时间复杂度：<span class="math display">\[O(n)\]</span>，其中 n
-是二叉树中的节点个数。广度优先搜索需要对每个节点访问一次，时间复杂度是
-<span class="math display">\[O(n)\]</span>。
-需要对二叉树的每一层计算平均值，时间复杂度是 <span
-class="math display">\[O(h)\]</span>，其中 h
-是二叉树的高度，任何情况下都满足 <span class="math display">\[h \le
-n\]</span>。因此总时间复杂度是 <span
-class="math display">\[O(n)\]</span>。</p></li>
-<li><p>空间复杂度：<span class="math display">\[O(n)\]</span>，其中 n
-是二叉树中的节点个数。空间复杂度取决于队列开销，队列中的节点个数不会超过
-n。</p></li>
-</ul>
-
+          <p>Q637 Average of Levels in Binary Tree-简单-深度/广度优先搜索</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1260,34 +952,10 @@ n。</p></li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="combination-sum-iii"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/combination-sum-iii/">Combination
-Sum III</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Find all possible combinations of k numbers that add up to a number
-n, given that only numbers from 1 to 9 can be used and each combination
-should be a unique set of numbers.</p>
-<p><strong>Note:</strong></p>
-<ul>
-<li>All numbers will be positive integers.</li>
-<li>The solution set must not contain duplicate combinations.</li>
-</ul>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input: k = 3, n = 7 Output: [[1,2,4]]</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>Input: k = 3, n = 9 Output: [[1,2,6], [1,3,5], [2,3,4]]</p>
-</blockquote>
-<h3 id="approach-1-递归回溯">Approach 1: 递归回溯</h3>
-<p>做了Combination Sum
-I-III三道题后，对回溯法寻找合适解的问题逐渐熟悉了起来。dfs函数里面需要用if判断所得解是否合适，合适了就使用append方法，把暂存器temp到答案ans里面并return结束此分支的迭代。如果不合适，即未满足终止条件，继续搜索过程。</p>
-<p>这里需要注意的是，如果搜索范围有改变（存在不选重复数字之类的条件），记得用一个for循环在新的范围内执行dfs。如果搜索范围没有改变，就可以不用for循环，减小复杂度。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">combinationSum3</span>(<span class="params">self, k: <span class="built_in">int</span>, n: <span class="built_in">int</span></span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">temp,S,k,n</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(temp)==k <span class="keyword">and</span> n==<span class="number">0</span>:</span><br><span class="line">                ans.append(temp[:])</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(S)):</span><br><span class="line">                temp.append(S[i])</span><br><span class="line">                <span class="comment"># S[i + 1:]实现了剪枝和防止逆序选数，这是关键点</span></span><br><span class="line">                dfs(temp, S[i+<span class="number">1</span>:], k, n-S[i])</span><br><span class="line">                temp.pop()</span><br><span class="line">        ans=[]</span><br><span class="line">        S=[i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">10</span>)]</span><br><span class="line">        <span class="comment"># 暂存数组，可选项，需要k个数，需要和为n</span></span><br><span class="line">        dfs([], S, k, n)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    k = <span class="number">3</span></span><br><span class="line">    n = <span class="number">9</span></span><br><span class="line">    solution=Solution().combinationSum3(k,n)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
+          <p>Q216 Combination Sum III-中等-递归 回溯</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1502,6 +1170,59 @@ I-III三道题后，对回溯法寻找合适解的问题逐渐熟悉了起来。
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

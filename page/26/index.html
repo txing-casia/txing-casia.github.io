@@ -81,7 +81,119 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -259,92 +371,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="goat-latin"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/goat-latin/">Goat Latin</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>A sentence <code>S</code> is given, composed of words separated by
-spaces. Each word consists of lowercase and uppercase letters only.</p>
-<p>We would like to convert the sentence to "<em>Goat Latin"</em> (a
-made-up language similar to Pig Latin.)</p>
-<p>The rules of Goat Latin are as follows:</p>
-<ul>
-<li><p>If a word begins with a vowel (a, e, i, o, or u), append
-<code>"ma"</code> to the end of the word. For example, the word 'apple'
-becomes 'applema'.</p></li>
-<li><p>If a word begins with a consonant (i.e. not a vowel), remove the
-first letter and append it to the end, then add <code>"ma"</code>. For
-example, the word <code>"goat"</code> becomes
-<code>"oatgma"</code>.</p></li>
-<li><p>Add one letter <code>'a'</code> to the end of each word per its
-word index in the sentence, starting with 1. For example, the first word
-gets <code>"a"</code> added to the end, the second word gets
-<code>"aa"</code>added to the end and so on.</p></li>
-</ul>
-<p>Return the final sentence representing the conversion from
-<code>S</code> to Goat Latin.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input: "I speak Goat Latin" Output: "Imaa peaksmaaa oatGmaaaa
-atinLmaaaaa"</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>Input: "The quick brown fox jumped over the lazy dog" Output: "heTmaa
-uickqmaaa rownbmaaaa oxfmaaaaa umpedjmaaaaaa overmaaaaaaa hetmaaaaaaaa
-azylmaaaaaaaaa ogdmaaaaaaaaaa"</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li><code>S</code> contains only uppercase, lowercase and spaces.
-Exactly one space between each word.</li>
-<li><code>1 &lt;= S.length &lt;= 150</code>.</li>
-</ul>
-</blockquote>
-<h2 id="approach-1-direct-solution">Approach 1: Direct Solution</h2>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>Here, we use a direct idea to the problem.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">toGoatLatin</span>(<span class="params">self, S</span>):</span><br><span class="line">        out = []</span><br><span class="line">        <span class="keyword">for</span> i, w <span class="keyword">in</span> <span class="built_in">enumerate</span>(S.split(<span class="string">&#x27; &#x27;</span>)): <span class="comment"># 返回序号i和第i个单词</span></span><br><span class="line">            <span class="keyword">if</span> w[<span class="number">0</span>] <span class="keyword">not</span> <span class="keyword">in</span> <span class="built_in">list</span>(<span class="string">&#x27;aeiouAEIOU&#x27;</span>): <span class="comment"># Smart!</span></span><br><span class="line">                w = w[<span class="number">1</span>:] + w[<span class="number">0</span>]</span><br><span class="line">            out.append(w + <span class="string">&#x27;ma&#x27;</span> + <span class="string">&#x27;a&#x27;</span>*(i+<span class="number">1</span>))</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27; &#x27;</span>.join(out)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    S=<span class="string">&quot;I speak Goat Latin&quot;</span></span><br><span class="line">    solution=Solution().toGoatLatin(S)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li>Time Complexity: <em>O</em>(<em>n</em>), where <em>n</em> is the
-total words of <code>S</code>.</li>
-<li>Space Complexity: <em>O</em>(<em>1</em>).</li>
-<li>Runtime: 28 ms, faster than 16.77% of Python online submissions for
-Goat Latin.</li>
-<li>Memory Usage: 11.7 MB, less than 85.71% of Python online submissions
-for Goat Latin.</li>
-</ul>
-<h2 id="approach-2-subfunction">Approach 2: Subfunction</h2>
-<p><strong>Intuition</strong></p>
-<p>We apply the steps given in the problem in a straightforward manner.
-The difficulty lies in the implementation.</p>
-<p><strong>Algorithm</strong></p>
-<p>For each <code>word</code> in the sentence split, if it is a vowel we
-consider the word, otherwise we consider the rotation of the word
-(either <code>word[1:] + word[:1]</code> in Python, otherwise
-<code>word.substring(1) + word.substring(0, 1)</code>in Java).</p>
-<p>Afterwards, we add <code>"ma"</code>, the desired number of
-<code>"a"</code>'s, and a space character.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">toGoatLatin</span>(<span class="params">self, S</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">convert</span>(<span class="params">word</span>):</span><br><span class="line">            <span class="keyword">if</span> word[<span class="number">0</span>] <span class="keyword">not</span> <span class="keyword">in</span> <span class="string">&#x27;aeiouAEIOU&#x27;</span>:</span><br><span class="line">                word = word[<span class="number">1</span>:] + word[:<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">return</span> word + <span class="string">&#x27;ma&#x27;</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot; &quot;</span>.join(convert(word) + <span class="string">&#x27;a&#x27;</span> * i</span><br><span class="line">                        <span class="keyword">for</span> i, word <span class="keyword">in</span> <span class="built_in">enumerate</span>(S.split(), <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li><p>Time Complexity: <em>O</em>(<span
-class="math display">\[N^2​\]</span>), where <em>N</em> is the length of
-<code>S</code>. This represents the complexity of rotating the word and
-adding extra <code>"a"</code> characters.</p></li>
-<li><p>Space Complexity: <em>O</em>(<span
-class="math display">\[N^2\]</span>), the space added to the answer by
-adding extra <code>"a"</code> characters.</p></li>
-<li><p>Runtime: 20 ms, faster than 71.17% of Python online submissions
-for Goat Latin.</p></li>
-<li><p>Memory Usage: 11.8 MB, less than 45.09% of Python online
-submissions for Goat Latin.</p>
-<p>Next challenges:</p></li>
-</ul>
-
+          <p>Q824 Goat Latin</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -424,52 +454,10 @@ submissions for Goat Latin.</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="reverse-words-in-a-string-iii"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-words-in-a-string-iii/">Reverse
-Words in a String III</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given a string, you need to reverse the order of characters in each
-word within a sentence while still preserving whitespace and initial
-word order.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input: "Let's take LeetCode contest" Output: "s'teL ekat edoCteeL
-tsetnoc"</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<p>In the string, each word is separated by single space and there will
-not be any extra space in the string.</p>
-</blockquote>
-<h2 id="approach-1-canonical-form">Approach 1: Canonical Form</h2>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>For each email address, convert it to the <em>canonical</em> address
-that actually receives the mail. This involves a few steps:</p>
-<ul>
-<li>Separate the email address into a <code>local</code> part and the
-<code>rest</code> of the address.</li>
-<li>If the <code>local</code> part has a <code>'+'</code> character,
-remove it and everything beyond it from the <code>local</code>
-part.</li>
-<li>Remove all the zeros from the <code>local</code> part.</li>
-<li>The canonical address is <code>local + rest</code>.</li>
-</ul>
-<p>After, we can count the number of unique canonical addresses with a
-<code>Set</code> structure.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numUniqueEmails</span>(<span class="params">self, emails</span>):</span><br><span class="line">        seen = <span class="built_in">set</span>()</span><br><span class="line">        <span class="keyword">for</span> email <span class="keyword">in</span> emails:</span><br><span class="line">            local, domain = email.split(<span class="string">&#x27;@&#x27;</span>)</span><br><span class="line">            <span class="keyword">if</span> <span class="string">&#x27;+&#x27;</span> <span class="keyword">in</span> local:</span><br><span class="line">                local = local[:local.index(<span class="string">&#x27;+&#x27;</span>)]</span><br><span class="line">            seen.add(local.replace(<span class="string">&#x27;.&#x27;</span>,<span class="string">&#x27;&#x27;</span>) + <span class="string">&#x27;@&#x27;</span> + domain)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(seen)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    Emails=[<span class="string">&quot;test.email+alex@leetcode.com&quot;</span>,</span><br><span class="line">            <span class="string">&quot;test.e.mail+bob.cathy@leetcode.com&quot;</span>,</span><br><span class="line">            <span class="string">&quot;testemail+david@lee.tcode.com&quot;</span>]</span><br><span class="line">    solution=Solution().numUniqueEmails(Emails)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li>Time Complexity: <em>O</em>(<em>n</em>), where <em>n</em> is the
-total content of <code>emails</code>.</li>
-<li>Space Complexity: <em>O</em>(<em>n</em>).</li>
-<li>Runtime: 28 ms, faster than 99.72% of Python online submissions for
-Unique Email Addresses.</li>
-<li>Memory Usage: 11.7 MB, less than 92.68% of Python online submissions
-for Unique Email Addresses.</li>
-</ul>
-
+          <p>Q557 Reverse Words in a String III</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -549,70 +537,10 @@ for Unique Email Addresses.</li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="unique-email-addresses"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/unique-email-addresses/">Unique
-Email Addresses</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Every email consists of a local name and a domain name, separated by
-the @ sign.</p>
-<p>For example, in <code>alice@leetcode.com</code>, <code>alice</code>
-is the local name, and <code>leetcode.com</code> is the domain name.</p>
-<p>Besides lowercase letters, these emails may contain <code>'.'</code>s
-or <code>'+'</code>s.</p>
-<p>If you add periods (<code>'.'</code>) between some characters in the
-<strong>local name</strong> part of an email address, mail sent there
-will be forwarded to the same address without dots in the local name.
-For example, <code>"alice.z@leetcode.com"</code> and
-<code>"alicez@leetcode.com"</code> forward to the same email address.
-(Note that this rule does not apply for domain names.)</p>
-<p>If you add a plus (<code>'+'</code>) in the <strong>local
-name</strong>, everything after the first plus sign will be
-<strong>ignored</strong>. This allows certain emails to be filtered, for
-example <code>m.y+name@email.com</code> will be forwarded to
-<code>my@email.com</code>. (Again, this rule does not apply for domain
-names.)</p>
-<p>It is possible to use both of these rules at the same time.</p>
-<p>Given a list of <code>emails</code>, we send one email to each
-address in the list. How many different addresses actually receive
-mails?</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input:
-["test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"]
-Output: 2 Explanation: "testemail@leetcode.com" and
-"testemail@lee.tcode.com" actually receive mails</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li><code>1 &lt;= emails[i].length &lt;= 100</code></li>
-<li><code>1 &lt;= emails.length &lt;= 100</code></li>
-<li>Each <code>emails[i]</code> contains exactly one <code>'@'</code>
-character.</li>
-<li>All local and domain names are non-empty.</li>
-<li>Local names do not start with a <code>'+'</code> character.</li>
-</ul>
-</blockquote>
-<h2 id="approach-1-split-words-original-method">Approach 1: Split Words
-(Original Method)</h2>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>Note that <code>split</code> is a useful method.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseWords</span>(<span class="params">self, s</span>):</span><br><span class="line">        out = []</span><br><span class="line">        singleWord=s.split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">iter</span> <span class="keyword">in</span> singleWord:</span><br><span class="line">            <span class="built_in">iter</span>=<span class="built_in">iter</span>[::-<span class="number">1</span>]<span class="comment"># 反向排序数组</span></span><br><span class="line">            out.append(<span class="built_in">iter</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27; &#x27;</span>.join(out) <span class="comment"># 返回字符串，用空格填充out中元素的间隔</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    s=<span class="string">&quot;Let&#x27;s take LeetCode contest&quot;</span></span><br><span class="line">    solution=Solution().reverseWords(s)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<h3 id="simplification">simplification</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseWords</span>(<span class="params">self, s</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot; &quot;</span>.join([i[::-<span class="number">1</span>] <span class="keyword">for</span> i <span class="keyword">in</span> s.split()])</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li>Time Complexity: <em>O</em>(<em>n</em>), where <em>n</em> is the
-total words of <code>s</code>.</li>
-<li>Space Complexity: <em>O</em>(<em>1</em>).</li>
-<li>Runtime: 20 ms, faster than 94.03% of Python online submissions for
-Reverse Words in a String III.</li>
-<li>Memory Usage: 13 MB, less than 43.54% of Python online submissions
-for Reverse Words in a String III.</li>
-</ul>
-
+          <p>Q929 Unique Email Addresses</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -692,53 +620,10 @@ for Reverse Words in a String III.</li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="robot-return-to-origin"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/robot-return-to-origin/">Robot
-Return to Origin</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>There is a robot starting at position (0, 0), the origin, on a 2D
-plane. Given a sequence of its moves, judge if this robot <strong>ends
-up at (0, 0)</strong> after it completes its moves.</p>
-<p>The move sequence is represented by a string, and the character
-moves[i] represents its ith move. Valid moves are R (right), L (left), U
-(up), and D (down). If the robot returns to the origin after it finishes
-all of its moves, return true. Otherwise, return false.</p>
-<p><strong>Note</strong>: The way that the robot is "facing" is
-irrelevant. "R" will always make the robot move to the right once, "L"
-will always make it move left, etc. Also, assume that the magnitude of
-the robot's movement is the same for each move.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input: "UD" Output: true Explanation: The robot moves up once, and
-then down once. All moves have the same magnitude, so it ended up at the
-origin where it started. Therefore, we return true.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>Input: "LL" Output: false Explanation: The robot moves left twice. It
-ends up two "moves" to the left of the origin. We return false because
-it is not at the origin at the end of its moves.</p>
-</blockquote>
-<h2 id="approach-1-hash-set">Approach 1: Hash Set</h2>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>We can transform each <code>word</code> into it's Morse Code
-representation.</p>
-<p>After, we put all transformations into a set <code>seen</code>, and
-return the size of the set.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">judgeCircle</span>(<span class="params">self, moves</span>):</span><br><span class="line">        Return=[<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> moves:</span><br><span class="line">            <span class="keyword">if</span> i==<span class="string">&#x27;U&#x27;</span>:</span><br><span class="line">                Return[<span class="number">0</span>] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> i==<span class="string">&#x27;D&#x27;</span>:</span><br><span class="line">                Return[<span class="number">0</span>] -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> i == <span class="string">&#x27;L&#x27;</span>:</span><br><span class="line">                Return[<span class="number">1</span>] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> i == <span class="string">&#x27;R&#x27;</span>:</span><br><span class="line">                Return[<span class="number">1</span>] -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">not</span>(<span class="built_in">bool</span>(Return[<span class="number">0</span>]) <span class="keyword">or</span> <span class="built_in">bool</span>(Return[<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    Action=[<span class="string">&#x27;U&#x27;</span>,<span class="string">&#x27;D&#x27;</span>]</span><br><span class="line">    solution=Solution().judgeCircle(Action)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li>Time Complexity: <em>O</em>(<em>n</em>), where <em>n</em> is the
-amount of the movents in <code>moves</code>.</li>
-<li>Space Complexity: <em>O</em>(<em>1</em>).</li>
-<li>Runtime: 88 ms, faster than 68.89% of Python online submissions for
-Robot Return to Origin.</li>
-<li>Memory Usage: 12.1 MB, less than 35.59% of Python online submissions
-for Robot Return to Origin.</li>
-</ul>
-
+          <p>Q657 Robot Return to Origin</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -818,53 +703,10 @@ for Robot Return to Origin.</li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="unique-morse-code-words"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/unique-morse-code-words/">Unique
-Morse Code Words</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>International Morse Code defines a standard encoding where each
-letter is mapped to a series of dots and dashes, as follows:
-<code>"a"</code> maps to <code>".-"</code>, <code>"b"</code> maps to
-<code>"-..."</code>, <code>"c"</code> maps to <code>"-.-."</code>, and
-so on.</p>
-<p>For convenience, the full table for the 26 letters of the English
-alphabet is given below:</p>
-<p><code>[".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]</code></p>
-<p>Now, given a list of words, each word can be written as a
-concatenation of the Morse code of each letter. For example, "cba" can
-be written as "-.-..--...", (which is the concatenation "-.-." + "-..."
-+ ".-"). We'll call such a concatenation, the transformation of a
-word.</p>
-<p>Return the number of different transformations among all words we
-have.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong> Input: words = ["gin", "zen", "gig",
-"msg"] Output: 2 Explanation: The transformation of each word is: "gin"
--&gt; "--...-." "zen" -&gt; "--...-." "gig" -&gt; "--...--." "msg" -&gt;
-"--...--."</p>
-<p>There are 2 different transformations, "--...-." and "--...--.".</p>
-</blockquote>
-<h2 id="approach-1-hash-set">Approach 1: Hash Set</h2>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>We can transform each <code>word</code> into it's Morse Code
-representation.</p>
-<p>After, we put all transformations into a set <code>seen</code>, and
-return the size of the set.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">uniqueMorseRepresentations</span>(<span class="params">self, words</span>):</span><br><span class="line">        MORSE = [<span class="string">&quot;.-&quot;</span>,<span class="string">&quot;-...&quot;</span>,<span class="string">&quot;-.-.&quot;</span>,<span class="string">&quot;-..&quot;</span>,<span class="string">&quot;.&quot;</span>,<span class="string">&quot;..-.&quot;</span>,<span class="string">&quot;--.&quot;</span>,</span><br><span class="line">                 <span class="string">&quot;....&quot;</span>,<span class="string">&quot;..&quot;</span>,<span class="string">&quot;.---&quot;</span>,<span class="string">&quot;-.-&quot;</span>,<span class="string">&quot;.-..&quot;</span>,<span class="string">&quot;--&quot;</span>,<span class="string">&quot;-.&quot;</span>,</span><br><span class="line">                 <span class="string">&quot;---&quot;</span>,<span class="string">&quot;.--.&quot;</span>,<span class="string">&quot;--.-&quot;</span>,<span class="string">&quot;.-.&quot;</span>,<span class="string">&quot;...&quot;</span>,<span class="string">&quot;-&quot;</span>,<span class="string">&quot;..-&quot;</span>,</span><br><span class="line">                 <span class="string">&quot;...-&quot;</span>,<span class="string">&quot;.--&quot;</span>,<span class="string">&quot;-..-&quot;</span>,<span class="string">&quot;-.--&quot;</span>,<span class="string">&quot;--..&quot;</span>]</span><br><span class="line"></span><br><span class="line">        seen = &#123;<span class="string">&quot;&quot;</span>.join(MORSE[<span class="built_in">ord</span>(c) - <span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>)] <span class="keyword">for</span> c <span class="keyword">in</span> word)</span><br><span class="line">                <span class="keyword">for</span> word <span class="keyword">in</span> words&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(seen)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    Ain=[<span class="string">&quot;gin&quot;</span>, <span class="string">&quot;zen&quot;</span>, <span class="string">&quot;gig&quot;</span>, <span class="string">&quot;msg&quot;</span>]</span><br><span class="line">    solution=Solution().uniqueMorseRepresentations(Ain)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li>Time Complexity: <em>O</em>(<em>S</em>), where <em>S</em> is the sum
-of the lengths of words in <code>words</code>. We iterate through each
-character of each word in <code>words</code>.</li>
-<li>Space Complexity: <em>O</em>(<em>S</em>).</li>
-<li>Runtime: 20 ms, faster than 95.59% of Python online submissions for
-Unique Morse Code Words.</li>
-<li>Memory Usage: 11.8 MB, less than 46.42% of Python online submissions
-for Unique Morse Code Words.</li>
-</ul>
-
+          <p>Q804 Unique Morse Code Words</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -944,45 +786,10 @@ for Unique Morse Code Words.</li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="squares-of-a-sorted-array"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/squares-of-a-sorted-array/">Squares
-of a Sorted Array</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given an array of integers <code>A</code> sorted in non-decreasing
-order, return an array of the squares of each number, also in sorted
-non-decreasing order.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong> Input: [-4,-1,0,3,10] Output:
-[0,1,9,16,100]</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong> Input: [-7,-3,2,3,11] Output:
-[4,9,9,49,121]</p>
-</blockquote>
-<h3 id="approach-1-direct-method">Approach 1: Direct Method</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sortedSquares</span>(<span class="params">self, A</span>):</span><br><span class="line">        B=[]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(A)):</span><br><span class="line">            B.append(<span class="built_in">int</span>(math.<span class="built_in">pow</span>(A[i],<span class="number">2</span>)))</span><br><span class="line">        B.sort()</span><br><span class="line">        <span class="keyword">return</span> B</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    Ain=[-<span class="number">4</span>,-<span class="number">1</span>,<span class="number">0</span>,<span class="number">3</span>,<span class="number">10</span>]</span><br><span class="line">    solution=Solution().sortedSquares(Ain)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li>Runtime: 220 ms, faster than 33.27% of Python online submissions
-forSquares of a Sorted Array.</li>
-<li>Memory Usage: 13.9 MB, less than 20.54% of Python online submissions
-for Squares of a Sorted Array.</li>
-</ul>
-<h2 id="approach-2-sort">Approach 2: Sort</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sortedSquares</span>(<span class="params">self, A</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sorted</span>(x*x <span class="keyword">for</span> x <span class="keyword">in</span> A)</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li><p>Time Complexity: <em>O</em>(<em>N</em>log<em>N</em>), where
-<em>N</em> is the length of <code>A</code>.</p></li>
-<li><p>Space Complexity: <em>O</em>(<em>N</em>).</p></li>
-<li><p>Runtime: 200 ms, faster than 58.97% of Python online submissions
-for Squares of a Sorted Array.</p></li>
-<li><p>Memory Usage: 13.9 MB, less than 25.48% of Python online
-submissions for Squares of a Sorted Array.</p></li>
-</ul>
-
+          <p>Q977 Squares of a Sorted Array</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1062,50 +869,10 @@ submissions for Squares of a Sorted Array.</p></li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="next-greater-node-in-linked-list"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/next-greater-node-in-linked-list/">Next
-Greater Node In Linked List</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>We are given a linked list with <code>head</code> as the first node.
-Let's number the nodes in the list:
-<code>node_1, node_2, node_3, ...</code> etc.</p>
-<p>Each node may have a <em>next larger</em> <strong>value</strong>: for
-<code>node_i</code>, <code>next_larger(node_i)</code> is the
-<code>node_j.val</code> such that <code>j &gt; i</code>,
-<code>node_j.val &gt; node_i.val</code>, and <code>j</code> is the
-smallest possible choice. If such a <code>j</code> does not exist, the
-next larger value is <code>0</code>.</p>
-<p>Return an array of integers <code>answer</code>, where
-<code>answer[i] = next_larger(node_&#123;i+1&#125;)</code>.</p>
-<p>Note that in the example <strong>inputs</strong> (not outputs) below,
-arrays such as <code>[2,1,5]</code> represent the serialization of a
-linked list with a head node value of 2, second node value of 1, and
-third node value of 5.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong> Input: [2,1,5] Output: [5,5,0]</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong> Input: [2,7,4,3,5] Output:
-[7,0,5,5,0]</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 3:</strong></p>
-<p>Input: [1,7,5,1,9,2,5,1] Output: [7,9,9,9,0,5,0,0]</p>
-</blockquote>
-<h3 id="approach-1-stack">Approach 1: Stack</h3>
-<p>Save &lt;index, value&gt; pair to the stack.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">nextLargerNodes</span>(<span class="params">self, head</span>):</span><br><span class="line">        res, stack = [], [] <span class="comment"># 建立两个元组</span></span><br><span class="line">        <span class="keyword">while</span> head:</span><br><span class="line">            <span class="keyword">while</span> stack <span class="keyword">and</span> stack[-<span class="number">1</span>][<span class="number">1</span>] &lt; head.val: <span class="comment"># 遍历链表每个元素</span></span><br><span class="line">                res[stack.pop()[<span class="number">0</span>]] = head.val</span><br><span class="line">            stack.append([<span class="built_in">len</span>(res), head.val])</span><br><span class="line">            res.append(<span class="number">0</span>)</span><br><span class="line">            head = head.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    head=stringToListNode([<span class="number">2</span>,<span class="number">7</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">5</span>])<span class="comment"># 将输入的元组转换为链表</span></span><br><span class="line">    solution=Solution().nextLargerNodes(head)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li><p>O(N) Time, O(N) Space</p></li>
-<li><p>Runtime: 356 ms, faster than 76.36% of Python online submissions
-for Next Greater Node In Linked List.</p></li>
-<li><p>Memory Usage: 21 MB, less than 17.81% of Python online
-submissions for Next Greater Node In Linked List.</p></li>
-</ul>
-
+          <p>Q1019 Next Greater Node In Linked List</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1185,49 +952,10 @@ submissions for Next Greater Node In Linked List.</p></li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="linked-list-cycle"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/linked-list-cycle/">Linked List
-Cycle</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given a linked list, determine if it has a cycle in it.</p>
-<p>To represent a cycle in the given linked list, we use an integer
-<code>pos</code> which represents the position (0-indexed) in the linked
-list where tail connects to. If <code>pos</code> is <code>-1</code>,
-then there is no cycle in the linked list.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong> Input: head = [3,2,0,-4], pos = 1 Output:
-true Explanation: There is a cycle in the linked list, where tail
-connects to the second node.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong> Input: head = [1,2], pos = 0 Output: true
-Explanation: There is a cycle in the linked list, where tail connects to
-the first node.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 3:</strong></p>
-<p>Input: head = [1], pos = -1 Output: false Explanation: There is no
-cycle in the linked list.</p>
-</blockquote>
-<h3 id="approach-1-hash-table">Approach 1: Hash Table</h3>
-<p>This problem is similar to Q21, because they both require traverse a
-linked list. In fact, the key point is to set <code>out=mid=head</code>.
-<code>out</code> is used in the iterations and
-<code>mid</code><strong>Intuition</strong></p>
-<p>To detect if a list is cyclic, we can check whether a node had been
-visited before. A natural way is to use a hash table. is used as an
-output.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">hasCycle</span>(<span class="params">self, head</span>):</span><br><span class="line">        hashmap=<span class="built_in">dict</span>()</span><br><span class="line">        <span class="keyword">while</span> head:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span>(head <span class="keyword">in</span> hashmap):</span><br><span class="line">                hashmap[head]=<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            head=head.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    head=stringToListNode([<span class="number">1</span>])<span class="comment"># 将输入的元组转换为链表</span></span><br><span class="line">    solution=Solution().hasCycle(head)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li>Runtime: 32 ms, faster than 99.15% of Python online submissions
-forLinked List Cycle.</li>
-<li>Memory Usage: 19 MB, less than 7.37% of Python online submissions
-forLinked List Cycle.</li>
-</ul>
-
+          <p>Q141 Linked List Cycle</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1442,6 +1170,59 @@ forLinked List Cycle.</li>
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

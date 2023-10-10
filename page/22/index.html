@@ -81,7 +81,119 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -259,37 +371,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="feudal-networks-for-hierarchical-reinforcement-learning">FeUdal
-Networks for Hierarchical Reinforcement learning</h1>
-<p>论文链接：https://arxiv.org/abs/1703.01161</p>
-<h2 id="背景">背景</h2>
-<p>利用分层强化学习将一个复杂任务拆分为不同维度的问题被认为是一种更自然、更类人的模式。例如人在吃饭的时候，人在宏观的维度作出决策要吃哪个菜，然后身体处于低维的层次，调动肌肉产生运动，完成夹菜和吃菜的动作。在这一过程中，高维的我们没有直接考虑调用哪条肌肉，而是做什么事。这一点正是目前的RL所缺乏的能力。</p>
-<h2 id="主要工作">主要工作</h2>
-<p>FuN是在feudal reinforcement
-learning基础上的延展性工作，利用Manger学习子状态空间，设定子目标，将任务进行拆分；然后Worker处理子任务，完成Manger设置的子目标。</p>
-<p>其主体框架如下：</p>
-<p><img src="\images\20200910-1.png" /></p>
-<p>其中，Manger和Worker都是RNN，只不过处理问题的时间分辨率不一样。Worker的c步被看做Manger的一步。网络动力学关系如下：</p>
-<p><img src="\images\20200910-2.png" /></p>
-<p><span class="math display">\[x_t\]</span>是图像输入，<span
-class="math display">\[z_t\]</span>是提取的特征，<span
-class="math display">\[s_t\]</span>是输入给Manger RNN的状态。<span
-class="math display">\[h^M\]</span>是Manger网络的内部状态。通过<span
-class="math display">\[f^{Mrnn}\]</span>获得子目标<span
-class="math display">\[\hat{g}_t\]</span>、归一化子目标<span
-class="math display">\[g_t\]</span>。</p>
-<p>通过一个线性映射<span class="math display">\[\phi\]</span>将<span
-class="math display">\[c\]</span>步的目标映射到嵌入向量<span
-class="math display">\[w_t\]</span>中。对于Work RNN，输入是状态<span
-class="math display">\[z_t\]</span>和网络内部状态<span
-class="math display">\[h^W\]</span>，<span
-class="math display">\[U_t\]</span>是输出矩阵。最后通过SoftMax选择最能满足子目标<span
-class="math display">\[g_t\]</span>的<span
-class="math display">\[U_t\]</span>。</p>
-<p>（文章的主体思路就是以上内容，后续部分主要讨论网络更新，reward设定等细节，我打算看了代码之后在做分析）</p>
-<h2 id="总结">总结</h2>
-<p>文章种在多个游戏中进行了实验对比，均取得了良好的实验效果。但遗憾的是，几乎所有的复现都说性能达不到文章中的水平。可能是实验中还有一些优化并未在文章中说明。</p>
-
+          <p>利用分层强化学习将一个复杂任务拆分为不同维度的问题被认为是一种更自然、更类人的模式。</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -369,134 +454,10 @@ class="math display">\[U_t\]</span>。</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="combination-sum-ii"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/combination-sum-ii/">Combination
-Sum II</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given a collection of candidate numbers (candidates) and a target
-number (target), find all unique combinations in candidates where the
-candidate numbers sums to target.</p>
-<p>Each number in candidates may only be used once in the
-combination.</p>
-<p><strong>Note:</strong></p>
-<ul>
-<li>All numbers (including target) will be positive integers.</li>
-<li>The solution set must not contain duplicate combinations.</li>
-</ul>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input: candidates = [10,1,2,7,6,1,5], target = 8, A solution set is:
-[ [1, 7], [1, 2, 5], [2, 6], [1, 1, 6]]</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>Input: candidates = [2,5,2,1,2], target = 5, A solution set is: [
-[1,2,2], [5] ]</p>
-</blockquote>
-<h3 id="approach-1-递归回溯">Approach 1: 递归回溯</h3>
-<h4 id="思路与算法">思路与算法</h4>
-<p>由于我们需要求出所有和为 <span
-class="math display">\[\textit{target}\]</span>
-的组合，并且每个数只能使用一次，因此我们可以使用递归 +
-回溯的方法来解决这个问题：</p>
-<ul>
-<li><p>我们用 <span class="math display">\[\text{dfs}(\textit{pos},
-\textit{rest})\]</span> 表示递归的函数，其中 <span
-class="math display">\[\textit{pos}\]</span> 表示我们当前递归到了数组
-<span class="math display">\[\textit{candidates}\]</span> 中的第 <span
-class="math display">\[\textit{pos}\]</span> 个数，而 <span
-class="math display">\[\textit{rest}\]</span> 表示我们还需要选择和为
-<span class="math display">\[\textit{rest}\]</span>
-的数放入列表作为一个组合；</p></li>
-<li><p>对于当前的第 <span class="math display">\[\textit{pos}\]</span>
-个数，我们有两种方法：选或者不选。如果我们选了这个数，那么我们调用 <span
-class="math display">\[\text{dfs}(\textit{pos}+1, \textit{rest} -
-\textit{candidates}[\textit{pos}])\]</span> 进行递归，注意这里必须满足
-<span class="math display">\[\textit{rest} \geq
-\textit{candidates}[\textit{pos}]\]</span>。如果我们不选这个数，那么我们调用
-<span class="math display">\[\text{dfs}(\textit{pos}+1,
-\textit{rest})\]</span> 进行递归；</p></li>
-<li><p>在某次递归开始前，如果 <span
-class="math display">\[\textit{rest}\]</span> 的值为
-0，说明我们找到了一个和为 <span
-class="math display">\[\textit{target}\]</span>
-的组合，将其放入答案中。每次调用递归函数前，如果我们选了那个数，就需要将其放入列表的末尾，该列表中存储了我们选的所有数。在回溯时，如果我们选了那个数，就要将其从列表的末尾删除。</p></li>
-</ul>
-<p>上述算法就是一个标准的递归 +
-回溯算法，但是它并不适用于本题。这是因为题目描述中规定了解集不能包含重复的组合，而上述的算法中并没有去除重复的组合。</p>
-<p>例如当 <span class="math display">\[\textit{candidates} = [2,
-2]\]</span>，<span class="math display">\[\textit{target} = 2\]</span>
-时，上述算法会将列表 [2] 放入答案两次。</p>
-<p>因此，我们需要改进上述算法，在求出组合的过程中就进行去重的操作。我们可以考虑将相同的数放在一起进行处理，也就是说，如果数
-<span class="math display">\[\textit{x}\]</span> 出现了 y
-次，那么在递归时一次性地处理它们，即分别调用选择 <span
-class="math display">\[0, 1, \cdots, y\]</span> 次 <span
-class="math display">\[x\]</span>
-的递归函数。这样我们就不会得到重复的组合。具体地：</p>
-<p>我们使用一个哈希映射（HashMap）统计数组 <span
-class="math display">\[\textit{candidates}\]</span>
-中每个数出现的次数。在统计完成之后，我们将结果放入一个列表 <span
-class="math display">\[\textit{freq}\]</span>
-中，方便后续的递归使用。</p>
-<p>列表 <span class="math display">\[\textit{freq}\]</span>
-的长度即为数组 <span class="math display">\[\textit{candidates}\]</span>
-中不同数的个数。其中的每一项对应着哈希映射中的一个键值对，即某个数以及它出现的次数。
-在递归时，对于当前的第 <span
-class="math display">\[\textit{pos}\]</span> 个数，它的值为 <span
-class="math display">\[\textit{freq}[\textit{pos}][0]\]</span>，出现的次数为
-<span
-class="math display">\[\textit{freq}[\textit{pos}][1]\]</span>，那么我们可以调用</p>
-<p><span class="math display">\[\text{dfs}(\textit{pos}+1, \textit{rest}
-- i \times \textit{freq}[\textit{pos}][0])\]</span></p>
-<p>即我们选择了这个数 i 次。这里 i 不能大于这个数出现的次数，并且 <span
-class="math display">\[i \times \textit{freq}[\textit{pos}][0]\]</span>
-也不能大于 <span
-class="math display">\[\textit{rest}\]</span>。同时，我们需要将 i 个
-<span class="math display">\[\textit{freq}[\textit{pos}][0]\]</span>
-放入列表中。</p>
-<p>这样一来，我们就可以不重复地枚举所有的组合了。</p>
-<p>我们还可以进行什么优化（剪枝）呢？一种比较常用的优化方法是，我们将
-<span class="math display">\[\textit{freq}\]</span>
-根据数从小到大排序，这样我们在递归时会先选择小的数，再选择大的数。这样做的好处是，当我们递归到
-<span class="math display">\[\text{dfs}(\textit{pos},
-\textit{rest})\]</span> 时，如果 <span
-class="math display">\[\textit{freq}[\textit{pos}][0]\]</span> 已经大于
-<span
-class="math display">\[\textit{rest}\]</span>，那么后面还没有递归到的数也都大于
-<span
-class="math display">\[\textit{rest}\]</span>，这就说明不可能再选择若干个和为
-<span class="math display">\[\textit{rest}\]</span>
-的数放入列表了。此时，我们就可以直接回溯。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">combinationSum2</span>(<span class="params">self, candidates, target</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">pos: <span class="built_in">int</span>, rest: <span class="built_in">int</span></span>):</span><br><span class="line">            <span class="comment"># nonlocal声明的变量不是局部变量,也不是全局变量,而是外部嵌套函数内的变量</span></span><br><span class="line">            <span class="comment"># sequence 用来暂存序列</span></span><br><span class="line">            <span class="keyword">nonlocal</span> sequence</span><br><span class="line">            <span class="keyword">if</span> rest == <span class="number">0</span>:</span><br><span class="line">                ans.append(sequence[:]) <span class="comment"># 添加答案</span></span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">if</span> pos == <span class="built_in">len</span>(freq) <span class="keyword">or</span> rest &lt; freq[pos][<span class="number">0</span>]: <span class="comment"># sequence不行，停止</span></span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">            dfs(pos + <span class="number">1</span>, rest)</span><br><span class="line"></span><br><span class="line">            most = <span class="built_in">min</span>(rest // freq[pos][<span class="number">0</span>], freq[pos][<span class="number">1</span>])</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, most + <span class="number">1</span>):</span><br><span class="line">                sequence.append(freq[pos][<span class="number">0</span>])</span><br><span class="line">                dfs(pos + <span class="number">1</span>, rest - i * freq[pos][<span class="number">0</span>])</span><br><span class="line">            sequence = sequence[:-most]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 为数据出现次数计数[(数据1，出现次数),(数据2，出现次数)]</span></span><br><span class="line">        freq = <span class="built_in">sorted</span>(collections.Counter(candidates).items())</span><br><span class="line">        ans = <span class="built_in">list</span>()</span><br><span class="line">        sequence = <span class="built_in">list</span>()</span><br><span class="line">        <span class="comment"># inputs: 序号，剩余的target</span></span><br><span class="line">        dfs(<span class="number">0</span>, target)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    candidates = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">7</span>]</span><br><span class="line">    target = <span class="number">7</span></span><br><span class="line">    solution=Solution().combinationSum2(candidates,target)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="复杂度分析">复杂度分析</h3>
-<ul>
-<li><p>时间复杂度：<span class="math display">\[O(2^n \times
-n)\]</span>，其中 n 是数组 <span
-class="math display">\[\textit{candidates}\]</span> 的长度。在大部分递归
-+
-回溯的题目中，我们无法给出一个严格的渐进紧界，故这里只分析一个较为宽松的渐进上界。在最坏的情况下，数组中的每个数都不相同，那么列表
-<span class="math display">\[\textit{freq}\]</span> 的长度同样为
-n。在递归时，每个位置可以选或不选，如果数组中所有数的和不超过 <span
-class="math display">\[\textit{target}\]</span>，那么 <span
-class="math display">\[2^n\]</span> 种组合都会被枚举到；在 <span
-class="math display">\[\textit{target}\]</span>
-小于数组中所有数的和时，我们并不能解析地算出满足题目要求的组合的数量，但我们知道每得到一个满足要求的组合，需要
-<span class="math display">\[O(n)\]</span>
-的时间将其放入答案中，因此我们将 <span
-class="math display">\[O(2^n)\]</span> 与 <span
-class="math display">\[O(n)\]</span>
-相乘，即可估算出一个宽松的时间复杂度上界。</p>
-<p>由于 <span class="math display">\[O(2^n \times n)\]</span>
-在渐进意义下大于排序的时间复杂度 <span class="math display">\[O(n \log
-n)\]</span>，因此后者可以忽略不计。</p></li>
-<li><p>空间复杂度：<span
-class="math display">\[O(n)\]</span>。除了存储答案的数组外，我们需要
-<span class="math display">\[O(n)\]</span> 的空间存储列表 <span
-class="math display">\[\textit{freq}\]</span>、递归中存储当前选择的数的列表、以及递归需要的栈。</p></li>
-</ul>
-
+          <p>Q40 Combination Sum II-中等-递归 回溯</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -576,63 +537,10 @@ class="math display">\[\textit{freq}\]</span>、递归中存储当前选择的�
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="combination-sum"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/combination-sum/">Combination
-Sum</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given a set of candidate numbers (candidates) (without duplicates)
-and a target number (target), find all unique combinations in candidates
-where the candidate numbers sums to target.</p>
-<p>The same repeated number may be chosen from candidates unlimited
-number of times.</p>
-<p><strong>Note:</strong></p>
-<ul>
-<li>All numbers (including target) will be positive integers.</li>
-<li>The solution set must not contain duplicate combinations.</li>
-</ul>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input: candidates = [2,3,6,7], target = 7, A solution set is: [ [7],
-[2,2,3] ]</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>Input: candidates = [2,3,5], target = 8, A solution set is: [
-[2,2,2,2], [2,3,3], [3,5]]</p>
-</blockquote>
-<blockquote>
-<p><strong>Constraints:</strong></p>
-<p>1 &lt;= candidates.length &lt;= 30 1 &lt;= candidates[i] &lt;= 200
-Each element of candidate is unique. 1 &lt;= target &lt;= 500</p>
-</blockquote>
-<h3 id="approach-1-搜索回溯">Approach 1: 搜索回溯</h3>
-<h4 id="思路与算法">思路与算法</h4>
-<p>对于这类寻找所有可行解的题，我们都可以尝试用「搜索回溯」的方法来解决。</p>
-<p>回到本题，我们定义递归函数 dfs(target, combine, idx) 表示当前在
-candidates 数组的第 idx 位，还剩 target 要组合，已经组合的列表为
-combine。递归的终止条件为 target &lt;= 0 或者 candidates
-数组被全部用完。那么在当前的函数中，每次我们可以选择跳过不用第 idx
-个数，即执行 dfs(target, combine, idx + 1)。也可以选择使用第 idx
-个数，即执行 dfs(target - candidates[idx], combine,
-idx)，注意到每个数字可以被无限制重复选取，因此搜索的下标仍为 idx。</p>
-<p>更形象化地说，如果我们将整个搜索过程用一个树来表达，即如下图呈现，每次的搜索都会延伸出两个分叉，直到递归的终止条件，这样我们就能不重复且不遗漏地找到所有可行解：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">combinationSum2</span>(<span class="params">self, candidates, target</span>):</span><br><span class="line">        ans=[] <span class="comment"># 汇总可行解</span></span><br><span class="line">        temp=[] <span class="comment"># 存放当前解</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">recursion</span>(<span class="params">idx,<span class="built_in">sum</span></span>):</span><br><span class="line">            <span class="keyword">if</span> idx &gt;= <span class="built_in">len</span>(candidates) <span class="keyword">or</span> <span class="built_in">sum</span> &gt;= target: <span class="comment"># 判断合法，不合法则检测是否满足target；合法则继续迭代</span></span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">sum</span> - target == <span class="number">0</span>:</span><br><span class="line">                    ans.append(temp[:])</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            temp.append(candidates[idx])</span><br><span class="line">            recursion(idx, <span class="built_in">sum</span> + candidates[idx])</span><br><span class="line">            temp.pop() <span class="comment"># 删除最后一个元素</span></span><br><span class="line">            recursion(idx + <span class="number">1</span>, <span class="built_in">sum</span>)</span><br><span class="line">        recursion(<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    candidates = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">7</span>]</span><br><span class="line">    target = <span class="number">7</span></span><br><span class="line">    solution=Solution().combinationSum(candidates,target)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="复杂度分析">复杂度分析</h3>
-<ul>
-<li>时间复杂度：<span class="math display">\[O(S)\]</span>，其中 S
-为所有可行解的长度之和。从分析给出的搜索树我们可以看出时间复杂度取决于搜索树所有叶子节点的深度之和，即所有可行解的长度之和。在这题中，我们很难给出一个比较紧的上界，我们知道
-<span class="math display">\[O(n \times 2^n)\]</span>
-是一个比较松的上界，即在这份代码中，n
-个位置每次考虑选或者不选，如果符合条件，就加入答案的时间代价。但是实际运行的时候，因为不可能所有的解都满足条件，递归的时候我们还会用
-<span class="math display">\[target - candidates[idx] &gt;= 0\]</span>
-进行剪枝，所以实际运行情况是远远小于这个上界的。</li>
-<li>空间复杂度：<span
-class="math display">\[O(\textit{target})\]</span>。除答案数组外，空间复杂度取决于递归的栈深度，在最差情况下需要递归
-<span class="math display">\[O(\textit{target})\]</span> 层。</li>
-</ul>
-
+          <p>Q39 Combination Sum-中等-递归 回溯</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -712,35 +620,10 @@ class="math display">\[O(\textit{target})\]</span>。除答案数组外，空间
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1
-id="exploring-neural-substrates-underlying-the-execution-of-behavior-across-the-whole-brain">Exploring
-Neural Substrates Underlying the Execution of Behavior Across the Whole
-Brain</h1>
-<p>论文链接：https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5563763/</p>
-<h2 id="背景">背景</h2>
-<p>目前的行为控制机制的研究难以深入进行，一方面是因为生物的运动是一个连续的过程难以准确切分，此外，在行为过程中人脑还可能并行执行其他任务，因此在观测神经元活动的时候可能会出现干扰。另一方面，一些技术手段例如fMRI的分辨率不足以支持在突触层面分析环路机制，因此研究难以深入。</p>
-<p>本文推荐了另一项研究工作中使用的实验方案，有望成为一种新的研究运动控制机制的实验范式。</p>
-<h2 id="主要工作">主要工作</h2>
-<p>实验对象：斑马鱼（体型小，身体透明，可用光学显微镜直接观察神经元）</p>
-<p>使用的技术手段比较复杂：</p>
-<ul>
-<li><p>light-sheet imaging</p></li>
-<li><p>two-photon manipulation</p></li>
-<li><p>fictive behavioral paradigm in transgenic fish</p></li>
-</ul>
-<p>分子标记技术的弊端：</p>
-<p>However, in many cases, the specific location or molecular markers
-were not identified for particular neurons. More importantly, neurons in
-the same location or expressing the same molecular marker may play
-different roles in the execution of a particular behavior, presenting
-major problems in dissecting the neural circuits underlying behaviors
-with the widely-applied spatial or genetic targeting strategies.</p>
-<p>他们发现zebrafish的前菱脑转向区（anterior rhombencephalic turning
-region,
-ARTR）与转向运动有关，通过光遗传学手段增强ARTA活性之后，zebrafish的转向获得了加强。</p>
-<p>Txing</p>
-<p>2020-09-08</p>
-
+          <p>本文推荐了另一项研究工作中使用的实验方案，有望成为一种新的研究运动控制机制的实验范式。</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -820,42 +703,10 @@ ARTR）与转向运动有关，通过光遗传学手段增强ARTA活性之后，
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1
-id="offline-memory-reprocessing-involvement-of-the-brains-default-network-in-spontaneous-thought-processes">Offline
-Memory Reprocessing: Involvement of the Brain's Default Network in
-Spontaneous Thought Processes</h1>
-<p>论文链接：https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2653727/</p>
-<h2 id="背景">背景</h2>
-<p>人脑的自发思维活动一直是个谜。比如白日梦（daydream）和心不在焉（mind-wandering）的状态。其特点是切断了外部输入，例如闭眼、冥想，大脑依靠过去的记忆回忆过去或者是期待未来，这种依靠内部记忆的联想机制也叫作离线记忆再处理（Offline
-Memory
-Reprocessing）。但是这些自发过程的神经机制一直不清楚，本文首次尝试寻找这一过程作用的脑区。</p>
-<h2 id="主要工作">主要工作</h2>
-<p>利用功能核磁共振成像（functional magnetic resonance imaging,
-fMRI）获得全脑的活动状态。结合区域一致性方法（regional homogeneity,
-ReHo）评估各个脑区的活跃程度。根据静息状态和记忆再处理状态的活跃程度对比，得到自发思维网络涉及的相应脑区（STPs-network）。</p>
-<p><img src="\images\20200908-1.png" /></p>
-<p>STPs-network 主要涉及的脑区为：</p>
-<ul>
-<li>the posterior cingulate cortex</li>
-<li>the precuneus</li>
-<li>the medial prefrontal cortex</li>
-<li>bilateral inferior parietal cortex</li>
-<li>bilateral dorsal lateral prefrontal cortex</li>
-</ul>
-<p>文章后面测试了一下自发思维的强度和STPs-network活性的相关性。比较了几个脑区间的连通性。</p>
-<h2 id="method">Method</h2>
-<ul>
-<li>Regional homogeneity (ReHo) Analysis</li>
-</ul>
-<p><span class="math display">\[
-W=\frac{\sum (R_i)^2-n(\overline{R})^2}{\frac{1}{12}k^2(n^3-n)}
-\]</span></p>
-<p>可以理解为求一个立体区域的平均活跃度，这里不再赘述。</p>
-<h2 id="总结">总结</h2>
-<p>这篇工作来自昆明动物所徐林老师，研究还是具有一定的启发性的，尤其是提到的大脑外部驱动和内部驱动的切换，挺有意思的。另外自发活动这一点确实还需要继续探索，在神经科学领域也是核心问题。</p>
-<p>Txing</p>
-<p>2020-09-08</p>
-
+          <p>人脑的自发思维活动一直是个谜。比如白日梦（daydream）和心不在焉（mind-wandering）的状态。</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -935,92 +786,10 @@ W=\frac{\sum (R_i)^2-n(\overline{R})^2}{\frac{1}{12}k^2(n^3-n)}
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="combinations"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/combinations/">Combinations</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given two integers n and k, return all possible combinations of k
-numbers out of 1 ... n.</p>
-<p>You may return the answer in any order.</p>
-<p><strong>Constraints:</strong></p>
-<ul>
-<li><code>1 &lt;= n &lt;= 20</code></li>
-<li><code>1 &lt;= k &lt;= n</code></li>
-</ul>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Input: n = 4, k = 2 Output: [ [2,4], [3,4], [2,3], [1,2], [1,3],
-[1,4],]</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong></p>
-<p>Input: n = 1, k = 1 Output: [[1]]</p>
-</blockquote>
-<h3 id="approach-1-递归调用">Approach 1: 递归调用</h3>
-<p>把选k个数的任务拆解为选2个数的任务，直到选完了k个数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">combine</span>(<span class="params">self, n, k</span>):</span><br><span class="line">        <span class="keyword">if</span> k&gt;n <span class="keyword">or</span> k==<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        <span class="keyword">if</span> k==<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> [[i] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,n+<span class="number">1</span>)]</span><br><span class="line">        <span class="keyword">if</span> k==n:</span><br><span class="line">            <span class="keyword">return</span> [[i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,n+<span class="number">1</span>)]]</span><br><span class="line"></span><br><span class="line">        answer=self.combine(n-<span class="number">1</span>,k)</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> self.combine(n-<span class="number">1</span>,k-<span class="number">1</span>):</span><br><span class="line">            item.append(n)</span><br><span class="line">            answer.append(item)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> answer</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    n = <span class="number">4</span></span><br><span class="line">    k = <span class="number">2</span></span><br><span class="line">    solution=Solution().combine(n,k)</span><br><span class="line">    <span class="built_in">print</span>(solution)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="approach-2-回溯算法">Approach 2: <a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/combinations/solution/hui-su-suan-fa-jian-zhi-python-dai-ma-java-dai-ma-/">回溯算法</a></h3>
-<h4 id="重点概括">重点概括：</h4>
-<ul>
-<li><p>如果解决一个问题有多个步骤，每一个步骤有多种方法，题目又要我们找出所有的方法，可以使用回溯算法；</p></li>
-<li><p>回溯算法是在一棵树上的
-深度优先遍历（因为要找所有的解，所以需要遍历）；</p></li>
-<li><p>组合问题，相对于排列问题而言，不计较一个组合内元素的顺序性（即
-[1, 2, 3] 与 [1, 3, 2]
-认为是同一个组合），因此很多时候需要按某种顺序展开搜索，这样才能做到不重不漏。</p></li>
-</ul>
-<p>既然是树形问题上的 深度优先遍历，因此首先画出树形结构。例如输入：n =
-4, k = 2，我们可以发现如下递归结构：</p>
-<ul>
-<li>如果组合里有 1 ，那么需要在 [2, 3, 4] 里再找 11 个数；</li>
-<li>如果组合里有 2 ，那么需要在 [3, 4] 里再找 11数。注意：这里不能再考虑
-11，因为包含 11 的组合，在第 1 种情况中已经包含。
-依次类推（后面部分省略），以上描述体现的 递归 结构是：在以 nn
-结尾的候选数组里，选出若干个元素。画出递归结构如下图：</li>
-</ul>
-<h4 id="说明">说明：</h4>
-<p>叶子结点的信息体现在从根结点到叶子结点的路径上，因此需要一个表示路径的变量
-path，它是一个列表，特别地，path 是一个栈；
-每一个结点递归地在做同样的事情，区别在于搜索起点，因此需要一个变量 start
-，表示在区间 [begin, n] 里选出若干个数的组合；
-可能有一些分支没有必要执行，我们放在优化中介绍。
-友情提示：对于这一类问题，画图帮助分析是非常重要的解题方法。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayDeque;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Deque;</span><br><span class="line"><span class="keyword">import</span> java.util.<span class="type">List</span>;</span><br><span class="line"></span><br><span class="line">public <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"></span><br><span class="line">    public <span class="type">List</span>&lt;<span class="type">List</span>&lt;Integer&gt;&gt; combine(<span class="built_in">int</span> n, <span class="built_in">int</span> k) &#123;</span><br><span class="line">        <span class="type">List</span>&lt;<span class="type">List</span>&lt;Integer&gt;&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (k &lt;= <span class="number">0</span> || n &lt; k) &#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        // 从 <span class="number">1</span> 开始是题目的设定</span><br><span class="line">        Deque&lt;Integer&gt; path = new ArrayDeque&lt;&gt;();</span><br><span class="line">        dfs(n, k, <span class="number">1</span>, path, res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void dfs(<span class="built_in">int</span> n, <span class="built_in">int</span> k, <span class="built_in">int</span> begin, Deque&lt;Integer&gt; path, <span class="type">List</span>&lt;<span class="type">List</span>&lt;Integer&gt;&gt; res) &#123;</span><br><span class="line">        // 递归终止条件是：path 的长度等于 k</span><br><span class="line">        <span class="keyword">if</span> (path.size() == k) &#123;</span><br><span class="line">            res.add(new ArrayList&lt;&gt;(path));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 遍历可能的搜索起点</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = begin; i &lt;= n; i++) &#123;</span><br><span class="line">            // 向路径变量里添加一个数</span><br><span class="line">            path.addLast(i);</span><br><span class="line">            // 下一轮搜索，设置的搜索起点要加 <span class="number">1</span>，因为组合数理不允许出现重复的元素</span><br><span class="line">            dfs(n, k, i + <span class="number">1</span>, path, res);</span><br><span class="line">            // 重点理解这里：深度优先遍历有回头的过程，因此递归之前做了什么，递归之后需要做相同操作的逆向操作</span><br><span class="line">            path.removeLast();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="优化">优化</h4>
-<p>事实上，如果 n = 7, k = 4，从 55
-开始搜索就已经没有意义了，这是因为：即使把 55 选上，后面的数只有 66 和
-77，一共就 33 个候选数，凑不出 44
-个数的组合。因此，搜索起点有上界，这个上界是多少，可以举几个例子分析。</p>
-<p>分析搜索起点的上界，其实是在深度优先遍历的过程中剪枝，剪枝可以避免不必要的遍历，剪枝剪得好，可以大幅度节约算法的执行时间。</p>
-<p>下面的图片绿色部分是剪掉的枝叶，当 n
-很大的时候，能少遍历很多结点，节约了时间。</p>
-<p>（温馨提示：右键，在弹出的下拉列表框中选择「在新标签页中打开图片」，可以查看大图。）</p>
-<p>容易知道：搜索起点和当前还需要选几个数有关，而当前还需要选几个数与已经选了几个数有关，即
-path 的长度相关。我们举几个例子分析：</p>
-<p>例如：n = 6 ，k = 4。</p>
-<p>path.size() == 1 的时候，接下来要选择 33 个数，搜索起点最大是
-44，最后一个被选的组合是 [4, 5, 6]； path.size() == 2
-的时候，接下来要选择 22 个数，搜索起点最大是 55，最后一个被选的组合是
-[5, 6]； path.size() == 3 的时候，接下来要选择 11 个数，搜索起点最大是
-66，最后一个被选的组合是 [6]；</p>
-<p>再如：n = 15 ，k = 4。 path.size() == 1 的时候，接下来要选择 33
-个数，搜索起点最大是 1313，最后一个被选的是 [13, 14, 15]； path.size()
-== 2 的时候，接下来要选择 22 个数，搜索起点最大是 1414，最后一个被选的是
-[14, 15]； path.size() == 3 的时候，接下来要选择 11 个数，搜索起点最大是
-1515，最后一个被选的是 [15]；</p>
-<p>搜索起点的上界 + 接下来要选择的元素个数 - 1 = n</p>
-<p>其中，接下来要选择的元素个数 = k - path.size()，整理得到：</p>
-<p>搜索起点的上界 = n - (k - path.size()) + 1
-所以，我们的剪枝过程就是：把 i &lt;= n 改成 i &lt;= n - (k - pre.size())
-+ 1 ：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayDeque;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Deque;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="title function_">combine</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (k &lt;= <span class="number">0</span> || n &lt; k) &#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        Deque&lt;Integer&gt; path = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();</span><br><span class="line">        dfs(n, k, <span class="number">1</span>, path, res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> k, <span class="type">int</span> index, Deque&lt;Integer&gt; path, List&lt;List&lt;Integer&gt;&gt; res)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (path.size() == k) &#123;</span><br><span class="line">            res.add(<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(path));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 只有这里 i &lt;= n - (k - path.size()) + 1 与参考代码 1 不同</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> index; i &lt;= n - (k - path.size()) + <span class="number">1</span>; i++) &#123;</span><br><span class="line">            path.addLast(i);</span><br><span class="line">            dfs(n, k, i + <span class="number">1</span>, path, res);</span><br><span class="line">            path.removeLast();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="说明-1">说明：</h4>
-<p>一些边界条件比较绕的，用具体的例子分析就不容易出错，主要考察的是细心，没有太多技巧；
-为参考代码 3 添加 path 的打印输出语句，可以看到输出语句会更少。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">递归之前 =&gt; [<span class="number">1</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">1</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">1</span>, <span class="number">3</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">1</span>, <span class="number">3</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">1</span>, <span class="number">3</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">1</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">1</span>, <span class="number">4</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">1</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">1</span>, <span class="number">4</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">1</span>]</span><br><span class="line">递归之后 =&gt; []</span><br><span class="line">递归之前 =&gt; [<span class="number">2</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">2</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">2</span>, <span class="number">4</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">2</span>, <span class="number">4</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">2</span>]</span><br><span class="line">递归之后 =&gt; []</span><br><span class="line">递归之前 =&gt; [<span class="number">3</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">递归之前 =&gt; [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">递归之后 =&gt; [<span class="number">3</span>]</span><br><span class="line">递归之后 =&gt; []</span><br><span class="line">[[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>], [<span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>], [<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>], [<span class="number">1</span>, <span class="number">4</span>, <span class="number">5</span>], [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>], [<span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>], [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
+          <p>Q77 Combinations-中等-递归 回溯</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1100,91 +869,10 @@ path 的长度相关。我们举几个例子分析：</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="importerror-cannot-import-name-optional">ImportError: cannot
-import name 'Optional'</h1>
-<p>遇到报错：ImportError: cannot import name 'Optional'</p>
-<p>已安装所需的库，经查是由于torchvision和pytorch版本不对应导致的。具体对应版本号见<a
-target="_blank" rel="noopener" href="https://github.com/pytorch/vision">下图</a></p>
-<table>
-<colgroup>
-<col style="width: 30%" />
-<col style="width: 30%" />
-<col style="width: 38%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;"><code>torch</code></th>
-<th style="text-align: center;"><code>torchvision</code></th>
-<th style="text-align: center;"><code>python</code></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><code>master</code> /
-<code>nightly</code></td>
-<td style="text-align: center;"><code>master</code> /
-<code>nightly</code></td>
-<td style="text-align: center;"><code>&gt;=3.6</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><code>1.6.0</code></td>
-<td style="text-align: center;"><code>0.7.0</code></td>
-<td style="text-align: center;"><code>&gt;=3.6</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><code>1.5.1</code></td>
-<td style="text-align: center;"><code>0.6.1</code></td>
-<td style="text-align: center;"><code>&gt;=3.5</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><code>1.5.0</code></td>
-<td style="text-align: center;"><code>0.6.0</code></td>
-<td style="text-align: center;"><code>&gt;=3.5</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><code>1.4.0</code></td>
-<td style="text-align: center;"><code>0.5.0</code></td>
-<td style="text-align: center;"><code>==2.7</code>,
-<code>&gt;=3.5</code>, <code>&lt;=3.8</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><code>1.3.1</code></td>
-<td style="text-align: center;"><code>0.4.2</code></td>
-<td style="text-align: center;"><code>==2.7</code>,
-<code>&gt;=3.5</code>, <code>&lt;=3.7</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><code>1.3.0</code></td>
-<td style="text-align: center;"><code>0.4.1</code></td>
-<td style="text-align: center;"><code>==2.7</code>,
-<code>&gt;=3.5</code>, <code>&lt;=3.7</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><code>1.2.0</code></td>
-<td style="text-align: center;"><code>0.4.0</code></td>
-<td style="text-align: center;"><code>==2.7</code>,
-<code>&gt;=3.5</code>, <code>&lt;=3.7</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><code>1.1.0</code></td>
-<td style="text-align: center;"><code>0.3.0</code></td>
-<td style="text-align: center;"><code>==2.7</code>,
-<code>&gt;=3.5</code>, <code>&lt;=3.7</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><code>&lt;=1.0.1</code></td>
-<td style="text-align: center;"><code>0.2.2</code></td>
-<td style="text-align: center;"><code>==2.7</code>,
-<code>&gt;=3.5</code>, <code>&lt;=3.7</code></td>
-</tr>
-</tbody>
-</table>
-<p>更改anaconda中的库的版本也很简单：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install pytorch = version</span><br></pre></td></tr></table></figure>
-<p>将version改为对应的版本号即可（例如1.4）</p>
-<p>Txing</p>
-<p>2020-09-07</p>
-
+          <p>Python import报错</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1264,65 +952,10 @@ target="_blank" rel="noopener" href="https://github.com/pytorch/vision">下图</
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="maximum-depth-of-binary-tree"><a
-target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/">Maximum
-Depth of Binary Tree</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given a binary tree, find its maximum depth.</p>
-<p>The maximum depth is the number of nodes along the longest path from
-the root node down to the farthest leaf node.</p>
-<p><strong>Note:</strong> A leaf is a node with no children.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong></p>
-<p>Given binary tree [3,9,20,null,null,15,7],</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  3</span><br><span class="line"> / \</span><br><span class="line">9  20</span><br><span class="line">  /  \</span><br><span class="line"> 15   7</span><br></pre></td></tr></table></figure>
-<p>return its depth = 3.</p>
-</blockquote>
-<h3 id="approach-1-深度优先搜索">Approach 1: 深度优先搜索</h3>
-<p>如果我们知道了左子树和右子树的最大深度 l 和
-r，那么该二叉树的最大深度即为<span class="math display">\[\max(l,r) +
-1\]</span></p>
-<p>而左子树和右子树的最大深度又可以以同样的方式进行计算。因此我们在计算当前二叉树的最大深度时，可以先递归计算出其左子树和右子树的最大深度，然后在
-O(1)O(1)
-时间内计算出当前二叉树的最大深度。递归在访问到空节点时退出。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxDepth</span>(<span class="params">self, root</span>):</span><br><span class="line">        <span class="keyword">if</span> root <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            left_height = self.maxDepth(root.left)</span><br><span class="line">            right_height = self.maxDepth(root.right)</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">max</span>(left_height, right_height) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<h3 id="复杂度分析">复杂度分析</h3>
-<ul>
-<li>时间复杂度：<span class="math display">\[O(n)\]</span>，其中 n
-为二叉树节点的个数。每个节点在递归中只被遍历一次。</li>
-<li>空间复杂度：<span
-class="math display">\[O(\textit{height})\]</span>，其中 <span
-class="math display">\[\textit{height}\]</span>
-表示二叉树的高度。递归函数需要栈空间，而栈空间取决于递归的深度，因此空间复杂度等价于二叉树的高度。</li>
-</ul>
-<h3 id="approach-1-广度优先搜索">Approach 1: 广度优先搜索</h3>
-<p>我们也可以用「广度优先搜索」的方法来解决这道题目，但我们需要对其进行一些修改，此时我们广度优先搜索的队列里存放的是「当前层的所有节点」。每次拓展下一层的时候，不同于广度优先搜索的每次只从队列里拿出一个节点，我们需要将队列里的所有节点都拿出来进行拓展，这样能保证每次拓展完的时候队列里存放的是当前层的所有节点，即我们是一层一层地进行拓展，最后我们用一个变量
-<span class="math display">\[\textit{ans}\]</span>
-来维护拓展的次数，该二叉树的最大深度即为 <span
-class="math display">\[\textit{ans}\]</span>。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">maxDepth2</span>(<span class="params">self, root</span>):</span><br><span class="line">        <span class="keyword">if</span> root <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        queue = [(root, <span class="number">1</span>)]</span><br><span class="line">        max_dep = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            node, depth = queue.pop()</span><br><span class="line">            max_dep = <span class="built_in">max</span>(max_dep, depth)</span><br><span class="line">            <span class="keyword">if</span> node.left:</span><br><span class="line">                queue.append((node.left, depth +<span class="number">1</span>))</span><br><span class="line">            <span class="keyword">if</span> node.right:</span><br><span class="line">                queue.append((node.right, depth + <span class="number">1</span>))</span><br><span class="line">        <span class="keyword">return</span> max_dep</span><br></pre></td></tr></table></figure>
-<h3 id="复杂度分析-1">复杂度分析</h3>
-<p>时间复杂度：<span class="math display">\[O(n)\]</span>，其中 n
-为二叉树的节点个数。与方法一同样的分析，每个节点只会被访问一次。
-空间复杂度：此方法空间的消耗取决于队列存储的元素数量，其在最坏情况下会达到
-<span class="math display">\[O(n)\]</span>。</p>
-<ul>
-<li></li>
-</ul>
-<h3 id="思考题">思考题</h3>
-<p>对于给定的排列 <span class="math display">\[a_1, a_2, \cdots,
-a_n\]</span> ，你能求出 k 吗？</p>
-<p>解答： <span class="math display">\[
-k = \left( \sum_{i=1}^n \textit{order}(a_i) \cdot (n-i)! \right) + 1
-\]</span> 其中 <span
-class="math display">\[\textit{order}(a_i)\]</span>表示 <span
-class="math display">\[a_{i+1}, \cdots, a_n\]</span>中小于 <span
-class="math display">\[a_i\]</span>的元素个数。</p>
-<h3 id="反思">反思</h3>
-<p>我在分析这个问题的时候只考虑到了第一项怎么确定，然后就用递归来求解问题，中间忽略了n和k的取值特例。分析不够完备，代码看着比较乱，可读性不强。今后分析的时候还是要把问题分析完整了再编代码，比如推出这道题的通项公式后再写代码。</p>
-
+          <p>Q104 Maximum Depth of Binary Tree-简单-深度/广度优先搜索</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1537,6 +1170,59 @@ class="math display">\[a_i\]</span>的元素个数。</p>
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

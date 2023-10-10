@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Principles of sensorimotor learning 论文链接：https:&#x2F;&#x2F;www.nature.com&#x2F;articles&#x2F;nrn3112 背景 运动的多样性和适应性给人留下深刻的印象。这篇综述回顾了运动学习的相关研究，集中讨论了其中涉及的计算机制。 运动学习涉及三个方面：  涉及任务相关的传感信息、决策、策略选择、预测以及反应控制机制（predictive">
+  <meta name="description" content="很好的运动学习中涉及的计算机制综述">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Neuroscience| Principles of sensorimotor learning">
 <meta property="og:url" content="https://txing-casia.github.io/2020/12/17/2020-12-17-Neuroscience%20-%20Principles%20of%20sensorimotor%20learning/index.html">
 <meta property="og:site_name" content="Txing">
-<meta property="og:description" content="Principles of sensorimotor learning 论文链接：https:&#x2F;&#x2F;www.nature.com&#x2F;articles&#x2F;nrn3112 背景 运动的多样性和适应性给人留下深刻的印象。这篇综述回顾了运动学习的相关研究，集中讨论了其中涉及的计算机制。 运动学习涉及三个方面：  涉及任务相关的传感信息、决策、策略选择、预测以及反应控制机制（predictive">
+<meta property="og:description" content="很好的运动学习中涉及的计算机制综述">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-12-16T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-08T13:42:50.083Z">
+<meta property="article:modified_time" content="2023-10-10T11:19:09.518Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Neuroscience">
 <meta name="twitter:card" content="summary">
@@ -83,7 +83,119 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -251,6 +363,7 @@
                 <span class="post-meta-item-text">Reading time &asymp;</span>
               <span>7 mins.</span>
             </span>
+            <div class="post-description">很好的运动学习中涉及的计算机制综述</div>
 
         </div>
       </header>
@@ -285,10 +398,9 @@ learning</h3>
 to an action.</p></li>
 <li><p>眼动可由自下而上和自上而下两种方式驱动。Studies have shown that
 eye movements can be driven both in a bottom-up, task-independent manner
-based on low-level features of the visual scene<span
-class="math display">\[^1\]</span> (for example, towards moving
+based on low-level features of the visual scene<span class="math display"><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="0.988ex" height="2ex" role="img" focusable="false" viewBox="0 -883.9 436.6 883.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mi"></g><g data-mml-node="mn" transform="translate(33,413) scale(0.707)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g></g></g></svg></mjx-container></span> (for example, towards moving
 high-contrast objects) as well as in a top-down, task-dependent
-manner<span class="math display">\[^2\]</span>.</p></li>
+manner<span class="math display"><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="0.988ex" height="2ex" role="img" focusable="false" viewBox="0 -883.9 436.6 883.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mi"></g><g data-mml-node="mn" transform="translate(33,413) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g></g></g></svg></mjx-container></span>.</p></li>
 <li><ol type="1">
 <li>多模态的传感信息流，2. Bayesian inference中对世界的先验知识，3.
 结合上述过程与身体内部模型的运动指令到期望的传感输出</li>
@@ -301,8 +413,7 @@ manner<span class="math display">\[^2\]</span>.</p></li>
 <li><p>有边界的飘移扩散模型。Choice accuracy and reaction time are then
 explained by <strong>a bounded drift-diffusion model</strong> in which
 the decision variable reaches a positive or negative bound</p></li>
-<li><p>这个漂移扩散模型存在着大量的延时，但实际上收集的传感信息可用来影响运动中的想法<span
-class="math display">\[^{20}\]</span></p>
+<li><p>这个漂移扩散模型存在着大量的延时，但实际上收集的传感信息可用来影响运动中的想法<span class="math display"><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.788ex" height="2ex" role="img" focusable="false" viewBox="0 -883.9 790.1 883.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mi"></g><g data-mml-node="TeXAtom" transform="translate(33,413) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path></g></g></g></g></g></svg></mjx-container></span></p>
 <p>[20]. Resulaj A , Kiani R , Wolpert D M , et al. Changes of mind in
 decision-making[J]. Nature, 2009, 461(7261):263-266.</p></li>
 <li><p>人在不同的实验条件下都能趋向最优的决策，适应可变性</p>
@@ -310,8 +421,7 @@ decision-making[J]. Nature, 2009, 461(7261):263-266.</p></li>
 making, movement planning and statistical decision theory. Trends Cogn.
 Sci. 12, 291–297 (2008).</p></li>
 <li><p>决策是趋向<strong>规避风险</strong>还是<strong>冒风险</strong>（risk
-averse or risk seeking），偏好奖励的方差大的还是小的<span
-class="math display">\[^{23-25}\]</span></p></li>
+averse or risk seeking），偏好奖励的方差大的还是小的<span class="math display"><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="4.632ex" height="2ex" role="img" focusable="false" viewBox="0 -883.9 2047.3 883.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mi"></g><g data-mml-node="TeXAtom" transform="translate(33,413) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z" transform="translate(500,0)"></path></g><g data-mml-node="mo" transform="translate(1000,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="mn" transform="translate(1778,0)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path data-c="35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z" transform="translate(500,0)"></path></g></g></g></g></g></svg></mjx-container></span></p></li>
 </ul>
 <p>[23]. Nagengast, A. J., Braun, D. A. &amp; Wolpert, D. M.
 Risk-sensitive optimal feedback control accounts for sensorimotor
@@ -342,7 +452,7 @@ detected, the system can launch appropriate, task-protective corrective
 actions and can also update the knowledge of object weight to improve
 future actions. Thus, through the prediction of sensory consequences,
 there is an intimate relationship between predictive and reactive
-control mechanisms<span class="math display">\[^{28}\]</span>.</p></li>
+control mechanisms<span class="math display"><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.788ex" height="2ex" role="img" focusable="false" viewBox="0 -883.9 790.1 883.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mi"></g><g data-mml-node="TeXAtom" transform="translate(33,413) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path data-c="38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z" transform="translate(500,0)"></path></g></g></g></g></g></svg></mjx-container></span>.</p></li>
 <li><p>快速反应反馈回路，快速驱动运动响应，但是很难被修改（有点类似于我的底层控制的意思）。Fast
 reactive feedback loops, such as the monosynaptic stretch reflex, can
 rapidly drive motor responses but cannot be easily modified even by
@@ -718,6 +828,59 @@ directions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="n
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="安装Atari环境报错缺少ale_c.dll解决办法 背景： 在Atari游戏环境中做RL测试。通过anaconda新建了环境，配置好torch，numpy，gym等环境。运行中报错如下： 1FileNotFoundError: Could not find module &amp;#x27;D:\Anaconda3\envs\PPOenv\lib\site-packages\atari_py\al">
+  <meta name="description" content="在Atari游戏环境中做RL测试。通过anaconda新建了环境，配置好torch，numpy，gym等环境，运行遇到报错">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安装Atari环境报错缺少ale_c.dll解决办法">
 <meta property="og:url" content="https://txing-casia.github.io/2021/05/20/2021-05-20-%E5%AE%89%E8%A3%85Atari%E7%8E%AF%E5%A2%83%E7%9B%B8%E5%85%B3%E6%8A%A5%E9%94%99/index.html">
 <meta property="og:site_name" content="Txing">
-<meta property="og:description" content="安装Atari环境报错缺少ale_c.dll解决办法 背景： 在Atari游戏环境中做RL测试。通过anaconda新建了环境，配置好torch，numpy，gym等环境。运行中报错如下： 1FileNotFoundError: Could not find module &amp;#x27;D:\Anaconda3\envs\PPOenv\lib\site-packages\atari_py\al">
+<meta property="og:description" content="在Atari游戏环境中做RL测试。通过anaconda新建了环境，配置好torch，numpy，gym等环境，运行遇到报错">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-05-19T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-08T13:33:17.196Z">
+<meta property="article:modified_time" content="2023-10-09T12:23:24.654Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Reinforcement Learning">
@@ -84,7 +84,119 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -252,6 +364,7 @@
                 <span class="post-meta-item-text">Reading time &asymp;</span>
               <span>2 mins.</span>
             </span>
+            <div class="post-description">在Atari游戏环境中做RL测试。通过anaconda新建了环境，配置好torch，numpy，gym等环境，运行遇到报错</div>
 
         </div>
       </header>
@@ -262,15 +375,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2
-id="安装atari环境报错缺少ale_c.dll解决办法">安装Atari环境报错缺少ale_c.dll解决办法</h2>
+        <h2 id="安装atari环境报错缺少ale_c.dll解决办法">安装Atari环境报错缺少ale_c.dll解决办法</h2>
 <h3 id="背景"><strong>背景：</strong></h3>
 <p>在Atari游戏环境中做RL测试。通过anaconda新建了环境，配置好torch，numpy，gym等环境。运行中报错如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FileNotFoundError: Could not find module &#x27;D:\Anaconda3\envs\PPOenv\lib\site-packages\atari_py\ale_interface\ale_c.dll&#x27; (or one of its dependencies). Try using the full path with constructor syntax.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FileNotFoundError: Could not find module 'D:\Anaconda3\envs\PPOenv\lib\site-packages\atari_py\ale_interface\ale_c.dll' (or one of its dependencies). Try using the full path with constructor syntax.</span><br></pre></td></tr></table></figure>
 <p>意思是所显示路径下缺少ale_c.dll</p>
 <h3 id="处理方法"><strong>处理方法：</strong></h3>
-<h4
-id="方法1对我情况无效但点赞很多">方法1（对我情况无效，但点赞很多）</h4>
+<h4 id="方法1对我情况无效但点赞很多">方法1（对我情况无效，但点赞很多）</h4>
 <p>首先检索到了这个方案（作者@razzzu）</p>
 <p>https://github.com/openai/gym/issues/1726</p>
 <p><strong>Step1:</strong> 卸载相关库</p>
@@ -292,13 +403,11 @@ https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Buil
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Now run the following code:</span><br><span class="line"><span class="keyword">import</span> atari_py</span><br><span class="line"><span class="built_in">print</span>(atari_py.list_games())</span><br></pre></td></tr></table></figure>
 <p>and if everything worked then it should return a list of all games as
 shown below</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">&#x27;adventure&#x27;</span>, <span class="string">&#x27;air_raid&#x27;</span>, <span class="string">&#x27;alien&#x27;</span>, <span class="string">&#x27;amidar&#x27;</span>, <span class="string">&#x27;assault&#x27;</span>, <span class="string">&#x27;asterix&#x27;</span>, <span class="string">&#x27;asteroids&#x27;</span>, <span class="string">&#x27;atlantis&#x27;</span>, <span class="string">&#x27;bank_heist&#x27;</span>, <span class="string">&#x27;battle_zone&#x27;</span>, <span class="string">&#x27;beam_rider&#x27;</span>, <span class="string">&#x27;berzerk&#x27;</span>, <span class="string">&#x27;bowling&#x27;</span>, <span class="string">&#x27;boxing&#x27;</span>, <span class="string">&#x27;breakout&#x27;</span>, <span class="string">&#x27;carnival&#x27;</span>, <span class="string">&#x27;centipede&#x27;</span>, <span class="string">&#x27;chopper_command&#x27;</span>, <span class="string">&#x27;crazy_climber&#x27;</span>, <span class="string">&#x27;defender&#x27;</span>, <span class="string">&#x27;demon_attack&#x27;</span>, <span class="string">&#x27;double_dunk&#x27;</span>, <span class="string">&#x27;elevator_action&#x27;</span>, <span class="string">&#x27;enduro&#x27;</span>, <span class="string">&#x27;fishing_derby&#x27;</span>, <span class="string">&#x27;freeway&#x27;</span>, <span class="string">&#x27;frostbite&#x27;</span>, <span class="string">&#x27;gopher&#x27;</span>, <span class="string">&#x27;gravitar&#x27;</span>, <span class="string">&#x27;hero&#x27;</span>, <span class="string">&#x27;ice_hockey&#x27;</span>, <span class="string">&#x27;jamesbond&#x27;</span>, <span class="string">&#x27;journey_escape&#x27;</span>, <span class="string">&#x27;kaboom&#x27;</span>, <span class="string">&#x27;kangaroo&#x27;</span>, <span class="string">&#x27;krull&#x27;</span>, <span class="string">&#x27;kung_fu_master&#x27;</span>, <span class="string">&#x27;montezuma_revenge&#x27;</span>, <span class="string">&#x27;ms_pacman&#x27;</span>, <span class="string">&#x27;name_this_game&#x27;</span>, <span class="string">&#x27;phoenix&#x27;</span>, <span class="string">&#x27;pitfall&#x27;</span>, <span class="string">&#x27;pong&#x27;</span>, <span class="string">&#x27;pooyan&#x27;</span>, <span class="string">&#x27;private_eye&#x27;</span>, <span class="string">&#x27;qbert&#x27;</span>, <span class="string">&#x27;riverraid&#x27;</span>, <span class="string">&#x27;road_runner&#x27;</span>, <span class="string">&#x27;robotank&#x27;</span>, <span class="string">&#x27;seaquest&#x27;</span>, <span class="string">&#x27;skiing&#x27;</span>, <span class="string">&#x27;solaris&#x27;</span>, <span class="string">&#x27;space_invaders&#x27;</span>, <span class="string">&#x27;star_gunner&#x27;</span>, <span class="string">&#x27;tennis&#x27;</span>, <span class="string">&#x27;time_pilot&#x27;</span>, <span class="string">&#x27;tutankham&#x27;</span>, <span class="string">&#x27;up_n_down&#x27;</span>, <span class="string">&#x27;venture&#x27;</span>, <span class="string">&#x27;video_pinball&#x27;</span>, <span class="string">&#x27;wizard_of_wor&#x27;</span>, <span class="string">&#x27;yars_revenge&#x27;</span>, <span class="string">&#x27;zaxxon&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">'adventure'</span>, <span class="string">'air_raid'</span>, <span class="string">'alien'</span>, <span class="string">'amidar'</span>, <span class="string">'assault'</span>, <span class="string">'asterix'</span>, <span class="string">'asteroids'</span>, <span class="string">'atlantis'</span>, <span class="string">'bank_heist'</span>, <span class="string">'battle_zone'</span>, <span class="string">'beam_rider'</span>, <span class="string">'berzerk'</span>, <span class="string">'bowling'</span>, <span class="string">'boxing'</span>, <span class="string">'breakout'</span>, <span class="string">'carnival'</span>, <span class="string">'centipede'</span>, <span class="string">'chopper_command'</span>, <span class="string">'crazy_climber'</span>, <span class="string">'defender'</span>, <span class="string">'demon_attack'</span>, <span class="string">'double_dunk'</span>, <span class="string">'elevator_action'</span>, <span class="string">'enduro'</span>, <span class="string">'fishing_derby'</span>, <span class="string">'freeway'</span>, <span class="string">'frostbite'</span>, <span class="string">'gopher'</span>, <span class="string">'gravitar'</span>, <span class="string">'hero'</span>, <span class="string">'ice_hockey'</span>, <span class="string">'jamesbond'</span>, <span class="string">'journey_escape'</span>, <span class="string">'kaboom'</span>, <span class="string">'kangaroo'</span>, <span class="string">'krull'</span>, <span class="string">'kung_fu_master'</span>, <span class="string">'montezuma_revenge'</span>, <span class="string">'ms_pacman'</span>, <span class="string">'name_this_game'</span>, <span class="string">'phoenix'</span>, <span class="string">'pitfall'</span>, <span class="string">'pong'</span>, <span class="string">'pooyan'</span>, <span class="string">'private_eye'</span>, <span class="string">'qbert'</span>, <span class="string">'riverraid'</span>, <span class="string">'road_runner'</span>, <span class="string">'robotank'</span>, <span class="string">'seaquest'</span>, <span class="string">'skiing'</span>, <span class="string">'solaris'</span>, <span class="string">'space_invaders'</span>, <span class="string">'star_gunner'</span>, <span class="string">'tennis'</span>, <span class="string">'time_pilot'</span>, <span class="string">'tutankham'</span>, <span class="string">'up_n_down'</span>, <span class="string">'venture'</span>, <span class="string">'video_pinball'</span>, <span class="string">'wizard_of_wor'</span>, <span class="string">'yars_revenge'</span>, <span class="string">'zaxxon'</span>]</span><br></pre></td></tr></table></figure>
 <p>我在完成上述步骤后发现还是缺少ale_c.dll，于是打算直接下载一个ale_c.dll</p>
 <h4 id="方法2-有效">方法2 （有效）</h4>
-<p>根据<a
-target="_blank" rel="noopener" href="https://stackoverflow.com/questions/63080326/could-not-find-module-atari-py-ale-interface-ale-c-dll-or-one-of-its-dependenc/64104353#64104353">stackoverflow上的方法</a></p>
-<p><strong>Step1:</strong> Download ale_c.dll from <a
-target="_blank" rel="noopener" href="https://drive.google.com/file/d/1WQrEBliYbASwNDyyVIlPFSZHRwAa7sPp/view?usp=sharing">here</a>.(下载需要梯子，我在博客img中放了文件备份)
+<p>根据<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/63080326/could-not-find-module-atari-py-ale-interface-ale-c-dll-or-one-of-its-dependenc/64104353#64104353">stackoverflow上的方法</a></p>
+<p><strong>Step1:</strong> Download ale_c.dll from <a target="_blank" rel="noopener" href="https://drive.google.com/file/d/1WQrEBliYbASwNDyyVIlPFSZHRwAa7sPp/view?usp=sharing">here</a>.(下载需要梯子，我在博客img中放了文件备份)
 <strong>Step2:</strong> Copy it in C:Raval-packages_py_interface (Your
 path can be different).</p>
 <p>成功解决问题！</p>
@@ -531,6 +640,59 @@ path can be different).</p>
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

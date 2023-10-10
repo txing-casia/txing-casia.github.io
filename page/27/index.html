@@ -81,7 +81,119 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -259,56 +371,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="remove-duplicates-from-sorted-list"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/remove-duplicates-from-sorted-list/">Remove
-Duplicates from Sorted List</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given a sorted linked list, delete all duplicates such that each
-element appear only <em>once</em>.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong> Input: 1-&gt;1-&gt;2 Output: 1-&gt;2</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong> Input: 1-&gt;1-&gt;2-&gt;3-&gt;3 Output:
-1-&gt;2-&gt;3</p>
-</blockquote>
-<h3 id="approach-1-dummy-list">Approach 1: Dummy List</h3>
-<p>This problem is similar to Q21, because they both require traverse a
-linked list. In fact, the key point is to set <code>out=mid=head</code>.
-<code>out</code> is used in the iterations and <code>mid</code> is used
-as an output.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">deleteDuplicates</span>(<span class="params">self, head: ListNode</span>) -&gt; ListNode:</span><br><span class="line">        out=mid=head</span><br><span class="line">        <span class="keyword">while</span> head:</span><br><span class="line">            <span class="keyword">if</span> out.val!=head.val:</span><br><span class="line">                out.<span class="built_in">next</span>=head</span><br><span class="line">                out=out.<span class="built_in">next</span></span><br><span class="line">            head=head.<span class="built_in">next</span></span><br><span class="line">            out.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> mid</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    head=stringToListNode([<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>])<span class="comment"># 将输入的元组转换为链表</span></span><br><span class="line">    solution=Solution().deleteDuplicates(head)</span><br><span class="line">    <span class="built_in">print</span>(listNodeToString(solution))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li>Runtime: 48 ms, faster than 87.51% of Python3 online submissions
-forRemove Duplicates from Sorted List.</li>
-<li>Memory Usage: 13.3 MB, less than 22.63% of Python3 online
-submissions for Remove Duplicates from Sorted List.</li>
-</ul>
-<h3 id="approach-2-straight-forward">Approach 2: Straight-Forward</h3>
-<p>This is a simple problem that merely tests your ability to manipulate
-list node pointers. Because the input list is sorted, we can determine
-if a node is a duplicate by comparing its value to the node
-<em>after</em> it in the list. If it is a duplicate, we change the
-<code>next</code> pointer of the current node so that it skips the next
-node and points directly to the one after the next node.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">deleteDuplicates</span>(<span class="params">self, head: ListNode</span>) -&gt; ListNode:</span><br><span class="line">        out = head</span><br><span class="line">        <span class="keyword">while</span> out <span class="keyword">and</span> out.<span class="built_in">next</span>:</span><br><span class="line">            <span class="keyword">if</span> out.val==out.<span class="built_in">next</span>.val:</span><br><span class="line">                out.<span class="built_in">next</span> = out.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                out=out.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">return</span> head</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li><p>Time complexity : <em>O</em>(<em>n</em>). Because each node in
-the list is checked exactly once to determine if it is a duplicate or
-not, the total run time is <em>O</em>(<em>n</em>), where <em>n</em> is
-the number of nodes in the list.</p></li>
-<li><p>Space complexity : <em>O</em>(1). No additional space is
-used.</p></li>
-<li><p>Runtime: 48 ms, faster than 87.51% of Python3 online submissions
-forRemove Duplicates from Sorted List.</p></li>
-<li><p>Memory Usage: 13.3 MB, less than 22.63% of Python3 online
-submissions for Remove Duplicates from Sorted List.</p></li>
-</ul>
-
+          <p>Q83 Remove Duplicates from Sorted List</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -388,32 +454,10 @@ submissions for Remove Duplicates from Sorted List.</p></li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="merge-two-sorted-lists"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/merge-two-sorted-lists/">Merge Two
-Sorted Lists</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Merge two sorted linked lists and return it as a new list. The new
-list should be made by splicing together the nodes of the first two
-lists.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong> Input: 1-&gt;2-&gt;4, 1-&gt;3-&gt;4
-Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4</p>
-</blockquote>
-<h3 id="approach-1-dummy-list">Approach 1: dummy list</h3>
-<p>This is a straightforward method for our problem. Setting two linked
-list newNode and out with the same memory location. Then use them to
-note the merged list.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">mergeTwoLists</span>(<span class="params">self, l1: ListNode, l2: ListNode</span>):</span><br><span class="line"></span><br><span class="line">        newNode=out=ListNode(<span class="number">0</span>) <span class="comment"># newNode与out节点为起始位置相同</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> l1 <span class="keyword">and</span> l2: <span class="comment"># 直到两个链表都遍历完</span></span><br><span class="line">            <span class="keyword">if</span> l1 <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">                newNode.<span class="built_in">next</span> = l2</span><br><span class="line">                l2 = l2.<span class="built_in">next</span></span><br><span class="line">            <span class="keyword">elif</span> l2 <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">                newNode.<span class="built_in">next</span> = l1</span><br><span class="line">                l1 = l1.<span class="built_in">next</span></span><br><span class="line">            <span class="keyword">elif</span> l1.val&lt;=l2.val:</span><br><span class="line">                newNode.<span class="built_in">next</span>=l1</span><br><span class="line">                l1 = l1.<span class="built_in">next</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                newNode.<span class="built_in">next</span> = l2</span><br><span class="line">                l2 = l2.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line">            newNode=newNode.<span class="built_in">next</span></span><br><span class="line">        newNode.<span class="built_in">next</span> = l1 <span class="keyword">or</span> l2</span><br><span class="line">        <span class="keyword">return</span> out.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    L1=stringToListNode([<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>])<span class="comment"># 将输入的元组转换为链表</span></span><br><span class="line">    L2=stringToListNode([<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>])<span class="comment"># 将输入的元组转换为链表</span></span><br><span class="line">    solution=Solution().mergeTwoLists(L1,L2)</span><br><span class="line">    <span class="built_in">print</span>(listNodeToString(solution))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li>Runtime: 36 ms, faster than 98.96% of Python3 online submissions
-forMerge Two Sorted Lists.</li>
-<li>Memory Usage: 13.2 MB, less than 41.08% of Python3 online
-submissions for Merge Two Sorted Lists.</li>
-</ul>
-
+          <p>Q21 Merge Two Sorted Lists</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -493,61 +537,10 @@ submissions for Merge Two Sorted Lists.</li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="delete-node-in-a-linked-list"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/delete-node-in-a-linked-list/">Delete
-Node in a Linked List</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>We are given <code>head</code>, the head node of a linked list
-containing <strong>unique integer values</strong>.</p>
-<p>We are also given the list <code>G</code>, a subset of the values in
-the linked list.</p>
-<p>Return the number of connected components in <code>head</code>, where
-two values are connected if they appear consecutively in the linked
-list.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong> Input: head: 0-&gt;1-&gt;2-&gt;3 G = [0,
-1, 3] Output: 2 Explanation: 0 and 1 are connected, so [0, 1] and [3]
-are the two connected components.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong> Input: head: 0-&gt;1-&gt;2-&gt;3-&gt;4 G
-= [0, 3, 1, 4] Output: 2 Explanation: 0 and 1 are connected, 3 and 4 are
-connected, so [0, 1] and [3, 4] are the two connected components.</p>
-</blockquote>
-<h3 id="approach-1-grouping">Approach 1: Grouping</h3>
-<blockquote>
-<p>Note: There is something wrong in the problem description. The test
-cases online are confusing.</p>
-<p><strong>Example:</strong></p>
-<p>input: [0] and [0]</p>
-<p>expected output: [1]</p>
-</blockquote>
-<p><strong>Intuition</strong></p>
-<p>Instead of thinking about connected components in <code>G</code>,
-think about them in the linked list. Connected components in
-<code>G</code> must occur consecutively in the linked list.</p>
-<p><strong>Algorithm</strong></p>
-<p>Scanning through the list, if <code>node.val</code> is in
-<code>G</code> and <code>node.next.val</code> isn't (including if
-<code>node.next</code> is <code>null</code>), then this must be the end
-of a connected component.</p>
-<p>For example, if the list is
-<code>0 -&gt; 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; 6 -&gt; 7</code>,
-and <code>G = [0, 2, 3, 5, 7]</code>, then when scanning through the
-list, we fulfill the above condition at <code>0, 3, 5, 7</code>, for a
-total answer of <code>4</code>.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">deleteNode</span>(<span class="params">self, node</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type node: ListNode</span></span><br><span class="line"><span class="string">        :rtype: void Do not return anything, modify node in-place instead.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> node.<span class="built_in">next</span> <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            node.val = node.<span class="built_in">next</span>.val</span><br><span class="line">            node.<span class="built_in">next</span> = node.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    head=stringToListNode([<span class="number">4</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">9</span>])<span class="comment"># 将输入的元组转换为链表</span></span><br><span class="line">    dele=head.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">    Solution().deleteNode(dele)</span><br><span class="line">    <span class="built_in">print</span>(listNodeToString(head))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li><p>Time and space complexity are both <em>O</em>(1).</p></li>
-<li><p>Runtime: 36 ms, faster than 99.70% of Python3 online submissions
-forDelete Node in a Linked List.</p></li>
-<li><p>Memory Usage: 13.5 MB, less than 55.73% of Python3 online
-submissions for Delete Node in a Linked List.</p></li>
-</ul>
-
+          <p>Q237 Delete Node in a Linked List</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -627,63 +620,10 @@ submissions for Delete Node in a Linked List.</p></li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="linked-list-components"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/linked-list-components/">Linked List
-Components</a></h1>
-<h2 id="question-it-is-a-wrong-problem-description">Question (It is a
-wrong problem description!)</h2>
-<blockquote>
-<p>We are given <code>head</code>, the head node of a linked list
-containing <strong>unique integer values</strong>.</p>
-<p>We are also given the list <code>G</code>, a subset of the values in
-the linked list.</p>
-<p>Return the number of connected components in <code>head</code>, where
-two values are connected if they appear consecutively in the linked
-list.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong> Input: head: 0-&gt;1-&gt;2-&gt;3 G = [0,
-1, 3] Output: 2 Explanation: 0 and 1 are connected, so [0, 1] and [3]
-are the two connected components.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong> Input: head: 0-&gt;1-&gt;2-&gt;3-&gt;4 G
-= [0, 3, 1, 4] Output: 2 Explanation: 0 and 1 are connected, 3 and 4 are
-connected, so [0, 1] and [3, 4] are the two connected components.</p>
-</blockquote>
-<h3 id="approach-1-grouping">Approach 1: Grouping</h3>
-<blockquote>
-<p>Note: There is something wrong in the problem description. The test
-cases online are confusing.</p>
-<p><strong>Example:</strong></p>
-<p>input: [0] and [0]</p>
-<p>expected output: [1]</p>
-</blockquote>
-<p><strong>Intuition</strong></p>
-<p>Instead of thinking about connected components in <code>G</code>,
-think about them in the linked list. Connected components in
-<code>G</code> must occur consecutively in the linked list.</p>
-<p><strong>Algorithm</strong></p>
-<p>Scanning through the list, if <code>node.val</code> is in
-<code>G</code> and <code>node.next.val</code> isn't (including if
-<code>node.next</code> is <code>null</code>), then this must be the end
-of a connected component.</p>
-<p>For example, if the list is
-<code>0 -&gt; 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; 6 -&gt; 7</code>,
-and <code>G = [0, 2, 3, 5, 7]</code>, then when scanning through the
-list, we fulfill the above condition at <code>0, 3, 5, 7</code>, for a
-total answer of <code>4</code>.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numComponents</span>(<span class="params">self, head: ListNode, G</span>):</span><br><span class="line">        Gset = <span class="built_in">set</span>(G)</span><br><span class="line">        cur = head</span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> cur:</span><br><span class="line">            <span class="keyword">if</span> (cur.val <span class="keyword">in</span> Gset <span class="keyword">and</span> <span class="built_in">getattr</span>(cur.<span class="built_in">next</span>, <span class="string">&#x27;val&#x27;</span>, <span class="literal">None</span>) <span class="keyword">not</span> <span class="keyword">in</span> Gset):</span><br><span class="line">                ans += <span class="number">1</span></span><br><span class="line">            cur = cur.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    head=stringToListNode([<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])<span class="comment"># 将输入的元组转换为链表</span></span><br><span class="line">    G=[<span class="number">0</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">4</span>]</span><br><span class="line">    <span class="built_in">print</span>(Solution().numComponents(head,G))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li><p>Time Complexity: <span class="math display">\[O(N +
-G\text{.length})\]</span>, where <em>N</em> is the length of the linked
-list with root node <code>head</code>.</p></li>
-<li><p>Space Complexity: <span
-class="math display">\[O(G\text{.length})\]</span>, to store
-<code>Gset</code>.</p></li>
-</ul>
-
+          <p>Q817 Linked List Components</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -763,22 +703,10 @@ class="math display">\[O(G\text{.length})\]</span>, to store
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="achievements-in-weibo-management">Achievements in Weibo
-Management</h1>
-<ul>
-<li><p>科普专业知识点共计111条，包括：计算机视觉、语音识别、深度学习、强化学习等（2019-5-21）</p></li>
-<li><p>创建话题：</p>
-<ul>
-<li>#紫冬物语#：阅读量75.4万，讨论196条 （2019-5-21）</li>
-<li>#AI词说#：阅读量89.4万，讨论233条（2019-5-21）</li>
-<li>#AI爱新词#：阅读量86.5万，讨论201条（2019-5-21）</li>
-</ul></li>
-<li><p><img src="\images\weibo.jpg" /></p>
-<center>
-<p>From Aug. 2018 to May. 2019（实现1000+新粉丝）</p>
-</center></li>
-</ul>
-
+          <p>坚持做喜欢的事情</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -858,75 +786,10 @@ Management</h1>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="reverse-linked-list"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/reverse-linked-list/">Reverse Linked
-List</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Reverse a singly linked list.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong> Input: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL
-Output: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL</p>
-</blockquote>
-<h3 id="approach-1-iterative">Approach 1: Iterative</h3>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>Assume that we have linked list <code>1 → 2 → 3 → Ø</code>, we would
-like to change it to <code>Ø ← 1 ← 2 ← 3</code>.</p>
-<p>While you are traversing the list, change the current node's next
-pointer to point to its previous element. Since a node does not have
-reference to its previous node, you must store its previous element
-beforehand. You also need another pointer to store the next node before
-changing the reference. Do not forget to return the new head reference
-at the end!</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseList</span>(<span class="params">self, head</span>):</span><br><span class="line">        prev_node = <span class="literal">None</span></span><br><span class="line">        curr_node = head</span><br><span class="line">        <span class="keyword">while</span> curr_node:</span><br><span class="line">            next_node = curr_node.<span class="built_in">next</span>  <span class="comment"># Remember next node</span></span><br><span class="line">            curr_node.<span class="built_in">next</span> = prev_node  <span class="comment"># REVERSE! None, first time round.</span></span><br><span class="line">            prev_node = curr_node  <span class="comment"># Used in the next iteration.</span></span><br><span class="line">            curr_node = next_node  <span class="comment"># Move to next node.</span></span><br><span class="line">        head = prev_node</span><br><span class="line">        <span class="keyword">return</span> head</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    head=stringToListNode([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])<span class="comment"># 将输入的元组转换为链表</span></span><br><span class="line">    <span class="built_in">print</span>(listNodeToString(Solution().reverseList(head)))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li><p>Time complexity : <em>O</em>(<em>n</em>). Assume that <em>n</em>
-is the list's length, the time complexity is
-<em>O</em>(<em>n</em>).</p></li>
-<li><p>Space complexity : <em>O</em>(1).</p></li>
-<li><p>Runtime: 28 ms, faster than 99.98% of Python3 online submissions
-forReverse Linked List.</p></li>
-<li><p>Memory Usage: 14.5 MB, less than 50.22% of Python3 online
-submissions for Reverse Linked List.</p></li>
-</ul>
-<hr />
-<h3 id="approach-2-recursive">Approach 2: Recursive</h3>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>The recursive version is slightly trickier and the key is to work
-backwards. Assume that the rest of the list had already been reversed,
-now how do I reverse the front part? Let's assume the list is: <span
-class="math display">\[n_1 \to … \to n_{k-1} \to n_k \to n_{k+1} \to …
-\to n_m \to \phi​\]</span></p>
-<p>Assume from node <span class="math display">\[n_{k+1}\]</span> to
-<span class="math display">\[n_m\]</span> had been reversed and you are
-at node <span class="math display">\[n_k\]</span>.</p>
-<p><span class="math display">\[n_1 \to … \to n_{k-1} \to n_k \to
-n_{k+1} \leftarrow … \leftarrow n_m\]</span></p>
-<p>We want <span class="math display">\[n_{k+1}\]</span>’s next node to
-point to <span class="math display">\[n_k\]</span>.</p>
-<p>So, <span class="math display">\[n_k\]</span>.next.next = <span
-class="math display">\[n_k​\]</span>;</p>
-<p>Be very careful that <span class="math display">\[n_1\]</span>'s next
-must point to <span class="math display">\[\phi​\]</span>. If you forget
-about this, your linked list has a cycle in it. This bug could be caught
-if you test your code with a linked list of size 2.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseList</span>(<span class="params">self, head</span>):</span><br><span class="line">        <span class="keyword">if</span> head==<span class="literal">None</span> <span class="keyword">or</span> head.<span class="built_in">next</span>==<span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> head</span><br><span class="line">        p=head.<span class="built_in">next</span> <span class="comment"># 设定p是下一个node</span></span><br><span class="line">        p=Solution().reverseList(p)</span><br><span class="line">        head.<span class="built_in">next</span>.<span class="built_in">next</span>=head</span><br><span class="line">        head.<span class="built_in">next</span>=<span class="literal">None</span></span><br><span class="line">        <span class="keyword">return</span> p</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity analysis</strong></p>
-<ul>
-<li><p>Time complexity : <em>O</em>(<em>n</em>). Assume that <em>n</em>
-is the list's length, the time complexity is
-<em>O</em>(<em>n</em>).</p></li>
-<li><p>Space complexity : <em>O</em>(<em>n</em>). The extra space comes
-from implicit stack space due to recursion. The recursion could go up to
-<em>n</em> levels deep.</p></li>
-<li><p>Runtime: 44 ms, faster than 69.21% of Python3 online submissions
-forReverse Linked List.</p></li>
-<li><p>Memory Usage: 19.1 MB, less than 11.36% of Python3 online
-submissions for Reverse Linked List.</p></li>
-</ul>
-
+          <p>Q206 Reverse Linked List</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1006,60 +869,10 @@ submissions for Reverse Linked List.</p></li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="middle-of-the-linked-list"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/middle-of-the-linked-list/">Middle
-of the Linked List</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>Given a non-empty, singly linked list with head node
-<code>head</code>, return a middle node of linked list.</p>
-<p>If there are two middle nodes, return the second middle node.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong> Input: [1,2,3,4,5] Output: Node 3 from
-this list (Serialization: [3,4,5]) The returned node has value 3. (The
-judge's serialization of this node is [3,4,5]). Note that we returned a
-ListNode object ans, such that: ans.val = 3, ans.next.val = 4,
-ans.next.next.val = 5, and ans.next.next.next = NULL.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong> Input: [1,2,3,4,5,6] Output: Node 4 from
-this list (Serialization: [4,5,6]) Since the list has two middle nodes
-with values 3 and 4, we return the second one.</p>
-</blockquote>
-<h3 id="approach-1-output-to-array">Approach 1: Output to Array</h3>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>Put every node into an array <code>A</code> in order. Then the middle
-node is just <code>A[A.length // 2]</code>, since we can retrieve each
-node by index.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x</span>):</span><br><span class="line">        self.val = x</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stringToListNode</span>(<span class="params"><span class="built_in">input</span></span>):</span><br><span class="line">    <span class="comment"># Now convert that list into linked list</span></span><br><span class="line">    dummyRoot = ListNode(<span class="number">0</span>)</span><br><span class="line">    ptr = dummyRoot</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> <span class="built_in">input</span>:</span><br><span class="line">        ptr.<span class="built_in">next</span> = ListNode(number)</span><br><span class="line">        ptr = ptr.<span class="built_in">next</span></span><br><span class="line">    ptr = dummyRoot.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> ptr</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">listNodeToString</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[]&quot;</span></span><br><span class="line">    result = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">        result += <span class="built_in">str</span>(node.val) + <span class="string">&quot;, &quot;</span></span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> + result[:-<span class="number">2</span>] + <span class="string">&quot;]&quot;</span> <span class="comment"># 最后一个逗号不输出</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">middleNode</span>(<span class="params">self, head</span>):</span><br><span class="line">        A = [head]</span><br><span class="line">        <span class="keyword">while</span> A[-<span class="number">1</span>].<span class="built_in">next</span>:</span><br><span class="line">            A.append(A[-<span class="number">1</span>].<span class="built_in">next</span>)</span><br><span class="line">        <span class="keyword">return</span> A[<span class="built_in">len</span>(A) // <span class="number">2</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    head=stringToListNode([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])<span class="comment"># 将输入的元组转换为链表</span></span><br><span class="line">    <span class="built_in">print</span>(listNodeToString(Solution().middleNode(head))) <span class="comment"># 输出为[3,4,5]是因为list转换为string自动把后面的[4,5]带出来了，实际上只传了3的地址</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><strong>Complexity Analysis</strong></p>
-<ul>
-<li>Time Complexity: <em>O</em>(<em>N</em>), where <em>N</em> is the
-number of nodes in the given list.</li>
-<li>Space Complexity: <em>O</em>(<em>N</em>), the space used by
-<code>A</code>.</li>
-</ul>
-<hr />
-<h3 id="approach-2-fast-and-slow-pointer">Approach 2: Fast and Slow
-Pointer</h3>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>When traversing the list with a pointer <code>slow</code>, make
-another pointer <code>fast</code> that traverses twice as fast. When
-<code>fast</code> reaches the end of the list, <code>slow</code> must be
-in the middle.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">middleNode</span>(<span class="params">self, head</span>):</span><br><span class="line">        slow = fast = head</span><br><span class="line">        <span class="keyword">while</span> fast <span class="keyword">and</span> fast.<span class="built_in">next</span>:</span><br><span class="line">            slow = slow.<span class="built_in">next</span></span><br><span class="line">            fast = fast.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">return</span> slow</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>Time Complexity: <em>O</em>(<em>N</em>), where <em>N</em> is the
-number of nodes in the given list.</p></li>
-<li><p>Space Complexity: <em>O</em>(1), the space used by
-<code>slow</code> and <code>fast</code>.</p></li>
-<li><p>Runtime: 32 ms, faster than 96.73% of Python3 online submissions
-forMiddle of the Linked List.</p></li>
-<li><p>Memory Usage: 13.2 MB, less than 23.44% of Python3 online
-submissions for Middle of the Linked List.</p></li>
-</ul>
-
+          <p>Q876 Middle of the Linked List</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1139,63 +952,10 @@ submissions for Middle of the Linked List.</p></li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="uncommon-words-from-two-sentences"><a
-target="_blank" rel="noopener" href="https://leetcode.com/problems/uncommon-words-from-two-sentences/">Uncommon
-Words from Two Sentences</a></h1>
-<h2 id="question">Question</h2>
-<blockquote>
-<p>We are given two sentences <code>A</code> and <code>B</code>. (A
-<em>sentence</em> is a string of space separated words. Each word
-consists only of lowercase letters.)</p>
-<p>A word is <em>uncommon</em> if it appears exactly once in one of the
-sentences, and does not appear in the other sentence.</p>
-<p>Return a list of all uncommon words.</p>
-<p>You may return the list in any order.</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 1:</strong> Input: A = "this apple is sweet", B =
-"this apple is sour" Output: ["sweet","sour"]</p>
-</blockquote>
-<blockquote>
-<p><strong>Example 2:</strong> Input: A = "apple apple", B = "banana"
-Output: ["banana"]</p>
-</blockquote>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ol type="1">
-<li><code>0 &lt;= A.length &lt;= 200</code></li>
-<li><code>0 &lt;= B.length &lt;= 200</code></li>
-<li><code>A</code> and <code>B</code> both contain only spaces and
-lowercase letters.</li>
-</ol>
-</blockquote>
-<h3 id="approach-1-counting">Approach 1: Counting</h3>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>Every uncommon word occurs exactly once in total. We can count the
-number of occurrences of every word, then return ones that occur exactly
-once.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">uncommonFromSentences</span>(<span class="params">self, A, B</span>):</span><br><span class="line">        count = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> A.split():</span><br><span class="line">            count[i] = count.get(i, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">            <span class="comment"># .get(i,0)意思是如果i在count里不存在，返回默认为0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> B.split():</span><br><span class="line">            count[i] = count.get(i, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#Alternatively:</span></span><br><span class="line">        <span class="comment">#count = collections.Counter(A.split())</span></span><br><span class="line">        <span class="comment">#count += collections.Counter(B.split())</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> [word <span class="keyword">for</span> word <span class="keyword">in</span> count <span class="keyword">if</span> count[word] == <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    A = <span class="string">&quot;this apple is sweet&quot;</span></span><br><span class="line">    B = <span class="string">&quot;this apple is sour&quot;</span></span><br><span class="line">    answer=Solution()</span><br><span class="line">    results=answer.uncommonFromSentences(A,B)</span><br><span class="line">    <span class="built_in">print</span>(results)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Runtime: 32 ms, faster than 99.14% of Python3 online submissions for
-Uncommon Words from Two Sentences.</li>
-<li>Memory Usage: 13.3 MB, less than 23.76% of Python3 online
-submissions for Uncommon Words from Two Sentences.</li>
-</ul>
-<hr />
-<h3 id="approach-2-counting-original">Approach 2: Counting
-(Original)</h3>
-<p><strong>Intuition and Algorithm</strong></p>
-<p>Every uncommon word occurs exactly once in total. We can count the
-number of occurrences of every word, then return ones that occur exactly
-once.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">uncommonFromSentences</span>(<span class="params">self, A: <span class="built_in">str</span>, B: <span class="built_in">str</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">str</span>]:</span><br><span class="line">        count = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> A.split()+B.split():</span><br><span class="line">            count[i] = count.get(i, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> [i <span class="keyword">for</span> i <span class="keyword">in</span> count <span class="keyword">if</span> count[i] == <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>Runtime: 36 ms, faster than 92.30% of Python3 online submissions
-for Uncommon Words from Two Sentences.</p></li>
-<li><p>Memory Usage: 13.1 MB, less than 75.47% of Python3 online
-submissions for Uncommon Words from Two Sentences.</p></li>
-</ul>
-
+          <p>Q884 Uncommon Words from Two Sentences</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1410,6 +1170,59 @@ submissions for Uncommon Words from Two Sentences.</p></li>
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

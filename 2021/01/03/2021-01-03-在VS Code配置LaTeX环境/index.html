@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="在VS Code配置编译LaTeX环境 实施步骤  Step 1：下载VS Code，SumatraPDF，texlive (阿里云)或者texlive (华为云)，texlive只下载texlive.iso文件，安装参考网上教程 Step 2：VS Code中安装 LaTeX Workshop 插件 Step 3：修改 user setting  12345678910111">
+  <meta name="description" content="在VSCode配置编译LaTeX环境">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在VS Code配置编译LaTeX环境">
+<meta property="og:title" content="在VSCode配置编译LaTeX环境">
 <meta property="og:url" content="https://txing-casia.github.io/2021/01/03/2021-01-03-%E5%9C%A8VS%20Code%E9%85%8D%E7%BD%AELaTeX%E7%8E%AF%E5%A2%83/index.html">
 <meta property="og:site_name" content="Txing">
-<meta property="og:description" content="在VS Code配置编译LaTeX环境 实施步骤  Step 1：下载VS Code，SumatraPDF，texlive (阿里云)或者texlive (华为云)，texlive只下载texlive.iso文件，安装参考网上教程 Step 2：VS Code中安装 LaTeX Workshop 插件 Step 3：修改 user setting  12345678910111">
+<meta property="og:description" content="在VSCode配置编译LaTeX环境">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-01-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-08T13:40:21.263Z">
+<meta property="article:modified_time" content="2023-10-09T12:48:48.863Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="LaTeX">
 <meta property="article:tag" content="VScode">
@@ -49,7 +49,7 @@
   };
 </script>
 
-  <title>在VS Code配置编译LaTeX环境 | Txing</title>
+  <title>在VSCode配置编译LaTeX环境 | Txing</title>
   
 
 
@@ -84,7 +84,119 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -215,7 +327,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          在VS Code配置编译LaTeX环境
+          在VSCode配置编译LaTeX环境
         </h1>
 
         <div class="post-meta">
@@ -252,6 +364,7 @@
                 <span class="post-meta-item-text">Reading time &asymp;</span>
               <span>2 mins.</span>
             </span>
+            <div class="post-description">在VSCode配置编译LaTeX环境</div>
 
         </div>
       </header>
@@ -266,26 +379,22 @@
 <h2 id="实施步骤">实施步骤</h2>
 <ul>
 <li><p>Step 1：下载<a target="_blank" rel="noopener" href="https://code.visualstudio.com/">VS
-Code</a>，<a
-target="_blank" rel="noopener" href="https://www.sumatrapdfreader.org/free-pdf-reader.html">SumatraPDF</a>，<a
-target="_blank" rel="noopener" href="https://mirrors.aliyun.com/CTAN/systems/texlive/Images/">texlive
-(阿里云)</a>或者<a
-target="_blank" rel="noopener" href="https://mirrors.huaweicloud.com/CTAN/systems/texlive/Images/">texlive
+Code</a>，<a target="_blank" rel="noopener" href="https://www.sumatrapdfreader.org/free-pdf-reader.html">SumatraPDF</a>，<a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/CTAN/systems/texlive/Images/">texlive
+(阿里云)</a>或者<a target="_blank" rel="noopener" href="https://mirrors.huaweicloud.com/CTAN/systems/texlive/Images/">texlive
 (华为云)</a>，texlive只下载texlive.iso文件，安装参考网上教程</p></li>
 <li><p>Step 2：VS Code中安装 LaTeX Workshop 插件</p></li>
 <li><p>Step 3：修改 user setting</p></li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    &quot;latex-workshop.latex.tools&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            // 编译工具和命令</span><br><span class="line">            &quot;name&quot;: &quot;latexmk&quot;,</span><br><span class="line">            &quot;command&quot;: &quot;latexmk&quot;,</span><br><span class="line">            &quot;args&quot;: [</span><br><span class="line">                &quot;-synctex=1&quot;,</span><br><span class="line">                &quot;-interaction=nonstopmode&quot;,</span><br><span class="line">                &quot;-file-line-error&quot;,</span><br><span class="line">                &quot;-pdf&quot;,</span><br><span class="line">                &quot;%DOCFILE%&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            // 编译工具和命令</span><br><span class="line">            &quot;name&quot;: &quot;xelatex&quot;,</span><br><span class="line">            &quot;command&quot;: &quot;xelatex&quot;,</span><br><span class="line">            &quot;args&quot;: [</span><br><span class="line">                &quot;-synctex=1&quot;,</span><br><span class="line">                &quot;-interaction=nonstopmode&quot;,</span><br><span class="line">                &quot;-file-line-error&quot;,</span><br><span class="line">                &quot;-pdf&quot;,</span><br><span class="line">                &quot;%DOCFILE%&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;pdflatex&quot;,</span><br><span class="line">            &quot;command&quot;: &quot;pdflatex&quot;,</span><br><span class="line">            &quot;args&quot;: [</span><br><span class="line">                &quot;-synctex=1&quot;,</span><br><span class="line">                &quot;-interaction=nonstopmode&quot;,</span><br><span class="line">                &quot;-file-line-error&quot;,</span><br><span class="line">                &quot;%DOCFILE%&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;bibtex&quot;,</span><br><span class="line">            &quot;command&quot;: &quot;bibtex&quot;,</span><br><span class="line">            &quot;args&quot;: [</span><br><span class="line">                &quot;%DOCFILE%&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    &quot;latex-workshop.latex.recipes&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;xelatex&quot;,</span><br><span class="line">            &quot;tools&quot;: [</span><br><span class="line">                &quot;xelatex&quot;</span><br><span class="line">            ],</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;pdflatex&quot;,</span><br><span class="line">            &quot;tools&quot;: [</span><br><span class="line">                &quot;pdflatex&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;xe-&gt;bib-&gt;xe-&gt;xe&quot;,</span><br><span class="line">            &quot;tools&quot;: [</span><br><span class="line">                &quot;xelatex&quot;,</span><br><span class="line">                &quot;bibtex&quot;,</span><br><span class="line">                &quot;xelatex&quot;,</span><br><span class="line">                &quot;xelatex&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;pdf-&gt;bib-&gt;pdf-&gt;pdf&quot;,</span><br><span class="line">            &quot;tools&quot;: [</span><br><span class="line">                &quot;pdflatex&quot;,</span><br><span class="line">                &quot;bibtex&quot;,</span><br><span class="line">                &quot;pdflatex&quot;,</span><br><span class="line">                &quot;pdflatex&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    &quot;latex-workshop.view.pdf.viewer&quot;: &quot;external&quot;,</span><br><span class="line"></span><br><span class="line">    &quot;latex-workshop.view.pdf.external.viewer.command&quot;: &quot;D:/Program Files (x86)/SumatraPDF/SumatraPDF.exe&quot;,</span><br><span class="line">    &quot;latex-workshop.view.pdf.external.viewer.args&quot;: [</span><br><span class="line">        &quot;-forward-search&quot;,</span><br><span class="line">        &quot;%TEX%&quot;,</span><br><span class="line">        &quot;%LINE%&quot;,</span><br><span class="line">        &quot;-reuse-instance&quot;,</span><br><span class="line">        &quot;-inverse-search&quot;,</span><br><span class="line">        &quot;\&quot;D:/Program Files (x86)/Microsoft VS Code/Code.exe\&quot; \&quot;D:/Program Files (x86)/Microsoft VS Code/resources/app/out/cli.js\&quot; -gr \&quot;%f\&quot;:\&quot;%l\&quot;&quot;,</span><br><span class="line">        &quot;%PDF%&quot;</span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">{</span><br><span class="line"></span><br><span class="line">    "latex-workshop.latex.tools": [</span><br><span class="line">        {</span><br><span class="line">            // 编译工具和命令</span><br><span class="line">            "name": "latexmk",</span><br><span class="line">            "command": "latexmk",</span><br><span class="line">            "args": [</span><br><span class="line">                "-synctex=1",</span><br><span class="line">                "-interaction=nonstopmode",</span><br><span class="line">                "-file-line-error",</span><br><span class="line">                "-pdf",</span><br><span class="line">                "%DOCFILE%"</span><br><span class="line">            ]</span><br><span class="line">        },</span><br><span class="line">        {</span><br><span class="line">            // 编译工具和命令</span><br><span class="line">            "name": "xelatex",</span><br><span class="line">            "command": "xelatex",</span><br><span class="line">            "args": [</span><br><span class="line">                "-synctex=1",</span><br><span class="line">                "-interaction=nonstopmode",</span><br><span class="line">                "-file-line-error",</span><br><span class="line">                "-pdf",</span><br><span class="line">                "%DOCFILE%"</span><br><span class="line">            ]</span><br><span class="line">        },</span><br><span class="line">        {</span><br><span class="line">            "name": "pdflatex",</span><br><span class="line">            "command": "pdflatex",</span><br><span class="line">            "args": [</span><br><span class="line">                "-synctex=1",</span><br><span class="line">                "-interaction=nonstopmode",</span><br><span class="line">                "-file-line-error",</span><br><span class="line">                "%DOCFILE%"</span><br><span class="line">            ]</span><br><span class="line">        },</span><br><span class="line">        {</span><br><span class="line">            "name": "bibtex",</span><br><span class="line">            "command": "bibtex",</span><br><span class="line">            "args": [</span><br><span class="line">                "%DOCFILE%"</span><br><span class="line">            ]</span><br><span class="line">        }</span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    "latex-workshop.latex.recipes": [</span><br><span class="line">        {</span><br><span class="line">            "name": "xelatex",</span><br><span class="line">            "tools": [</span><br><span class="line">                "xelatex"</span><br><span class="line">            ],</span><br><span class="line">        },</span><br><span class="line">        {</span><br><span class="line">            "name": "pdflatex",</span><br><span class="line">            "tools": [</span><br><span class="line">                "pdflatex"</span><br><span class="line">            ]</span><br><span class="line">        },</span><br><span class="line">        {</span><br><span class="line">            "name": "xe-&gt;bib-&gt;xe-&gt;xe",</span><br><span class="line">            "tools": [</span><br><span class="line">                "xelatex",</span><br><span class="line">                "bibtex",</span><br><span class="line">                "xelatex",</span><br><span class="line">                "xelatex"</span><br><span class="line">            ]</span><br><span class="line">        },</span><br><span class="line">        {</span><br><span class="line">            "name": "pdf-&gt;bib-&gt;pdf-&gt;pdf",</span><br><span class="line">            "tools": [</span><br><span class="line">                "pdflatex",</span><br><span class="line">                "bibtex",</span><br><span class="line">                "pdflatex",</span><br><span class="line">                "pdflatex"</span><br><span class="line">            ]</span><br><span class="line">        }</span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    "latex-workshop.view.pdf.viewer": "external",</span><br><span class="line"></span><br><span class="line">    "latex-workshop.view.pdf.external.viewer.command": "D:/Program Files (x86)/SumatraPDF/SumatraPDF.exe",</span><br><span class="line">    "latex-workshop.view.pdf.external.viewer.args": [</span><br><span class="line">        "-forward-search",</span><br><span class="line">        "%TEX%",</span><br><span class="line">        "%LINE%",</span><br><span class="line">        "-reuse-instance",</span><br><span class="line">        "-inverse-search",</span><br><span class="line">        "\"D:/Program Files (x86)/Microsoft VS Code/Code.exe\" \"D:/Program Files (x86)/Microsoft VS Code/resources/app/out/cli.js\" -gr \"%f\":\"%l\"",</span><br><span class="line">        "%PDF%"</span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 <p>*<strong>记住修改VS Code位置和SumatraPDF位置</strong></p>
 <ul>
 <li><p>Step 4：在新建文件夹中，新建.tex文件，输入</p>
-<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>&#123;article&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">hello,world</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>{article}</span><br><span class="line"><span class="keyword">\begin</span>{document}</span><br><span class="line">hello,world</span><br><span class="line"><span class="keyword">\end</span>{document}</span><br></pre></td></tr></table></figure>
 <p>Ctrl+S编译，也可以在左侧Tex一栏设置编译方式</p></li>
 </ul>
 <h2 id="参考资料">参考资料</h2>
 <ul>
-<li><a
-target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/38178015">使用VSCode编写LaTeX</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/38178015">使用VSCode编写LaTeX</a></li>
 </ul>
 
     </div>
@@ -516,6 +625,59 @@ target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/38178015">使�
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
