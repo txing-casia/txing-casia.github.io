@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="C++ 语句使用技巧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CPP Programming | Chapter 5：语句">
+<meta property="og:url" content="https://txing-casia.github.io/2023/10/13/2023-12-13-CPP%20Programming-Chapter%205%20%E8%AF%AD%E5%8F%A5/index.html">
+<meta property="og:site_name" content="Txing">
+<meta property="og:description" content="C++ 语句使用技巧">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-13T06:33:02.066Z">
+<meta property="article:author" content="Txing">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://txing-casia.github.io/2023/10/13/2023-12-13-CPP%20Programming-Chapter%205%20%E8%AF%AD%E5%8F%A5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>CPP Programming | Chapter 5：语句 | Txing</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Txing</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到 | 伽蓝之堂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2023/10/13/2023-12-13-CPP%20Programming-Chapter%205%20%E8%AF%AD%E5%8F%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CPP Programming | Chapter 5：语句
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-10-13 00:00:00" itemprop="dateCreated datePublished" datetime="2023-10-13T00:00:00+08:00">2023-10-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Code-Techniques/" itemprop="url" rel="index"><span itemprop="name">Code Techniques</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+            <div class="post-description">C++ 语句使用技巧</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="chapter-5-语句">Chapter 5 语句</h2>
+<h3 id="语句基础">语句基础</h3>
+<ul>
+<li>常见类别
+<ul>
+<li><strong>表达式语句</strong>：表达式后加分号，对表达式求值后丢弃，可能产生副作用</li>
+<li><strong>空语句</strong>：仅包含一个分号的语句，可能与循环一起工作</li>
+<li><strong>符合语句</strong>（语句体）：由大括号组成，无需在结尾加分号，形成独立的域（语句域）</li>
+</ul></li>
+<li>顺序语句与非顺序语句
+<ul>
+<li>顺序语句
+<ul>
+<li>从语义上按照先后顺序执行</li>
+<li>实际的而执行顺序可能产生变化（编译器优化、硬件乱序执行）</li>
+<li>与硬件流水线紧密结合，执行效率较高</li>
+</ul></li>
+<li>非顺序语句
+<ul>
+<li>在执行过程中引入跳转，从而产生复杂的变化</li>
+<li>分支预测错误可能导致执行性能降低</li>
+</ul></li>
+</ul></li>
+<li>最基本的非顺序语句：<code>goto</code>
+<ul>
+<li>通过标签指定跳转到的位置</li>
+<li>具有若干限制
+<ul>
+<li>不能跨函数跳转</li>
+<li>向前跳转时不能越过对象初始化语句</li>
+</ul></li>
+<li>向后跳转可能会导致对象销毁与重新初始化</li>
+</ul></li>
+<li>goto本质上对应了汇编语言的跳转指令
+<ul>
+<li>缺乏结构性的含义</li>
+<li>容易造成逻辑混乱</li>
+<li>除特殊情况外，应避免使用</li>
+</ul></li>
+</ul>
+<h3 id="分支语句if">分支语句——if</h3>
+<ul>
+<li><p>语法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(条件){</span><br><span class="line">}</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>{</span><br><span class="line">}</span><br><span class="line"><span class="keyword">else</span>{</span><br><span class="line">}</span><br></pre></td></tr></table></figure></li>
+<li><p>使用语句块表示复杂的分支逻辑</p></li>
+<li><p>从if到if-else</p>
+<ul>
+<li>实现多重分支</li>
+<li>else会与最近的if匹配，可以使用大括号改变匹配规则</li>
+<li><strong>不能通过</strong>缩进和换行改变匹配规则</li>
+</ul></li>
+<li><p><code>if</code> vs <code>constexpr if</code>
+——运行期与编译期分支</p></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">if</span>  <span class="title">constexpr</span> <span class="params">(A&gt;<span class="number">5</span>)</span></span>{</span><br><span class="line">}<span class="comment">//编译期确定是否执行语句块，又一便于编译优化代码，去除if-else结构，保留确定的语句</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>带初始化语句的if</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="type">int</span> y = X * <span class="number">3</span>; y &gt; <span class="number">100</span>)<span class="comment">//初始化y，if执行完之后y就销毁了，外部可重新定义y</span></span><br></pre></td></tr></table></figure>
+<h3 id="分支语句switch">分支语句——switch</h3>
+<ul>
+<li><p>语法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (条件) 语句</span><br><span class="line"><span class="comment">//执行对应case之后的代码，后续的case也会执行！使用break跳出！！！</span></span><br></pre></td></tr></table></figure></li>
+<li><p>条件部分应当能够隐式转换为整形或枚举类型，可以包含初始化的语句</p></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x;</span><br><span class="line"><span class="keyword">switch</span>(std::cin&gt;&gt;x; x)<span class="comment">// 条件需要是int类型</span></span><br><span class="line">{</span><br><span class="line">	<span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<ul>
+<li>case/default 标签
+<ul>
+<li>case后面跟常量表达式，用于匹配switch中的条件，匹配时执行后续的代码</li>
+<li>可以使用break跳出当前的switch执行</li>
+<li>default用于定义缺省情况下的逻辑</li>
+<li>在case/default中<strong>定义对象</strong>要加大括号</li>
+</ul></li>
+<li><code>[[fallthrough]];</code>属性，允许此处不加break，不会报警告</li>
+<li>与if相比的优劣势
+<ul>
+<li>分支描述能力较弱</li>
+<li>在一些情况下能引入更好的优化，运行期节省时间</li>
+</ul></li>
+</ul>
+<h3 id="循环语句while">循环语句——while</h3>
+<ul>
+<li><p>语法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(x&gt;<span class="number">3</span>){</span><br><span class="line">...</span><br><span class="line">}</span><br></pre></td></tr></table></figure></li>
+<li><p>处理逻辑</p>
+<ul>
+<li><ol type="1">
+<li>判断条件是否满足，如果不满足则跳出循环</li>
+<li>如果条件满足则执行循环体</li>
+<li>执行完循环体后转向步骤1</li>
+</ol></li>
+</ul></li>
+<li><p>注意：在while的条件部分不包含额外的初始化内容</p></li>
+</ul>
+<h3 id="循环语句do-while">循环语句——do while</h3>
+<ul>
+<li>语法</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> 语句 <span class="keyword">while</span>(表达式)；<span class="comment">//表达式部分不能加初始化</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意结尾需要加分号，表示一条语句的结束</li>
+<li>处理逻辑
+<ol type="1">
+<li>执行循环体</li>
+<li>判断条件是否满足，如果不满足则跳出循环</li>
+<li>如果条件满足则转向步骤1</li>
+</ol></li>
+</ul>
+<h3 id="循环语句for">循环语句——for</h3>
+<ul>
+<li>语法</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (初始化语句 条件(可选); 迭代表达式(可选)) 语句 <span class="comment">// 正式</span></span><br><span class="line"><span class="keyword">for</span> (声明或表达式(可选); 声明或表达式(可选); 迭代表达式(可选)) 语句 <span class="comment">// 非正式</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>处理逻辑
+<ol type="1">
+<li>初始化语句会被首先执行</li>
+<li>条件部分会被执行，执行结果如果为false，则终止循环</li>
+<li>否则执行循环体</li>
+<li>迭代表达式会被求值，之后转向2</li>
+</ol></li>
+<li>在初始化语句中声明多个名字</li>
+<li>初始化语句、条件、迭代表达式可以为空</li>
+<li>for的更多示例</li>
+</ul>
+<h3 id="循环语句基于范围的for循环">循环语句——基于范围的for循环</h3>
+<ul>
+<li>语法</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (范围声明; 范围表达式) 循环语句</span><br><span class="line"><span class="keyword">for</span> (初始化语句（可选）范围声明; 范围表达式) 循环语句</span><br></pre></td></tr></table></figure>
+<ul>
+<li>本质：语法糖，编译器会转换为for循环的调用方式</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;<span class="type">int</span>&gt; arr{<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>};</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> v : arr)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>转换形式的演化：C++11/C++17/C++20</li>
+<li>使用常量左值引用读元素；使用“万能引用”修改元素（
+<code>auto &amp;&amp;</code>万能引用）</li>
+</ul>
+<h3 id="循环语句breakcontinue">循环语句——break/continue</h3>
+<ul>
+<li>含义
+<ul>
+<li>break：导致外围的for、范围for、while或do-while循环或switch语句终止</li>
+<li>continue：用于跳过整个for、while或do-while 循环体的剩余部分</li>
+</ul></li>
+<li>注意这两者均不能用于多重嵌套循环，多重嵌套循环的跳转可考虑goto语句</li>
+</ul>
+<h3 id="语句的综合应用达夫设备">语句的综合应用——达夫设备</h3>
+<ul>
+<li><p>switch里面嵌套循环体的结构称为达夫设备</p></li>
+<li><p>使用循环展开提升系统性能</p>
+<ul>
+<li>把循环内部变复杂，减少循环执行次数。当心内存访问越界</li>
+</ul></li>
+<li><p>处理无法整除的情形</p>
+<ul>
+<li>额外增加一个循环语句</li>
+<li>将switch与循环结合——达夫设备</li>
+</ul></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C++</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/10/13/2023-12-13-CPP%20Programming-Chapter%207%20%E6%B7%B1%E5%85%A5IO/" rel="prev" title="CPP Programming | Chapter 7：深入IO">
+      <i class="fa fa-chevron-left"></i> CPP Programming | Chapter 7：深入IO
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/10/13/2023-12-13-CPP%20Programming-Chapter%204%20%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="next" title="CPP Programming | Chapter 4：表达式">
+      CPP Programming | Chapter 4：表达式 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-5-%E8%AF%AD%E5%8F%A5"><span class="nav-number">1.</span> <span class="nav-text">Chapter 5 语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E5%8F%A5%E5%9F%BA%E7%A1%80"><span class="nav-number">1.1.</span> <span class="nav-text">语句基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%94%AF%E8%AF%AD%E5%8F%A5if"><span class="nav-number">1.2.</span> <span class="nav-text">分支语句——if</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%94%AF%E8%AF%AD%E5%8F%A5switch"><span class="nav-number">1.3.</span> <span class="nav-text">分支语句——switch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5while"><span class="nav-number">1.4.</span> <span class="nav-text">循环语句——while</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5do-while"><span class="nav-number">1.5.</span> <span class="nav-text">循环语句——do while</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5for"><span class="nav-number">1.6.</span> <span class="nav-text">循环语句——for</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5%E5%9F%BA%E4%BA%8E%E8%8C%83%E5%9B%B4%E7%9A%84for%E5%BE%AA%E7%8E%AF"><span class="nav-number">1.7.</span> <span class="nav-text">循环语句——基于范围的for循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5breakcontinue"><span class="nav-number">1.8.</span> <span class="nav-text">循环语句——break&#x2F;continue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E5%8F%A5%E7%9A%84%E7%BB%BC%E5%90%88%E5%BA%94%E7%94%A8%E8%BE%BE%E5%A4%AB%E8%AE%BE%E5%A4%87"><span class="nav-number">1.9.</span> <span class="nav-text">语句的综合应用——达夫设备</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Txing"
+      src="/images/my_photo.jpg">
+  <p class="site-author-name" itemprop="name">Txing</p>
+  <div class="site-description" itemprop="description">泛用人形决战型机器人博士</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">252</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/txing-casia" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;txing-casia" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.uomi.moe/" title="https:&#x2F;&#x2F;blog.uomi.moe" rel="noopener" target="_blank">驱逐舰患者</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://m.mepai.me/photographyer/u_5a68085ba15aa.html?tdsourcetag=s_pctim_aiomsg" title="https:&#x2F;&#x2F;m.mepai.me&#x2F;photographyer&#x2F;u_5a68085ba15aa.html?tdsourcetag&#x3D;s_pctim_aiomsg" rel="noopener" target="_blank">隐之-INF</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Txing</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">616k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">9:20</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
