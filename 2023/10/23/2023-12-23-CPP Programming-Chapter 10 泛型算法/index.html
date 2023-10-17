@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="C++ 泛型算法使用技巧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CPP Programming | Chapter 10：泛型算法">
+<meta property="og:url" content="https://txing-casia.github.io/2023/10/23/2023-12-23-CPP%20Programming-Chapter%2010%20%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="Txing">
+<meta property="og:description" content="C++ 泛型算法使用技巧">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-22T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-17T04:21:57.478Z">
+<meta property="article:author" content="Txing">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://txing-casia.github.io/2023/10/23/2023-12-23-CPP%20Programming-Chapter%2010%20%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>CPP Programming | Chapter 10：泛型算法 | Txing</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Txing</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到 | 伽蓝之堂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2023/10/23/2023-12-23-CPP%20Programming-Chapter%2010%20%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CPP Programming | Chapter 10：泛型算法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-10-23 00:00:00" itemprop="dateCreated datePublished" datetime="2023-10-23T00:00:00+08:00">2023-10-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Code-Techniques/" itemprop="url" rel="index"><span itemprop="name">Code Techniques</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.7k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+            <div class="post-description">C++ 泛型算法使用技巧</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="chapter-10-泛型算法">Chapter 10 泛型算法</h2>
+<h3 id="泛型算法">泛型算法</h3>
+<ul>
+<li><p>泛型算法：可以支持多种类型的算法</p>
+<ul>
+<li>这里终点讨论C++标准库中定义的算法
+<ul>
+<li><code>&lt;algorithm&gt; &lt;numeric&gt; &lt;ranges&gt;</code></li>
+</ul></li>
+<li>为什么要引入泛型算法而不采用方法的形式
+<ul>
+<li>内建数据类型不支持方法</li>
+<li>计算逻辑存在相似性，避免重复定义</li>
+</ul></li>
+<li>如何实现支持多种类型：使用迭代器作为算法和数据的桥梁</li>
+</ul></li>
+<li><p>泛型算法通常来说都不复杂，但优化足够好</p></li>
+<li><p>一些泛型算法与方法同名，实现功能类似，此时建议调用方法而非算法</p>
+<ul>
+<li><code>std::find V.S. std::map::find</code></li>
+</ul></li>
+<li><p>泛型算法的分类</p>
+<ul>
+<li>读算法：给定迭代区间，读取其中的元素并进行计算
+<ul>
+<li>accumulate / find / count</li>
+</ul></li>
+<li>写算法：向一个迭代区间中写入元素
+<ul>
+<li>单纯写操作：fill / fill_n</li>
+<li>读+写操作：transform / copy</li>
+<li>注意：写算法一定要保证目标区间足够大</li>
+</ul></li>
+<li>排序算法：改变输入序列中元素的顺序
+<ul>
+<li>sort / unique</li>
+</ul></li>
+</ul></li>
+<li><p>泛型算法使用迭代器实现元素访问</p></li>
+<li><p>迭代器的分类：</p>
+<ul>
+<li>输入迭代器：可读，可递增——典型应用为find算法</li>
+<li>输出迭代器：可写，可递增——典型应用为copy算法</li>
+<li>前向迭代器：可读写，可递增——典型应用为replace算法</li>
+<li>双向迭代器：可读写，可递增递减——典型应用为reverse算法</li>
+<li>随机访问迭代器：可读写，可增减一个整数——典型应用为sort算法</li>
+</ul></li>
+<li><p>一些算法会根据迭代器类型的不同引入相应的优化：如distance算法</p></li>
+<li><p>一些特殊的迭代器</p>
+<ul>
+<li>插入迭代器：back_insert_iterator / front_insert_iterator /
+insert_iterator</li>
+<li>流迭代器：istream_iterator / ostream_iterator</li>
+<li>反向迭代器</li>
+<li>移动迭代器：move_iterator</li>
+</ul></li>
+<li><p>迭代器与哨兵（Sentinel）</p></li>
+<li><p>并发算法（C++17 / C++20）</p>
+<ul>
+<li>std::execution::seq</li>
+<li>std::execution::par</li>
+<li>std::execution::par_unseq</li>
+<li>std::execution::unseq</li>
+</ul></li>
+</ul>
+<h3 id="bind与labmbda表达式">bind与labmbda表达式</h3>
+<ul>
+<li>很多算法允许通过可调用对象自定义计算逻辑的细节
+<ul>
+<li>transform / copy_if / sort ...</li>
+</ul></li>
+<li>可调用对象
+<ul>
+<li>函数指针：概念直观，但定义位置受限</li>
+<li>类：功能强大，但书写麻烦</li>
+<li>bind：基于已有的逻辑灵活适配，但描述复杂逻辑时语法可能会比较复杂难懂</li>
+<li>lambda表达式：小巧灵活，功能强大</li>
+</ul></li>
+</ul>
+<h3 id="bind">bind</h3>
+<ul>
+<li><p>bind：通过绑定的方式修改可调用对象的调用方式</p></li>
+<li><p>早期的bind雏形：std::bind1st / std::bind2nd</p>
+<ul>
+<li>具有了bind的基本思想，但功能有限</li>
+</ul></li>
+<li><p>std::bind：更加林火的解决方案</p>
+<ul>
+<li>调用std::bind时，传入的参数会被复制，这可能会产生一些调用风险</li>
+<li>可以使用std::ref或std::cref避免复制的行为</li>
+</ul></li>
+<li><p>std::bind_front：std::bind的简化形式</p></li>
+</ul>
+<h3 id="lambda表达式">lambda表达式</h3>
+<ul>
+<li><p>lambda表达式：</p>
+<ul>
+<li>为了更灵活地实现调用对象的引入</li>
+<li>C++11~C++20持续更新
+<ul>
+<li>C++11引入lambda表达式</li>
+<li>C++14支持初始化捕获、泛型lambda</li>
+<li>C++17引入constexpr lambda，*this捕获</li>
+<li>C++20引入concepts，模板lambda</li>
+</ul></li>
+</ul></li>
+<li><p>lambda表达式会被编译器翻译成类进行处理</p></li>
+<li><p>lambda表达式的基本组成部分</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="comment">// #include &lt;functional&gt;</span></span><br><span class="line"><span class="comment">// #include &lt;memory&gt;</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="keyword">auto</span> x = [](<span class="type">int</span> val) {<span class="keyword">return</span> val &gt; <span class="number">3</span>;};</span><br><span class="line">    <span class="type">int</span> y = <span class="number">5</span>;</span><br><span class="line">    <span class="type">int</span> z = <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">auto</span> x = [y,&amp;z](<span class="type">int</span> val) {<span class="keyword">return</span> val &gt; y;}; <span class="comment">// 捕获</span></span><br><span class="line">    <span class="keyword">auto</span> x = [y](<span class="type">int</span> val) <span class="keyword">mutable</span></span><br><span class="line">    {</span><br><span class="line">        y++;</span><br><span class="line">        <span class="keyword">return</span> val &gt; y;</span><br><span class="line">    };</span><br><span class="line">    <span class="comment">// 复制外部变量</span></span><br><span class="line">    <span class="keyword">auto</span> x = [=](<span class="type">int</span> val) <span class="keyword">mutable</span></span><br><span class="line">    {</span><br><span class="line">        y++;</span><br><span class="line">        <span class="keyword">return</span> val &gt; y;</span><br><span class="line">    };</span><br><span class="line">    <span class="comment">// 引用外部变量</span></span><br><span class="line">    <span class="keyword">auto</span> x = [&amp;](<span class="type">int</span> val) <span class="keyword">mutable</span></span><br><span class="line">    {</span><br><span class="line">        y++;</span><br><span class="line">        <span class="keyword">return</span> val &gt; y;</span><br><span class="line">    };</span><br><span class="line">    std::cout &lt;&lt; <span class="built_in">x</span>(<span class="number">5</span>) &lt;&lt; std::endl;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<ul>
+<li>参数与函数体</li>
+<li>返回类型</li>
+<li>捕获：针对函数体中使用的局部自动对象进行捕获
+<ul>
+<li>值捕获、引用捕获与混合捕获</li>
+<li>this捕获</li>
+<li>初始化捕获（C++14）</li>
+<li>*this捕获（C++17）</li>
+</ul></li>
+<li>说明符
+<ul>
+<li>mutable (内部变量取消const) / constexpr (C++17) / consteval
+(C++20)...</li>
+</ul></li>
+<li>模板形参（C++20）</li>
+</ul></li>
+<li><p>lambda表达式的深入应用</p>
+<ul>
+<li><p>捕获时计算（C++14）</p></li>
+<li><p>即调用函数表达式（Immediately-Invoked Function Expression,
+IIFE）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const auto val = [z = x + y]()</span><br><span class="line">{</span><br><span class="line">	return z;</span><br><span class="line">}(); // 初始化同时执行</span><br></pre></td></tr></table></figure></li>
+<li><p>使用auto避免复制（C++14）</p></li>
+<li><p>Lifting（C++14）</p></li>
+<li><p>递归调用（C++14）</p></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">auto</span> factorial = [](<span class="type">int</span> n)</span><br><span class="line">    {</span><br><span class="line">        <span class="keyword">auto</span> f_impl = [](<span class="type">int</span> n, <span class="type">const</span> <span class="keyword">auto</span>&amp; impl) -&gt; <span class="type">int</span>  <span class="comment">// 需要给返回类型</span></span><br><span class="line">        {</span><br><span class="line">            <span class="keyword">return</span> n &gt; <span class="number">1</span> ? n * <span class="built_in">impl</span>( n - <span class="number">1</span>, impl) : <span class="number">1</span>;</span><br><span class="line">        };</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">f_impl</span>(n, f_impl);</span><br><span class="line">    };</span><br><span class="line">	std::cout &lt;&lt; <span class="built_in">factorial</span>(<span class="number">5</span>) &lt;&lt; std::endl;</span><br><span class="line">}</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="泛型算法的改进ranges">泛型算法的改进——ranges</h3>
+<ul>
+<li><p>可以使用容器而非迭代器作为输入</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;ranges&gt;</span></span></span><br><span class="line">std::vector&lt;<span class="type">int</span>&gt; x{<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>};</span><br><span class="line"><span class="keyword">auto</span> it = std::ranges::<span class="built_in">find</span>(x,<span class="number">3</span>);</span><br><span class="line"><span class="keyword">auto</span> it = std::ranges::<span class="built_in">find</span>(x.<span class="built_in">begin</span>(),x.<span class="built_in">end</span>(),<span class="number">3</span>);</span><br><span class="line">std::cout&lt;&lt;*it&lt;&lt;std::endl;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过std::ranges::dangling避免返回无效的迭代器</li>
+</ul></li>
+<li><p>引入映射概念，简化代码编写</p></li>
+<li><p>引入view，灵活组织程序逻辑</p></li>
+<li><p>从类型上区分迭代器和哨兵</p></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C++</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/10/22/2023-12-22-CPP%20Programming-Chapter%209%20%E5%BA%8F%E5%88%97%E4%B8%8E%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8/" rel="prev" title="CPP Programming | Chapter 9：序列与关联容器">
+      <i class="fa fa-chevron-left"></i> CPP Programming | Chapter 9：序列与关联容器
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/10/24/2023-12-24-CPP%20Programming-Chapter%2011%20%E7%B1%BB/" rel="next" title="CPP Programming | Chapter 11：类">
+      CPP Programming | Chapter 11：类 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-10-%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">Chapter 10 泛型算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">泛型算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bind%E4%B8%8Elabmbda%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">bind与labmbda表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bind"><span class="nav-number">1.3.</span> <span class="nav-text">bind</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.4.</span> <span class="nav-text">lambda表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95%E7%9A%84%E6%94%B9%E8%BF%9Branges"><span class="nav-number">1.5.</span> <span class="nav-text">泛型算法的改进——ranges</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Txing"
+      src="/images/my_photo.jpg">
+  <p class="site-author-name" itemprop="name">Txing</p>
+  <div class="site-description" itemprop="description">泛用人形决战型机器人博士</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">252</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/txing-casia" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;txing-casia" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.uomi.moe/" title="https:&#x2F;&#x2F;blog.uomi.moe" rel="noopener" target="_blank">驱逐舰患者</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://m.mepai.me/photographyer/u_5a68085ba15aa.html?tdsourcetag=s_pctim_aiomsg" title="https:&#x2F;&#x2F;m.mepai.me&#x2F;photographyer&#x2F;u_5a68085ba15aa.html?tdsourcetag&#x3D;s_pctim_aiomsg" rel="noopener" target="_blank">隐之-INF</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Txing</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">616k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">9:20</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
