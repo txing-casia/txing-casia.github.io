@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="C++ 序列与关联容器使用技巧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CPP Programming | Chapter 9：序列与关联容器">
+<meta property="og:url" content="https://txing-casia.github.io/2023/10/22/2023-10-22-CPP%20Programming-Chapter%209%20%E5%BA%8F%E5%88%97%E4%B8%8E%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8/index.html">
+<meta property="og:site_name" content="Txing">
+<meta property="og:description" content="C++ 序列与关联容器使用技巧">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-17T04:23:53.969Z">
+<meta property="article:author" content="Txing">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://txing-casia.github.io/2023/10/22/2023-10-22-CPP%20Programming-Chapter%209%20%E5%BA%8F%E5%88%97%E4%B8%8E%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>CPP Programming | Chapter 9：序列与关联容器 | Txing</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Txing</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到 | 伽蓝之堂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2023/10/22/2023-10-22-CPP%20Programming-Chapter%209%20%E5%BA%8F%E5%88%97%E4%B8%8E%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CPP Programming | Chapter 9：序列与关联容器
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-10-22 00:00:00" itemprop="dateCreated datePublished" datetime="2023-10-22T00:00:00+08:00">2023-10-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Code-Techniques/" itemprop="url" rel="index"><span itemprop="name">Code Techniques</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>3.8k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>3 mins.</span>
+            </span>
+            <div class="post-description">C++ 序列与关联容器使用技巧</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="chapter-9-序列与关联容器">Chapter 9 序列与关联容器</h2>
+<h3 id="容器概述">容器概述</h3>
+<ul>
+<li>容器：一种特殊的类型，其对象可以防止其它类型的对象（元素）
+<ul>
+<li><p>需要支持的操作：对象的添加、删除、索引、遍历</p></li>
+<li><p>有多种算法可以实现容器，每种方法各有利弊</p></li>
+</ul></li>
+<li>容器的分类
+<ul>
+<li><p>序列容器：其中的对象有序排列，使用整数值进行索引</p></li>
+<li><p>关联容器：其中的对象顺序并不重要，使用键进行索引</p></li>
+<li><p>适配器：调整原有容器的行为，使得其对外展现出新的类型、接口或返回新的元素</p></li>
+<li><p>生成器：构造元素序列</p></li>
+</ul></li>
+<li>迭代器：用于指定容器中的一段去接，以执行遍历、删除等操作
+<ul>
+<li>获取迭代器：<code>(c)begin/(c)end</code>；（加c表示迭代器不可写入，只读）<code>(c)rbegin/(c)rend</code>（反向迭代器，rbegin对应end前一个位置，rend对应begin前一个）</li>
+<li>迭代器分类：分成5类（category），不同的类别支持的操作集合不同</li>
+</ul></li>
+</ul>
+<h3 id="序列容器">序列容器</h3>
+<ul>
+<li><p>C++标准库中提供了多种序列容器模板</p>
+<ul>
+<li>array：元素个数固定的序列容器</li>
+<li>vector：元素连续存储的序列容器</li>
+<li>forward_list/list：基于链表/双向链表的容器</li>
+<li>deque：vector与list的折衷</li>
+<li>basic_string：提供了对字符串专门的支持</li>
+</ul></li>
+<li><p>需要使用元素类型来实例化容器模板，从而构造可以保存具体类型的容器</p></li>
+<li><p>不同的容器所提供的接口大致相同，但根据容器性质的差异，其内部实现与复杂度不同</p></li>
+<li><p>对于复杂度过高的操作，提供相对较难使用的接口或者不提供相应的接口</p></li>
+<li><p><strong>array容器模板</strong>：具有固定长度的容器，其内部维护了一个内建数组，与内建数组相比提供了赋值操作</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;array&gt;</span></span></span><br><span class="line">std::array&lt;<span class="type">int</span>, 3&gt; a;</span><br><span class="line">std::array&lt;<span class="type">int</span>, 3&gt; b = a;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>提供的接口：
+<ul>
+<li>构造</li>
+<li>成员类型：value_type等</li>
+<li>元素访问：[], at, front, back, data</li>
+<li>容量相关（平凡实现）：empty, size, max_size</li>
+<li>填充与交换：fill, swap</li>
+<li>比较操作：&lt;=&gt;</li>
+<li>迭代器</li>
+</ul></li>
+</ul></li>
+<li><p><strong>vector容器模板</strong>：元素可变</p></li>
+<li><p>提供的接口</p>
+<ul>
+<li>与array很类似，但有特殊性</li>
+<li>容量相关接口：capacity / reserve / shrink_to_fit</li>
+<li>附加元素接口：push_back / emplace_back</li>
+<li>元素插入接口：insert / emplace</li>
+<li>元素删除接口：pop_back / erase</li>
+</ul></li>
+<li><p>注意</p>
+<ul>
+<li>vector不提供push_front / pop_front，可以使用insert / erase
+模拟，但效率不高</li>
+<li>swap效率较高</li>
+<li>写操作可能会导致迭代器失效（旧vector装满了导致重新开辟内存，删除旧内存地址）</li>
+</ul></li>
+<li><p><strong>list容器模板</strong>：双向链表</p></li>
+<li><p>与vector相比，list</p>
+<ul>
+<li>插入、删除成本较低，但随机访问成本较高</li>
+<li>提供了pop_front / splice 等接口</li>
+<li>写操作通常不会改变迭代器的有效性</li>
+</ul></li>
+<li><p><strong>forward_list 容器模板</strong>：单向链表</p>
+<ul>
+<li>目标：一个成本较低的线性表实现</li>
+<li>其迭代器只支持递增操作，因此无rbegin / rend</li>
+<li>不支持size</li>
+<li>不支持pop_back / push_back</li>
+<li>XXX_after操作</li>
+</ul></li>
+<li><p><strong>deque容器模板</strong>：vector与list的折衷</p>
+<ul>
+<li>push_back / push_front速度较快</li>
+<li>在序列中间插入、删除速度较慢</li>
+</ul></li>
+<li><p><strong>basic_string容器模板</strong>：实现了字符串相关的接口</p>
+<ul>
+<li>使用char实例化出std::string</li>
+<li>提供了如find、substr等字符串特有的接口</li>
+<li>提供了数值与字符串转换的接口</li>
+<li>针对短字符串的优化（short string optimization: SSO）</li>
+</ul></li>
+<li><p>使用键进行索引</p>
+<ul>
+<li>set/map/multiset/multmap</li>
+<li>unordered_set / unordered_map / unordered_multiset /
+unordered_multimap</li>
+</ul></li>
+<li><p>set / map / multiset /multimap 底层使用红黑树实现</p></li>
+<li><p>unordered_xxx底层使用hash实现</p></li>
+</ul>
+<h3 id="关联容器">关联容器</h3>
+<ul>
+<li><p><strong>set</strong></p>
+<ul>
+<li>通常来说，元素需要支持使用 &lt; 比较大小</li>
+<li>或者采用自定义的比较函数来引入大小关系</li>
+<li>插入元素：insert / emplace / emplace_hint</li>
+<li>删除元素：erase</li>
+<li>访问元素：find / contains</li>
+<li>修改元素：extract</li>
+</ul></li>
+<li><p>注意：set迭代器所指向的对象是const的，不能通过其修改元素</p></li>
+<li><p><strong>map</strong></p>
+<ul>
+<li><p>树中的每个节点是一个std::pair</p></li>
+<li><p>键（pair.first）需要支持使用&lt;比较大小</p></li>
+<li><p>或者采用自定义的比较函数来引入大小关系</p></li>
+<li><p>访问元素：find / contains / [] / at</p></li>
+<li><p>用法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> [k, v] : m){</span><br><span class="line">	cout &lt;&lt; k &lt;&lt; <span class="string">' '</span> &lt;&lt; v &lt;&lt; endl;</span><br><span class="line">}</span><br></pre></td></tr></table></figure></li>
+<li><p>插入</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">std::map&lt;<span class="type">int</span>, <span class="type">bool</span>&gt; m;</span><br><span class="line">m.<span class="built_in">insert</span>(std::<span class="built_in">pair</span>&lt;<span class="type">int</span>, <span class="type">bool</span>&gt;(<span class="number">3</span>, <span class="literal">true</span>)); <span class="comment">// 插入</span></span><br><span class="line"><span class="keyword">auto</span> ptr = m.<span class="built_in">find</span>(<span class="number">3</span>);</span><br><span class="line">cout &lt;&lt; ptr-&gt;first &lt;&lt; <span class="string">' '</span> &lt;&lt; ptr-&gt;second;</span><br><span class="line">m.<span class="built_in">erase</span>(<span class="number">3</span>); <span class="comment">// 删除</span></span><br></pre></td></tr></table></figure></li>
+<li><p>注意</p>
+<ul>
+<li>map迭代器所指向的对象是std::pair，其键是const类型</li>
+<li>[]操作不能用于常量对象</li>
+</ul></li>
+</ul></li>
+<li><p><strong>multiset / multimap</strong></p>
+<ul>
+<li><p>与set / map 类似，但允许重复的键</p></li>
+<li><p>元素访问</p>
+<ul>
+<li>find返回首个查找到的元素</li>
+<li>count返回元素个数</li>
+<li>lower_bound / upper_bound / equal_range 返回查找到的区间</li>
+</ul></li>
+<li><p>```c++ std::multiset<int> s{1,3,1}; auto b = s.lower_bound(1);
+auto e = s.upper_bound(1); for (auto ptr = b; ptr != e; ++ptr){
+std::cout &lt;&lt; *ptr &lt;&lt; std::endl; } <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- **unordered_set / unordered_map / unordered_multiset / unordered_multimap**</span><br><span class="line"></span><br><span class="line">  - 与set / map相比查找性能更好</span><br><span class="line">  - 但插入操作一些情况下会慢</span><br><span class="line">  - 其键需要支持两个操作</span><br><span class="line">    - 转换为hash值</span><br><span class="line">    - 判等</span><br><span class="line"></span><br><span class="line">  - 除 == ，!= 外，不支持容器级的关系运算</span><br><span class="line">    - 但==，!= 速度较慢</span><br><span class="line"></span><br><span class="line">  - 自定义hash与判等函数</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 适配器和生成器</span><br><span class="line"></span><br><span class="line">- 类型适配器，兼容不同类型的数据</span><br><span class="line"></span><br><span class="line">  - basic_string_view（c++17）</span><br><span class="line"></span><br><span class="line">    - 可以基于std::string，C字符串，迭代器构造</span><br><span class="line"></span><br><span class="line">      ```c++</span><br><span class="line">      // 字符串调用</span><br><span class="line">      #inclide &lt;string_view&gt;</span><br><span class="line">      void fun(const std::string&amp; str){}</span><br><span class="line">      void fun(std::string_view str)</span><br></pre></td></tr></table></figure></int></p>
+<ul>
+<li><p>提供成本较低的操作接口 <code>std::string_view str</code></p></li>
+<li><p>不可进行写操作</p></li>
+</ul></li>
+<li><p>span（c++20）</p>
+<ul>
+<li><p>可基于C数组、array等构造</p></li>
+<li><p>可读写</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;span&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">fun</span><span class="params">(std::span input)</span></span>{</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> P : input){</span><br><span class="line">		std::cout &lt;&lt; p &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">	}</span><br><span class="line">	std::cout &lt;&lt; endl;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> a[<span class="number">3</span>] = {<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>};</span><br><span class="line">std::vector&lt;<span class="type">int</span>&gt; s{<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>};</span><br><span class="line"><span class="built_in">fun</span>(a);</span><br><span class="line"><span class="built_in">fun</span>(s);</span><br></pre></td></tr></table></figure></li>
+</ul></li>
+</ul></li>
+<li><p>接口适配器</p>
+<ul>
+<li>stack / queue / priority_queue</li>
+<li>对底层序列容器进行封装，对外展现栈、队列与优先级队列的接口</li>
+<li>priority_queue 在使用时其内部包含的元素需要支持比较操作</li>
+</ul></li>
+<li><p>数值适配器（C++20）：std::ranges::XXX_view,
+std::ranges::views::XXX, std::views::XXX</p>
+<ul>
+<li><p>可以将一个输入区间中的数值变换后输出</p></li>
+<li><p>数值适配器可以组合，引入复杂的数值适配逻辑</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ranges&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isEven</span><span class="params">(<span class="type">int</span> i)</span></span>{</span><br><span class="line">	<span class="keyword">return</span> i % <span class="number">2</span> == <span class="number">0</span>;</span><br><span class="line">}</span><br><span class="line">std::vector&lt;<span class="type">int</span>&gt; v{<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>};</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> p : std::ranges::<span class="built_in">filter_view</span>(v,isEven)){</span><br><span class="line">	std::cout&lt;&lt;p&lt;&lt;<span class="string">' '</span>; <span class="comment">// 过滤奇数，只会打印偶数</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure></li>
+</ul></li>
+<li><p>生成器（C++20）</p>
+<ul>
+<li><p>std::ranges::iota_view, std::ranges::views::iota,
+std::views::iota</p></li>
+<li><p>可以在运行期生成无限长或有限长的数值序列</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i : std::views::<span class="built_in">iota</span>(<span class="number">1</span>) | std::views::<span class="built_in">take</span>(<span class="number">9</span>) <span class="comment">// std::views::iota(1)生成无限长的序列，std::views::take(9)接收|之前的容器，只取前9个值</span></span><br><span class="line">	std::cout &lt;&lt; i;</span><br></pre></td></tr></table></figure></li>
+</ul></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C++</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/10/21/2023-10-21-CPP%20Programming-Chapter%208%20%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" rel="prev" title="CPP Programming | Chapter 8：动态内存管理">
+      <i class="fa fa-chevron-left"></i> CPP Programming | Chapter 8：动态内存管理
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/10/23/2023-10-23-CPP%20Programming-Chapter%2010%20%E6%B3%9B%E5%9E%8B%E7%AE%97%E6%B3%95/" rel="next" title="CPP Programming | Chapter 10：泛型算法">
+      CPP Programming | Chapter 10：泛型算法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-9-%E5%BA%8F%E5%88%97%E4%B8%8E%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">Chapter 9 序列与关联容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E6%A6%82%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">容器概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%AE%B9%E5%99%A8"><span class="nav-number">1.2.</span> <span class="nav-text">序列容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8"><span class="nav-number">1.3.</span> <span class="nav-text">关联容器</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Txing"
+      src="/images/my_photo.jpg">
+  <p class="site-author-name" itemprop="name">Txing</p>
+  <div class="site-description" itemprop="description">泛用人形决战型机器人博士</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">252</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/txing-casia" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;txing-casia" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.uomi.moe/" title="https:&#x2F;&#x2F;blog.uomi.moe" rel="noopener" target="_blank">驱逐舰患者</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://m.mepai.me/photographyer/u_5a68085ba15aa.html?tdsourcetag=s_pctim_aiomsg" title="https:&#x2F;&#x2F;m.mepai.me&#x2F;photographyer&#x2F;u_5a68085ba15aa.html?tdsourcetag&#x3D;s_pctim_aiomsg" rel="noopener" target="_blank">隐之-INF</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Txing</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">631k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">9:33</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

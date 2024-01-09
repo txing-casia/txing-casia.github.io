@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="端到端自动驾驶模型综述">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Autonomous Driving | End-to-end Autonomous Driving: Challenges and Frontiers">
+<meta property="og:url" content="https://txing-casia.github.io/2024/01/09/2024-01-09-Autonomous%20Driving%20-%20End-to-end%20Autonomous%20Driving%20Challenges%20and%20Frontiers/index.html">
+<meta property="og:site_name" content="Txing">
+<meta property="og:description" content="端到端自动驾驶模型综述">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://txing-casia.github.io/images/20231018-1.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20231018-2.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20231018-3.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20240104-1.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20240105-1.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20240105-2.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20240109-1.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20240109-2.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20240109-3.png">
+<meta property="article:published_time" content="2024-01-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-01-09T09:35:20.464Z">
+<meta property="article:author" content="Txing">
+<meta property="article:tag" content="Autonomous Driving">
+<meta property="article:tag" content="End2End Model">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://txing-casia.github.io/images/20231018-1.png">
+
+<link rel="canonical" href="https://txing-casia.github.io/2024/01/09/2024-01-09-Autonomous%20Driving%20-%20End-to-end%20Autonomous%20Driving%20Challenges%20and%20Frontiers/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Autonomous Driving | End-to-end Autonomous Driving: Challenges and Frontiers | Txing</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Txing</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到 | 伽蓝之堂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2024/01/09/2024-01-09-Autonomous%20Driving%20-%20End-to-end%20Autonomous%20Driving%20Challenges%20and%20Frontiers/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Autonomous Driving | End-to-end Autonomous Driving: Challenges and Frontiers
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2024-01-09 00:00:00" itemprop="dateCreated datePublished" datetime="2024-01-09T00:00:00+08:00">2024-01-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>15k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>14 mins.</span>
+            </span>
+            <div class="post-description">端到端自动驾驶模型综述</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="introduction">1. Introduction</h3>
+<ul>
+<li>端到端自动驾驶模型使用原始的传感器输入生成车辆的运动规划和预测；</li>
+<li>端到端自动驾驶模型当前的挑战：
+<ul>
+<li>multi-modality</li>
+<li>interpretability</li>
+<li>causal confusion</li>
+<li>robustness</li>
+<li>world models</li>
+</ul></li>
+<li>端到端的方法可以分为<strong>强化学习</strong>和<strong>模仿学习</strong>两大类</li>
+</ul>
+<h4 id="motivation-of-an-end-to-end-system">1.1 Motivation of an
+End-to-end system</h4>
+<ul>
+<li>传统流程中，每个模型只处理一个具体的任务，感知做检测，提升mAP（mean
+average precision）；规划生成安全舒适的轨迹等；</li>
+<li>分模块的处理会导致信息损失，多模型的部署造成计算障碍和趋向次优结果；</li>
+<li>端到端的优势：
+<ul>
+<li>感知预测和规划联合训练，简化流程并且方便；</li>
+<li>系统的中间表征通过最终的任务来优化；</li>
+<li>共享的backbone提升了计算效率；</li>
+<li>数据驱动的优化迭代优化方便；</li>
+</ul></li>
+</ul>
+<figure>
+<img src="\images\20231018-1.png" alt="端到端模型概览">
+<figcaption aria-hidden="true">端到端模型概览</figcaption>
+</figure>
+<ul>
+<li>端到端模型并不意味着一个只有规划或者控制输出的黑箱模型，它也可以有中间状态和表征的输出，
+<ul>
+<li>“Mp3: A unified model to map, perceive, predict and plan,” in
+CVPR,2021.</li>
+<li>“Planning-oriented autonomous driving,” in CVPR, 2023.</li>
+</ul></li>
+</ul>
+<h4 id="roadmap">1.2 Roadmap</h4>
+<ul>
+<li>模仿学习范式：
+<ul>
+<li>“Urban driving with conditional imitation learning,” in ICRA,
+2020.</li>
+<li>“Exploring the limitations of behavior cloning for autonomous
+driving,” in ICCV, 2019.</li>
+<li>“Learning to drive by imitation: An overview of deep behavior
+cloning methods,” TIV, 2020.</li>
+<li>“A survey on imitation learning techniques for end-to-end autonomous
+vehicles,” TITS, 2022.</li>
+<li>“Imitation learning: Progress, taxonomies and challenges,” TNNLS,
+2022.</li>
+</ul></li>
+<li>强化学习范式：
+<ul>
+<li>"Learning to drive in a day," in ICRA, 2019.</li>
+<li>“Cirl: Controllable imitative reinforcement learning for
+vision-based self-driving,” in ECCV, 2018.</li>
+<li>"End-toend model-free reinforcement learning for urban driving using
+implicit affordances," in CVPR, 2020.</li>
+<li>"Gri: General reinforced imitation and its application to
+vision-based autonomous driving," arXiv.org, vol. 2111.08575, 2021.</li>
+<li>“A survey of deep RL and IL for autonomous driving policy learning,”
+TITS, 2021.</li>
+<li>“Deep reinforcement learning for autonomous driving: A survey,”
+TITS, 2021.</li>
+</ul></li>
+<li>The policy distillation paradigm proposed in LBC：“Learning by
+cheating,” in CoRL, 2020.</li>
+<li>仿真平台：carla and nuPlan</li>
+</ul>
+<figure>
+<img src="\images\20231018-2.png" alt="Roadmap of End-to-end Autonomous Driving">
+<figcaption aria-hidden="true">Roadmap of End-to-end Autonomous
+Driving</figcaption>
+</figure>
+<h4 id="comparison-to-related-surveys">1.3 Comparison to Related
+Surveys</h4>
+<ul>
+<li>“Computer vision for autonomous vehicles: Problems, datasets and
+state-of-the-art,” arXiv.org, vol. 1704.05519, 2017.</li>
+<li>“A survey of end-to-end driving: Architectures and training
+methods,” TNNLS, 2020.</li>
+<li>“Motion planning for autonomous driving: The state of the art and
+future perspectives,” arXiv.org, vol. 2303.09824, 2023.</li>
+<li>“A review of end-to-end autonomous driving in urban environments,”
+IEEE Access, 2022.</li>
+<li>“Learning to drive by imitation: An overview of deep behavior
+cloning methods," TIV, 2020.</li>
+<li>“A survey on imitation learning techniques for end-to-end autonomous
+vehicles,” TITS, 2022.</li>
+<li>“Imitation learning: Progress, taxonomies and challenges,” TNNLS,
+2022.</li>
+<li>“A survey of deep RL and IL for autonomous driving policy learning,”
+TITS, 2021.</li>
+<li>“Deep reinforcement learning for autonomous driving: A survey,”
+TITS, 2021.</li>
+</ul>
+<h3 id="methods">2 Methods</h3>
+<h4 id="imitation-learning">2.1 Imitation Learning</h4>
+<ul>
+<li>模仿学习通过专家示教学习专家的行为策略；最典型的算法例如行为克隆（behacior
+cloneing, BC）
+<ul>
+<li>“A framework for behavioural cloning,” in Machine Intelligence 15,
+1995.</li>
+</ul></li>
+<li>Inverse Optimal Control (IOC), also known as Inverse Reinforcement
+Learning (IRL) 也是一种根据专家示教学习的方法，只不过学习的是奖励函数；
+<ul>
+<li>“Maximum entropy inverse reinforcement learning,” in AAAI,
+2008.</li>
+</ul></li>
+</ul>
+<h5 id="behavior-cloning">2.1.1 Behavior Cloning</h5>
+<ul>
+<li>训练目标是匹配智能体的行为策略，通过最小化定义的loss，在监督学习的框架下训练；</li>
+<li>模型的损失定义为 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.65ex;" xmlns="http://www.w3.org/2000/svg" width="13.424ex" height="2.347ex" role="img" focusable="false" viewBox="0 -750 5933.6 1037.2"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D53C" d="M12 666Q12 675 24 683H582Q590 680 593 672V588Q593 514 591 502T575 490Q567 490 563 495T555 517Q552 556 517 590Q486 623 445 634T340 648H282Q266 636 264 620T260 492V370H277Q329 375 358 391T404 439Q420 480 420 506Q420 529 436 529Q445 529 451 521Q455 517 455 361Q455 333 455 298T456 253Q456 217 453 207T437 197Q420 196 420 217Q420 240 406 270Q377 328 284 335H260V201Q261 174 261 134Q262 73 264 61T278 38Q281 36 282 35H331Q400 35 449 50Q571 93 602 179Q605 203 622 203Q629 203 634 197T640 183Q638 181 624 95T604 3L600 -1H24Q12 5 12 16Q12 35 51 35Q92 38 97 52Q102 60 102 341T97 632Q91 645 51 648Q12 648 12 666ZM137 341Q137 131 136 89T130 37Q129 36 129 35H235Q233 41 231 48L226 61V623L231 635L235 648H129Q132 641 133 638T135 603T137 517T137 341ZM557 603V648H504Q504 646 515 639Q527 634 542 619L557 603ZM420 317V397L406 383Q394 370 380 363L366 355Q373 350 382 346Q400 333 409 328L420 317ZM582 61L586 88Q585 88 582 83Q557 61 526 46L511 37L542 35H577Q577 36 578 39T580 49T582 61Z"></path></g></g><g data-mml-node="TeXAtom" transform="translate(700,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path></g><g data-mml-node="mo" transform="translate(469,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mi" transform="translate(747,0)"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path></g></g></g><g data-mml-node="mi" transform="translate(1652.3,0)"><path data-c="1D459" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path></g><g data-mml-node="mo" transform="translate(1950.3,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="msub" transform="translate(2339.3,0)"><g data-mml-node="mi"><path data-c="1D70B" d="M132 -11Q98 -11 98 22V33L111 61Q186 219 220 334L228 358H196Q158 358 142 355T103 336Q92 329 81 318T62 297T53 285Q51 284 38 284Q19 284 19 294Q19 300 38 329T93 391T164 429Q171 431 389 431Q549 431 553 430Q573 423 573 402Q573 371 541 360Q535 358 472 358H408L405 341Q393 269 393 222Q393 170 402 129T421 65T431 37Q431 20 417 5T381 -10Q370 -10 363 -7T347 17T331 77Q330 86 330 121Q330 170 339 226T357 318T367 358H269L268 354Q268 351 249 275T206 114T175 17Q164 -11 132 -11Z"></path></g><g data-mml-node="TeXAtom" transform="translate(603,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z"></path></g></g></g><g data-mml-node="mo" transform="translate(3323.9,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(3712.9,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path></g><g data-mml-node="mo" transform="translate(4181.9,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g><g data-mml-node="mo" transform="translate(4570.9,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mi" transform="translate(5015.6,0)"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path></g><g data-mml-node="mo" transform="translate(5544.6,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container></span>，其中 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="9.686ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 4281.3 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D459" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path></g><g data-mml-node="mo" transform="translate(298,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="msub" transform="translate(687,0)"><g data-mml-node="mi"><path data-c="1D70B" d="M132 -11Q98 -11 98 22V33L111 61Q186 219 220 334L228 358H196Q158 358 142 355T103 336Q92 329 81 318T62 297T53 285Q51 284 38 284Q19 284 19 294Q19 300 38 329T93 391T164 429Q171 431 389 431Q549 431 553 430Q573 423 573 402Q573 371 541 360Q535 358 472 358H408L405 341Q393 269 393 222Q393 170 402 129T421 65T431 37Q431 20 417 5T381 -10Q370 -10 363 -7T347 17T331 77Q330 86 330 121Q330 170 339 226T357 318T367 358H269L268 354Q268 351 249 275T206 114T175 17Q164 -11 132 -11Z"></path></g><g data-mml-node="TeXAtom" transform="translate(603,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D703" d="M35 200Q35 302 74 415T180 610T319 704Q320 704 327 704T339 705Q393 701 423 656Q462 596 462 495Q462 380 417 261T302 66T168 -10H161Q125 -10 99 10T60 63T41 130T35 200ZM383 566Q383 668 330 668Q294 668 260 623T204 521T170 421T157 371Q206 370 254 370L351 371Q352 372 359 404T375 484T383 566ZM113 132Q113 26 166 26Q181 26 198 36T239 74T287 161T335 307L340 324H145Q145 321 136 286T120 208T113 132Z"></path></g></g></g><g data-mml-node="mo" transform="translate(1671.6,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(2060.6,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path></g><g data-mml-node="mo" transform="translate(2529.6,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g><g data-mml-node="mo" transform="translate(2918.6,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mi" transform="translate(3363.3,0)"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path></g><g data-mml-node="mo" transform="translate(3892.3,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container></span>
+表示学到策略和专家策略的差异</li>
+<li>BC的优势在于简单高效，不需要进行手工奖励设计；</li>
+<li>面临的问题：
+<ul>
+<li>训练中假设了样本独立同分布（iid），这会导致问题：covariate shift
+<ul>
+<li>处理方法：</li>
+<li>DAgger： “A reduction of imitation learning and structured
+prediction to no-regret online learning,” in AISTATS, 2011.</li>
+<li>“Active imitation learning: Formal and practical reductions to iid
+learning,” JMLR, 2014.</li>
+<li>“Efficient reductions for imitation learning,” in AISTATS,
+2010.</li>
+<li>“Reinforcement and imitation learning via interactive no-regret
+learning,” arXiv.org, vol. 1406.5979, 2014.</li>
+</ul></li>
+<li>模型错误评估了状态和特征之间的相关性，造成因果混淆（causal
+confusion）：
+<ul>
+<li>处理方法：
+<ul>
+<li>“Fighting copycat agents in behavioral cloning from observation
+histories,” in NIPS, 2020.</li>
+<li>“Keyframe-focused visual imitation learning,” in ICML, 2021.</li>
+<li>“Object-aware regularization for addressing causal confusion in
+imitation learning,” in NeurIPS, 2021.</li>
+<li>“Fighting fire with fire: avoiding dnn shortcuts through priming,”
+in ICML, 2022.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h5 id="inverse-optimal-control">2.1.2 Inverse Optimal Control</h5>
+<ul>
+<li><p>传统的IOC算法通过专家示教的MDP学习未知的奖励函数；而专家的奖励函数可以表示为特征的线性组合</p>
+<ul>
+<li>“Extrapolating beyond suboptimal demonstrations via inverse
+reinforcement learning from observations,” in ICML, 2019.</li>
+<li>“Guided cost learning: Deep inverse optimal control via policy
+optimization,” in ICML, 2016.</li>
+<li>“Sqil: Imitation learning via reinforcement learning with sparse
+rewards,” arXiv.org, vol. 1905.11108, 2019.</li>
+<li>“Self-imitation learning by planning,” in ICRA, 2021.</li>
+</ul></li>
+<li><p>但是在自动驾驶场景，奖励是隐式的并且不便于优化</p></li>
+<li><p>Generative Adversarial Imitation Learning
+(GAIL)，用对抗的方式区分专家和学到的策略，概念和GAN类似；</p></li>
+<li><p>使用非学习的算法采样轨迹<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.029ex;" xmlns="http://www.w3.org/2000/svg" width="2.28ex" height="1.595ex" role="img" focusable="false" viewBox="0 -691.8 1007.6 704.8"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mi"><path data-c="1D70F" d="M39 284Q18 284 18 294Q18 301 45 338T99 398Q134 425 164 429Q170 431 332 431Q492 431 497 429Q517 424 517 402Q517 388 508 376T485 360Q479 358 389 358T299 356Q298 355 283 274T251 109T233 20Q228 5 215 -4T186 -13Q153 -13 153 20V30L203 192Q214 228 227 272T248 336L254 357Q254 358 208 358Q206 358 197 358T183 359Q105 359 61 295Q56 287 53 286T39 284Z"></path></g><g data-mml-node="mo" transform="translate(604,363) scale(0.707)"><path data-c="2217" d="M229 286Q216 420 216 436Q216 454 240 464Q241 464 245 464T251 465Q263 464 273 456T283 436Q283 419 277 356T270 286L328 328Q384 369 389 372T399 375Q412 375 423 365T435 338Q435 325 425 315Q420 312 357 282T289 250L355 219L425 184Q434 175 434 161Q434 146 425 136T401 125Q393 125 383 131T328 171L270 213Q283 79 283 63Q283 53 276 44T250 35Q231 35 224 44T216 63Q216 80 222 143T229 213L171 171Q115 130 110 127Q106 124 100 124Q87 124 76 134T64 161Q64 166 64 169T67 175T72 181T81 188T94 195T113 204T138 215T170 230T210 250L74 315Q65 324 65 338Q65 353 74 363T98 374Q106 374 116 368T171 328L229 286Z"></path></g></g></g></g></svg></mjx-container></span>并最小化损失；因此问题就变成了两步，如何设计损失？如何采样轨迹并用端到端的方式优化，如下图所示</p></li>
+</ul>
+<figure>
+<img src="\images\20231018-3.png" alt="Overview of methods in end-to-end autonomous driving">
+<figcaption aria-hidden="true">Overview of methods in end-to-end
+autonomous driving</figcaption>
+</figure>
+<h4 id="reinforcement-learning">2.2 Reinforcement Learning</h4>
+<ul>
+<li>RL方法会允许潜在的不安全的行为出现，行为探索；要求的数据量大于监督学习；因此绝大部分RL算法停留在仿真阶段</li>
+<li>没有RL端到端训练模型的报告，可能是因为获得的梯度信息不足</li>
+<li>在carla上取得sota的RL模型：
+<ul>
+<li>“End-toend model-free reinforcement learning for urban driving using
+implicit affordances,” in CVPR, 2020.</li>
+<li>“Gri: General reinforced imitation and its application to
+vision-based autonomous driving,” arXiv.org, vol. 2111.08575, 2021.</li>
+</ul></li>
+<li>RL的难点在于如何从仿真到实际系统中：
+<ul>
+<li>模型需要稠密的奖励信号，在每一个step提供反馈</li>
+<li>当前的奖励函数比较简单，例如保持前进 and 避免碰撞，及其线性组合</li>
+<li>这些奖励过于简单，鼓励了危险的行为，因此受到批评
+<ul>
+<li>“Reward (mis)design for autonomous driving,” arXiv.org, vol.
+2104.13906, 2021.</li>
+</ul></li>
+<li>RL于world model相结合比较容易：
+<ul>
+<li>“Dream to control: Learning behaviors by latent imagination,” in
+ICLR, 2020.</li>
+<li>“Mastering atari with discrete world models,” in ICLR, 2021.</li>
+<li>“Recurrent world models facilitate policy evolution,” in NeurIPS,
+2018.</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="benchmarking">3 Benchmarking</h3>
+<ul>
+<li>目前仿真环境、指标、数据集上都没有对齐，需要做的有两个方向：
+<ul>
+<li>在线/闭环的仿真评测；</li>
+<li>离线/开环的人驾数据上的评测；</li>
+</ul></li>
+</ul>
+<h4 id="online-evaluation-closed-loop">3.1 Online Evaluation
+(Closed-loop)</h4>
+<ul>
+<li>仿真评估的三个子任务：
+<ul>
+<li>参数初始化</li>
+<li>交通流仿真</li>
+<li>传感器仿真</li>
+</ul></li>
+</ul>
+<h5 id="parameter-initialization">3.1.1 Parameter Initialization</h5>
+<ul>
+<li><p>仿真器需要配置许多参数，例如3d条件、天气、光照等，还有一些低维的额属性，例如物体在传感器中的位姿；</p></li>
+<li><p>当前的仿真器处理这些问题通过两个方式：</p>
+<ul>
+<li>程序生成（Procedural
+Generation）：之前的3d场景是认为搭建的，现在可以使用算法按照参数设置来自动生成；但这非常耗时，还需要大量专业的知识；Procedural
+generation algorithms combine rules, heuristics, and randomization to
+create diverse road networks, traffic patterns, lighting conditions, and
+object placements
+<ul>
+<li>“Scenic: a language for scenario specification and scene
+generation,” in PLDI, 2019</li>
+<li>“Did we test all scenarios for automated and autonomous driving
+systems?,” in ITSC, 2019.</li>
+</ul></li>
+</ul></li>
+<li><p>数据驱动（Data-Driven）：从数据中学习参数的初始化值。最简单的方法是从log数据中获取仿真初始化参数；但是这些log数据中可能很难包括极端的case；另一个方案是利用模型学习真实世界数据的潜在结构和分布，然后这些数据可以用于生成全新的场景；</p></li>
+</ul>
+<h5 id="traffic-simulation">3.1.2 Traffic Simulation</h5>
+<ul>
+<li><p>交通流仿真顾名思义是要在仿真环境中模拟一些交通参与者，并给他们赋予真实的行为；</p></li>
+<li><p>交通参与者通常包括：卡车、小汽车、摩托车、自行车、行人等；</p></li>
+<li><p>一般有2中方式来生成这些障碍物：</p>
+<ul>
+<li><p><strong>Rule-Based</strong>：</p>
+<p>仿真器用预先定义的规则来生成交通参与者的行为；这种直接方式生成的方式可能不会那么真实；IDM系统（
+Intelligent Driver Model
+(IDM)）是这一方案的典型代表，基于车辆的速度、加速度、前方车辆的速度、期望的安全距离来设计后车的行为；但这中方案也不足以仿真城市车流中的复杂交互行为；</p>
+<ul>
+<li>"CARLA: An open urban driving simulator," in CoRL, 2017</li>
+<li>"Congested traffic states in empirical observations and microscopic
+simulations," Physical review E, 2000.</li>
+</ul></li>
+<li><p><strong>Data-Driven</strong>:</p>
+<p>现实人驾车流的行为是高度交互和复杂的，包括变道、汇入、急停等；数据驱动的交通仿真器会利用真实世界的驾驶数据来建模这些行为；</p>
+<p>但是为了学习这些复杂的行为，需要大量标注数据进行训练；</p>
+<ul>
+<li>“Simnet: Learning reactive self-driving simulations from realworld
+observations,” in ICRA, 2021.</li>
+<li>“Trafficgen: Learning to generate diverse and realistic traffic
+scenarios,” in ICRA, 2023.</li>
+<li>“Trafficsim: Learning to simulate realistic multi-agent behaviors,”
+in CVPR, 2021.</li>
+<li>“Guided conditional diffusion for controllable traffic simulation,”
+in ICRA, 2023.</li>
+<li>“Bits: Bi-level imitation for traffic simulation,” in ICRA,
+2023.</li>
+<li>“TrafficBots: Towards world models for autonomous driving simulation
+and motion prediction,” in ICRA, 2023.</li>
+</ul></li>
+</ul></li>
+</ul>
+<h5 id="sensor-simulation">3.1.3 Sensor Simulation</h5>
+<p>如何生成原始的传感器数据也有两种方案：</p>
+<ul>
+<li>Graphics-Based:
+<ul>
+<li>图形化的方案使用3d模型近似真实的物理场景，但这个方法依赖繁重的场景计算、难以并行优化、以及3d模型的精度；
+<ul>
+<li>“Synthetic datasets for autonomous driving: A survey,” arXiv.org,
+vol. 2304.12205, 2023.</li>
+</ul></li>
+</ul></li>
+<li>Data-Driven:
+<ul>
+<li>数据驱动的方案使用真实的传感器数据来训练模型，在仿真的场景中仿真的传感器数据可能和自车以不同的方式移动；典型的方案是使用
+Neural Radiance Fields (NeRF)
+，通过学习真实场景的集合表征，生成新视角的数据；
+<ul>
+<li>“Nerf: Representing scenes as neural radiance fields for view
+synthesis,” in ECCV, 2020.</li>
+</ul></li>
+<li>相比于基于图形化的方法，该方法可以生成更加真实的数据；但它也额外需要单独的训练过程和较长的渲染时间；</li>
+<li>另一个仿真的方案是使用domain
+adaptation的方式，最小化真实数据和Graphics-Based的数据的分布偏移，再用GAN或者style
+transfer技术提升场景的真实性；</li>
+</ul></li>
+</ul>
+<h5 id="benchmarks">3.1.4 Benchmarks</h5>
+<ul>
+<li>一些开源的仿真环境：</li>
+</ul>
+<figure>
+<img src="\images\20240104-1.png" alt="Open-source Simulators">
+<figcaption aria-hidden="true">Open-source Simulators</figcaption>
+</figure>
+<h4 id="offline-evaluation-open-loop">3.2 Offline Evaluation
+(Open-loop)</h4>
+<ul>
+<li><p>与预先记录的专家的行为做对比，因此要求评估数据中包括以下信息：</p>
+<ul>
+<li><ol type="1">
+<li>sensor readings</li>
+</ol></li>
+<li><ol start="2" type="1">
+<li>goal locations</li>
+</ol></li>
+<li><ol start="3" type="1">
+<li>corresponding future driving trajectories</li>
+</ol></li>
+</ul></li>
+<li><p>开环评估的优势包括：</p>
+<ul>
+<li>不需要仿真器，方案易于实现</li>
+<li>使用真实的车流的传感数据</li>
+</ul></li>
+<li><p>缺点：</p>
+<ul>
+<li>并不是在部署模型的真实测试数据分布中进行度量</li>
+<li>和真值轨迹对比的方式不适合多模态轨迹的场景（例如：提前/延后汇入变道车道都是可行的）</li>
+<li>预测的轨迹依赖未来的观测信息（例如：在即将变红的绿灯前停车）</li>
+<li>轨迹可能超出专家轨迹所在车道；</li>
+<li>要求一个复杂的轨迹数据集；（nuScenes，Argoverse，Waymo，nuPlan）</li>
+</ul></li>
+</ul>
+<h3 id="challenges">4 Challenges</h3>
+<h4 id="input-modality">4.1 Input Modality</h4>
+<h5 id="multi-sensor-fusion">4.1.1 Multi-sensor Fusion</h5>
+<ul>
+<li><p>一些传感器类型和融合方案：</p>
+<figure>
+<img src="\images\20240105-1.png" alt="Examples of input modality and fusion strategy">
+<figcaption aria-hidden="true">Examples of input modality and fusion
+strategy</figcaption>
+</figure>
+<ul>
+<li><p>RGB images：丰富的语义视觉信息</p></li>
+<li><p>LiDARs or stereo cameras：立体视觉信息</p></li>
+<li><p>speedometers and IMUs：车速、加速度信息</p></li>
+</ul></li>
+<li><p>不同的传感器有不同的视角和数据分布，在融合过程中会造成巨大的gap</p></li>
+<li><p>多传感器融合主要是在感知领域被讨论的，包括object
+detection，tracking，semantic
+segmentation等，并且主要分为三种方案：前/中/后融合</p>
+<ul>
+<li><strong>Early
+fusion</strong>：在特征提取器之前将传感信息结合；之后放入共享的特征提取器中；</li>
+<li><strong>late
+fusion</strong>：将多个模态输入提取特征后融合起来，但是效果不好；</li>
+<li><strong>middle
+fusion</strong>：稀疏编码输入，在网络内进行融合，例如用transformer架构进行特征融合</li>
+</ul></li>
+</ul>
+<h5 id="language-as-input">4.1.2 Language as Input</h5>
+<p>当前的language-guided navigation
+works基本在机器人或者仿真器中验证了效果，但是缺少包含有意义的语言提示的大规模基准。</p>
+<h4 id="visual-abstraction">4.2 Visual Abstraction</h4>
+<ul>
+<li>城市驾驶环境中视觉输入和video
+game的相比高度不同，一般采用预训练的方法获得视觉encoder</li>
+</ul>
+<h4 id="world-model-and-model-based-rl">4.3 World Model and Model-based
+RL</h4>
+<ul>
+<li><p>Model-based reinforcement
+learning允许模型agent和学到的世界模型进行交互，而不是和真实的环境进行交互；降低了原本需要仿真器的成本（例如使用carla就会很慢）</p></li>
+<li><p>“Dream to control: Learning behaviors by latent imagination,” in
+ICLR, 2020.</p></li>
+<li><p>“Iso-dream: Isolating and leveraging noncontrollable visual
+dynamics in world models,” in NeurIPS, 2022.</p></li>
+<li><p>在原始图像数据中学习自动驾驶的世界模型是不合适的，太多重要的小细节，例如交通灯颜色会在预测图像中被弄错；</p>
+<ul>
+<li>MILE：“Modelbased imitation learning for urban driving,” in NeurIPS,
+2022.</li>
+<li>SEM2：“Enhance sample efficiency and robustness of end-to-end urban
+autonomous driving via semantic masked world model,” in NeurIPS
+Workshops, 2022.</li>
+<li>DeRL：“Deductive reinforcement learning for visual autonomous urban
+driving navigation,” TNNLS, 2021.</li>
+</ul></li>
+<li><p>然而，驾驶环境是高度复杂和动态的，依然需要进一步的研究来确认如何建模世界模型；</p></li>
+</ul>
+<h4 id="multi-task-learning-with-policy-prediction">4.4 Multi-task
+Learning with Policy Prediction</h4>
+<ul>
+<li>多任务学习通过多个heads联合训练相关任务的性能，共享层中域知识的使用能够提升模型的健壮性
+<ul>
+<li>“Multi-task feature learning,” in NeurIPS, 2006.</li>
+</ul></li>
+<li>语义分割任务、深度估计任务、perspective images, 3D object detection
+(LiDAR encoder)
+有助于帮助模型理解环境特征，然后帮助后续的规划过程；</li>
+<li>大尺度数据集和多模态输入的对齐和注释也是重要的挑战；</li>
+</ul>
+<h4 id="policy-distillation">4.5 Policy Distillation</h4>
+<ul>
+<li>使用“Teacher-Student”
+paradigm，先训练一个teacher网络，然后蒸馏到student网络；</li>
+<li>teacher是专家数据，student模型不仅要学习扩展感知特征，还要学习驾驶策略，任务压力会比较大，但是会获得更好的泛化能力；</li>
+<li><figure>
+<img src="\images\20240105-2.png" alt="Policy distillation">
+<figcaption aria-hidden="true">Policy distillation</figcaption>
+</figure></li>
+<li>另一些模型在特征层面蒸馏知识，涉及多个蒸馏目标：
+<ul>
+<li>action distribution prediction</li>
+<li>value estimation</li>
+<li>latent features</li>
+</ul></li>
+<li>TCP：“Trajectory-guided control prediction for end-to-end autonomous
+driving: A simple yet strong baseline,” in NeurIPS, 2022.</li>
+<li>蒸馏过程可能造成因果混淆，例如teacher模型可以访问红绿灯的基本状态，但是student模型只能观察到图像个别像素级的变化，这可能会造成因果混淆；</li>
+</ul>
+<h4 id="interpretability">4.6 Interpretability</h4>
+<ul>
+<li><p>端到端模型通常被视为一个黑盒，实现可解释是一个挑战；</p></li>
+<li><p>一些体现可解释性的方式：</p>
+<figure>
+<img src="\images\20240109-1.png" alt="Summary of the different forms of interpretability">
+<figcaption aria-hidden="true">Summary of the different forms of
+interpretability</figcaption>
+</figure>
+<ul>
+<li>注意力机制</li>
+<li>可解释辅助任务</li>
+<li>损失学习
+<ul>
+<li>freespace：“Safe local motion planning with self-supervised
+freespace forecasting,” in CVPR, 2021.</li>
+</ul></li>
+<li>自然语言
+<ul>
+<li>BDD-X dataset：“Textual explanations for self-driving vehicles,” in
+ECCV, 2018.</li>
+<li>ADAPT：“Adapt: Action-aware driving caption transformer,” in ICRA,
+2023</li>
+</ul></li>
+<li>不确定性模型
+<ul>
+<li>aleatoric uncertainty：任务的不确定性</li>
+<li>epistemic uncertainty：数据和模型的不确定性</li>
+<li>“Visualbased autonomous driving deployment from a stochastic and
+uncertainty-aware perspective,” in IROS, 2019.</li>
+<li>“Probabilistic end-to-end vehicle navigation in complex dynamic
+environments with multimodal sensor fusion,” RA-L, 2020.</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="causal-confusion">4.7 Causal Confusion</h4>
+<ul>
+<li><p>因果混淆问题：多帧图像输入情况下，自车模仿其他车行驶，这是不正确的学习，一些文章使用单帧的输入来避免这种问题</p>
+<ul>
+<li>“Offroad obstacle avoidance through end-to-end learning,” in
+NeurIPS, 2005.</li>
+</ul></li>
+<li><p>单帧输入的模仿学习：</p>
+<ul>
+<li><p>“Trajectory-guided control prediction for end-to-end autonomous
+driving: A simple yet strong baseline,” in NeurIPS, 2022.</p></li>
+<li><p>“Transfuser: Imitation with transformer-based sensor fusion for
+autonomous driving,” PAMI, 2022.</p></li>
+<li><p>“Safetyenhanced autonomous driving using interpretable sensor
+fusion transformer,” in CoRL, 2022.</p></li>
+</ul></li>
+<li><figure>
+<img src="\images\20240109-2.png" alt="Causal Confusion">
+<figcaption aria-hidden="true">Causal Confusion</figcaption>
+</figure>
+<ul>
+<li>模型不清楚刹车的原因是速度低还是红灯；</li>
+</ul></li>
+<li><p>一些方案：</p>
+<ul>
+<li>ChauffeurNet使用BEV空间的中间视觉特征 “Chauffeurnet: Learning to
+drive by imitating the best and synthesizing the worst,” in RSS,
+2019</li>
+<li>“Fighting copycat agents in behavioral cloning from observation
+histories,” in NIPS, 2020.</li>
+<li>增加关键帧的loss权重（关键帧上决策变化的几帧）“Keyframe-focused
+visual imitation learning,” in ICML, 2021.</li>
+<li>OREO将图像映射到表示语义对象的离散代码：“Object-aware regularization
+for addressing causal confusion in imitation learning,” in NeurIPS,
+2021.</li>
+<li>“Resolving copycat problems in visual imitation learning via
+residual action prediction,” in ECCV, 2022.</li>
+</ul></li>
+</ul>
+<h4 id="robustness">4.8 Robustness</h4>
+<ul>
+<li>关于鲁棒性主要涉及三个子问题：
+<ul>
+<li>数据的长尾分布</li>
+<li>数据协方差漂移</li>
+<li>域适应</li>
+</ul></li>
+</ul>
+<h5 id="long-tailed-distribution">4.8.1 Long-tailed Distribution</h5>
+<ul>
+<li><p>造成长尾问题的一个原因是数据的不平衡（imbalance）</p></li>
+<li><figure>
+<img src="\images\20240109-3.png" alt="Challenges in robustness">
+<figcaption aria-hidden="true">Challenges in robustness</figcaption>
+</figure></li>
+<li><p>处理数据不平衡问题的方法：</p>
+<ul>
+<li>over-sampling：
+<ul>
+<li>“Relay backpropagation for effective learning of deep convolutional
+neural networks,” in ECCV, 2016.</li>
+<li>“A systematic study of the class imbalance problem in convolutional
+neural networks,” NN, 2018.</li>
+<li>“What is the effect of importance weighting in deep learning?,” in
+ICML, 2019.</li>
+<li>“Lvis: A dataset for large vocabulary instance segmentation,” in
+CVPR, 2019.</li>
+<li>“Large-scale object detection in the wild from imbalanced
+multi-labels,” in CVPR, 2020.</li>
+</ul></li>
+<li>under-sampling：
+<ul>
+<li>“knn approach to unbalanced data distributions: a case study
+involving information extraction,” in ICML Workshops, 2003.</li>
+<li>“Exploratory undersampling for class-imbalance learning,” TCYB,
+2008.</li>
+<li>“Redundancy-driven modified tomek-link based undersampling: A
+solution to class imbalance,” Pattern Recognition Letters, 2017.</li>
+</ul></li>
+<li>data augmentation：</li>
+<li>“Dynamic few-shot visual learning without forgetting,” in CVPR,
+2018.</li>
+<li>“mixup: Beyond empirical risk minimization,” in ICLR, 2017.</li>
+<li>“Remix: rebalanced mixup,” in ECCV, 2020.</li>
+<li>weighting-based approaches：
+<ul>
+<li>“Learning deep representation for imbalanced classification,” in
+CVPR, 2016.</li>
+<li>“Learning to model the tail,” in NeurIPS, 2017.</li>
+<li>“Focal loss for dense object detection,” in ICCV, 2017</li>
+<li>“Classbalanced loss based on effective number of samples,” in CVPR,
+2019.</li>
+</ul></li>
+</ul></li>
+<li><p>自动驾驶数据中多数数据并不有趣，一些工作尝试生成有趣的数据LBC：“Learning
+by cheating,” in CoRL, 2020.</p></li>
+<li><p>“Scalable end-to-end autonomous vehicle testing via rare-event
+simulation,” in NeurIPS, 2018.
+提出了一个应用重要抽样策略加速评估稀有事件概率的仿真框架。</p></li>
+<li><p>Bayesian Optimization生成对抗场景“Generating adversarial driving
+scenarios in high-fidelity simulators,” in ICRA, 2019.</p></li>
+<li><p>一种通过可微分运动学模型使用梯度的安全临界扰动优化算法。“King:
+Generating safety-critical driving scenarios for robust imitation via
+kinematics gradients,” in ECCV, 2022.</p></li>
+<li><p>长尾问题的解决需要更好的利用真实世界的数据，并且还需有真实的测试框架（环境）来评估end2end模型；</p></li>
+</ul>
+<h5 id="covariate-shift">4.8.2 Covariate Shift</h5>
+<ul>
+<li><p>协方差偏移的原因是专家数据的分布和agent的数据分布不一致，导致agent在未见过的场景中测试或者面对和训练时反映不同的其他智能体，最终产生不正确和危险的行为</p></li>
+<li><p>DAgger (Dataset
+Aggregation）：DAgger是一个迭代的训练过程，在每次迭代中推出当前训练好的策略来收集新的数据，并使用专家来标记访问过的状态。然而，DAgger的一个缺点是需要有专家在线查询</p>
+<ul>
+<li>DAgger “A reduction of imitation learning and structured prediction
+to no-regret online learning,” in AISTATS, 2011.</li>
+<li>SafeDAgger “Query-efficient imitation learning for end-to-end
+simulated driving,” in AAAI, 2017.</li>
+</ul></li>
+<li><p>LBC使用dagger的方法，设置论事大的样本采样频率高“Learning by
+cheating,” in CoRL, 2020.</p></li>
+</ul>
+<h5 id="domain-adaptation">4.8.3 Domain Adaptation</h5>
+<ul>
+<li><p>域适应是迁移学习的一种技术，旨在将源任务上学到的策略迁移到相似的目标任务上；</p></li>
+<li><p>这里我们讨论的场景是，源域有标签，而目标域没有标签或标签数量有限的场景</p></li>
+<li><p>自动驾驶场景中的一些域适应问题：</p>
+<ul>
+<li><strong>Sim-to-real</strong>: 仿真到实际部署的差距；the large gap
+between simulators used for training and the real world used for
+deployment.</li>
+<li><strong>Geography-to-geography</strong>:
+不同视角观察到的环境不一样different geographic locations with varying
+environmental appearances.</li>
+<li><strong>Weather-to-weather</strong>:
+天气条件导致的数据分布变化changes in sensor inputs caused by weather
+conditions such as rain, fog, and snow.</li>
+<li><strong>Day-to-night</strong>: 日夜光照条件变化的问题illumination
+variations in the sensor input.</li>
+<li><strong>Sensor-to-sensor</strong>: 传感器差异造成的问题possible
+differences in sensor characteristics, e.g., resolution and relative
+position.</li>
+</ul></li>
+<li><p>VISRI将仿真的图像向真实图像映射，RL智能体再从转换后的图像中学习“Virtual
+to real reinforcement learning for autonomous driving,” in BMVC,
+2017.</p></li>
+<li><p>domain-invariant feature
+learning域不变性特征学习将两个域的图像映射到一个公共的潜在空间进行训练，“Learning
+to drive from simulation without real world labels,” in ICRA,
+2019.</p></li>
+<li><p>域随机化：训练阶段随机渲染和物理设置</p>
+<ul>
+<li><p>“A versatile and efficient reinforcement learning framework for
+autonomous driving,” arXiv.org, vol. 2110.11573, 2021.</p></li>
+<li><p>“Simulation-based reinforcement learning for real-world
+autonomous driving,” in ICRA, 2020.</p></li>
+</ul></li>
+<li><p>当前自动驾驶sim-to-real的迁移主要通过两种方式：源域数据到目标域数据的映射，另一种是学习具有域不变性的特征；</p></li>
+<li><p>NeRF技术将真实世界的log数据纳入仿真</p>
+<ul>
+<li>“Nerf: Representing scenes as neural radiance fields for view
+synthesis,” in ECCV, 2020.</li>
+<li>“Block-nerf: Scalable large scene neural view synthesis,” in CVPR,
+2022.</li>
+</ul></li>
+</ul>
+<h3 id="future-trends">5 FUTURE TRENDS</h3>
+<p>几个未来有潜力的方向：</p>
+<ul>
+<li><strong>Zero-shot and Few-shot Learning</strong>
+<ul>
+<li>自动驾驶始终会遇到超出训练集的corner
+case，在遇到这些场景时该怎么做需要端到端模型具有一定零样本学习的能力</li>
+</ul></li>
+<li><strong>Modular End-to-end Planning</strong>
+<ul>
+<li>端到端是行业趋势，具有可解释性，tesla、wayve都在推动</li>
+</ul></li>
+<li><strong>Data Engine</strong>
+<ul>
+<li>大量的高质量数据始终是最重要的，还需要自动标注pipeline；后续还有场景生成和编辑</li>
+</ul></li>
+<li><strong>Foundation Model</strong></li>
+<li>当前大基础模型热点在语言和视觉领域；一个理想中的框架应该是训练一个video预测器预测未来的感知；但其目标需要足够复杂才足以在规划任务中表现良好</li>
+<li>finetuning
+<ul>
+<li>“Flamingo: a visual language model for few-shot learning,” in
+NeurIPS, 2022.</li>
+<li>“Internimage: Exploring large-scale vision foundation models with
+deformable convolutions,” in CVPR, 2023</li>
+</ul></li>
+<li><strong>Vehicle-to-everything (V2X)</strong></li>
+<li>处理超出感知范围的障碍物和阻塞是一个重要难点；Vehicle-to-vehicle
+(V2V), vehicle-to-infrastructure (V2I), and vehicle-to-everything (V2X)
+systems 提供了解决方案，用不同来源的信息补充盲点</li>
+</ul>
+<h3 id="总结">总结</h3>
+<p>本篇综述出自香港大学和上海AI
+Lab等单位，质量还是比较不错的，视角较广；但这篇与其说是end-2-end的综述，不如说是自动驾驶算法的综述，end2end的方案讲得其实并不多，end-2-end方面还需进一步调研</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Autonomous-Driving/" rel="tag"># Autonomous Driving</a>
+              <a href="/tags/End2End-Model/" rel="tag"># End2End Model</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/10/28/2023-10-28-CPP%20Programming-Chapter%2015%20%E5%85%B6%E5%AE%83%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%8A%80%E6%9C%AF/" rel="prev" title="CPP Programming | Chapter 15：其它工具与技术">
+      <i class="fa fa-chevron-left"></i> CPP Programming | Chapter 15：其它工具与技术
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#introduction"><span class="nav-number">1.</span> <span class="nav-text">1. Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#motivation-of-an-end-to-end-system"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 Motivation of an
+End-to-end system</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#roadmap"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Roadmap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#comparison-to-related-surveys"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 Comparison to Related
+Surveys</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#methods"><span class="nav-number">2.</span> <span class="nav-text">2 Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#imitation-learning"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Imitation Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#behavior-cloning"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1 Behavior Cloning</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#inverse-optimal-control"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.1.2 Inverse Optimal Control</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#reinforcement-learning"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 Reinforcement Learning</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#benchmarking"><span class="nav-number">3.</span> <span class="nav-text">3 Benchmarking</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#online-evaluation-closed-loop"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 Online Evaluation
+(Closed-loop)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#parameter-initialization"><span class="nav-number">3.1.1.</span> <span class="nav-text">3.1.1 Parameter Initialization</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#traffic-simulation"><span class="nav-number">3.1.2.</span> <span class="nav-text">3.1.2 Traffic Simulation</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#sensor-simulation"><span class="nav-number">3.1.3.</span> <span class="nav-text">3.1.3 Sensor Simulation</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#benchmarks"><span class="nav-number">3.1.4.</span> <span class="nav-text">3.1.4 Benchmarks</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#offline-evaluation-open-loop"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 Offline Evaluation
+(Open-loop)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#challenges"><span class="nav-number">4.</span> <span class="nav-text">4 Challenges</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#input-modality"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 Input Modality</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#multi-sensor-fusion"><span class="nav-number">4.1.1.</span> <span class="nav-text">4.1.1 Multi-sensor Fusion</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#language-as-input"><span class="nav-number">4.1.2.</span> <span class="nav-text">4.1.2 Language as Input</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#visual-abstraction"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 Visual Abstraction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#world-model-and-model-based-rl"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 World Model and Model-based
+RL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#multi-task-learning-with-policy-prediction"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 Multi-task
+Learning with Policy Prediction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#policy-distillation"><span class="nav-number">4.5.</span> <span class="nav-text">4.5 Policy Distillation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#interpretability"><span class="nav-number">4.6.</span> <span class="nav-text">4.6 Interpretability</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#causal-confusion"><span class="nav-number">4.7.</span> <span class="nav-text">4.7 Causal Confusion</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#robustness"><span class="nav-number">4.8.</span> <span class="nav-text">4.8 Robustness</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#long-tailed-distribution"><span class="nav-number">4.8.1.</span> <span class="nav-text">4.8.1 Long-tailed Distribution</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#covariate-shift"><span class="nav-number">4.8.2.</span> <span class="nav-text">4.8.2 Covariate Shift</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#domain-adaptation"><span class="nav-number">4.8.3.</span> <span class="nav-text">4.8.3 Domain Adaptation</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#future-trends"><span class="nav-number">5.</span> <span class="nav-text">5 FUTURE TRENDS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Txing"
+      src="/images/my_photo.jpg">
+  <p class="site-author-name" itemprop="name">Txing</p>
+  <div class="site-description" itemprop="description">泛用人形决战型机器人博士</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">252</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/txing-casia" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;txing-casia" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.uomi.moe/" title="https:&#x2F;&#x2F;blog.uomi.moe" rel="noopener" target="_blank">驱逐舰患者</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://m.mepai.me/photographyer/u_5a68085ba15aa.html?tdsourcetag=s_pctim_aiomsg" title="https:&#x2F;&#x2F;m.mepai.me&#x2F;photographyer&#x2F;u_5a68085ba15aa.html?tdsourcetag&#x3D;s_pctim_aiomsg" rel="noopener" target="_blank">隐之-INF</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Txing</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">631k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">9:33</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
