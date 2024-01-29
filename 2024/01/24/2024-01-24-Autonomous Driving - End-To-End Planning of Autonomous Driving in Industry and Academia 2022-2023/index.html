@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="本文对规划算法的总结比较全面，是一个很好的年度总结，但是对于每个算法的分析都不是很深入，基本都只是一个大致框架的说明，针对具体的框架和问题，可以继续深挖">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Autonomous Driving | End-To-End Planning of Autonomous Driving in Industry and Academia: 2022-2023">
+<meta property="og:url" content="https://txing-casia.github.io/2024/01/24/2024-01-24-Autonomous%20Driving%20-%20End-To-End%20Planning%20of%20Autonomous%20Driving%20in%20Industry%20and%20Academia%202022-2023/index.html">
+<meta property="og:site_name" content="Txing">
+<meta property="og:description" content="本文对规划算法的总结比较全面，是一个很好的年度总结，但是对于每个算法的分析都不是很深入，基本都只是一个大致框架的说明，针对具体的框架和问题，可以继续深挖">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://txing-casia.github.io/images/20240124-1.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20240124-2.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20240124-3.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20240124-4.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20240124-5.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20240124-6.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20240125-1.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20240125-2.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20240125-3.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20240129-1.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20240129-2.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20240129-3.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20240129-4.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20240129-5.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20240129-5.png">
+<meta property="article:published_time" content="2024-01-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-01-29T05:47:27.849Z">
+<meta property="article:author" content="Txing">
+<meta property="article:tag" content="Autonomous Driving">
+<meta property="article:tag" content="End2End Model">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://txing-casia.github.io/images/20240124-1.png">
+
+<link rel="canonical" href="https://txing-casia.github.io/2024/01/24/2024-01-24-Autonomous%20Driving%20-%20End-To-End%20Planning%20of%20Autonomous%20Driving%20in%20Industry%20and%20Academia%202022-2023/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Autonomous Driving | End-To-End Planning of Autonomous Driving in Industry and Academia: 2022-2023 | Txing</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Txing</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到 | 伽蓝之堂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2024/01/24/2024-01-24-Autonomous%20Driving%20-%20End-To-End%20Planning%20of%20Autonomous%20Driving%20in%20Industry%20and%20Academia%202022-2023/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Autonomous Driving | End-To-End Planning of Autonomous Driving in Industry and Academia: 2022-2023
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2024-01-24 00:00:00" itemprop="dateCreated datePublished" datetime="2024-01-24T00:00:00+08:00">2024-01-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>5.5k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>5 mins.</span>
+            </span>
+            <div class="post-description">本文对规划算法的总结比较全面，是一个很好的年度总结，但是对于每个算法的分析都不是很深入，基本都只是一个大致框架的说明，针对具体的框架和问题，可以继续深挖</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li>本文总结了工业界和学术界2022-2023的端到端规划算法：
+<ul>
+<li>Tesla FSD V12</li>
+<li>Momenta 2023</li>
+<li>Horizon Robotics 2023</li>
+<li>Motional RoboTaxi 2022</li>
+<li>Woven Planet (Toyota): Urban Driver</li>
+<li>Nvidia</li>
+<li>the state-of-the-art academic studies</li>
+</ul></li>
+</ul>
+<h3 id="introduction">1. Introduction</h3>
+<ul>
+<li><figure>
+<img src="\images\20240124-1.png" alt="The summary of end-to-end planning of autonomous driving in industry and academia 2022-2023">
+<figcaption aria-hidden="true">The summary of end-to-end planning of
+autonomous driving in industry and academia 2022-2023</figcaption>
+</figure>
+<ul>
+<li><ol start="2" type="1">
+<li>https://opendrivelab.com/e2ead/cvpr23</li>
+<li>https://youtu.be/OKDRsVXv49A?si=Y7dYYFXLqPorcxQL</li>
+<li>https://www.youtube.com/watch?v=hFQLJIvdQNU</li>
+<li>https://youtu.be/ZwhXilQKULY?si=nQjgx96PCiXld-uJ</li>
+<li>https://planning.l5kit.org/</li>
+<li>https://github.com/georgeliu233/OPGP</li>
+<li>https://github.com/autonomousvision/tuplan_garage</li>
+<li>https://youtu.be/OKDRsVXv49A?si=Y7dYYFXLqPorcxQL</li>
+<li>https://github.com/autonomousvision/tuplan_garage</li>
+<li>https://opendrivelab.com/e2ead/cvpr23</li>
+<li>https://youtu.be/OKDRsVXv49A?si=Y7dYYFXLqPorcxQL</li>
+</ol></li>
+</ul></li>
+</ul>
+<h3 id="industry">2. INDUSTRY</h3>
+<h4 id="a.-tesla-fsd-v12-2023">A. Tesla FSD V12 2023</h4>
+<ul>
+<li>CVPR 2023 Workshop on End-to-End autonomous driving
+发布了Tesla的端到端规划技术的相应视频</li>
+<li>end-to-end occupancy network in BEV space for planning
+降低了对高精地图的依赖，但是这中方案需要大量的数据</li>
+<li><figure>
+<img src="\images\20240124-2.png" alt="Tesla的端到端规划方案架构">
+<figcaption aria-hidden="true">Tesla的端到端规划方案架构</figcaption>
+</figure></li>
+<li>目前仍然缺少更多公开的细节</li>
+</ul>
+<h4 id="b.-momenta-2023">B. Momenta 2023</h4>
+<ul>
+<li><figure>
+<img src="\images\20240124-3.png" alt="Momenta的端到端规划方案架构">
+<figcaption aria-hidden="true">Momenta的端到端规划方案架构</figcaption>
+</figure></li>
+<li>CVPR 2023 Workshop on Autonomous Driving
+上有一个公开的视屏演讲，题目是 “How DataDriven Flywheel Enables Scalable
+Path to Full Autonomy”</li>
+</ul>
+<h4 id="c.-horizon-robotics-2023">C. Horizon Robotics 2023</h4>
+<ul>
+<li><p>地平线的方案获得了NuPlan Challenge
+2023第二名的成绩，他们提出了一种基于heatmap的规划表征方式；</p></li>
+<li><p>“Imitation with spatial-temporal heatmap: 2nd place solution for
+nuplan challenge,” arXiv preprint arXiv:2306.15700, 2023</p></li>
+<li><figure>
+<img src="\images\20240124-4.png" alt="horizon Robotics的端到端规划方案架构">
+<figcaption aria-hidden="true">horizon
+Robotics的端到端规划方案架构</figcaption>
+</figure></li>
+</ul>
+<h4 id="d.-motional-l4-robotaxi-2022">D. Motional L4-RoboTaxi 2022</h4>
+<ul>
+<li>使用了IRL（Inverse Reinforcement
+Learning），但是方案的细节没有公开，并且该方案不是一个严格意义上的端到端方案，</li>
+<li><figure>
+<img src="\images\20240124-5.png" alt="DriveIRL architecture">
+<figcaption aria-hidden="true">DriveIRL architecture</figcaption>
+</figure></li>
+<li>“Driving in real life with inverse reinforcement learning,” arXiv
+preprint arXiv:2206.03004, 2022</li>
+</ul>
+<h4 id="e.-woven-planet-toyota-urban-driver">E. Woven Planet (Toyota):
+Urban Driver</h4>
+<ul>
+<li>Urban Driver 2022 已经成为了一个被广泛使用的对比基准</li>
+<li>使用了closed-loop training, mid-level representations and a
+data-driven simulator</li>
+<li><figure>
+<img src="\images\20240124-6.png" alt="closed-loop training method of Woven Planet">
+<figcaption aria-hidden="true">closed-loop training method of Woven
+Planet</figcaption>
+</figure></li>
+<li>方案提出比较早，效果可能已经不太好了</li>
+</ul>
+<h4 id="f.-nvidia">F. Nvidia</h4>
+<ul>
+<li>Tree-structured Policy Planning
+2023，使用了两颗树，一颗树用于自车轨迹选择，一棵场景树用于多模态自车状态环境预测（an
+ego trajectory tree for ego trajectory options, and a scenario tree for
+multi-modal ego-conditioned environment predictions）
+<ul>
+<li>Treestructured policy planning with learned behavior models,” arXiv
+preprint arXiv:2301.11902, 2023.</li>
+</ul></li>
+</ul>
+<figure>
+<img src="\images\20240125-1.png" alt="Nvidia Tree-structured Policy Planning">
+<figcaption aria-hidden="true">Nvidia Tree-structured Policy
+Planning</figcaption>
+</figure>
+<ul>
+<li>Differentiable Tree Policy Planning 2023，（ Differentiable Tree
+Policy Planning (DTPP)）使用了 query-centric transformer
+model，在规划部分使用a learnable context-aware cost function with latent
+interaction features
+<ul>
+<li>总结了两个结论：
+<ul>
+<li>联合训练两个模块比分别训练效果更好；Joint training delivers
+significantly better performance than separate training of the two
+modules.</li>
+<li>树结构的策略规划效果比一般的单阶段规划效果好；Tree-structured policy
+planning outperforms the conventional single-stage planning
+approach.</li>
+</ul></li>
+<li>DTPP主要包含三个模块：
+<ul>
+<li><strong>Conditional prediction</strong>: The conditional prediction
+generates the predicted trajectories of all vehicles with the inputs of
+the ego-vehicles and the other vehicles.</li>
+<li><strong>Scoring module</strong>: Inverse reinforcement learning is
+used to learn the scoring of the predicted trajectories.</li>
+<li><strong>Tree Policy Search</strong>: Tree policy search is used to
+explore various candidate trajectories.</li>
+</ul></li>
+<li>DTPP的一些优势：
+<ul>
+<li>规划过程中博弈计算高效；Conditional prediction provides the gaming
+effect for planning.</li>
+<li>可微分特性使得预测和IRL可以一起训练，对端到端效果有帮助；Derivable
+in DTPP that returns the gradient and allows prediction and IRL to be
+trained together, which is also a necessary condition for end-to-end
+autonomous driving.</li>
+<li>树结构提供一些交互推断能力；Tree policy planning would provide
+certain interactive deduction capabilities.</li>
+<li>使用一次encode和多权重的decode降低计算延时；DTPP uses one-time
+re-encoding and multiple lightweight decodes to effectively reduce the
+calculation delay</li>
+<li>DTPP shows state-of-the-art learning-based planning and remarkable
+closed-loop planning.</li>
+</ul></li>
+<li>DTPP的待提升点：
+<ul>
+<li>预测模型可以引导规则方案来生成候选轨迹；Prediction models can be
+used to guide the rules for generating the candidate trajectories.</li>
+<li>联合预测在预测中考虑了交互情况；Conditional joint prediction can be
+used to generate predictions interactively for each trajectory which
+improves the performance by the gaming effects.</li>
+<li>联合预测和IRL模块可以用来选择最佳轨迹；Conditional joint prediction
+can be merged with inverse reinforcement learning for scoring the
+trajectories and selecting the best one.</li>
+</ul></li>
+<li>相关论文：“Dtpp: Differentiable joint conditional prediction and
+cost evaluation for tree policy planning in autonomous driving,” arXiv
+preprint arXiv:2310.05885, 2023.</li>
+</ul></li>
+</ul>
+<figure>
+<img src="\images\20240125-2.png" alt="The proposed decision-making framework of NVidia & NTU DTPP 2023">
+<figcaption aria-hidden="true">The proposed decision-making framework of
+NVidia &amp; NTU DTPP 2023</figcaption>
+</figure>
+<figure>
+<img src="\images\20240125-3.png" alt="The DTPP framework with joint learnable prediction and cost evaluation models">
+<figcaption aria-hidden="true">The DTPP framework with joint learnable
+prediction and cost evaluation models</figcaption>
+</figure>
+<h3 id="academia">3. ACADEMIA</h3>
+<h4 id="a.-occupancy-prediction-planning">A. Occupancy Prediction
+Planning</h4>
+<ul>
+<li>原始论文：“Occupancy prediction-guided neural planner for autonomous
+driving,” arXiv preprint arXiv:2305.03303, 2023.</li>
+<li><figure>
+<img src="\images\20240129-1.png" alt="The framework of the integrated occupancy prediction and planning learning in OPGP">
+<figcaption aria-hidden="true">The framework of the integrated occupancy
+prediction and planning learning in OPGP</figcaption>
+</figure></li>
+<li><figure>
+<img src="\images\20240129-2.png" alt="The illustration of the two-stage occupancy predictionguided neural planner">
+<figcaption aria-hidden="true">The illustration of the two-stage
+occupancy predictionguided neural planner</figcaption>
+</figure></li>
+<li>分为两个阶段：
+<ul>
+<li>阶段1：an integrated learning-based framework with Transformer
+backbones is designed for comprehensive occupancy predictions and
+multi-modal planning objectives</li>
+<li>阶段2：a transformed occupancy-guided optimization, built upon a
+curvilinear frame, achieves direct planning refinement through
+handcrafted cost function designs</li>
+</ul></li>
+</ul>
+<h4 id="b.-uniad-2023">B. UniAD 2023</h4>
+<ul>
+<li>UniAD框架：</li>
+</ul>
+<figure>
+<img src="\images\20240129-3.png" alt="UniAD">
+<figcaption aria-hidden="true">UniAD</figcaption>
+</figure>
+<ul>
+<li>构造任务相关的queries，联合优化多个任务；</li>
+</ul>
+<h4 id="c.-ntu-planning">C. NTU planning</h4>
+<ul>
+<li><p>“Conditional predictive behavior planning with inverse
+reinforcement learning for human-like autonomous driving,” IEEE
+Transactions on Intelligent Transportation Systems, 2023</p></li>
+<li><p>三个步骤：</p></li>
+<li><p>1）a behavior generation module that produces a diverse set of
+<strong>candidate behaviors</strong> in the form of trajectory
+proposals,</p></li>
+<li><p>2）a conditional prediction module that <strong>predicts future
+trajectories</strong> of other agents based on each proposal,</p></li>
+<li><p>3）a scoring module that <strong>evaluates the candidate
+plans</strong> using maximum entropy inverse reinforcement
+learning</p></li>
+<li><figure>
+<img src="\images\20240129-4.png" alt="The proposed behavior planning framework">
+<figcaption aria-hidden="true">The proposed behavior planning
+framework</figcaption>
+</figure></li>
+<li><figure>
+<img src="\images\20240129-5.png" alt="The structure of the conditional prediction network">
+<figcaption aria-hidden="true">The structure of the conditional
+prediction network</figcaption>
+</figure>
+<ul>
+<li>“Dtpp: Differentiable joint conditional prediction and cost
+evaluation for tree policy planning in autonomous driving,” arXiv
+preprint arXiv:2310.05885, 2023.</li>
+</ul></li>
+</ul>
+<h4 id="d.-nuplan-planning-challenge-cvpr-2023">D. nuPlan Planning
+Challenge CVPR 2023</h4>
+<ul>
+<li><p>将短期规划和长期预测相结合，在nuPlan比赛中取得了最好的成绩</p></li>
+<li><p>“Parting with misconceptions about learning-based vehicle motion
+planning,” arXiv preprint arXiv:2306.07962, 2023.</p></li>
+<li><figure>
+<img src="\images\20240129-5.png" alt="Architecture of the outstanding champion at nuPlan Planning Challenge CVPR 2023">
+<figcaption aria-hidden="true">Architecture of the outstanding champion
+at nuPlan Planning Challenge CVPR 2023</figcaption>
+</figure></li>
+</ul>
+<h3 id="总结">总结</h3>
+<p>本文对规划算法的总结比较全面，是一个很好的年度总结，但是对于每个算法的分析都不是很深入，基本都只是一个大致框架的说明，针对具体的框架和问题，可以继续深挖</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Autonomous-Driving/" rel="tag"># Autonomous Driving</a>
+              <a href="/tags/End2End-Model/" rel="tag"># End2End Model</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/01/22/2024-01-22-Autonomous%20Driving%20-%20Recent%20Advancements%20in%20End-to-End%20Autonomous%20Driving%20using%20Deep%20Learning%20A%20Survey/" rel="prev" title="Autonomous Driving | Recent Advancements in End-to-End Autonomous Driving using Deep Learning: A Survey">
+      <i class="fa fa-chevron-left"></i> Autonomous Driving | Recent Advancements in End-to-End Autonomous Driving using Deep Learning: A Survey
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#introduction"><span class="nav-number">1.</span> <span class="nav-text">1. Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#industry"><span class="nav-number">2.</span> <span class="nav-text">2. INDUSTRY</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a.-tesla-fsd-v12-2023"><span class="nav-number">2.1.</span> <span class="nav-text">A. Tesla FSD V12 2023</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b.-momenta-2023"><span class="nav-number">2.2.</span> <span class="nav-text">B. Momenta 2023</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c.-horizon-robotics-2023"><span class="nav-number">2.3.</span> <span class="nav-text">C. Horizon Robotics 2023</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#d.-motional-l4-robotaxi-2022"><span class="nav-number">2.4.</span> <span class="nav-text">D. Motional L4-RoboTaxi 2022</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#e.-woven-planet-toyota-urban-driver"><span class="nav-number">2.5.</span> <span class="nav-text">E. Woven Planet (Toyota):
+Urban Driver</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#f.-nvidia"><span class="nav-number">2.6.</span> <span class="nav-text">F. Nvidia</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#academia"><span class="nav-number">3.</span> <span class="nav-text">3. ACADEMIA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a.-occupancy-prediction-planning"><span class="nav-number">3.1.</span> <span class="nav-text">A. Occupancy Prediction
+Planning</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b.-uniad-2023"><span class="nav-number">3.2.</span> <span class="nav-text">B. UniAD 2023</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c.-ntu-planning"><span class="nav-number">3.3.</span> <span class="nav-text">C. NTU planning</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#d.-nuplan-planning-challenge-cvpr-2023"><span class="nav-number">3.4.</span> <span class="nav-text">D. nuPlan Planning
+Challenge CVPR 2023</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Txing"
+      src="/images/my_photo.jpg">
+  <p class="site-author-name" itemprop="name">Txing</p>
+  <div class="site-description" itemprop="description">泛用人形决战型机器人博士</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">259</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/txing-casia" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;txing-casia" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.uomi.moe/" title="https:&#x2F;&#x2F;blog.uomi.moe" rel="noopener" target="_blank">驱逐舰患者</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://m.mepai.me/photographyer/u_5a68085ba15aa.html?tdsourcetag=s_pctim_aiomsg" title="https:&#x2F;&#x2F;m.mepai.me&#x2F;photographyer&#x2F;u_5a68085ba15aa.html?tdsourcetag&#x3D;s_pctim_aiomsg" rel="noopener" target="_blank">隐之-INF</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Txing</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">664k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">10:03</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
