@@ -22,12 +22,12 @@
     var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="本文对规划算法的总结比较全面，是一个很好的年度总结，但是对于每个算法的分析都不是很深入，基本都只是一个大致框架的说明，针对具体的框架和问题，可以继续深挖">
+  <meta name="description" content="本文对规划算法的总结有个基本的认识，但是对于每个算法的分析都不是很深入，基本都只是一个大致框架的说明，甚至还有很多配图和引用错误；针对具体的框架和问题，可以继续深挖">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Autonomous Driving | End-To-End Planning of Autonomous Driving in Industry and Academia: 2022-2023">
 <meta property="og:url" content="https://txing-casia.github.io/2024/01/24/2024-01-24-Autonomous%20Driving%20-%20End-To-End%20Planning%20of%20Autonomous%20Driving%20in%20Industry%20and%20Academia%202022-2023/index.html">
 <meta property="og:site_name" content="Txing">
-<meta property="og:description" content="本文对规划算法的总结比较全面，是一个很好的年度总结，但是对于每个算法的分析都不是很深入，基本都只是一个大致框架的说明，针对具体的框架和问题，可以继续深挖">
+<meta property="og:description" content="本文对规划算法的总结有个基本的认识，但是对于每个算法的分析都不是很深入，基本都只是一个大致框架的说明，甚至还有很多配图和引用错误；针对具体的框架和问题，可以继续深挖">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://txing-casia.github.io/images/20240124-1.png">
 <meta property="og:image" content="https://txing-casia.github.io/images/20240124-2.png">
@@ -45,7 +45,7 @@
 <meta property="og:image" content="https://txing-casia.github.io/images/20240129-5.png">
 <meta property="og:image" content="https://txing-casia.github.io/images/20240129-5.png">
 <meta property="article:published_time" content="2024-01-23T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-01-29T05:47:27.849Z">
+<meta property="article:modified_time" content="2024-01-29T06:09:28.105Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Autonomous Driving">
 <meta property="article:tag" content="End2End Model">
@@ -371,7 +371,7 @@ mjx-container[display="true"] + br {
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>5.5k</span>
+              <span>5.4k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -380,7 +380,7 @@ mjx-container[display="true"] + br {
                 <span class="post-meta-item-text">Reading time &asymp;</span>
               <span>5 mins.</span>
             </span>
-            <div class="post-description">本文对规划算法的总结比较全面，是一个很好的年度总结，但是对于每个算法的分析都不是很深入，基本都只是一个大致框架的说明，针对具体的框架和问题，可以继续深挖</div>
+            <div class="post-description">本文对规划算法的总结有个基本的认识，但是对于每个算法的分析都不是很深入，基本都只是一个大致框架的说明，甚至还有很多配图和引用错误；针对具体的框架和问题，可以继续深挖</div>
 
         </div>
       </header>
@@ -607,18 +607,17 @@ handcrafted cost function designs</li>
 </ul>
 <h4 id="c.-ntu-planning">C. NTU planning</h4>
 <ul>
-<li><p>“Conditional predictive behavior planning with inverse
-reinforcement learning for human-like autonomous driving,” IEEE
-Transactions on Intelligent Transportation Systems, 2023</p></li>
-<li><p>三个步骤：</p></li>
-<li><p>1）a behavior generation module that produces a diverse set of
+<li>“Conditional predictive behavior planning with inverse reinforcement
+learning for human-like autonomous driving,” IEEE Transactions on
+Intelligent Transportation Systems, 2023</li>
+<li>三个步骤：</li>
+<li>1）a behavior generation module that produces a diverse set of
 <strong>candidate behaviors</strong> in the form of trajectory
-proposals,</p></li>
-<li><p>2）a conditional prediction module that <strong>predicts future
-trajectories</strong> of other agents based on each proposal,</p></li>
-<li><p>3）a scoring module that <strong>evaluates the candidate
-plans</strong> using maximum entropy inverse reinforcement
-learning</p></li>
+proposals,</li>
+<li>2）a conditional prediction module that <strong>predicts future
+trajectories</strong> of other agents based on each proposal,</li>
+<li>3）a scoring module that <strong>evaluates the candidate
+plans</strong> using maximum entropy inverse reinforcement learning</li>
 <li><figure>
 <img src="\images\20240129-4.png" alt="The proposed behavior planning framework">
 <figcaption aria-hidden="true">The proposed behavior planning
@@ -628,12 +627,7 @@ framework</figcaption>
 <img src="\images\20240129-5.png" alt="The structure of the conditional prediction network">
 <figcaption aria-hidden="true">The structure of the conditional
 prediction network</figcaption>
-</figure>
-<ul>
-<li>“Dtpp: Differentiable joint conditional prediction and cost
-evaluation for tree policy planning in autonomous driving,” arXiv
-preprint arXiv:2310.05885, 2023.</li>
-</ul></li>
+</figure></li>
 </ul>
 <h4 id="d.-nuplan-planning-challenge-cvpr-2023">D. nuPlan Planning
 Challenge CVPR 2023</h4>
@@ -648,7 +642,7 @@ at nuPlan Planning Challenge CVPR 2023</figcaption>
 </figure></li>
 </ul>
 <h3 id="总结">总结</h3>
-<p>本文对规划算法的总结比较全面，是一个很好的年度总结，但是对于每个算法的分析都不是很深入，基本都只是一个大致框架的说明，针对具体的框架和问题，可以继续深挖</p>
+<p>本文对规划算法的总结有个基本的认识，但是对于每个算法的分析都不是很深入，基本都只是一个大致框架的说明，甚至还有很多配图和引用错误；针对具体的框架和问题，可以继续深挖</p>
 
     </div>
 
@@ -671,7 +665,10 @@ at nuPlan Planning Challenge CVPR 2023</figcaption>
     <a href="/2024/01/22/2024-01-22-Autonomous%20Driving%20-%20Recent%20Advancements%20in%20End-to-End%20Autonomous%20Driving%20using%20Deep%20Learning%20A%20Survey/" rel="prev" title="Autonomous Driving | Recent Advancements in End-to-End Autonomous Driving using Deep Learning: A Survey">
       <i class="fa fa-chevron-left"></i> Autonomous Driving | Recent Advancements in End-to-End Autonomous Driving using Deep Learning: A Survey
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2024/01/29/2024-01-29-Autonomous%20Driving%20-%20Parting%20with%20Misconceptions%20about%20Learning-based%20Vehicle%20Motion%20Planning/" rel="next" title="Autonomous Driving | Parting with Misconceptions about Learning-based Vehicle Motion Planning">
+      Autonomous Driving | Parting with Misconceptions about Learning-based Vehicle Motion Planning <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -749,7 +746,7 @@ Challenge CVPR 2023</span></a></li></ol></li><li class="nav-item nav-level-3"><a
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">259</span>
+          <span class="site-state-item-count">260</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -816,12 +813,12 @@ Challenge CVPR 2023</span></a></li></ol></li><li class="nav-item nav-level-3"><a
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">664k</span>
+    <span title="Symbols count total">665k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">10:03</span>
+    <span title="Reading time total">10:05</span>
 </div>
 
         
