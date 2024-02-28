@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://txing-casia.github.io/images/20240221-6.png">
 <meta property="og:image" content="https://txing-casia.github.io/images/20240221-7.png">
 <meta property="article:published_time" content="2024-02-18T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-02-21T06:26:41.877Z">
+<meta property="article:modified_time" content="2024-02-21T07:49:13.018Z">
 <meta property="article:author" content="Txing">
 <meta property="article:tag" content="Imitation Learning">
 <meta name="twitter:card" content="summary">
@@ -798,7 +798,9 @@ Policy</figcaption>
 </figure>
 <h3 id="总结">总结</h3>
 <p>diffusion
-policy的确是个很具有创新性的点子，在性能上的提升也非常多。但我比较好奇的点在于观测量<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.357ex;" xmlns="http://www.w3.org/2000/svg" width="2.492ex" height="1.95ex" role="img" focusable="false" viewBox="0 -704 1101.3 861.8"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mi" transform="translate(796,-150) scale(0.707)"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path></g></g></g></g></svg></mjx-container></span>的视角设置有什么要求？生成的定位误差大时怎么执行？行为怎么定义？是关节角度还是末端位置坐标，如果是坐标，又是在什么坐标系下？具体内容还需要结合代码和附录来分析。总之，这篇文章创新点很好，机器人操作领域的发展很长一段时间都是滞后于cv和nlp的，本文将最新的技术思想迁移了过来，有可能推动机器人操作迈上新台阶。</p>
+policy的确是个很具有创新性的点子，在性能上的提升也非常多。但我比较好奇的点在于观测量<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.357ex;" xmlns="http://www.w3.org/2000/svg" width="2.492ex" height="1.95ex" role="img" focusable="false" viewBox="0 -704 1101.3 861.8"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mi" transform="translate(796,-150) scale(0.707)"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path></g></g></g></g></svg></mjx-container></span>的视角设置有什么要求？生成的定位误差大时怎么执行？行为怎么定义？是关节角度还是末端位置坐标，如果是坐标，又是在什么坐标系下？具体内容还需要结合代码和附录来分析（也可以参考这篇文章Planning
+with Diffusion for Flexible Behavior
+Synthesis）。总之，这篇文章创新点很好，机器人操作领域的发展很长一段时间都是滞后于cv和nlp的，本文将最新的技术思想迁移了过来，有可能推动机器人操作迈上新台阶。</p>
 
     </div>
 
@@ -820,7 +822,10 @@ policy的确是个很具有创新性的点子，在性能上的提升也非常�
     <a href="/2024/02/17/2024-02-17-Q27-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0-%E4%B8%AD%E7%AD%89/" rel="prev" title="Q27-移除元素-简单">
       <i class="fa fa-chevron-left"></i> Q27-移除元素-简单
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2024/02/28/2024-02-28-Reinforcement%20Learning%20-%20Planning%20with%20Diffusion%20for%20Flexible%20Behavior%20Synthesis/" rel="next" title="Reinforcement Learning | Planning with Diffusion for Flexible Behavior Synthesis (berkeley&mit)">
+      Reinforcement Learning | Planning with Diffusion for Flexible Behavior Synthesis (berkeley&mit) <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -906,7 +911,7 @@ Environments and datasets</span></a></li><li class="nav-item nav-level-4"><a cla
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">266</span>
+          <span class="site-state-item-count">267</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -919,7 +924,7 @@ Environments and datasets</span></a></li><li class="nav-item nav-level-4"><a cla
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -973,12 +978,12 @@ Environments and datasets</span></a></li><li class="nav-item nav-level-4"><a cla
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">705k</span>
+    <span title="Symbols count total">708k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">10:41</span>
+    <span title="Reading time total">10:44</span>
 </div>
 
         
