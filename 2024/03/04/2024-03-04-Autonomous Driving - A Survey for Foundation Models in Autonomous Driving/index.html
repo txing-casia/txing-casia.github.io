@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"txing-casia.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="整体看来无论是LLM还是基础模型在自动驾驶中的使用，尤其是在planning、decision相关任务上的使用，还非常地初步，大多数研究都还处于探索阶段，效果也还不好，更没有解决上车的工程化问题，包括延时、内存、后处理等等；而且LLM输出的文本描述如何和规划的结果相结合，目前的工作也相对粗糙了一些；如果后续在自动驾驶任务的性能上没有大幅度的提升，仅3年内基础模型落地会面临比较大阻碍；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Autonomous Driving | A Survey for Foundation Models in Autonomous Driving">
+<meta property="og:url" content="https://txing-casia.github.io/2024/03/04/2024-03-04-Autonomous%20Driving%20-%20A%20Survey%20for%20Foundation%20Models%20in%20Autonomous%20Driving/index.html">
+<meta property="og:site_name" content="Txing">
+<meta property="og:description" content="整体看来无论是LLM还是基础模型在自动驾驶中的使用，尤其是在planning、decision相关任务上的使用，还非常地初步，大多数研究都还处于探索阶段，效果也还不好，更没有解决上车的工程化问题，包括延时、内存、后处理等等；而且LLM输出的文本描述如何和规划的结果相结合，目前的工作也相对粗糙了一些；如果后续在自动驾驶任务的性能上没有大幅度的提升，仅3年内基础模型落地会面临比较大阻碍；">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://txing-casia.github.io/images/20240304-1.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20240306-1.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20240306-2.png">
+<meta property="og:image" content="https://txing-casia.github.io/images/20240306-3.png">
+<meta property="article:published_time" content="2024-03-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-03-06T07:27:32.880Z">
+<meta property="article:author" content="Txing">
+<meta property="article:tag" content="Autonomous Driving">
+<meta property="article:tag" content="Foundation Model">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://txing-casia.github.io/images/20240304-1.png">
+
+<link rel="canonical" href="https://txing-casia.github.io/2024/03/04/2024-03-04-Autonomous%20Driving%20-%20A%20Survey%20for%20Foundation%20Models%20in%20Autonomous%20Driving/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Autonomous Driving | A Survey for Foundation Models in Autonomous Driving | Txing</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Txing</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到 | 伽蓝之堂</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://txing-casia.github.io/2024/03/04/2024-03-04-Autonomous%20Driving%20-%20A%20Survey%20for%20Foundation%20Models%20in%20Autonomous%20Driving/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_photo.jpg">
+      <meta itemprop="name" content="Txing">
+      <meta itemprop="description" content="泛用人形决战型机器人博士">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Txing">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Autonomous Driving | A Survey for Foundation Models in Autonomous Driving
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2024-03-04 00:00:00" itemprop="dateCreated datePublished" datetime="2024-03-04T00:00:00+08:00">2024-03-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Manuscript-Reader/" itemprop="url" rel="index"><span itemprop="name">Manuscript Reader</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>9k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>8 mins.</span>
+            </span>
+            <div class="post-description">整体看来无论是LLM还是基础模型在自动驾驶中的使用，尤其是在planning、decision相关任务上的使用，还非常地初步，大多数研究都还处于探索阶段，效果也还不好，更没有解决上车的工程化问题，包括延时、内存、后处理等等；而且LLM输出的文本描述如何和规划的结果相结合，目前的工作也相对粗糙了一些；如果后续在自动驾驶任务的性能上没有大幅度的提升，仅3年内基础模型落地会面临比较大阻碍；</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li>基础模型（foundation
+model）的出现彻底改变了自然语言处理和计算机视觉领域，为其在自动驾驶（AD）中的应用铺平了道路。这项调查对40多篇研究论文进行了全面综述，证明了基础模型在增强AD中的作用。大型语言模型有助于广告中的规划和模拟，特别是通过它们在推理、代码生成和翻译方面的熟练程度。与此同时，vision
+基础模型越来越多地适用于3D对象检测和跟踪等关键任务，以及为模拟和测试创建逼真的驾驶场景。多模态基础模型整合了不同的输入，表现出非凡的视觉理解和空间推理能力，这对于端到端自动驾驶至关重要。</li>
+<li>这项调查不仅提供了一个结构化的分类法，根据基础模型在自动驾驶领域的形式和功能对其进行分类，还深入研究了当前研究中采用的方法。它确定了现有基础模型和尖端自动驾驶方法之间的差距，从而制定了未来的研究方向并提出了弥合这些差距的路线图。</li>
+</ul>
+<h3 id="introduction">1 Introduction</h3>
+<ul>
+<li><p>自动驾驶系统的三个主要部分：</p>
+<ul>
+<li>perception</li>
+<li>prediction</li>
+<li>planning</li>
+</ul></li>
+<li><p>基础模型的出现显著影响了NLP和CV领域，通过AIGC的形式对自动驾驶有着潜在的影响</p></li>
+<li><p>基础模型对自动驾驶的数据生成、仿真模拟、简化规划的规则工程、形成user-centric（用语言模型理解指令和行为）的系统很重要</p></li>
+<li><p>相关综述：</p>
+<ul>
+<li><p>LLM4Drive 关注语言模型</p>
+<p>Llm4drive: A survey of large language models for autonomous driving,
+2023</p></li>
+<li><p>对基础模型在自动驾驶中的应用（主要是在模拟、数据标注和规划方面）有广泛的总结</p>
+<p>Applications of large scale foundation models for autonomous driving,
+2023.</p></li>
+</ul></li>
+</ul>
+<figure>
+<img src="\images\20240304-1.png" alt="自动驾驶中基础模型的类型">
+<figcaption aria-hidden="true">自动驾驶中基础模型的类型</figcaption>
+</figure>
+<ul>
+<li>自动驾驶中基础模型分类：
+<ul>
+<li>大语言模型
+<ul>
+<li>规划</li>
+<li>轨迹预测</li>
+<li>仿真和测试</li>
+<li>用户接口和个性化</li>
+</ul></li>
+<li>视觉基础模型
+<ul>
+<li>感知</li>
+<li>视频生成与世界模型</li>
+</ul></li>
+<li>多模态基础模型
+<ul>
+<li>统一感知和规划</li>
+<li>视觉理解和解释</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="large-language-models-in-ad">2 Large Language Models in AD</h3>
+<h4 id="overview">2.1 Overview</h4>
+<p>LLM来自自然语言处理领域，先驱是Bidirectional Transformer
+(BERT)；后来预训练的模型可以在特殊的数据集上做fine-tuning，在广泛的任务上都实现了
+SOTA 的结果，随后，OpenAI 的 generative pre-trained transformer (GPT)
+series 显著提升了NLP的能力；之后的GPT模型包括
+ChatGPT、GPT4都使用了十亿级（billions）的参数量级和数万亿级别文字数据，在翻译、文本总结、问答任务中实现了非常优秀的性能；</p>
+<h4 id="applications-in-ad">2.2 Applications in AD</h4>
+<p><strong>Reasoning and Planning</strong></p>
+<ul>
+<li><p>解释环境线索有助于进行安全、舒适、可解释的驾驶决策；</p></li>
+<li><p>Gpt-driver: Learning to drive with gpt, 2023.</p></li>
+<li><p>Receive, reason, and react: Drive as you say with large language
+models in autonomous vehicles, 2023.</p></li>
+</ul>
+<p><strong>Prediction</strong></p>
+<ul>
+<li>使用LLM做轨迹预测的研究还处于比较早期阶段，例如【Can you text what
+is happening? integrating pretrained language encoders into trajectory
+prediction models for autonomous driving,
+2023.】使用LLM将场景信息表述为文字，再用BERT将其转化为文本编码，最后与图像处编码融合后解码出预测的轨迹；</li>
+</ul>
+<p><strong>User Interface and Personalization</strong></p>
+<ul>
+<li>一些方法接收用户个性化指令（personalized
+commands）进行轨迹规划，例如激进驾驶、保守驾驶等
+<ul>
+<li>Receive, reason, and react: Drive as you say with large language
+models in autonomous vehicles, 2023.</li>
+</ul></li>
+<li>利用LLM的推理能力，并提供单步的规则来决定对用户命令的响应，例如接受或拒绝用户的指令
+<ul>
+<li>Human-centric autonomous systems with llms for user command
+reasoning, 2023.</li>
+</ul></li>
+</ul>
+<p><strong>Simulation and Testing</strong></p>
+<ul>
+<li>使用LLM做case的分析，问题原因，交通规则解释等
+<ul>
+<li>Adept: A testing platform for simulated autonomous driving. In
+Proceedings of the 37th IEEE/ACM International Conference on Automated
+Software Engineering, pages 1– 4, 2022.</li>
+<li>Target: Automated scenario generation from traffic rules for testing
+autonomous vehicles, 2023.</li>
+<li>Deep unsupervised learning using nonequilibrium thermodynamics. In
+International conference on machine learning, pages 2256–2265. PMLR,
+2015.</li>
+</ul></li>
+</ul>
+<h4 id="methods-and-techniques">2.3 Methods and Techniques</h4>
+<p><strong>Prompt Engineering</strong></p>
+<ul>
+<li><p>提示工程采用输入提示和问题的复杂设计来指导大型语言模型生成我们想要的答案。</p></li>
+<li><p>一些研究将交规作为pre-prompt，使LLM遵守交规，</p></li>
+<li><p>提出了一个 称为常识模块（common-sense
+module）的模块，用于存储规则以及人类驾驶的指令，例如，避免碰撞和保持安全距离</p>
+<ul>
+<li>A language agent for autonomous driving, 2023.</li>
+</ul></li>
+<li><p>LanguageMPC采用自上而下的决策系统:给定不同的情况，车辆有不同的可能动作。LLM代理还被指示识别场景中的重要代理，并输出注意力、权重和偏差矩阵以从预定义的动作中进行选择。</p>
+<ul>
+<li>Languagempc: Large language models as decision makers for autonomous
+driving, 2023.</li>
+</ul></li>
+</ul>
+<p><strong>Fine-tuning v.s. In-context Learning</strong></p>
+<ul>
+<li>微调和上下文学习都用于使预训练模型适应自动驾驶。微调在较小的特定于领域的数据集上重新训练模型参数，而上下文学习或few-shot学习利用LLM的知识和推理能力从输入提示中的给定示例中学习。大多数论文都专注于上下文学习，但只有少数论文利用了微调。研究人员对哪种方法更好的结果褒贬不一</li>
+<li>【Mao et al
+.，2023b】比较了这两种方法，发现少量多次学习的效果略好。GPT-Driver【Mao等人，2023a】有一个不同的结论，即使用OpenAI微调的性能明显优于少量多次学习。【Chen
+et al
+.，2023】还比较了从头训练和微调方法，发现使用预训练的LLaMA模型和基于LoRA的微调可以比从头训练表现更好。</li>
+</ul>
+<p><strong>Reinforcement Learning and Human Feedback</strong></p>
+<ul>
+<li>DILU提出了一个反应模块，用来存储好的和不好的驾驶行为sample，并进行纠正，以进一步增强其推理能力。
+<ul>
+<li>Dilu: A knowledge-driven approach to autonomous driving with large
+language models, 2023.</li>
+</ul></li>
+<li>超现实驾驶员【Jin et al
+.，2023】采访了24名驾驶员，并使用他们对驾驶行为的描述作为思维链提示来开发“教练代理”模块，该模块可以指示LLM模型具有类似人类的驾驶风格。结合语音指令【Wang
+et al
+.，2022a】使用人类教练的指令，并建立了动作、奖励和推理的自然语言指令的分类，用于训练基于深度强化学习的自动驾驶智能体。</li>
+</ul>
+<h4 id="limitations-and-future-directions">2.4 Limitations and Future
+Directions</h4>
+<p><strong>Hallucination and Harmfulness</strong></p>
+<ul>
+<li>幻觉问题是LLM最大的问题，在自动驾驶场景中会导致错误的决策或规划，影响很大，一项研究显示LLM的自动驾驶模型碰撞率为0.44%，高于其他方法；预训练还可能学到一些不太好的行为，例如激进的驾驶行为和超速行驶等；因此还需要做很多人在回路的训练（human-in-the-loop
+training）工作，来减少幻觉问题和危险驾驶行为；</li>
+</ul>
+<p><strong>Latency and Efficiency</strong></p>
+<ul>
+<li>延时问题：LLM普遍有比较严重的延时问题，通常需要好几秒的时间来推断；</li>
+<li>在车上部署很困难：具有数十亿个参数的LLM可能会消耗超过100GB的内存，这可能会干扰自动驾驶汽车中的其他关键模块。在这个领域还需要做更多的研究，例如模型压缩和知识提取，以使LLM更有效、更易于部署。</li>
+</ul>
+<p><strong>Dependency on Perception System</strong></p>
+<ul>
+<li>LLM的准确性依赖于上游感知模块，上游的微小误差可能导致下游决策错误，因此LLM需要更好的处理误差的能力；</li>
+</ul>
+<p><strong>Sim to Real Gap</strong></p>
+<ul>
+<li>仿真场景中的自动驾驶比实际情况简单的多，而大多数研究都是基于仿真环境进行的，如何克服这个困难也值得研究</li>
+</ul>
+<figure>
+<img src="\images\20240306-1.png" alt="概率规划的论文数量总结">
+<figcaption aria-hidden="true">概率规划的论文数量总结</figcaption>
+</figure>
+<h3 id="vision-foundation-model">3 Vision Foundation Model</h3>
+<ul>
+<li>DINOV2
+使用10亿个参数和12亿张图像的不同精选数据集来扩展训练，并在多项任务中获得最先进的结果
+<ul>
+<li>Dinov2: Learning robust visual features without supervision. arXiv
+preprint arXiv:2304.07193, 2023.</li>
+</ul></li>
+<li>还有一些工作：VAE、 Stable-Diffusion、 UNet、DALL-E</li>
+</ul>
+<figure>
+<img src="\images\20240306-2.png" alt="自动驾驶的视频生成Pipeline">
+<figcaption aria-hidden="true">自动驾驶的视频生成Pipeline</figcaption>
+</figure>
+<h4 id="perception">3.1 Perception</h4>
+<ul>
+<li><p>使用 SAM3D (Segment anything
+model)进行3D咪表分割然后投影到BEV图像上 ；</p></li>
+<li><p>目前最好的分割方法：Learning to adapt sam for segmenting
+cross-domain point clouds, 2023.</p>
+<p>提出SAM引导的特征对齐，学习不同领域三维点云特征的统一表示。它使用SAM特征提取器生成相机图像的特征嵌入，并将3D点云投影到相机图像中以获得SAM特征。</p></li>
+</ul>
+<h4 id="video-generation-and-world-model">3.2 Video Generation and World
+Model</h4>
+<ul>
+<li>GAIA-1是Wayve提出的生成显式世界驾驶视频的模型；使用图像、文本、车辆控制信号作为输入tokens，预测下一帧；
+<ul>
+<li>Gaia-1: A generative world model for autonomous driving, 2023.</li>
+<li>Video diffusion models, 2022.</li>
+</ul></li>
+<li>DriveDreamer使用世界模型和diffusion模型生成自动驾驶视频、文本描述、车辆行为，特实用更结构化的交通信息作为输入，例如HDMap和目标3D
+box；使得模型更好理解交通场景的高级别结构；分为两阶段：1.根据交通信息生成视频，使用pre-trained
+stable diffusion；2.训练视频预测任务和行为预测任务；
+<ul>
+<li>Drivedreamer: Towards real-world-driven world models for autonomous
+driving, 2023.</li>
+</ul></li>
+<li>zhang等人构建了一个基于点云的世界模型，在点云预测任务中实现了SOTA性能。
+<ul>
+<li>Learning unsupervised world models for autonomous driving via
+discrete diffusion, 2023.</li>
+</ul></li>
+</ul>
+<h4 id="limitations-and-future-directions-1">3.3 Limitations and Future
+Directions</h4>
+<ul>
+<li><p>即使是当前最好的SAM类模型，在zero-shot转换能力上也存在不足</p></li>
+<li><p>自动驾驶感知依靠多个cameras、lidars和sensor
+fusions来获得最高精度的物体检测结果，这与从网络上随机收集的图像数据集有很大不同</p></li>
+<li><p>公开的自动驾驶数据集仍然不够大</p></li>
+</ul>
+<h3 id="multi-modal-foundation-models">4 Multi-modal Foundation
+Models</h3>
+<ul>
+<li><p>多模态基础模型通过从多种模态（例如声音、图像和视频）获取输入数据来执行更复杂的任务，例如从图像生成文本、利用视觉输入进行分析和推理，从而受益更多</p></li>
+<li><p>最著名的多模态基础模型之一是CLIP，使用对比预训练方法（
+contrastive pre-training
+method）对模型进行预训练。输入是有噪声的图像和文本对，模型被训练来预测给定的图像和文本是否是正确的图像和文本对。该模型被训练为最大化图像编码器和文本编码器嵌入的余弦相似性。剪辑模型显示
+其他计算机视觉任务（如图像分类）的zero-shot转换能力，以及在没有监督训练的情况下预测该类的正确文本描述</p></li>
+<li><p>其他的多模态基础模型</p>
+<ul>
+<li>LLaVA
+<ul>
+<li>Visual instruction tuning. In NeurIPS, 2023.</li>
+</ul></li>
+<li>LISA
+<ul>
+<li>Lisa: Reasoning segmentation via large language model. arXiv
+preprint arXiv:2308.00692, 2023.</li>
+</ul></li>
+<li>CogVLM
+<ul>
+<li>Cogvlm: Visual expert for pretrained language models. arXiv preprint
+arXiv:2311.03079, 2023.</li>
+</ul></li>
+<li>Video-LLaMA
+<ul>
+<li>Video-llama: An instruction-tuned audio-visual language model for
+video understanding. arXiv preprint arXiv:2306.02858, 2023.</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="visual-understanding-and-reasoning">4.1 Visual Understanding and
+Reasoning</h4>
+<ul>
+<li>一般的视觉检测模型对自动驾驶是不够的，因为还需要理解对象的意图，是否是危险对象等，这样才能更好地理解场景</li>
+<li>HiLM-D利用multi-modal foundation models进行ROLISP(Risk Object
+Localization and Intention and Suggestion
+Prediction)，从图像使用自然语言定义风险对象，并且建议自车的未来行为；为了克服丢失小对象的缺点，它提出了具有高分辨率和低分辨率分支的流水线；低分辨率推理分支用于从连续视频帧中理解高层信息并识别风险对象；高分辨率感知分支支持进一步细化目标检测和定位质量。
+<ul>
+<li>Hilm-d: Towards highresolution understanding in multimodal large
+language models for autonomous driving, 2023.</li>
+</ul></li>
+<li>Talk2BEV
+先根据图像和lidar生成BEV，然后利用视觉语言基础模型对目标进行文本描述；然后将BEV图的JSON文本表示传递给通用LLM以执行视觉QA，该任务涵盖空间和视觉推理任务。结果显示了对详细实例属性以及对象的高级意图的良好理解，以及对ego工具的操作提供自由形式建议的能力。
+<ul>
+<li>Talk2bev: Language-enhanced bird’s-eye view maps for autonomous
+driving. arXiv preprint arXiv:2310.02251, 2023.</li>
+</ul></li>
+<li>LiDAR-LLM
+采用了一种新颖的方法，将点云数据与大型语言模型的高级推理能力相结合，以解释现实世界的3D环境，并在3D字幕、接地和QA任务中实现了出色的性能。该模型采用独特的三阶段训练和视图感知转换器（VAT）将3D数据与文本嵌入对齐，增强了空间理解能力。他们的例子表明，该模型可以理解交通场景，并为自动驾驶规划任务提供建议。
+<ul>
+<li>Lidar-llm: Exploring the potential of large language models for 3d
+lidar understanding. arXiv preprint arXiv:2312.14074, 2023.</li>
+</ul></li>
+<li>Atakishiyev
+等人使用视觉质量保证方法关注车辆动作的可解释性。他们从5种不同的动作类别（如直行和左转）中收集了模拟环境中的驾驶视频并使用人工标注的动作解释来训练模型。该模型能够解释基于道路几何形状和障碍物间隙的驾驶决策。他们发现应用最先进的多模态基础模型来生成对车辆行为的结构化解释是有希望的。
+<ul>
+<li>Explaining autonomous driving actions with visual question
+answering. arXiv preprint arXiv:2307.10408, 2023.</li>
+</ul></li>
+</ul>
+<h4 id="unified-perception-and-planning">4.2 Unified Perception and
+Planning</h4>
+<ul>
+<li><p>Wen et al 对GPT 4 vision
+在感知和规划任务中的应用进行了早期探索，并评估了其在几种场景中的能力。这表明GPT
+4能够理解天气，
+交通标志和交通灯，并识别场景中的交通参与者。它还可以提供这些对象的更详细的语义描述，例如车辆尾灯、意图、U-turn以及细分的车辆类型（cement
+mixer truck, trailer, and SUV）</p>
+<ul>
+<li>On the road with gpt-4v(ision): Early explorations of
+visual-language model on autonomous driving, 2023.</li>
+<li>Gpt-4 technical report. arXiv preprint arXiv:2303.08774, 2023.</li>
+</ul></li>
+<li><p>它还显示了基础模型理解点云数据的潜力，GPT-4V可以从BEV图像中投影的点云轮廓识别车辆。他们还评估了模型在规划任务中的表现。给定交通场景，要求GPT4-V描述其对车辆行动的观察和决策。结果显示与其他交通参与者有良好的互动，并遵守交通规则和常识，例如在安全距离内跟车行驶，在人行横道上避让骑车人，在绿灯亮起前保持停车状态。它甚至可以非常好地处理一些长尾场景，例如门控停车场。</p></li>
+<li><p>指令调整用于更好地使通用多模态基础模型适应自动驾驶任务。DriveGPT4
+创建了一个指令跟踪数据集，其中ChatGPT、yolo V8
+和来自BBDX数据集的地面真实车辆控制信号用于生成有关常见物体检测、空间关系、红绿灯信号、ego车辆动作的问题和答案。在LLaVA之后，它使用了预训练的CLIP
+编码器和LLM权重，并使用专门为自动驾驶设计的指令跟随数据集对模型进行了微调。他们能够建立一个端到端的可解释自动驾驶系统，该系统能够很好地了解周围环境，并根据管辖范围和低级控制命令对车辆行动做出决策。</p>
+<ul>
+<li>Drivegpt4: Interpretable end-to-end autonomous driving via large
+language model. arXiv preprint arXiv:2310.01412, 2023.</li>
+<li>Learning transferable visual models from natural language
+supervision. In International conference on machine learning, pages
+8748–8763. PMLR, 2021.</li>
+</ul></li>
+</ul>
+<h4 id="limitations-and-future-directions-2">4.3 Limitations and Future
+Directions</h4>
+<ul>
+<li>多模态基础模型的泛化能力一般都比较好，目前更加期待它能；理解更加丰富的信息，以及解决一些长尾问题；
+<ul>
+<li>例如特殊车辆的分类和警察手势的理解；</li>
+<li>例如停在有控制出入的门口</li>
+</ul></li>
+<li>（传感器信息融合和精确检测）模型在自动驾驶方面仍有局限性。
+GPT-4V模型在几个示例中仍会出现幻觉并产生不清楚的响应或错误答案。该模型还显示出在利用多视角相机和激光雷达数据进行精确的3D对象检测和定位方面的缺陷，因为预训练数据集仅包含来自网络的2D图像。需要进行更多特定领域的微调或预训练来训练多模态基础模型，以更好地理解点云数据和传感器融合，从而实现与最先进的感知系统相当的性能。</li>
+</ul>
+<h3 id="conclusion-and-future-directions">5 Conclusion and Future
+Directions</h3>
+<figure>
+<img src="\images\20240306-3.png" alt="自动驾驶的基础模型路线图">
+<figcaption aria-hidden="true">自动驾驶的基础模型路线图</figcaption>
+</figure>
+<ul>
+<li>有潜力的研究方向：
+<ul>
+<li>特定领域的预训练或自动驾驶数据集上的微调（ Domain-specific
+pre-training or fine-tuning on autonomous driving dataset）</li>
+<li>使用强化学习、和人在环路的对齐，以提升安全性和降低幻觉的影响（Reinforcement
+Learning, and Human-in-the-loop alignment to improve safety and reduce
+hallucinations）</li>
+<li>适应2D基础模型到3D的转换，例如在3D数据集上的语言引导的传感器融合、微调或者few-shot
+learning（Adaptation of 2D foundation models to 3D, e.g. language guided
+sensor fusion, fine-tuning, or few-shot learning on the 3D
+dataset）</li>
+<li>为部署到车辆的模型延迟和内存优化、模型压缩和知识蒸馏（Latency and
+memory optimization, model compression, and knowledge distillation for
+deployment of foundation models to vehicles）</li>
+</ul></li>
+<li>我们还注意到，数据集是自动驾驶基础模型未来发展的最大障碍之一。现有的用于<strong>1000小时规模自动驾驶的开源数据集</strong>远少于用于最先进LLM的预训练数据集。用于现有基础模型的web数据集没有利用自动驾驶所需的所有模态，例如激光雷达和环绕摄像头。web数据域也与真实的驾驶场景大不相同
+<ul>
+<li>Open-sourced data ecosystem in autonomous driving: the present and
+future, 2024.</li>
+</ul></li>
+</ul>
+<h3 id="总结">总结</h3>
+<p>整体看来无论是LLM还是基础模型在自动驾驶中的使用，尤其是在planning、decision相关任务上的使用，还非常地初步，大多数研究都还处于探索阶段，效果也还不好，更没有解决上车的工程化问题，包括延时、内存、后处理等等；而且LLM输出的文本描述如何和规划的结果相结合，目前的工作也相对粗糙了一些；如果后续在自动驾驶任务的性能上没有大幅度的提升，仅3年内基础模型落地会面临比较大阻碍；</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Autonomous-Driving/" rel="tag"># Autonomous Driving</a>
+              <a href="/tags/Foundation-Model/" rel="tag"># Foundation Model</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/02/29/2024-02-29-Autonomous%20Driving%20-%20VADv2%20End-to-End%20Vectorized%20Autonomous%20Driving%20via%20Probabilistic%20Planning/" rel="prev" title="Autonomous Driving | VADv2: End-to-End Vectorized Autonomous Driving via Probabilistic Planning">
+      <i class="fa fa-chevron-left"></i> Autonomous Driving | VADv2: End-to-End Vectorized Autonomous Driving via Probabilistic Planning
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#introduction"><span class="nav-number">1.</span> <span class="nav-text">1 Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#large-language-models-in-ad"><span class="nav-number">2.</span> <span class="nav-text">2 Large Language Models in AD</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#overview"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Overview</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#applications-in-ad"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 Applications in AD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#methods-and-techniques"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 Methods and Techniques</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#limitations-and-future-directions"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 Limitations and Future
+Directions</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vision-foundation-model"><span class="nav-number">3.</span> <span class="nav-text">3 Vision Foundation Model</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#perception"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 Perception</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#video-generation-and-world-model"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 Video Generation and World
+Model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#limitations-and-future-directions-1"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 Limitations and Future
+Directions</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#multi-modal-foundation-models"><span class="nav-number">4.</span> <span class="nav-text">4 Multi-modal Foundation
+Models</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#visual-understanding-and-reasoning"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 Visual Understanding and
+Reasoning</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#unified-perception-and-planning"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 Unified Perception and
+Planning</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#limitations-and-future-directions-2"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 Limitations and Future
+Directions</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#conclusion-and-future-directions"><span class="nav-number">5.</span> <span class="nav-text">5 Conclusion and Future
+Directions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Txing"
+      src="/images/my_photo.jpg">
+  <p class="site-author-name" itemprop="name">Txing</p>
+  <div class="site-description" itemprop="description">泛用人形决战型机器人博士</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">269</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/txing-casia" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;txing-casia" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.uomi.moe/" title="https:&#x2F;&#x2F;blog.uomi.moe" rel="noopener" target="_blank">驱逐舰患者</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://m.mepai.me/photographyer/u_5a68085ba15aa.html?tdsourcetag=s_pctim_aiomsg" title="https:&#x2F;&#x2F;m.mepai.me&#x2F;photographyer&#x2F;u_5a68085ba15aa.html?tdsourcetag&#x3D;s_pctim_aiomsg" rel="noopener" target="_blank">隐之-INF</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Txing</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">721k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">10:56</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
